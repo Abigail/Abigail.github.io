@@ -3,57 +3,7 @@
 <title>Perl Weekly Challenge 106: Maximum Gap</title>
 <script src = "https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
 <script id = "MathJax-script" async src = "https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.js"></script>
-<style>
-html  {
-    margin-left: 4em;
-    margin-right: 4em;
-    background: #EEEEEE;
-    font-size: 130%;
-}
-
-blockquote {
-    font-style: italic;
-}
-
-code {
-    font-style: initial;
-    font-family: 'Source Code Pro', monospace;
-    font-size: 95%;
-}
-
-p code {
-    background: #DDDDDD;
-}
-
-pre {
-    padding: 5px;
-    background: black;
-    color: lightgreen;
-}
-
-h1 {
-    text-align: center;
-    font-size:  250%;
-}
-
-h1, h2, h3, h4, h5, h6 {
-    font-family: "Lobster Two";
-}
-
-/*
- * Indent
- */
-div.section, pre {
-    margin-left: 2em;
-    margin-right: 2em;
-}
-
-div pre {
-    margin-left: 0em;
-    margin-right: 0em;
-}
-
-</style>
+<link rel = 'stylesheet' href = '../../Styles/Perl-Weekly-Challenge/main.css'>
 <link rel = 'stylesheet' href = 'https://fonts.googleapis.com/css?family=Lobster+Two'>
 <link rel = 'stylesheet' href = 'https://fonts.googleapis.com/css?family=Source+Code Pro&display=swap'>
 </head>
@@ -118,6 +68,8 @@ while (&lt;&gt;) {
 
     say max (map {$N [$_] - $N [$_ - 1]} 1 .. $#N) // 0;
 }
-</code></pre></div>
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-106/abigail/perl/ch-1.pl">full program</a> on <a href="https://github.com">GitHub</a>.</p></div>
 </body>
 </html>
