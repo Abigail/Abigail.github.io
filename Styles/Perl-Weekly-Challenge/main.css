@@ -1,0 +1,48 @@
+html  {
+    margin-left: 4em;
+    margin-right: 4em;
+    background: #EEEEEE;
+    font-size: 130%;
+}
+
+blockquote {
+    font-style: italic;
+}
+
+code {
+    font-style: initial;
+    font-family: 'Source Code Pro', monospace;
+    font-size: 95%;
+}
+
+p code {
+    background: #DDDDDD;
+}
+
+pre {
+    padding: 5px;
+    background: black;
+    color: lightgreen;
+}
+
+h1 {
+    text-align: center;
+    font-size:  250%;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: "Lobster Two";
+}
+
+/*
+ * Indent
+ */
+div.section, pre {
+    margin-left: 2em;
+    margin-right: 2em;
+}
+
+div pre {
+    margin-left: 0em;
+    margin-right: 0em;
+}

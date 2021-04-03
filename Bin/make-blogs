@@ -1,0 +1,140 @@
+#!/opt/perl/bin/perl
+
+use 5.028;
+
+use strict;
+use warnings;
+no  warnings 'syntax';
+
+use experimental 'signatures';
+use experimental 'lexical_subs';
+
+use Text::Markdown qw [markdown];
+
+my $POLYFILL_URL  = "https://polyfill.io/v3/polyfill.min.js?features=es6";
+my $MATHJAX_URL   = "https://cdn.jsdelivr.net/npm/mathjax@3/" .
+                            "es5/tex-mml-chtml.js";
+
+my $HOME          = $ENV {HOME};
+my $TOP_DIR       = "$HOME/GitHub/Blogs";
+my $SRC_DIR       = "Src";
+my $HTML_DIR      = "HTML";
+my $PWC_DIR       = "Perl-Weekly-Challenge";
+my $STYLE_DIR     = "Styles";
+my $FULL_HTML_DIR = "$TOP_DIR/$HTML_DIR";
+my $FULL_SRC_DIR  = "$TOP_DIR/$SRC_DIR";
+my $FONT_URL      = "https://fonts.googleapis.com/css?family";
+my @FONTS         = map {s/ /+/r} ("Lobster Two",
+                                   "Source Code Pro&display=swap");
+my $PERLFUNC_URL  = "https://perldoc.perl.org/perlfunc";
+my $METACPAN_URL  = "https://metacpan.org/pod";
+
+chdir $TOP_DIR or die "chdir: $!";
+
+my $FONTS = join "\n" => map {
+    "<link rel = 'stylesheet' href = '$FONT_URL=$_'>"
+} @FONTS;
+
+
+sub header ($title, $week) {
+    #
+    # Return the header of the HTML page
+    #
+
+    my $styles = join "" => map {`cat $_`} grep {-f}
+                            map {"$STYLE_DIR/$_.css"} "main",
+                                                      "$PWC_DIR/main",
+                                                      "$PWC_DIR/$week";
+
+    return <<~ "--";
+        <head>
+        <title>$title</title>
+        <script src = "$POLYFILL_URL"></script>
+        <script id = "MathJax-script" async src = "$MATHJAX_URL"></script>
+        <style>
+        $styles
+        </style>
+        $FONTS
+        </head>
+        --
+}
+
+
+sub pre_process_lang ($language, $text) {
+    if ($language eq "Perl") {
+        $text =~ s {(?<anchor>
+                        \[`?
+                            (?:(?<func>  \w+) | 
+                               (?<module>\w+(?:::\w+)+))
+                          `?\])
+                     \(\#\)}
+                   {$+ {anchor} . "(" . 
+                       ($+ {func}   ? $PERLFUNC_URL . "#" . $+ {func}
+                      : $+ {module} ? $METACPAN_URL . "/" . $+ {module}
+                      : "???") . ")"}gex;
+    }
+
+    $text;
+}
+
+
+sub pre_process ($text) {
+    #
+    # Turn sections between ~~~~ into preformatted text
+    #
+    $text =~ s {^~~~~$(.*?)^~~~~$}
+               {join "\n" => map {"    $_"} split ("\n", $1)}gems;
+
+    $text =~ s {^(?<pre>###\s+(?<lang>Perl))(?<text>.*?)(?<post>^###|\Z)}
+               {$+ {pre} . pre_process_lang ($+ {lang}, $+ {text}) .
+                $+ {post}}gems;
+
+    $text;
+}
+
+sub post_process ($text) {
+    #
+    # Turn sections between headers into divs
+    #
+    $text =~ s {(</h[1-6]>\s*)(<p>.*?\S)(\s*(?:<h[1-6]>|</body>))}
+               {$1<div class = "section">\n$2</div>$3}gs;
+    $text;
+}
+
+#
+# For now, we just handle Perl Weekly Challenges
+#
+
+chomp (my @sources  = `find $SRC_DIR -name "*.md"`);
+foreach my $source_file (@sources) {
+    my $html_file = $source_file =~ s/^$SRC_DIR/$HTML_DIR/r
+                                 =~ s/\.md$/.html/r;
+    my ($week)    = $source_file =~ m{.*/(.*)\.md};
+  # next if -f $html_file && (stat $html_file)   [9] >
+  #                          (stat $source_file) [9]; # 9: mtime
+
+    my $source_text = `cat $source_file`;
+
+    $source_text = pre_process $source_text;
+
+    my $html_text   = markdown ($source_text => {
+        empty_element_suffix => ">"
+    });
+    $html_text = "<body>$html_text</body>";
+
+    $html_text = post_process ($html_text);
+
+    my ($title) = $html_text =~ m{<h1>(.*?)</h1>};
+
+    my $header = header ($title, $week);
+    open my $fh, ">", $html_file or die "open $html_file: $!";
+    print $fh <<~ "--";
+        <html>
+        $header
+        $html_text
+        </html>
+        --
+    close $fh or die "close $html_file: $!";
+}
+
+__END__
