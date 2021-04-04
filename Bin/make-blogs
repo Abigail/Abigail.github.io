@@ -166,8 +166,8 @@ foreach my $source_file (@sources) {
     my $html_file = $source_file =~ s/^$SRC_DIR/$HTML_DIR/r
                                  =~ s/\.md$/.html/r;
     my ($week)    = $source_file =~ m{.*/week-(.*)\.md};
-  # next if -f $html_file && (stat $html_file)   [9] >
-  #                          (stat $source_file) [9]; # 9: mtime
+    next if -f $html_file && (stat $html_file)   [9] >
+                             (stat $source_file) [9]; # 9: mtime
 
     my $source_text = `cat $source_file`;
 
