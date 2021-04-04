@@ -30,6 +30,8 @@ my @FONTS          = map {s/ /+/r} ("Lobster Two",
 my $PERLFUNC_URL   = "https://perldoc.perl.org/perlfunc";
 my $METACPAN_URL   = "https://metacpan.org/pod";
 my $GAWK_URL       = "https://www.gnu.org/software/gawk/manual/gawk.html";
+my $FREEBSD_URL    = "https://www.freebsd.org/cgi/man.cgi?" .
+                                                 "apropos=0&sektion=0&query";
 
 my $GITHUB_URL     = "https://github.com";
 my $GITHUB_USER    = "Abigail";
@@ -107,6 +109,8 @@ sub create_url ($matches, $language) {
             : "???"
       : $language eq "GNU AWK" ?
               $GAWK_URL . "#" . $$matches {target}
+      : $language eq "C" ?
+              $FREEBSD_URL . "=" . $$matches {func}
       : "language??";
 
     $$matches {anchor} . "($link)";
@@ -120,7 +124,7 @@ sub pre_process_lang ($language, $text, $week) {
                                  `?\])
                             \(\#(?<target>[^)]*)\)}x;
 
-    if ($language eq "GNU AWK" || $language eq "Perl") {
+    if ($language eq "GNU AWK" || $language eq "Perl" || $language eq "C") {
         $text =~ s {$pattern} {create_url (\%+, $language)}ge;
     }
 
