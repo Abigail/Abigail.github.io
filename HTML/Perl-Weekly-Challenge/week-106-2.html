@@ -217,5 +217,210 @@ is missing), the substring is taken till the end of <code>EXPR1</code>.</p>
 <p>Therefore, the last statement places the parenthesis on the right places.</p>
 
 <p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-106/abigail/bash/ch-2.sh">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+
+<h3>C</h3>
+
+<div class = "section">
+<p>A bit more work in C, but at the heart, still the same
+algorithm. Allocating memory takes work, and inserting
+parenthesis requires shifting characters one by one.</p>
+
+<pre><code>char * long_division (int numerator, int denominator) {
+    /*
+     * Calculate the maximum size of the result
+     */
+    size_t fraction_len =
+       (numerator &lt; denominator ? 1 :
+        floor (log10 (numerator / denominator))) +  // Digits before decimal dot
+                                               1 +  // Decimal dot
+                                  denominator    +  // Digits after decimal dot
+                                               2 +  // Parens
+                                               1;   // Trailing NUL byte
+    /*
+     * Allocate a string to hold the caption.
+     */
+    char * fraction;
+    if ((fraction = (char *) malloc (fraction_len * (sizeof (char)))) == NULL) {
+        perror ("Mallocing string failed");
+        exit (1);
+    }
+
+    /*
+     * Add the first part of the result (upto, and including the dot)
+     */
+    int position;
+    snprintf (fraction, fraction_len, "%d.%n",
+                        numerator / denominator, &amp;position);
+
+    /*
+     * Allocate memory to remember which numerators we have seen;
+     * initialize the entries to 0.
+     */
+    number * seen;
+    if ((seen = (number *) malloc (denominator * (sizeof (number)))) == NULL) {
+        perror ("Mallocing seen structure failed");
+        exit (1);
+    }
+    for (number i = 0; i &lt; denominator; i ++) {
+        seen [i] = 0;
+    }
+
+    /*
+     * We already have the part before the decimal dot; for the part
+     * behind it, we need numerator &lt; denominator
+     */
+    numerator %= denominator;
+    while (!seen [numerator]) {
+        if (!numerator) {
+            fraction [position] = '\0';
+            return (fraction);
+        }
+        seen [numerator] = position;
+        fraction [position] = BASE * numerator / denominator + '0';
+        numerator           = BASE * numerator % denominator;
+        position ++;
+    } 
+
+    /* 
+     * We now have to place the parens -- which means shifting
+     * part of the string created so far.
+     */
+    fraction [position + 2] = '\0';
+    fraction [position + 1] = ')';
+    for (int i = position; i &gt; seen [numerator]; i --) {
+        fraction [i] = fraction [i - 1];
+    }
+    fraction [seen [numerator]] = '(';
+    return (fraction);
+}
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-106/abigail/c/ch-2.c">full program</a> on <a href="https://github.com">GitHub</a>.</p></div>
+
+<h3>Lua</h3>
+
+<div class = "section">
+<p>Pretty straight forward in Lua. Lua uses two dots as the concatenator operator.</p>
+
+<pre><code>function long_division (numerator, denominator)
+    local BASE     = 10
+    local fraction = math . floor (numerator / denominator) .. "."
+    local position = fraction : len ()
+    local seen     = {}
+
+    numerator = numerator % denominator
+
+    while (not seen [numerator]) do
+        if   numerator == 0
+        then return (fraction)
+        end
+        seen [numerator] = position;
+        fraction  = fraction .. math . floor (BASE * numerator / denominator)
+        numerator =                           BASE * numerator % denominator
+        position  = position + 1
+    end
+
+    return (fraction : sub (1,  seen [numerator]) .. '(' ..
+            fraction : sub (1 + seen [numerator]) .. ')')
+
+end
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-106/abigail/lua/ch-2.lua">full program</a> on <a href="https://github.com">GitHub</a>.</p></div>
+
+<h3>Node.js</h3>
+
+<div class = "section">
+<p>Nothing special about the Node.js solution.</p>
+
+<pre><code>function long_division (numerator, denominator) {
+    let BASE = 10
+    let fraction = Math . floor (numerator / denominator) + "."
+    let position = fraction . length
+    let seen     = []
+
+    numerator %= denominator
+
+    while (!(numerator in seen)) {
+        if (!numerator) {
+            return (fraction)   
+        }
+        seen [numerator] = position
+        fraction += Math . floor (BASE * numerator / denominator)
+        numerator =               BASE * numerator % denominator
+        position ++
+    }
+
+    return (fraction . substr (0, seen [numerator]) + "(" +
+            fraction . substr (   seen [numerator]) + ")")
+}
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-106/abigail/node/ch-2.js">full program</a> on <a href="https://github.com">GitHub</a>.</p></div>
+
+<h3>Python</h3>
+
+<div class = "section">
+<p>Python has two division operators: <code>/</code> which does regular division,
+and <code>//</code> which does integer division. I wish more languages had
+different operators for the different types of division.</p>
+
+<p>Taking a substring in Python is done by using a slice operation.</p>
+
+<p>Blocks in Python are done by indentation. Hated by many, but I can
+appreciate the charm of it. It makes for more condense code.</p>
+
+<pre><code>def long_division (numerator, denominator):
+    BASE      = 10
+    fraction  = str (numerator // denominator) + "."
+    position  = len (fraction)
+    seen      = {}
+
+    numerator = numerator % denominator
+
+    while not (numerator in seen):
+        if numerator == 0:
+            return (fraction)
+        seen [numerator] = position
+        fraction  = fraction + str (BASE * numerator // denominator)
+        numerator =                 BASE * numerator  % denominator
+        position  = position + 1
+
+    return (fraction [:seen [numerator]]  + "(" +
+            fraction [ seen [numerator]:] + ")")
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-106/abigail/python/ch-2.py">full program</a> on <a href="https://github.com">GitHub</a>.</p></div>
+
+<h3>Ruby</h3>
+
+<div class = "section">
+<p>Just like in Python, in Ruby slices take the role of substrings.</p>
+
+<pre><code>def long_division (numerator, denominator)
+    base       = 10
+    fraction   = (numerator / denominator) . to_s + "."
+    position   = fraction . length
+    seen       = {}
+
+    numerator %= denominator
+
+    while !seen [numerator] do
+        if   numerator == 0
+        then return (fraction)
+        end
+        seen [numerator] = position
+        fraction += (base * numerator / denominator) . to_s
+        numerator =  base * numerator % denominator
+        position += 1
+    end
+
+    return (fraction [0 .. seen [numerator]   - 1] + "(" +
+            fraction [     seen [numerator] .. -1] + ")")
+
+end
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-106/abigail/ruby/ch-2.rb">full program</a> on <a href="https://github.com">GitHub</a>.</p></div>
 </body>
 </html>
