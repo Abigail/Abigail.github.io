@@ -1,0 +1,60 @@
+<html>
+<head>
+<title>Perl Weekly Challenge 106: Decimal String</title>
+<script src = "https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id = "MathJax-script" async src = "https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.js"></script>
+<link rel = 'stylesheet' href = '../../Styles/Perl-Weekly-Challenge/main.css'>
+<link rel = 'stylesheet' href = 'https://fonts.googleapis.com/css?family=Lobster+Two'>
+<link rel = 'stylesheet' href = 'https://fonts.googleapis.com/css?family=Source+Code Pro&display=swap'>
+</head>
+
+<body><h1>Perl Weekly Challenge 106: Decimal String</h1>
+
+<h2><a href="https://perlweeklychallenge.org/blog/perl-weekly-challenge-106/#TASK2">Challenge</a></h2>
+
+<blockquote>
+  <p>You are given numerator and denominator i.e. <code>$N</code> and <code>$D</code>.</p>
+  
+  <p>Write a script to convert the fraction into decimal string.
+  If the fractional part is recurring then put it in parenthesis.</p>
+</blockquote>
+
+<h3>Examples</h3>
+
+<pre><code>Input: $N = 1, $D = 3
+Output: "0.(3)"
+
+Input: $N = 1, $D = 2
+Output: "0.5"
+
+Input: $N = 5, $D = 66
+Output: "0.0(75)"
+</code></pre>
+
+<h2>Discussion</h2>
+
+<div class = "section">
+<p>It is very tempting to just divide the given numbers, use
+<code>sprintf</code> to get lots of digits, and then search a pattern
+which repeats.</p>
+
+<p>But in most languages, this is not going to work, due to 
+floating point arithmetic not being precise enough. It goes
+wrong with surprisingly low numbers.</p>
+
+<p>For instance, \(\frac{1}{23} = 0.\overline{0434782608695652173913}\),
+but (in Perl), <code>printf "%.40f" =&gt; 1/23</code> gives
+<code>0.0434782608695652173907151075149535301989</code>. This disagrees
+with the real result shortly after the 20th digit, and we don't
+even get the repeating part correctly in its first occurance.</p>
+
+<p>Instead, we have to perform long division by hand. First, we
+calculate \(I = \lfloor \frac{N}{D} \rfloor\) and set \(N = N \bmod D\).
+\(I\) is going to be the integer part (the part before the
+<a href="https://en.wikipedia.org/wiki/Decimal_separator">decimal separator</a>)
+of our solution.</p>
+
+<p>Now, in a loop, we calculate the digits after the decimal separator.
+As an invariant, we have \(N &lt; D\).</p></div>
+</body>
+</html>
