@@ -71,5 +71,60 @@ while (&lt;&gt;) {
 </code></pre>
 
 <p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-106/abigail/perl/ch-1.pl">full program</a> on <a href="https://github.com">GitHub</a>.</p></div>
+
+<h3>GNU AWK</h3>
+
+<div class = "section">
+<p>For our AWK solution, we turn to GNU AWK, the GNU implemenation of AWK.
+This implementation has the method <a href="https://www.gnu.org/software/gawk/manual/gawk.html#String-Functions"><code>asort</code></a>, which
+takes an array, and sorts it.</p>
+
+<p>In AWK, the input is by default already split on whitespace, and
+available in the variables <code>$1</code>, <code>$2</code>, <code>$3</code>, .... The variable
+<a href="https://www.gnu.org/software/gawk/manual/gawk.html#index-NF-variable"><code>NF</code></a> contains the number of fields the input
+has been split into. We can then iterate over the fields, and
+populate an array <code>N</code>.</p>
+
+<p>Finding the maximum of the differences is done by iterating over
+the array.</p>
+
+<pre><code>{   
+    #
+    # We don't have lexical variables, so we need to clear
+    # the array N in each iteration.
+    #
+    delete N
+
+    #
+    # Read in the data, and populate N
+    #
+    for (i = 1; i &lt;= NF; i ++) {
+        N [i] = $i
+    }
+
+    #
+    # Sort the array; for numeric values, this sorts numerically.
+    #
+    asort(N)
+
+    #
+    # Find the maximum of the differences. For a single element
+    # array, the maximum will be 0.
+    #
+    max = 0
+    for (i = 2; i &lt;= NF; i ++) {
+        if (N [i] - N [i - 1] &gt; max) {
+            max = N [i] - N [i - 1]
+        }
+    }
+
+    #
+    # Print the result.
+    #
+    print max
+}
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-106/abigail/awk/ch-1.gawk">full program</a> on <a href="https://github.com">GitHub</a>.</p></div>
 </body>
 </html>

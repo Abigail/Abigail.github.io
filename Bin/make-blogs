@@ -26,8 +26,10 @@ my $FULL_SRC_DIR   = "$TOP_DIR/$SRC_DIR";
 my $FONT_URL       = "https://fonts.googleapis.com/css?family";
 my @FONTS          = map {s/ /+/r} ("Lobster Two",
                                     "Source Code Pro&display=swap");
+
 my $PERLFUNC_URL   = "https://perldoc.perl.org/perlfunc";
 my $METACPAN_URL   = "https://metacpan.org/pod";
+my $GAWK_URL       = "https://www.gnu.org/software/gawk/manual/gawk.html";
 
 my $GITHUB_URL     = "https://github.com";
 my $GITHUB_USER    = "Abigail";
@@ -37,13 +39,14 @@ my $CHALLENGE_USER = "abigail";
 
 my %LANGUAGE_INFO = (
     AWK      => {},
-    Bash     => {                ext => "sh"},
+   "GNU AWK" => {name => "awk",  ext => "gawk"},
+    Bash     => {                ext =>   "sh"},
     C        => {},
     Lua      => {},
-   "Node.js" => {name => "node", ext => "js"},
-    Perl     => {                ext => "pl"},
-    Python   => {                ext => "py"},
-    Ruby     => {                ext => "rb"},
+   "Node.js" => {name => "node", ext =>   "js"},
+    Perl     => {                ext =>   "pl"},
+    Python   => {                ext =>   "py"},
+    Ruby     => {                ext =>   "rb"},
 );
 
 chdir $TOP_DIR or die "chdir: $!";
@@ -93,29 +96,32 @@ sub full_program ($language, $week) {
                         $part_nr,
                         $$lang_info {ext}  || lc $language;
 
-    return "Find the [full program]($link) on [GitHub]($GITHUB_URL).";
+    return "Find the [full program]($link) on [GitHub]($GITHUB_URL).\n";
+}
+
+sub create_url ($matches, $language) {
+    my $link =
+        $language eq "Perl" ?
+              $$matches {func}   ? $PERLFUNC_URL . "#" . $$matches {func}
+            : $$matches {module} ? $METACPAN_URL . "/" . $$matches {module}
+            : "???"
+      : $language eq "GNU AWK" ?
+              $GAWK_URL . "#" . $$matches {target}
+      : "language??";
+
+    $$matches {anchor} . "($link)";
 }
 
 sub pre_process_lang ($language, $text, $week) {
-    if ($language eq "Perl") {
-        #
-        # Make links. We recognize the following:
-        #
-        #   [word](#)           ->  Link to perlfunc
-        #   [word(::word)+](#)  ->  Link to MetaCpan
-        #
-        # The parts between the [] can be optionally surrounded by backtics
-        #
-        $text =~ s {(?<anchor>
-                        \[`?
-                            (?:(?<func>  \w+) | 
-                               (?<module>\w+(?:::\w+)+))
-                          `?\])
-                     \(\#\)}
-                   {$+ {anchor} . "(" . 
-                       ($+ {func}   ? $PERLFUNC_URL . "#" . $+ {func}
-                      : $+ {module} ? $METACPAN_URL . "/" . $+ {module}
-                      : "???") . ")"}gex;
+    state $pattern = qr {(?<anchor>
+                               \[`?
+                                   (?:(?<func>  \w+) | 
+                                      (?<module>\w+(?:::\w+)+))
+                                 `?\])
+                            \(\#(?<target>[^)]*)\)}x;
+
+    if ($language eq "GNU AWK" || $language eq "Perl") {
+        $text =~ s {$pattern} {create_url (\%+, $language)}ge;
     }
 
     $text =~ s {^FULL_PROGRAM\s*$} {full_program ($language, $week)}gem;
@@ -125,15 +131,15 @@ sub pre_process_lang ($language, $text, $week) {
 
 
 sub pre_process ($text, $week) {
+    state $lang_pat = join "|" => map {quotemeta $_} keys %LANGUAGE_INFO;
     #
     # Turn sections between ~~~~ into preformatted text
     #
     $text =~ s {^~~~~$(.*?)^~~~~$}
                {join "\n" => map {"    $_"} split ("\n", $1)}gems;
 
-    $text =~ s {^(?<pre>###\s+(?<lang>Perl))(?<text>.*?)(?<post>^###|\Z)}
-               {$+ {pre} . pre_process_lang ($+ {lang}, $+ {text}, $week) .
-                $+ {post}}gems;
+    $text =~ s {^(?<pre>###\s+(?<lang>$lang_pat))(?<text>.*?)(?=^###|\Z)}
+               {$+ {pre} . pre_process_lang ($+ {lang}, $+ {text}, $week)}gems;
 
     $text;
 }
