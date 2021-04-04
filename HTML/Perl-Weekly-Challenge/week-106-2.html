@@ -55,6 +55,167 @@ calculate \(I = \lfloor \frac{N}{D} \rfloor\) and set \(N = N \bmod D\).
 of our solution.</p>
 
 <p>Now, in a loop, we calculate the digits after the decimal separator.
-As an invariant, we have \(N &lt; D\).</p></div>
+As an invariant, we have \(N &lt; D\). We'll have string \(s\) which
+we use to create the decimal string -- we initialize \(r\) as
+\(I\) followed by a dot (our decimal separator). We also keep track
+of a position \(p\), and we initialize \(p\) as the length of
+the string \(r\). We'll also have a hash \(S\); initially empty.</p>
+
+<p>In each iteration of the loop, we first check whether \(N\) is zero.
+If so, the decimal expansion of the fraction is finite, and \(r\)
+is the final result of the process. Otherwise, we add \(N\) to the
+hash \(S\), with value \(p\). We can now find a new digit
+to be added to \(r\). We do this by calculating
+\(d = \lfloor \frac{10 \cdot N}{D} \rfloor\). Since \(N &lt; D\), 
+\(0 \leq d &lt; 10\). \(d\) is the new digit to be added to \(r\).
+We then update \(N\) by setting \(N = 10 \cdot N \bmod D\).
+The long division equivalent of this is process of <em>dropping a zero</em>,
+and then calculating how often \(D\) divides the new number, and then
+subtracting that many times \(D\) from the number. Finally, we
+increment \(p\) by one -- after all, we added a digit to \(r\).</p>
+
+<p>The guard of our loop is \(N \notin S\); if we have an \(N\)
+which is already in \(S\), the decimal expansion of the fraction
+repeats, and the value of \(N\) in \(S\) is the position where
+it starts repeating (and it repeats till the end of \(r\)).
+We can use this value to place the required parenthesis.</p>
+
+<p>This algorithm is based on the one found on the Wikipedia page about
+<a href="https://en.wikipedia.org/wiki/Repeating_decimal">repeating decimals</a>.</p></div>
+
+<h3>Example</h3>
+
+<pre><code>      22/7     \0.318
+         0                      int (7 / 22) == 0, so 0 before decimal point
+         --
+         7                      N =       N  % D
+         66                     3 * D
+         --
+          4                     N = (10 * N) % D   &lt;--+
+          22                    1 * D                 |
+          --                                          |  Same, so '18'
+          18                    N = (10 * N) % D      |  is the repeating
+          176                   8 * D                 |  part
+          ---                                         |
+            4                   N = (10 * N) % D   &lt;--+
+</code></pre>
+
+<h2>Solutions</h2>
+
+<div class = "section">
+<p>Given the algorithm described above, the implementations in the
+various languages follows easily. </p></div>
+
+<h3>Perl</h3>
+
+<pre><code>sub long_division ($numerator, $denominator) {
+    my $BASE     = 10;
+    my $fraction = sprintf "%d." =&gt; $numerator / $denominator;
+    my $position = length $fraction;
+    my %seen;
+
+    $numerator  %= $denominator;
+
+    while (!$seen {$numerator}) {
+        return $fraction unless   $numerator;  # No repeating part.
+        $seen {$numerator} = $position;
+        $fraction .= int ($BASE * $numerator / $denominator);
+        $numerator =      $BASE * $numerator % $denominator;
+        $position ++;
+    }
+
+    #
+    # Place parens around the repetend part.
+    #
+    $fraction .= ")";
+    substr $fraction, $seen {$numerator}, 0, "(";
+
+    return $fraction;
+}
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-106/abigail/perl/ch-2.pl">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+
+<h3>AWK</h3>
+
+<div class = "section">
+<p>Almost the same function in AWK.</p>
+
+<pre><code>function long_division (numerator, denominator) {
+    base     = 10
+    fraction = sprintf ("%d.", numerator / denominator)
+    position = length (fraction)
+    delete seen
+
+    numerator %= denominator
+
+    while (!seen [numerator]) {
+        if (!numerator) {
+            return fraction
+        }
+        seen [numerator] = position
+        fraction  = fraction int (base * numerator / denominator)
+        numerator =               base * numerator % denominator
+        position ++
+    }
+
+    return substr (fraction, 1,  seen [numerator]) "(" \
+           substr (fraction, 1 + seen [numerator]) ")"  
+}
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-106/abigail/awk/ch-2.awk">full program</a> on <a href="https://github.com">GitHub</a>.</p></div>
+
+<h3>Bash</h3>
+
+<pre><code>function long_division () {
+    declare numerator=$1
+    declare denominator=$2
+    declare BASE=10
+    fraction=$((numerator / denominator)).
+    declare position=${#fraction}
+    declare -a seen
+
+    ((numerator %= denominator))
+
+    while ((!seen[numerator]))
+    do  if   ((numerator == 0))
+        then return
+        fi
+        seen[$numerator]=$position
+        fraction=$fraction$((BASE * numerator / denominator))
+        ((numerator =        BASE * numerator % denominator))
+        ((position ++))
+    done
+    fraction=${fraction::${seen[$numerator]}}\(${fraction:${seen[$numerator]}}\)
+}
+</code></pre>
+
+<p>The Bash solution is very similar to the Perl solution, but it does
+have some syntax oddities. There are no named parameters in Bash,
+function arguments are available in <code>$1</code>, <code>$2</code>, etc. We cannot return
+strings from functions, so we write to a global variable, <code>fraction</code>.</p>
+
+<p>The <code>((EXPR))</code> construct evaluates <code>EXPR</code> as arithmetic; <code>$((EXPR))</code>
+also evaluates <code>EXPR</code> as arithmetic, but then it replaces the 
+result in the expression it is. </p>
+
+<p>String concatenation is done by just placing the parts you want to
+concatenate next to each other, so <code>fraction=$((numerator / denominator)).</code>
+divides <code>numerator</code> by <code>denominator</code> (division in Bash is integer division),
+and concatenates that result with a dot (<code>.</code>), placing the result in
+<code>fraction</code>.</p>
+
+<p><code>${#EXPR}</code> evaluates <code>EXPR</code>, and then it takes the length of the result.</p>
+
+<p>To get a substring in Bash, you use the <code>${EXPR1:EXPR2:EXPR3}</code> construct;
+this gets the substring of <code>EXPR1</code>, starting from position <code>EXPR2</code>, and
+with length <code>EXPR3</code>. If <code>EXPR2</code> is empty (or zero), the substring is taken
+from the beginning of the <code>EXPR1</code>. If <code>EXPR3</code> is empty (and the second colon
+is missing), the substring is taken till the end of <code>EXPR1</code>.</p>
+
+<p>Therefore, the last statement places the parenthesis on the right places.</p>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-106/abigail/bash/ch-2.sh">full program</a> on <a href="https://github.com">GitHub</a>.</p>
 </body>
 </html>
