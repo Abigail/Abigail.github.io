@@ -147,8 +147,12 @@ sub pre_process ($text, $week) {
 
     #
     # Handle MathJax delimiters. \( and \) need to be escaped from Markdown
+    # But we have to leave pre formatted code alone.
     #
-    $text =~ s/(?<!\\)(\\[()])/\\$1/g;
+    $text = join "\n" => map {
+        /^    / ? $_
+                : s/(?<!\\)(\\[()])/\\$1/gr;
+    } split /\n/ => $text;
 
     $text;
 }
