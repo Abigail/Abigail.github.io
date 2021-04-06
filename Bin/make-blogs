@@ -167,7 +167,8 @@ sub pre_process ($text, $week) {
     #
     $text = join "\n" => map {
         /^    / ? $_
-                : s/(?<!\\)(\\[()])/\\$1/gr;
+                : s/(?<!\\)(\\[()])/\\$1/gr =~
+                  s/(?<!-)--(?!-)/&mdash;/gr
     } split /\n/ => $text;
 
     $text;
