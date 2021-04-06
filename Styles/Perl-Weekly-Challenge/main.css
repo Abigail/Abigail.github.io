@@ -15,14 +15,14 @@ code {
     font-size: 95%;
 }
 
-p code {
+code {
     background: #DDDDDD;
 }
 
-pre {
+pre, pre code {
     padding: 10px 5px;
-    background: black;
     border-radius: 20px;
+    background: black;
     color: lightgreen;
 }
 
