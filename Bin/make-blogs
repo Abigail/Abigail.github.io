@@ -32,6 +32,8 @@ my $METACPAN_URL   = "https://metacpan.org/pod";
 my $GAWK_URL       = "https://www.gnu.org/software/gawk/manual/gawk.html";
 my $FREEBSD_URL    = "https://www.freebsd.org/cgi/man.cgi?" .
                                                  "apropos=0&sektion=0&query";
+my $WIKI_URL       = "https://en.wikipedia.org/wiki";
+my $OEIS_URL       = "https://oeis.org";
 
 my $GITHUB_URL     = "https://github.com";
 my $GITHUB_USER    = "Abigail";
@@ -101,6 +103,12 @@ sub full_program ($language, $week) {
     return "Find the [full program]($link) on [GitHub]($GITHUB_URL).\n";
 }
 
+
+sub process_link ($link, $anchor) {
+    $link =~ s {^wiki:}{$WIKI_URL/}r
+          =~ s {^oeis:}{$OEIS_URL/}r;
+}
+
 sub create_url ($matches, $language) {
     my $link =
         $language eq "Perl" ?
@@ -144,6 +152,14 @@ sub pre_process ($text, $week) {
 
     $text =~ s {^(?<pre>###\s+(?<lang>$lang_pat))(?<text>.*?)(?=^###|\Z)}
                {$+ {pre} . pre_process_lang ($+ {lang}, $+ {text}, $week)}gems;
+
+    #
+    # Process links
+    #
+    $text =~ s {\[(?<anchor>[^]]+)\]\((?<link>[^)]+)\)}
+               {"[" . $+ {anchor} . "](" .
+                          process_link ($+ {link}, $+ {anchor}) . ")"}ge;
+
 
     #
     # Handle MathJax delimiters. \( and \) need to be escaped from Markdown
