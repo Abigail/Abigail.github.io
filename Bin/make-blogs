@@ -42,15 +42,36 @@ my $GITHUB_BRANCH  = "master";
 my $CHALLENGE_USER = "abigail";
 
 my %LANGUAGE_INFO = (
-    AWK      => {},
-   "GNU AWK" => {name => "awk",  ext => "gawk"},
-    Bash     => {                ext =>   "sh"},
-    C        => {},
-    Lua      => {},
-   "Node.js" => {name => "node", ext =>   "js"},
-    Perl     => {                ext =>   "pl"},
-    Python   => {                ext =>   "py"},
-    Ruby     => {                ext =>   "rb"},
+    AWK         => {},
+   "GNU AWK"    => {name => "awk",  ext => "gawk"},
+    Bash        => {                ext =>   "sh"},
+    Basic       => {                ext =>  "bas"},
+    bc          => {},
+   "Befunge-93" => {                ext => "bf93"},
+    C           => {},
+    Cobol       => {                ext =>   "cb"},
+    Csh         => {                ext =>  "csh"},
+    Erlang      => {                ext =>  "erl"},
+    Forth       => {                ext =>   "fs"},
+    Fortran     => {                ext =>  "f90"},
+    Go          => {},
+    Java        => {},
+    Lua         => {},
+    m4          => {},
+   "Node.js"    => {name => "node", ext =>   "js"},
+    OCaml       => {                ext =>   "ml"},
+    Pascal      => {                ext =>    "p"},
+    Perl        => {                ext =>   "pl"},
+    PHP         => {},
+    PostScript  => {                ext  =>  "ps"},
+    Python      => {                ext =>   "py"},
+    R           => {},
+    Rexx        => {},
+    Ruby        => {                ext =>   "rb"},
+    Scheme      => {                ext =>  "scm"},
+    sed         => {},
+    SQL         => {},
+    Tcl         => {},
 );
 
 chdir $TOP_DIR or die "chdir: $!";
@@ -86,9 +107,9 @@ sub header ($title, $week) {
 #
 # Create a link to the full program on GitHub
 #
-sub full_program ($language, $week) {
+sub github_link ($language, $week) {
     my ($week_nr, $part_nr) = split /-/ => $week;
-    my  $lang_info = $LANGUAGE_INFO {$language};
+    my $lang_info = $LANGUAGE_INFO {$language};
     my $link = sprintf "%s/%s/%s/blob/%s/challenge-%03d/%s/%s/ch-%d.%s" =>
                         $GITHUB_URL,
                         $GITHUB_USER,
@@ -99,79 +120,139 @@ sub full_program ($language, $week) {
                         $$lang_info {name} || lc $language,
                         $part_nr,
                         $$lang_info {ext}  || lc $language;
+    $link;
+}
 
+sub full_program ($language, $week) {
+    my $link = github_link ($language, $week);
     return "Find the [full program]($link) on [GitHub]($GITHUB_URL).\n";
 }
 
 
-sub process_link ($link, $anchor) {
-    $link =~ s {^wiki:}{$WIKI_URL/}r
-          =~ s {^oeis:}{$OEIS_URL/}r;
-}
 
-sub create_url ($matches, $language) {
-    my $link =
-        $language eq "Perl" ?
-              $$matches {func}   ? $PERLFUNC_URL . "#" . $$matches {func}
-            : $$matches {module} ? $METACPAN_URL . "/" . $$matches {module}
-            : "???"
-      : $language eq "GNU AWK" ?
-              $GAWK_URL . "#" . $$matches {target}
-      : $language eq "C" ?
-              $FREEBSD_URL . "=" . $$matches {func}
-      : "language??";
-
-    $$matches {anchor} . "($link)";
-}
-
-sub pre_process_lang ($language, $text, $week) {
-    state $pattern = qr {(?<anchor>
-                               \[`?
-                                   (?:(?<func>  \w+) | 
-                                      (?<module>\w+(?:::\w+)+))
-                                 `?\])
-                            \(\#(?<target>[^)]*)\)}x;
-
-    if ($language eq "GNU AWK" || $language eq "Perl" || $language eq "C") {
-        $text =~ s {$pattern} {create_url (\%+, $language)}ge;
+#
+# For patterns of the form [...](#...), this method is called,
+# and the result is substituted will be placed inside the ().
+#
+sub make_link (%args) {
+    my $anchor   = $args {anchor};
+    my $link     = $args {link};
+    my $week     = $args {week};
+    my $language = $args {language};
+    my $url;
+    if ($LANGUAGE_INFO {$language}) {
+        # Remove backtics
+        $anchor =~ s/^`//;
+        $anchor =~ s/`$//;
+        if ($language eq "Perl") {
+            if (!$link) {
+                #
+                # Does the link point to a module?
+                #
+                $url = $anchor =~ /::/ ? $METACPAN_URL . "/" . $anchor
+                                       : $PERLFUNC_URL . "#" . $anchor;
+            }
+        }
+        elsif ($language eq "GNU AWK" || $language eq "AWK") {
+            $url = $GAWK_URL . "#" . $link;
+        }
+        elsif ($language eq "C") {
+            if (!$link) {
+                $url = $FREEBSD_URL . "=" . $anchor;
+            }
+        }
     }
+    if (!$url) {
+        if ($link =~ /(?<where>[^:]+):(?<what>.*)/) {
+            my $where = $+ {where};
+            my $what  = $+ {what};
+            if    ($where eq "wiki") {$url = $WIKI_URL . "/" . $what}
+            elsif ($where eq "oeis") {$url = $OEIS_URL . "/" . $what}
+        }
+        elsif ($link eq "github") {
+            $url = github_link ($anchor, $week);
+        }
+    }
+    $url //= "#$link";
 
-    $text =~ s {^FULL_PROGRAM\s*$} {full_program ($language, $week)}gem;
-
-    $text;
+    $url;
 }
+
+my $link_pattern = qr {\[    (?<anchor> [^]]*) \]
+                       \( \# (?<link>   [^)]*) \)}x;
+
+sub process_section ($section, $language, $week) {
+    #
+    # Step one, find the links starting with a #, and process them.
+    #
+    $section =~ s {$link_pattern}
+                  {"[" . $+ {anchor} . "]" .
+                   "(" . make_link (anchor   => $+ {anchor},
+                                    link     => $+ {link},
+                                    week     => $week,
+                                    language => $language) . ")"}ge;
+
+    #
+    # Replace any lines with FULL_PROGRAM to a section pointing
+    # to the file on GitHub.
+    #
+    $section =~ s {^FULL_PROGRAM\s*$} {full_program ($language, $week)}gem;
+
+    #
+    # Process MathJax delimiters
+    #
+    $section =~ s/(?<!\\)(\\[()])/\\$1/g;
+
+    #
+    # Turn a double dash into an &mdash;
+    #
+    $section =~ s/(?<!-)--(?!-)/&mdash;/g;
+
+    $section . "\n";
+}
+
 
 
 sub pre_process ($text, $week) {
     state $lang_pat = join "|" => map {quotemeta $_} keys %LANGUAGE_INFO;
-    #
-    # Turn sections between ~~~~ into preformatted text
-    #
-    $text =~ s {^~~~~$(.*?)^~~~~$}
-               {join "\n" => map {"    $_"} split ("\n", $1)}gems;
 
-    $text =~ s {^(?<pre>###\s+(?<lang>$lang_pat))(?<text>.*?)(?=^###|\Z)}
-               {$+ {pre} . pre_process_lang ($+ {lang}, $+ {text}, $week)}gems;
+    my $out = "";
 
     #
-    # Process links
+    # Iterate over the lines. Use states to determine whether we're
+    # inside a preformatted block (toggle on ~~~~), and what the current
+    # language is (### <LANG>).
     #
-    $text =~ s {\[(?<anchor>[^]]+)\]\((?<link>[^)]+)\)}
-               {"[" . $+ {anchor} . "](" .
-                          process_link ($+ {link}, $+ {anchor}) . ")"}ge;
+    my $language     = "";
+    my $preformatted =  0;
+    my $section      = "";
 
+    foreach my $line (split /\n/ => $text) {
+        $preformatted = !$preformatted, next if $line eq "~~~~";
+        if ($preformatted) {
+            if ($section) {
+                $out .= process_section ($section, $language, $week);
+                $section = "";
+            }
+            $out .= "    $line\n";
+            next;
+        }
+        if ($line =~ /^###\s*(?<header>.*)/) {
+            if ($section) {
+                $out .= process_section ($section, $language, $week);
+                $section = "";
+            }
+            $language = $+ {header};
+            $out .= $line . "\n";
+            next;
+        }
+        $section .= $line . "\n";
+    }
+    if ($section) {
+        $out .= process_section ($section, $language, $week);
+    }
 
-    #
-    # Handle MathJax delimiters. \( and \) need to be escaped from Markdown
-    # But we have to leave pre formatted code alone.
-    #
-    $text = join "\n" => map {
-        /^    / ? $_
-                : s/(?<!\\)(\\[()])/\\$1/gr =~
-                  s/(?<!-)--(?!-)/&mdash;/gr
-    } split /\n/ => $text;
-
-    $text;
+    return $out;
 }
 
 sub post_process ($text) {
