@@ -63,8 +63,8 @@ observations:</p>
 of a self-describing number: the sum of the digits must equal
 the number of digits, and the number of digits is \(b\).</li>
 <li>\(\forall i: 0 \leq i \leq b - 1 \implies d_i &lt; b - 1\).
-(\(N_b\) does not contain a digit which is the largest possible digit
-in base \(b\) ((\(b - 1\))). Suppose \(N_b\) does contain such a digit. 
+(A self-describing number in base \(b\) does not contain the
+digit \(b - 1\)). Suppose \(N_b\) does contain such a digit. 
 Then by point ii, \(N_b\) contains a \(1\), and all other digits
 are \(0\). If \(b = 2\) that would imply that \(N_2 = 11\), but
 \(11\) clearly is not self describing. Otherwise \(d_0 > 0\)
@@ -74,16 +74,17 @@ are \(0\). If \(b = 2\) that would imply that \(N_2 = 11\), but
 the digit \(b - 1\).</li>
 <li>\(b > 2 \implies d_{b-1} = 0\) (The last digit is a \(0\)). This
 follows directly from point iii.</li>
-<li>\(b > 4 \implies d_0 > 1\). (For bases larger than \(4\), the first
-digit cannot be a \(1\).) Suppose \(b > 4\), and \(d_0 = 1\). This
-means that \(N_b\) contains just a single \(0\), and this has to
+<li>\(b > 4 \implies d_0 > 1\) (For bases larger than \(4\), a self-describing
+number contains at least two \(0\)s). Suppose \(b > 4\), and \(d_0 = 1\).
+This means that \(N_b\) contains just a single \(0\), and this has to
 be \(d_{b-1}\) (by point iv). The digits \(d_1 \ldots d_{b-2}\)
 have to sum to \(b - 1\) (by point ii) which means that one of
 those digits is a \(2\), and the rest are \(1\)s. But then
 \(N_b\) contains \(b - 2\) \(1\)s, one \(2\) and one \(0\). And
 since \(b > 4\), \(b - 2 > 2\), so \(N_b\) cannot be self-describing.</li>
-<li>\(b > 4 \implies d_0 &lt; b - 2\). (For bases larger than \(4\),
-the first digit cannot be \(b - 2\)). Suppose we would have a
+<li>\(b > 4 \implies d_0 &lt; b - 2\). (For bases larger than \(4\), a
+self-describing number has at least three digits which are not \(0\)).
+the first digit must be less than \(b - 2\)). Suppose we would have a
 self-describing number \(N_b\), with \(d_0 = b - 2\). That means
 that only one of the digits \(d_1, d_2, \cdots, d_{b-1}\) is non-zero.
 Let \(d_k\) be this non-zero digit. By point ii, \(d_k = 2\), and 
@@ -92,6 +93,26 @@ the digit \(k\) twice. However, \(N_b\) contains the digit \(b - 2\)
 once (we did assume \(d_0 = b - 2\)), the digit \(2\) once, and 
 the digit \(0\), \(b - 2\) times. \(b > 4 \implies b - 2 > 2\), so
 the number cannot be self-describing.</li>
+<li>\(b > 5 \implies d_0 > 2\) (For bases larger than \(5\), a self-describing
+number contains more than two \(0\)s).
+By point v, we already know \(d_0 > 1\).
+Suppose we have a self-describing number \(N_b, b > 5\), with
+\(d_0 = 2\). That means, \(N_b\) has \(b - 2\) digits which are
+non-zero, and sum to \(b\). This implies \(N_b\) has two \(2\)s,
+\(b - 4\) 1s, and two \(0\)s. Two \(2\)s means \(d_0 = d_2 = 2\),
+which means \(d_1 = 0 \vee d_1 = 1\). But we also have \(d_1 = b - 2 > 3\),
+which leads to a contradiction.</li>
+<li>\(b > 5 \implies d_0 &lt; b - 3\) (For bases larger than \(5\), a
+self-describing number has at least four digits which are not \(0\)).
+By point vi, we already know
+\(d_0 &lt; b - 2\). Suppose we have a self-describing number \(N_b, b > 5\),
+with \(d_0 = b - 3\). That means that outside of \(d_0\), \(N_b\)
+has two digits which are not \(0\). And since those two numbers
+must sum to \(3\) (by point ii), the only possibility for those
+numbers is that one of them is \(1\), and the other is \(2\). But
+that means we have three different digits which appear once:
+\(1\), \(2\) and \(b - 3\). And that would mean \(d_1 = 3\), which
+leads to a contraction.</li>
 </ol>
 
 <p>We're now ready to derive the first three self-describing numbers.</p>
@@ -101,7 +122,7 @@ the number cannot be self-describing.</li>
 The only digits in that base are \(0\), but we cannot have a
 leading \(0\).</li>
 <li>For base \(2\), point i implies any \(N_2\)
-must start with a \(1\). But constradicts point iii, so we 
+must start with a \(1\). But this constradicts point iii, so we 
 cannot have a self-describing number in base \(2\).</li>
 <li>For base \(3\), points i and iii imply that for any \(N_3\)
 \(d_0 = 1\) (the first digit). Point iv implies the number end
@@ -109,7 +130,7 @@ with a \(0\), so \(d_2 = 0\). Then, by point ii, \(d_1 = 2\),
 but this contradicts point iii.
 So there cannot be any self-describing numbers in base \(3\).</li>
 <li>For base \(4\), points ii and iii imply any \(N_4\) has
-\(d_0 = 1\) or \(d_1 = 2\). Point iv implies that \(d_3 = 0\).
+\(d_0 = 1\) or \(d_0 = 2\). Point iv implies that \(d_3 = 0\).
 <ul>
 <li>If \(d_0 = 1\), then \(d_1 + d_2 = 3\), so one of them is
 \(1\), and the other \(2\). \(d_1\) cannot be \(1\),
@@ -133,6 +154,41 @@ with one of those digits being \(0\). The other two must therefore be
 \(1\), and \(2\). This means \(N_5\) contains two \(2\)s, so
 \(d_2 = 2\). There are no \(3\)s, so \(d_3 = 0\), and \(d_1 = 1\).
 This makes \(21200\) the third self-describing number.</li>
+<li>There are no self-describing numbers in base \(6\). From point vii
+it can be deduced that for any number \(N_6\), \(d_0 > 2\). From
+point viii it can be deduced that \(d_0 &lt; 3\). But no such digit exists.</li>
+<li>For any base \(b > 6\), there is at least one self-describing number.
+In particular, a number where \(d_0 = b - 4, d_1 = 2, d_2 = 1\),
+and \(d_{b-3} = 1\) and all other digits \(d_i\) are \(0\) is
+self-describing. For bases \(7, 8, 9\) and \(10\), this gives
+the self-describing numbers \(3211000, 42101000, 521001000\), and
+\(6210001000\).</li>
 </ol></div>
+
+<h2>Solution</h2>
+
+<h3>Perl</h3>
+
+<div class = "section">
+<p>As said above, we just have a glorified <code>Hello, World!</code> program,
+so all we need to do is use <a href="https://perldoc.perl.org/perlfunc#say"><code>say</code></a> and the text we want to
+display.</p>
+
+<pre><code>say "1210, 2020, 21200";
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-107/abigail/perl/ch-1.pl">full program</a> on <a href="https://github.com">GitHub</a>.</p></div>
+
+<h3>Other languages</h3>
+
+<div class = "section">
+<p>We also have boring solutions in <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-107/abigail/awk/ch-1.awk">AWK</a>, <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-107/abigail/basic/ch-1.bas">Basic</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-107/abigail/bc/ch-1.bc">Bc</a>, <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-107/abigail/befunge-93/ch-1.bf93">Befunge-93</a>, <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-107/abigail/c/ch-1.c">C</a>, <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-107/abigail/cobol/ch-1.cb">Cobol</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-107/abigail/csh/ch-1.csh">Csh</a>, <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-107/abigail/erlang/ch-1.erl">Erlang</a>, <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-107/abigail/forth/ch-1.fs">Forth</a>, <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-107/abigail/fortran/ch-1.f90">Fortran</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-107/abigail/go/ch-1.go">Go</a>, <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-107/abigail/java/ch-1.java">Java</a>, <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-107/abigail/lua/ch-1.lua">Lua</a>, <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-107/abigail/m4/ch-1.m4">m4</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-107/abigail/node/ch-1.js">Node.js</a>, <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-107/abigail/ocaml/ch-1.ml">OCaml</a>, <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-107/abigail/pascal/ch-1.p">Pascal</a>, <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-107/abigail/php/ch-1.php">PHP</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-107/abigail/postscript/ch-1.ps">PostScript</a>, <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-107/abigail/python/ch-1.py">Python</a>, <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-107/abigail/r/ch-1.r">R</a>, <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-107/abigail/rexx/ch-1.rexx">Rexx</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-107/abigail/ruby/ch-1.rb">Ruby</a>, <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-107/abigail/scheme/ch-1.scm">Scheme</a>, <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-107/abigail/sed/ch-1.sed">sed</a>, <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-107/abigail/sql/ch-1.sql">SQL</a>,
+and <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-107/abigail/tcl/ch-1.tcl">Tcl</a>.</p></div>
 </body>
 </html>
