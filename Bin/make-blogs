@@ -255,6 +255,7 @@ sub pre_process ($text, $week) {
     return $out;
 }
 
+
 sub post_process ($text) {
     #
     # Turn sections between headers into divs
@@ -262,6 +263,10 @@ sub post_process ($text) {
     $text =~ s {(</h[1-6]>\s*)(<p>.*?\S)(\s*(?:<h[1-6]>|</body>))}
                {$1<div class = "section">\n$2</div>$3}gs;
     $text;
+}
+
+sub trailer ($week) {
+    "<hr id = 'last-line'>"
 }
 
 #
@@ -289,12 +294,14 @@ foreach my $source_file (@sources) {
 
     my ($title) = $html_text =~ m{<h1>(.*?)</h1>};
 
-    my $header = header ($title, $week);
+    my $header  = header ($title, $week);
+    my $trailer = trailer ($week);
     open my $fh, ">", $html_file or die "open $html_file: $!";
     print $fh <<~ "--";
         <html>
         $header
         $html_text
+        $trailer
         </html>
         --
     close $fh or die "close $html_file: $!";
