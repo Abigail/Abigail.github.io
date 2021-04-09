@@ -1,65 +1,68 @@
 html  {
-    margin-left: 6em;
-    margin-right: 4em;
-    background: #EEEEEE;
-    font-size: 130%;
+    margin-left:                          6em;
+    margin-right:                         4em;
+    background:                       #EEEEEE;
+    font-size:                           130%;
 }
 
 blockquote {
-    font-style: italic;
+    font-style:                        italic;
 }
 
 code {
-    font-style: initial;
+    background:                       #DDDDDD;
+    font-style:                       initial;
     font-family: 'Source Code Pro', monospace;
-    font-size: 95%;
+    font-size:                            95%;
 }
 
-p code {
-    background: #DDDDDD;
+pre, pre code {
+    background:                         black;
 }
 
 pre {
-    padding: 10px 10px;
-    border-radius: 20px;
-    background: black;
-    color: lightgreen;
+    padding-left:                        10px;
+    padding-right:                       10px;
+    padding-top:                          8px;
+    padding-bottom:                      10px;
+    border-radius:                        8px;
+    color:                         lightgreen;
 }
 
 h1 {
-    text-align: center;
-    font-size:  250%;
+    text-align:                        center;
+    font-size:                           250%;
 }
 
 h1, h2, h3, h4, h5, h6 {
-    font-family: "Lobster Two";
+    font-family:                "Lobster Two";
 }
 
 h1 {
-    margin-left: -2em;
-    margin-right: -1em;
-    padding-bottom: 5px;
-    border-bottom: solid black 0.7px;
+    margin-left:                         -2em;
+    margin-right:                        -1em;
+    padding-bottom:                       5px;
+    border-bottom:          solid black 0.7px;
 }
 
 /*
  * Outdent the headers
  */
 h2 {
-    margin-left: -2em;
+    margin-left:                         -2em;
 }
 h3 {
-    margin-left: -1.5em;
+    margin-left:                       -1.5em;
 }
 h4, h5, h6 {
-    margin-left: -1em;
+    margin-left:                         -1em;
 }
 
 
 hr#last-line {
-    margin-left: -6em;
-    margin-right: -4em;
-    border: none;
-    height: 1px;
-    background-color: #000;
+    margin-left:                         -6em;
+    margin-right:                        -4em;
+    border:                              none;
+    height:                               1px;
+    background-color:                   black;
 }
