@@ -1,0 +1,148 @@
+<html>
+<head>
+<title>Perl Weekly Challenge 107: List Methods</title>
+<script src = "https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id = "MathJax-script" async src = "https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.js"></script>
+<link rel = 'stylesheet' href = '../../Styles/Perl-Weekly-Challenge/main.css'>
+<link rel = 'stylesheet' href = 'https://fonts.googleapis.com/css?family=Lobster+Two'>
+<link rel = 'stylesheet' href = 'https://fonts.googleapis.com/css?family=Source+Code Pro&display=swap'>
+</head>
+
+<body><h1>Perl Weekly Challenge 107: List Methods</h1>
+
+<h2><a href="https://perlweeklychallenge.org/blog/perl-weekly-challenge-107/#TASK2">Challenge</a></h2>
+
+<blockquote>
+  <p>Write a script to list methods of a package/class.</p>
+</blockquote>
+
+<h3>Example</h3>
+
+<pre><code>package Calc;
+
+use strict;
+use warnings;
+
+sub new { bless {}, shift; }
+sub add { }
+sub mul { }
+sub div { }
+
+1;
+</code></pre>
+
+<h4>Output</h4>
+
+<pre><code>BEGIN
+mul
+div
+new
+add
+</code></pre>
+
+<h2>Discussion</h2>
+
+<div class = "section">
+<p>Well, this looks pretty simple. The package in the example
+has four methods, and the example output list all fo... Wait!
+It has <em>five</em> lines of output.</p>
+
+<p>What is that <code>BEGIN</code> doing there? There's no method named <code>BEGIN</code>
+in <code>Calc</code>. And <code>Calc -&gt; can ("BEGIN")</code> is not going to return
+a reference to it. </p>
+
+<p>Now, it's true that if you define a subroutine named <code>BEGIN</code>,
+then that subroutine gets executed as <code>BEGIN</code> time; but that
+does not mean the package contains a method <code>BEGIN</code> in the
+absence of such a routine.</p>
+
+<p>Perhaps the make of the challenge has a fundamental different
+view of what a method is than we have. And we don't understand
+at all why <code>BEGIN</code> gets this special treatment, but not <code>INIT</code>,
+<code>CHECK</code>, <code>UNITCHECK</code>, nor <code>END</code>.</p>
+
+<p>It's only not clear what should happen in the presence of an
+<code>AUTOLOAD</code> method. It can be argued that if a class has an
+<code>AUTOLOAD</code> method, it has any possible method. We decide to
+not follow that road, and just not list any methods which would
+trigger the <code>AUTOLOAD</code> method (except the <code>AUTOLOAD</code> method itself).</p>
+
+<p>A further note, we're going to ignore any lexical subroutines.
+Lexical subroutines are bound to their lexical scope (and hence,
+found it the scope's
+<a href="https://perldoc.perl.org/perlintern#Pad-Data-Structures">lexical pad</a>),
+not so much to the package.</p>
+
+<p>We also ignore any anonymous subroutines.</p></div>
+
+<h2>Solution</h2>
+
+<h3>Perl</h3>
+
+<div class = "section">
+<p>This is a Perl specific challenge, so we're only presenting
+a solution in Perl. We take the class name as argument, <code>use</code>
+the given class name, and search for methods right after.</p>
+
+<p>This assumes that the package is found in file with the same
+name (after substituting <code>::</code> with <code>/</code>, and prepending <code>.pm</code>).
+This is not required in Perl, but it's quite common. Of course,
+the module must be found in <code>@INC</code>. Here's the code to get
+the module from the command line, and load it:</p>
+
+<pre><code>my $module = shift;
+eval "use $module; 1" or die "Failed to load $module.pm: $@";
+</code></pre>
+
+<p>After loading, we're going to inspect the <em>symbol table</em>. The
+symbol table can be accessed as a hash &mdash; with a special name:
+the package name followed by a double colon. So, the symbol 
+table for the package <code>Calc</code> is the hash <code>%Calc::</code>.</p>
+
+<p>The keys of the symbol tables are the symbols (duh!) found in 
+the package. The symbols are the names of the sub routines,
+package variables (sans sigils), file handles, globs, formats,
+and other named tokens in the package.
+Note that different variables can share the same slot:
+<code>@foo</code>, <code>$foo</code>, <code>sub foo</code> all use the symbol <code>foo</code>.</p>
+
+<p>The values in the symbol tables are
+<a href="https://perldoc.perl.org/perldata#Typeglobs-and-Filehandles"><em>typeglobs</em></a>
+with information about the symbols. In particular, this typeglob contains
+entries (slots) indicating what the symbol is used for:
+<code>SCALAR</code>, <code>ARRAY</code>, <code>HASH</code>, <code>CODE</code>, <code>IO</code>, <code>FORMAT</code>, <code>GLOB</code>
+if the symbol is used as a scalar,
+array, hash, code reference, file or directory handle, format
+or glob. Multiple slots can be present, if the symbol is used
+for different things.</p>
+
+<p>The slot which is of interest for our solution is the <code>CODE</code> slot.
+A method is present if the package, if and only if the slot in
+the symbol table contains a <code>CODE</code> slot.</p>
+
+<p>The sigil used for a typeglob is <code>*</code>.</p>
+
+<p>In our solution, we first create a reference to the symbol table:</p>
+
+<pre><code>my $symbol_table = do {no strict 'refs'; \%{$module . "::"}};
+</code></pre>
+
+<p>Then we iterate over the keys of the symbol table, and print out
+each symbol for which there is a <code>CODE</code> slot in the typeglob:</p>
+
+<pre><code>foreach my $symbol (keys %$symbol_table) {
+       say $symbol  if *{$$symbol_table {$symbol}} {CODE};
+}
+</code></pre>
+
+<p>Finally, we print <code>BEGIN</code>, if there is an entry for <code>BEGIN</code> in the
+symbol table, but the glob does not have a <code>CODE</code> slot. We need this
+so we pass the given example:</p>
+
+<pre><code>say "BEGIN" if $$symbol_table {BEGIN} &amp;&amp; !*{$$symbol_table {BEGIN}} {CODE};
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-107/abigail/perl/ch-2.pl">full program</a> on <a href="https://github.com">GitHub</a>.</p></div>
+</body>
+<hr id = 'last-line'>
+</html>
