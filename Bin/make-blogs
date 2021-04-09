@@ -272,14 +272,19 @@ sub trailer ($week) {
 #
 # For now, we just handle Perl Weekly Challenges
 #
+my @sources =
+   @ARGV ? map {/^[0-9]{3}-[0-9]$/ ? "$SRC_DIR/$PWC_DIR/week-$_.md"
+                                   :  $_} @ARGV
+         : `find $SRC_DIR -name "*.md"`;
 
-chomp (my @sources  = `find $SRC_DIR -name "*.md"`);
+chomp (@sources);
+
 foreach my $source_file (@sources) {
     my $html_file = $source_file =~ s/^$SRC_DIR/$HTML_DIR/r
                                  =~ s/\.md$/.html/r;
     my ($week)    = $source_file =~ m{.*/week-(.*)\.md};
-    next if -f $html_file && (stat $html_file)   [9] >
-                             (stat $source_file) [9]; # 9: mtime
+    next if !@ARGV && -f $html_file && (stat $html_file)   [9] >
+                                       (stat $source_file) [9]; # 9: mtime
 
     my $source_text = `cat $source_file`;
 
