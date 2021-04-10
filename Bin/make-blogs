@@ -257,7 +257,8 @@ sub pre_process ($text, $week) {
 
 sub by_line {<<~ "--"}
     <div class = "byline">
-    by Abigail
+    by Abigail<br>
+    <img src = "../../Images/jan_sluiters.jpg">
     </div>
     --
 

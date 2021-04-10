@@ -70,6 +70,12 @@ hr#last-line {
 div.byline {
     padding-top:                          0px;
     margin-top:                         -30px;
+    margin-right:                      -2.5em;
     float:                              right;
     font-family:     'Pinyon Script', cursive;
+}
+
+img {
+    width:                               100%;
+    object-fit:                       contain;
 }
