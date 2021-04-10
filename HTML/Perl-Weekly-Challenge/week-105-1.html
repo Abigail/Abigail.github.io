@@ -38,20 +38,20 @@ Output: 2.02
 <h2>Discussion</h2>
 
 <div class = "section">
-<p>This is pretty straightforward. The \(\text{Nth}\) root of
-\(k\), \(\sqrt[N]{k}\) is easily found by raising \(k\) to the power of
-\(\frac{1}{N}\):</p>
+<p>This is pretty straightforward. The <span class = 'latex-inline'>\(\text{Nth}\)</span> root of
+<span class = 'latex-inline'>\(k\)</span>, <span class = 'latex-inline'>\(\sqrt[N]{k}\)</span> is easily found by raising <span class = 'latex-inline'>\(k\)</span> to the power of
+<span class = 'latex-inline'>\(\frac{1}{N}\)</span>:</p>
 
-<p>\[k^\frac{1}{N}\]</p>
+<p><span class = 'latex-display'>\[k^\frac{1}{N}\]</span></p>
 
 <p>This solves the issue for languages which allow exponentation where
 the exponent isn't an integer. Perl is one of these languages.</p>
 
 <p>For languages which don't, we take the formula above; take the <a href="https://mathworld.wolfram.com/NaturalLogarithm.html">natural
 logarithm</a> of
-it, and raise \({\bf e}\) to that:</p>
+it, and raise <span class = 'latex-inline'>\({\bf e}\)</span> to that:</p>
 
-<p>\[{\bf e}^{\ln{k^\frac{1}{N}}} = {\bf e}^{\frac{\ln k}{N}}\]</p>
+<p><span class = 'latex-display'>\[{\bf e}^{\ln{k^\frac{1}{N}}} = {\bf e}^{\frac{\ln k}{N}}\]</span></p>
 
 <p>This solves the problem for languages which have a <code>log</code> and an <code>exp</code> function.</p></div>
 
@@ -59,8 +59,8 @@ it, and raise \({\bf e}\) to that:</p>
 
 <div class = "section">
 <p>We are assuming the input consists of one or more lines &mdash; each line
-consisting of two numbers (separated by white space): \(N\), and \(k\).
-We will be outputting \(k^{\frac{1}{N}}\) for each line of input.</p></div>
+consisting of two numbers (separated by white space): <span class = 'latex-inline'>\(N\)</span>, and <span class = 'latex-inline'>\(k\)</span>.
+We will be outputting <span class = 'latex-inline'>\(k^{\frac{1}{N}}\)</span> for each line of input.</p></div>
 
 <h3>Perl</h3>
 
@@ -71,7 +71,7 @@ We will be outputting \(k^{\frac{1}{N}}\) for each line of input.</p></div>
 </code></pre>
 
 <p>We take a line of input, split it on white space, then we raise
-the second number (\(k\)) to the power of the inverse of the first (\(N\)).</p>
+the second number (<span class = 'latex-inline'>\(k\)</span>) to the power of the inverse of the first (<span class = 'latex-inline'>\(N\)</span>).</p>
 
 <p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-105/abigail/perl/ch-1.pl">full program</a> on <a href="https://github.com">GitHub</a>.</p></div>
 
@@ -79,8 +79,8 @@ the second number (\(k\)) to the power of the inverse of the first (\(N\)).</p>
 
 <div class = "section">
 <p>Pascal does not allow us to raise numbers to a non-integer power,
-we we're taking the natural logarithm of \(k\), divide that by \(N\), and
-raise \({\bf e}\) to the result of that:</p>
+we we're taking the natural logarithm of <span class = 'latex-inline'>\(k\)</span>, divide that by <span class = 'latex-inline'>\(N\)</span>, and
+raise <span class = 'latex-inline'>\({\bf e}\)</span> to the result of that:</p>
 
 <pre><code>var N, k: double;
 
