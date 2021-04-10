@@ -255,7 +255,18 @@ sub pre_process ($text, $week) {
 }
 
 
+sub by_line {<<~ "--"}
+    <div class = "byline">
+    by Abigail
+    </div>
+    --
+
 sub post_process ($text) {
+    #
+    # Add a line after the first <h1>
+    #
+    $text =~ s{</h1>.*\K}{by_line}e;
+
     #
     # Turn sections between headers into divs
     #
