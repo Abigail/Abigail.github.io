@@ -80,8 +80,32 @@ img {
     object-fit:                       contain;
 }
 
+div.trailer {
+    position: relative;
+}
+
 p.issue {
     text-align:                        center;
     font-style:                        italic;
     font-family:    'Sorts Mill Goudy', serif;
+}
+
+p.prev, p.next {
+    margin-top:                             0;
+    position:                        absolute;
+    top:                                    0;
+    font-size:                           150%;
+}
+
+p.prev {
+    text-align:                          left;
+    left:                                   0;
+}
+p.next {
+    text-align:                         right;
+    right:                                  0;
+}
+
+a.prev, a.next {
+    color: black;
 }

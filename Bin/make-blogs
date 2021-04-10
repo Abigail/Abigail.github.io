@@ -21,6 +21,8 @@ my $SRC_DIR        = "Src";
 my $HTML_DIR       = "HTML";
 my $PWC_DIR        = "Perl-Weekly-Challenge";
 my $STYLE_DIR      = "Styles";
+my $JAVASCRIPT_DIR = "JavaScript";
+my @SCRIPTS        = qw [jquery navigation];
 my $FULL_HTML_DIR  = "$TOP_DIR/$HTML_DIR";
 my $FULL_SRC_DIR   = "$TOP_DIR/$SRC_DIR";
 my @FONTS          = map {s/ /+/r} ("Lobster Two",
@@ -85,18 +87,23 @@ sub header ($title, $week) {
     # Return the header of the HTML page
     #
 
-    my $styles = join "" =>
+    my $styles = join "\n" =>
         map  {"<link rel = 'stylesheet' href = '../../$_'>"}
         grep {-f}
         map  {"$STYLE_DIR/$_.css"} "main",
                         "$PWC_DIR/main",
                         "$PWC_DIR/week-$week";
 
+    my $scripts = join "\n" =>
+        map {"<script src = '../../$JAVASCRIPT_DIR/$_.js'></script>"}
+             @SCRIPTS;
+
     return <<~ "--";
         <head>
         <title>$title</title>
         <script src = "$POLYFILL_URL"></script>
         <script id = "MathJax-script" async src = "$MATHJAX_URL"></script>
+        $scripts
         <link rel = 'preconnect' href = 'https://fonts.gstatic.com'>
         <link rel = 'stylesheet' href = '$FONT_URL'>
         $styles
@@ -280,9 +287,11 @@ sub post_process ($text) {
 sub trailer ($week) {<<~ "--"}
     <hr id = 'last-line'>
     <div class = 'trailer'>
+    <p class = 'prev'><a class = "prev" href = "">&#x261C;</a></p>
     <p class = 'issue'>Please leave any comments as a
       <a href = 'https://github.com/Abigail/Abigail.github.io/issues'
          title = 'GitHub issue'>GitHub issue</a>.
+    <p class = 'next'><a class = "next" href = "">&#x261E;</a></p>
     </div>
     --
 
