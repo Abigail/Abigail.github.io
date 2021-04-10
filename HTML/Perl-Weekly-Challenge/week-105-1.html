@@ -1,0 +1,115 @@
+<html>
+<head>
+<title>Perl Weekly Challenge 105: Nth root</title>
+<script src = "https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id = "MathJax-script" async src = "https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.js"></script>
+<script src = '../../JavaScript/jquery.js'></script>
+<script src = '../../JavaScript/navigation.js'></script>
+<link rel = 'preconnect' href = 'https://fonts.gstatic.com'>
+<link rel = 'stylesheet' href = 'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
+<link rel = 'stylesheet' href = '../../Styles/Perl-Weekly-Challenge/main.css'>
+</head>
+
+<body><h1>Perl Weekly Challenge 105: Nth root</h1><div class = "byline">
+by Abigail<br>
+<img src = "../../Images/jan_sluiters.jpg">
+</div>
+
+
+<h2><a href="https://perlweeklychallenge.org/blog/perl-weekly-challenge-105/#TASK1">Challenge</a></h2>
+
+<blockquote>
+  <p>You are given positive numbers <code>$N</code> and <code>$k</code>.</p>
+  
+  <p>Write a script to find out the <code>$N</code>th root of <code>$k</code>.
+  For more information, please take a look at the
+  <a href="https://en.wikipedia.org/wiki/Nth_root#Computing_principal_roots">wiki page</a>.</p>
+</blockquote>
+
+<h3>Examples</h3>
+
+<pre><code>Input: $N = 5, $k = 248832
+Output: 12
+
+Input: $N = 5, $k = 34
+Output: 2.02
+</code></pre>
+
+<h2>Discussion</h2>
+
+<div class = "section">
+<p>This is pretty straightforward. The \(\text{Nth}\) root of
+\(k\), \(\sqrt[N]{k}\) is easily found by raising \(k\) to the power of
+\(\frac{1}{N}\):</p>
+
+<p>\[k^\frac{1}{N}\]</p>
+
+<p>This solves the issue for languages which allow exponentation where
+the exponent isn't an integer. Perl is one of these languages.</p>
+
+<p>For languages which don't, we take the formula above; take the <a href="https://mathworld.wolfram.com/NaturalLogarithm.html">natural
+logarithm</a> of
+it, and raise \({\bf e}\) to that:</p>
+
+<p>\[{\bf e}^{\ln{k^\frac{1}{N}}} = {\bf e}^{\frac{\ln k}{N}}\]</p>
+
+<p>This solves the problem for languages which have a <code>log</code> and an <code>exp</code> function.</p></div>
+
+<h2>Solutions</h2>
+
+<div class = "section">
+<p>We are assuming the input consists of one or more lines &mdash; each line
+consisting of two numbers (separated by white space): \(N\), and \(k\).
+We will be outputting \(k^{\frac{1}{N}}\) for each line of input.</p></div>
+
+<h3>Perl</h3>
+
+<div class = "section">
+<p>In Perl, we can solve this with what basically is a one-liner:</p>
+
+<pre><code>$_ = [split], say $$_ [1] ** (1 / $$_ [0]) while &lt;&gt;;
+</code></pre>
+
+<p>We take a line of input, split it on white space, then we raise
+the second number (\(k\)) to the power of the inverse of the first (\(N\)).</p>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-105/abigail/perl/ch-1.pl">full program</a> on <a href="https://github.com">GitHub</a>.</p></div>
+
+<h3>Pascal</h3>
+
+<div class = "section">
+<p>Pascal does not allow us to raise numbers to a non-integer power,
+we we're taking the natural logarithm of \(k\), divide that by \(N\), and
+raise \({\bf e}\) to the result of that:</p>
+
+<pre><code>var N, k: double;
+
+begin
+    while not eof () do
+    begin
+        readln (N, k);
+        writeln (exp (ln (k) / N) : 1 : 10);
+    end
+end.
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-105/abigail/pascal/ch-1.p">full program</a> on <a href="https://github.com">GitHub</a>.</p></div>
+
+<h3>Other languages</h3>
+
+<div class = "section">
+<p>We also have solutions in <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-105/abigail/awk/ch-1.awk">AWK</a>, <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-105/abigail/bc/ch-1.bc">bc</a>, <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-105/abigail/c/ch-1.c">C</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-105/abigail/fortran/ch-1.f90">Fortran</a>, <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-105/abigail/lua/ch-1.lua">Lua</a>, <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-105/abigail/node/ch-1.js">Node.js</a>, <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-105/abigail/python/ch-1.py">Python</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-105/abigail/ruby/ch-1.rb">Ruby</a>, <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-105/abigail/scheme/ch-1.scm">Scheme</a>, and <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-105/abigail/sql/ch-1.sql">SQL</a>, using one
+of the strategies explained above.</p></div>
+</body>
+<hr id = 'last-line'>
+<div class = 'trailer'>
+<p class = 'prev'><a class = "prev" href = "">&#x261C;</a></p>
+<p class = 'issue'>Please leave any comments as a
+  <a href = 'https://github.com/Abigail/Abigail.github.io/issues'
+     title = 'GitHub issue'>GitHub issue</a>.
+<p class = 'next'><a class = "next" href = "">&#x261E;</a></p>
+</div>
+
+</html>
