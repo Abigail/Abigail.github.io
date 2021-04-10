@@ -23,9 +23,11 @@ my $PWC_DIR        = "Perl-Weekly-Challenge";
 my $STYLE_DIR      = "Styles";
 my $FULL_HTML_DIR  = "$TOP_DIR/$HTML_DIR";
 my $FULL_SRC_DIR   = "$TOP_DIR/$SRC_DIR";
-my $FONT_URL       = "https://fonts.googleapis.com/css?family";
 my @FONTS          = map {s/ /+/r} ("Lobster Two",
-                                    "Source Code Pro&display=swap");
+                                    "Source Code Pro",
+                                    "Pinyon Script");
+my $FONTS          = join "&" => map {"family=$_"} @FONTS;
+my $FONT_URL       = "https://fonts.googleapis.com/css2?$FONTS&display=swap";
 
 my $PERLFUNC_URL   = "https://perldoc.perl.org/perlfunc";
 my $METACPAN_URL   = "https://metacpan.org/pod";
@@ -76,10 +78,6 @@ my %LANGUAGE_INFO = (
 
 chdir $TOP_DIR or die "chdir: $!";
 
-my $FONTS = join "\n" => map {
-    "<link rel = 'stylesheet' href = '$FONT_URL=$_'>"
-} @FONTS;
-
 
 sub header ($title, $week) {
     #
@@ -98,8 +96,9 @@ sub header ($title, $week) {
         <title>$title</title>
         <script src = "$POLYFILL_URL"></script>
         <script id = "MathJax-script" async src = "$MATHJAX_URL"></script>
+        <link rel = 'preconnect' href = 'https://fonts.gstatic.com'>
+        <link rel = 'stylesheet' href = '$FONT_URL'>
         $styles
-        $FONTS
         </head>
         --
 }
