@@ -25,7 +25,8 @@ my $FULL_HTML_DIR  = "$TOP_DIR/$HTML_DIR";
 my $FULL_SRC_DIR   = "$TOP_DIR/$SRC_DIR";
 my @FONTS          = map {s/ /+/r} ("Lobster Two",
                                     "Source Code Pro",
-                                    "Pinyon Script");
+                                    "Pinyon Script",
+                                    'Sorts Mill Goudy:ital@1',);
 my $FONTS          = join "&" => map {"family=$_"} @FONTS;
 my $FONT_URL       = "https://fonts.googleapis.com/css2?$FONTS&display=swap";
 
@@ -276,9 +277,14 @@ sub post_process ($text) {
     $text;
 }
 
-sub trailer ($week) {
-    "<hr id = 'last-line'>"
-}
+sub trailer ($week) {<<~ "--"}
+    <hr id = 'last-line'>
+    <div class = 'trailer'>
+    <p class = 'issue'>Please leave any comments as a
+      <a href = 'https://github.com/Abigail/Abigail.github.io/issues'
+         title = 'GitHub issue'>GitHub issue</a>.
+    </div>
+    --
 
 #
 # For now, we just handle Perl Weekly Challenges

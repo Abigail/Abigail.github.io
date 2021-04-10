@@ -79,3 +79,9 @@ img {
     width:                               100%;
     object-fit:                       contain;
 }
+
+p.issue {
+    text-align:                        center;
+    font-style:                        italic;
+    font-family:    'Sorts Mill Goudy', serif;
+}

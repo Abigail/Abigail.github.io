@@ -3,12 +3,16 @@
 <title>Perl Weekly Challenge 106: Decimal String</title>
 <script src = "https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
 <script id = "MathJax-script" async src = "https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.js"></script>
+<link rel = 'preconnect' href = 'https://fonts.gstatic.com'>
+<link rel = 'stylesheet' href = 'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
 <link rel = 'stylesheet' href = '../../Styles/Perl-Weekly-Challenge/main.css'>
-<link rel = 'stylesheet' href = 'https://fonts.googleapis.com/css?family=Lobster+Two'>
-<link rel = 'stylesheet' href = 'https://fonts.googleapis.com/css?family=Source+Code Pro&display=swap'>
 </head>
 
-<body><h1>Perl Weekly Challenge 106: Decimal String</h1>
+<body><h1>Perl Weekly Challenge 106: Decimal String</h1><div class = "byline">
+by Abigail<br>
+<img src = "../../Images/jan_sluiters.jpg">
+</div>
+
 
 <h2><a href="https://perlweeklychallenge.org/blog/perl-weekly-challenge-106/#TASK2">Challenge</a></h2>
 
@@ -56,7 +60,7 @@ of our solution.</p>
 
 <p>Now, in a loop, we calculate the digits after the decimal separator.
 As an invariant, we have \(N &lt; D\). We'll have string \(s\) which
-we use to create the decimal string -- we initialize \(r\) as
+we use to create the decimal string &mdash; we initialize \(r\) as
 \(I\) followed by a dot (our decimal separator). We also keep track
 of a position \(p\), and we initialize \(p\) as the length of
 the string \(r\). We'll also have a hash \(S\); initially empty.</p>
@@ -72,7 +76,7 @@ We then update \(N\) by setting \(N = 10 \cdot N \bmod D\).
 The long division equivalent of this is process of <em>dropping a zero</em>,
 and then calculating how often \(D\) divides the new number, and then
 subtracting that many times \(D\) from the number. Finally, we
-increment \(p\) by one -- after all, we added a digit to \(r\).</p>
+increment \(p\) by one &mdash; after all, we added a digit to \(r\).</p>
 
 <p>The guard of our loop is \(N \notin S\); if we have an \(N\)
 which is already in \(S\), the decimal expansion of the fraction
@@ -423,4 +427,11 @@ end
 
 <p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-106/abigail/ruby/ch-2.rb">full program</a> on <a href="https://github.com">GitHub</a>.</p></div>
 </body>
+<hr id = 'last-line'>
+<div class = 'trailer'>
+<p class = 'issue'>Please leave any comments as a
+  <a href = 'https://github.com/Abigail/Abigail.github.io/issues'
+     title = 'GitHub issue'>GitHub issue</a>.
+</div>
+
 </html>
