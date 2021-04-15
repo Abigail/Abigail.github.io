@@ -36,7 +36,7 @@ my $PERLFUNC_URL   = "https://perldoc.perl.org/perlfunc";
 my $METACPAN_URL   = "https://metacpan.org/pod";
 my $GAWK_URL       = "https://www.gnu.org/software/gawk/manual/gawk.html";
 my $FREEBSD_URL    = "https://www.freebsd.org/cgi/man.cgi?" .
-                                                 "apropos=0&sektion=0&query";
+                                                 "apropos=0&sektion=%d&query";
 my $WIKI_URL       = "https://en.wikipedia.org/wiki";
 my $OEIS_URL       = "https://oeis.org";
 
@@ -164,8 +164,8 @@ sub make_link (%args) {
             $url = $GAWK_URL . "#" . $link;
         }
         elsif ($language eq "C") {
-            if (!$link) {
-                $url = $FREEBSD_URL . "=" . $anchor;
+            if (!$link || $link =~ /^[0-9]$/) {
+                $url = sprintf $FREEBSD_URL . "=" . $anchor => $link || 0;
             }
         }
     }
