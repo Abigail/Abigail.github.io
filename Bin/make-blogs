@@ -37,6 +37,7 @@ my $METACPAN_URL   = "https://metacpan.org/pod";
 my $GAWK_URL       = "https://www.gnu.org/software/gawk/manual/gawk.html";
 my $FREEBSD_URL    = "https://www.freebsd.org/cgi/man.cgi?" .
                                                  "apropos=0&sektion=%d&query";
+my $PYTHON_URL     = "https://docs.python.org/3/library/functions.html";
 my $WIKI_URL       = "https://en.wikipedia.org/wiki";
 my $OEIS_URL       = "https://oeis.org";
 
@@ -166,6 +167,11 @@ sub make_link (%args) {
         elsif ($language eq "C") {
             if (!$link || $link =~ /^[0-9]$/) {
                 $url = sprintf $FREEBSD_URL . "=" . $anchor => $link || 0;
+            }
+        }
+        elsif ($language eq "Python") {
+            if (!$link) {
+                $url = $PYTHON_URL . "#" . $anchor;
             }
         }
     }
