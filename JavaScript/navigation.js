@@ -11,6 +11,7 @@ let pages = [
     ["week-106-2", "Decimal String"],
     ["week-107-1", "Self-descriptive Numbers"],
     ["week-107-2", "List Methods"],
+    ["week-108-1", "Locate Memory"],
 ]
 
 pages . forEach (_ => _ [0] = PWC + "/" + _ [0] + ".html")
