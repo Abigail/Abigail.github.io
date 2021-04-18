@@ -1,0 +1,423 @@
+<html>
+<head>
+<title>Perl Weekly Challenge 108: Bell Numbers</title>
+<script src = "https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id = "MathJax-script" async src = "https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.js"></script>
+<script src = '../../JavaScript/jquery.js'></script>
+<script src = '../../JavaScript/navigation.js'></script>
+<link rel = 'preconnect' href = 'https://fonts.gstatic.com'>
+<link rel = 'stylesheet' href = 'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
+<link rel = 'stylesheet' href = '../../Styles/Perl-Weekly-Challenge/main.css'>
+<link rel = 'stylesheet' href = '../../Styles/Perl-Weekly-Challenge/week-108-2.css'>
+</head>
+
+<body><h1>Perl Weekly Challenge 108: Bell Numbers</h1><div class = "byline">
+by Abigail<br>
+<img src = "../../Images/jan_sluiters.jpg">
+</div>
+
+
+<h2><a href="https://perlweeklychallenge.org/blog/perl-weekly-challenge-108/#TASK2">Challenge</a></h2>
+
+<blockquote>
+  <p>Write a script to display top 10 Bell Numbers. Please refer to
+  <a href="https://en.wikipedia.org/wiki/Bell_number">wikipedia page</a> for more informations.</p>
+</blockquote>
+
+<h3>Example</h3>
+
+<ul>
+<li><span class = 'latex-inline'>\(B_0\)</span>: 1 as you can only have one partition of zero element set.</li>
+<li><span class = 'latex-inline'>\(B_1\)</span>: 1 as you can only have one partition of one element set <span class = 'latex-inline'>\(\{a\}\)</span>.</li>
+<li><span class = 'latex-inline'>\(B_2\)</span>: 2
+<ul>
+<li><span class = 'latex-inline'>\(\{a\}\{b\}\)</span></li>
+<li><span class = 'latex-inline'>\(\{a,b\}\)</span></li>
+</ul></li>
+<li><span class = 'latex-inline'>\(B_3\)</span>: 5
+<ul>
+<li><span class = 'latex-inline'>\(\{a\}\{b\}\{c\}\)</span></li>
+<li><span class = 'latex-inline'>\(\{a,b\}\{c\}\)</span></li>
+<li><span class = 'latex-inline'>\(\{a\}\{b,c\}\)</span></li>
+<li><span class = 'latex-inline'>\(\{a,c\}\{b\}\)</span></li>
+<li><span class = 'latex-inline'>\(\{a,b,c\}\)</span></li>
+</ul></li>
+<li><span class = 'latex-inline'>\(B_4\)</span>: 15
+<ul>
+<li><span class = 'latex-inline'>\(\{a\}\{b\}\{c\}\{d\}\)</span></li>
+<li><span class = 'latex-inline'>\(\{a,b,c,d\}\)</span></li>
+<li><span class = 'latex-inline'>\(\{a,b\}\{c,d\}\)</span></li>
+<li><span class = 'latex-inline'>\(\{a,c\}\{b,d\}\)</span></li>
+<li><span class = 'latex-inline'>\(\{a,d\}\{b,c\}\)</span></li>
+<li><span class = 'latex-inline'>\(\{a,b\}\{c\}\{d\}\)</span></li>
+<li><span class = 'latex-inline'>\(\{a,c\}\{b\}\{d\}\)</span></li>
+<li><span class = 'latex-inline'>\(\{a,d\}\{b\}\{c\}\)</span></li>
+<li><span class = 'latex-inline'>\(\{b,c\}\{a\}\{d\}\)</span></li>
+<li><span class = 'latex-inline'>\(\{b,d\}\{a\}\{c\}\)</span></li>
+<li><span class = 'latex-inline'>\(\{c,d\}\{a\}\{b\}\)</span></li>
+<li><span class = 'latex-inline'>\(\{a\}\{b,c,d\}\)</span></li>
+<li><span class = 'latex-inline'>\(\{b\}\{a,c,d\}\)</span></li>
+<li><span class = 'latex-inline'>\(\{c\}\{a,b,d\}\)</span></li>
+<li><span class = 'latex-inline'>\(\{d\}\{a,b,c\}\)</span></li>
+</ul></li>
+</ul>
+
+<h2>Discussion</h2>
+
+<div class = "section">
+<p>The Bell Numbers have their own entry in the <a href="https://oeis.org/A000110">OEIS</a>.
+We can look up the first ten Bell Numbers: <span class = 'latex-inline'>\(1\)</span>, <span class = 'latex-inline'>\(1\)</span>, <span class = 'latex-inline'>\(2\)</span>, <span class = 'latex-inline'>\(5\)</span>,
+<span class = 'latex-inline'>\(15\)</span>, <span class = 'latex-inline'>\(52\)</span>, <span class = 'latex-inline'>\(203\)</span>, <span class = 'latex-inline'>\(877\)</span>, <span class = 'latex-inline'>\(4140\)</span>, and <span class = 'latex-inline'>\(21147\)</span>.</p></div>
+
+<h3>Hello, World!</h3>
+
+<div class = "section">
+<p>The simplest way would be just to take those ten numbers, and print
+them. This means we have yet again a challenge which is just a gloried
+<a href="https://en.wikipedia.org/wiki/"Hello,_World!"_program"><code>Hello, World</code></a> program.</p></div>
+
+<h3>Fetch</h3>
+
+<div class = "section">
+<p>If we don't want to do exactly what the challenge asks from us
+(print the first ten Bell Numbers), we could instead fetch
+the numbers from the <a href="https://oeis.org">OEIS</a> and print them.
+For instance, by using the <a href="https://metacpan.org/pod/OEIS"><code>OEIS</code></a>
+module which we recently uploaded to <a href="https://www.cpan.org/">CPAN</a>.</p>
+
+<p>There is limited usefulness in this though &mdash; it's
+not that the Bell Numbers will change in the future.</p></div>
+
+<h3>Calculate</h3>
+
+<div class = "section">
+<p>Alternatively, we could calculate the first ten Bell Numbers. There
+are many ways to calculate the numbers, but we opt to create a
+<a href="https://en.wikipedia.org/wiki/Bell_Triangle"><em>Bell Triangle</em></a>.</p>
+
+<p>The first rows of the Bell Triangle are as follows:</p>
+
+<pre class = 'bell'>
+ 1
+ 1  2
+ 2  3  5
+ 5  7 10 15
+15 20 27 37 52
+</pre>
+
+<p>And we have the following rules to construct the triangle:</p>
+
+<ul>
+<li>The top row contains a single <span class = 'latex-inline'>\(1\)</span>.</li>
+<li>For each other row:
+<ul>
+<li>The row will have one more element than the previous row.</li>
+<li>The first (left most) element is equal to the last (right most)
+element of the previous row.</li>
+<li>Each other element is the sum of the element to its left on the same
+row, and the element on the previous row right above that.</li>
+</ul></li>
+</ul>
+
+<p>Or, formalized:</p>
+
+<p>Let <span class = 'latex-inline'>\(b_{r, c}\)</span> be the element on row <span class = 'latex-inline'>\(r\)</span> and column <span class = 'latex-inline'>\(c\)</span>. (This implies
+<span class = 'latex-inline'>\(0 \leq c \leq r\)</span>, with the top most element being <span class = 'latex-inline'>\(b_{0, 0}\)</span>.)
+Then</p>
+
+<p>\[ b_{r, c} = \begin{cases}
+      1,                               &amp; \text{if } r = c = 0    \\
+      b_{r - 1, r - 1},                &amp; \text{if } r > 0, c = 0 \\
+      b_{r, c - 1} + b_{r - 1, c - 1}, &amp; \text{if } r \geq c > 0
+              \end{cases} \]</p>
+
+<p>If we then generate the first nine rows of the Bell Triangle, and take
+the last elements of each row, we get the second to tenth Bell Numbers.
+The first Bell Number is <span class = 'latex-inline'>\(1\)</span>.</p></div>
+
+<h2>Solutions</h2>
+
+<div class = "section">
+<p>Depending on the language, we solve the challenge in one or more of the
+strategies explained above. All languages will implement the <code>Hello, World!</code>
+strategy. For some languages, we also calculate the Bell Triangle.
+And in Perl, we also implement a fetch strategy.</p>
+
+<p>Languages which solve the problem in more than one way take a command
+line argument indicating the strategy to follow. This argument should
+be one of <code>plain</code> (the default), <code>fetch</code> (which fetches the numbers
+from the OEIS, or <code>compute</code>, which computes the first rows of the Bell 
+Triangle.</p>
+
+<p>We will only show the the plain solution for Perl; for the other
+implementations, see the GitHub links below.</p></div>
+
+<h3>Perl</h3>
+
+<h4>plain</h4>
+
+<div class = "section">
+<p>Can't be much simpler than this.</p>
+
+<pre><code>say "1, 1, 2, 5, 15, 52, 203, 877, 4140, 21147"
+</code></pre></div>
+
+<h4>fetch</h4>
+
+<div class = "section">
+<p>We're using the new module <a href="https://metacpan.org/pod/OEIS"><code>OEIS</code></a>
+which export a single method, <code>oeis</code>, which takes two arguments:
+the sequence to fetch, and the number of elements to return.</p>
+
+<pre><code>use OEIS;
+$, = ", ";
+say oeis (110 =&gt; 10)
+</code></pre></div>
+
+<h4>compute</h4>
+
+<div class = "section">
+<p>A straight forward implementation of the algorithm explained above:</p>
+
+<pre><code>my @bell = [1];
+for (my $x = 1; $x &lt; $COUNT - 1; $x ++) {
+$bell [$x] [0] = $bell [$x - 1] [-1];
+for (my $y = 1; $y &lt;= $x; $y ++) {
+    $bell [$x] [$y] = $bell [$x] [$y - 1] + $bell [$x - 1] [$y - 1]
+}
+}
+
+$, = ", ";
+say 1, map {$$_ [-1]} @bell;
+</code></pre>
+
+<p>Find the [full program](https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-108/abigail/# compute/ch-2.# compute) on <a href="https://github.com">GitHub</a>.</p></div>
+
+<h3>AWK</h3>
+
+<div class = "section">
+<p>The algorithm above is simply written down in AWK:</p>
+
+<pre><code>BEGIN {
+    COUNT = 10
+    bell [1, 1] = 1
+    for (x = 2; x &lt; COUNT; x ++) {
+        bell [x, 1] = bell [x - 1, x - 1]
+        for (y = 2; y &lt;= x; y ++) {
+            bell [x, y] = bell [x, y - 1] + bell [x - 1, y - 1]
+        }
+    }
+    printf "1"
+    for (x = 1; x &lt; COUNT; x ++) {
+        printf ", %d", bell [x, x]
+    }
+    printf "\n"
+}
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-108/abigail/awk/ch-2.awk">full program</a> on <a href="https://github.com">GitHub</a>.</p></div>
+
+<h3>Bash</h3>
+
+<div class = "section">
+<p>Bash doesn't have two dimensional arrays. So, we're using a function
+<code>index</code> which takes two arguments (an <code>x</code> and a <code>y</code> coordinate) and
+returns a single index. The return value is written in the global
+variable <code>idx</code>. We then get:</p>
+
+<pre><code>set -f
+
+COUNT=10
+
+function index () {
+    local x=$1
+    local y=$2
+    idx=$((COUNT * x + y))
+}
+
+bell[0]=1
+for ((x = 1; x &lt; COUNT - 1; x ++))
+do   index $x 0;                  i1=$idx
+     index $((x - 1)) $((x - 1)); i2=$idx
+     bell[$i1]=${bell[$i2]}
+     for ((y = 1; y &lt;= x; y ++))
+     do  index   $x         $y;       i1=$idx
+         index   $x       $((y - 1)); i2=$idx
+         index $((x - 1)) $((y - 1)); i3=$idx
+         bell[$i1]=$((bell[i2] + bell[i3]))
+     done
+done
+
+printf "1"
+for ((x = 0; x &lt; COUNT - 1; x ++))
+do index $x $x;
+   printf ", %d" ${bell[$idx]}
+done
+echo
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-108/abigail/bash/ch-2.sh">full program</a> on <a href="https://github.com">GitHub</a>.</p></div>
+
+<h3>C</h3>
+
+<div class = "section">
+<p>C requires us to manage our own memory. Other than that, it's the
+same algorithm:</p>
+
+<pre><code># define COUNT   10
+
+typedef int number;  /* Change if we want large numbers */
+char * fmt = "%d";   /* Should match typedef            */
+
+int main (int argc, char * argv []) {
+    number ** bell;
+    if ((bell = (number **) malloc ((COUNT - 1) * sizeof (number *)))
+        == NULL) {
+         perror ("Mallocing bell failed");
+         exit (1);
+    }
+    if ((bell [0] = (number *) malloc (sizeof (number))) == NULL) {
+        perror ("Mallocing row failed");
+        exit (1);
+    }
+    bell [0] [0] = 1;
+    for (int x = 1; x &lt; COUNT - 1; x ++) {
+        if ((bell [x] = (number *) malloc ((x + 1) * sizeof (number)))
+            == NULL) {
+            perror ("Mallocing row failed");
+            exit (1);
+        }
+        bell [x] [0] = bell [x - 1] [x - 1];
+        for (int y = 1; y &lt;= x; y ++) {
+            bell [x] [y] = bell [x] [y - 1] + bell [x - 1] [y - 1];
+        }
+    }
+
+    /*
+     * Print the right diagonal
+     */
+    printf (fmt, 1);
+    for (int x = 0; x &lt; COUNT - 1; x ++) {
+        printf (", ");
+        printf (fmt, bell [x] [x]);
+    }
+    printf ("\n");
+    exit (0);
+}
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-108/abigail/c/ch-2.c">full program</a> on <a href="https://github.com">GitHub</a>.</p></div>
+
+<h3>Lua</h3>
+
+<div class = "section">
+<p>Same algorithm:</p>
+
+<pre><code>local COUNT = 10
+local bell  = {}
+
+bell [0] = {}
+bell [0] [0] = 1
+for x = 1, COUNT - 2
+do  bell [x] = {}  
+    bell [x] [0] = bell [x - 1] [x - 1]
+    for  y = 1, x
+    do   bell [x] [y] = bell [x] [y - 1] + bell [x - 1] [y - 1]
+    end
+end 
+
+io . write (1)
+for x = 0, COUNT - 2
+do  io . write (", " .. bell [x] [x])
+end
+io . write ("\n")
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-108/abigail/lua/ch-2.lua">full program</a> on <a href="https://github.com">GitHub</a>.</p></div>
+
+<h3>Node.js</h3>
+
+<pre><code>let COUNT = 10
+let bell  = [[ 1 ]]
+let x
+for (x = 1; x &lt; COUNT - 1; x ++) {
+    bell [x] = [bell [x - 1] [x - 1]]   
+    let y
+    for (y = 1; y &lt;= x; y ++) {
+        bell [x] [y] = bell [x] [y - 1] + bell [x - 1] [y - 1]
+    }
+}      
+
+process . stdout . write ("1")
+for (x = 0; x &lt; COUNT - 1; x ++) {
+    process . stdout . write (", " + bell [x] [x] . toString ())
+}
+process . stdout . write ("\n")
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-108/abigail/node/ch-2.js">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+
+<h3>Python</h3>
+
+<div class = "section">
+<p>Python doesn't autovivify array elements when indexing out of
+bounds. So we use the
+<a href="https://docs.python.org/3/library/array.html#array.array.append"><code>append</code></a>
+method to add elements to arrays.</p>
+
+<pre><code>COUNT = 10
+bell  = [[1]]
+for x in range (1, COUNT - 1):
+    bell . append ([bell [x - 1] [x - 1]])
+    for y in range (1, x + 1):
+        bell [x] . append (bell [x] [y - 1] + bell [x - 1] [y - 1])
+
+print (1, end = '')
+for x in range (0, COUNT - 1):
+    print (",", bell [x] [x], end = '')
+
+print ("")
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-108/abigail/python/ch-2.py">full program</a> on <a href="https://github.com">GitHub</a>.</p></div>
+
+<h3>Ruby</h3>
+
+<pre><code>COUNT = 10
+bell  = [[1]]
+for  x in 1 .. COUNT - 2
+     bell [x] = [bell [x - 1] [x - 1]]
+     for  y in 1 .. x
+          bell [x] [y] = bell [x] [y - 1] + bell [x - 1] [y - 1]
+     end
+end
+print (1)
+for  x in 0 .. COUNT - 2
+     print (", ")
+     print (bell [x] [x])
+end
+puts ("")
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-108/abigail/ruby/ch-2.rb">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+
+<h3>Other languages</h3>
+
+<div class = "section">
+<p>We also have simple solutions for <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-108/abigail/basic/ch-2.basic">BASIC</a>, <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-108/abigail/bc/ch-2.bc">bc</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-108/abigail/befunge-93/ch-2.bf93">Befunge-93</a>, <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-108/abigail/cobol/ch-2.cb">Cobol</a>, <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-108/abigail/csh/ch-2.csh">Csh</a>, <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-108/abigail/erlang/ch-2.erl">Erlang</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-108/abigail/forth/ch-2.fs">Forth</a>, <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-108/abigail/fortran/ch-2.f90">Fortran</a>, <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-108/abigail/go/ch-2.go">Go</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-108/abigail/java/ch-2.java">Java</a>, <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-108/abigail/m4/ch-2.m4">m4</a>, <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-108/abigail/ocaml/ch-2.ml">OCaml</a>, <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-108/abigail/pascal/ch-2.p">Pascal</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-108/abigail/php/ch-2.php">PHP</a>, <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-108/abigail/postscript/ch-2.ps">PostScript</a>, <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-108/abigail/r/ch-2.r">R</a>, <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-108/abigail/rexx/ch-2.rexx">Rexx</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-108/abigail/scheme/ch-2.scm">Scheme</a>, <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-108/abigail/sed/ch-2.sed">sed</a>, <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-108/abigail/sql/ch-2.sql">SQL</a>, and <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-108/abigail/tcl/ch-2.tcl">Tcl</a>.</p></div>
+</body>
+<hr id = 'last-line'>
+<div class = 'trailer'>
+<p class = 'prev'><a class = "prev" href = "">&#x261C;</a></p>
+<p class = 'issue'>Please leave any comments as a
+  <a href = 'https://github.com/Abigail/Abigail.github.io/issues'
+     title = 'GitHub issue'>GitHub issue</a>.
+<p class = 'next'><a class = "next" href = "">&#x261E;</a></p>
+</div>
+
+</html>
