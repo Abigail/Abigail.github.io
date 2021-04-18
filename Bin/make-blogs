@@ -254,7 +254,7 @@ sub pre_process ($text, $week) {
             $out .= "    $line\n";
             next;
         }
-        if ($line =~ /^###\s*(?<header>.*)/) {
+        if ($line =~ /^###\s+(?<header>.*)/) {
             if ($section) {
                 $out .= process_section ($section, $language, $week);
                 $section = "";

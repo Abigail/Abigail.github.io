@@ -185,13 +185,12 @@ $bell [$x] [0] = $bell [$x - 1] [-1];
 for (my $y = 1; $y &lt;= $x; $y ++) {
     $bell [$x] [$y] = $bell [$x] [$y - 1] + $bell [$x - 1] [$y - 1]
 }
-}
 
 $, = ", ";
 say 1, map {$$_ [-1]} @bell;
 </code></pre>
 
-<p>Find the [full program](https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-108/abigail/# compute/ch-2.# compute) on <a href="https://github.com">GitHub</a>.</p></div>
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-108/abigail/perl/ch-2.pl">full program</a> on <a href="https://github.com">GitHub</a>.</p></div>
 
 <h3>AWK</h3>
 
