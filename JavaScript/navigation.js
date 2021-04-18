@@ -17,8 +17,6 @@ let pages = [
 
 pages . forEach (_ => _ [0] = PWC + "/" + _ [0] + ".html")
 
-console . log (pages)
-
 $(document) . ready (function () {
     let pagename = document . location . href
         pagename = pagename . substr (pagename . lastIndexOf ('/HTML/') + 6)
