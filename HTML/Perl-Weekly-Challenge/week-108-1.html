@@ -97,6 +97,32 @@ And you can just print that as a number:</p>
 
 <p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-108/abigail/go/ch-1.go">full program</a> on <a href="https://github.com">GitHub</a>.</p></div>
 
+<h3>Pascal</h3>
+
+<div class = "section">
+<p>Pascal has pointers, but they aren't addresses in the sense they
+are in C. Depending on the flavour of Pascal, you may, or may not
+be able to get the memory location. We use the
+<a href="https://www.freepascal.org/">Free Pascal</a> compiler, which does
+have a way to extract the address of a pointer. </p>
+
+<p>The function <code>addr</code> takes a pointer as argument, and returns a
+pointer to a Word containing a memory address.
+The latter pointer can be dereferenced and printed.</p>
+
+<pre><code>var i: Integer;
+    p: ^Integer;
+    w: ^Word;
+
+begin
+    p := @i;
+    w := addr (p);
+    writeln (w^);
+end.
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-108/abigail/pascal/ch-1.p">full program</a> on <a href="https://github.com">GitHub</a>.</p></div>
+
 <h3>Python</h3>
 
 <div class = "section">
