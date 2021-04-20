@@ -176,9 +176,12 @@ sub make_link (%args) {
         }
     }
     if (!$url) {
-        if ($link =~ /(?<where>[^:]+):(?<what>.*)/) {
+        if ($link =~ /(?<where>[^:]+)(?::(?<what>.*))?$/) {
             my $where = $+ {where};
             my $what  = $+ {what};
+            if (!$what) {
+                $what = $anchor =~ s/\s+/_/gr;
+            }
             if    ($where eq "wiki") {$url = $WIKI_URL . "/" . $what}
             elsif ($where eq "oeis") {$url = $OEIS_URL . "/" . $what}
         }
