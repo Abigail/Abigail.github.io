@@ -1,0 +1,364 @@
+<html>
+<head>
+<title>Perl Weekly Challenge 109: Chowla Numbers</title>
+<script src = "https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id = "MathJax-script" async src = "https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.js"></script>
+<script src = '../../JavaScript/jquery.js'></script>
+<script src = '../../JavaScript/navigation.js'></script>
+<link rel = 'preconnect' href = 'https://fonts.gstatic.com'>
+<link rel = 'stylesheet' href = 'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
+<link rel = 'stylesheet' href = '../../Styles/Perl-Weekly-Challenge/main.css'>
+</head>
+
+<body><h1>Perl Weekly Challenge 109: Chowla Numbers</h1><div class = "byline">
+by Abigail<br>
+<img src = "../../Images/jan_sluiters.jpg">
+</div>
+
+
+<h2><a href="https://perlweeklychallenge.org/blog/perl-weekly-challenge-109/#TASK1">Challenge</a></h2>
+
+<blockquote>
+  <p>Write a script to generate first 20 Chowla Numbers, named after,
+  Sarvadaman D. S. Chowla, a London born Indian American mathematician.
+  It is defined as:</p>
+
+<pre><code>C(n) = sum of divisors of n except 1 and n
+</code></pre>
+</blockquote>
+
+<h3>Output</h3>
+
+<blockquote>
+<pre><code>0, 0, 0, 2, 0, 5, 0, 6, 3, 7, 0, 15, 0, 9, 8, 14, 0, 20, 0, 21
+</code></pre>
+</blockquote>
+
+<h2>Discussion</h2>
+
+<div class = "section">
+<p>Another glorified <a href="https://en.wikipedia.org/wiki/Hello_World"><code>Hello, World!</code></a> program!</p>
+
+<p>Just like in <a href="week-108-2.html">last weeks challenge</a>, we have
+three options to solve this:</p>
+
+<ol>
+<li>Just print the 20 required numbers, as given in the challenge.</li>
+<li>Fetch the <a href="https://oeis.org/48050">right sequence</a> from the <a href="https://oeis.org">OEIS</a>,
+extract the first 20 numbers, and print those.</li>
+<li>Calculate the numbers.</li>
+</ol>
+
+<p>In all the languages we provide solutions in, we at least implement
+the first strategy. For Perl, we also implement the second strategy.
+And for a handful of languages, we also implement the last
+strategy.</p>
+
+<p>The solutions implementing multiple strategies take command line
+argument, indiciting which strategy to use. This argument is one
+off: <code>plain</code> (for the first strategy), <code>fetch</code> (for the second
+strategy), or <code>compute</code> (for the third). If no argument is given,
+an argument which isn't recognized, or one which isn't implemented,
+the solution falls back to the first strategy.</p></div>
+
+<h2>Solutions</h2>
+
+<div class = "section">
+<p>We will only discuss solutions implementing the third strategy;
+that is, actually computing the numbers. </p>
+
+<p>Summing the divisors of a number <span class = 'latex-inline'>\(N\)</span> is at least as hard
+as factorizing <span class = 'latex-inline'>\(N\)</span>, which is a
+<a href="https://en.wikipedia.org/wiki/Integer_factorization">hard problem</a>.</p>
+
+<p>For non-quantum computers, as of this writing, the
+<a href="https://doi.org/10.1007/BFb0091539">best know algorithm</a> takes</p>
+
+<p>\[ \exp\left( \left(\sqrt[3]{\frac{64}{9}} + \mathcal{o} (1)\right)
+            (\ln N)^{\frac{1}{3}}(\ln \ln N)^{\frac{2}{3}}\right) \]</p>
+
+<p>time to factor a number <span class = 'latex-inline'>\(N\)</span>, using a 
+<a href="https://en.wikipedia.org/wiki/General_number_field_sieve">general number field sieve</a>.</p>
+
+<p>(For quantum computers, <a href="https://en.wikipedia.org/wiki/Shor's_algorithm">Shor's algorithm</a>
+can factor a number <span class = 'latex-inline'>\(N\)</span> in <span class = 'latex-inline'>\(\mathcal{O} \left((\ln N)^3\right)\)</span> time,
+using <span class = 'latex-inline'>\(\mathcal{O} \left((\ln N)^2(\ln \ln N)(\ln \ln \ln N)\right)\)</span>
+<a href="https://en.wikipedia.org/wiki/quantum_gates">quantum gates</a>.)</p>
+
+<p>Luckily, we don't have to do anything hard. No deep math, nor a quantum
+computer. After all, we don't have to solve the general case, we only
+have compute the Chowla Number for a handful of tiny integers.</p>
+
+<p>So, for a number <span class = 'latex-inline'>\(N\)</span>, we just check all numbers <span class = 'latex-inline'>\(k: 1 &lt; k \leq \frac{N}{2}\)</span>
+to see if they evenly divide <span class = 'latex-inline'>\(N\)</span>, and sum those that do. That's
+only 81 modulo operations.</p>
+
+<p>In most, but not all, solutions, we create a method called
+<code>divisor_sum</code>, which takes a single argument, and returns the
+sum of the proper divisors (except <code>1</code> and the number itselfs)
+of the passed in number.</p></div>
+
+<h3>Perl</h3>
+
+<pre><code>my $COUNT = 20;
+use List::Util qw [sum0];
+$, = ", ";
+say map {my $n = $_; sum0 grep {!($n % $_)} 2 .. $_ / 2} 1 .. $COUNT;
+</code></pre>
+
+<p>Here the <a href="https://perldoc.perl.org/perlfunc#map"><code>map</code></a> takes each number from <code>1</code> to <code>20</code>, and calculates
+the Chowla Number for it. To do so, given a number <code>$n</code>, we <a href="https://perldoc.perl.org/perlfunc#grep"><code>grep</code></a> the
+numbers which evenly divide <code>$n</code> (by checking if the modulo is 0).
+The <code>grep</code> returns a, possibly empty, list, which we sum using <code>sum0</code>
+from the <a href="https://metacpan.org/pod/List::Util"><code>List::Util</code></a> module. <code>sum0</code> returns <code>0</code> when summing
+an empty list.</p>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-109/abigail/perl/ch-1.pl">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+
+<h3>AWK</h3>
+
+<div class = "section">
+<p>The <code>divisor_sum</code> method:</p>
+
+<pre><code>function divisor_sum (n, i) {
+    sum = 0
+    for (i = 2; i &lt;= n / 2; i ++) {
+        if (n % i == 0) {
+            sum += i
+        }
+    }
+    return (sum)
+}
+</code></pre>
+
+<p>The second argument, <code>i</code>, is not used; that is, when we call the
+method we only pass in a single argument. But this is AWKs way of
+creating a lexical variable in the body of the method.</p>
+
+<p>We then call <code>divisor_sum</code> 20 times, and print the results, 
+separated by commas:</p>
+
+<pre><code>COUNT = 20
+for (i = 1; i &lt;= COUNT; i ++) {
+    if (i &gt; 1) {
+        printf ", ";
+    }
+    printf "%d", divisor_sum(i)
+}
+printf "\n";
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-109/abigail/awk/ch-1.awk">full program</a> on <a href="https://github.com">GitHub</a>.</p></div>
+
+<h3>Bash</h3>
+
+<div class = "section">
+<p>The <code>divisor_sum</code> method:</p>
+
+<pre><code>function divisor_sum () {
+    local n=$1
+    sum=0
+    local i
+    for ((i = 2; i &lt;= n / 2; i ++))
+    do  if   ((n % i == 0))
+        then ((sum += i))
+        fi
+    done
+}
+</code></pre>
+
+<p>Note that in Bash, function arguments are available in the function
+as <code>$1</code>, <code>$2</code>, ... etc. The result is passed back using the global
+variable <code>$sum</code>.</p>
+
+<p>Calling <code>divisor_sum</code> 20 times, and printing the results, separated
+by commas:</p>
+
+<pre><code>COUNT=20
+for ((n = 1; n &lt;= COUNT; n ++))
+do  if   ((n &gt; 1))
+    then printf ", "
+    fi
+    divisor_sum $n
+    printf $sum
+done
+echo ""
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-109/abigail/bash/ch-1.sh">full program</a> on <a href="https://github.com">GitHub</a>.</p></div>
+
+<h3>C</h3>
+
+<div class = "section">
+<p>For once, our C solution is hardly larger than solutions in other
+language: we don't have to <a href="https://www.freebsd.org/cgi/man.cgi?apropos=0&amp;sektion=0&amp;query=malloc"><code>malloc</code></a> memory.</p>
+
+<p>The <code>divisor_sum</code> method:</p>
+
+<pre><code>typedef int number;
+
+number divisor_sum (number n) {
+    number sum = 0;
+    for (number i = 2; i &lt;= n / 2; i ++) {
+        if (!(n % i)) {
+            sum += i;
+        }
+    }
+    return (sum);
+}
+</code></pre>
+
+<p>We're using a <code>typedef</code> to create a type <code>number</code>. If we would ever need
+to expand this to deal with larger numbers, we can change the typedef
+so <code>number</code> is an alias for a <code>long</code> or <code>long long</code>. We would only have
+to make the change in one location.</p>
+
+<p>Calling <code>divisor_sum</code> and printing the results:</p>
+
+<pre><code># define COUNT   20
+# define fmt "%d" /* Change if the typedef changes */
+
+for (number i = 1; i &lt;= COUNT; i ++) {
+    if (i != 1) {
+        printf (", ");
+    }
+    printf (fmt, divisor_sum (i));
+}
+printf ("\n");
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-109/abigail/c/ch-1.c">full program</a> on <a href="https://github.com">GitHub</a>.</p></div>
+
+<h3>Lua</h3>
+
+<div class = "section">
+<p>No <code>+=</code> in Lua. Other than that, it's pretty straightforward:</p>
+
+<pre><code>function divisor_sum (n)
+    local sum = 0
+    for i = 2, n / 2 do
+        if   n % i == 0 
+        then sum = sum + i
+        end
+    end
+    return (sum)
+end
+</code></pre>
+
+<p>Main loop:</p>
+
+<pre><code>local COUNT   = 20
+for n = 1, COUNT do
+    if n &gt; 1 
+    then io . write (", ")
+    end
+    io . write (divisor_sum (n))
+end
+io . write ("\n")
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-109/abigail/lua/ch-1.lua">full program</a> on <a href="https://github.com">GitHub</a>.</p></div>
+
+<h3>Node.js</h3>
+
+<div class = "section">
+<p>In Node.js, we need to explicitly round the division, otherwise,
+we get a type error. Other than that, the method is very similar
+to solutions in the other languages.</p>
+
+<pre><code>function divisor_sum (n) {
+    let sum = 0
+    for (let i = 2; i &lt;= Math . floor (n / 2); i ++) {
+        if (n % i == 0) {
+            sum += i
+        }
+    }
+    return (sum)
+}
+</code></pre>
+
+<p>Calling the method and printing the results:</p>
+
+<pre><code>let COUNT = 20
+for (let i = 1; i &lt;= COUNT; i ++) {
+    if (i &gt; 1) {
+        process . stdout . write (", ")
+    }
+    process . stdout . write (divisor_sum (i) . toString ())
+}
+process . stdout . write ("\n")
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-109/abigail/node/ch-1.js">full program</a> on <a href="https://github.com">GitHub</a>.</p></div>
+
+<h3>Python</h3>
+
+<div class = "section">
+<p>Pythons whitespace rules make for more compact code:</p>
+
+<pre><code>def divisor_sum (n):
+    sum = 0
+    for i in range (2, n / 2 + 1):
+        if n % i == 0:
+            sum = sum + i
+    return (sum)
+</code></pre>
+
+<p>Main loop:</p>
+
+<pre><code>COUNT = 20
+for n in range (1, COUNT + 1):
+    if n &gt; 1:
+        print (", ", end = '')
+    print (divisor_sum (n), end = '')
+print ("")
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-109/abigail/python/ch-1.py">full program</a> on <a href="https://github.com">GitHub</a>.</p></div>
+
+<h3>Ruby</h3>
+
+<pre><code>def divisor_sum (n)
+    sum = 0
+    for i in 2 .. n / 2
+        if   n % i == 0
+        then sum += i
+        end
+    end
+    return sum
+end
+</code></pre>
+
+<p>Main loop:</p>
+
+<pre><code>for n in 1 .. COUNT
+    if n &gt; 1
+    then print (", ")
+    end
+    print divisor_sum (n)
+end
+puts ("")
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-109/abigail/ruby/ch-1.rb">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+
+<h3>Other languages</h3>
+
+<div class = "section">
+<p>We also have simple solutions for <a href="#github">BASIC</a>, <a href="#github">bc</a>,
+<a href="#github">Befunge-93</a>, <a href="#github">Cobol</a>, <a href="#github">Csh</a>, <a href="#github">Erlang</a>,
+<a href="#github">Forth</a>, <a href="#github">Fortran</a>, <a href="#github">Go</a>,
+<a href="#github">Java</a>, <a href="#github">m4</a>, <a href="#github">OCaml</a>, <a href="#github">Pascal</a>,
+<a href="#github">PHP</a>, <a href="#github">PostScript</a>, <a href="#github">R</a>, <a href="#github">Rexx</a>,
+<a href="#github">Scheme</a>, <a href="#github">sed</a>, <a href="#github">SQL</a>, and <a href="#github">Tcl</a>.</p></div>
+</body>
+<hr id = 'last-line'>
+<div class = 'trailer'>
+<p class = 'prev'><a class = "prev" href = "">&#x261C;</a></p>
+<p class = 'issue'>Please leave any comments as a
+  <a href = 'https://github.com/Abigail/Abigail.github.io/issues'
+     title = 'GitHub issue'>GitHub issue</a>.
+<p class = 'next'><a class = "next" href = "">&#x261E;</a></p>
+</div>
+
+</html>
