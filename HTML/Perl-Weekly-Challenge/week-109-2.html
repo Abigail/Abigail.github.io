@@ -1,0 +1,343 @@
+<html>
+<head>
+<title>Perl Weekly Challenge 109: Four Squares Puzzle</title>
+<script src = "https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id = "MathJax-script" async src = "https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.js"></script>
+<script src = '../../JavaScript/jquery.js'></script>
+<script src = '../../JavaScript/navigation.js'></script>
+<link rel = 'preconnect' href = 'https://fonts.gstatic.com'>
+<link rel = 'stylesheet' href = 'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
+<link rel = 'stylesheet' href = '../../Styles/Perl-Weekly-Challenge/main.css'>
+</head>
+
+<body><h1>Perl Weekly Challenge 109: Four Squares Puzzle</h1><div class = "byline">
+by Abigail<br>
+<img src = "../../Images/jan_sluiters.jpg">
+</div>
+
+
+<h2><a href="https://perlweeklychallenge.org/blog/perl-weekly-challenge-109/#TASK2">Challenge</a></h2>
+
+<blockquote>
+  <p>You are given four squares as below with numbers named <code>a</code>, <code>b</code>, <code>c</code>,
+  <code>d</code>, <code>e</code>, <code>f</code>, <code>g</code>.</p>
+
+<pre><code>         (1)                    (3)
+   ╔══════════════╗      ╔══════════════╗
+   ║              ║      ║              ║
+   ║      a       ║      ║      e       ║
+   ║              ║ (2)  ║              ║  (4)
+   ║          ┌───╫──────╫───┐      ┌───╫─────────┐
+   ║          │   ║      ║   │      │   ║         │
+   ║          │ b ║      ║ d │      │ f ║         │
+   ║          │   ║      ║   │      │   ║         │
+   ║          │   ║      ║   │      │   ║         │
+   ╚══════════╪═══╝      ╚═══╪══════╪═══╝         │
+              │       c      │      │      g      │
+              │              │      │             │
+              │              │      │             │
+              └──────────────┘      └─────────────┘
+</code></pre>
+  
+  <p>Write a script to place the given unique numbers in the square box so
+  that sum of numbers in each box is the same.</p>
+</blockquote>
+
+<h3>Example</h3>
+
+<blockquote>
+<pre><code>Input: 1,2,3,4,5,6,7
+
+Output:
+
+    a = 6
+    b = 4
+    c = 1
+    d = 5
+    e = 2
+    f = 3
+    g = 7
+
+    Box 1: a + b = 6 + 4 = 10
+    Box 2: b + c + d = 4 + 1 + 5 = 10
+    Box 3: d + e + f = 5 + 2 + 3 = 10
+    Box 4: f + g = 3 + 7 = 10
+</code></pre>
+</blockquote>
+
+<h2>Discussion</h2>
+
+<div class = "section">
+<p>First observation is that solutions are not unique. If <span class = 'latex-inline'>\(a = x_1\)</span>,
+<span class = 'latex-inline'>\(b = x_2\)</span>, <span class = 'latex-inline'>\(c = x_3\)</span>, <span class = 'latex-inline'>\(d = x_4\)</span>, <span class = 'latex-inline'>\(e = x_5\)</span>, <span class = 'latex-inline'>\(f = x_6\)</span>,
+<span class = 'latex-inline'>\(g = x_7\)</span> is a solution, then <span class = 'latex-inline'>\(a = x_7\)</span>, <span class = 'latex-inline'>\(b = x_6\)</span>, <span class = 'latex-inline'>\(c = x_5\)</span>,
+<span class = 'latex-inline'>\(d = x_4\)</span>, <span class = 'latex-inline'>\(e = x_3\)</span>, <span class = 'latex-inline'>\(f = x_2\)</span>, <span class = 'latex-inline'>\(g = x_1\)</span> is a solution as well.
+(We are calling two numbers different if they have different indices in
+<code>@numbers</code>, even if the value of the numbers are the same).</p>
+
+<p>Even without symmetry, solutions do not need to be unique. For the given
+example, there are eight different solutions:</p>
+
+<p>\[
+\begin{array}{|ccccccc|r|}
+     a &amp; b &amp; c &amp; d &amp; e &amp; f &amp; g &amp; \text{sum} \\
+     \hline
+     3 &amp; 7 &amp; 2 &amp; 1 &amp; 5 &amp; 4 &amp; 6 &amp; 10 \\
+     4 &amp; 5 &amp; 3 &amp; 1 &amp; 6 &amp; 2 &amp; 7 &amp;  9 \\
+     4 &amp; 7 &amp; 1 &amp; 3 &amp; 2 &amp; 6 &amp; 5 &amp; 11 \\
+     5 &amp; 6 &amp; 2 &amp; 3 &amp; 1 &amp; 7 &amp; 4 &amp; 11 \\
+     6 &amp; 4 &amp; 1 &amp; 5 &amp; 2 &amp; 3 &amp; 7 &amp; 10 \\
+     6 &amp; 4 &amp; 5 &amp; 1 &amp; 2 &amp; 7 &amp; 3 &amp; 10 \\
+     7 &amp; 2 &amp; 6 &amp; 1 &amp; 3 &amp; 5 &amp; 4 &amp;  9 \\
+     7 &amp; 3 &amp; 2 &amp; 5 &amp; 1 &amp; 4 &amp; 6 &amp; 10 \\
+\end{array}
+\]</p>
+
+<p>The column <span class = 'latex-inline'>\(\text{sum}\)</span> indicates to which total the values 
+in the squares sum.</p>
+
+<p>There are different ways to solve this problem.</p></div>
+
+<h3>Brute force</h3>
+
+<div class = "section">
+<p>One way of tackling this problem is to just try all possibilities.
+There are only <span class = 'latex-inline'>\(7! = 5040\)</span> different ways to assign <span class = 'latex-inline'>\(7\)</span> values
+to <span class = 'latex-inline'>\(7\)</span> variables, so this is quite feasable. And we can improve
+on that, there are ways to reduce the number of possibilities tried.
+For instance, if we have picked values for <span class = 'latex-inline'>\(a\)</span>, <span class = 'latex-inline'>\(b\)</span>, <span class = 'latex-inline'>\(c\)</span>, and <span class = 'latex-inline'>\(d\)</span>,
+we can check whether <span class = 'latex-inline'>\(a + b = b + c + d\)</span>. If not, we don't have
+to iterate over the possible assignments of <span class = 'latex-inline'>\(e\)</span>, <span class = 'latex-inline'>\(f\)</span> or <span class = 'latex-inline'>\(g\)</span>.</p></div>
+
+<h3>Equal differences</h3>
+
+<div class = "section">
+<p>Looking at the problem statement, we have</p>
+
+<p>\[ T = \begin{cases} a + b     &amp; (1) \\
+                     b + c + d &amp; (2) \\
+                     d + e + f &amp; (3) \\
+                     f + g     &amp; (4)
+       \end{cases}
+\]</p>
+
+<p>where <span class = 'latex-inline'>\(T\)</span> is the sum of the values of a square.</p>
+
+<p>From <span class = 'latex-inline'>\((1)\)</span> and <span class = 'latex-inline'>\((2)\)</span> it follows that:</p>
+
+<p>\[
+    \begin{array}{lr}
+    a + b = b + c + d \implies
+    a = c + d         \implies
+    d = a - c &amp; (5)
+    \end{array}
+\]</p>
+
+<p>In the same way, from <span class = 'latex-inline'>\((3)\)</span> and <span class = 'latex-inline'>\((4)\)</span> it follows that:</p>
+
+<p>\[
+    \begin{array}{lr}
+    f + g = d + e + f \implies
+    g = e + d         \implies
+    d = g - e &amp; (6)
+    \end{array}
+\]</p>
+
+<p>From <span class = 'latex-inline'>\((5)\)</span> and <span class = 'latex-inline'>\((6)\)</span> we get:</p>
+
+<p>\[
+    \begin{array}{lr}
+    d = a - c = g - e &amp; (7)
+    \end{array}
+\]</p>
+
+<p>Formula <span class = 'latex-inline'>\((7)\)</span> gives us the insight how to efficiently tackle
+the problem: we have to find two pairs of numbers whose differences
+are equal to a fifth number. Once we this quintet, there are only
+two more values to assign, which we can easily check for.</p></div>
+
+<h2>Solutions</h2>
+
+<h3>Perl</h3>
+
+<div class = "section">
+<p>Our Perl solution follows the second strategy explained above.
+Assuming the given numbers are in an array called <code>@numbers</code>,
+we start off by finding the differences between all pairs of
+numbers. If a difference is present in <code>@numbers</code>, we store the
+indices of the numbers in a datastructure <code>%differences</code>. This
+hash uses the elements of <code>@numbers</code> as keys. The values are array
+refs, where each element is 2-element array with indices; the indices
+indicate which elements in <code>@numbers</code> have the given difference.</p>
+
+<pre><code>my %differences = map {$_ =&gt; []} @numbers;
+
+for (my $x = 0; $x &lt; @numbers; $x ++) {
+    for (my $y = $x + 1; $y &lt; @numbers; $y ++) {
+        my $diff = $numbers [$x] - $numbers [$y];
+        push @{$differences { $diff}} =&gt; [$x, $y] if $differences { $diff};
+        push @{$differences {-$diff}} =&gt; [$y, $x] if $differences {-$diff};
+    }
+}
+</code></pre>
+
+<p>We will now iterate over the numbers <code>d</code> in <code>@numbers</code>, and find all
+pairs of pairs of numbers whose difference is <code>d</code>, which the added
+restriction all five involved numbers are different. (Remember that we
+call two numbers different if they have different indices in <code>@numbers</code>,
+even if the values are the same).</p>
+
+<pre><code>for (my $d_i = 0; $d_i &lt; @numbers; $d_i ++) {
+        my $d = $numbers [$d_i];
+        my @diffs = @{$differences {$d}};
+
+        #
+        # Now, find two pairs where all indices are different.
+        #
+        for (my $x = 0; $x &lt; @diffs; $x ++) {
+            #
+            # Ignore a difference involving d_i.
+            #
+            next if $diffs [$x] [0] == $d_i ||
+                    $diffs [$x] [1] == $d_i;   
+            for (my $y = $x + 1; $y &lt; @diffs; $y ++) {
+                #
+                # Second difference cannot involve the number at d_i,
+                # and the indices involved in the second difference
+                # must be different from the first difference.
+                #
+                next if $diffs [$y] [0] == $d_i            ||
+                        $diffs [$y] [1] == $d_i            ||   
+                        $diffs [$x] [0] == $diffs [$y] [0] ||
+                        $diffs [$x] [0] == $diffs [$y] [1] ||
+                        $diffs [$x] [1] == $diffs [$y] [0] ||
+                        $diffs [$x] [1] == $diffs [$y] [1];
+</code></pre>
+
+<p>At this moment, <code>$diffs [$x]</code> and <code>$diffs [$y]</code> contain four different
+indices, all different from <code>$d_i</code>, such that <code>$d == $numbers [$d_i]</code>,
+<code>$d == $numbers [$diffs [$x] [0]] - $numbers [$diffs [$x] [1]]</code>, and
+<code>$d == $numbers [$diffs [$y] [0]] - $numbers [$diffs [$y] [1]]</code>.</p>
+
+<p>We can now assign the values in <code>$diffs [$x]</code> and <code>$diffs [$y]</code> to
+<code>$a_i</code>, <code>$c_i</code>, <code>$g_i</code>, and <code>$e_i</code>, the indices where in <code>@numbers</code>
+we can find the values for <code>a</code>, <code>c</code>, <code>g</code>, and <code>e</code>. We don't have to
+consider the opposite, that is, assume that <code>$diffs [$x]</code> contains
+<code>$g_i</code> and <code>$e_i</code>, and <code>$diffs [$y]</code> contains <code>$a_i</code> and <code>$c_i</code>: this
+would lead to a symmetric solution, and we deal with that later.</p>
+
+<pre><code>                my ($a_i, $c_i) = @{$diffs [$x]};
+                my ($g_i, $e_i) = @{$diffs [$y]};
+</code></pre>
+
+<p>We now have two indices not used, and two variables to assign them to:
+<code>$b_i</code>, and <code>$f_i</code>.</p>
+
+<p>We'll find the two unused indices:</p>
+
+<pre><code>                my %indices = map {$_ =&gt; 1} keys @numbers;
+                delete $indices {$_} for $a_i, $c_i, $d_i, $e_i, $g_i;
+</code></pre>
+
+<p>We will now try both possible assignments, and check whether all
+the squares sum to the same value. If so, we print the solution,
+and the reverse:</p>
+
+<pre><code>                foreach my $try ($left, [reverse @$left]) {
+                    my ($b_i, $f_i) = @$try;
+
+                    #
+                    # Do we have a winner?
+                    #
+                    next unless           $numbers [$a_i] + $numbers [$b_i] ==
+                        $numbers [$b_i] + $numbers [$c_i] + $numbers [$d_i] ==
+                        $numbers [$d_i] + $numbers [$e_i] + $numbers [$f_i] ==
+                                          $numbers [$f_i] + $numbers [$g_i];
+
+                    #
+                    # Print result, and the reverse, so we get all
+                    # possible solutions.
+                    #
+                    my @solution =
+                       @numbers [$a_i, $b_i, $c_i, $d_i, $e_i, $f_i, $g_i];
+
+                    local $, = " ";
+                    say         @solution;
+                    say reverse @solution;
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-109/abigail/perl/ch-2.pl">full program</a> on <a href="https://github.com">GitHub</a>.</p></div>
+
+<h3>Ruby</h3>
+
+<div class = "section">
+<p>For our Ruby solution, we opt to use the brute force strategy: we
+try all possible combinations, but we move to the next one as soon
+as we know we cannot reach a solution with the current picks so far.</p>
+
+<p>Let <code>numbers</code> be an array containing the seven given numbers. We then
+start by picking an <code>a</code> and a <code>b</code>:</p>
+
+<pre><code>numbers . each_with_index do |a, a_i|
+    numbers . each_with_index do |b, b_i|
+        next if a_i == b_i
+        target = a + b
+</code></pre>
+
+<p>Once we have an <code>a</code> and a (different <code>b</code>), we define <code>target</code> as
+the sum of <code>a</code> and <code>b</code>. This is the sum of the values in the first
+square, and the other squares need to sum to the same value.</p>
+
+<p>Next, we pick a <code>c</code> and a <code>d</code>, and check whether <code>b</code>, <code>c</code> and <code>d</code>
+sum to target (second square):</p>
+
+<pre><code>        numbers . each_with_index do |c, c_i|
+            next if a_i == c_i || b_i == c_i
+            numbers . each_with_index do |d, d_i|
+                next if a_i == d_i || b_i == d_i || c_i == d_i
+                next if target != b + c + d
+</code></pre>
+
+<p>Then, we pick <code>e</code> and <code>f</code>, and check whether <code>d</code>, <code>e</code>, and <code>f</code> sum
+to <code>target</code> (third square):</p>
+
+<pre><code>                numbers . each_with_index do |e, e_i|
+                    next if a_i == e_i || b_i == e_i || c_i == e_i ||
+                            d_i == e_i
+                    numbers . each_with_index do |f, f_i|
+                        next if a_i == f_i || b_i == f_i || c_i == f_i ||
+                                d_i == f_i || e_i == f_i
+                        next if target != d + e + f
+</code></pre>
+
+<p>Finally, we pick <code>g</code>, and check whether <code>f</code> and <code>g</code> sum to <code>target</code>
+(fourth and final square). If so, we have a solution, and we print it:</p>
+
+<pre><code>                        numbers . each_with_index do |g, g_i|
+                            next if a_i == g_i || b_i == g_i ||
+                                    c_i == g_i || d_i == g_i ||
+                                    e_i == g_i || f_i == g_i
+                            next if target != f + g
+                            puts "#{a} #{b} #{c} #{d} #{e} #{f} #{g}"
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-109/abigail/ruby/ch-2.rb">full program</a> on <a href="https://github.com">GitHub</a>.</p></div>
+
+<h3>Other languages</h3>
+
+<div class = "section">
+<p>We also have solutions for <a href="#github">AWK</a>, <a href="#github">Lua</a> and
+<a href="#github">Node.js</a>, implementing the <em>Equal differences</em> strategy,
+and <a href="#github">Bash</a>, <a href="#github">C</a> and <a href="#github">Python</a> solutions
+implementing the <em>Brute force</em> strategy.</p></div>
+</body>
+<hr id = 'last-line'>
+<div class = 'trailer'>
+<p class = 'prev'><a class = "prev" href = "">&#x261C;</a></p>
+<p class = 'issue'>Please leave any comments as a
+  <a href = 'https://github.com/Abigail/Abigail.github.io/issues'
+     title = 'GitHub issue'>GitHub issue</a>.
+<p class = 'next'><a class = "next" href = "">&#x261E;</a></p>
+</div>
+
+</html>
