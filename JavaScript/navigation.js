@@ -49,4 +49,20 @@ $(document) . ready (function () {
         $("p.next") . css ("visibility", "hidden")
     }
 
+    $(document) . on ('keydown', event => {
+        //
+        // Press 'n' or 'N'
+        //
+        if ((event . which == 78 || event . which == 110) &&
+                     index < pages . length - 1) {
+            location . href = "../" + pages [index + 1] [0]
+        }
+        //
+        // Press 'p' or 'P'
+        //
+        if ((event . which == 80 || event . which == 112) && index > 0) {
+            location . href = "../" + pages [index - 1] [0]
+        }
+    })
+
 });
