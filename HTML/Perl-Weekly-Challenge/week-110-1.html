@@ -1,0 +1,353 @@
+<html>
+<head>
+<title>Perl Weekly Challenge 110: Valid Phone Numbers</title>
+<script src = "https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id = "MathJax-script" async src = "https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.js"></script>
+<script src = '../../JavaScript/jquery.js'></script>
+<script src = '../../JavaScript/navigation.js'></script>
+<link rel = 'preconnect' href = 'https://fonts.gstatic.com'>
+<link rel = 'stylesheet' href = 'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
+<link rel = 'stylesheet' href = '../../Styles/Perl-Weekly-Challenge/main.css'>
+</head>
+
+<body><h1>Perl Weekly Challenge 110: Valid Phone Numbers</h1><div class = "byline">
+by Abigail<br>
+<img src = "../../Images/jan_sluiters.jpg">
+</div>
+
+
+<h2><a href="https://perlweeklychallenge.org/blog/perl-weekly-challenge-110/#TASK1">Challenge</a></h2>
+
+<blockquote>
+  <p>You are given a text file.</p>
+  
+  <p>Write a script to display all valid phone numbers in the given text file.</p>
+</blockquote>
+
+<h3>Acceptable Phone Number Formats</h3>
+
+<blockquote>
+<pre><code>+nn  nnnnnnnnnn
+(nn) nnnnnnnnnn
+nnnn nnnnnnnnnn
+</code></pre>
+</blockquote>
+
+<h2>Example</h2>
+
+<h3>Input File</h3>
+
+<blockquote>
+<pre><code>0044 1148820341
+ +44 1148820341
+  44-11-4882-0341
+(44) 1148820341
+  00 1148820341
+</code></pre>
+</blockquote>
+
+<h3>Output</h3>
+
+<blockquote>
+<pre><code>0044 1148820341
+ +44 1148820341
+(44) 1148820341
+</code></pre>
+</blockquote>
+
+<h2>Discussion</h2>
+
+<div class = "section">
+<p>Our eye is drawn to the first acceptable format, and the second
+entry in the input file. The acceptable format has <strong>no</strong> leading space,
+a plus sign, two digits, <strong>two spaces</strong>, and then ten digits.</p>
+
+<p>However, the entry in the input file, and which, according to the
+output, is valid has <strong>one leading space</strong>, then a plus sign, two
+digits, <strong>one space</strong>, and then ten digits.</p>
+
+<p>Our conclusion is that white space does not matter in the input,
+and hence, we will ignore any white space in the input.</p>
+
+<p>So, we will match phone numbers consisting of (after remove all 
+white space):</p>
+
+<ul>
+<li>A plus sign (<code>+</code>) followed by twelve digits.</li>
+<li>Opening paren (<code>(</code>), two digits, closing paren (<code>)</code>), then ten digits.</li>
+<li>Fourteen digits.</li>
+</ul></div>
+
+<h2>Solution</h2>
+
+<div class = "section">
+<p>Our solution strategy is simple. Reading in the input line by line,
+for each line read, we start off by removing all white space.
+Then, we replace a leading plus sign with two zeros (<code>00</code>). And if
+the string starts with an opening parenthesis, two numbers, and
+a closing parenthesis, we replace those four characters with <code>0000</code>.</p>
+
+<p>The input contains a valid phone number if, and only if, we now have
+a line consisting of exactly fourteen digits. If so, we print the
+original, unmodified, line.</p></div>
+
+<h3>Perl</h3>
+
+<pre><code>while (&lt;&gt;) {
+    print if s{\s+}           {}gr     # Remove white space
+          =~ s{^\+}           {00}r    # Replace leading + with 00
+          =~ s{^\([0-9]{2}\)} {0000}r  # Replace leading (NN) with 0000
+          =~  /^[0-9]{14}$/            # Check if 14 digits are left
+}
+</code></pre>
+
+<p>Here, we are making use the the <code>/r</code> modifier of a substitution.
+This leaves the string matched against unmodified &mdash; instead, 
+it causes the <code>s///</code> to return a copy of the original string,
+with the modifications applied.</p>
+
+<p>This means we can chain our modifications, and check if the result
+contains exactly fourteen digits.</p>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-110/abigail/perl/ch-1.pl">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+
+<h3>AWK</h3>
+
+<pre><code>{
+    line = $0;
+    gsub (/ */, "", line)                 # Remove spaces
+    sub (/^\+/, "00", line)               # Replace leading + with 00
+    sub (/^\([0-9]{2}\)/, "0000", line)   # Replace leading (NN) with 0000
+}
+</code></pre>
+
+<p>In our AWK solution, we start off by making the same modification
+as we did in our Perl solution. We then print the number if and only
+we have fourteen digits left:</p>
+
+<pre><code>match (line, /^[0-9]{14}$/) {             # Match exactly 14 digits
+    print
+}
+</code></pre>
+
+<p><code>print</code> without arguments prints <code>$0</code>, which is the original input line.</p>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-110/abigail/awk/ch-1.awk">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+
+<h3>Bash</h3>
+
+<div class = "section">
+<p>By default, if we read a line of input in bash, it splits the line
+into words on white space. Which may be reconcatenated with a single
+space if the <code>read</code> command has less variables as arguments than there
+are words on the input line. This is not good enough for us, as that
+means a sequence of more than one space is lost.</p>
+
+<p>But we can disable this by setting the <code>IFS</code> variable to an empty
+string. Bash uses the characters in <code>IFS</code> to split on &mdash; but if there
+are no characters, the input line is left as is.</p>
+
+<p>Bash doesn't pattern matching in the sense that is returns a true/false
+value. It does only substitution. So, instead of checking whether
+we're left with fourteen digits, we remove fourteen digits, and
+check whether we're left with an empty string.</p>
+
+<pre><code>IFS=""  # This way, we keep the spaces as is.
+
+valid="[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]"
+
+while read line
+do    raw=${line// }                   # Remove spaces
+      raw=${raw/#+/00}                 # Replace leading + with 00
+      raw=${raw/#([0-9][0-9])/0000}    # Replace leading (NN) with 0000
+      left=${raw/$valid}               # Remove 14 digits
+      if [ "X$left" == "X" ]           # If nothing left, the input is valid
+      then echo $line                  # Print it
+      fi
+done
+</code></pre>
+
+<p>Substitution in bash looks a bit different. The syntax is
+<code>${variable/pattern/replacement}</code>. If the pattern starts
+with a <code>/</code>, it's a global replacement. If the replacement
+is empty, we may leave off the second <code>/</code>. So, <code>${line// }</code>
+is <em>not</em> replacing an empty string with a space; instead, it
+removes all spaces.</p>
+
+<p>Substitution does not modify the variable, instead, it returns
+the modified string (just as in Perl if the <code>/r</code> modifier is used).</p>
+
+<p>To anchor a pattern at the beginning, Bash uses <code>#</code>. Parenthesis
+are not special, so they do not have to be escaped. Bash does not
+have a <code>{NN}</code> quantifier, so we have to spell out "fourteen times a digit".</p>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-110/abigail/bash/ch-1.sh">full program</a> on <a href="https://github.com">GitHub</a>.</p></div>
+
+<h3>C</h3>
+
+<div class = "section">
+<p>As usual, C makes us work hard. For each line of input, we make a copy &mdash;
+sort off. We copy the line character by character. but we skip white
+space. And, if the first character is a <code>+</code>, we write two <code>0</code>s instead.
+After copying, we check whether the first character is a <code>(</code>, and
+the fourth a ')'. If so, we replace both those characters with a <code>0</code>.</p>
+
+<pre><code>char *  raw     = NULL;
+size_t  len     = 0;
+size_t  str_len;
+while ((str_len = getline (&amp;raw, &amp;len, stdin)) != -1) {
+    /*
+     * Make a copy of line, but without the spaces
+     */
+    char * line;
+    if ((line = (char *) malloc ((str_len + 2) * sizeof (char))) == NULL) {
+        perror ("Malloc failed");
+        exit (1);
+    }
+    char * raw_ptr  = raw;
+    char * line_ptr = line;
+    while (* raw_ptr) {
+        /*
+         * Skip white space
+         */
+        if (isspace (* raw_ptr)) {
+            raw_ptr ++;
+            continue;
+        }
+
+        /*
+         * If the first character is a '+', write two 0s.
+         */
+        if (line_ptr == line &amp;&amp; * raw_ptr == '+') {
+            * line_ptr ++ = '0';
+            * line_ptr ++ = '0';
+            raw_ptr ++;
+            continue;
+        }
+        * line_ptr ++ = * raw_ptr ++;
+    }
+    * line_ptr = '\0';
+    /*
+     * If the first character is a '(', and the fourth is a ')',
+     * replace both of them with 0
+     */
+    if (line [0] == '(' &amp;&amp; line [3] == ')') {
+        line [0] = '0';
+        line [3] = '0';
+    }
+</code></pre>
+
+<p>Now all we need to do is check whether we have exactly fourteen digits;
+we print the input line if this is the case.</p>
+
+<pre><code>    bool valid = true;
+    for (size_t i = 0; i &lt; 14 &amp;&amp; valid; i ++) {
+        if (!isdigit (line [i])) {
+            valid = false;
+        }
+    }
+    if (valid &amp;&amp; line [14] == '\0') {
+        printf ("%s", raw);
+    }
+
+    free (line);
+}
+free (raw);
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-110/abigail/c/ch-1.c">full program</a> on <a href="https://github.com">GitHub</a>.</p></div>
+
+<h3>Lua</h3>
+
+<div class = "section">
+<p>Our Lua solution is slightly different. We do remove spaces
+first, but then we just do a pattern match for the three
+cases. Note that lua regular expressions are a bit bare bones:
+there is no <code>{NN}</code> quantifier, so we have lots of <code>[0-9]</code>
+character classes.</p>
+
+<pre><code>for line in io . lines () do
+    local number = line : gsub (" ", "")   -- Remove spaces
+    if                   -- nnnn nnnnnnnnnn
+          number : find ("^[0-9][0-9][0-9][0-9][0-9][0-9][0-9]"   ..
+                          "[0-9][0-9][0-9][0-9][0-9][0-9][0-9]$") or
+                         -- +nn  nnnnnnnnnn
+          number : find ("^%+[0-9][0-9][0-9][0-9][0-9]"           ..
+                          "[0-9][0-9][0-9][0-9][0-9][0-9][0-9]$") or
+                         -- (nn) nnnnnnnnnn
+          number : find ("^%([0-9][0-9]%)[0-9][0-9][0-9]"         ..
+                          "[0-9][0-9][0-9][0-9][0-9][0-9][0-9]$")
+    then  print (line)
+    end
+end
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-110/abigail/lua/ch-1.lua">full program</a> on <a href="https://github.com">GitHub</a>.</p></div>
+
+<h3>Node.js</h3>
+
+<div class = "section">
+<p>For our Node.js solution, we're back to the original method:
+remove whitespace, replace leading <code>+</code>, replace leading <code>(NN)</code>:</p>
+
+<pre><code>require ('readline')
+. createInterface ({input: process . stdin})   
+. on ('line', _ =&gt; {
+    if (_ . replace (/\s+/g,      "")             // Remove spaces
+          . replace (/^\+/,       "00")           // Replace leading '+' with 00
+          . replace (/^\([0-9][0-9]\)/, "0000")   // Replace leading '(NN)'
+                                                  // with 0000
+          . match   (/^[0-9]{14}$/)) {            // Match 14 digits
+        console . log (_)
+    }
+})
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-110/abigail/node/ch-1.js">full program</a> on <a href="https://github.com">GitHub</a>.</p></div>
+
+<h3>Python</h3>
+
+<div class = "section">
+<p>As often is the case, Python makes for the most compact program,
+due to its clever significant white space.</p>
+
+<pre><code>import fileinput
+import re
+
+for line in fileinput . input ():
+    plain = re . sub (r'\s+',             "",     line)  # Strip whitespace
+    plain = re . sub (r'^\+',             "00",   plain) # Replace leading +
+    plain = re . sub (r'^\([0-9][0-9]\)', "0000", plain) # Replace leading (NN)
+    if re . search (r'^[0-9]{14}$', plain):              # Chech for 14 digits
+        print (line, end = '')
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-110/abigail/python/ch-1.py">full program</a> on <a href="https://github.com">GitHub</a>.</p></div>
+
+<h3>Ruby</h3>
+
+<div class = "section">
+<p>Same algorithm, this in in Ruby:</p>
+
+<pre><code>ARGF . each_line do |_|
+     if _ .  gsub(/\s+/,           "")     # Remove white space
+          .   sub(/^\+/,           "00")   # Replace leading + with 00
+          .   sub(/^\([0-9]{2}\)/, "0000") # Replace leading (NN) with 0000
+          . match /^[0-9]{14}$/            # Exactly 14 digits should be left
+     then print (_)
+     end
+end
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-110/abigail/ruby/ch-1.rb">full program</a> on <a href="https://github.com">GitHub</a>.</p></div>
+</body>
+<hr id = 'last-line'>
+<div class = 'trailer'>
+<p class = 'prev'><a class = "prev" href = "">&#x261C;</a></p>
+<p class = 'issue'>Please leave any comments as a
+  <a href = 'https://github.com/Abigail/Abigail.github.io/issues'
+     title = 'GitHub issue'>GitHub issue</a>.
+<p class = 'next'><a class = "next" href = "">&#x261E;</a></p>
+</div>
+
+</html>
