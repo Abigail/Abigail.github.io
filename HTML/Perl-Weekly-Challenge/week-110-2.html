@@ -1,0 +1,387 @@
+<html>
+<head>
+<title>Perl Weekly Challenge 110: Transpose File</title>
+<script src = "https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id = "MathJax-script" async src = "https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.js"></script>
+<script src = '../../JavaScript/jquery.js'></script>
+<script src = '../../JavaScript/navigation.js'></script>
+<link rel = 'preconnect' href = 'https://fonts.gstatic.com'>
+<link rel = 'stylesheet' href = 'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
+<link rel = 'stylesheet' href = '../../Styles/Perl-Weekly-Challenge/main.css'>
+</head>
+
+<body><h1>Perl Weekly Challenge 110: Transpose File</h1><div class = "byline">
+by Abigail<br>
+<img src = "../../Images/jan_sluiters.jpg">
+</div>
+
+
+<h2><a href="https://perlweeklychallenge.org/blog/perl-weekly-challenge-110/#TASK2">Challenge</a></h2>
+
+<blockquote>
+  <p>You are given a text file.</p>
+  
+  <p>Write a script to transpose the contents of the given file.</p>
+</blockquote>
+
+<h3>Example</h3>
+
+<h4>Input File</h4>
+
+<blockquote>
+<pre><code>name,age,sex
+Mohammad,45,m
+Joe,20,m
+Julie,35,f
+Cristina,10,f
+</code></pre>
+</blockquote>
+
+<h4>Output</h4>
+
+<blockquote>
+<pre><code>name,Mohammad,Joe,Julie,Cristina
+age,45,20,35,10
+sex,m,m,f,f
+</code></pre>
+</blockquote>
+
+<h2>Solution</h2>
+
+<div class = "section">
+<p>A straight forward solution would be to read in the input line by
+line, split each line on commas, and put the fields in a two dimensional
+array. Then transpose the array and printing the result row by row, 
+joining the fields by commas.</p>
+
+<p>We won't do that. Mostly because not all languages we will be using
+have two dimensional arrays (I'm looking at you, Bash).</p>
+
+<p>Instead, we will read in the input line by line, and split the line
+on commas and then use the fields to construct the lines we're going
+to output. That way, we only need a single, one-dimensional array.
+We're adding the <span class = 'latex-inline'>\(n^\text{th}\)</span> field of each input line to the
+end of the <span class = 'latex-inline'>\(n^\text{th}\)</span> output line &mdash; and each time we're adding
+a comma too.</p>
+
+<p>When we have created all the output lines, we print the lines, after
+chopping off the final comma.</p>
+
+<p>Note that we read the input file from standard input. We also assume
+the input is sane, that is, each line contains the same number of fields.</p></div>
+
+<h3>Perl</h3>
+
+<pre><code>map {$- = 0; $; [$- ++] .= "$_," for /[^,\n]+/g} &lt;&gt;;
+</code></pre>
+
+<p>Here, we use <code>&lt;&gt;</code> to read the input, and we use <a href="https://perldoc.perl.org/perlfunc#map"><code>map</code></a> to process
+each line. We're using a regular expression to extract the fields
+(<code>/[^,\n]+/</code>); we could have used <a href="https://perldoc.perl.org/perlfunc#split"><code>split</code></a>, but then we would
+have needed some extra code to get rid of the trailing newline.
+The regular expression just matches anything which isn't a comma
+or a newline. Due to the <code>/g</code> modifier, there are implicit parenthesis,
+so the regular expression returns all the fields. Which we iterate
+over using <code>for</code>. We are storing the output lines into the array
+<code>@;</code>. We use the variable <code>$-</code> to keep track of which line we need
+to update. It's set to <code>0</code> for each line of input, and incremented
+for each field.</p>
+
+<pre><code>chop, say for @;
+</code></pre>
+
+<p>For each line in <code>@;</code>, we chop of the final comma, and then we
+print it.</p>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-110/abigail/perl/ch-2.pl">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+
+<h3>AWK</h3>
+
+<div class = "section">
+<p>We could use <code>split</code> to split the input into records, or extract the
+fields using a regular expression, but why would we in AWK? One of
+the strengths of AWK is it is line and field oriented. We just have
+to tell AWK our fields aren't white space separated, but they're
+separated by commas:</p>
+
+<pre><code>BEGIN {
+    FS = ","
+}
+</code></pre>
+
+<p>This uses the special variable <a href="https://www.gnu.org/software/gawk/manual/gawk.html#Field-Separators"><code>FS</code></a>,
+the <em>F</em>ield <em>S</em>eparator, which controls how AWK splits the input
+into fields.</p>
+
+<p>We can now just iterate over the input fields (which are available
+in the special variables <code>$1</code>, <code>$2</code>, etc), and build our output
+string in the array <code>out</code>:</p>
+
+<pre><code>{
+    for (i = 1; i &lt;= NF; i ++) {
+        out [i] = out [i] "," $i
+    }
+}
+</code></pre>
+
+<p>All what is left is to print out the output string, without the
+trailing comma:</p>
+
+<pre><code>END {
+    for (i = 1; i &lt;= length (out); i ++) {
+        print substr (out [i], 2)
+    }
+}
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-110/abigail/awk/ch-2.awk">full program</a> on <a href="https://github.com">GitHub</a>.</p></div>
+
+<h3>Bash</h3>
+
+<div class = "section">
+<p>Just like AWK, Bash will split the input into records when reading
+data using <code>read</code>. We're telling to split fields on commas by 
+assigning to the variable <code>IFS</code>, the <em>I</em>nput <em>F</em>ield <em>S</em>eparator:</p>
+
+<pre><code>IFS=,
+</code></pre>
+
+<p>Commas are not special to Bash, so the don't have to be escaped.</p>
+
+<p>We're now ready to read in the input. We read each line of input into
+the array <code>chunks</code> &mdash; Bash has neatly split the input into the right
+fields for us. We then iterate over the array <code>chunks</code>, adding each
+field to the appropriate output line, which are stored in the array
+<code>out</code>. Concatenation in Bash is done by just sticking the things you
+want to concatenate together:</p>
+
+<pre><code>IFS=","
+while read -a chunks
+do    for   ((i = 0; i &lt; ${#chunks[@]}; i ++))
+      do    out[$i]=${out[$i]}${chunks[$i]},
+      done
+done
+</code></pre>
+
+<p>We can now print the output string, without the trailing commas:</p>
+
+<pre><code>IFS=""
+for   ((i = 0; i &lt; ${#out[@]}; i ++))
+do    echo ${out[$i]:0:-1}
+done
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-110/abigail/bash/ch-2.sh">full program</a> on <a href="https://github.com">GitHub</a>.</p></div>
+
+<h3>Lua</h3>
+
+<div class = "section">
+<p>In Lua, we follow the same strategy we used for most languages.
+We use the following to read in the data, split the input lines
+into fields, and to construct the output lines:</p>
+
+<pre><code>local output = {}
+for line in io . lines () do
+    local i = 1
+    for field in line : gmatch ("[^,\n]+")
+    do if   output [i] == nil
+       then output [i] = ""
+       end
+       output [i] = output [i] .. field .. ","
+       i = i + 1
+    end
+end
+</code></pre>
+
+<p>Things to note are that Lua does not have a <code>split</code> method, instead
+we use <code>gmatch</code>, a global match. And while Lua autovivifies array
+elements, we cannot concatenate to undefined (<code>nil</code>) values, so we
+have to handle that case. Lua does not have a post decrement operator (<code>++</code>)
+either.</p>
+
+<p>Print the output without their trailing commas is easy:</p>
+
+<pre><code>for _, line in ipairs (output)
+do  print (line : sub (1, -2))
+end
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-110/abigail/lua/ch-2.lua">full program</a> on <a href="https://github.com">GitHub</a>.</p></div>
+
+<h3>Node.js</h3>
+
+<div class = "section">
+<p>Our solution in Node.js follows a similar strategy. Just like in Lua,
+we cannot concatenate strings to undefined values, we have to deal
+with that. In our Node.js solution however, we don't add a comma
+after we have added a field to an output string; instead, we first
+add the comma, then the field. This is purely because in Node.js, we
+cannot as easily use <code>substr</code> to include all, but the last the character.
+On the other hand, using <code>substr</code> to include all but the first character
+is easy.</p>
+
+<pre><code>let out = []
+
+  require      ("fs")
+. readFileSync (0)                     // Read all.
+. toString     ()                      // Turn it into a string.
+. split        ("\n")                  // Split on newlines.
+. filter       (_ =&gt; _ . length)       // Filter out empty lines.
+. map          (_ =&gt; _ . split (','))  // Split each line on commas
+. forEach      (_ =&gt; _ .
+      forEach ((field, index) =&gt; {     // Create output strings
+           if (out [index] == null) {
+               out [index] = ""
+           }
+           out [index] += "," + field
+      }))
+
+out . forEach (_ =&gt; console . log (_ . substr (1)))
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-110/abigail/node/ch-2.js">full program</a> on <a href="https://github.com">GitHub</a>.</p></div>
+
+<h3>Python</h3>
+
+<div class = "section">
+<p>A slight deviation for our Python solution. Python doesn't autovivify
+array elements. So, for the first line of input read, we just copy
+the fields to the output array. This gives two added bonusses: we
+won't have to deal with concatenating undefined strings, and we don't
+have a problem with a trailing (or leading) comma. With hindsight, we
+could have used this strategy for other languages, but Python was one
+of the last languages we implemented the problem in, and it didn't
+seem worth it to update the other solutions.</p>
+
+<pre><code>import fileinput
+
+outputs = []
+
+for line in fileinput . input ():
+    fields = line . rstrip () . split (",")
+    if (len (outputs)):
+        for i in range (len (fields)):
+            outputs [i] = outputs [i] + "," + fields [i]
+    else:
+        outputs . extend (fields)
+
+for line in outputs:
+    print (line)
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-110/abigail/python/ch-2.py">full program</a> on <a href="https://github.com">GitHub</a>.</p></div>
+
+<h3>Ruby</h3>
+
+<div class = "section">
+<p>By now, we know the drill...</p>
+
+<pre><code>output = []
+
+ARGF . each_line do
+   |_|
+    _ . strip . split(/,/) . each_with_index do
+       |_, i|
+        output [i] = (output [i] || "") + _ + ","
+    end
+end
+
+output . each do
+   |_|
+    puts _ [0 .. -2]
+end
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-110/abigail/ruby/ch-2.rb">full program</a> on <a href="https://github.com">GitHub</a>.</p></div>
+
+<h3>C</h3>
+
+<div class = "section">
+<p>In C, we will use a different strategy. We won't be building output
+strings. Instead, we will read the complete input into a string,
+and position a pointer at the start of each input line. To generate
+the output, we visit each pointer (in order), and advance the pointer
+character by character to the next comma, printing each character
+while advancing.</p>
+
+<p>First, we read the input, counting lines and columns:</p>
+
+<pre><code>int main (void) {
+    char *  text = NULL;
+    size_t  len  = 0;
+    size_t  str_len;
+
+    if ((str_len = getdelim (&amp;text, &amp;len, '\0', stdin)) == -1) {
+        perror ("Failed to read stdin");
+        exit (1);
+    }
+    /*
+     * Count the number of input lines and columns.
+     */
+    size_t nr_of_lines   = 0;
+    size_t nr_of_columns = 0;
+    char * ptr = text;
+    while (* ptr) {
+        if (nr_of_lines == 0) {
+            if (* ptr == ',' || * ptr == '\n') {
+                nr_of_columns ++;
+            }
+        }
+        if (* ptr ++ == '\n') {
+            nr_of_lines ++;
+        }
+    }
+</code></pre>
+
+<p>We're then position the pointers (which themselves are placed in an array).
+We also turn the newlines in the input into commas, to make life easier
+later on:</p>
+
+<pre><code>    char ** outputs;
+    if ((outputs = (char **) malloc (nr_of_lines * sizeof (char *)))
+        == NULL) {
+        perror ("Malloc failed");
+        exit (1);
+    }
+    ptr = text;
+    size_t c = 0;
+    outputs [0] = ptr;
+    while (* ptr) {
+        if (* ptr == '\n') {
+            * ptr = ',';
+            if (* (ptr + 1) != '\0') {
+                outputs [++ c] = ptr + 1;
+            }
+        }
+        ptr ++;
+    }
+</code></pre>
+
+<p>Now we can print:</p>
+
+<pre><code>    for (size_t i = 0; i &lt; nr_of_columns; i ++) {
+        for (size_t j = 0; j &lt; nr_of_lines; j ++) {
+            if (j) {
+                printf (",");
+            }
+            while (* outputs [j] != ',') {
+                printf ("%c", * outputs [j] ++);
+            }
+            outputs [j] ++;
+        }
+        printf ("\n");
+    }
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-110/abigail/c/ch-2.c">full program</a> on <a href="https://github.com">GitHub</a>.</p></div>
+</body>
+<hr id = 'last-line'>
+<div class = 'trailer'>
+<p class = 'prev'><a class = "prev" href = "">&#x261C;</a></p>
+<p class = 'issue'>Please leave any comments as a
+  <a href = 'https://github.com/Abigail/Abigail.github.io/issues'
+     title = 'GitHub issue'>GitHub issue</a>.
+<p class = 'next'><a class = "next" href = "">&#x261E;</a></p>
+</div>
+
+</html>
