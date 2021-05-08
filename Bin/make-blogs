@@ -35,6 +35,7 @@ my $FONT_URL       = "https://fonts.googleapis.com/css2?$FONTS&display=swap";
 my $PERLFUNC_URL   = "https://perldoc.perl.org/perlfunc";
 my $METACPAN_URL   = "https://metacpan.org/pod";
 my $GAWK_URL       = "https://www.gnu.org/software/gawk/manual/gawk.html";
+my $BASH_URL       = "https://www.gnu.org/software/bash/manual/bash.html";
 my $FREEBSD_URL    = "https://www.freebsd.org/cgi/man.cgi?" .
                                                  "apropos=0&sektion=%d&query";
 my $PYTHON_URL     = "https://docs.python.org/3/library/functions.html";
@@ -163,6 +164,9 @@ sub make_link (%args) {
         }
         elsif ($language eq "GNU AWK" || $language eq "AWK") {
             $url = $GAWK_URL . "#" . $link;
+        }
+        elsif ($language eq "Bash") {
+            $url = $BASH_URL . "#" . $link;
         }
         elsif ($language eq "C") {
             if (!$link || $link =~ /^[0-9]$/) {
