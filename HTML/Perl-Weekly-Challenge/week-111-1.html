@@ -1,0 +1,413 @@
+<html>
+<head>
+<title>Perl Weekly Challenge 111: Search Matrix</title>
+<script src = "https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id = "MathJax-script" async src = "https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.js"></script>
+<script src = '../../JavaScript/jquery.js'></script>
+<script src = '../../JavaScript/navigation.js'></script>
+<link rel = 'preconnect' href = 'https://fonts.gstatic.com'>
+<link rel = 'stylesheet' href = 'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
+<link rel = 'stylesheet' href = '../../Styles/Perl-Weekly-Challenge/main.css'>
+</head>
+
+<body><h1>Perl Weekly Challenge 111: Search Matrix</h1><div class = "byline">
+by Abigail<br>
+<img src = "../../Images/jan_sluiters.jpg">
+</div>
+
+
+<h2><a href="https://perlweeklychallenge.org/blog/perl-weekly-challenge-111/#TASK1">Challenge</a></h2>
+
+<blockquote>
+  <p>You are given 5x5 matrix filled with integers such that each row is
+  sorted from left to right and the first integer of each row is greater
+  than the last integer of the previous row.</p>
+  
+  <p>Write a script to find a given integer in the matrix using an
+  efficient search algorithm.</p>
+</blockquote>
+
+<h3>Example</h3>
+
+<blockquote>
+<pre><code>Matrix: [  1,  2,  3,  5,  7 ]
+        [  9, 11, 15, 19, 20 ]
+        [ 23, 24, 25, 29, 31 ]
+        [ 32, 33, 39, 40, 42 ]
+        [ 45, 47, 48, 49, 50 ]
+
+Input: 35
+Output: 0 since it is missing in the matrix
+
+Input: 39
+Output: 1 as it exists in the matrix
+</code></pre>
+</blockquote>
+
+<h2>Discussion</h2>
+
+<div class = "section">
+<p>This challenge confuses me. We're basically asked to find a number
+in a sorted list. Which in languages without hashes one would solve
+with binary search (yielding an <span class = 'latex-inline'>\(\mathcal{O} (\log N)\)</span> solution),
+and in languages with hashes you'd use a hash (yielding an <span class = 'latex-inline'>\(\mathcal{O} (1)\)</span>
+(expected) time solution).
+Sure, the hash takes linear preprocessing time, but since we're asked
+to write a script, we're spending linear time reading in the data
+anyway.</p>
+
+<p>Perhaps the intend was a subroutine which takes a matrix and a target
+number, but that was not what is being asked. The challenge explicitly
+asks for <em>a script</em>, which means we have to spend a linear amount of
+time reading data anyway. So, that's what you get.</p>
+
+<p>The only part where we use the fact we are given a matrix is for the
+input: the first five lines are assumed to contain the matrix. The
+rest of the input is taken as numbers to search for.</p>
+
+<p>Only for language lacking hashes/maps/dictionaries/tables, we will
+make use of the fact the input is sorted. For the majority of
+languages, the fact input is sorted does not offer additional benefits.</p></div>
+
+<h2>Solutions</h2>
+
+<div class = "section">
+<p>All the solutions first read the matrix (five rows with five integers,
+separated by white space) from standard input. The rest of the input
+is taken as numbers to search for &mdash; one integer per line.</p></div>
+
+<h3>Perl</h3>
+
+<div class = "section">
+<p>For our Perl solution, we offer two ways to solve this.</p>
+
+<p>First is a simple hash based solution:</p>
+
+<pre><code>my $MATRIX_SIZE = 5;
+my %matrix;
+@matrix {&lt;&gt; =~ /-?[0-9]+/g} = () for 1 .. $MATRIX_SIZE;
+
+chomp, say exists $matrix {$_} || 0 while &lt;&gt;;
+</code></pre>
+
+<p>Here, we read in five lines of data, which we store in a hash.
+Then for the rest of the input, we print <code>1</code> or <code>0</code> depending
+on whether the number is in the matrix or not.</p>
+
+<p>Our second solution has a subroutine which takes two arguments:
+a 5 x 5 matrix (a reference to a two dimensional array), and 
+a number to search for. We're using a bog standard binary search
+to find the number. Binary search uses a one dimensional structure
+to search, but we can trivially map a one dimensional coordinate to
+a two dimensional one by using integer division, and the modulus operation.</p>
+
+<pre><code>my sub bsearch ($matrix, $target) {
+    my ($min, $max) = (0, $MATRIX_SIZE * $MATRIX_SIZE);
+    while ($min &lt; $max) {
+        use integer;
+        my $mid = ($min + $max) / 2;
+        #
+        # To map a 1-d coordinate c to a 2-d pair x, y, we use
+        # x = floor (c / size), y = c % size.
+        #
+        my $cmp = $$matrix [$mid / $MATRIX_SIZE]
+                           [$mid % $MATRIX_SIZE] &lt;=&gt; $target;
+        if    ($cmp &lt; 0) {$min = $mid + 1}
+        elsif ($cmp &gt; 0) {$max = $mid}
+        else  {return 1}
+    }
+    return (0)
+}
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-111/abigail/perl/ch-1.pl">full program</a> on <a href="https://github.com">GitHub</a>.</p></div>
+
+<h3>AWK</h3>
+
+<div class = "section">
+<p>In AWK, arrays are associative, taking both integers and strings
+as indices. As such, we can do <span class = 'latex-inline'>\(\mathcal{O} (1)\)</span> (expected) time
+lookups. </p>
+
+<p>By default, AWK splits input lines on white space, which makes
+reading in the data easy. First five (<code>$MATRIX_SIZE</code>) lines are
+the matrix to search in:</p>
+
+<pre><code>NR &lt;= MATRIX_SIZE {
+    for (i = 1; i &lt;= NF; i ++) {
+        matrix [$i] = 1
+    }
+}
+</code></pre>
+
+<p>The rest of the input are numbers to search for:</p>
+
+<pre><code>NR &gt; MATRIX_SIZE {
+    print (matrix [$0] ? 1 : 0)
+}
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-111/abigail/awk/ch-1.awk">full program</a> on <a href="https://github.com">GitHub</a>.</p></div>
+
+<h3>Bash</h3>
+
+<div class = "section">
+<p>Bash also has associative arrays, which we can declare by using the
+<code>-A</code> option to <a href="https://www.gnu.org/software/bash/manual/bash.html#Bash-Builtins"><code>declare</code></a>.</p>
+
+<p>We can then read in five (<code>$MATRIX_SIZE</code>) lines of data. Using 
+<a href="https://www.gnu.org/software/bash/manual/bash.html#Bash-Builtins"><code>read</code></a> with the <code>-a</code> option reads a line from
+standard input, splits it on white space, and places the fields
+in an array (called <code>line</code> in our case). We then add place each
+field in the associative array <code>matrix</code>:</p>
+
+<pre><code>declare -A matrix
+MATRIX_SIZE=5
+for   ((i = 1; i &lt;= $MATRIX_SIZE; i ++))
+do    read -a line
+      for n in ${line[@]}
+      do  matrix[$n]=1
+      done
+done
+</code></pre>
+
+<p>We can now read the rest of the input, and print whether or not
+the read element is in the matrix:</p>
+
+<pre><code>while read number
+do    echo $((matrix[$number] ? 1 : 0))
+done
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-111/abigail/bash/ch-1.sh">full program</a> on <a href="https://github.com">GitHub</a>.</p></div>
+
+<h3>C</h3>
+
+<div class = "section">
+<p>C does not have native support for hashes or associative arrays.
+So, for our C solution, we will make use of binary search &mdash; which
+is supported by the standard library.</p>
+
+<p>First order of business is to read 25 integers into an array named
+<code>matrix</code>:</p>
+
+<pre><code># define MATRIX_SIZE 5
+# define NR_OF_ELEMENTS (MATRIX_SIZE * MATRIX_SIZE)
+
+int * matrix;
+
+if ((matrix = (int *) malloc (NR_OF_ELEMENTS * sizeof (int))) == NULL) {
+    perror ("Malloc failed");
+    exit (1);
+}
+
+/*
+ * Read in the matrix
+ */
+for (int i = 0; i &lt; NR_OF_ELEMENTS; i ++) {
+    if (scanf ("%d", &amp;matrix [i]) != 1) {
+        perror ("Scanf failed");
+        exit (1);
+    }
+}
+</code></pre>
+
+<p>We will do the binary search by making use of the <a href="https://www.freebsd.org/cgi/man.cgi?apropos=0&amp;sektion=3&amp;query=bsearch"><code>bsearch</code></a>
+library call. It does need a comparison function, which takes
+two arguments and which returns a negative value if the first
+argument is less than the second, zero if the arguments are equal,
+and positive if the first argument is larger than the second.
+This is the function we will be using:</p>
+
+<pre><code>static int compare (const void * a, const void * b) {
+    return * (int *) a - * (int *) b;
+}
+</code></pre>
+
+<p>We're now ready to search for the values:</p>
+
+<pre><code>int target;
+while (scanf ("%d", &amp;target) == 1) {
+    printf ("%d\n", bsearch (&amp;target, matrix, NR_OF_ELEMENTS,
+                              sizeof (int), compare) == NULL ? 0 : 1);
+}
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-111/abigail/c/ch-1.c">full program</a> on <a href="https://github.com">GitHub</a>.</p></div>
+
+<h3>Lua</h3>
+
+<div class = "section">
+<p>Lua has tables, which work like associative arrays. It has also a
+feature to read a number from standard input: <code>read ("*number")</code>,
+which is quite handy for this challenge:</p>
+
+<pre><code>local MATRIX_SIZE = 5
+
+local matrix = {}
+
+-- 
+-- Read in the matrix
+--
+for i = 1, MATRIX_SIZE * MATRIX_SIZE do 
+    matrix [io . read ("*number")] = 1
+end
+
+--
+-- Read in the rest, printing 1/0 depending on
+-- whether the number is present in the matrix or not.
+--
+while true do
+    local target = io . read ("*number")
+    if   target == nil then break end
+    if   matrix [target]
+    then print (1)
+    else print (0)
+    end
+end
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-111/abigail/lua/ch-1.lua">full program</a> on <a href="https://github.com">GitHub</a>.</p></div>
+
+<h3>Node.js</h3>
+
+<div class = "section">
+<p>In Node.js, we first slurp in the entire input, and extract the numbers:</p>
+
+<pre><code>let MATRIX_SIZE = 5
+
+let numbers = 
+  require      ("fs")
+. readFileSync (0)                     // Read all.
+. toString     ()                      // Turn it into a string.
+. match        (/-?[0-9]+/g)
+</code></pre>
+
+<p>Then we create the matrix structure:</p>
+
+<pre><code>let matrix = {}
+for (let i = 0; i &lt; MATRIX_SIZE * MATRIX_SIZE; i ++) {
+    matrix [numbers [i]] = 1
+}
+</code></pre>
+
+<p>Now we can check the rest of the numbers if they are present:</p>
+
+<pre><code>for (let j = MATRIX_SIZE * MATRIX_SIZE; j &lt; numbers . length; j ++) {
+    console . log (matrix [numbers [j]] ? 1 : 0)
+}
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-111/abigail/node/ch-1.js">full program</a> on <a href="https://github.com">GitHub</a>.</p></div>
+
+<h3>Pascal</h3>
+
+<div class = "section">
+<p>For our Pascal solution, we make use of Binary Search. We start off
+with defining a <code>bsearch</code> method, which takes a matrix (an array of
+integers), and a number to search with as arguments, and which returns
+<code>1</code> or <code>0</code> depending on whether the number is present or not.</p>
+
+<pre><code>const
+    matrix_size = 5;
+
+type
+    matrix_type = Array [1 .. matrix_size * matrix_size] of Longint;
+
+function bsearch (matrix: matrix_type; target: Longint) : Integer;
+    var
+        min, mid, max: Integer;
+    begin
+        bsearch := 0; 
+        min     := 1;
+        max     := matrix_size * matrix_size + 1;
+        while min &lt; max do
+        begin
+            mid := (min + max) div 2;
+            if matrix [mid] = target then
+            begin   
+                bsearch := 1;
+                min     := max;
+            end;
+            if matrix [mid] &lt; target then
+            begin
+                min     := mid + 1;
+            end
+            else begin  
+                max     := mid;
+            end
+        end
+    end;
+</code></pre>
+
+<p>Reading in the data, and calling the <code>bsearch</code> function:</p>
+
+<pre><code>begin
+    (* Read in the matrix *)
+    for i := 1 to matrix_size * matrix_size do
+    begin
+        read (matrix [i]);
+    end;
+
+    (* The rest of the input are numbers we want to search *)
+    while not eof () do
+    begin
+        readln  (target);
+        writeln (bsearch (matrix, target));
+    end;
+end.
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-111/abigail/pascal/ch-1.p">full program</a> on <a href="https://github.com">GitHub</a>.</p></div>
+
+<h3>Python</h3>
+
+<pre><code>MATRIX_SIZE = 5
+
+import fileinput
+import re
+
+matrix = {}
+for i in range (MATRIX_SIZE):
+    for n in re . findall (r'-?[0-9]+', input ()):
+        matrix [n] = 1
+
+for line in fileinput . input ():
+    if line . strip () in matrix:
+        print ("1")
+    else:
+        print ("0")
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-111/abigail/python/ch-1.py">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+
+<h3>Ruby</h3>
+
+<pre><code>matrix_size = 5
+
+matrix = {}
+(1 .. matrix_size) . each do
+    ARGF . readline . scan(/-?[0-9]+/) do
+        |number|
+        matrix [number] = 1
+    end
+end
+
+ARGF . each_line do
+    |number|
+    puts (matrix [number . strip] ? 1 : 0)
+end
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-111/abigail/ruby/ch-1.rb">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</body>
+<hr id = 'last-line'>
+<div class = 'trailer'>
+<p class = 'prev'><a class = "prev" href = "">&#x261C;</a></p>
+<p class = 'issue'>Please leave any comments as a
+  <a href = 'https://github.com/Abigail/Abigail.github.io/issues'
+     title = 'GitHub issue'>GitHub issue</a>.
+<p class = 'next'><a class = "next" href = "">&#x261E;</a></p>
+</div>
+
+</html>
