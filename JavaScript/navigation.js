@@ -18,6 +18,7 @@ let pages = [
     ["week-110-1", "Valid Phone Numbers"],
     ["week-110-2", "Transpose File"],
     ["week-111-1", "Search Matrix"],
+    ["week-111-2", "Ordered Letters"],
 ]
 
 pages . forEach (_ => _ [0] = PWC + "/" + _ [0] + ".html")

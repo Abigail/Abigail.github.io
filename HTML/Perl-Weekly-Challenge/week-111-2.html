@@ -1,0 +1,358 @@
+<html>
+<head>
+<title>Perl Weekly Challenge 111: Ordered Letters</title>
+<script src = "https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id = "MathJax-script" async src = "https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.js"></script>
+<script src = '../../JavaScript/jquery.js'></script>
+<script src = '../../JavaScript/navigation.js'></script>
+<link rel = 'preconnect' href = 'https://fonts.gstatic.com'>
+<link rel = 'stylesheet' href = 'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
+<link rel = 'stylesheet' href = '../../Styles/Perl-Weekly-Challenge/main.css'>
+</head>
+
+<body><h1>Perl Weekly Challenge 111: Ordered Letters</h1><div class = "byline">
+by Abigail<br>
+<img src = "../../Images/jan_sluiters.jpg">
+</div>
+
+
+<h2><a href="https://perlweeklychallenge.org/blog/perl-weekly-challenge-111/#TASK2">Challenge</a></h2>
+
+<blockquote>
+  <p>Given a word, you can sort its letters alphabetically (case insensitive).
+  For example, 'beekeeper' becomes 'beeeeekpr' and 'dictionary' becomes
+  'acdiinorty'.
+  Write a script to find the longest English words that don't change when
+  their letters are sorted.</p>
+</blockquote>
+
+<h2>Discussion</h2>
+
+<div class = "section">
+<p>The English language isn't well defined. There's no authority which
+dedices which words belong to the English language, and which don't.
+We therefore resort to a word list, which we assume to be on standard
+input (one word per line).</p>
+
+<p>This has a pro and a con. The pro is that our solutions are language
+agnostic &mdash; feed it words from a different language, and it finds
+the longest word with the given constraint (of course, the language needs
+to be written using ASCII letters).</p>
+
+<p>The con is that the answer depends on the given word list. And even
+for some word lists, the answer may not be unique: there can be multiple
+words with the same length.</p>
+
+<p>For instance, the public domain
+<a href="https://www.wordgamedictionary.com/enable/download/enable.txt">ENABLE</a>
+word list has two words with seven letters where the letters are in
+alphabetical order: <em>beefily</em> and <em>billowy</em>, and no longer words.</p>
+
+<p>The file <code>/usr/share/dict/words</code> on my OS six such words. In addition
+to the two words from the ENABLE list, it also has <em>Adelops</em>, <em>alloquy</em>,
+<em>begorry</em>, and <em>egilops</em>.</p>
+
+<p>The <a href="https://awesomeopensource.com/project/dwyl/english-words">wordlist originally compiled by
+infochimps.com</a>
+has an eight letter word: <em>aegilops</em>.</p></div>
+
+<h2>Solution</h2>
+
+<div class = "section">
+<p>We will only consider words containing ASCII letters; any word containing
+anything else, hyphens, digits, accented letters, we will ignore.</p>
+
+<p>We will consider the input words to be caseless. That is, 'a' sorts
+before 'B', which sorts before 'c'.</p>
+
+<p>Three different approaches spring to mind.</p>
+
+<ol>
+<li>Split the word into letters, sort the letters, join the letters back
+into a word, and check whether the word is unmodified.</li>
+<li>Iterate over the characters of a word, and check we don't have any
+two consecutive letters where the second letter comes before the
+first in the alphabet.</li>
+<li>Use a regular expression:
+<code>/^a*b*c*d*e*f*g*h*i*j*k*l*m*n*o*p*q*r*s*t*u*v*w*x*y*z*$/i</code> matches
+any word where the letters are in alphabetical order.</li>
+</ol>
+
+<p>For our solutions below, if the language supports regular expressions,
+we use the third option. Else, we use the second option.</p></div>
+
+<h3>Perl</h3>
+
+<pre><code>my $pat = join "" =&gt; map {"$_*"} 'a' .. 'z';
+
+my $longest = "";
+
+while (&lt;&gt;) {
+    $longest = $_ if /^$pat$/i &amp;&amp; length ($_) &gt; length ($longest)
+}
+
+print $longest; 
+</code></pre>
+
+<p>There's not much to it. Of all the input words matching the pattern
+(so its letters are in sorted order), remember the longest.</p>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-111/abigail/perl/ch-2.pl">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+
+<h3>GNU AWK</h3>
+
+<div class = "section">
+<p>GNU AWK support <code>IGNORECASE</code>, to do case insensitive matching.
+First, we create a pattern, by iterating over the ASCII values:</p>
+
+<pre><code>BEGIN {
+    IGNORECASE = 1
+    longest = ""  
+    #
+    # Create a pattern /^a*b*...z*$/
+    #
+    pat = "^"
+    for (i = 97; i &lt;= 122; i ++) {
+        pat = pat sprintf ("%c*", i)
+    }
+    pat = pat "$"
+}
+</code></pre>
+
+<p>We can then use the pattern to remember the longest word:</p>
+
+<pre><code>match ($0, pat) &amp;&amp; length ($0) &gt; length (longest) {
+    longest = $0
+}
+</code></pre>
+
+<p>In an <code>END</code> block, we print the longest word:</p>
+
+<pre><code>END {
+    print longest
+}
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-111/abigail/awk/ch-2.gawk">full program</a> on <a href="https://github.com">GitHub</a>.</p></div>
+
+<h3>Bash</h3>
+
+<div class = "section">
+<p>In Bash, sub patterns can have quantifiers, but the syntax uses a prefix
+notation instead of a postfix. And it needs to be enabled with <code>shopt</code>:</p>
+
+<pre><code>shopt -s extglob  
+
+pat1="*(a)*(b)*(c)*(d)*(e)*(f)*(g)*(h)*(i)*(j)*(k)*(l)*(m)"
+pat2="*(n)*(o)*(p)*(q)*(r)*(s)*(t)*(u)*(v)*(w)*(x)*(y)*(z)"
+</code></pre>
+
+<p>Bash doesn't have pattern matching &mdash; but it does have substitution of
+a pattern. So, we apply the pattern to the word, replace what was matched
+by an empty string, and then check whether we're left with an empty
+string. Those are the matching words.</p>
+
+<p>Note also the unique way of lowercasing a string: <code>${word,,}</code>.</p>
+
+<pre><code>while read line
+do    lower=${line,,}                 # Lower case input
+      left=${lower/#$pat1$pat2/}      # Remove pattern
+                                      # Test whether nothing left,
+                                      # and string larger longest found
+      if   [ "X$left" == "X" -a ${#line} -gt ${#longest} ]
+      then longest=$line
+      fi
+done
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-111/abigail/bash/ch-2.sh">full program</a> on <a href="https://github.com">GitHub</a>.</p></div>
+
+<h3>C</h3>
+
+<div class = "section">
+<p>No regular expressions in C. Instead, we iterate over the read
+string, and check whether all its characters are in alphabetical order:</p>
+
+<pre><code>char *  line         = NULL;
+size_t  len          =    0;
+
+while (getline (&amp;line, &amp;len, stdin) != -1) {
+    size_t i      = 0;
+    bool in_order = 1;
+    while (line [i] != '\n') {
+        if ((i &amp;&amp; tolower (line [i]) &lt; tolower (line [i - 1])) ||
+            !isalpha (line [i])) {
+            in_order = false;
+            break;
+        }
+        i ++;
+    }
+</code></pre>
+
+<p>Of the words in alphabetical order, we have to remember the longest:</p>
+
+<pre><code>char *  longest      = NULL;
+size_t  longest_size =    0;
+
+if (in_order &amp;&amp; i &gt; longest_size) {
+    longest_size = i;
+    if ((longest = (char *) realloc (longest, (i + 1) * sizeof (char)))
+         == NULL) {
+        perror ("Realloc failed");
+        exit (1);
+    }
+    for (size_t j = 0; j &lt;= i; j ++) {  /* Copies the newline as well */
+        longest [j] = line [j];
+    }
+    longest [i + 1] = '\0';
+}
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-111/abigail/c/ch-2.c">full program</a> on <a href="https://github.com">GitHub</a>.</p></div>
+
+<h3>Lua</h3>
+
+<div class = "section">
+<p>A short Lua program, using a regular expression. Lua doesn't have case
+insensitive matching, so we match against a lower case copy of the input:</p>
+
+<pre><code>local longest = ""
+
+for line in io . lines () do
+    if   line : lower ()
+              : find  ("^a*b*c*d*e*f*g*i*j*k*l*m*n*o*p*q*r*s*t*u*v*w*x*y*z*$")
+         and line : len () &gt; longest : len ()
+    then longest = line
+    end
+end
+
+print (longest)
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-111/abigail/lua/ch-2.lua">full program</a> on <a href="https://github.com">GitHub</a>.</p></div>
+
+<h3>Node.js</h3>
+
+<div class = "section">
+<p>Node.js supports regular expressions, leading to:</p>
+
+<pre><code>let longest = ""  
+
+require ('readline')
+. createInterface ({input: process . stdin})
+. on ('line', _ =&gt; {
+    if (_ . match (/^a*b*c*d*e*f*g*i*j*k*l*m*n*o*p*q*r*s*t*u*v*w*x*y*z*$/i) &amp;&amp;
+        _ . length &gt; longest . length) {
+        longest = _
+    }
+})
+. on ('close', _ =&gt; {  
+    console . log (longest)
+}) 
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-111/abigail/node/ch-2.js">full program</a> on <a href="https://github.com">GitHub</a>.</p></div>
+
+<h3>Pascal</h3>
+
+<div class = "section">
+<p>Pascal doesn't have regular expressions, so we iterate over the characters,
+comparing each character with the previous one.</p>
+
+<pre><code>uses sysutils;    
+
+var
+    line, longest: string;
+    ch, prev_ch:   char;
+    valid:         boolean;
+
+begin
+    longest := '';
+    while not eof () do
+    begin
+        readln (line);
+        valid   := true;
+        prev_ch := ' ';   (* Any char less than 'a' will do *)
+
+        for ch in lowercase (line) do
+        begin
+            if (ch &lt; 'a') or (ch &gt; 'z') or (ch &lt; prev_ch) then
+            begin
+                valid := false;
+                break;
+            end;
+            prev_ch := ch;
+        end;
+        if valid and (length (line) &gt; length (longest)) then
+        begin
+            longest := line;
+        end;
+    end;
+    writeln (longest);
+end.
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-111/abigail/pascal/ch-2.p">full program</a> on <a href="https://github.com">GitHub</a>.</p></div>
+
+<h3>Python</h3>
+
+<div class = "section">
+<p>First, we create a pattern:</p>
+
+<pre><code>pat = "^"
+for x in list (string . ascii_lowercase):
+    pat = pat + x + "*"
+pat += "$"
+</code></pre>
+
+<p>Then we match, and remember the longest:</p>
+
+<pre><code>longest = ""
+for line in fileinput . input ():
+    line = line . strip ()
+    if re . match (pat, line . lower ()) and len (line) &gt; len (longest):
+        longest = line
+
+print (longest) 
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-111/abigail/python/ch-2.py">full program</a> on <a href="https://github.com">GitHub</a>.</p></div>
+
+<h3>Ruby</h3>
+
+<div class = "section">
+<p>Creating the pattern:</p>
+
+<pre><code>pat = "^"
+("a" .. "z") . each do
+    |letter|
+    pat += letter + "*"
+end
+pat += "$"
+</code></pre>
+
+<p>Matching:</p>
+
+<pre><code>longest = ""
+ARGF . each_line do   
+    |line|
+    if line . downcase =~ /#{pat}/ &amp;&amp; line . length &gt; longest . length
+        longest = line
+    end
+end
+
+puts (longest) 
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-111/abigail/ruby/ch-2.rb">full program</a> on <a href="https://github.com">GitHub</a>.</p></div>
+</body>
+<hr id = 'last-line'>
+<div class = 'trailer'>
+<p class = 'prev'><a class = "prev" href = "">&#x261C;</a></p>
+<p class = 'issue'>Please leave any comments as a
+  <a href = 'https://github.com/Abigail/Abigail.github.io/issues'
+     title = 'GitHub issue'>GitHub issue</a>.
+<p class = 'next'><a class = "next" href = "">&#x261E;</a></p>
+</div>
+
+</html>
