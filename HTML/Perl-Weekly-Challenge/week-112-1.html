@@ -1,0 +1,375 @@
+<html>
+<head>
+<title>Perl Weekly Challenge 112: Canonical Path</title>
+<script src = "https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id = "MathJax-script" async src = "https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.js"></script>
+<script src = '../../JavaScript/jquery.js'></script>
+<script src = '../../JavaScript/navigation.js'></script>
+<link rel = 'preconnect' href = 'https://fonts.gstatic.com'>
+<link rel = 'stylesheet' href = 'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
+<link rel = 'stylesheet' href = '../../Styles/Perl-Weekly-Challenge/main.css'>
+</head>
+
+<body><h1>Perl Weekly Challenge 112: Canonical Path</h1><div class = "byline">
+by Abigail<br>
+<img src = "../../Images/jan_sluiters.jpg">
+</div>
+
+
+<h2><a href="https://perlweeklychallenge.org/blog/perl-weekly-challenge-112/#TASK1">Challenge</a></h2>
+
+<blockquote>
+  <p>You are given a string path, starting with a slash <code>/</code>.</p>
+  
+  <p>Write a script to convert the given absolute path to the simplified
+  canonical path.</p>
+  
+  <p>In a Unix-style file system:</p>
+  
+  <ul>
+  <li>A period <code>.</code> refers to the current directory</li>
+  <li>A double period <code>..</code> refers to the directory up a level</li>
+  <li>Multiple consecutive slashes (<code>//</code>) are treated as a single slash <code>/</code></li>
+  </ul>
+  
+  <p>The canonical path format:</p>
+  
+  <ul>
+  <li>The path starts with a single slash <code>/</code>.</li>
+  <li>Any two directories are separated by a single slash <code>/</code>.</li>
+  <li>The path does not end with a trailing <code>/</code>.</li>
+  <li>The path only contains the directories on the path from the root
+  directory to the target file or directory</li>
+  </ul>
+</blockquote>
+
+<h3>Example</h3>
+
+<blockquote>
+<pre><code>Input: "/a/"
+Output: "/a"
+
+Input: "/a/b//c/"
+Output: "/a/b/c"
+
+Input: "/a/b/c/../.."
+Output: "/a"
+</code></pre>
+</blockquote>
+
+<h2>Solution</h2>
+
+<div class = "section">
+<p>We will split the input on slashes, leaving us an array of 
+directory and file names. We copy this array to a new array,
+with the following exceptions:</p>
+
+<ul>
+<li>We skip empty components, and components of the form <code>.</code>.</li>
+<li>A component of the form <code>..</code> is not only skipped, but we also
+delete the last element of the new array.</li>
+</ul></div>
+
+<h3>Perl</h3>
+
+<div class = "section">
+<p>We have the input in <code>$_</code>. First, we split into components:</p>
+
+<pre><code>my @parts = split /\/+/;
+</code></pre>
+
+<p>Now we build a new array, <code>@parts2</code>:</p>
+
+<pre><code>foreach my $part (@parts) {
+    next if $part eq "." || $part eq "";
+    if ($part eq "..") {
+        pop @parts2;
+        next;
+    }
+    push @parts2 =&gt; $part;
+}
+</code></pre>
+
+<p>And we print it:</p>
+
+<pre><code>say "/" . join "/" =&gt; @parts2;
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-112/abigail/perl/ch-1.pl">full program</a> on <a href="https://github.com">GitHub</a>.</p></div>
+
+<h3>AWK</h3>
+
+<div class = "section">
+<p>AWK will split the input for us. By default on whitespace, but we
+can tell it to split on slashes:</p>
+
+<pre><code>BEGIN {
+    FS="/"
+}
+</code></pre>
+
+<p>AWK doesn't have a <code>pop</code> function, so we just keep track of how
+many elements we have in an array <code>path</code>:</p>
+
+<pre><code>delete path
+j = 0                            # Tracks the number of parts in
+                                 # the canonical part.
+for (i = 1; i &lt;= NF; i ++) {     # Loop over directory parts
+    if ($i == "") {              # Skip empty parts
+        continue;
+    }
+    if ($i == ".") {             # Skip current directory
+        continue;
+    }
+    if ($i == "..") {            # Back up to parent directory
+        if (j &gt; 0) {
+            j --
+        }
+        continue;
+    }
+    path [j] = $i                # Copy
+    j ++
+}
+</code></pre>
+
+<p>We can now print the canonical path. If we just have a root 
+directory, we have to special case it:</p>
+
+<pre><code>if (j == 0) {                    # Root directory
+    print "/"
+}
+else {                           # Print parts, preceeded by a /
+    for (k = 0; k &lt; j; k ++) {
+        printf "/%s", path [k]
+    }
+    print ""
+}
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-112/abigail/awk/ch-1.awk">full program</a> on <a href="https://github.com">GitHub</a>.</p></div>
+
+<h3>Bash</h3>
+
+<div class = "section">
+<p>The bash solution isn't very different from the AWK solution:</p>
+
+<pre><code>IFS="/"
+
+while read -a i_parts
+do    declare -a o_parts
+      j=0
+      for ((i = 0; i &lt; ${#i_parts[@]}; i ++))
+      do  if [ "X${i_parts[$i]}" == "X" ]       # Skip empty parts
+          then continue
+          fi
+          if [ "X${i_parts[$i]}" == "X." ]      # Skip current directory
+          then continue
+          fi
+          if [ "X${i_parts[$i]}" == "X.." ]     # Back up to parent directory
+          then if ((j &gt; 0))
+               then ((j --))
+               fi   
+               continue
+          fi
+          o_parts[$j]=${i_parts[$i]}            # Copy part
+          ((j ++))
+      done  
+      if  ((j == 0))
+      then echo "/"                             # Root directory
+      else for ((k = 0; k &lt; j; k ++))           # Canonical path
+           do  printf "/%s" ${o_parts[$k]}
+           done
+           echo
+      fi
+done
+</code></pre></div>
+
+<h3>C</h3>
+
+<div class = "section">
+<p>Our C solution is different. We won't be splitting the input into 
+components. Instead, we first "<em>eliminate</em>" components: current directories,
+and parents directories together with the preceeding component. We
+do this by overwriting those components with slashes.</p>
+
+<p>Once we have to this, we copy the result to the output, skipping over
+any subsequent slashes.</p>
+
+<p>The input path is in a variable <code>char * line</code>, as its length in
+<code>size_t str_len</code>:</p>
+
+<p>First the eliminating of parts:</p>
+
+<pre><code>line [str_len - 1] = '/';    /* Replacing trailing newline with slash */
+for (size_t i = 0; i &lt; str_len; i ++) {
+    if (line [i] == '.' &amp;&amp; line [i - 1] == '/') {
+        /* Component starts with a . */
+        if (line [i + 1] == '/') {
+            line [i] = '/';  /* Current directory */
+            continue;
+        }
+        else {
+            if (line [i + 1] == '.' &amp;&amp; line [i + 2] == '/') {
+                /* Parent directory. */
+                /* First wipe this component */
+                line [i]     = '/';
+                line [i + 1] = '/';
+                /* Then wipe the previous component, if any. */
+                /* First, skip the slashes */
+                size_t j = i - 1;
+                while (j &amp;&amp; line [j] == '/') {
+                    j --;
+                }
+                /* Now, erase exactly one component */
+                while (j &amp;&amp; line [j] != '/') {
+                    line [j] = '/';
+                    j --;
+                }
+            }
+        }
+    }
+}
+</code></pre>
+
+<p>Now we remove any trailing slashes:</p>
+
+<pre><code>while (str_len &gt; 1 &amp;&amp; line [str_len - 1] == '/') {
+    str_len --;
+}
+</code></pre>
+
+<p>Printing, skipping any subsequent slashes:</p>
+
+<pre><code>bool slash = false;
+for (size_t i = 0; i &lt; str_len; i ++) {
+    if (line [i] == '/') {
+        if (slash) {
+            continue;
+        }
+        slash = true;
+    }
+    else {
+        slash = false;
+    }
+    printf ("%c", line [i]);
+}
+printf ("\n");
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-112/abigail/c/ch-1.c">full program</a> on <a href="https://github.com">GitHub</a>.</p></div>
+
+<h3>Lua</h3>
+
+<div class = "section">
+<p>We have the input path in a variable <code>line</code>. First we split on slashes.
+Except that Lua doesn't have a split function, so we capture anything
+which is not a slash.</p>
+
+<pre><code>local parts = {}
+for part in line : gmatch ("[^/]+") do
+    table . insert (parts, part)
+end
+</code></pre>
+
+<p>Creating the second array:</p>
+
+<pre><code>local parts2 = {}   
+for index, part in ipairs (parts) do
+    if part == "." then    -- Current directory -&gt; skip
+        goto continue
+    end
+    if part == ".." then   -- Parent direction -&gt; pop from new structure
+        table . remove (parts2)
+        goto continue
+    end
+    table . insert (parts2, part)  -- Else, copy
+    ::continue::
+end
+</code></pre>
+
+<p>Note that Lua doesn't have a <code>next</code>, so we use a <code>goto</code> to jump to
+the end of the loop.</p>
+
+<p>Print the result:</p>
+
+<pre><code>print ("/" .. table . concat (parts2, "/"))
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-112/abigail/lua/ch-1.lua">full program</a> on <a href="https://github.com">GitHub</a>.</p></div>
+
+<h3>Node.js</h3>
+
+<div class = "section">
+<p>The input path is in a variable <code>_</code>:</p>
+
+<pre><code>let parts = _ . split (/\/+/)              // Split on slash.
+let parts2 = [] 
+parts . every (_ =&gt; {
+    if (_ == "." || _ == "") {             // Skip current directory,
+        return true                        // and empty parts.
+    }
+    if (_ == "..") {                       // Pop parent directory.
+        parts2 . pop ()
+        return true 
+    }
+    parts2 . push (_)                      // Copy part.
+    return true
+})
+console . log ("/" + parts2 . join ("/"))  // Print result.
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-112/abigail/node/ch-1.js">full program</a> on <a href="https://github.com">GitHub</a>.</p></div>
+
+<h3>Python</h3>
+
+<div class = "section">
+<p><code>line</code> contains our input path:</p>
+
+<pre><code>parts  = line . rstrip () . split ("/")   # Split input on / 
+parts2 = []
+for part in parts:   
+    if part == "" or part == ".":         # Skip empty parts,
+        continue                          # and current directory.
+    if part == "..":                      # Pop parent directory
+        if len (parts2):
+            parts2 . pop ()
+        continue    
+    parts2 . append (part)                # Else, append.
+print ("/" + "/" . join (parts2))         # Print result.
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-112/abigail/python/ch-1.py">full program</a> on <a href="https://github.com">GitHub</a>.</p></div>
+
+<h3>Ruby</h3>
+
+<div class = "section">
+<p><code>line</code> contains our input path:</p>
+
+<pre><code>parts = line . strip() . split (/\/+/)
+parts2 = []
+parts . each do
+    | part |
+    if part == "" or part == "."   # Skip empty parts and current directory
+        next
+    end
+    if part == ".."                # Remove parent directory
+        parts2 . pop
+        next
+    end
+    parts2 . push (part)           # Add part
+end
+puts ("/" + parts2 . join("/"))    # Print result
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-112/abigail/ruby/ch-1.rb">full program</a> on <a href="https://github.com">GitHub</a>.</p></div>
+</body>
+<hr id = 'last-line'>
+<div class = 'trailer'>
+<p class = 'prev'><a class = "prev" href = "">&#x261C;</a></p>
+<p class = 'issue'>Please leave any comments as a
+  <a href = 'https://github.com/Abigail/Abigail.github.io/issues'
+     title = 'GitHub issue'>GitHub issue</a>.
+<p class = 'next'><a class = "next" href = "">&#x261E;</a></p>
+</div>
+
+</html>
