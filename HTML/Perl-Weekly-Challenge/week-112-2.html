@@ -1,0 +1,295 @@
+<html>
+<head>
+<title>Perl Weekly Challenge 112: Climb Stairs</title>
+<script src = "https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id = "MathJax-script" async src = "https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.js"></script>
+<script src = '../../JavaScript/jquery.js'></script>
+<script src = '../../JavaScript/navigation.js'></script>
+<link rel = 'preconnect' href = 'https://fonts.gstatic.com'>
+<link rel = 'stylesheet' href = 'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
+<link rel = 'stylesheet' href = '../../Styles/Perl-Weekly-Challenge/main.css'>
+</head>
+
+<body><h1>Perl Weekly Challenge 112: Climb Stairs</h1><div class = "byline">
+by Abigail<br>
+<img src = "../../Images/jan_sluiters.jpg">
+</div>
+
+
+<h2><a href="https://perlweeklychallenge.org/blog/perl-weekly-challenge-112/#TASK2">Challenge</a></h2>
+
+<blockquote>
+  <p>You are given $n steps to climb</p>
+  
+  <p>Write a script to find out the distinct ways to climb to the top.
+  You are allowed to climb either 1 or 2 steps at a time.</p>
+</blockquote>
+
+<h3>Example</h3>
+
+<blockquote>
+<pre><code>Input: $n = 3
+Output: 3
+
+    Option 1: 1 step + 1 step + 1 step
+    Option 2: 1 step + 2 steps
+    Option 3: 2 steps + 1 step
+
+Input: $n = 4
+Output: 5
+
+    Option 1: 1 step + 1 step + 1 step + 1 step
+    Option 2: 1 step + 1 step + 2 steps
+    Option 3: 2 steps + 1 step + 1 step
+    Option 4: 1 step + 2 steps + 1 step
+    Option 5: 2 steps + 2 steps
+</code></pre>
+</blockquote>
+
+<h2>Discussion</h2>
+
+<div class = "section">
+<p>If we can climb stairs one or two steps at a time, then the number
+of ways to climb a stair with <span class = 'latex-inline'>\(N\)</span> steps is the number of ways
+to climb a stair with <span class = 'latex-inline'>\(N - 1\)</span> steps (if we first climb one step),
+plus the number of ways to climb of stair with <span class = 'latex-inline'>\(N - 2\)</span> steps (if
+we first climb two steps).</p>
+
+<p>Since there is just one way to climb a stair case with 0 or with 1
+step, we have the following formula to climb a stair case with <span class = 'latex-inline'>\(N\)</span>
+steps:</p>
+
+<p>\[ S (N) = \begin{cases} 1 &amp; \text{if } N = 0 \\
+                         1 &amp; \text{if } N = 1 \\
+                         S (N - 1) + S (N - 2) &amp; \text{if } N > 1
+           \end{cases} \]</p>
+
+<p>But this means that <span class = 'latex-inline'>\(S (N)\)</span> is <span class = 'latex-inline'>\(F (N + 1)\)</span>, where <span class = 'latex-inline'>\(F\)</span> is the
+<a href="https://en.wikipedia.org/wiki/Fibonacci_Sequence">Fibonacci Sequence</a>. And we have a closed formula for this:</p>
+
+<p><span class = 'latex-display'>\[ F (N) = \frac{\varphi^N - \psi^N}{\sqrt{5}} \]</span></p>
+
+<p>where</p>
+
+<p><span class = 'latex-display'>\[ \varphi = \frac{1 + \sqrt{5}}{2} \text{ and } \psi = \frac{1}{\varphi} \]</span></p>
+
+<p>Since <span class = 'latex-inline'>\(\psi &lt; 1\)</span>, the component <span class = 'latex-inline'>\(\psi^N\)</span> goes to <span class = 'latex-inline'>\(0\)</span>. Hence</p>
+
+<p><span class = 'latex-display'>\[ F (N) \approx \frac{\varphi^N}{\sqrt{5}} \]</span></p>
+
+<p>In fact, </p>
+
+<p><span class = 'latex-display'>\[ F (N) = \left[ \frac{\varphi^N}{\sqrt{5}} \right] \]</span></p>
+
+<p>where <span class = 'latex-inline'>\([\text{expr}]\)</span> rounds the expression to the nearest integer.</p>
+
+<p>So, if we have a stair case with <span class = 'latex-inline'>\(N\)</span> steps, the answer we are looking
+for is:</p>
+
+<p><span class = 'latex-display'>\[ S (N) = \left[ \frac{\varphi^{N + 1}}{\sqrt{5}} \right] \]</span></p></div>
+
+<h2>Solutions</h2>
+
+<div class = "section">
+<p>For most languages, we use the formula above. In Bash and Befunge-93,
+we can only do integer arithmetic, so we use the recursive definition.</p>
+
+<p>In the solutions below, the number of steps the stair case is in a variable
+<code>n</code> (or <code>$n</code>):</p></div>
+
+<h3>Perl</h3>
+
+<pre><code>my $SQRT5 = sqrt (5);
+my $PHI   = (1 + $SQRT5) / 2;
+say int (1 / 2 + $PHI ** ($n + 1) / $SQRT5)
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-112/abigail/perl/ch-2.pl">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+
+<h3>AWK</h3>
+
+<pre><code>SQRT5 = sqrt (5)
+PHI   = (1 + SQRT5) / 2
+print int (0.5 + PHI ^ (n + 1) / SQRT5)
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-112/abigail/awk/ch-2.awk">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+
+<h3>C</h3>
+
+<pre><code># define SQRT5 (sqrt (5))
+# define PHI   ((1 + SQRT5) / 2)
+printf ("%lld\n", (long long) floor (0.5 + pow (PHI, n + 1) / SQRT5));
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-112/abigail/c/ch-2.c">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+
+<h3>Go</h3>
+
+<pre><code>import "fmt"
+import "math"
+var SQRT5 float64 = math . Sqrt (5)
+var PHI   float64 = (1 + SQRT5) / 2
+r = math . Round (math . Pow (PHI, (n + 1)) / SQRT5)
+r = math . Round (math . Pow (PHI, (n + 1)) / SQRT5)
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-112/abigail/go/ch-2.go">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+
+<h3>Java</h3>
+
+<pre><code>final double SQRT5 = Math . sqrt (5);
+final double PHI   = (1 + SQRT5) / 2;
+System . out . printf ("%d\n",
+   (int) Math . round (Math . pow (PHI, n + 1) / SQRT5));
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-112/abigail/java/ch-2.java">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+
+<h3>Lua</h3>
+
+<pre><code>local SQRT5 = math . sqrt (5)
+local PHI   = (1 + SQRT5) / 2
+print (math . floor (0.5 + PHI ^ (n + 1) / SQRT5))
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-112/abigail/lua/ch-2.lua">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+
+<h3>Node.js</h3>
+
+<pre><code>let SQRT5 = Math . sqrt (5)  
+let PHI   = (1 + SQRT5) / 2
+
+Math . round (Math . pow (PHI, n + 1) / SQRT5)
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-112/abigail/node/ch-2.js">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+
+<h3>Pascal</h3>
+
+<pre><code>const
+    sqrt5 = sqrt (5); 
+    phi   = (1 + sqrt5) / 2;
+
+writeln (round (power (phi, n + 1) / sqrt5));
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-112/abigail/pascal/ch-2.p">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+
+<h3>Python</h3>
+
+<pre><code>SQRT5 = sqrt (5)
+PHI   = (1 + SQRT5) / 2
+print (round (pow (PHI, n + 1) / SQRT5))
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-112/abigail/python/ch-2.py">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+
+<h3>R</h3>
+
+<pre><code>sqrt5 &lt;- sqrt (5)
+phi   &lt;- (1 + sqrt5) / 2
+cat (round (phi ^ (n + 1) / sqrt5), "\n", sep = "")
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-112/abigail/r/ch-2.r">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+
+<h3>Ruby</h3>
+
+<pre><code>SQRT5 = Math . sqrt 5
+PHI   = (1 + SQRT5) / 2
+puts ((PHI ** (n + 1) / SQRT5) . round)
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-112/abigail/ruby/ch-2.rb">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+
+<h3>Scheme</h3>
+
+<pre><code>(define sqrt5 (sqrt 5))
+(define phi   (/ (+ 1 sqrt5) 2))
+(format #t "~d\n" (inexact-&gt;exact (round (/ (expt phi (+ n 1)) sqrt5))))
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-112/abigail/scheme/ch-2.scm">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+
+<h3>Bash</h3>
+
+<div class = "section">
+<p>Here we use a starndard recursive definition of the Fibonacci numbers.
+We're using a cache to speed things up:</p>
+
+<pre><code>declare -A cache
+cache[0]=1
+cache[1]=1
+
+function fib () {
+    local n=$1
+    if   [[ -z ${cache[$n]} ]]
+    then fib $((n - 1))
+         cache[$n]=$result
+         fib $((n - 2))
+         cache[$n]=$((cache[$n] + result))
+    fi
+    result=${cache[$n]}
+}
+</code></pre>
+
+<p>Calling <code>fib</code> and printing the results:</p>
+
+<pre><code>fib  $n
+echo $result
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-112/abigail/bash/ch-2.sh">full program</a> on <a href="https://github.com">GitHub</a>.</p></div>
+
+<h3>Befunge-93</h3>
+
+<pre><code>&gt; &amp; :1+!#@_ 111p112p &gt; :!#v_ 12g:11g+12p11p :1- v
+                     ^                          &lt;
+^              ,+55  .g11 &lt;
+</code></pre>
+
+<p>The program above is an iterative formula to calculate the Fibonacci
+numbers. We use the cells <code>(1, 1)</code> and <code>(1, 2)</code> to store the two
+previous numbers in the sequence. These numbers are initialized to 1,
+using the following fragment:</p>
+
+<pre><code>            111p112p
+</code></pre>
+
+<p>On the stack we keep track how often we still need to iterate. If the
+number on the stack is <code>0</code>, we break out of the loop:</p>
+
+<pre><code>                     &gt; :!#v_                    v
+                     ^                          &lt;
+                          &lt;
+</code></pre>
+
+<p>Inside the loop, we set the second to last number to the last number,
+and the last number to the sum of the last and second to last number.
+And then we substract 1 from the number on the stack:</p>
+
+<pre><code>                             12g:11g+12p11p :1-
+</code></pre>
+
+<p>When we break out of the loop, we print the result:</p>
+
+<pre><code>               ,+55  .g11
+</code></pre>
+
+<p>This line is run left to right, and it fetches the number from
+the cell <code>(1, 1)</code>, which is printed (<code>.</code>), followed by a newline 
+(<code>55+,</code>).</p>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-112/abigail/befunge-93/ch-2.bf93">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</body>
+<hr id = 'last-line'>
+<div class = 'trailer'>
+<p class = 'prev'><a class = "prev" href = "">&#x261C;</a></p>
+<p class = 'issue'>Please leave any comments as a
+  <a href = 'https://github.com/Abigail/Abigail.github.io/issues'
+     title = 'GitHub issue'>GitHub issue</a>.
+<p class = 'next'><a class = "next" href = "">&#x261E;</a></p>
+</div>
+
+</html>
