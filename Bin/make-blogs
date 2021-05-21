@@ -300,15 +300,15 @@ sub post_process ($text) {
                {$1<div class = "section">\n$2</div>$3}gs;
 
     #
-    # Remove any empty paragraphs/divs
-    #
-    $text =~ s {<(p|div)>\s*</\g{1}>} {}gi;
-
-    #
     # Handle !class (and friends)
     #
     $text =~ s {^<p>!(\w+)\h*$} {<div class = "$1 headed-div"><br><p>}gm;
-    $text =~ s {^!/\w*</p>\h*$} {</p></div>}gm;
+    $text =~ s {^(?:<p>)?!/\w*</p>\h*$} {</p></div>}gm;
+
+    #
+    # Remove any empty paragraphs/divs
+    #
+    $text =~ s {<(p|div)>\s*</\g{1}>} {}gi;
 
     $text;
 }
