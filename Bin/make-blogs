@@ -348,7 +348,12 @@ foreach my $source_file (@sources) {
     my $html_text   = markdown ($source_text => {
         empty_element_suffix => ">"
     });
-    $html_text = "<body>$html_text</body>";
+    $html_text = "<body>$html_text";
+
+    #
+    # Add a newline before the closing </div>
+    #
+    $html_text =~ s{</div>\s*$}{\n</div>};
 
     $html_text = post_process ($html_text);
 
@@ -362,6 +367,7 @@ foreach my $source_file (@sources) {
         $header
         $html_text
         $trailer
+        </body>
         </html>
         --
     close $fh or die "close $html_file: $!";
