@@ -298,6 +298,12 @@ sub post_process ($text) {
     #
     $text =~ s {(</h[1-6]>\s*)(<p>.*?\S)(\s*(?:<h[1-6]>|</body>))}
                {$1<div class = "section">\n$2</div>$3}gs;
+
+    #
+    # Remove any empty paragraphs/divs
+    #
+    $text =~ s {<(p|div)>\s*</\g{1}>} {}gi;
+
     $text;
 }
 
