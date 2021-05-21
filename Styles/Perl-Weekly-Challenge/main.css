@@ -114,3 +114,46 @@ a.prev, a.next {
 span.latex-display {
     font-size:                           150%;
 }
+
+/*
+ * Divs with headers; which may or may not have counters.
+ */
+body {
+    counter-reset:           lemma definition;
+}
+
+div.headed-div::before {
+    margin-left:                         -1em;
+    font-family:                "Lobster Two";
+}
+
+div.headed-div p:first-of-type {
+    margin-top:                             0;
+}
+
+div.lemma::before {
+    counter-increment:                  lemma;
+    content:     "Lemma " counter(lemma) ": ";
+}
+
+div.definition::before {
+    counter-increment:             definition;
+    content: "Definition " counter(definition) ": ";
+
+div.proof::before {
+    content:                          "Proof";
+}
+
+div.proof p:last-of-type {
+    margin-bottom:                          0;
+}
+
+div.proof::after {
+    margin-top:                             0;
+    content:                        "\00220E"; /* "qed" */
+}
+
+div.proof:hover::after {
+    font-weight:                         bold;
+    content:                            "qed";
+}

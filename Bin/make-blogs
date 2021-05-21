@@ -304,6 +304,12 @@ sub post_process ($text) {
     #
     $text =~ s {<(p|div)>\s*</\g{1}>} {}gi;
 
+    #
+    # Handle !class (and friends)
+    #
+    $text =~ s {^<p>!(\w+)\h*$} {<div class = "$1 headed-div"><br><p>}gm;
+    $text =~ s {^!/\w*</p>\h*$} {</p></div>}gm;
+
     $text;
 }
 
