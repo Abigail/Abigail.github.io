@@ -145,16 +145,11 @@ div.proof::before {
     content:                          "Proof";
 }
 
-div.proof p:last-of-type {
-    margin-bottom:                          0;
+span.qed::after {
+    content:                        "\002610";
 }
 
-div.proof::after {
-    margin-top:                             0;
-    content:                        "\00220E"; /* "qed" */
-}
-
-div.proof:hover::after {
+span.qed:hover::after {
     font-weight:                         bold;
     content:                            "qed";
 }

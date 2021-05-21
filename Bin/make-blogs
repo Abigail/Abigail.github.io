@@ -302,6 +302,9 @@ sub post_process ($text) {
     #
     # Handle !class (and friends)
     #
+    $text =~ s {^((?:<p>)?)(!/proof</p>)}
+               {<span class = "qed"></span>\n$1$2}gm;
+           #   {<span class = "qed">&#x220E;</span>\n$1$2}gm;
     $text =~ s {^<p>!(\w+)\h*$} {<div class = "$1 headed-div"><br><p>}gm;
     $text =~ s {^(?:<p>)?!/\w*</p>\h*$} {</p></div>}gm;
 
