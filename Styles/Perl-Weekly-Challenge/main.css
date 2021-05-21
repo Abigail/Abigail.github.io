@@ -139,6 +139,7 @@ div.lemma::before {
 div.definition::before {
     counter-increment:             definition;
     content: "Definition " counter(definition) ": ";
+}
 
 div.proof::before {
     content:                          "Proof";
