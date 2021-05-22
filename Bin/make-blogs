@@ -297,7 +297,7 @@ sub post_process ($text) {
     # Turn sections between headers into divs
     #
     $text =~ s {(</h[1-6]>\s*)(<p>.*?\S)(\s*(?:<h[1-6]>|</body>))}
-               {$1<div class = "section">\n$2</div>$3}gs;
+               {$1<div class = "section">\n$2\n</div>$3}gs;
 
     #
     # Handle !class (and friends)
