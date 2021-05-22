@@ -133,12 +133,12 @@ div.headed-div p:first-of-type {
 
 div.lemma::before {
     counter-increment:                  lemma;
-    content:     "Lemma " counter(lemma) ": ";
+    content:          "Lemma " counter(lemma);
 }
 
 div.definition::before {
     counter-increment:             definition;
-    content: "Definition " counter(definition) ": ";
+    content: "Definition " counter(definition);
 }
 
 div.proof::before {
