@@ -1,0 +1,220 @@
+<html>
+<head>
+<title>Perl Weekly Challenge: Represent Integer</title>
+<script src = "https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id = "MathJax-script" async src = "https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.js"></script>
+<script src = '../../JavaScript/jquery.js'></script>
+<script src = '../../JavaScript/navigation.js'></script>
+<link rel = 'preconnect' href = 'https://fonts.gstatic.com'>
+<link rel = 'stylesheet' href = 'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
+<link rel = 'stylesheet' href = '../../Styles/Perl-Weekly-Challenge/main.css'>
+</head>
+
+<body><h1>Perl Weekly Challenge: Represent Integer</h1><div class = "byline">
+by Abigail<br>
+<img src = "../../Images/jan_sluiters.jpg">
+</div>
+
+
+<h2><a href="https://perlweeklychallenge.org/blog/perl-weekly-challenge-113/#TASK1">Challenge</a></h2>
+
+<blockquote>
+  <p>You are given a positive integer <code>$N</code> and a digit <code>$D</code>.</p>
+  
+  <p>Write a script to check if <code>$N</code> can be represented as a sum of positive
+  integers having <code>$D</code> at least once. If check passes print <code>1</code> otherwise <code>0</code>.</p>
+</blockquote>
+
+<h3>Example</h3>
+
+<blockquote>
+<pre><code>Input: $N = 25, $D = 7
+Output: 0 as there are 2 numbers between 1 and 25 having the digit 7
+        i.e. 7 and 17. If we add up both we don't get 25.
+
+Input: $N = 24, $D = 7
+Output: 1
+</code></pre>
+</blockquote>
+
+<h2>Discussion</h2>
+
+<div class = "section">
+<p>We could solve this by recursion and brute force trying to find a set
+of numbers which to the given target number. Which will work
+for the baby examples with tiny, tiny numbers typical of the
+Perl Weekly Challenge, but would be absolutely madness for larger
+numbers.</p>
+
+<p>Instead we will first prove that most numbers can be written
+as a sum of integers each containing a specific digit, and then
+we will prove which of the remaining numbers can.</p>
+
+<div class = "definition headed-div"><br><p>
+A positive integer containing a digit <span class = 'latex-inline'>\(d\)</span> is called a <span class = 'latex-inline'>\(d\)</span>-number.
+</p></div>
+
+<div class = "definition headed-div"><br><p>
+A positive integer which can be written as a sum of <span class = 'latex-inline'>\(d\)</span>-numbers
+is called a <span class = 'latex-inline'>\(d\)</span>-composable number.
+</p></div>
+
+<div class = "lemma headed-div"><br><p>
+<span class = 'latex-inline'>\(N\)</span> is <span class = 'latex-inline'>\(d\)</span>-composable if
+\[N \geq \begin{cases} 100, &amp; d = 0 \\
+                       d \cdot 10, &amp; d \geq 1 \end{cases} \]</p>
+
+</p></div>
+
+<div class = "proof headed-div"><br><p>
+Let's first consider the case that <span class = 'latex-inline'>\(d = 0\)</span>. If <span class = 'latex-inline'>\(N \geq 100\)</span>
+then we can write <span class = 'latex-inline'>\(N = 100 + i + k \cdot 10\)</span>, 
+with <span class = 'latex-inline'>\(i = N \mod 10\)</span>, and <span class = 'latex-inline'>\(k = \frac{N - 100 - i}{10}\)</span>.</p>
+
+<p>This means we can write <span class = 'latex-inline'>\(N = (100 + i) + 10 + \ldots + 10\)</span>,
+where we have a <span class = 'latex-inline'>\(10\)</span> <span class = 'latex-inline'>\(k\)</span> times. Since <span class = 'latex-inline'>\(0 \leq i &lt; 10\)</span>, <span class = 'latex-inline'>\(100 + i\)</span>
+contains a <span class = 'latex-inline'>\(0\)</span>, and so does <span class = 'latex-inline'>\(10\)</span>. Hence, any <span class = 'latex-inline'>\(N \geq 100\)</span>
+is <span class = 'latex-inline'>\(0\)</span>-composable.</p>
+
+<p>If <span class = 'latex-inline'>\(d > 0\)</span> and <span class = 'latex-inline'>\(N \geq 10 \cdot d\)</span>, then we can write
+<span class = 'latex-inline'>\(N = 10 \cdot d + i + k \cdot d\)</span>, with <span class = 'latex-inline'>\(i = N \mod d\)</span>, and
+<span class = 'latex-inline'>\(k = \frac{N - 10 \cdot d - i}{d}\)</span>. </p>
+
+<p>This means we can write <span class = 'latex-inline'>\(N = (10 \cdot d + i) + d + \ldots + d\)</span>,
+where we have a <span class = 'latex-inline'>\(d\)</span> <span class = 'latex-inline'>\(k\)</span> times. Since <span class = 'latex-inline'>\(0 \leq i &lt; d\)</span>,
+<span class = 'latex-inline'>\(10 \cdot d + i\)</span> is a two digit number starting with a <span class = 'latex-inline'>\(d\)</span>.
+Hence, any <span class = 'latex-inline'>\(N \geq 10 \cdot d\)</span> is <span class = 'latex-inline'>\(d\)</span>-composable.
+<span class = "qed"></span>
+</p></div>
+
+<div class = "lemma headed-div"><br><p>
+<span class = 'latex-inline'>\(N &lt; 100\)</span> is <span class = 'latex-inline'>\(0\)</span>-composable iff <span class = 'latex-inline'>\(N\)</span> is a multiple of <span class = 'latex-inline'>\(10\)</span>.
+</p></div>
+
+<div class = "proof headed-div"><br><p>
+All the <span class = 'latex-inline'>\(0\)</span>-numbers less than <span class = 'latex-inline'>\(100\)</span> are multiples of <span class = 'latex-inline'>\(10\)</span>.
+<span class = "qed"></span>
+</p></div>
+
+<div class = "lemma headed-div"><br><p>
+For <span class = 'latex-inline'>\(d > 0\)</span>, <span class = 'latex-inline'>\(N &lt; 10 \cdot d\)</span> is <span class = 'latex-inline'>\(d\)</span>-composable, iff
+<span class = 'latex-inline'>\(N = 10 \cdot c + d \cdot k\)</span>, for some
+<span class = 'latex-inline'>\(0 \leq c &lt; \frac{d}{\text{gcd}(d, 10)}\)</span>.
+</p></div>
+
+<div class = "proof headed-div"><br><p>
+Let <span class = 'latex-inline'>\(g = \frac{d}{\text{gcd}(d, 10)}\)</span>.</p>
+
+<p>If <span class = 'latex-inline'>\(N &lt; 10 \cdot d\)</span>, then <span class = 'latex-inline'>\(N\)</span> has at most two digits.
+It follows from the definition that if <span class = 'latex-inline'>\(N\)</span> is <span class = 'latex-inline'>\(d\)</span>-composable, then
+\[N = \sum_{i = 0}^{d-1} a_i \cdot (10 \cdot i + d) =
+      10 \cdot \sum_{i = 0}^{d-1} (a_i \cdot i) +
+      d  \cdot \sum_{i = 0}^{d-1} a_i
+      \]</p>
+
+<p>Let <span class = 'latex-inline'>\(c' = \sum_{i = 0}^{d-1} (a_i \cdot i)\)</span> and
+<span class = 'latex-inline'>\(k' = \sum_{i = 0}^{d-1} a_i\)</span>, hence, <span class = 'latex-inline'>\(N = 10 \cdot c' + d \cdot k'\)</span>,
+for some integers <span class = 'latex-inline'>\(0 \leq c' &lt; d, 0 &lt; k'\)</span>.</p>
+
+<p>Now, <span class = 'latex-inline'>\(c' = c'' + b \cdot g\)</span> so
+that <span class = 'latex-inline'>\(c'' &lt; g\)</span> (it's possible that <span class = 'latex-inline'>\(b = 0\)</span>). Hence,
+<span class = 'latex-inline'>\(N = 10 \cdot c'' + 10 \cdot b \cdot g + d \cdot k'\)</span>. Since
+<span class = 'latex-inline'>\(g = \frac{d}{\text{gcd}(d, 10)}\)</span>, <span class = 'latex-inline'>\(10 \cdot g\)</span> is a multiple of <span class = 'latex-inline'>\(d\)</span>.
+So, <span class = 'latex-inline'>\(10 \cdot g = d \cdot k''\)</span> for some integer <span class = 'latex-inline'>\(k'' \geq 0\)</span>.
+Plugging this in, we get <span class = 'latex-inline'>\(N = 10 \cdot c'' + d \cdot (k' + b \cdot k'')\)</span>.
+Since <span class = 'latex-inline'>\(k' > 0\)</span>, we have <span class = 'latex-inline'>\(N = (10 \cdot c'' + d) + d + \ldots + d\)</span>, where
+the number of <span class = 'latex-inline'>\(d\)</span>s is <span class = 'latex-inline'>\(k' - 1 + b \cdot k''\)</span>.
+<span class = 'latex-inline'>\(10 \cdot c'' + d\)</span> is a one or two digit number containing a <span class = 'latex-inline'>\(d\)</span>.</p>
+
+<p>Picking <span class = 'latex-inline'>\(c = c''\)</span> and <span class = 'latex-inline'>\(k = k' + b \cdot k''\)</span> proofs our claim.
+<span class = "qed"></span>
+</p></div>
+</div>
+
+<h2>Solution</h2>
+
+<div class = "section">
+<p>Given the lemmas above, we come to the following algorithm:</p>
+
+<ul>
+<li>If <code>$D == 0</code>, we output <code>1</code> if <code>$N &gt;= 100</code> or <code>$N % 10 == 0</code>, and
+<code>0</code> otherwise.</li>
+<li>If <code>$D &gt; 0</code>, then:
+<ul>
+<li>If <code>$N &gt;= 10 * $D</code>, we output <code>1</code>, else</li>
+<li>We iterate <code>$i</code> from <code>0</code> up to (but not including) the
+<a href="https://en.wikipedia.org/wiki/greatest_common_divisor">greatest common divisor</a> of <code>$D</code> and <code>10</code>:
+<ul>
+<li>If <code>($N - 10 * $i - $D)</code> is not negative, and a multiple
+of <code>$D</code>, we output <code>1</code>, and exit the loop.</li>
+</ul></li>
+<li>If we did not produce any output, we output <code>0</code>.</li>
+</ul></li>
+</ul>
+
+<p>We will use an predefined array with the greatest common divisors of
+<code>10</code> and the numbers <code>1</code> to <code>9</code>; those values are: <code>1, 2, 1, 2, 5, 2, 1, 2, 1</code>.</p>
+</div>
+
+<h3>Perl</h3>
+
+<div class = "section">
+<p>Predefined array with greatest common divisors:</p>
+
+<pre><code>my @gcds = (0, 1, 2, 1, 2, 5, 2, 1, 2, 1);
+</code></pre>
+
+<p>Reading the data:</p>
+
+<pre><code>my ($N, $D) = split;
+</code></pre>
+
+<p>Handling the case of <code>$D == 0</code>:</p>
+
+<pre><code>if ($D == 0) {
+    say $N &gt;= 100 || $N % 10 == 0 ? 1 : 0;
+    exit;
+}
+</code></pre>
+
+<p>Handling the case where <code>$N &gt;= 10 * $D</code>:</p>
+
+<pre><code>if ($N &gt;= $D * 10) {
+    say 1;
+    exit;
+}
+</code></pre>
+
+<p>The other cases:</p>
+
+<pre><code>for (my $i = 0; $i &lt; $D / $gcds [$D]; $i ++) {
+    my $T = $N - 10 * $i - $D;
+    if ($T &gt;= 0 &amp;&amp; $T % $D == 0) {
+        say 1;
+        exit;
+    }
+}
+say 0;
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-113/abigail/perl/ch-1.pl">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>Other languages</h3>
+
+<p>The above algorithm translates practically one to one to each of
+the other languages we implemented the solution in:
+<a href="#github">AWK</a>, <a href="#github">Bash</a>, <a href="#github">C</a>, <a href="#github">Lua</a>,
+<a href="#github">Node.js</a>, <a href="#github">Python</a>, and <a href="#github">Ruby</a>.</p>
+
+<hr id = 'last-line'>
+<div class = 'trailer'>
+<p class = 'prev'><a class = "prev" href = "">&#x261C;</a></p>
+<p class = 'issue'>Please leave any comments as a
+  <a href = 'https://github.com/Abigail/Abigail.github.io/issues'
+     title = 'GitHub issue'>GitHub issue</a>.
+<p class = 'next'><a class = "next" href = "">&#x261E;</a></p>
+</div>
+
+</body>
+</html>
