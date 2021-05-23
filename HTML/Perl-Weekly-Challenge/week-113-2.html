@@ -1,0 +1,117 @@
+<html>
+<head>
+<title>Perl Weekly Challenge 113: Recreate Binary Tree</title>
+<script src = "https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id = "MathJax-script" async src = "https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.js"></script>
+<script src = '../../JavaScript/jquery.js'></script>
+<script src = '../../JavaScript/navigation.js'></script>
+<link rel = 'preconnect' href = 'https://fonts.gstatic.com'>
+<link rel = 'stylesheet' href = 'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
+<link rel = 'stylesheet' href = '../../Styles/Perl-Weekly-Challenge/main.css'>
+</head>
+
+<body><h1>Perl Weekly Challenge 113: Recreate Binary Tree</h1><div class = "byline">
+by Abigail<br>
+<img src = "../../Images/jan_sluiters.jpg">
+</div>
+
+
+<h2><a href="https://perlweeklychallenge.org/blog/perl-weekly-challenge-113/#TASK2">Challenge</a></h2>
+
+<blockquote>
+  <p>You are given a Binary Tree.</p>
+  
+  <p>Write a script to replace each node of the tree with the sum of all
+  the remaining nodes.</p>
+</blockquote>
+
+<h3>Example</h3>
+
+<h4>Input Binary Tree</h4>
+
+<blockquote>
+<pre><code>       1
+      / \
+     2   3
+    /   / \
+   4   5   6
+    \
+     7
+</code></pre>
+</blockquote>
+
+<h4>Output Binary Tree</h4>
+
+<blockquote>
+<pre><code>       27
+      /  \
+     26  25
+    /   /  \
+   24  23  22
+    \
+    21
+</code></pre>
+</blockquote>
+
+<h2>Discussion</h2>
+
+<div class = "section">
+<p>I have two major issues with the "binary tree" part of the problem.</p>
+
+<p>First, and we have seen this problem before, the author of the problem
+couldn't be bothered to state how the binary tree is given. Worse, the
+author gave an utterly useless example, carefully crafted to work exactly
+for the given input. But what if we were to make a tiny change? Suppose
+the <code>7</code> was a right child of <code>2</code>? Then what? How would that tree look like?</p>
+
+<p>Second, what does having the input as a binary tree actually contribute
+to the problem? We have a set of numbers, and we need to replace each number
+with the difference of the sum of all the numbers, and said number. It
+does not matter one iota whether the numbers are in a tree (let alone how
+they are distributed in a tree), or in a list, or in an array. We'd still
+get the set of numbers as output.</p>
+
+<p>We therefore decide to completely ignore the binary tree aspect of the problem.
+We take sets of numbers: each line of standard input is taken as a different
+set of whitespace separated numbers, and we write the result to standard
+output, one set on each line.</p>
+</div>
+
+<h2>Solutions</h2>
+
+<h3>Perl</h3>
+
+<pre><code>use List::Util qw [sum];
+
+while (&lt;&gt;) {
+    my $sum = sum my @num = /-?[0-9]+/g;
+    say join " " =&gt; map {$sum - $_} @num;
+}
+</code></pre>
+
+<p>Not much to see here. For each line of input, we first grep all the
+numbers (<code>/-?[0-9]+/g</code>), store them in an array (<code>@num</code>), and
+we calculate the sum (<code>my $sum = sum my @num</code>).</p>
+
+<p>Then we print the results by replacing all numbers with the difference
+of the sum of all the numbers and said number.</p>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-113/abigail/perl/ch-2.pl">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+
+<h3>Other languages</h3>
+
+<p>We've implemented similar solutions in different languages:
+<a href="#github">AWK</a>, <a href="#github">Bash</a>, <a href="#github">C</a>, <a href="#github">Lua</a>,
+<a href="#github">Node.js</a>, <a href="#github">Python</a>, and <a href="#github">Ruby</a>.</p>
+
+<hr id = 'last-line'>
+<div class = 'trailer'>
+<p class = 'prev'><a class = "prev" href = "">&#x261C;</a></p>
+<p class = 'issue'>Please leave any comments as a
+  <a href = 'https://github.com/Abigail/Abigail.github.io/issues'
+     title = 'GitHub issue'>GitHub issue</a>.
+<p class = 'next'><a class = "next" href = "">&#x261E;</a></p>
+</div>
+
+</body>
+</html>
