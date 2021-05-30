@@ -1,0 +1,140 @@
+<html>
+<head>
+<title>Perl Weekly Challenge 114: Next Palindrome Number</title>
+<script src = "https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id = "MathJax-script" async src = "https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.js"></script>
+<script src = '../../JavaScript/jquery.js'></script>
+<script src = '../../JavaScript/navigation.js'></script>
+<link rel = 'preconnect' href = 'https://fonts.gstatic.com'>
+<link rel = 'stylesheet' href = 'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
+<link rel = 'stylesheet' href = '../../Styles/Perl-Weekly-Challenge/main.css'>
+</head>
+
+<body><h1>Perl Weekly Challenge 114: Next Palindrome Number</h1><div class = "byline">
+by Abigail<br>
+<img src = "../../Images/jan_sluiters.jpg">
+</div>
+
+
+<h2><a href="https://perlweeklychallenge.org/blog/perl-weekly-challenge-114/#TASK1">Challenge</a></h2>
+
+<blockquote>
+  <p>You are given a positive integer <code>$N</code>.</p>
+  
+  <p>Write a script to find out the next Palindrome Number higher
+  than the given integer <code>$N</code>.</p>
+</blockquote>
+
+<h3>Example</h3>
+
+<blockquote>
+<pre><code>Input: $N = 1234
+Output: 1331
+
+Input: $N = 999
+Output: 1001
+</code></pre>
+</blockquote>
+
+<h2>Discussion</h2>
+
+<div class = "section">
+<p>A naive way of solving this problem would be to start counting from
+<span class = 'latex-inline'>\(N\)</span>, and checking each number to see if it's a palindrome. That
+will work well with tiny numbers, but it is very inefficient for numbers like
+<span class = 'latex-inline'>\(99999999999990000000000000\)</span>. We can do better.</p>
+
+<p>Let <span class = 'latex-inline'>\(N\)</span> be our input number, and <span class = 'latex-inline'>\(P(N)\)</span> the next palidrome
+higher than <span class = 'latex-inline'>\(N\)</span>. Let <span class = 'latex-inline'>\(|x|\)</span> be the number of digits in the
+number <span class = 'latex-inline'>\(x\)</span>. Let <span class = 'latex-inline'>\(\overline{x}\)</span> be the number we get when
+reversing the digits of <span class = 'latex-inline'>\(x\)</span>.</p>
+
+<p>We will first consider two special cases, before discussing the
+general case.</p>
+
+<p>If <span class = 'latex-inline'>\(N\)</span> consists of all <span class = 'latex-inline'>\(9\)</span>s, then
+<span class = 'latex-inline'>\(P(N) = N + 2\)</span>, which is a number which begins with a <span class = 'latex-inline'>\(1\)</span>, ends with
+a <span class = 'latex-inline'>\(1\)</span>, and has nothing but <span class = 'latex-inline'>\(0\)</span>s in between. <span class = 'latex-inline'>\(|P(N)| = |x| + 1\)</span>.
+Note that this is the only case where <span class = 'latex-inline'>\(|P(N)| \neq |N|\)</span>. In all other
+cases there is at least one palindrome greater than <span class = 'latex-inline'>\(N\)</span> with the same
+amount of numbers: all <span class = 'latex-inline'>\(9\)</span>s.</p>
+
+<p>If <span class = 'latex-inline'>\(N\)</span> is a single digit number other than <span class = 'latex-inline'>\(9\)</span>, then <span class = 'latex-inline'>\(P(N) = N + 1\)</span>.
+Since in this case, <span class = 'latex-inline'>\(N + 1\)</span> is a single digit number, this obviously
+is a palindrome.</p>
+
+<p>Otherwise, let <span class = 'latex-inline'>\(N\)</span> be <span class = 'latex-inline'>\(d_{2k}d_{2k-1}...d_{k+1}d_{k}...d_{2}d_{1}\)</span>
+(if <span class = 'latex-inline'>\(|N|\)</span> is even), or
+<span class = 'latex-inline'>\(d_{2k+1}d_{2k}...d_{k+2}d_{k+1}d_{k}...d_{2}d_{1}\)</span> (if <span class = 'latex-inline'>\(|N|\)</span> is odd).</p>
+
+<p>Now, let <span class = 'latex-inline'>\(N^f\)</span> be the number which consists of the first <span class = 'latex-inline'>\(k\)</span>
+digits of <span class = 'latex-inline'>\(N\)</span>, and <span class = 'latex-inline'>\(N^l\)</span> be the number which consists of
+the last <span class = 'latex-inline'>\(k\)</span> digits of <span class = 'latex-inline'>\(N\)</span>. So, if <span class = 'latex-inline'>\(|N|\)</span> is even,
+<span class = 'latex-inline'>\(N = N^fN^l\)</span>, and <span class = 'latex-inline'>\(N = N^fd_{k+1}N^l\)</span> if <span class = 'latex-inline'>\(|N|\)</span> is odd.</p>
+
+<p>If <span class = 'latex-inline'>\(\overline{N^f} > N^l\)</span>, then <span class = 'latex-inline'>\(P(N) = N^f\overline{N^f}\)</span> 
+or <span class = 'latex-inline'>\(P(N) = N^fd_{k+1}\overline{N^f}\)</span>. It should be obvious
+that <span class = 'latex-inline'>\(P(N)\)</span> is a palindrome, and greater than <span class = 'latex-inline'>\(N\)</span>. It's also
+not hard to see there is no other palidrome <span class = 'latex-inline'>\(p\)</span> such that
+<span class = 'latex-inline'>\(N &lt; p &lt; P(N)\)</span>.</p>
+
+<p>If <span class = 'latex-inline'>\(\overline{N^f} \leq N^l\)</span>, we cannot simply reverse the
+first part of <span class = 'latex-inline'>\(N\)</span>. We would have to incremeant <span class = 'latex-inline'>\(N^f\)</span> or <span class = 'latex-inline'>\(d_{k+1}\)</span>.
+Let <span class = 'latex-inline'>\(N^{f'} = N^f + 1\)</span>. We now have three cases:</p>
+
+<ul>
+<li>If <span class = 'latex-inline'>\(|N|\)</span> is even, then <span class = 'latex-inline'>\(P(N) = N^{f'}\overline{N^{f'}}\)</span>. </li>
+<li>Else, if <span class = 'latex-inline'>\(d_{k+1} = 9\)</span>, then <span class = 'latex-inline'>\(P(N) = N^{f'}0\overline{N^{f'}}\)</span>.</li>
+<li>Otherwise, <span class = 'latex-inline'>\(P(N) = N^f(d_{k+1}+1)\overline{N^{f}}\)</span>.</li>
+</ul>
+</div>
+
+<h2>Solutions</h2>
+
+<h3>Perl</h3>
+
+<p>First the special cases (we have the input number in <code>$_</code>:</p>
+
+<pre><code>if (/^9+$/) {
+    say $_ + 2;
+    exit;
+}
+
+if (length ($_) == 1) {
+    say $_ + 1;
+    exit;
+}
+</code></pre>
+
+<p>Otherwise, we split the number into three parts, where the
+middle part is zero or one digit, and the first and third
+part of equal length:</p>
+
+<pre><code>my $part1 = substr $_, 0, int length ($_) / 2;
+my $part2 = substr $_,    int length ($_) / 2,  length ($_) % 2;
+my $part3 = substr $_,    int length ($_) / 2 + length ($_) % 2;
+</code></pre>
+
+<p>We can now compare the first and third part, add one if necessary,
+reverse the first part and print the result:</p>
+
+<pre><code>if (reverse ($part1) &lt;= $part3) {
+    $part1 = "$part1$part2" + 1;
+    $part2 = chop $part1 if length $part2;
+}
+say $part1, $part2, scalar reverse ($part1);
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-114/abigail/perl/ch-1.pl">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+
+<hr id = 'last-line'>
+<div class = 'trailer'>
+<p class = 'prev'><a class = "prev" href = "">&#x261C;</a></p>
+<p class = 'issue'>Please leave any comments as a
+  <a href = 'https://github.com/Abigail/Abigail.github.io/issues'
+     title = 'GitHub issue'>GitHub issue</a>.
+<p class = 'next'><a class = "next" href = "">&#x261E;</a></p>
+</div>
+
+</body>
+</html>
