@@ -1,0 +1,109 @@
+<html>
+<head>
+<title>Perl Weekly Challenge 114: Higher Integer Set Bits</title>
+<script src = "https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id = "MathJax-script" async src = "https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.js"></script>
+<script src = '../../JavaScript/jquery.js'></script>
+<script src = '../../JavaScript/navigation.js'></script>
+<link rel = 'preconnect' href = 'https://fonts.gstatic.com'>
+<link rel = 'stylesheet' href = 'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
+<link rel = 'stylesheet' href = '../../Styles/Perl-Weekly-Challenge/main.css'>
+</head>
+
+<body><h1>Perl Weekly Challenge 114: Higher Integer Set Bits</h1><div class = "byline">
+by Abigail<br>
+<img src = "../../Images/jan_sluiters.jpg">
+</div>
+
+
+<h2><a href="https://perlweeklychallenge.org/blog/perl-weekly-challenge-114/#TASK2">Challenge</a></h2>
+
+<blockquote>
+  <p>You are given a positive integer <code>$N</code>.</p>
+  
+  <p>Write a script to find the next higher integer having the same number
+  of <code>1</code> bits in binary representation as <code>$N</code>.</p>
+</blockquote>
+
+<h3>Examples</h3>
+
+<pre><code>Input: $N = 3
+Output: 5
+</code></pre>
+
+<p>Binary representation of <code>$N</code> is <code>011</code>. There are two <code>1</code> bits.
+So the next higher integer is <code>5</code> having the same the number of
+<code>1</code> bits i.e. <code>101</code>.</p>
+
+<pre><code>Input: $N = 12
+Output: 17
+</code></pre>
+
+<p>Binary representation of <code>$N</code> is <code>1100</code>. There are two <code>1</code> bits.
+So the next higher integer is <code>17</code> having the same number of <code>1</code> bits
+i.e. <code>10001</code>.</p>
+
+<h2>Discussion</h2>
+
+<div class = "section">
+<p>We won't be using a naive algorithm by counting upwards from the
+given number, getting a binary representation, and comparing the
+number of bits.</p>
+
+<p>Instead, we will be directly constructing the wanted number.</p>
+
+<p>Let the binary representation of the input number be:
+\(N = \ldots b_{n+m+2+3}b_{n+m+2}01\underbrace{1 \ldots 1}_{n \geq 0}
+\underbrace{0 \ldots 0}_{m \geq 0}\).</p>
+
+<p>We are interested in the latter part: a <code>01</code> followed by <span class = 'latex-inline'>\(n \geq 0\)</span>
+<code>1</code> bits, followed by <span class = 'latex-inline'>\(m \geq 0\)</span> <code>0</code> bits, and nothing more. (If the
+binary representation doesn't start with a <code>0</code>, we can always prepend
+one.)</p>
+
+<p>We now construct a number <span class = 'latex-inline'>\(M\)</span> which starts with the same bits
+as <span class = 'latex-inline'>\(N\)</span> (up to bit <span class = 'latex-inline'>\(b_{n+m+2}\)</span>), followed by <span class = 'latex-inline'>\(10\)</span>, followed
+by <span class = 'latex-inline'>\(m\)</span> <code>0</code> bits, followed by <span class = 'latex-inline'>\(n\)</span> <code>1</code> bits. So,
+\(M = \ldots b_{n+m+2+3}b_{n+m+2}10\underbrace{0 \ldots 0}_{m \geq 0}
+\underbrace{1 \ldots 1}_{n \geq 0}\).</p>
+
+<p>Clearly, the number of <code>1</code> bits in <span class = 'latex-inline'>\(N\)</span> equal the number of
+<code>1</code> bits in <span class = 'latex-inline'>\(M\)</span>. And there will be no other numbers between
+<span class = 'latex-inline'>\(N\)</span> and <span class = 'latex-inline'>\(M\)</span> with the same number of bits. Each of the numbers <span class = 'latex-inline'>\(P\)</span>
+between <span class = 'latex-inline'>\(N\)</span> and <span class = 'latex-inline'>\(M\)</span> are either of the form:
+\(P = \ldots b_{n+m+2+3}b_{n+m+2}01\underbrace{1 \ldots 1}_{n \geq 0}b_{m}
+\ldots b_{1}\), with at least one of last <span class = 'latex-inline'>\(m\)</span> bits being a <code>1</code>, or
+\(P = \ldots b_{n+m+2+3}b_{n+m+2}10\underbrace{0 \ldots 0}_{m \geq 0}b_{n}
+\ldots b_{1}\), with at least one of last <span class = 'latex-inline'>\(n\)</span> bits being a <code>0</code>. In
+the former case, the number as too many <code>1</code> bits. In the latter case,
+the number has not enough <code>1</code> bits.</p>
+</div>
+
+<h2>Solutions</h2>
+
+<h3>Perl</h3>
+
+<p>This is just a one liner:</p>
+
+<pre><code>say oct sprintf ("0b0%b" =&gt; $_) =~ s {01(1*)(0*)$} {10$2$1}r while &lt;&gt;;
+</code></pre>
+
+<p>We read the number (<code>&lt;&gt;</code>), get a binary representation, prepend with
+both a <code>0</code> and a <code>0b</code> (<code>sprintf "0b0%b" =&gt; $_</code>), perform the
+substitution described above (<code>s {01(1*)(0*)$} {10$2$1}r</code>), and
+turn it into a decimal representation again (<code>oct</code>, which takes a
+binary number as input if its argument starts with <code>0b</code>).</p>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-114/abigail/perl/ch-2.pl">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+
+<hr id = 'last-line'>
+<div class = 'trailer'>
+<p class = 'prev'><a class = "prev" href = "">&#x261C;</a></p>
+<p class = 'issue'>Please leave any comments as a
+  <a href = 'https://github.com/Abigail/Abigail.github.io/issues'
+     title = 'GitHub issue'>GitHub issue</a>.
+<p class = 'next'><a class = "next" href = "">&#x261E;</a></p>
+</div>
+
+</body>
+</html>
