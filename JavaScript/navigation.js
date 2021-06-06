@@ -25,6 +25,7 @@ let pages = [
     ["week-113-2", "Recreate Binary Tree"],
     ["week-114-1", "Next Palindrome Number"],
     ["week-114-2", "Higher Integer Set Bits"],
+    ["week-115-1", "String Chain"],
 ]
 
 pages . forEach (_ => _ [0] = PWC + "/" + _ [0] + ".html")

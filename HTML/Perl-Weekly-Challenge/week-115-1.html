@@ -1,0 +1,433 @@
+<html>
+<head>
+<title>Perl Weekly Challenge 115: String Chain</title>
+<script src = "https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id = "MathJax-script" async src = "https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.js"></script>
+<script src = '../../JavaScript/jquery.js'></script>
+<script src = '../../JavaScript/navigation.js'></script>
+<link rel = 'preconnect' href = 'https://fonts.gstatic.com'>
+<link rel = 'stylesheet' href = 'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
+<link rel = 'stylesheet' href = '../../Styles/Perl-Weekly-Challenge/main.css'>
+</head>
+
+<body><h1>Perl Weekly Challenge 115: String Chain</h1><div class = "byline">
+by Abigail<br>
+<img src = "../../Images/jan_sluiters.jpg">
+</div>
+
+
+<h2><a href="https://perlweeklychallenge.org/blog/perl-weekly-challenge-115/#TASK1">Challenge</a></h2>
+
+<blockquote>
+  <p>You are given an array of strings.</p>
+  
+  <p>Write a script to find out if the given strings can be chained to form
+  a circle. Print <code>1</code> if found otherwise <code>0</code>.</p>
+  
+  <p>A string <code>$S</code> can be put before another string <code>$T</code> in circle if the
+  last character of <code>$S</code> is same as first character of <code>$T</code>.</p>
+</blockquote>
+
+<h3>Examples</h3>
+
+<blockquote>
+<pre><code>Input: @S = ("abc", "dea", "cd")
+Output: 1
+</code></pre>
+</blockquote>
+
+<p>Since we can form a circle, e.g. <code>"abc"</code>, <code>"cd"</code>, <code>"dea"</code>.</p>
+
+<blockquote>
+<pre><code>Input: @S = ("ade", "cbd", "fgh")
+Output: 0
+</code></pre>
+</blockquote>
+
+<p>We cannot form a circle.</p>
+
+<h2>Discussion</h2>
+
+<div class = "section">
+<p>It is not clear whether the question is whether we can for a cycle
+(we opt to use the term <a href="https://en.wikipedia.org/wiki/Cycle_(graph_theory)">cycle</a> instead
+of circle here, as this is a more common term in this context).
+making use of all the strings, or whether any cycle is ok, even
+if it does not include all the strings. The examples are useless in
+that respect, as one example forms a cycle with all the strings, and
+the latter doesn't have any cycle.</p>
+
+<p>We opt for the latter interpretation here, that is, we're looking
+for any cycle. The former interpretation is equivalent to finding
+a <a href="https://en.wikipedia.org/wiki/Eulerian_path">Eulerian Cycle</a>.</p>
+</div>
+
+<h2>Solution</h2>
+
+<div class = "section">
+<p>We can turn the challenge into a graph problem. Let
+<span class = 'latex-inline'>\(\mathcal{G} = (V, E)\)</span> be a directed graph where the set of
+vertices <span class = 'latex-inline'>\(V\)</span> is defined by the beginning and end characters
+of the given strings. For each of the given strings, there
+will be a directed edge in the set of edges <span class = 'latex-inline'>\(E\)</span>: an edge
+from the beginning character to the end character of the strings.</p>
+
+<p>So, for the first example, we get <span class = 'latex-inline'>\(V = (a, c, d)\)</span> and
+<span class = 'latex-inline'>\(E = (\langle a, c\rangle, \langle d, a\rangle, \langle c, d\rangle)\)</span>.
+Note since <span class = 'latex-inline'>\(\mathcal{G}\)</span> is a directed graph, the direction of
+the edges matter: <span class = 'latex-inline'>\(\langle a, b \rangle\)</span> is a different edge
+than <span class = 'latex-inline'>\(\langle b, a \rangle\)</span>.</p>
+
+<p>To determine whether the graph contains a cycle, we will calculate
+the <a href="https://en.wikipedia.org/wiki/Transitive_closure#In_graph_theory"><em>transitive closure</em></a>
+of the graph. The transitive closure of a graph
+<span class = 'latex-inline'>\(\mathcal{G} = (V, E)\)</span> is <span class = 'latex-inline'>\(\mathcal{G}^T = (V, E^T)\)</span>, where
+<span class = 'latex-inline'>\(\langle v_1, v_2 \rangle \in E^T \iff v_1 \in V \wedge v_2 \in V \wedge\)</span>
+there is a path from <span class = 'latex-inline'>\(v_1\)</span> to <span class = 'latex-inline'>\(v_2\)</span> in <span class = 'latex-inline'>\(\mathcal{G}\)</span>.
+A graph <span class = 'latex-inline'>\(\mathcal{G}\)</span> contains a cycle, iff the set
+<span class = 'latex-inline'>\(\{v \in V | \langle v, v \rangle \in E^T\}\)</span> is not empty. That is,
+the transitive closure has at least one edge with the same begin and
+end point.</p>
+
+<p>To calculate the transitive closure, we make use of a simplified
+<a href="https://en.wikipedia.org/wiki/Floyd-Warshall_algorithm">Floyd-Warshall algorithm</a>. This algorithm is used to calculate
+the length all the shortest paths between any pair of vertices in a
+graph. However, for the transitive closure, all we care about is that
+the shortest path isn't <span class = 'latex-inline'>\(\infty\)</span>. </p>
+
+<p>The algorithm takes a graph as a <a href="https://en.wikipedia.org/wiki/adjacency_matrix">adjacency matrix</a> as input. 
+That is, <code>matrix [x] [y]</code> is true of the graph has a directed edge
+between <code>x</code> and <code>y</code>, and false otherwise.</p>
+
+<p>In pseudo code, the algorithm is as follows (<code>V</code> is the set of vertices
+of the graph, <code>matrix</code> is the adjacency matrix of the graph):</p>
+
+<pre><code>for k in V
+do  for i in V
+    do  for j in V
+        do  matrix [i] [j] = true if matrix [i] [k] and matrix [k] [j]
+        done
+    done
+done
+</code></pre>
+
+<p>At the end of the procedure, we're left with the transitive closure
+in <code>matrix</code>.</p>
+
+<p>It is easy to see that the running time of this algorithm is
+<span class = 'latex-inline'>\(\Theta(|V|^3)\)</span>. For some cases, this may not be optimal;
+running Dijkstra's algorithm for each vertex takes
+<span class = 'latex-inline'>\(\mathcal{O} (|E||V| + |V|^2 \log |V|)\)</span>, which is better
+than <span class = 'latex-inline'>\(\Theta(|V|^3)\)</span> if <span class = 'latex-inline'>\(|E| \ll |V|^2\)</span>. However,
+Floyd-Warshall is really easy to implement, and if the strings
+are ASCII strings, <span class = 'latex-inline'>\(|V|\)</span> is small. So, we go with Floyd-Warshall.</p>
+
+<p>We will be assuming we get a set of strings on each line of input (so, 
+we get one answer per line of input), the string separated by white space.</p>
+</div>
+
+<h3>Perl</h3>
+
+<div class = "section">
+<p>There is a module on <a href="https://www.cpan.org/">CPAN</a>
+which calculates the transitive closure,
+<a href="https://metacpan.org/pod/Algorithm::Graphs::TransitiveClosure"><code>Algorithm::Graphs::TransitiveClosure</code></a>, and it uses the
+Floyd Warshall algorithm. Normally, I wouldn't use a CPAN module
+doing all or most of the task, except when I authored the module.
+And I did write and upload <code>Algorithm::Graphs::TransitiveClosure</code>
+to CPAN back in 1998.</p>
+
+<p>So, all what is needed to do is to read the input and create an adjacency
+matrix:</p>
+
+<pre><code>foreach my $node (split) {
+    $$graph {substr $node, 0, 1} {substr $node, -1} = 1;
+}
+</code></pre>
+
+<p>call the algorithm (which modifies the given matrix):</p>
+
+<pre><code>use Algorithm::Graphs::TransitiveClosure qw [floyd_warshall];
+floyd_warshall $graph;
+</code></pre>
+
+<p>and check for cycles:</p>
+
+<pre><code>say grep ({$$graph {$_} {$_}} keys %$graph) ? 1 : 0;
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-115/abigail/perl/ch-1.pl">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>AWK</h3>
+
+<div class = "section">
+<p>First, we read in the strings, and build a graph from it. We keep
+two datastructures, <code>nodes</code>, which tracks the nodes in our graph
+(each string contributes its first and last character as a node in
+the graph), and <code>graph</code>, which is the adjacency matrix of the graph.
+It's a two dimensional array, which has a true value if there a
+directed edge between the nodes. AWK has proper multi-dimensional
+arrays and autovivifies, so we don't have to declare any (sub-)arrays.</p>
+
+<pre><code>delete graph
+delete nodes
+for (i = 1; i &lt;= NF; i ++) {
+    first = substr ($i, 1, 1)
+    last  = substr ($i, length ($i))
+    graph [first, last] = 1
+    nodes [first]       = 1
+    nodes [last]        = 1
+}
+</code></pre>
+
+<p>Now, we can apply Floyd-Warshall:</p>
+
+<pre><code>for (k in nodes) {
+    for (i in nodes) {
+        for (j in nodes) {
+            if (graph [k, j] &gt; 0 &amp;&amp; graph [i, k] &gt; 0) {
+                graph [i, j] = 1
+            }
+        }
+    }
+}
+</code></pre>
+
+<p>All what is left is to find out whether there is a node which
+is reachable from itself. If so, the answer is <code>1</code>, else the
+answer is <code>0</code>:</p>
+
+<pre><code>out = 0
+for (i in nodes) {
+    if (graph [i, i] &gt; 0) {
+        out = 1
+    }
+}
+
+print (out)
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-115/abigail/awk/ch-1.awk">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>Lua</h3>
+
+<div class = "section">
+<p>The Lua solution is similar to the AWK solution, but Lua doesn't have
+autovivification, so we have to do a little bit more work. Reading
+in the data (the line of input is in the variable <code>line</code>), and building
+the graph:</p>
+
+<pre><code>local graph = {}
+local nodes = {}
+for s in line : gmatch ("%S+")
+do  local first = s : sub ( 1,  1)
+    local last  = s : sub (-1, -1)
+    if   graph [first] == nil
+    then graph [first] =  {}
+    end
+    graph [first] [last] = 1
+    nodes [first] = 1
+    nodes [last]  = 1
+end
+</code></pre>
+
+<p>Making sure the right sub arrays (or tables as Lua calls them) exist:</p>
+
+<pre><code>for node1 in pairs (nodes)
+do  for node2 in pairs (nodes)
+    do  if   graph [node1] == nil
+        then graph [node1] = {}
+        end
+        if   graph [node1] [node2] == nil
+        then graph [node1] [node2] = 0
+        end
+    end
+end
+</code></pre>
+
+<p>Floyd-Warshall:</p>
+
+<pre><code>for k in pairs (nodes)
+do  for i in pairs (nodes)
+    do  for j in pairs (nodes)
+        do  if   graph [i] [j] == 0 and graph [k] [j] == 1 and
+                                        graph [i] [k] == 1
+            then graph [i] [j] = 1
+            end
+        end
+    end
+end
+</code></pre>
+
+<p>Finding the final answer, and printing it:</p>
+
+<pre><code>local out = 0
+for i in pairs (nodes)
+do  if   graph [i] [i] == 1
+    then out = 1
+    end
+end
+
+print (out)
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-115/abigail/lua/ch-1.lua">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>C</h3>
+
+<div class = "section">
+<p>There are not hashes or associative arrays build in in C. Therefore, to
+make life for ourselves easier, we assume the strings consist of lowercase
+ASCII letters. There are 26 of them, so we have hard coded the size of
+the datastructure:</p>
+
+<pre><code># include &lt;stdbool.h&gt;
+# define NR_OF_LETTERS ('z' - 'a' + 1)
+bool graph [NR_OF_LETTERS] [NR_OF_LETTERS];
+for (size_t i = 0; i &lt; NR_OF_LETTERS; i ++) {
+    for (size_t j = 0; j &lt; NR_OF_LETTERS; j ++) {
+        graph [i] [j] = false;
+    }
+}
+</code></pre>
+
+<p>We can now parse the data, and populate the adjacency matrix. Here,
+<code>line</code> is a pointer to a line from <code>stdin</code></p>
+
+<pre><code># include &lt;ctype.h&gt;
+char * line_ptr = line;
+while (*line_ptr) {
+    while (*line_ptr &amp;&amp; !islower (*line_ptr)) {
+        line_ptr ++;  /* Skip whitespace */
+    }
+    if (!*line_ptr) {
+        break;        /* End of string reached */
+    }
+    char start = *line_ptr;
+    char end   = *line_ptr ++;
+    while (*line_ptr &amp;&amp; islower (*line_ptr)) {
+        end = *line_ptr ++;
+    }
+    graph [start - 'a'] [end - 'a'] = true;
+}
+</code></pre>
+
+<p>Floyd-Warshall:</p>
+
+<pre><code>for (size_t k = 0; k &lt; NR_OF_LETTERS; k ++) {
+    for (size_t i = 0; i &lt; NR_OF_LETTERS; i ++) {
+        for (size_t j = 0; j &lt; NR_OF_LETTERS; j ++) {
+            graph [i] [j] = graph [i] [j] ||
+                           (graph [k] [j] &amp;&amp; graph [i] [k]);
+        }
+    }
+}
+</code></pre>
+
+<p>Finding and printing the answer:</p>
+
+<pre><code>short out = 0;
+for (size_t i = 0; i &lt; NR_OF_LETTERS; i ++) {
+    if (graph [i] [i]) {
+        out = 1;
+        break;
+    }
+}
+
+printf ("%d\n", out);
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-115/abigail/c/ch-1.c">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>Bash</h3>
+
+<div class = "section">
+<p>Bash does have associative arrays, but no easy way do multidimensional
+arrays. But we can use a trick. Each of our nodes is exactly one character,
+so in this case, we can simulate 2-d indices by concatenating both
+coordinates. And since in Bash, concatenation is done by just sticking
+tokens together, instead of writing <code>graph [x] [y]</code> or <code>graph [x, y]</code>,
+we will write <code>graph[$x$y]</code>. </p>
+
+<p>We have to declare we're using associative arrays:</p>
+
+<pre><code>declare -A nodes
+declare -A graph
+</code></pre>
+
+<p>Reading in a line from <code>stdin</code>, splitting them on whitespace, and then
+placing the results in an array <code>strings</code>:</p>
+
+<pre><code>while read -a strings
+</code></pre>
+
+<p>We can now parse the data, and build our graph:</p>
+
+<pre><code>for   string in ${strings[@]}
+do    first=${string:0:1}
+      last=${string:$((${#string}-1)):1}
+      nodes[$first]=1
+      nodes[$last]=1
+      graph[$first$last]=1
+done
+</code></pre>
+
+<p>Note the way to get substrings in Bash: <code>${string:P:L}</code> which is
+the substring of <code>string</code> from position <code>P</code> and length <code>L</code>. To get
+the length of a string, we use the syntax <code>${#string}</code>.</p>
+
+<p><code>${array[@]}</code> expands the array <code>array</code> to a list of tokens, each
+token a value of the array. <code>${!array[@]}</code> does the same, but
+then for the keys of the array. (This is more or less equivalent to
+<code>values @array</code> (or <code>values %hash</code>) and <code>keys @array</code> (or <code>keys %hash</code>)
+in Perl.)</p>
+
+<p>We can now apply Floyd-Warshall:</p>
+
+<pre><code>for   k in ${!nodes[@]}
+do    for i in ${!nodes[@]}
+      do    for   j in ${!nodes[@]}
+            do    if [ X${graph[$k$j]} == X1 -a \
+                       X${graph[$i$k]} == X1 ]
+                  then graph[$i$j]=1
+                  fi
+            done
+      done
+done
+</code></pre>
+
+<p>And finding the answer:</p>
+
+<pre><code>out=0
+for   i in ${!nodes[@]}
+do    if   [ X${graph[$i$i]} == X1 ]
+      then out=1
+      fi
+done
+
+echo $out
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-115/abigail/bash/ch-1.sh">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>Other languages</h3>
+
+<p>We also have implementations in <a href="#github">Node.js</a>, <a href="#github">Python</a>,
+and <a href="#ruby">Ruby</a>. They're all similar to the AWK or Lua solution above.</p>
+
+<hr id = 'last-line'>
+<div class = 'trailer'>
+<p class = 'prev'><a class = "prev" href = "">&#x261C;</a></p>
+<p class = 'issue'>Please leave any comments as a
+  <a href = 'https://github.com/Abigail/Abigail.github.io/issues'
+     title = 'GitHub issue'>GitHub issue</a>.
+<p class = 'next'><a class = "next" href = "">&#x261E;</a></p>
+</div>
+
+</body>
+</html>
