@@ -189,9 +189,9 @@ sub make_link (%args) {
             if    ($where eq "wiki") {$url = $WIKI_URL . "/" . $what}
             elsif ($where eq "oeis") {$url = $OEIS_URL . "/" . $what}
         }
-        elsif ($link eq "github") {
-            $url = github_link ($anchor, $week);
-        }
+    }
+    if (!$url && $link eq "github") {
+        $url = github_link ($anchor, $week);
     }
     $url //= "#$link";
 
