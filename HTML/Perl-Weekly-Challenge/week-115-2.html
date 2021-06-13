@@ -1,0 +1,99 @@
+<html>
+<head>
+<title>Perl Weekly Challenge 115: Largest Multiple</title>
+<script src = "https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id = "MathJax-script" async src = "https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.js"></script>
+<script src = '../../JavaScript/jquery.js'></script>
+<script src = '../../JavaScript/navigation.js'></script>
+<link rel = 'preconnect' href = 'https://fonts.gstatic.com'>
+<link rel = 'stylesheet' href = 'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
+<link rel = 'stylesheet' href = '../../Styles/Perl-Weekly-Challenge/main.css'>
+</head>
+
+<body><h1>Perl Weekly Challenge 115: Largest Multiple</h1><div class = "byline">
+by Abigail<br>
+<img src = "../../Images/jan_sluiters.jpg">
+</div>
+
+
+<h2><a href="https://perlweeklychallenge.org/blog/perl-weekly-challenge-115/#TASK2">Challenge</a></h2>
+
+<blockquote>
+  <p>You are given a list of positive integers (<code>0-9</code>), single digit.</p>
+  
+  <p>Write a script to find the largest multiple of <code>2</code> that can be formed
+  from the list.</p>
+</blockquote>
+
+<h3>Examples</h3>
+
+<blockquote>
+<pre><code>Input: @N = (1, 0, 2, 6)
+Output: 6210
+
+Input: @N = (1, 4, 2, 8)
+Output: 8412
+
+Input: @N = (4, 1, 7, 6)
+Output: 7614
+</code></pre>
+</blockquote>
+
+<h2>Solutions</h2>
+
+<div class = "section">
+<p>This is pretty simple. To get the highest possible number, we just 
+list the digits, highest to lowest. To get the highest possible even
+number, we take the smallest even digit, place it last, and list the
+rest of the digits, highest to lowest.</p>
+
+<p>We will bother sorting the digits &mdash; in fact, we won't even store all
+the digits. Instead, we will just count them.</p>
+</div>
+
+<h3>Perl</h3>
+
+<div class = "section">
+<p>We will have the list of digits in <code>$_</code>. First, we count them:</p>
+
+<pre><code>my @DIGITS = (0 .. 9);
+my @EVENS  = grep {$_ % 2 == 0} @DIGITS;
+
+my @digits = (0) x @DIGITS;
+$digits [$_] ++ for do {local $" = ""; /[@DIGITS]/g}
+</code></pre>
+
+<p>We then find the smallest even digit, and remove it from the count.
+(If there is not even digit, we won't output anything):</p>
+
+<pre><code>my ($last) = grep {$digits [$_]} @EVENS;
+next unless defined $last;
+$digits [$last] --;
+</code></pre>
+
+<p>Now, print the digits highest to lowest, with the smallest even digit last:</p>
+
+<pre><code>print join "" =&gt; map {$_ x $digits [$_]} reverse @DIGITS;
+say $last;
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-115/abigail/perl/ch-2.pl">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>Other languages</h3>
+
+<p>We also have implementations in <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-115/abigail/awk/ch-2.awk">AWK</a>, <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-115/abigail/bash/ch-2.sh">Bash</a>, <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-115/abigail/c/ch-2.c">C</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-115/abigail/lua/ch-2.lua">Lua</a>, <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-115/abigail/node/ch-2.js">Node.js</a>, <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-115/abigail/python/ch-2.py">Python</a> and <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-115/abigail/ruby/ch-2.rb">Ruby</a>
+which all work the same as the Perl solution.</p>
+
+<hr id = 'last-line'>
+<div class = 'trailer'>
+<p class = 'prev'><a class = "prev" href = "">&#x261C;</a></p>
+<p class = 'issue'>Please leave any comments as a
+  <a href = 'https://github.com/Abigail/Abigail.github.io/issues'
+     title = 'GitHub issue'>GitHub issue</a>.
+<p class = 'next'><a class = "next" href = "">&#x261E;</a></p>
+</div>
+
+</body>
+</html>
