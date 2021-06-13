@@ -27,6 +27,7 @@ let pages = [
     ["week-114-2", "Higher Integer Set Bits"],
     ["week-115-1", "String Chain"],
     ["week-115-2", "Largest Multiple"],
+    ["week-116-1", "Number Sequence"],
 ]
 
 pages . forEach (_ => _ [0] = PWC + "/" + _ [0] + ".html")

@@ -1,0 +1,136 @@
+<html>
+<head>
+<title>Perl Weekly Challenge 116: Number Sequence</title>
+<script src = "https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id = "MathJax-script" async src = "https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.js"></script>
+<script src = '../../JavaScript/jquery.js'></script>
+<script src = '../../JavaScript/navigation.js'></script>
+<link rel = 'preconnect' href = 'https://fonts.gstatic.com'>
+<link rel = 'stylesheet' href = 'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
+<link rel = 'stylesheet' href = '../../Styles/Perl-Weekly-Challenge/main.css'>
+</head>
+
+<body><h1>Perl Weekly Challenge 116: Number Sequence</h1><div class = "byline">
+by Abigail<br>
+<img src = "../../Images/jan_sluiters.jpg">
+</div>
+
+
+<h2><a href="https://perlweeklychallenge.org/blog/perl-weekly-challenge-116/#TASK1">Challenge</a></h2>
+
+<blockquote>
+  <p>You are given a number <code>$N &gt;= 10</code>.</p>
+  
+  <p>Write a script to split the given number such that the difference between
+  two consecutive numbers is always <code>1</code> and it shouldn't have leading <code>0</code>.</p>
+  
+  <p>Print the given number if it impossible to split the number.</p>
+</blockquote>
+
+<h3>Examples</h3>
+
+<blockquote>
+<pre><code>Input: $N = 1234
+Output: 1,2,3,4
+
+Input: $N = 91011
+Output: 9,10,11
+
+Input: $N = 10203
+Output: 10203 as it is impossible to split satisfying the conditions.
+</code></pre>
+</blockquote>
+
+<h2>Solution</h2>
+
+<div class = "section">
+<p>This is pretty simple to solve. Once we have a starting number <code>N</code>, it's
+easy to process throught the list:</p>
+
+<ul>
+<li>Check if the string starts with the number; if not, we have a failure.</li>
+<li>Else, remove <code>N</code> from the beginning of the string, and recurse with
+<code>N + 1</code> and the remainder of the string; if this fails, recurse with
+<code>N - 1</code> and the remainder of the string. If this fails as well, the
+entire match fails.</li>
+</ul>
+
+<p>We're the left with picking the starting number. There are only a few
+possible starting numbers: each of the prefixes of the string.</p>
+
+<p>It's not hard to see the running time is linear in the lenght of the
+string. Going into recursion twice has the appearance of an exponential
+time algorithm, but it's impossible for a string to start with both
+<code>N + 1</code> and <code>N - 1</code> &mdash; at least one of the recursive calls has to 
+terminate immediately.</p>
+</div>
+
+<h3>Perl</h3>
+
+<div class = "section">
+<p>First, we create a subroutine <code>make_chain</code>. It gets two arguments,
+<code>$string</code>, the string we have to turn into a chain, and <code>$start</code>, the
+number the chain should start with. If we can make a chain, we return
+an array with the chunks (in reverse order &mdash; this is because it's more
+efficient to repeatedly push to an array than to unshift). If we cannot
+make a chain, we return undef.</p>
+
+<p>In particular, if the starting number equals the whole string, we return
+an one element array with that starting number:</p>
+
+<pre><code>sub make_chain ($string, $start) {
+    if ($string eq $start) {
+        return [$start]
+    }
+    if (index ($string, $start) == 0) {
+        my $tail = substr $string, length $start;
+        my $rest;
+        if (($rest = make_chain ($tail, $start + 1)) ||
+            ($rest = make_chain ($tail, $start - 1))) {
+            push  @$rest =&gt; $start;
+            return $rest;
+        } 
+    }
+    return;
+}
+</code></pre>
+
+<p>Now it's a matter of calling this method with each of the possible
+prefixes of the given input (which we have in <code>$_</code>): we can stop
+and print the result the first time we get an defined result:</p>
+
+<pre><code>for my $i (1 .. length) {
+    #
+    # Try to make a chain with each possible start.
+    #
+    my  $result = make_chain $_, substr $_, 0, $i;
+    if ($result) {
+        say join "," =&gt; reverse @$result;
+        last;
+    }
+}
+</code></pre>
+
+<p>Note that we always find a chain &mdash; in the worst case, it's a one
+element chain equal to the entire string. And this is exactly what
+we should print if no chain can be made.</p>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-116/abigail/perl/ch-1.pl">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>Other Languages</h3>
+
+<p>We have similar implementations in <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-116/abigail/awk/ch-1.awk">AWK</a>, <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-116/abigail/bash/ch-1.sh">Bash</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-116/abigail/lua/ch-1.lua">Lua</a>, <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-116/abigail/node/ch-1.js">Node.js</a>, <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-116/abigail/python/ch-1.py">Python</a> and <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-116/abigail/ruby/ch-1.rb">Ruby</a>.</p>
+
+<hr id = 'last-line'>
+<div class = 'trailer'>
+<p class = 'prev'><a class = "prev" href = "">&#x261C;</a></p>
+<p class = 'issue'>Please leave any comments as a
+  <a href = 'https://github.com/Abigail/Abigail.github.io/issues'
+     title = 'GitHub issue'>GitHub issue</a>.
+<p class = 'next'><a class = "next" href = "">&#x261E;</a></p>
+</div>
+
+</body>
+</html>
