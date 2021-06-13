@@ -1,0 +1,2 @@
+let blog_list =
+[{"title":"NIM Game","week":"week-104-2","date":"2021-03-21"},{"date":"2021-03-07","week":"week-105-1","title":"Nth root"},{"title":"Maximum Gap","week":"week-106-1","date":"2021-04-04"},{"date":"2021-04-04","week":"week-106-2","title":"Decimal String"},{"date":"2021-04-11","week":"week-107-1","title":"Self-descriptive Numbers"},{"title":"List Methods","date":"2021-04-11","week":"week-107-2"},{"week":"week-108-1","date":"2021-04-18","title":"Locate Memory"},{"title":"Bell Numbers","week":"week-108-2","date":"2021-04-18"}]

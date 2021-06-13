@@ -1,0 +1,216 @@
+<html>
+<head>
+<title>Perl Weekly Challenge 116: Sum of Squares</title>
+<script src = "https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id = "MathJax-script" async src = "https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.js"></script>
+<script src = '../../JavaScript/jquery.js'></script>
+<script src = '../../JavaScript/navigation.js'></script>
+<link rel = 'preconnect' href = 'https://fonts.gstatic.com'>
+<link rel = 'stylesheet' href = 'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
+<link rel = 'stylesheet' href = '../../Styles/Perl-Weekly-Challenge/main.css'>
+</head>
+
+<body><h1>Perl Weekly Challenge 116: Sum of Squares</h1><div class = "byline">
+by Abigail<br>
+<img src = "../../Images/jan_sluiters.jpg">
+</div>
+
+
+<h2><a href="https://perlweeklychallenge.org/blog/perl-weekly-challenge-116/#TASK2">Challenge</a></h2>
+
+<blockquote>
+  <p>You are given a number <code>$N &gt;= 10</code>.</p>
+  
+  <p>Write a script to find out if the given number <code>$N</code> is such that sum of
+  squares of all digits is a perfect square. Print <code>1</code> if it is otherwise <code>0</code>.</p>
+</blockquote>
+
+<h3>Examples</h3>
+
+<blockquote>
+<pre><code>Input: $N = 34
+Ouput: 1 
+</code></pre>
+  
+  <p><span class = 'latex-inline'>\(3^2 + 4^2 = 9 + 16 = 25 = 5^2\)</span></p>
+
+<pre><code>Input: $N = 50
+Output: 1 
+</code></pre>
+  
+  <p><span class = 'latex-inline'>\(5^2 + 0^2 = 25 + 0 = 25 = 5^2\)</span></p>
+
+<pre><code>Input: $N = 52
+Output: 0 
+</code></pre>
+  
+  <p><span class = 'latex-inline'>\(5^2 + 2^2 = 25 + 4 = 29\)</span></p>
+</blockquote>
+
+<h2>Solution</h2>
+
+<div class = "section">
+<p>The challenge can be split up into two different tasks: summing the
+squares of the digits, and determining whether the result is a perfect
+square or not.</p>
+
+<p>Summing the squares of the digits is straightforward.</p>
+
+<p>We offer four different ways to determine whether the sum of the squares
+of the digits is a square number. We'll call the sum of the squares
+of the digits <span class = 'latex-inline'>\(S\)</span>.</p>
+</div>
+
+<h4>Taking the square root</h4>
+
+<div class = "section">
+<p>First option is take the square root. We cannot simply check whether the
+square root is an integer: we're now dealing with floating point numbers.
+Instead, we round the square root to the nearest integer, square that,
+and compare that with <span class = 'latex-inline'>\(S\)</span>. If they're the same, we have a perfect square.</p>
+
+<p>The advantange of this method is that quick. The disadvantage is that we
+have to deal with floating point numbers. Which means we may have rounding
+errors.</p>
+</div>
+
+<h4>Counting upwards</h4>
+
+<div class = "section">
+<p>The second method we offer is to start counting from <span class = 'latex-inline'>\(1\)</span>, and squaring
+each number. If we hit <span class = 'latex-inline'>\(S\)</span>, <span class = 'latex-inline'>\(S\)</span> is a perfect square. If we go past
+<span class = 'latex-inline'>\(S\)</span>, <span class = 'latex-inline'>\(S\)</span> is not a perfect square.</p>
+
+<p>This may sound inefficient, but it's not. If the input has <span class = 'latex-inline'>\(N\)</span> digits,
+then <span class = 'latex-inline'>\(S \leq 81 \cdot N\)</span> (if the number contains only <span class = 'latex-inline'>\(9\)</span>s). So, we
+at most have to count till <span class = 'latex-inline'>\(9 \sqrt{N}\)</span> before we know whether <span class = 'latex-inline'>\(S\)</span>
+is a perfect square. Even if we have million digits, we at most have to
+check 9000 numbers. So, the counting part can be done in
+<span class = 'latex-inline'>\(\mathcal{O}(\sqrt{N})\)</span> time, which is less than the <span class = 'latex-inline'>\(\mathcal{O}(N)\)</span>
+which is required to calculate <span class = 'latex-inline'>\(S\)</span>.</p>
+</div>
+
+<h4>Binary search</h4>
+
+<div class = "section">
+<p>Instead of counting from <span class = 'latex-inline'>\(1\)</span>, we can start at <span class = 'latex-inline'>\(1\)</span> and doubling the
+number till its square exceeds <span class = 'latex-inline'>\(S\)</span>. Say, we have doubled <span class = 'latex-inline'>\(k\)</span> times,
+and now we have <span class = 'latex-inline'>\(2^{k-1} \leq S &lt; 2^k\)</span>. We can now use binary search
+to find a number <span class = 'latex-inline'>\(2^{k-1} \leq l &lt; 2^k\)</span> such that <span class = 'latex-inline'>\(l^2 = S\)</span>. If such
+a number exists, <span class = 'latex-inline'>\(S\)</span> is a perfect square, else it's not.</p>
+
+<p>Since <span class = 'latex-inline'>\(k = \mathcal{O}(\log{\sqrt{N}})\)</span>, the running time of this
+is <span class = 'latex-inline'>\(\mathcal{O}(\log{\sqrt{N}})\)</span>.</p>
+</div>
+
+<h4>Preprocessing</h4>
+
+<div class = "section">
+<p>We can precalculate the first 9000 squares. Then, given an <span class = 'latex-inline'>\(S\)</span>, we
+can see check whether this is a square by checking it against the 
+precomputed numbers. This is fast, particular if we have many numbers
+we want to check. The disadvantage is that it doesn't get all the numbers.
+But the first <span class = 'latex-inline'>\(S\)</span> for which this goes wrong is 81,018,001. And a number
+needs more than 1,000,222 digits before the sum of the squares of its digits
+can exceed 81,018,001.</p>
+</div>
+
+<h3>Perl</h3>
+
+<div class = "section">
+<p>We have the input number in <code>$_</code>.</p>
+
+<p>First, calculating the sum of the squares of the numbers:</p>
+
+<pre><code>my $sum_of_squares = sum map {$_ * $_} /[1-9]/g;
+</code></pre>
+
+<p>Note that we ignore <code>0</code>s, and the square of <code>0</code> is <code>0</code>.</p>
+</div>
+
+<h4>Taking the square root</h4>
+
+<pre><code>$is_square = $sum_of_squares == int (.5 + sqrt $sum_of_squares) ** 2
+</code></pre>
+
+<p>We'r taking the square root of <code>$sum_of_squares</code>, rounding it to the
+nearest integer, squaring that, and comparing it to <code>$sum_of_squares</code>.
+If equal, <code>$sum_of_squares</code> is a square, else, it is not.</p>
+
+<h4>Counting upwards</h4>
+
+<pre><code>my $root = 0;
+$root ++ while $root * $root &lt; $sum_of_squares;
+$is_square = $sum_of_squares == $root * $root;
+</code></pre>
+
+<p>We simply count upwards as long as the square of our number is less
+thatn <code>$sum_of_squares</code>. Then we check whether we overshot or not:
+if we did, it's not a square, else it is.</p>
+
+<h4>Binary search</h4>
+
+<div class = "section">
+<p>First, we find a number whose square is larger than <code>$sum_of_squares</code>:</p>
+
+<pre><code>my $root_min = 0;
+my $root_max = 1;
+$root_max *= 2 while $root_max * $root_max &lt; $sum_of_squares;
+</code></pre>
+
+<p>Then we use binary search to zoom into the square root of <code>$sum_of_squares</code>.
+Either we hit it (and hence, the square root of <code>$sum_of_squares</code> is an
+integer, and thus, <code>$sum_of_squares</code> is a perfect square), or we don't
+(and then, <code>$sum_of_squares</code> is not a perfect square):</p>
+
+<pre><code>while ($root_min &lt; $root_max) {
+    my $root_mid = int (($root_min + $root_max) / 2);
+    my $square_mid = $root_mid * $root_mid;
+    if ($square_mid == $sum_of_squares) {
+        $is_square = 1;
+        last;
+    }
+    if ($square_mid &lt; $sum_of_squares) {
+        $root_min = $root_mid + 1;
+    }
+    else {
+        $root_max = $root_mid;
+    }
+}
+</code></pre>
+</div>
+
+<h4>Preprocessing</h4>
+
+<div class = "section">
+<p>First, the preprocessing:</p>
+
+<pre><code>my %squares = map {$_ * $_ =&gt; 1} 1 .. 9000;
+</code></pre>
+
+<p>Then it's just a matter of a lookup:</p>
+
+<pre><code>$is_square = $squares {$sum_of_squares};
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-116/abigail/perl/ch-2.pl">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>Other languages</h3>
+
+<p>We have implemenations based on the <em>Taking the square root</em> method in
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-116/abigail/awk/ch-2.awk">AWK</a>, <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-116/abigail/c/ch-2.c">C</a>, <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-116/abigail/lua/ch-2.lua">Lua</a>, <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-116/abigail/node/ch-2.js">Node.js</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-116/abigail/python/ch-2.py">Python</a> and <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-116/abigail/ruby/ch-2.rb">Ruby</a>. And an implemenation based
+on <em>Binary search</em> in <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-116/abigail/bash/ch-2.sh">Bash</a>.</p>
+
+<hr id = 'last-line'>
+<div class = 'trailer'>
+<p class = 'prev'><a class = "prev" href = "">&#x261C;</a></p>
+<p class = 'issue'>Please leave any comments as a
+  <a href = 'https://github.com/Abigail/Abigail.github.io/issues'
+     title = 'GitHub issue'>GitHub issue</a>.
+<p class = 'next'><a class = "next" href = "">&#x261E;</a></p>
+</div>
+
+</body>
+</html>
