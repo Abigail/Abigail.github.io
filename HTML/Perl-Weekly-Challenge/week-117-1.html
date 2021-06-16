@@ -1,0 +1,225 @@
+<html>
+<head>
+<title>Perl Weekly Challenge 117: Missing Row</title>
+<script src = "https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id = "MathJax-script" async src = "https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.js"></script>
+<script src = '../../JavaScript/jquery.js'></script>
+<script src = '../../JavaScript/navigation.js'></script>
+<link rel = 'preconnect' href = 'https://fonts.gstatic.com'>
+<link rel = 'stylesheet' href = 'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
+<link rel = 'stylesheet' href = '../../Styles/Perl-Weekly-Challenge/main.css'>
+</head>
+
+<body><h1>Perl Weekly Challenge 117: Missing Row</h1><div class = "byline">
+by Abigail<br>
+<img src = "../../Images/jan_sluiters.jpg">
+</div>
+
+
+<h2><a href="https://perlweeklychallenge.org/blog/perl-weekly-challenge-117/#TASK1">Challenge</a></h2>
+
+<blockquote>
+  <p>You are given text file with rows numbered <code>1-15</code> in random order but
+  there is a catch one row in missing in the file.</p>
+
+<pre><code>11, Line Eleven
+1, Line one
+9, Line Nine
+13, Line Thirteen
+2, Line two
+6, Line Six
+8, Line Eight
+10, Line Ten
+7, Line Seven
+4, Line Four
+14, Line Fourteen
+3, Line three
+15, Line Fifteen
+5, Line Five
+</code></pre>
+  
+  <p>Write a script to find the missing row number.</p>
+</blockquote>
+
+<h2>Solution</h2>
+
+<div class = "section">
+<p>This is fairly trivial. The sum of the number <span class = 'latex-inline'>\(1\)</span> to <span class = 'latex-inline'>\(15\)</span> equals
+<span class = 'latex-inline'>\(\sum_{i=1}^{15} i = 120\)</span>. So, if we add the sum of the line numbers
+in the file, and subtract this from <span class = 'latex-inline'>\(120\)</span> we get the missing row number.</p>
+</div>
+
+<h3>Perl</h3>
+
+<div class = "section">
+<p>First we import the <code>sum</code> method from <a href="https://metacpan.org/pod/List::Util"><code>List::Util</code></a>:</p>
+
+<pre><code>use List::Util qw [sum];
+</code></pre>
+
+<p>Then we can get the answer in a one liner:</p>
+
+<pre><code>say 120 - sum &lt;&gt;;
+</code></pre>
+
+<p>We take advantage of the fact that if we use a string as a number,
+Perl will look at the beginning of the string, and tries to interpret
+that a number. It does issue a warning if there is some trailing stuff,
+but hey, if you don't turn on warnings, you won't see them.</p>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-117/abigail/perl/ch-1.pl">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+
+<p>We could also have used a one-liner, not requiring another module, nor
+having the number of lines hard coded:</p>
+
+<pre><code>perl -nE '$;+=$.-$_;END{say$.+1+$;}'
+</code></pre>
+</div>
+
+<h3>AWK</h3>
+
+<div class = "section">
+<p>Just like in Perl, AWK looks at the beginning of a string if it's
+treated as a number. It won't issue a warning. So we get:</p>
+
+<pre><code>BEGIN {SUM_15 = 120}
+      {sum += $1}
+END   {print SUM_15 - sum}
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-117/abigail/awk/ch-1.awk">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>Bash</h3>
+
+<div class = "section">
+<p>For the Bash solution, we split the input. Bash does this already be
+default, splitting on white space. But we want to split on commas:</p>
+
+<pre><code>IFS=","
+</code></pre>
+
+<p>Now it's a matter of summing the first column, and subtracting the
+result from 120:</p>
+
+<pre><code>SUM_15=120
+while read number tail; do ((sum += number)); done
+echo $((SUM_15 - sum))
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-117/abigail/bash/ch-1.sh">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>C</h3>
+
+<div class = "section">
+<p>In C, we use the <a href="https://www.freebsd.org/cgi/man.cgi?apropos=0&amp;sektion=0&amp;query=atol"><code>atol</code></a> function to get the number at
+the beginning of a string. </p>
+
+<pre><code># define SUM_15 120
+
+int main (void) {
+    char *  line    = NULL;
+    size_t  len     = 0;
+    size_t  str_len;
+    int     sum     = 0;
+
+    while ((str_len = getline (&amp;line, &amp;len, stdin)) != -1) {
+        sum += atol (line);
+    }
+    printf ("%d\n", SUM_15 - sum);
+    free (line);
+
+    return (0);
+}
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-117/abigail/c/ch-1.c">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>Lua</h3>
+
+<div class = "section">
+<p>To turn the beginning of a string into a number, we capture the
+leading digits, and use the function <code>tonumber</code> to make it a number:</p>
+
+<pre><code>local SUM_15 = 120
+local sum = 0
+for line in io . lines () do
+    sum = sum + tonumber (line : match ("%d+"))
+end
+print (SUM_15 - sum)
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-117/abigail/lua/ch-1.lua">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>Node.js</h3>
+
+<div class = "section">
+<p>Here, we split the lines of input on a comma, and use the unary <code>+</code>
+to change a string into a number:</p>
+
+<pre><code>let SUM_15 = 120
+let sum = 0
+
+  require ('readline')
+. createInterface ({input: process . stdin})   
+. on              ('line', line =&gt; {
+    let [num] = line . split (/,/)
+    sum +=+ num
+})
+. on              ('close', () =&gt; console . log (SUM_15 - sum))
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-117/abigail/node/ch-1.js">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>Python</h3>
+
+<div class = "section">
+<p>Splitting on commas is the way to go in Python as well, and we
+use <code>int</code> to turn the string into an integer:</p>
+
+<pre><code>import fileinput
+
+sum = 0
+SUM_15 = 120
+
+for line in fileinput . input ():
+    sum = sum + int ((line . split (",")) [0])
+
+print (SUM_15 - sum)
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-117/abigail/python/ch-1.py">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>Ruby</h3>
+
+<p>Another <code>split</code> in Ruby, using the <code>to_i</code> method to turn the
+result into an integer:</p>
+
+<pre><code>sum = 0
+SUM_15 = 120
+ARGF . each_line do
+    |line|
+    sum += ((line . split (/,/)) [0]) . to_i
+end
+
+puts (SUM_15 - sum)
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-117/abigail/ruby/ch-1.rb">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+
+<hr id = 'last-line'>
+<div class = 'trailer'>
+<p class = 'prev'><a class = "prev" href = "">&#x261C;</a></p>
+<p class = 'issue'>Please leave any comments as a
+  <a href = 'https://github.com/Abigail/Abigail.github.io/issues'
+     title = 'GitHub issue'>GitHub issue</a>.
+<p class = 'next'><a class = "next" href = "">&#x261E;</a></p>
+</div>
+
+</body>
+</html>

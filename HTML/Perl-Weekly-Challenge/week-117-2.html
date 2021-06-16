@@ -1,0 +1,371 @@
+<html>
+<head>
+<title>Perl Weekly Challenge: Find Possible Paths</title>
+<script src = "https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id = "MathJax-script" async src = "https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.js"></script>
+<script src = '../../JavaScript/jquery.js'></script>
+<script src = '../../JavaScript/navigation.js'></script>
+<link rel = 'preconnect' href = 'https://fonts.gstatic.com'>
+<link rel = 'stylesheet' href = 'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
+<link rel = 'stylesheet' href = '../../Styles/Perl-Weekly-Challenge/main.css'>
+</head>
+
+<body><h1>Perl Weekly Challenge: Find Possible Paths</h1><div class = "byline">
+by Abigail<br>
+<img src = "../../Images/jan_sluiters.jpg">
+</div>
+
+
+<h2><a href="https://perlweeklychallenge.org/blog/perl-weekly-challenge-117/#TASK2">Challenge</a></h2>
+
+<blockquote>
+  <p>You are given size of a triangle.</p>
+  
+  <p>Write a script to find all possible paths from top to the bottom right corner.</p>
+  
+  <p>In each step, we can either move horizontally to the right (<code>H</code>),
+  or move downwards to the left (<code>L</code>) or right (<code>R</code>).</p>
+  
+  <p><strong>BONUS: Try if it can handle triangle of size 10 or 20.</strong></p>
+</blockquote>
+
+<h3>Examples</h3>
+
+<blockquote>
+<pre><code>Input: $N = 2
+
+           S
+          / \
+         / _ \
+        /\   /\
+       /__\ /__\ E
+
+Output: RR, LHR, LHLH, LLHH, RLH, LRH
+
+
+Input: $N = 1
+
+           S
+          / \
+         / _ \ E
+
+Output: R, LH
+</code></pre>
+</blockquote>
+
+<h2>Discussion</h2>
+
+<div class = "section">
+<p>The number of possible paths grows rapidly with the height of
+the triangle. These are known as the
+<a href="https://oeis.org/A006318">large Schr&ouml;der numbers</a>. For a height of 10,
+there are 1,037,718 possible paths, for a height of 20, this is
+a whopping 17,518,619,320,890 different paths. And while the
+solutions below are all able to handle that in theory, one probably
+doesn't have the stamina to watch them all scroll by. The Perl solution
+below takes (on my computer) about 4.7 seconds to list all the paths
+of a triangle of size 10. Extrapolating this gives an estimated running
+time of over 2.5 <strong>years</strong> to list all the paths of a triangle of size 20.
+Even the C solution is estimated to take more than 1.5 years to complete.</p>
+</div>
+
+<h2>Solution</h2>
+
+<div class = "section">
+<p>First, we give the points in the triangle coordinates; the first
+coordinate (<code>x</code>) is the vertical distance from the bottow row,
+the second coordinate (<code>y</code>) is the horizontal distance from the
+right diagonal. So, the start point has coordinates <code>($N, 0)</code>,
+and the end point has coordinates <code>(0, 0)</code>. For instance, a 
+triangle of height <code>3</code> looks like this:</p>
+
+<pre><code>               (3, 0)
+              /     \
+          (2, 1) -- (2, 0)
+         /     \   /     \
+     (1, 2) -- (1, 1) -- (1, 0)
+    /     \    /    \    /    \
+(0, 3) -- (0, 2) -- (0, 1) -- (0, 0)
+</code></pre>
+
+<p>We can now express the three transitions into changes of the
+coordinates:</p>
+
+<ul>
+<li><code>L</code>:  <code>(x, y) =&gt; (x - 1, y + 1)</code></li>
+<li><code>R</code>:  <code>(x, y) =&gt; (x - 1, y)</code></li>
+<li><code>H</code>:  <code>(x, y) =&gt; (x, y - 1)</code></li>
+</ul>
+
+<p>Furthermore, there are some conditions for each transition to
+happen: </p>
+
+<ul>
+<li>For an <code>L</code> or <code>R</code> condition we need <code>x &gt; 0</code> (that is, we can only do an
+<code>L</code> or <code>R</code> transition if we are not at the bottom of the triangle).</li>
+<li>For an <code>H</code> transition, we need <code>y &gt; 0</code> (that is, we can only do an <code>H</code>
+transition if we are not at the right edge of the triangle).</li>
+</ul>
+
+<p>Given this, we can now easily make a recursive function which gets
+three arguments: the <code>x</code> and <code>y</code> coordinates of a point, and a 
+path how we got there. Initially, this will be called with <code>($N, 0)</code>
+as the coordinates of the top vertex, and the empty string as the
+path to get there. If we are at <code>(0, 0)</code>, we print the path on how
+we got there. Else, we recurse using all the possible steps we can
+take from that point.</p>
+
+<p>For all solutions, we assume we read <code>$N</code> from standard input.</p>
+</div>
+
+<h3>Perl</h3>
+
+<div class = "section">
+<p>We have the following recursive function:</p>
+
+<pre><code>sub steps ($x, $y, $path) {
+    say    $path                        if $x == $y == 0;
+    steps ($x - 1, $y,     $path . "R") if $x &gt; 0;
+    steps ($x - 1, $y + 1, $path . "L") if $x &gt; 0;
+    steps ($x,     $y - 1, $path . "H") if $y &gt; 0;
+}
+</code></pre>
+
+<p>Which we will call as:</p>
+
+<pre><code>steps (&lt;&gt;, 0, "");
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-117/abigail/perl/ch-2.pl">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>AWK</h3>
+
+<div class = "section">
+<p>Recursive function:</p>
+
+<pre><code>function steps (x, y, path) {
+    if (x == 0 &amp;&amp; y == 0) {
+        print path
+        return
+    }
+    if (x &gt; 0) {
+        steps(x - 1, y,     path "R")
+        steps(x - 1, y + 1, path "L")
+    }
+    if (y &gt; 0) {
+        steps(x,     y - 1, path "H")
+    }
+}
+</code></pre>
+
+<p>Called as:</p>
+
+<pre><code>{
+    steps($1, 0, "")
+}
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-117/abigail/awk/ch-2.awk">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>Bash</h3>
+
+<div class = "section">
+<p>Recursive function:</p>
+
+<pre><code>function steps () {
+    local x=$1
+    local y=$2
+    local path=$3
+    if   ((x == 0 &amp;&amp; y == 0))
+    then echo $path
+         return
+    fi
+    if   ((x &gt; 0)) 
+    then steps $((x - 1)) $y         ${path}R
+         steps $((x - 1)) $((y + 1)) ${path}L
+    fi
+    if   ((y &gt; 0))
+    then steps $x         $((y - 1)) ${path}H
+    fi
+}
+</code></pre>
+
+<p>Reading input and calling the function:</p>
+
+<pre><code>read number
+steps $number 0 ""
+</code></pre>
+</div>
+
+<h3>C</h3>
+
+<div class = "section">
+<p>Recursive function:</p>
+
+<pre><code>void steps (int x, int y, char * path, size_t l) {
+    if (x == 0 &amp;&amp; y == 0) {
+        printf ("%s\n", path);
+        return;
+    }
+    if (x &gt; 0) {
+        path [l]     = 'R';
+        path [l + 1] = '\0';
+        steps (x - 1, y,     path, l + 1);
+        path [l]     = 'L';
+        path [l + 1] = '\0';
+        steps (x - 1, y + 1, path, l + 1);
+    }
+    if (y &gt; 0) {
+        path [l]     = 'H';
+        path [l + 1] = '\0';
+        steps (x,     y - 1, path, l + 1);
+    }
+}
+</code></pre>
+
+<p>Since C doesn't make it easy to concatenate strings, we're modifying
+the <code>path</code> string in place. Therefore, we need to pass in the length
+of the current path, and we need to allocate enough space. 
+It's easy to see that the length of a path is at most twice the height
+of a triangle. This leads to:</p>
+
+<pre><code>int main (void) {
+    int size;
+    if (scanf ("%d", &amp;size) == 1) {
+        char * path;
+        if ((path = (char *) malloc ((size + 1) * sizeof (char))) == NULL) {
+            perror ("Malloc failed");
+            exit (1);
+        }
+        path [0] = '\0';
+        steps (size, 0, path, 0);
+    }
+    return (0);
+}
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-117/abigail/c/ch-2.c">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>Lua</h3>
+
+<div class = "section">
+<p>Recursive function:</p>
+
+<pre><code>function steps (x, y, path)
+    if   x == 0 and y == 0
+    then print (path)
+         return
+    end
+    if  x &gt; 0
+    then steps (x - 1, y,     path .. "R")
+         steps (x - 1, y + 1, path .. "L")
+    end
+    if  y &gt; 0
+    then steps (x,     y - 1, path .. "H")
+    end
+end
+</code></pre>
+
+<p>Reading input and calling this function:</p>
+
+<pre><code>steps (tonumber (io . read ()), 0, "")
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-117/abigail/lua/ch-2.lua">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>Node.js</h3>
+
+<div class = "section">
+<p>Recursive function:</p>
+
+<pre><code>function steps (x, y, path) {
+    if (x == 0 &amp;&amp; y == 0) {
+        console . log (path)
+        return
+    }
+    if (x &gt; 0) {
+        steps (x - 1, y,     path + "R")
+        steps (x - 1, y + 1, path + "L")
+    }
+    if (y &gt; 0) {
+        steps (x,     y - 1, path + "H")
+    }
+}
+</code></pre>
+
+<p>Reading input and calling this function:</p>
+
+<pre><code>  require         ('readline')
+. createInterface ({input: process . stdin})   
+. on              ('line', number =&gt; steps (+number, 0, ""))
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-117/abigail/node/ch-2.js">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>Python</h3>
+
+<div class = "section">
+<p>Recursive function:</p>
+
+<pre><code>def steps (x, y, path):
+    if x == 0 and y == 0:
+        print (path)
+        return
+    if x &gt; 0:
+        steps (x - 1, y,     path + "R")
+        steps (x - 1, y + 1, path + "L")
+    if y &gt; 0:
+        steps (x,     y - 1, path + "H")
+</code></pre>
+
+<p>Reading input and calling this function:</p>
+
+<pre><code>import sys
+steps (int (sys . stdin . readline ()), 0, "")
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-117/abigail/python/ch-2.py">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>Ruby</h3>
+
+<p>Recursive function:</p>
+
+<pre><code>def steps (x, y, path)
+    if   x == 0 &amp;&amp; y == 0
+    then puts (path)
+         return
+    end
+    if   x &gt; 0
+    then steps(x - 1, y,     path + "R")
+         steps(x - 1, y + 1, path + "L")
+    end
+    if   y &gt; 0
+    then steps(x,     y - 1, path + "H")
+    end
+end
+</code></pre>
+
+<p>Reading input and calling this function:</p>
+
+<pre><code>steps($stdin . read . to_i, 0, "")
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-117/abigail/ruby/ch-2.rb">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+
+<hr id = 'last-line'>
+<div class = 'trailer'>
+<p class = 'prev'><a class = "prev" href = "">&#x261C;</a></p>
+<p class = 'issue'>Please leave any comments as a
+  <a href = 'https://github.com/Abigail/Abigail.github.io/issues'
+     title = 'GitHub issue'>GitHub issue</a>.
+<p class = 'next'><a class = "next" href = "">&#x261E;</a></p>
+</div>
+
+</body>
+</html>
