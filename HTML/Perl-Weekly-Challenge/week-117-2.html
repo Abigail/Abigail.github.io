@@ -249,6 +249,70 @@ of a triangle. This leads to:</p>
 <p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-117/abigail/c/ch-2.c">full program</a> on <a href="https://github.com">GitHub</a>.</p>
 </div>
 
+<h3>Go</h3>
+
+<div class = "section">
+<p>Recursive function:</p>
+
+<pre><code>func steps (x int, y int, path string) {
+    if (x == 0 &amp;&amp; y == 0) {
+        fmt . Println (path)
+    }
+    if (x &gt; 0) {
+        steps (x - 1, y + 1, path + "L")
+        steps (x - 1, y,     path + "R")
+    }
+    if (y &gt; 0) {
+        steps (x,     y - 1, path + "H")
+    }
+}
+</code></pre>
+
+<p>Reading input and calling the function:</p>
+
+<pre><code>func main () {
+    var x int
+    var n, err = fmt . Scanf ("%d", &amp;x)
+    if (n == 1 &amp;&amp; err == nil) {
+        steps (x, 0, "")
+    }
+}
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-117/abigail/go/ch-2.go">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>Java</h3>
+
+<div class = "section">
+<p>Recursive function:</p>
+
+<pre><code>static void steps (int x, int y, String path) {
+    if (x == 0 &amp;&amp; y == 0) {
+        System . out . println (path);
+    }
+    if (x &gt; 0) {
+        steps (x - 1, y + 1, path + "L");
+        steps (x - 1, y,     path + "R");
+    }
+    if (y &gt; 0) {
+        steps (x,     y - 1, path + "H");
+    }
+}
+</code></pre>
+
+<p>Reading input, and calling this function:</p>
+
+<pre><code>public static void main (String [] args) {
+    Scanner scanner = new Scanner (System . in);
+    int size = scanner . nextInt ();
+    steps (size, 0, "");
+}
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-117/abigail/java/ch-2.java">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
 <h3>Lua</h3>
 
 <div class = "section">
