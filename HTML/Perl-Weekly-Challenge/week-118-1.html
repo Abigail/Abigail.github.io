@@ -1,0 +1,309 @@
+<html>
+<head>
+<title>Perl Weekly Challenge 118: Binary Palindrome</title>
+<script src = "https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id = "MathJax-script" async src = "https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.js"></script>
+<script src = '../../JavaScript/jquery.js'></script>
+<script src = '../../JavaScript/navigation.js'></script>
+<link rel = 'preconnect' href = 'https://fonts.gstatic.com'>
+<link rel = 'stylesheet' href = 'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
+<link rel = 'stylesheet' href = '../../Styles/Perl-Weekly-Challenge/main.css'>
+</head>
+
+<body><h1>Perl Weekly Challenge 118: Binary Palindrome</h1><div class = "byline">
+by Abigail<br>
+<img src = "../../Images/jan_sluiters.jpg">
+</div>
+
+
+<h2><a href="https://perlweeklychallenge.org/blog/perl-weekly-challenge-118/#TASK1">Challenge</a></h2>
+
+<blockquote>
+  <p>You are given a positive integer <code>$N</code>.</p>
+  
+  <p>Write a script to find out if the binary representation of the given
+  integer is Palindrome. Print <code>1</code> if it is otherwise <code>0</code>.</p>
+</blockquote>
+
+<h3>Examples</h3>
+
+<blockquote>
+  <p>Input: $N = 5
+     Output: 1</p>
+  
+  <p>The binary representation of <code>5</code> is <code>101</code> which is a palindrome.</p>
+  
+  <p>Input: $N = 4
+     Output: 0</p>
+  
+  <p>The binary representation of <code>4</code> is <code>100</code> which is <strong>not</strong> a palindrome.</p>
+</blockquote>
+
+<h2>Solution</h2>
+
+<div class = "section">
+<p>We can split this task into two:</p>
+
+<ul>
+<li>Find the binary representation of the given number.</li>
+<li>Determine whether this is a palindrome.</li>
+</ul>
+
+<p>For most languages, the latter is done by reversing the binary
+representation, and see if the result is the same string.</p>
+</div>
+
+<h3>Perl</h3>
+
+<div class = "section">
+<p>For our Perl solution, we use <a href="https://perldoc.perl.org/perlfunc#sprintf"><code>sprintf</code></a> to get the binary
+representation of the number (using the <code>%b</code> format). </p>
+
+<p>We could have use <a href="https://perldoc.perl.org/perlfunc#reverse"><code>reverse</code></a> to reverse the string, but then
+we would have to store the result of the <code>sprintf</code> in a variable.
+And then we would need to use two lines. Instead, we use a regular
+expression to test if the result of <code>sprintf</code> is a palindrome,
+so we have a one-liner as a solution:</p>
+
+<pre><code>say sprintf ("%b" =&gt; $_) =~ /^([01]?|([01])(?1)\g{2})$/ || 0 while &lt;&gt;;
+</code></pre>
+
+<p>To understand the pattern, note that we can define a palindrome
+in a recursive way:</p>
+
+<div class = "definition headed-div"><br><p>
+A palindrome is either:</p>
+
+<ul>
+<li>an empty string, <em>or</em></li>
+<li>a one character string <em>or</em></li>
+<li>a character <code>c</code>, followed by a palindrome, followed by <code>c</code>.</li>
+</ul>
+
+</p></div>
+
+<p>Commented, the pattern looks like:</p>
+
+<pre><code>/^          # Start of string
+ (          # Start of main group (which matches a palindrome)
+   [01]?    # Either an empty string, or a single 0 or 1.
+   |        # Or
+   ([01])   # Capture a single character using second group  (0 or 1)
+   (?1)     # Recurse into the main group (hence, match a palindrome)
+   \g{2}    # Match what was matched by the second group
+ )          # End of main group
+ $/x        # End of string
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-118/abigail/perl/ch-1.pl">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>AWK</h3>
+
+<div class = "section">
+<p>First, a function to get the binary representation:</p>
+
+<pre><code>function dec2bin (dec, bin) {
+    while (dec) {
+        bin = dec % 2 bin
+        dec = int (dec / 2)
+    }
+    return (bin)
+}
+</code></pre>
+
+<p>AWK doesn't have a build in way to reverse a string, so we're
+just going to compare individual characters:</p>
+
+<pre><code>{
+    bin = dec2bin($1)
+    l   = length (bin)
+    #
+    # Check if it's a palindrome
+    #
+    for (i = 1; i &lt; l / 2; i ++) {
+        if (substr (bin, i, 1) != substr (bin, l - i + 1, 1)) {
+            print (0)
+            next
+        }
+    }
+    print (1)
+}
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-118/abigail/awk/ch-1.awk">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>Bash</h3>
+
+<div class = "section">
+<p>Our Bash solution looks a lot like the AWK solution. First, a function
+to get the binary representation:</p>
+
+<pre><code>function dec2bin () {
+    dec=$1
+    bin=""
+    while ((dec &gt; 0))
+    do    bin=$((dec % 2))$bin
+          ((dec /= 2))
+    done
+}
+</code></pre>
+
+<p>It puts the result in the global variable <code>bin</code>.</p>
+
+<p>No build in method to reverse a string, so we compare characters again:</p>
+
+<pre><code>while read dec
+do    dec2bin $dec
+      for ((i = 0; i &lt; ${#bin} / 2; i ++))
+      do  if   [ "${bin:$i:1}" = "${bin:$((${#bin} - i - 1)):1}" ]
+          then continue
+          fi
+          echo 0
+          continue 2
+      done
+      echo 1
+done
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-118/abigail/bash/ch-1.sh">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>C</h3>
+
+<div class = "section">
+<p>In C, we will not get a binary representation. Instead, we compare
+bits directly. First, we read the input, and find the highest power
+of two equal or less than the given number. This corresponds to the
+the first <code>1</code> in its binary representation:</p>
+
+<pre><code>long long dec;
+while (scanf ("%lld", &amp;dec) == 1) {
+    long long i = 1;
+    int k = 0;
+    for (k = 0; i &lt;= dec; k ++, i = i &lt;&lt; 1);
+    /*
+     * We overshot by 1
+     */
+    k -= 1;
+</code></pre>
+
+<p>So, now we have: <span class = 'latex-inline'>\(2^k \leq \text{dec} &lt; 2^{k+1}\)</span>.</p>
+
+<p>We now know that the number has <span class = 'latex-inline'>\(k + 1\)</span> bits. We now check for each pair
+<span class = 'latex-inline'>\(0 \leq i &lt; j \leq k, i + j = k\)</span> if bits <span class = 'latex-inline'>\(i\)</span> and <span class = 'latex-inline'>\(j\)</span> are either
+both set, or both unset in the given number. If this is true for all
+such pairs, the binary representation is a number:</p>
+
+<pre><code>int is_palin = 1;
+for (int j = 0; j &lt; k; k --, j ++) {
+    if (((dec &amp; (1 &lt;&lt; j)) &gt;&gt; j) != ((dec &amp; (1 &lt;&lt; k)) &gt;&gt; k)) {
+        is_palin = 0;
+        break;
+    }
+}
+printf ("%d\n", is_palin);
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-118/abigail/c/ch-1.c">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>Lua</h3>
+
+<div class = "section">
+<p>To get the binary representation of a number:</p>
+
+<pre><code>function dec2bin (dec)
+    local bin = {}
+    while dec &gt; 0 do 
+        bin [#bin + 1] = dec % 2
+        dec = math . floor (dec / 2)
+    end
+    return table . concat (bin)
+end
+</code></pre>
+
+<p>It collects the bits into a table, which at the end it concats
+into a single string.</p>
+
+<p>To check for a palindrome, we reverse the string and compare:</p>
+
+<pre><code>for line in io . lines () do
+    bin = dec2bin (tonumber (line))
+    if bin == string . reverse (bin) then
+        print (1)
+    else
+        print (0)
+    end
+end
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-118/abigail/lua/ch-1.lua">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>Node.js</h3>
+
+<div class = "section">
+<p>In Node.js, it's easy to get the binary representation of a number:
+<code>toString (2)</code>. Node.js does not have a <code>reverse</code> acting on a string,
+but it does have a <code>reverse</code> acting on an array. So, to reverse a string,
+we split it into an array of characters, reverse the array, then join
+it back together.</p>
+
+<p>This leads to the following lines (at this point, the read in number
+is in the string variable <code>line</code>):</p>
+
+<pre><code>let bin = (+line) . toString (2)
+console . log (bin == bin . split ("") . reverse () . join ("") ? 1 : 0)
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-118/abigail/node/ch-1.js">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>Python</h3>
+
+<div class = "section">
+<p>To get a binary representation, we use <code>format</code>, using <code>{:b}</code>
+as the format string (<code>line</code> is our input):</p>
+
+<pre><code>bin = '{:b}' . format (int (line))
+</code></pre>
+
+<p>Reversing a string is done by taking a slice of the string, getting
+all the characters but stepping one-by-one from the end:</p>
+
+<pre><code>if bin == bin [::-1]:
+    print (1)
+else:
+    print (0)
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-118/abigail/python/ch-1.py">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>Ruby</h3>
+
+<p>Ruby makes it easy to get a binary representation (<code>dec</code> is our input):</p>
+
+<pre><code>bin = "%b" % dec
+</code></pre>
+
+<p>Its <code>reverse</code> method acts on strings:</p>
+
+<pre><code>puts (bin == bin . reverse ? 1 : 0)
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-118/abigail/ruby/ch-1.rb">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+
+<hr id = 'last-line'>
+<div class = 'trailer'>
+<p class = 'prev'><a class = "prev" href = "">&#x261C;</a></p>
+<p class = 'issue'>Please leave any comments as a
+  <a href = 'https://github.com/Abigail/Abigail.github.io/issues'
+     title = 'GitHub issue'>GitHub issue</a>.
+<p class = 'next'><a class = "next" href = "">&#x261E;</a></p>
+</div>
+
+</body>
+</html>
