@@ -209,6 +209,83 @@ printf ("%d\n", is_palin);
 <p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-118/abigail/c/ch-1.c">full program</a> on <a href="https://github.com">GitHub</a>.</p>
 </div>
 
+<h3>Go</h3>
+
+<div class = "section">
+<p>For Go, we start off with a helper function which returns the 
+reverse of a string:</p>
+
+<pre><code>func reverse (str string) string {
+    rev := [] rune (str)
+    for i, j := 0, len (rev) - 1; i &lt; j; i, j = i + 1, j - 1 {
+        rev [i], rev [j] = rev [j], rev [i]
+    }
+    return string (rev)
+}
+</code></pre>
+
+<p>To get the binary representation of an integer, we make use of
+the <code>FormatInt</code> method in the <code>strconv</code> package. Which leads
+to the following main program:</p>
+
+<pre><code>func main () {
+    var dec int64
+    for {
+        var n, err = fmt . Scanf ("%d", &amp;dec)
+        if (n != 1 || err != nil) {
+            break
+        }
+        var bin = strconv . FormatInt (dec, 2)
+        if (bin == reverse (bin)) {
+            fmt . Println (1)
+        } else {
+            fmt . Println (0)
+        }
+    }
+}
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-118/abigail/go/ch-1.go">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>Java</h3>
+
+<div class = "section">
+<p>Java has the <code>toBinaryString</code> method in the <code>Integer</code> class, which we
+use to get the binary representation of the number. The
+<code>StringBuilder</code> class has a <code>reverse</code> method. </p>
+
+<p>So we get:</p>
+
+<pre><code>public class ch1 {
+    public static void main (String [] args) {
+        Scanner scanner = new Scanner (System . in);
+        try {
+            while (true) {
+                int    dec = scanner . nextInt ();
+                String bin = Integer . toBinaryString (dec);
+
+                if (bin . equals (new StringBuilder (bin) .
+                                  reverse () . toString ())) {
+                    System . out . println (1);
+                }
+                else {
+                    System . out . println (0);
+                }
+            }
+        }
+        catch (Exception e) {
+            //   
+            // EOF
+            //
+        }
+    }
+}
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-118/abigail/java/ch-1.java">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
 <h3>Lua</h3>
 
 <div class = "section">
