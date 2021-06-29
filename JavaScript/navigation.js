@@ -5,6 +5,7 @@
 let PWC = "Perl-Weekly-Challenge";
 
 let pages = [
+    ["week-104-1", "FUCS Sequence"],
     ["week-104-2", "NIM Game"],
     ["week-105-1", "Nth root"],
     ["week-106-1", "Maximum Gap"],
