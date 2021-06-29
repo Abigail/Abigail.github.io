@@ -1,5 +1,5 @@
 //
-// Function to set the links for the prev/next links
+// Function to set the links for the prev/next links.
 //
 
 let PWC = "Perl-Weekly-Challenge";
