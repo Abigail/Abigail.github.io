@@ -1,0 +1,173 @@
+<html>
+<head>
+<title>Perl Weekly Challenge 103: What's playing?</title>
+<script src = "https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id = "MathJax-script" async src = "https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.js"></script>
+<script src = '../../JavaScript/jquery.js'></script>
+<script src = '../../JavaScript/navigation.js'></script>
+<link rel = 'preconnect' href = 'https://fonts.gstatic.com'>
+<link rel = 'stylesheet' href = 'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
+<link rel = 'stylesheet' href = '../../Styles/Perl-Weekly-Challenge/main.css'>
+</head>
+
+<body><h1>Perl Weekly Challenge 103: What's playing?</h1><div class = "byline">
+by Abigail<br>
+<img src = "../../Images/jan_sluiters.jpg">
+</div>
+
+
+<h2><a href="https://theweeklychallenge.org/blog/perl-weekly-challenge-103/#TASK1">Challenge</a></h2>
+
+<blockquote>
+  <p>Working from home, you decided that on occasion you wanted some
+  background noise while working. You threw together a network streamer
+  to continuously loop through the files and launched it in a tmux
+  (or screen) session, giving it a directory tree of files to play.
+  During the day, you connected an audio player to the stream, listening
+  through the workday, closing it when done.</p>
+  
+  <p>For weeks you connect to the stream daily, slowly noticing a gradual
+  drift of the media. After several weeks, you take vacation. When
+  you return, you are pleasantly surprised to find the streamer still
+  running. Before connecting, however, if you consider the puzzle of
+  determining which track is playing.</p>
+  
+  <p>After looking at a few modules to read info regarding the media, a
+  quick bit of coding gave you a file list. The file list is in a
+  simple CSV format, each line containing two fields: the first the
+  number of milliseconds in length, the latter the media'a title (this
+  example is of several episodes available from the MercuryTheatre.info):</p>
+
+<pre><code>1709363,"Les Miserables Episode 1: The Bishop (broadcast date: 1937-07-23)"
+1723781,"Les Miserables Episode 2: Javert (broadcast date: 1937-07-30)"
+1723781,"Les Miserables Episode 3: The Trial (broadcast date: 1937-08-06)"
+1678356,"Les Miserables Episode 4: Cosette (broadcast date: 1937-08-13)"
+1646043,"Les Miserables Episode 5: The Grave (broadcast date: 1937-08-20)"
+1714640,"Les Miserables Episode 6: The Barricade (broadcast date: 1937-08-27)"
+1714640,"Les Miserables Episode 7: Conclusion (broadcast date: 1937-09-03)"
+</code></pre>
+  
+  <p>For this script, you can assume to be provided the following information:</p>
+  
+  <ul>
+  <li>the value of <code>$^T</code> (<code>$BASETIME</code>) of the streamer script,</li>
+  <li>the value of <code>time()</code>, and</li>
+  <li>a CSV file containing the media to play consisting of the length
+  in milliseconds and an identifier for the media (title, filename, or other).</li>
+  </ul>
+  
+  <p>Write a program to output which file is currently playing. For purposes
+  of this script, you may assume gapless playback, and format the output
+  as you see fit.</p>
+  
+  <p>Optional: Also display the current position in the media as a time-like value.</p>
+</blockquote>
+
+<h3>Example</h3>
+
+<blockquote>
+<pre><code>Input: 3 command line parameters: start time, current time, file name
+
+    # starttime
+    1606134123
+
+    # currenttime
+    1614591276
+
+    # filelist.csv
+
+Output:
+
+    "Les Miserables Episode 1: The Bishop (broadcast date: 1937-07-23)"
+    00:10:24
+</code></pre>
+</blockquote>
+
+<h2>Solution</h2>
+
+<div class = "section">
+<p>We have to be careful here. The given start time, and current time
+are given in <em>seconds</em>, while the duration periods are given in
+<em>milli seconds</em>. We will therefore multiply the start time and
+current time (or rather, the difference between them) by <code>1000</code>,
+so we can do all the calculations using integers. (We need 64 bit
+integers &mdash; in the given example, the holiday lasted for almost 14
+weeks; 5 weeks in milliseconds just fit a 32-bit integer).</p>
+
+<p>We will take input from standard input, assuming lines with three
+values (a start time, a current time, and a file name) on each line;
+values separated by white space. (We also assume the file name does
+not contain white space).</p>
+
+<p>We will read the content of the given array; the track info will
+be put into an array (both the run time of the track, and its title
+as separate entries). We will also sum the track lengths &mdash; this
+sum is the time it takes to play the full play list (<code>total_time</code>).</p>
+
+<p>Subtracting the start time from the current time gives us the time
+passed since we started (<code>time_diff</code>). We're not interested in the
+complete loops, so we mod <code>time_diff</code> with <code>total_time</code>, giving us
+the number of milliseconds passed since the last time the play list
+was started from the top.</p>
+
+<p>We can now iterate over the array. If the track length is larger
+than <code>time_diff</code>, this is the track currently playing. We then print
+the track and current position, and we're done. Else, we subtract
+the track length from <code>time_diff</code>, and check the next track.</p>
+</div>
+
+<h3>Perl</h3>
+
+<p>Reading the input, and calculating the time difference in milli-seconds:</p>
+
+<pre><code>open my $fh, "&lt;", $file_name or die "open '$file_name': $!";
+my @tracks;
+my $total_time = 0;  # Total time to play the entire set of tracks;
+                     # in milliseconds.
+while (&lt;$fh&gt;) {
+    my ($play_time, $title) = split /\s*,\s*/ =&gt; $_, 2;
+    push @tracks =&gt; [$play_time =&gt; $title];
+    $total_time += $play_time;
+}
+</code></pre>
+
+<p>Ignore the playing of the full loops:</p>
+
+<pre><code>$time_diff %= $total_time;
+</code></pre>
+
+<p>Finding the right track, and printing the results. Note that we
+print the position in seconds, so we have to divide <code>$time_diff</code>
+by <code>1000</code>. We also want integer division in this sections, hence
+the use of <code>use integer</code>:</p>
+
+<pre><code>foreach my $track (@tracks) {
+    if ($time_diff - $$track [0] &lt; 0) {
+        use integer;
+        $time_diff    =  $time_diff / 1000;  # Back to seconds.
+        my $hours     =  $time_diff / 3600;
+        my $minutes   = ($time_diff % 3600) / 60;
+        my $seconds   = ($time_diff         % 60);
+        say $$track [1],
+            sprintf ("%02d:%02d:%02d" =&gt; $hours, $minutes, $seconds) =~
+                    s/^00://r;  # Remove leading '00:' for track
+                                # shorter than an hour.
+        last;
+    }
+    $time_diff -= $$track [0];
+}
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-103/abigail/perl/ch-2.pl">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+
+<hr id = 'last-line'>
+<div class = 'trailer'>
+<p class = 'prev'><a class = "prev" href = "">&#x261C;</a></p>
+<p class = 'issue'>Please leave any comments as a
+  <a href = 'https://github.com/Abigail/Abigail.github.io/issues'
+     title = 'GitHub issue'>GitHub issue</a>.
+<p class = 'next'><a class = "next" href = "">&#x261E;</a></p>
+</div>
+
+</body>
+</html>
