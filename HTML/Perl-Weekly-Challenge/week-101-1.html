@@ -1,0 +1,778 @@
+<html>
+<head>
+<title>Perl Weekly Challenge 101: Pack a Spiral</title>
+<script src = "https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id = "MathJax-script" async src = "https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.js"></script>
+<script src = '../../JavaScript/jquery.js'></script>
+<script src = '../../JavaScript/navigation.js'></script>
+<link rel = 'preconnect' href = 'https://fonts.gstatic.com'>
+<link rel = 'stylesheet' href = 'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
+<link rel = 'stylesheet' href = '../../Styles/Perl-Weekly-Challenge/main.css'>
+</head>
+
+<body><h1>Perl Weekly Challenge 101: Pack a Spiral</h1><div class = "byline">
+by Abigail<br>
+<img src = "../../Images/jan_sluiters.jpg">
+</div>
+
+
+<h2><a href="https://perlweeklychallenge.org/blog/perl-weekly-challenge-101/#TASK1">Challenge</a></h2>
+
+<blockquote>
+  <p>You are given an array <code>@A</code> of items (integers say, but they can be anything).</p>
+  
+  <p>Your task is to pack that array into an <code>MxN</code> matrix spirally
+  counterclockwise, as tightly as possible.</p>
+  
+  <p>'Tightly' means the absolute value <code>|M-N|</code> of the difference has
+  to be as small as possible.</p></div></p>
+</blockquote>
+
+<h3>Examples</h3>
+
+<h4>Example 1</h4>
+
+<blockquote>
+<pre><code>Input: @A = (1,2,3,4)
+
+Output:
+
+    4 3
+    1 2
+</code></pre>
+  
+  <p>Since the given array is already a 1x4 matrix on its own, but that's
+  not as tight as possible. Instead, you'd spiral it counterclockwise
+  into</p>
+
+<pre><code>    4 3
+    1 2
+</code></pre>
+</blockquote>
+
+<h4>Example 2</h4>
+
+<blockquote>
+<pre><code>Input: @A = (1..6)
+
+Output:
+
+    6 5 4
+    1 2 3
+
+or
+
+    5 4
+    6 3
+    1 2
+</code></pre>
+  
+  <p>Either will do as an answer, because they're equally tight.</p>
+</blockquote>
+
+<h4>Example 3</h4>
+
+<blockquote>
+<pre><code>Input: @A = (1..12)
+
+Output:
+
+    9  8  7 6
+   10 11 12 5
+    1  2  3 4
+
+or
+
+    8  7 6
+    9 12 5
+   10 11 4
+    1  2 3
+</code></pre>
+</blockquote>
+
+<h3>Notes</h3>
+
+<div class = "section">
+<p>The challenge defines tightly purely based on size of the initial
+array &mdash; lengths of the elements do not have to be taken into
+account. This is clear from the third example, the first solution
+takes an area of 30 characters (3 lines of 10 characters), the
+second takes an area of 28 characters (4 lines of 7 characters),
+yet both are acceptable.</p>
+</div>
+
+<h2>Solution</h2>
+
+<h3>Overview</h3>
+
+<div class = "section">
+<p>The task can be broken down into various parts:</p>
+
+<ol>
+<li>Read in the data, and parse it into individual elements.</li>
+<li>Determine the width and height of the resulting matrix.</li>
+<li>Fill in the resulting matrix</li>
+<li>Print the resulting matrix.</li>
+</ol>
+</div>
+
+<h4>Read in data</h4>
+
+<div class = "section">
+<p>The first sub task is pretty easy. It's not given how we will be
+given the array <code>@A</code>; therefore, we assume elements are on the first
+line of standard input, separated by white space.</p>
+</div>
+
+<h4>Determine width and height</h4>
+
+<div class = "section">
+<p>To determine the width and height, we have to factor <code>N</code>, where <code>N</code>
+is the number of elements. This typically is a hard problem,
+exponential in the number of bits of <code>N</code>. But the size of the input
+is exponential in the number of bit of <code>N</code> anyway &mdash; which means
+that if we use a simple try-everything method, we still don't exceed
+linear time (in the size of the input).</p>
+
+<p>What we will do is start with \(h = \lfloor
+\sqrt{N}\rfloor\) and decrement <span class = 'latex-inline'>\(h\)</span> until <span class = 'latex-inline'>\(N \mod h = 0\)</span>.
+At that moment <span class = 'latex-inline'>\(h\)</span> will be the height of the resulting matrix,
+and <span class = 'latex-inline'>\(N / h\)</span> be the width.</p>
+</div>
+
+<h4>Fill in the matrix</h4>
+
+<div class = "section">
+<p>The fill in the matrix, we use a couple of variables: <code>min_x</code>,
+<code>max_x</code>, <code>min_y</code>, <code>max_y</code>, <code>x</code>, <code>y</code>, and <code>direction</code>. The first
+four keep track of the minimum/maximum rows and columns of the
+matrix with have to filled in. <code>min_x</code> and <code>min_y</code> will start off
+as 0 (or 1 for languages where array indices start at 1). <code>max_x</code>
+and <code>max_y</code> start off as the height and width (minus 1 for languages
+where array indices start at 0) of the resulting matrix.</p>
+
+<p><code>x</code> and <code>y</code> are the coordinates to be filled in next; we start off
+with <code>x = max_x</code> and <code>y = min_y</code> &mdash; the bottom left of the matrix.
+We head off to the right (for which we use <code>direction</code> to keep
+track). We now fill in the bottom row of the matrix with the first
+<code>W</code> elements (where <code>W</code> is the width of the matrix). Each time we
+fill in an element, we increment <code>y</code> &mdash; until we hit the corner.
+At that moment, our new direction becomes up, and we will now start
+decrementing <code>y</code> (while keeping <code>x</code> constant). And since we have
+filled in the bottom row, we decrement `max_x.</p>
+
+<p>We continue this process, filling the matrix one row and column at
+a time, turning at each corner, until we have filled in the matrix.</p>
+</div>
+
+<h4>Print the matrix</h4>
+
+<div class = "section">
+<p>We will first make a pass over the matrix to determine the width
+of each column. For each column, we look at each row, and determine
+the width of the element on that position. We keep track of the
+maximum of those widths for each column.</p>
+
+<p>Given the widths, it's easy to print out the matrix, so each column
+is aligned.</p>
+</div>
+
+<h3>Perl</h3>
+
+<div class = "section">
+<p>We start off by setting some constants for directions:</p>
+
+<pre><code>my $RIGHT = 0;
+my $UP    = 1;
+my $LEFT  = 2;
+my $DOWN  = 3;
+</code></pre>
+
+<p>Reading data is easy.</p>
+
+<pre><code>my @elements = split ' ' =&gt; scalar &lt;&gt;;
+</code></pre>
+
+<p>We can now calculate the necessary height and width:</p>
+
+<pre><code>my $h = int sqrt @elements;
+for (;@elements % $h;) {
+    $h --;
+}
+
+my $w = @elements / $h;
+</code></pre>
+
+<p>Filling in the matrix, as described above:</p>
+
+<pre><code>my $matrix;
+my ($min_x, $max_x, $min_y, $max_y) = (0, $h - 1, 0, $w - 1);
+my $x = $max_x;
+my $y = $min_y;
+my $direction = $RIGHT;
+foreach my $element (@elements) {
+    $$matrix [$x] [$y] = $element;
+    my $turn = 0;
+    if ($direction == $RIGHT) {
+        if   ($y &gt;= $max_y) {$turn = 1; $x --; $max_x --}
+        else {$y ++}
+    }
+    if ($direction == $UP) {
+        if   ($x &lt;= $min_x) {$turn = 1; $y --; $max_y --}
+        else {$x --}
+    }
+    if ($direction == $LEFT) {
+        if   ($y &lt;= $min_y) {$turn = 1; $x ++; $min_x ++}
+        else {$y --}
+    }
+    if ($direction == $DOWN) {
+        if   ($x &gt;= $max_x) {$turn = 1; $y ++; $min_y ++}
+        else {$x ++}
+    }
+    if ($turn) {
+        $direction ++;
+        $direction %= 4;
+    }
+}
+</code></pre>
+
+<p>Find out the width of each column:</p>
+
+<pre><code>my @widths = map {my $y = $_;
+                  max map {length $$matrix [$_] [$y]} 0 .. $h - 1}
+                  0 .. $w - 1;
+</code></pre>
+
+<p>Print the matrix:</p>
+
+<pre><code>foreach my $row (@$matrix) {
+    for (my $y = 0; $y &lt; @$row; $y ++) {
+        my $width = $widths [$y];
+        printf "%s%${width}s" =&gt; $y ? " " : "", $$row [$y];
+    }
+    print "\n";
+}
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-101/abigail/perl/ch-1.pl">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>AWK</h3>
+
+<div class = "section">
+<p>The AWK solution is very similar to the Perl solution &mdash; except
+that AWK doesn't have support for 2-D arrays. So, we introduce a
+method which takes an x and a y coordinate, the width and height
+of the matrix, and which then returns a single coordinate.</p>
+
+<pre><code>function idx (x, y, h, w) {
+    return x * w + y + 1
+}
+</code></pre>
+
+<p>The rest is a straight translation of our Perl solution:</p>
+
+<pre><code>BEGIN {
+    RIGHT = 0
+    UP    = 1
+    LEFT  = 2
+    DOWN  = 3
+}   
+
+{   
+    #
+    # Get the data; we're assuming it's one a single line,
+    # seperated by white space.  
+    #
+    split ($0, elements)
+
+    #
+    # Find optimal sizes: width w and height h
+    # We start at the square root, and count downwards till we
+    # have a divider.
+    #
+    n = length (elements)
+    h = int (sqrt (n)) 
+    for (;n % h;) {
+        h --
+    }
+    w = n / h
+
+    #
+    # Fill the matrix, starting from the bottom left
+    #
+    min_x = 0
+    max_x = h - 1
+    min_y = 0
+    max_y = w - 1
+    x = max_x
+    y = 0
+    direction = RIGHT
+    for (i = 1; i &lt;= length (elements); i ++) {
+        matrix [idx(x, y, h, w)] = elements [i]
+        turn = 0
+        if (direction == RIGHT) {
+            if   (y &gt;= max_y) {turn = 1; x --; max_x --}
+            else {y ++}
+        }
+        if (direction == UP) {
+            if   (x &lt;= min_x) {turn = 1; y --; max_y --}
+            else {x --}
+        }
+        if (direction == LEFT) {
+            if   (y &lt;= min_y) {turn = 1; x ++; min_x ++}
+            else {y --}
+        }
+        if (direction == DOWN) {  
+            if   (x &gt;= max_x) {turn = 1; y ++; min_y ++}
+            else {x ++}
+        }
+        if (turn) {  
+            direction ++
+            direction %= 4
+        }
+    }
+
+    #
+    # Find the max widths for each columns.
+    #
+    for (y = 0; y &lt; w; y ++) {
+        max = 0;
+        for (x = 0; x &lt; h; x ++) {
+            l = length (matrix [idx(x, y, h, w)])
+            if (l &gt; max) {
+                max = l
+            }
+        }
+        widths [y + 1] = max
+    }
+
+    #
+    # Print the matrix, with each column outlined
+    #
+    for (x = 0; x &lt; h; x ++) {
+        for (y = 0; y &lt; w; y ++) {
+            width = widths [y + 1]
+            format = "%s%" width "s"
+            printf (format, y == 0 ? "" : " ", matrix [idx(x, y, h, w)])
+        }
+        printf ("\n")
+    }
+}
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-101/abigail/awk/ch-1.awk">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>Bash</h3>
+
+<div class = "section">
+<p>Bash does not have 2-D arrays either, so we use an index function
+like we did with AWK:</p>
+
+<pre><code>function idx () {
+    index=$(($1 * $4 + $2))
+}
+</code></pre>
+
+<p>Note that in Bash, functions don't return anything, so we use a
+global variable, <code>index</code> to return the index. Bash function also
+don't use parameter names &mdash; instead it uses positional variables
+for the input parameter.</p>
+
+<p>Another thing Bash lacks is arithmetic for floating point numbers,
+so we lack a <code>sqrt</code> method. Instead of counting down, we count up,
+and keep track of the largest proper divisor of the size of the
+input array:</p>
+
+<pre><code>read -a elements
+height=1
+n=${#elements[*]}
+for  ((h = 2; h &lt;= n / h; h ++))
+do   if   ((!(n % h)))
+     then height=$h
+     fi
+done
+width=$((n / height))
+</code></pre>
+
+<p>Note the use of <code>(( ))</code> and <code>$(( ))</code>; this is how we do arithmetic in Bash.</p>
+
+<p>We can now fill in the matrix:</p>
+
+<pre><code>RIGHT=0
+UP=1
+LEFT=2
+DOWN=3
+
+declare -a matrix
+min_x=0
+max_x=$((height - 1))
+min_y=0
+max_y=$((width - 1))  
+x=$max_x
+y=$min_y
+direction=$RIGHT
+
+for ((i = 0; i &lt; n; i ++))
+do  idx $x $y $height $width
+    matrix[$index]=${elements[$i]}
+    turn=0
+    if   ((direction == RIGHT))
+    then if   ((y &gt;= max_y))
+         then turn=1; ((x --)); ((max_x --))
+         else ((y ++))
+         fi
+    fi
+    if   ((direction == UP))
+    then if   ((x &lt;= min_x))
+         then turn=1; ((y --)); ((max_y --))
+         else ((x --))
+         fi
+    fi
+    if   ((direction == LEFT))
+    then if   ((y &lt;= min_y))
+         then turn=1; ((x ++)); ((min_x ++))
+         else ((y --))
+         fi
+    fi
+    if   ((direction == DOWN))
+    then if   ((x &gt;= max_x))
+         then turn=1; ((y ++)); ((min_y ++))
+         else ((x ++))
+         fi
+    fi
+    if   ((turn == 1))
+    then ((direction ++))
+         ((direction %= 4))
+    fi
+done
+</code></pre>
+
+<p>Finding the columns widths and printing the results:</p>
+
+<pre><code>declare -a widths
+for  ((y = 0; y &lt; width; y ++))
+do   max=0
+     for ((x = 0; x &lt; height; x ++))
+     do  idx $x $y $height $width
+         element=${matrix[$index]}
+         if   ((max &lt; ${#element}))
+         then max=${#element}
+         fi
+     done
+     widths[$y]=$max
+done
+
+for  ((x = 0; x &lt; height; x ++))
+do   for  ((y = 0; y &lt; width; y ++))
+     do   idx  $x $y $height $width
+          if   ((y))
+          then printf " "
+          fi
+          printf %${widths[$y]}s ${matrix[$index]}
+     done
+     echo
+done
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-101/abigail/bash/ch-1.sh">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>C</h3>
+
+<div class = "section">
+<p>C requires more work, as we need to do the memory allocation ourselves. While we can read in our array of data and have it split on whitespace in a single line of code in many languages, we need a lot more code in C:</p>
+
+<pre><code>int main (void) {
+    char *  line    = NULL;   
+    size_t  len     = 0;
+    size_t  line_len;
+
+    while ((line_len = getline (&amp;line, &amp;len, stdin)) != -1) {
+        /*
+         * Count the number of elements, so we know how much to allocate.
+         */
+        size_t count = 0;
+        for (size_t i = 1; i &lt;= line_len; i ++) {
+            if (isspace (line [i]) &amp;&amp; !isspace (line [i - 1])) {
+                count ++;   
+            }
+        }
+        /*
+         * Allocate memory for elements
+         */  
+        char ** elements;
+        if ((elements = (char **) malloc (count * sizeof (char *))) == NULL) {
+            perror ("Failed to malloc 'elements'");
+            exit (1);
+        }
+
+        /*
+         * Iterate over the string again; now find the beginning
+         * of all the 'words', and allocate them to the elements
+         * array; make every space a NUL character, so each element
+         * is terminated.
+         */
+        size_t c = 0;
+        for (size_t i = 0; i &lt; line_len; i ++) {
+            if (!isspace (line [i]) &amp;&amp; (!i || !line [i - 1])) {
+                elements [c ++] = line + i;
+            }
+            if (isspace (line [i])) {
+                line [i] = '\0';
+            }
+        }
+</code></pre>
+
+<p>Calculate the size of the resulting matrix, and allocate memory for it:</p>
+
+<pre><code>        /*
+         * Determine the width and height of the resulting matrix
+         */
+        size_t height = (size_t) floor (sqrt (count));
+        for (;count % height;) {
+            height --;
+        }
+        size_t width = count / height;
+
+        /*
+         * Allocate memory for the resulting matrix
+         */
+        char *** matrix;
+        if ((matrix = (char ***) malloc (height * sizeof (char **))) == NULL) {
+            perror ("Failed to malloc 'matrix'");
+            exit (1);
+        }
+        for (size_t x = 0; x &lt; height; x ++) {
+            if ((matrix [x] = (char **) malloc
+                                       (width * sizeof (char *))) == NULL) {
+                perror ("Failed to malloc row for 'matrix'");
+                exit (1);
+            }
+        }
+</code></pre>
+
+<p>Filling in the matrix:</p>
+
+<pre><code># define RIGHT  0
+# define UP     1
+# define LEFT   2
+# define DOWN   3
+
+        short  direction = RIGHT;
+        size_t min_x = 0;
+        size_t max_x = height - 1;
+        size_t min_y = 0;
+        size_t max_y = width  - 1;
+        size_t x = max_x;
+        size_t y = min_y;
+        for (size_t i = 0; i &lt; count; i ++) {
+            matrix [x] [y] = elements [i];
+            bool turn = false;
+            if (direction == RIGHT) {
+                if   (y &gt;= max_y) {turn = true; x --; max_x --;}
+                else {y ++;}
+            }
+            if (direction == UP) {
+                if   (x &lt;= min_x) {turn = true; y --; max_y --;}
+                else {x --;}
+            }
+            if (direction == LEFT) {
+                if   (y &lt;= min_y) {turn = true; x ++; min_x ++;}
+                else {y --;}
+            }
+            if (direction == DOWN) {
+                if   (x &gt;= max_x) {turn = true; y ++; min_y ++;}
+                else {x ++;}
+            }
+            if (turn) {  
+                direction ++;
+                direction %= 4;
+            }
+        }
+</code></pre>
+
+<p>Determine width of each column, and print the matrix:</p>
+
+<pre><code>        /*
+         * Determine the width of each column.
+         */
+        size_t * widths;
+        if ((widths = (size_t *) malloc (width * sizeof (size_t))) == NULL) {
+            perror ("Failed to malloc 'widths'");
+            exit (1);
+        }
+        for (size_t y = 0; y &lt; width; y ++) {
+            size_t max = 0;
+            for (size_t x = 0; x &lt; height; x ++) {
+                if (max &lt; strlen (matrix [x] [y])) {
+                    max = strlen (matrix [x] [y]);
+                }
+            }
+            widths [y] = max;
+        } 
+
+        /* 
+         * Print out the matrix
+         */
+        char format [15];  /* We can safely assume no element from the
+                            * input is longer than 2^32 characters wide.
+                            * (And (size_t) -1 on our box is 2^32 - 1 anyway.)
+                            * '%s%Ws' is hence at most 15 characters, if
+                            * W does not exceed 10 characters, and there is
+                            * a terminating NUL character */
+        for (size_t x = 0; x &lt; height; x ++) {
+            for (size_t y = 0; y &lt; width; y ++) {
+                sprintf (format, "%%s%%%zus", widths [y]);
+                 printf (format, y ? " " : "", matrix [x] [y]);
+            }
+            printf ("\n");
+        }
+</code></pre>
+
+<p>As this is C, we need to free up the memory we allocated:</p>
+
+<pre><code>        free (widths);
+        for (size_t x = 0; x &lt; height; x ++) {
+            free (matrix [x]);
+        }
+        free (matrix);
+        free (elements);
+    }
+    free (line);
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-101/abigail/c/ch-1.c">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>Lua</h3>
+
+<pre><code>local line = io . read ()
+local elements = {}
+for element in line : gmatch ("%S+") do
+    elements [#elements + 1] = element
+end 
+
+--
+-- Calculate the optimal width and height
+--
+local height = math . floor (math . sqrt (#elements))
+while #elements % height &gt; 0 do
+    height = height - 1
+end
+local width = #elements / height
+
+--
+-- Fill the matrix, starting from the bottom left
+--
+local min_x     = 1
+local max_x     = height
+local min_y     = 1
+local max_y     = width
+local x         = max_x
+local y         = min_y
+local direction = RIGHT
+
+--
+-- Initialize the matrix
+--
+local matrix = {}
+for x = 1, height do
+    matrix [x] = {}
+end 
+
+for i = 1, #elements do
+    matrix [x] [y] = elements [i]
+    local turn = 0
+
+    if   direction == RIGHT
+    then if   y &gt;= max_y
+         then turn =  1
+              x = x - 1
+              max_x = max_x - 1
+         else y = y + 1
+         end
+    end
+
+    if   direction == UP
+    then if   x &lt;= min_x
+         then turn =  1
+              y = y - 1
+              max_y = max_y - 1
+         else x = x - 1
+         end
+    end
+
+    if   direction == LEFT
+    then if   y &lt;= min_y
+         then turn =  1
+              x = x + 1
+              min_x = min_x + 1
+         else y = y - 1
+         end
+    end
+
+    if   direction == DOWN
+    then if   x &gt;= max_x
+         then turn =  1
+              y = y + 1
+              min_y = min_y + 1
+         else x = x + 1
+         end   
+    end
+
+    if   turn &gt; 0
+    then direction = (direction + 1) % 4
+    end
+
+end 
+
+--  
+-- Find the maximum widths in each column
+--
+local widths = {}
+for  y = 1, width
+do   local max = 0
+     for x = 1, height
+     do   if   max &lt; #matrix [x] [y]
+          then max = #matrix [x] [y]
+          end
+     end    
+     widths [y] = max
+end
+
+
+--
+-- Pretty print the matrix
+--
+for  x = 1, height
+do   for  y = 1, width 
+     do   if   y &gt; 1   
+          then io . write (" ")
+          end
+          local format = "%" .. widths [y] .. "s"
+          io . write (string . format (format, matrix [x] [y]))
+     end
+     io . write ("\n")
+end
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-101/abigail/lua/ch-1.lua">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+
+<h3>Other languages</h3>
+
+<p>We also have implementations in <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-101/abigail/node/ch-1.js">Node.js</a>, <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-101/abigail/python/ch-1.py">Python</a>,
+and <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-101/abigail/ruby/ch-1.rb">Ruby</a>.</p>
+
+<hr id = 'last-line'>
+<div class = 'trailer'>
+<p class = 'prev'><a class = "prev" href = "">&#x261C;</a></p>
+<p class = 'issue'>Please leave any comments as a
+  <a href = 'https://github.com/Abigail/Abigail.github.io/issues'
+     title = 'GitHub issue'>GitHub issue</a>.
+<p class = 'next'><a class = "next" href = "">&#x261E;</a></p>
+</div>
+
+</body>
+</html>
