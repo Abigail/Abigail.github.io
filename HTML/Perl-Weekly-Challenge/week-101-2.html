@@ -1,0 +1,409 @@
+<html>
+<head>
+<title>Perl Weekly Challenge 101: Origin-containing Triangle</title>
+<script src = "https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id = "MathJax-script" async src = "https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.js"></script>
+<script src = '../../JavaScript/jquery.js'></script>
+<script src = '../../JavaScript/navigation.js'></script>
+<link rel = 'preconnect' href = 'https://fonts.gstatic.com'>
+<link rel = 'stylesheet' href = 'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
+<link rel = 'stylesheet' href = '../../Styles/Perl-Weekly-Challenge/main.css'>
+</head>
+
+<body><h1>Perl Weekly Challenge 101: Origin-containing Triangle</h1><div class = "byline">
+by Abigail<br>
+<img src = "../../Images/jan_sluiters.jpg">
+</div>
+
+
+<h2><a href="https://theweeklychallenge.org/blog/perl-weekly-challenge-101/#TASK2">Challenge</a></h2>
+
+<blockquote>
+  <p>You are given three points in the plane, as a list of six
+  co-ordinates: <code>A = (x1, y1)</code>, <code>B = (x2, y2)</code> and <code>C = (x3, y3)</code>.</p>
+  
+  <p>Write a script to find out if the triangle formed by the given
+  three co-ordinates contain origin <code>(0, 0)</code>.</p>
+  
+  <p>Print <code>1</code> if found otherwise <code>0</code>.</p>
+</blockquote>
+
+<h3>Example 1</h3>
+
+<blockquote>
+<pre><code>Input: A = (0, 1), B = (1, 0) and C = (2, 2)
+Output: 0
+</code></pre>
+</blockquote>
+
+<p>Because that triangle does not contain <code>(0, 0)</code>.</p>
+
+<h3>Example 2</h3>
+
+<blockquote>
+<pre><code>Input: A = (1, 1), B = (-1, 1) and C = (0, -3)
+Output: 0
+</code></pre>
+</blockquote>
+
+<p>Because that triangle contain <code>(0, 0)</code> in its interior.</p>
+
+<h3>Example 1</h3>
+
+<blockquote>
+<pre><code>Input: A = (0, 1), B = (2, 0) and C = (-6, 2)
+Output: 0
+</code></pre>
+</blockquote>
+
+<p>Because <code>(0, 0)</code> is on the edge connecting B and C.</p>
+
+<h2>Solution</h2>
+
+<div class = "section">
+<p>To determine whether a point lies inside a triangle, look at the
+lines connecting subsequent points; that is, look at the line through
+<code>A</code> and <code>B</code>, the line through <code>B</code> and <code>C</code>, and the line through <code>C</code>
+and <code>A</code>. (Direction is important here). A point lies inside the
+triangle if it lies to the <em>same side</em> of each of those lines &mdash;
+that is, either to the left, or the the right of each of those
+lines. If we consider a point to be inside the triangle if it lies
+on the line, then it becomes either left or on each of the lines,
+or right or on each of the lines.</p>
+
+<p>There is a simple formula to determine whether a point lies to the
+right, the left, or on a line given two points on that line. <a href="https://programmingblog702692439.wordpress.com/?p=1744&amp;preview=true">This
+stackoverflow
+question</a>
+has an example (by <a href="https://stackoverflow.com/users/233522/kornel-kisielewicz">Kornel
+Kisielewicz</a>):</p>
+
+<pre><code>float sign (fPoint p1, fPoint p2, fPoint p3) {
+    return (p1.x - p3.x) * (p2.y - p3.y) - (p2.x - p3.x) * (p1.y - p3.y);
+}
+</code></pre>
+
+<p>This function returns a negative number if point <code>p1</code> lies to the
+left on the line through <code>p2</code> and <code>p3</code>, and a positive number if
+<code>p1</code> lies to the right of that line. If it lies on the line, <code>0</code>
+is returned.</p>
+
+<p>Since we're interested in the origin, we can simplify this to:</p>
+
+<pre><code>sub side ($x1, $y1, $x2, $y2) {
+    ($y2 - $y1) * $x2 - ($x2 - $x1) * $y2;
+}
+</code></pre>
+
+<p>Note that we now are passing in the coordinates separately, instead
+of a structure.</p>
+
+<p>If we have the results of calling this function with each pair of
+points, all we need to check whether all results are either
+non-negative or non-positive. If this is the case, the origin lies
+in the triangle &mdash; otherwise, it does not.</p>
+
+<p>We will be assuming we get the coordinates of the triangles on
+standard input &mdash; each triangle on a separate line. Each line
+consists of six numbers, separated by white space.</p>
+</div>
+
+<h3>Perl</h3>
+
+<pre><code>while (&lt;&gt;) {
+    my ($x1, $y1, $x2, $y2, $x3, $y3) = split;
+
+    my $s1 = side ($x2, $y2, $x3, $y3);
+    my $s2 = side ($x3, $y3, $x1, $y1);
+    my $s3 = side ($x1, $y1, $x2, $y2);
+
+    say $s1 &lt;= 0 &amp;&amp; $s2 &lt;= 0 &amp;&amp; $s3 &lt;= 0 ||
+        $s1 &gt;= 0 &amp;&amp; $s2 &gt;= 0 &amp;&amp; $s3 &gt;= 0 ? 1 : 0
+}
+</code></pre>
+
+<p>We're using the <code>side</code> function we've shown above. Once we have
+three results, we check whether they are all less then or equal to
+<code>0</code>, or all greater than or equal to <code>0</code>; if so, we print <code>1</code>, else
+we print <code>0</code>.</p>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-101/abigail/perl/ch-2.pl">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+
+<h3>AWK</h3>
+
+<div class = "section">
+<p>The AWK solution is very similar to the Perl solution above. AWK
+automatically iterates over the input, and splits the input on white
+space, giving the fields as positional parameters (<code>$1</code>, <code>$2</code>, etc).
+This leads to the following program:</p>
+
+<pre><code>function side (x1, y1, x2, y2) {
+    return (y2 - y1) * x2 - (x2 - x1) * y2
+}
+
+{   
+    # x1 y1 x2 y2 x3 y3
+    # $1 $2 $3 $4 $5 $6
+    s1 = side($3, $4, $5, $6)
+    s2 = side($5, $6, $1, $2)
+    s3 = side($1, $2, $3, $4)
+
+    print (s1 &lt;= 0 &amp;&amp; s2 &lt;= 0 &amp;&amp; s3 &lt;= 0 ||
+           s1 &gt;= 0 &amp;&amp; s2 &gt;= 0 &amp;&amp; s3 &gt;= 0 ? 1 : 0)
+}
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-101/abigail/awk/ch-2.awk">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>Bash</h3>
+
+<div class = "section">
+<p>We can use the same algorithm in Bash. Bash does have its idiosyncrasies:
+functions don't have (useful) return values, and functions use
+positional parameters to handle input parameters. Arithmetic is
+done with <code>(( ))</code> and <code>$(( ))</code>.</p>
+
+<pre><code>function calc_side () {
+    #
+    # $1: x1; $2: y1; $3 = x2; $4 = y2
+    #
+    side=$((($4 - $2) * $3 - ($3 - $1) * $4))
+}   
+
+while read x1 y1 x2 y2 x3 y3
+do    calc_side x2 y2 x3 y3; s1=$side
+      calc_side x3 y3 x1 y1; s2=$side
+      calc_side x1 y1 x2 y2; s3=$side
+
+      echo $(( $s1 &lt;= 0 &amp;&amp; $s2 &lt;= 0 &amp;&amp; $s3 &lt;= 0 ||
+               $s1 &gt;= 0 &amp;&amp; $s2 &gt;= 0 &amp;&amp; $s3 &gt;= 0 ? 1 : 0 ))
+done
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-101/abigail/bash/ch-2.sh">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>Befunge-93</h3>
+
+<div class = "section">
+<p>We will use the same algorithm in Befunge-93. However, the program
+looks very differently. Unlike the solutions in the other languages,
+we only accept one line of input.</p>
+
+<pre><code>&amp;11p  &amp;21p  &amp;31p  &amp;41p  &amp;51p  &amp;61p          v
+
+ 61g 41g - 51g * 51g 31g - 61g * - 71p     v&gt;
+ 21g 61g - 11g * 11g 51g - 21g * - 81p    v&gt;
+ 41g 21g - 31g * 31g 11g - 41g * - 91p   v&gt;
+
+  71g0` #v_  81g0` #v_  91g0` #v_ v      &gt;
+v        &lt;          &lt;          &lt;  &gt;            "1" v
+&gt;071g ` #v_ 081g ` #v_ 091g ` #v_ ^                &gt;, 55+, @
+         &gt;          &gt;          &gt;               "0" ^
+</code></pre>
+
+<p>Befunge-93 does not have variables. It does have a stack, but we
+can only access the top two elements of the stack. We can, however,
+write values into the program itself.</p>
+
+<p>The second line of the program is blank &mdash; and this is were we write
+values to. Six positions, (<code>(1, 1)</code> to <code>(1, 6)</code>) to are reserved
+for the input, and then three positions (<code>(1, 7)</code> to <code>(1, 9)</code>) for
+the results of where the origin lies relative to a line.</p>
+
+<p>We start off by reading six numbers, and storing them:</p>
+
+<pre><code>&amp;11p  &amp;21p  &amp;31p  &amp;41p  &amp;51p  &amp;61p
+</code></pre>
+
+<p>here, <code>﹠</code> reads a number and pushes it on the stack; <code>11</code> pushes
+two <code>1</code>s on the stack, while <code>p</code> pops three values from the stack:
+the first two indicate the location where the third value is stored.
+So this line reads six numbers, which are stored on the second line
+of the program.</p>
+
+<p>We then do the sign calculation. We don't have functions in Befunge-93,
+so we will repeat the code to do the calculations. We'll fetch the
+values using the <code>g</code> operator, which pops two coordinates from the
+stack, then pushes the value on found on that location on the stack.
+The results are stored on the locations <code>(1, 7)</code> to <code>(1, 9)</code>.</p>
+
+<pre><code> 61g 41g - 51g * 51g 31g - 61g * - 71p     v&gt;
+ 21g 61g - 11g * 11g 51g - 21g * - 81p    v&gt;
+ 41g 21g - 31g * 31g 11g - 41g * - 91p   v&gt;
+</code></pre>
+
+<p>Note that in Befunge-93 the program lies on the torus, so if we go
+to the left, we wrap around returning from the right.</p>
+
+<p>We now check the results, if they are all less then or equal to
+<code>0</code>, or if the are all greater than or equal to <code>0</code>, we print <code>1</code>;
+else we print <code>0</code>:</p>
+
+<pre><code>  71g0` #v_  81g0` #v_  91g0` #v_ v      &gt;
+v        &lt;          &lt;          &lt;  &gt;            "1" v
+&gt;071g ` #v_ 081g ` #v_ 091g ` #v_ ^                &gt;, 55+, @
+         &gt;          &gt;          &gt;               "0" ^
+</code></pre>
+
+<p>We are printing the characters <code>0</code> and <code>1</code>, and not the numbers <code>0</code>
+and <code>1</code>. This is because in Befunge-93, if a number is printed, a
+space is printed as well. And that would mean the output is different
+from the output of the solutions of the other languages.</p>
+</div>
+
+<h3>C</h3>
+
+<div class = "section">
+<p>The algorithm translates easily to C. We're using a typedef to avoid
+some typing.</p>
+
+<pre><code>typedef long double num;
+
+num side (num x1, num y1, num x2, num y2) {
+    return (y2 - y1) * x2 - (x2 - x1) * y2;
+}
+
+int main (void) {
+    char *  line = NULL;
+    size_t  len  = 0;
+
+    while (getline (&amp;line, &amp;len, stdin) != -1) {
+        num x1, y1, x2, y2, x3, y3;
+        num s1, s2, s3;
+
+        if (sscanf (line, "%Lf %Lf %Lf %Lf %Lf %Lf",
+                           &amp;x1, &amp;y1, &amp;x2, &amp;y2, &amp;x3, &amp;y3) != 6) {
+            fprintf (stderr, "Could not parse input\n");
+            exit (1);
+        }
+
+        s1 = side (x2, y2, x3, y3);
+        s2 = side (x3, y3, x1, y1);
+        s3 = side (x1, y1, x2, y2);
+
+        printf ("%d\n", (s1 &lt;= 0 &amp;&amp; s2 &lt;= 0 &amp;&amp; s3 &lt;= 0) ||
+                        (s1 &gt;= 0 &amp;&amp; s2 &gt;= 0 &amp;&amp; s3 &gt;= 0) ? 1 : 0);
+    }
+    free (line);
+
+    return (0);
+}
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-101/abigail/c/ch-2.c">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>Lua</h3>
+
+<div class = "section">
+<p>Nothing special in the Lua solution:</p>
+
+<pre><code>function side (x1, y1, x2, y2)
+    return (y2 - y1) * x2 - (x2 - x1) * y2
+end
+
+for line in io . lines () do
+    local _, _, x1, y1, x2, y2, x3, y3 =
+          line : find ("(%S+) (%S+) (%S+) (%S+) (%S+) (%S+)")
+
+    local s1 = side (x2, y2, x3, y3)
+    local s2 = side (x3, y3, x1, y1)
+    local s3 = side (x1, y1, x2, y2)
+
+    if (s1 &lt;= 0 and s2 &lt;= 0 and s3 &lt;= 0) or
+       (s1 &gt;= 0 and s2 &gt;= 0 and s3 &gt;= 0)
+    then print (1)
+    else print (0)
+    end
+end
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-101/abigail/lua/ch-2.lua">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>Node.js</h3>
+
+<div class = "section">
+<p>A similar solution in Node.js:</p>
+
+<pre><code>function side (x1, y1, x2, y2) {
+    return (y2 - y1) * x2 - (x2 - x1) * y2
+}   
+
+require ('readline')
+. createInterface ({input: process . stdin})
+. on ('line', _ =&gt; {
+    let [x1, y1, x2, y2, x3, y3] = _ . split (/\s+/)
+
+    let s1 = side (x2, y2, x3, y3)
+    let s2 = side (x3, y3, x1, y1)
+    let s3 = side (x1, y1, x2, y2)
+
+    console . log ((s1 &lt;= 0 &amp;&amp; s2 &lt;= 0 &amp;&amp; s3 &lt;= 0) ||
+                   (s1 &gt;= 0 &amp;&amp; s2 &gt;= 0 &amp;&amp; s3 &gt;= 0) ? 1 : 0)
+});
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-101/abigail/node/ch-2.js">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>Python</h3>
+
+<div class = "section">
+<p>Nothing special in the Python solution either:</p>
+
+<pre><code>def side (x1, y1, x2, y2):
+    return (y2 - y1) * x2 - (x2 - x1) * y2
+
+for line in fileinput . input ():
+    x1, y1, x2, y2, x3, y3 = map (lambda f: float (f), line . split ())
+
+    s1 = side (x2, y2, x3, y3)
+    s2 = side (x3, y3, x1, y1)
+    s3 = side (x1, y1, x2, y2)
+
+    if s1 &lt;= 0 and s2 &lt;= 0 and s3 &lt;= 0 or \
+       s1 &gt;= 0 and s2 &gt;= 0 and s3 &gt;= 0:
+        print (1)
+    else:
+        print (0)
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-101/abigail/python/ch-2.py">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>Ruby</h3>
+
+<p>The Ruby solution is also very similar:</p>
+
+<pre><code>def side (x1, y1, x2, y2)
+    return (y2 - y1) * x2 - (x2 - x1) * y2
+end  
+
+ARGF . each_line do |_|
+    x1, y1, x2, y2, x3, y3 = _ . split . map {|_| _ . to_f}
+
+    s1 = side x2, y2, x3, y3
+    s2 = side x3, y3, x1, y1
+    s3 = side x1, y1, x2, y2
+
+    puts s1 &lt;= 0 &amp;&amp; s2 &lt;= 0 &amp;&amp; s3 &lt;= 0 ||
+         s1 &gt;= 0 &amp;&amp; s2 &gt;= 0 &amp;&amp; s3 &gt;= 0 ? 1 : 0
+end
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-101/abigail/ruby/ch-2.rb">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+
+<hr id = 'last-line'>
+<div class = 'trailer'>
+<p class = 'prev'><a class = "prev" href = "">&#x261C;</a></p>
+<p class = 'issue'>Please leave any comments as a
+  <a href = 'https://github.com/Abigail/Abigail.github.io/issues'
+     title = 'GitHub issue'>GitHub issue</a>.
+<p class = 'next'><a class = "next" href = "">&#x261E;</a></p>
+</div>
+
+</body>
+</html>
