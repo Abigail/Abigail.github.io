@@ -1,0 +1,447 @@
+<html>
+<head>
+<title>Perl Weekly Challenge 102: Hash-counting String</title>
+<script src = "https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id = "MathJax-script" async src = "https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.js"></script>
+<script src = '../../JavaScript/jquery.js'></script>
+<script src = '../../JavaScript/navigation.js'></script>
+<link rel = 'preconnect' href = 'https://fonts.gstatic.com'>
+<link rel = 'stylesheet' href = 'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
+<link rel = 'stylesheet' href = '../../Styles/Perl-Weekly-Challenge/main.css'>
+</head>
+
+<body><h1>Perl Weekly Challenge 102: Hash-counting String</h1><div class = "byline">
+by Abigail<br>
+<img src = "../../Images/jan_sluiters.jpg">
+</div>
+
+
+<h2><a href="https://theweeklychallenge.org/blog/perl-weekly-challenge-102/#TASK2">Challenge</a></h2>
+
+<blockquote>
+  <p>You are given a positive integer <code>$N</code>.</p>
+  
+  <p>Write a script to produce Hash-counting string of that length.</p>
+  
+  <p>The definition of a hash-counting string is as follows:</p>
+  
+  <ul>
+  <li>the string consists only of digits 0-9 and hashes, <code>#</code></li>
+  <li>there are no two consecutive hashes: <code>##</code> does not appear in your string</li>
+  <li>the last character is a hash</li>
+  <li>the number immediately preceding each hash (if it exists) is the position
+  of that hash in the string, with the position being counted up from 1</li>
+  </ul>
+  
+  <p>It can be shown that for every positive integer <code>N</code> there is exactly
+  one such length-<code>N</code> string.</p>
+</blockquote>
+
+<h3>Examples</h3>
+
+<blockquote>
+<pre><code>(a) "#" is the counting string of length 1
+(b) "2#" is the counting string of length 2
+(c) "#3#" is the string of length 3
+(d) "#3#5#7#10#" is the string of length 10
+(e) "2#4#6#8#11#14#" is the string of length 14
+</code></pre>
+</blockquote>
+
+<h2>Solution</h2>
+
+<div class = "section">
+<p>We can solve this problem easily be working backwards, repeatedly
+putting a <code>#</code> and a number, until we have filled the entire string
+(the resulting string may start with a <code>#</code>, or a number).</p>
+
+<p>We will use an array to keep track of what we have calculated what
+goes in the string; if we're done, we print the content of the array
+in reverse.</p>
+
+<p>We will assume standard input contains the lengths (one length per
+line of input) of the strings we need to print.</p>
+</div>
+
+<h3>Perl</h3>
+
+<pre><code>while (my $index = &lt;&gt;) {
+    chomp $index;
+    my @out;
+    my $hash = 0;
+    while ($index) {
+        if ($hash = !$hash) {
+            push @out =&gt; "#";
+            $index --;
+        }
+        else {
+            push @out =&gt;      $index + 1;
+            $index -= length ($index + 1);
+        }
+    }
+    say join "" =&gt; reverse @out;
+}
+</code></pre>
+
+<p><code>@out</code> contains the pieces we have to construct the resulting string
+with. We're using <code>$hash</code> as a boolean indicating whether we going
+to add a hash or a number, flipping its truth value on each iteration,
+and starting with a hash. <code>$index</code> contains the position of where
+the last character of <em>next</em> component will appear in the string
+(1-based). The loop terminates if <code>$index</code> is 0.</p>
+
+<p>If we're adding a hash, we subtract <code>1</code> from <code>$index</code>. If we are
+adding a number, the number will be one larger than <code>$index</code>, as
+that is the position where the next hash will be. We then subtract
+the length of <code>$index + 1</code> from <code>$index</code>, as this is the number of
+characters the number is going to be using.</p>
+
+<p>Once we have the complete array, we reverse it, and print it.</p>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-102/abigail/perl/ch-2.pl">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+
+<h3>AWK</h3>
+
+<div class = "section">
+<p>The AWK solution is similar to the Perl solution. We use a variable
+<code>i</code> to keep track of our position in the array <code>out</code>, as AWK does
+not have a <code>push</code> operation. A loop is used to print the resulting
+array, as we lack a <code>join</code> operator. The role of <code>$index</code> is played
+by the variable <code>idx</code>, as <code>index</code> is a reserved word in AWK.</p>
+
+<pre><code>{
+    idx  = $1
+    hash = 0
+    i    = 0
+    while (idx) {
+        i ++
+        if (hash = !hash) {
+            out [i] = "#"
+            idx --
+        }
+        else {   
+            out [i] =       idx + 1
+            idx  -= length (idx + 1)
+        }
+    }
+    for (; i; i --) {
+        printf "%s", out [i]
+    }
+    printf "\n"
+}
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-102/abigail/awk/ch-2.awk">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>Bash</h3>
+
+<div class = "section">
+<p>The Bash solution is similar to the AWK solution. No <code>push</code>, nor a <code>join</code>:</p>
+
+<pre><code>while read index
+do    declare -a out
+      hash=0
+      i=0
+      while ((index &gt; 0))
+      do    ((i ++))
+            if   ((hash = !hash))
+            then out[$i]="#"
+                 ((index --))
+            else number=$((index + 1))
+                 out[$i]=$number   
+                 ((index -= ${#number}))
+            fi
+      done
+      for ((; i; i --))
+      do  printf "%s" ${out[$i]}
+      done
+      echo
+done
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-102/abigail/bash/ch-2.sh">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>Befunge-93</h3>
+
+<div class = "section">
+<p>Despite looking very different, our Befunge-93 solution uses a
+similar algorithm. We don't have variable in Befunge-93, but we do
+have a stack. We use this stack to store the <em>characters</em> if the
+resulting string, so we have to split any numbers into individual
+characters. The reason for this is that if a number is printed,
+Befunge-93 will also output a space &mdash; which we do not want.</p>
+
+<p>To keep track of the index, we write keep track of its value in a
+cell of the program: cell <code>(1, 1)</code>. This means the program only
+works for lengths up to 127, as cells will store signed <code>char</code>s
+(which range from <code>-128</code> to <code>127</code>).</p>
+
+<pre><code>&gt;&amp;:1+!#@_11p  &gt;"#" 11g :1-!#v_ 11g1-11p &gt; :55+% 86*+\ 11g1-11p 55+/ :#v_ v
+                            $           ^                             &lt;  $
+              ^            _v# g11                                       &lt;
+^                           &gt;:#v_$ 55+,
+                            ^ ,&lt;
+</code></pre>
+
+<p>We can break down this program into several parts. First, we read
+a number from standard input; if the number is <code>-1</code>, we have reached
+the end of the input and we terminate the program. Else, we store
+this number in the position <code>(1, 1)</code>. This number will play the
+role of the <code>index</code> variable in our other solutions:</p>
+
+<pre><code>&gt;&amp;:1+!#@_11p
+</code></pre>
+
+<p>We now add an hash to the stack. If the index is <code>1</code>, this is the
+last character to be placed, and we go to the printing code (see
+later). We have made a copy, so the current index remains on the
+stack; this is popped if we go to the printing routine.</p>
+
+<pre><code>"#" 11g :1-!#v_
+             $
+</code></pre>
+
+<p>If we don't go printing the string yet, we first subtract <code>1</code> from
+the index. We do this by fetching the value (which puts it on the
+stack), subtract <code>1</code>, and then storing the result back (which removes
+it from the stack):</p>
+
+<pre><code>11g1-11p
+</code></pre>
+
+<p>Else, we use a loop to split the index (the value before subtracting
+is still on top of the stack) into individual characters: we mod
+the number with <code>10</code> (<code>55+</code>), add <code>48</code> (<code>86*</code>) to get the ASCII
+value, swap the two number on the stack (so the index is on the
+top, and the character to be printed just below it); we subtract
+<code>1</code> from the stored index (<code>11g1-11p</code>, as above), and divide the
+top of the stack (the number we're converting to characters) by
+<code>10</code> (<code>55+/</code>). We keep doing that until we have consumed this number:</p>
+
+<pre><code>&gt; :55+% 86*+\ 11g1-11p 55+/ :#v_
+^                             &lt;
+</code></pre>
+
+<p>Once we've converted the entire number to characters, we check
+whether the index has reached <code>0</code>. If so, we go to the printing
+routine. Else, we go back to the part where the add a hash, and
+continue from there:</p>
+
+<pre><code>                                                           v
+                                                           $
+^            _v# g11                                       &lt;
+</code></pre>
+
+<p>Note that we enter this code fragment at the <code>v</code> on the top right.
+If we go to the printing routine, this is at the <code>v</code> on the bottom
+row.</p>
+
+<p>Printing is just a matter of printing the stack, until the stack
+is empty (that is, there is a <code>0</code> at the top of the stack):</p>
+
+<pre><code>^                           &gt;:#v_$ 55+,
+                            ^ ,&lt;
+</code></pre>
+
+<p>Code is entered at the <code>﹥</code> on the top row. If it's non-zero, e
+print it, and loop back. Else, we pop the resulting <code>0</code>, and print
+a newline (ASCII <code>10</code>): <code>55+,</code>. We're then running off the field
+to the right, but since we're on a torus, we enter from the left
+again, and we're being send up again (<code>^</code>), back to the beginning
+of the program.</p>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-102/abigail/befunge-93/ch-2.bf93">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>C</h3>
+
+<div class = "section">
+<p>C follows the more or less the same algorithm as AWK and Bash.
+Except that we only put numbers into the <code>out</code> array; in C it is
+much easier to have arrays all of the same type, and numbers are
+easier to deal with than strings. If we want to put a hash into the
+array, we put a <code>-1</code> there, and when we're printing out the array,
+on encountering a <code>-1</code>, we print a hash:</p>
+
+<pre><code># define MAX_LENGTH 23
+
+int main (void) {
+    long long index;
+    char tmp [MAX_LENGTH];
+
+    while (scanf ("%lld", &amp;index) &gt; 0) {
+        /*
+         * Create an array of long longs. (More than we need).
+         */
+        long long * out;
+        if ((out = (long long *) malloc (index * sizeof (long long))) == NULL) {
+            perror ("Malloc 'out' failed");
+            exit (1);
+        }
+
+        bool hash = false;
+        size_t i = 0;
+
+        while (index) {
+            if ((hash = !hash)) {
+                out [i] = -1;
+                index --;
+            }
+            else {  
+                out [i] = index + 1;
+                sprintf (tmp, "%lld", out [i]);
+                index -= strnlen (tmp, MAX_LENGTH);
+            }
+            i ++;
+        }
+        for (;i --;) {
+            if (out [i] == -1) {
+                printf ("#");
+            }
+            else {
+                printf ("%lld", out [i]);
+            }
+        }
+        printf ("\n");
+
+        free (out);
+    }
+    return (0);
+}
+</code></pre>
+
+<p>We use a string <code>tmp</code> to write a number into (as a string), so we
+know how many characters it requires. 22 characters are enough to
+store a 64 bit signed integer, hence <code>tmp</code> is a 23 character string
+(so we have room for a terminating <code>NUL</code> character.)</p>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-102/abigail/c/ch-2.c">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>Lua</h3>
+
+<div class = "section">
+<p>Lua follows a similar algorithm as we used is most other languages:</p>
+
+<pre><code>for index in io . lines () do
+    index = tonumber (index)
+    out = {}
+    hash = false
+    i = 0
+    while index &gt; 0 do
+        hash = not hash
+        i = i + 1
+        if  hash then
+            out [i] = "#"
+            index = index - 1
+        else
+            out [i] = index + 1
+            index = index - tostring (index + 1) : len ()
+        end
+    end  
+    for j = i, 1, -1 do
+        io . write (out [j])
+    end
+    io . write ("\n")
+end
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-102/abigail/lua/ch-2.lua">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>Node.js</h3>
+
+<div class = "section">
+<p>A similar program in Node.js. It has <code>reverse</code> and <code>join</code>, so we
+do not have to walk over the array to print it out piecewise:</p>
+
+<pre><code>require ('readline')
+. createInterface ({input: process . stdin})
+. on ('line', _ =&gt; make_hash (+ _))
+;
+
+function make_hash (index) {
+    let out = [] 
+    let hash = false 
+    while (index &gt; 0) {  
+        if (hash = !hash) {  
+            out . push ("#")
+            index --
+        }
+        else {
+            out . push (index + 1)
+            index -=   (index + 1) . toString () . length
+        }
+    }  
+    console . log (out . reverse () . join (""))
+}
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-102/abigail/node/ch-2.js">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>Python</h3>
+
+<div class = "section">
+<p>Python has a <code>reverse</code> and a <code>join</code>, but the <code>reverse</code> reverses the
+array in place; we can't use its return value. <code>join</code> is a method
+to be called on the separator, not on the array.</p>
+
+<pre><code>import fileinput
+
+for index in fileinput . input ():
+    index = int (index)
+    out = []
+    hash = 0
+    while index &gt; 0:
+        hash = not hash
+        if hash:
+            out . append ("#")
+            index = index - 1
+        else:
+            out . append (str (index + 1))
+            index = index - len (str (index + 1))
+    out . reverse ()
+    print ("" . join (out))
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-102/abigail/python/ch-2.py">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>Ruby</h3>
+
+<p>The solution in Ruby is very similar to the one in Perl, except
+that we need some explicit conversions between strings and integers:</p>
+
+<pre><code>ARGF . each_line do |_|
+    index = _ . to_i
+    out = Array . new  
+    hash = false
+    while index &gt; 0 do
+        if hash = !hash
+            out . push ("#")
+            index -= 1
+        else
+            out . push ((index + 1) . to_s)
+            index -=    (index + 1) . to_s . length
+        end
+    end
+    puts (out . reverse . join)
+end
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-102/abigail/ruby/ch-2.rb">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+
+<hr id = 'last-line'>
+<div class = 'trailer'>
+<p class = 'prev'><a class = "prev" href = "">&#x261C;</a></p>
+<p class = 'issue'>Please leave any comments as a
+  <a href = 'https://github.com/Abigail/Abigail.github.io/issues'
+     title = 'GitHub issue'>GitHub issue</a>.
+<p class = 'next'><a class = "next" href = "">&#x261E;</a></p>
+</div>
+
+</body>
+</html>
