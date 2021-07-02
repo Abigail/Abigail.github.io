@@ -138,6 +138,18 @@ in <code>$1</code>:</p>
 <p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-119/abigail/bash/ch-1.sh">full program</a> on <a href="https://github.com">GitHub</a>.</p>
 </div>
 
+<h3>bc</h3>
+
+<div class = "section">
+<p>bc doesn't have bitwise operators either, so we use arithmetic.
+With the input number in <code>num</code>:</p>
+
+<pre><code>num - (num % 256) + (num % 16) * 16 + (num % 256) / 16
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-119/abigail/bc/ch-1.bc">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
 <h3>C</h3>
 
 <div class = "section">
@@ -194,6 +206,23 @@ arithmetic. With the input number in <code>num</code>:</p>
 </code></pre>
 
 <p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-119/abigail/node/ch-1.js">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>Free Pascal</h3>
+
+<div class = "section">
+<p>Free Pascal does have the standard bitwise operators, but they are
+named differently. It uses <code>and</code>, <code>or</code> and <code>not</code> where most languages
+use <code>&amp;</code>, <code>|</code> and <code>~</code>. To shift bits to the left or to the right,
+the operators <code>shl</code> and <code>shr</code> are used. Free Pascal uses a dollar (<code>$</code>)
+prefix to indicate hexadecimal literals.</p>
+
+<p>Which leads to the following code, with the input number in <code>num</code>:</p>
+
+<pre><code>writeln ((num and not $FF) or (num and $0F) shl 4 or (num and $F0) shr 4);
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-119/abigail/pascal/ch-1.p">full program</a> on <a href="https://github.com">GitHub</a>.</p>
 </div>
 
 <h3>Python</h3>
