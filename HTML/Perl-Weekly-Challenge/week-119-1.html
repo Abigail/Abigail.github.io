@@ -1,0 +1,229 @@
+<html>
+<head>
+<title>Perl Weekly Challenge 119: Swap Nibbles</title>
+<script src = "https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id = "MathJax-script" async src = "https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.js"></script>
+<script src = '../../JavaScript/jquery.js'></script>
+<script src = '../../JavaScript/navigation.js'></script>
+<link rel = 'preconnect' href = 'https://fonts.gstatic.com'>
+<link rel = 'stylesheet' href = 'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
+<link rel = 'stylesheet' href = '../../Styles/Perl-Weekly-Challenge/main.css'>
+</head>
+
+<body><h1>Perl Weekly Challenge 119: Swap Nibbles</h1><div class = "byline">
+by Abigail<br>
+<img src = "../../Images/jan_sluiters.jpg">
+</div>
+
+
+<h2><a href="https://theweeklychallenge.org/blog/perl-weekly-challenge-119/#TASK1">Challenge</a></h2>
+
+<blockquote>
+  <p>You are given a positive integer <code>$N</code>.</p>
+  
+  <p>Write a script to swap the two nibbles of the binary representation of
+  the given number and print the decimal number of the new binary
+  representation.</p>
+  
+  <blockquote>
+    <p>A nibble is a four-bit aggregation, or half an octet.</p>
+  </blockquote>
+  
+  <p>To keep the task simple, we only allow integer less than or equal to <code>255</code>.</p>
+</blockquote>
+
+<h3>Examples</h3>
+
+<blockquote>
+<pre><code>Input: $N = 101
+Output: 86
+</code></pre>
+  
+  <p>Binary representation of decimal <code>101</code> is <code>1100101</code> or as
+  2 nibbles <code>(0110)(0101)</code>. The swapped nibbles would be <code>(0101)(0110)</code>
+  same as decimal <code>86</code>.</p>
+
+<pre><code>Input: $N = 18
+Output: 33
+</code></pre>
+  
+  <p>Binary representation of decimal <code>18</code> is <code>10010</code> or as 2 nibbles
+  <code>(0001)(0010)</code>. The swapped nibbles would be <code>(0010)(0001)</code>
+  same as decimal <code>33</code>.</p>
+</blockquote>
+
+<h2>Solution</h2>
+
+<div class = "section">
+<p>Whether the input integers are less than <code>255</code> or not doesn't make
+the task much easier. So, we will allow positive integers exceeding <code>255</code>.</p>
+
+<p>If we take a number, and look at its binary representation, we get</p>
+
+<p><span class = 'latex-display'>\[ \ldots b_{10} b_{9} b_{8} b_7 b_6 b_5 b_4 b_3 b_2 b_1 b_0 \]</span></p>
+
+<p>Swapping the last two nibbles, we get:</p>
+
+<p><span class = 'latex-display'>\[ \ldots b_{10} b_{9} b_{8} b_3 b_2 b_1 b_0 b_7 b_6 b_5 b_4 \]</span></p>
+
+<p>Now, we could take the number, get a binary representation, 
+swap the two nibbles using a regular expression or substrings, 
+and turn this back into a decimal number.</p>
+
+<p>But we can achieve the same things by manipulating the bits
+directly. To do this, we first split the original number,
+which will call <span class = 'latex-inline'>\(N\)</span>, into three parts:</p>
+
+<p>\[ \begin{array}{rccccccccccc|rcrl}
+ \ldots &amp; b_{10} &amp; b_9 &amp; b_8 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp;
+            (N &amp; \&amp; &amp; \sim &amp; \text{0xFF}) \\
+ \ldots &amp; 0 &amp; 0 &amp; 0 &amp; b_7 &amp; b_6 &amp; b_5 &amp; b_4 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp;
+            (N &amp; \&amp; &amp;      &amp; \text{0xF0}) \\
+ \ldots &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; b_3 &amp; b_2 &amp; b_1 &amp; b_0 &amp;
+            (N &amp; \&amp; &amp;      &amp; \text{0x0F}) \\ \hline
+ \ldots &amp; b_{10} &amp; b_9 &amp; b_8 &amp; b_7 &amp; b_6 &amp; b_5 &amp; b_4 &amp; b_3 &amp; b_2 &amp; b_1 &amp; b_0 &amp;
+               &amp;    &amp;      &amp;
+            \end{array} \]</p>
+
+<p>We can now shift the bits of the latter two parts four positions
+to the right or left:</p>
+
+<p>\[ \begin{array}{rccccccccccc|rcrlcc}
+ \ldots &amp; b_{10} &amp; b_9 &amp; b_8 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp;
+            (N &amp; \&amp; &amp; \sim &amp; \text{0xFF}) &amp; &amp; \\
+ \ldots &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; b_7 &amp; b_6 &amp; b_5 &amp; b_4 &amp;
+            (N &amp; \&amp; &amp;      &amp; \text{0xF0}) &amp; >> &amp; 4 \\
+ \ldots &amp; 0 &amp; 0 &amp; 0 &amp; b_3 &amp; b_2 &amp; b_1 &amp; b_0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp;
+            (N &amp; \&amp; &amp;      &amp; \text{0x0F}) &amp; &lt;&lt; &amp; 4 \\ \hline
+ \ldots &amp; b_{10} &amp; b_9 &amp; b_8 &amp; b_3 &amp; b_2 &amp; b_1 &amp; b_0 &amp; b_7 &amp; b_6 &amp; b_5 &amp; b_4 &amp;
+               &amp;    &amp;      &amp;
+            \end{array} \]</p>
+
+<p>We can now use a bitwise-or (<code>|</code>) or just plain addition to of
+the three parts above to get the final result.</p>
+</div>
+
+<h3>Perl</h3>
+
+<div class = "section">
+<p>With the input number in <code>$_</code>:</p>
+
+<pre><code>say + ($_ &amp; ~0xFF) | ($_ &amp; 0x0F) &lt;&lt; 4 | ($_ &amp; 0xF0) &gt;&gt; 4
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-119/abigail/perl/ch-1.pl">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>AWK</h3>
+
+<div class = "section">
+<p>AWK does not have bitwise operators. But we can replace each of 
+bitwise operations with arithmetic. Here, the input number is
+in <code>$1</code>:</p>
+
+<pre><code>print (($1 - ($1 % 256)) + ($1 %  16) * 16 + int (($1 % 256) / 16))
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-119/abigail/awk/ch-1.awk">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>Bash</h3>
+
+<div class = "section">
+<p>With the input number in <code>num</code>:</p>
+
+<pre><code>echo $(((num &amp; ~0xFF) | (num &amp; 0x0F) &lt;&lt; 4 | (num &amp; 0xF0) &gt;&gt; 4))
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-119/abigail/bash/ch-1.sh">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>C</h3>
+
+<div class = "section">
+<p>With the input number in <code>num</code>:</p>
+
+<pre><code>printf ("%d\n", (num &amp; ~0xFF) | (num &amp; 0x0F) &lt;&lt; 4 | (num &amp; 0xF0) &gt;&gt; 4);
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-119/abigail/c/ch-1.c">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>Go</h3>
+
+<div class = "section">
+<p>Go doesn't have an unary operator to flip all the bits of its
+argument (<code>~</code>), but it does have a binary operator which does
+the same thing: (<code>&amp;^</code>). With the input number in <code>num</code>:</p>
+
+<pre><code>fmt . Printf ("%d\n", (num &amp;^ 0xFF) | (num &amp; 0x0F) &lt;&lt; 4 | (num &amp; 0xF0) &gt;&gt; 4)
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-119/abigail/go/ch-1.go">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>Java</h3>
+
+<div class = "section">
+<p>With the input number in <code>num</code>:</p>
+
+<pre><code>System . out . println ((num &amp; ~0xFF) | (num &amp; 0x0F) &lt;&lt; 4 | (num &amp; 0xF0) &gt;&gt; 4);
+</code></pre>
+</div>
+
+<h3>Lua</h3>
+
+<div class = "section">
+<p>Lua does not have bitwise operators. So, like AWK, we're using
+arithmetic. With the input number in <code>num</code>:</p>
+
+<pre><code>print (                (num - (num   % 0x100))
+       +              ((num % 0x010) * 0x010)
+       + math . floor ((num % 0x100) / 0x010))
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-119/abigail/lua/ch-1.lua">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>Node.js</h3>
+
+<div class = "section">
+<p>With the input number in <code>num</code>:</p>
+
+<pre><code>console . log ((+num &amp; ~0xFF) | (+num &amp; 0x0F) &lt;&lt; 4 | (+num &amp; 0xF0) &gt;&gt; 4)
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-119/abigail/node/ch-1.js">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>Python</h3>
+
+<div class = "section">
+<p>With the input number in <code>num</code>:</p>
+
+<pre><code>print ((num &amp; ~0xFF) | (num &amp; 0x0F) &lt;&lt; 4 | (num &amp; 0xF0) &gt;&gt; 4)
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-119/abigail/python/ch-1.py">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>Ruby</h3>
+
+<p>With the input number in <code>num</code>:</p>
+
+<pre><code>puts ((num &amp; ~0xFF) | (num &amp; 0x0F) &lt;&lt; 4 | (num &amp; 0xF0) &gt;&gt; 4)
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-119/abigail/ruby/ch-1.rb">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+
+<hr id = 'last-line'>
+<div class = 'trailer'>
+<p class = 'prev'><a class = "prev" href = "">&#x261C;</a></p>
+<p class = 'issue'>Please leave any comments as a
+  <a href = 'https://github.com/Abigail/Abigail.github.io/issues'
+     title = 'GitHub issue'>GitHub issue</a>.
+<p class = 'next'><a class = "next" href = "">&#x261E;</a></p>
+</div>
+
+</body>
+</html>
