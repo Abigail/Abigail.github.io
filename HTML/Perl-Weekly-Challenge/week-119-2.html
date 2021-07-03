@@ -1,0 +1,321 @@
+<html>
+<head>
+<title>Perl Weekly Challenge 119: Sequence without 1-on-1</title>
+<script src = "https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id = "MathJax-script" async src = "https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.js"></script>
+<script src = '../../JavaScript/jquery.js'></script>
+<script src = '../../JavaScript/navigation.js'></script>
+<link rel = 'preconnect' href = 'https://fonts.gstatic.com'>
+<link rel = 'stylesheet' href = 'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
+<link rel = 'stylesheet' href = '../../Styles/Perl-Weekly-Challenge/main.css'>
+</head>
+
+<body><h1>Perl Weekly Challenge 119: Sequence without 1-on-1</h1><div class = "byline">
+by Abigail<br>
+<img src = "../../Images/jan_sluiters.jpg">
+</div>
+
+
+<h2><a href="https://perlweeklychallenge.org/blog/perl-weekly-challenge-119/#TASK2">Challenge</a></h2>
+
+<blockquote>
+  <p>Write a script to generate sequence starting at <code>1</code>. Consider the
+  increasing sequence of integers which contain only <code>1</code>s, <code>2</code>s, and
+  <code>3</code>s, and do not have any doublets of <code>1</code>s > like below. Please accept
+  a positive integer <code>$N</code> and print the <code>$N</code>th term in the generated sequence.</p>
+  
+  <blockquote>
+    <p>1, 2, 3, 12, 13, 21, 22, 23, 31, 32, 33, 121, 122, 123, 131, ...</p>
+  </blockquote>
+</blockquote>
+
+<h2>Solution</h2>
+
+<div class = "section">
+<p>I could not think of a way to directly generate the <span class = 'latex-inline'>\(N\)</span>th number
+of the sequence.</p>
+
+<p>But there is a straight forward way to, given a number in the
+sequence, generate the next number in the sequence.</p>
+
+<p>Let the sequence be <span class = 'latex-inline'>\(a_0, a_1, a_2, \ldots\)</span>. Let <span class = 'latex-inline'>\(a_n\)</span> be a number
+in the sequence, such that
+\(a_n = d_1 d_2 d_3 \ldots d_m c \overbrace{3 \ldots 3}^{k \text{ times}},
+c \neq 3 \).
+That is, <span class = 'latex-inline'>\(a_n\)</span> consists of a possibly empty, sequence of digits <span class = 'latex-inline'>\(d_i\)</span>
+then a digit, <span class = 'latex-inline'>\(c\)</span>,
+not equal to <span class = 'latex-inline'>\(3\)</span>, followed by a, possibly empty, sequence of <span class = 'latex-inline'>\(k\)</span> <span class = 'latex-inline'>\(3\)</span>s.
+So, <span class = 'latex-inline'>\(c\)</span> is the last digit in <span class = 'latex-inline'>\(a_n\)</span> which is not a <span class = 'latex-inline'>\(3\)</span>. 
+If <span class = 'latex-inline'>\(a_n\)</span> consists of only <span class = 'latex-inline'>\(3\)</span>s, we can always prepend <span class = 'latex-inline'>\(a_n\)</span> with
+a <span class = 'latex-inline'>\(0\)</span>, so, in that case, <span class = 'latex-inline'>\(c = 0\)</span>.</p>
+
+<p>We now first construct an intermediate number
+<span class = 'latex-inline'>\(t = d_1 d_2 d_3 \ldots d_m (c + 1) \overbrace{1 \ldots 1}^{k \text{ times}}\)</span>.</p>
+
+<p>Then we construct <span class = 'latex-inline'>\(a_{n + 1}\)</span> from <span class = 'latex-inline'>\(t\)</span> by replacing each non-overlapping
+<span class = 'latex-inline'>\(11\)</span> in <span class = 'latex-inline'>\(t\)</span> by <span class = 'latex-inline'>\(12\)</span>. Note that the sequence <span class = 'latex-inline'>\(d_i\)</span> cannot contain
+the pattern <span class = 'latex-inline'>\(11\)</span>; otherwise, <span class = 'latex-inline'>\(a_n\)</span> is not part of the sequence.
+Also, the only way for <span class = 'latex-inline'>\(c + 1\)</span> to be <span class = 'latex-inline'>\(1\)</span> is if the sequence <span class = 'latex-inline'>\(d_i\)</span>
+is empty (in that case, <span class = 'latex-inline'>\(a_n\)</span> consists of only <span class = 'latex-inline'>\(3\)</span>s).</p>
+
+<p>With this in mind, it's easy to generate the generate the <span class = 'latex-inline'>\(N\)</span>th number:
+starting with <span class = 'latex-inline'>\(0\)</span>, we apply the construction above <span class = 'latex-inline'>\(N\)</span> times.</p>
+
+<p>In each of our implementations below, we start of with prepending a
+<span class = 'latex-inline'>\(0\)</span> to number. That way, we will always find a <span class = 'latex-inline'>\(c\)</span> as above. And
+we'll strip off a leading <span class = 'latex-inline'>\(0\)</span> when we're done.</p>
+</div>
+
+<h3>Perl</h3>
+
+<div class = "section">
+<p>First, the method which takes a number in the sequence, and return 
+the next number. It makes extensive use of the <code>/r</code> modifier on
+substitutions: this tells perl not to modify the string it's acting on,
+but to return the modified string instead.</p>
+
+<pre><code>sub next_num ($prev_num) {
+    "0$prev_num" =~ s!([012])(3*)$!($1 + 1) . ($2 =~ s/3/1/rg)!re
+                 =~ s!11!12!rg
+                 =~ s!^0!!r
+}
+</code></pre>
+
+<p>The pattern in the first substitution captures the last digit which
+is not a <code>3</code>, and any <code>3</code>s following that. This is replaced with the
+non-<code>3</code> digit incremented by <code>1</code>, and a string of <code>1</code>s of the same
+length as the string of <code>3</code>. We do this by using the <code>/e</code> modifier, 
+which tells Perl to execute the replacement part, and use the return
+value as the replacement. Note that we use another substitution here &mdash;
+with a modern enough Perl, the regexp engine is reentrant. </p>
+
+<p>The second substitution simply replaces any <code>11</code> with a <code>12</code> &mdash; this
+is the part which prevents a <code>1-1</code> sequence.</p>
+
+<p>The final substitution removes any leading <code>0</code> which still may be there.</p>
+
+<p>We can now calculate the <code>$N</code>th element of the sequence, where
+<code>$_</code> contains <code>$N</code>:</p>
+
+<pre><code>my $n = 0;
+$n = next_num $n for 1 .. $_;
+say $n;
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-119/abigail/perl/ch-2.pl">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>AWK</h3>
+
+<div class = "section">
+<p>AWK doesn't have capture groups (GNU AWK does though), so we have to
+work a little bit harder. It does have <code>RSTART</code>, which indicates the
+position in the string where the match started , and <code>RLENGTH</code>, which
+indicates the length of the matched substring. Our <code>next_num</code> function
+then becomes:</p>
+
+<pre><code>function next_num (prev_num, tail) {
+    match (prev_num, /3*$/)
+    tail = substr (prev_num, RSTART)
+</code></pre>
+
+<p>Now <code>tail</code> contains the trailing <code>3</code>s of <code>prev_num</code> (<code>tail</code> may be the
+empty string). We first replace the <code>3</code>s with <code>1</code>s:</p>
+
+<pre><code>    gsub (/3/, 1, tail)
+</code></pre>
+
+<p>We now put <code>tail</code> back into <code>prev_num</code>, after incrementing the number
+before the trailing <code>3</code>s. If no such number exists (that is, <code>prev_number</code>
+consists of just <code>3</code>s) we just put a <code>1</code> before <code>tail</code>:</p>
+
+<pre><code>    if (RLENGTH == length (prev_num)) {
+        prev_num = 1 tail
+    }
+    else {
+        prev_num = substr (prev_num, 1, RSTART - 2)      \
+                  (substr (prev_num, RSTART - 1, 1) + 1) \
+                   tail
+    }
+</code></pre>
+
+<p>Now we just replace any <code>11</code> with <code>12</code>, and return the result.</p>
+
+<pre><code>    gsub (/11/, "12", prev_num)
+
+    return prev_num
+}
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-119/abigail/awk/ch-2.awk">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>Bash</h3>
+
+<div class = "section">
+<p>The Bash function to calculate the next number is surprisingly compact:</p>
+
+<pre><code>function next_number () {
+     [[ 0$1 =~ ^(.*)([012])(3*)$ ]]
+     next_num=${BASH_REMATCH[1]}$((BASH_REMATCH[2] + 1))${BASH_REMATCH[3]//3/1}
+     next_num=${next_num//11/12}
+     next_num=${next_num/0/}
+}
+</code></pre>
+
+<p>The first line capturings any leading digits, then the last digit
+which is not a <code>3</code>, and the any trailing <code>3</code>s. Capture groups are
+availabe in the array <code>BASH_REMATCH</code>.</p>
+
+<p>A new number is constructed by concatenating the first part with
+the second (incremented by one), and then the third, where each <code>3</code>
+is replaced by a <code>1</code>. The increment is done using the <code>$((EXPR))</code> construct,
+which evaluates <code>EXPR</code> and substitutes its value. The replacement 
+is done by the <code>${word//pat/replacement}</code> construct, which expands
+<code>word</code>, then replaces each occurance of <code>pat</code> with <code>replacement</code>.</p>
+
+<p>Then, in the new number, we replace any <code>11</code> with <code>12</code>, and strip off
+any remaining leading <code>0</code>.</p>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-119/abigail/bash/ch-2.sh">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>C</h3>
+
+<div class = "section">
+<p>C doesn't have build in pattern matching, nor much of support for strings.
+We therefore have to do a lot of manual work. We will be assuming any 
+answer will not require more than 32 digits.</p>
+
+<p>With the input number (<code>$N</code>) in the variable <code>num</code>, we get:</p>
+
+<pre><code># define BUF_SIZE 32
+char number [BUF_SIZE + 1];
+for (int i = 0; i &lt; BUF_SIZE; i ++) {
+    number [i] = '0';
+}
+number [BUF_SIZE] = `\0`;
+</code></pre>
+
+<p>This initializes a NUL-terminated string <code>number</code> of 32 <code>0</code>s.</p>
+
+<pre><code>while (num --) {
+    for (i = BUF_SIZE - 1; i &gt; 0 &amp;&amp; number [i] == '3'; i --) {
+        number [i] = '1';
+    }
+    number [i] ++;
+</code></pre>
+
+<p>Set all trailing <code>3</code>s to <code>1</code>s, and increment the last digit which is
+not a <code>3</code>.</p>
+
+<pre><code>    for (i = 0; i &lt; BUF_SIZE - 1; i ++) {
+        if (number [i] == '1' &amp;&amp; number [i + 1] == '1') {
+            number [i + 1] = '2';
+        }
+    }
+</code></pre>
+
+<p>This replaces any <code>11</code> with <code>12</code>.</p>
+
+<p>Now we get to print the number, without any leading 0:</p>
+
+<pre><code>    int i;
+    for (i = 0; i &lt; BUF_SIZE &amp;&amp; number [i] == '0'; i ++);
+    printf ("%s\n", number + i);
+}
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-119/abigail/c/ch-2.c">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>Lua</h3>
+
+<pre><code>function next_number (prev_num)
+    local _, _, prefix, num, tail =
+        ("0" .. prev_num) : find ("(.*)([012])(3*)$")
+
+    return (prefix .. tostring (tonumber (num) + 1) 
+                   .. tail : gsub ("3", "1")) : gsub ("11", "12")
+                                              : gsub ("^0", "")
+end
+</code></pre>
+
+<p>We first split the given number (with a <code>0</code> prepended) into
+three groups: the numbers before the last digit which is not
+a <code>3</code> (<code>prefix</code>), the last digit which is not a <code>3</code> (<code>num</code>),
+and any trailing <code>3</code>s (<code>tail</code>).</p>
+
+<p>We then concatenate <code>prefix</code> with <code>num</code> incrementated by <code>1</code>
+(<code>tostring (tonumber (num) + 1)</code>), and <code>tail</code> with all
+<code>3</code>s replaced by <code>1</code> (<code>tail : gsub ("3", "1")</code>).</p>
+
+<p>In the concatenated number, we replace each <code>11</code> with <code>12</code>
+(<code>gsub ("11", "12")</code>), and remove any leading <code>0</code>
+(<code>gsub ("^0", "")</code>).</p>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-119/abigail/lua/ch-2.lua">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+
+<h3>Node.js</h3>
+
+<div class = "section">
+<p>The Node.js solution is very similar to the Lua solution:</p>
+
+<pre><code>function next_number (prev_number) {
+    let [match, prefix, num, tail] =
+        ("0" + prev_number) . match (/^(.*)([012])(3*)$/)
+
+    return (prefix + (+ num + 1) + (tail . replace (/3/g,  "1"))) .
+                                           replace (/11/g, "12")  .
+                                           replace (/^0/,  "")
+}
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-119/abigail/node/ch-2.js">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>Python</h3>
+
+<div class = "section">
+<p>In Python, a regular expression match returns a match object.
+Which we can query for its capture groups.</p>
+
+<pre><code>def next_num (prev_num):
+    match = re . match ('^(.*)([012])(3*)$', "0" + prev_num)
+    return (re . sub ('^0', '',  \
+                 re . sub ('11', '12', match . group (1) +                 \
+                                       str (int (match . group (2)) + 1) + \
+                                       re . sub ('3', '1', match . group (3)))))
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-119/abigail/python/ch-2.py">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>Ruby</h3>
+
+<p>Captures in Ruby are also available in match object &mdash; but we can
+index this as an array to get the capture groups. But it's still
+the same algorithm:</p>
+
+<pre><code>def next_num (prev_num)
+    ("0" + prev_num) . match (/^(.*)([012])(3*)$/) do
+        |match|
+        return (match [1] + (1 + match [2] . to_i) . to_s +
+                match [3] . gsub(/3/, "1")) . gsub(/11/, "12") . gsub(/^0/, "")
+    end
+end
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-119/abigail/ruby/ch-2.rb">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+
+<hr id = 'last-line'>
+<div class = 'trailer'>
+<p class = 'prev'><a class = "prev" href = "">&#x261C;</a></p>
+<p class = 'issue'>Please leave any comments as a
+  <a href = 'https://github.com/Abigail/Abigail.github.io/issues'
+     title = 'GitHub issue'>GitHub issue</a>.
+<p class = 'next'><a class = "next" href = "">&#x261E;</a></p>
+</div>
+
+</body>
+</html>

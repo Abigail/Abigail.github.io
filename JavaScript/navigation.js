@@ -41,6 +41,7 @@ let pages = [
     ["week-118-1", "Binary Palindrome"],
     ["week-118-2", "Adventure of Knight"],
     ["week-119-1", "Swap Nipples"],
+    ["week-119-2", "Sequence without 1-on-1"],
 ]
 
 pages . forEach (_ => _ [0] = PWC + "/" + _ [0] + ".html")
