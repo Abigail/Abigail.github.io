@@ -150,6 +150,54 @@ With the input number in <code>num</code>:</p>
 <p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-119/abigail/bc/ch-1.bc">full program</a> on <a href="https://github.com">GitHub</a>.</p>
 </div>
 
+<h3>Befunge-93</h3>
+
+<div class = "section">
+<p>There are no bitwise operations in Befunge-93, so we have to use
+arithmetic. Befunge-93 also limits numerical literals to single
+digits. And the language is stack based. This leads to:</p>
+
+<pre><code>&amp; :1+!#@_ : 44* % 44** \ 44*/ + . 55+,
+</code></pre>
+
+<p>We start off by reading in a numeric value <code>&amp;</code>.</p>
+
+<p>We then check whether we're at end-of-file; in that case, the value read
+is <code>-1</code>. If so, we want to quit the program. First, we duplicate the value
+just read (<code>:</code>), add one to it (<code>1+</code>), and flip the resulting truth value
+(<code>!</code>). We skip the next command (<code>#@</code>), and then make a decision: if the
+top of the stack is false (which it is if we are not at end-of-file), we
+continue to the right, else we go left (<code>_</code>). If we go left, we exit the
+program (<code>@</code>).</p>
+
+<p>If we go right, we can calculate the wanted value. First, we duplicate
+the top of the stack again (<code>:</code>). We then push <code>4</code> twice on the stack,
+and multiply the them, resulting in having <code>16</code> on top of the stack
+(<code>44*</code>). Now, we mod the (duplicate of) the read in value with the
+<code>16</code> on the top of the stack (<code>%</code>) &mdash; this is the value of the last
+nibble. We then multiply this value with <code>16</code> (<code>44**</code>).</p>
+
+<p>We now have on the top of the stack the last nibble of the input
+value, shifted four bits the to left. The next value on the stack
+is the input value. We now swap the two values on top of the stack
+(<code>\</code>), and divide the top of the stack by <code>16</code> (<code>44*/</code>). Befunge-93
+does integer division only, so we have the value of the penultimate
+nibble on top of the stack.</p>
+
+<p>Since the second value of the stack is the last nibble shifted by four
+bits, we just have to add the two values to get the final result: (<code>+</code>),
+which we then print (<code>.</code>), followed by a newline (<code>55+,</code>) (a newline
+has ASCII value <code>10</code>). </p>
+
+<p>The program counter now automatically wraps to the beginning again,
+as the program is laid out on a torus.</p>
+
+<p>Note that Befunge-93 only handles values up to <code>255</code>, so we're not
+making any attempt to handle values exceeding <code>255</code>.</p>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-119/abigail/befunge-93/ch-1.bf93">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
 <h3>C</h3>
 
 <div class = "section">
@@ -236,14 +284,40 @@ prefix to indicate hexadecimal literals.</p>
 <p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-119/abigail/python/ch-1.py">full program</a> on <a href="https://github.com">GitHub</a>.</p>
 </div>
 
+<h3>R</h3>
+
+<div class = "section">
+<p>R does not have bitwise operators, but it does have <a href="https://www.geeksforgeeks.org/bitwise-logical-operations-in-r/">bitwise
+<em>functions</em></a>.
+So our R solution is a bit more wordy. With the input number in <code>num</code>:</p>
+
+<pre><code>cat (bitwOr (bitwOr (bitwAnd (n, bitwNot (0xFF)),
+                     bitwShiftL (bitwAnd (n, 0x0F), 4)),
+                     bitwShiftR (bitwAnd (n, 0xF0), 4)), "\n")
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-119/abigail/r/ch-1.r">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
 <h3>Ruby</h3>
 
+<div class = "section">
 <p>With the input number in <code>num</code>:</p>
 
 <pre><code>puts ((num &amp; ~0xFF) | (num &amp; 0x0F) &lt;&lt; 4 | (num &amp; 0xF0) &gt;&gt; 4)
 </code></pre>
 
 <p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-119/abigail/ruby/ch-1.rb">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>Tcl</h3>
+
+<p>With the input number in <code>num</code>:</p>
+
+<pre><code>puts [expr ($num &amp; ~0xFF) | ($num &amp; 0x0F) &lt;&lt; 4 | ($num &amp; 0xF0) &gt;&gt; 4]
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-119/abigail/tcl/ch-1.tcl">full program</a> on <a href="https://github.com">GitHub</a>.</p>
 
 <hr id = 'last-line'>
 <div class = 'trailer'>
