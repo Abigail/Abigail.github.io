@@ -1,0 +1,569 @@
+<html>
+<head>
+<title>Perl Weekly Challenge 120: Clock Angle</title>
+<script src = "https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id = "MathJax-script" async src = "https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.js"></script>
+<script src = '../../JavaScript/jquery.js'></script>
+<script src = '../../JavaScript/navigation.js'></script>
+<link rel = 'preconnect' href = 'https://fonts.gstatic.com'>
+<link rel = 'stylesheet' href = 'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
+<link rel = 'stylesheet' href = '../../Styles/Perl-Weekly-Challenge/main.css'>
+</head>
+
+<body><h1>Perl Weekly Challenge 120: Clock Angle</h1><div class = "byline">
+by Abigail<br>
+<img src = "../../Images/jan_sluiters.jpg">
+</div>
+
+
+<h2><a href="https://theweeklychallenge.org/blog/perl-weekly-challenge-120/#TASK2">Challenge</a></h2>
+
+<blockquote>
+  <p>You are given time <code>$T</code> in the format hh:mm.</p>
+  
+  <p>Write a script to find the smaller angle formed by the hands of an
+  analog clock at a given time.<br>
+  <em>HINT: A analog clock is divided up into <code>12</code> sectors.
+  One sector represents 30 degree <code>(360/12 = 30)</code>.</em></p>
+</blockquote>
+
+<h3>Examples</h3>
+
+<blockquote>
+<pre><code>Input: $T = '03:10'
+Output: 35 degree
+</code></pre>
+  
+  <p>The distance between the <code>2</code> and the <code>3</code> on the clock is <code>30</code> degree.
+  For the <code>10</code> minutes i.e. <code>1/6</code> of an hour that have passed.
+  The hour hand has also moved <code>1/6</code> of the distance between the <code>3</code> and
+  the <code>4</code>, which adds <code>5</code> degree (<code>1/6</code> of <code>30</code>).
+  The total measure of the angle is <code>35</code> degree.</p>
+
+<pre><code>Input: $T = '04:00'
+Output: 120 degree
+</code></pre>
+</blockquote>
+
+<h2>Solution</h2>
+
+<div class = "section">
+<p>The hint suggests we should calculate the angle the hour hand makes
+(compared to some base line) and the angle the minute hand makes
+(compared to the same base line), and calculate the difference.</p>
+
+<p>We will be ignoring that.</p>
+
+<p>In fact, we will not looking at any specific angle the hour or minute
+hands are making. Instead, we will make use of the following observations:</p>
+
+<ol>
+<li>At <code>00:00</code>, the hour hand and the minute hands align, that is,
+the angle between them is <code>0</code>&deg;.</li>
+<li>Every minute, the angle between the hour and minute hand increases
+by <code>5.5</code>&deg;.</li>
+</ol>
+
+<p>So, we can calculate the number of minutes after midnight the time
+indicates, and multiply that with <code>5.5</code>&deg;. This may be a number which
+is more than <code>360</code>&deg; &mdash; each time the minute hand catches up with
+the hour hand, the angle with be a multiple of <code>360</code>&deg;. So, we will
+take the angle module <code>360</code>&deg;.</p>
+
+<p>But that may lead to a problem. The number of minutes after midnight
+will always be an integer, but once with multiply with <code>5.5</code>, we
+may not have an integer left. And not every language handles a modulo
+operation well if not both operands are integers.</p>
+
+<p>To deal with this, we will measure the angle between the hands in
+<em>half</em>-degrees. So, will multiply the number of minutes after midnight
+with <code>11</code>, and then modulo it with <code>720</code>. Since we are required to
+report the smaller of the angles, if the calculated angle is more than
+<code>360</code> half-degrees, we subtract the angle from <code>720</code>.</p>
+
+<p>What's left is to report the angle in degrees, which means dividing
+the calculated number by <code>2</code>, so we're back to full degrees.</p>
+</div>
+
+<h3>Perl</h3>
+
+<div class = "section">
+<p>With the input time in <code>$_</code>:</p>
+
+<pre><code>my $MIN_PER_HOUR    =  60;
+my $DIFF_PER_MINUTE =  11;
+my $FULL_CIRCLE     = 720;
+
+my ($hours, $minutes) = /[0-9]+/g;
+my $angle = ($DIFF_PER_MINUTE * ($hours * $MIN_PER_HOUR + $minutes)) %
+             $FULL_CIRCLE;
+   $angle =  $FULL_CIRCLE - $angle if 2 * $angle &gt;= $FULL_CIRCLE;
+
+say $angle / 2;
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-120/abigail/perl/ch-2.pl">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>AWK</h3>
+
+<pre><code>BEGIN {
+    FS = ":"
+    DIFF_PER_MINUTE =  11
+    MIN_PER_HOUR    =  60
+    FULL_CIRCLE     = 720
+}
+</code></pre>
+
+<p>We're setting <code>FS</code> here, so AWK will neatly split the input 
+for us on colons, meaning we have the hours available in <code>$1</code>,
+and the minutes in <code>$2</code>.</p>
+
+<pre><code>{
+    angle = (DIFF_PER_MINUTE * ($1 * MIN_PER_HOUR + $2)) % FULL_CIRCLE
+    if (2 * angle &gt;= FULL_CIRCLE) {
+        angle = FULL_CIRCLE - angle
+    }
+
+    print (angle / 2)
+}
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-120/abigail/awk/ch-2.awk">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+
+<h3>Bash</h3>
+
+<div class = "section">
+<p>Just like in AWK, Bash can autosplit input for us. We do this
+by setting <code>IFS</code>:</p>
+
+<pre><code>IFS=":"
+
+DIFF_PER_MINUTE=11
+MIN_PER_HOUR=60
+FULL_CIRCLE=720
+</code></pre>
+
+<p>We can now directly read <code>hours</code> and <code>minutes</code>. But there is a catch.
+Hours and minutes of the form <code>08</code> or <code>09</code> will be interpreted by
+Bash as illegal octal numbers. That's not what we want!</p>
+
+<p>We will use a trick: we prepend the number with a <code>1</code> (giving us
+a three digit number, starting with a <code>1</code>), the subtracting <code>100</code>!</p>
+
+<pre><code>while read hours minutes
+do    ((hours   = "1$hours"   - 100))
+      ((minutes = "1$minutes" - 100))
+      ((angle = (DIFF_PER_MINUTE * (hours * MIN_PER_HOUR + minutes)) %
+                                            FULL_CIRCLE))
+      if ((2 * angle &gt;= FULL_CIRCLE))
+      then ((angle = FULL_CIRCLE - angle))
+      fi
+</code></pre>
+
+<p>Now, Bash only has integer division. So, we first divide <code>angle</code> by <code>2</code>
+and print the result. Then we check whether <code>angle</code> is an odd number;
+if it is, we print <code>.5</code>, as the result should have an additional half degree.</p>
+
+<pre><code>      printf "%d" $((angle / 2))
+      if ((angle % 2 == 1))
+      then printf ".5"
+      fi
+      echo
+done
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-120/abigail/bash/ch-2.sh">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>bc</h3>
+
+<div class = "section">
+<p>The calculations in our bc solution is very similar as the solutions
+in other languages, but we need to do something special when printing
+the result:</p>
+
+<pre><code>diff_per_minute =  11
+min_per_hour    =  60
+full_circle     = 720
+
+hours   = read ()
+minutes = read ()
+
+scale = 0
+angle = (diff_per_minute * (hours * min_per_hour + minutes)) % full_circle
+if (2 * angle &gt;= full_circle) {
+    angle = full_circle - angle
+}
+
+scale = angle % 2
+
+if (angle == 1) {
+    "0"
+}
+
+angle / 2
+</code></pre>
+
+<p>By default, assuming the <code>-l</code> isn't used, <code>bc</code> uses integer arithmetic.
+We can change this by assigning to the special variable <code>scale</code>, which
+tells bc to how many decimals after the comma you want results.</p>
+
+<p>But setting it to <code>1</code> at the beginning of the program and leaving it
+at <code>1</code> causes two issues: first, it will always print the number of
+degrees with one decimal after the decimal dot &mdash; even if the result
+is an integer. Furthermore, the modulus operator doesn't work as it
+does when <code>scale</code> is set to <code>0</code>.</p>
+
+<p>So, we first set the scale to <code>0</code>, then, before printing the result
+set <code>scale</code> to <code>1</code> iff <code>angle</code> is odd. The result is that if the hands
+make an angle which is an integer amount of degrees, we print an integer;
+otherwise, the result will be an integer and a half.</p>
+
+<p>Another oddity is that bc prints a half as <code>.5</code>, not <code>0.5</code>. To counteract
+that, if <code>angle</code> equals <code>1</code> (so, one half-degree), we first print a <code>0</code>
+(which then will be followed by <code>.5</code>, giving the end result of <code>0.5</code>).</p>
+
+<p>Also note that in bc, all variables are in lowercase.</p>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-120/abigail/bc/ch-2.bc">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>C</h3>
+
+<div class = "section">
+<p>Nothing special about the C solution. C uses integer division if
+both its operands are integers, so a similar check as in our Bash
+solution on whether <code>angle</code> is odd, and, if so, print <code>.5</code>:</p>
+
+<pre><code># define DIFF_PER_MINUTE  11
+# define MIN_PER_HOUR     60
+# define FULL_CIRCLE     720
+
+int main (void) {
+    int hours, minutes;
+
+    while (scanf ("%d:%d", &amp;hours, &amp;minutes) == 2) {
+        int angle = (DIFF_PER_MINUTE * (hours * MIN_PER_HOUR + minutes)) %
+                                                FULL_CIRCLE;
+        if (2 * angle &gt;= FULL_CIRCLE) {
+            angle = FULL_CIRCLE - angle;
+        }
+        printf ("%d", angle / 2);
+        if (angle % 2) {
+            printf (".5");
+        }
+        printf ("\n");
+    }
+    return (0);
+}
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-120/abigail/c/ch-2.c">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>Go</h3>
+
+<div class = "section">
+<p>In Go, things are similar:</p>
+
+<pre><code>import (
+    "fmt"
+)
+
+var DIFF_PER_MINUTE =  11;
+var MIN_PER_HOUR    =  60;
+var FULL_CIRCLE     = 720;
+
+func main () {
+    var hours, minutes int;
+    for {
+        var n, err = fmt . Scanf ("%d:%d", &amp;hours, &amp;minutes)
+        if (err != nil || n != 2) {
+            break;
+        }
+        var angle = (DIFF_PER_MINUTE * (hours * MIN_PER_HOUR + minutes)) %
+                                                FULL_CIRCLE;
+        if (2 * angle &gt;= FULL_CIRCLE) {
+            angle = FULL_CIRCLE - angle;
+        }
+
+        fmt . Print (angle / 2);
+        if (angle % 2 == 1) {
+            fmt . Print (".5")
+        }
+        fmt . Print ("\n")
+    }
+}
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-120/abigail/go/ch-2.go">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>Java</h3>
+
+<div class = "section">
+<p>Java is a bit more verbose, but no surprises here:</p>
+
+<pre><code>import java.util.*;
+
+
+public class ch2 {
+    public static void main (String [] args) {
+        int DIFF_PER_MINUTE =  11;  // Half degrees
+        int MIN_PER_HOUR    =  60;
+        int FULL_CIRCLE     = 720;  // Half degrees
+        Scanner scanner = new Scanner (System . in);
+        try {
+            while (true) {
+                String line = scanner . nextLine ();
+                String [] parts = line . split (":");
+                int hours   = Integer . parseInt (parts [0]);
+                int minutes = Integer . parseInt (parts [1]);
+
+                int angle = (DIFF_PER_MINUTE *
+                            (hours * MIN_PER_HOUR + minutes)) % FULL_CIRCLE;
+
+                if (2 * angle &gt;= FULL_CIRCLE) {
+                    angle = FULL_CIRCLE - angle;
+                }
+
+                System . out . print (angle / 2);
+                if (angle % 2 == 1) {
+                    System . out . print (".5");
+                }
+                System . out . print ("\n");
+            }
+        }
+        catch (Exception e) {
+            //
+            // EOF
+            //
+        }
+    }
+}
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-120/abigail/java/ch-2.java">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>Lua</h3>
+
+<pre><code>local DIFF_PER_MINUTE =  11
+local MIN_PER_HOUR    =  60
+local FULL_CIRCLE     = 720
+
+for line in io . lines () do
+    local _, _, hours, minutes = line : find ("([0-9][0-9]):([0-9][0-9])")
+    hours   = tonumber (hours)
+    minutes = tonumber (minutes)
+    local angle = (DIFF_PER_MINUTE * (hours * MIN_PER_HOUR + minutes)) %
+                                              FULL_CIRCLE
+    if 2 * angle &gt;= FULL_CIRCLE
+    then angle = FULL_CIRCLE - angle
+    end
+
+    print (angle / 2)
+end
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-120/abigail/lua/ch-2.lua">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+
+<h3>Node.js</h3>
+
+<pre><code>let DIFF_PER_MINUTE =  11
+let MIN_PER_HOUR    =  60
+let FULL_CIRCLE     = 720
+
+  require ('readline')
+. createInterface ({input: process . stdin})   
+. on              ('line', line =&gt; {
+    let [hours, minutes] = line . trim () . split (":")
+    angle = (DIFF_PER_MINUTE * (+hours * MIN_PER_HOUR + +minutes)) %
+                                         FULL_CIRCLE
+    if (2 * angle &gt;= FULL_CIRCLE) {
+        angle = FULL_CIRCLE - angle
+    }
+
+    console . log (angle / 2)
+})
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-120/abigail/node/ch-2.js">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+
+<h3>Free Pascal</h3>
+
+<pre><code>ses sysutils;
+
+var
+    time: string;
+    hours, minutes, angle: integer;
+
+const
+    DIFF_PER_MINUTE =  11;
+    MIN_PER_HOUR    =  60;
+    FULL_CIRCLE     = 720;
+
+begin
+    while not eof () do begin
+        readln (time);
+        hours   := strtoint (leftstr  (time, 2));
+        minutes := strtoint (rightstr (time, 2));
+
+        angle := (DIFF_PER_MINUTE * (hours * MIN_PER_HOUR + minutes)) mod
+                                             FULL_CIRCLE;
+
+        if 2 * angle &gt;= FULL_CIRCLE then begin
+            angle := FULL_CIRCLE - angle;
+        end;
+
+        write (angle div 2);
+        if angle mod 2 = 1 then begin
+            write ('.5');
+        end;
+        writeln ('');
+    end
+end.
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-120/abigail/pascal/ch-2.p">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+
+<h3>Python</h3>
+
+<div class = "section">
+<p>Not much special about the Python solution:</p>
+
+<pre><code>import fileinput
+
+DIFF_PER_MINUTE =  11
+MIN_PER_HOUR    =  60
+FULL_CIRCLE     = 720
+
+for line in fileinput . input ():
+    hours, minutes = line . strip () . split (":")
+    angle = (DIFF_PER_MINUTE * (int (hours) * MIN_PER_HOUR + int (minutes))) \
+                                            % FULL_CIRCLE
+    if 2 * angle &gt;= FULL_CIRCLE:
+        angle = FULL_CIRCLE - angle
+
+    print (int (angle / 2), end = '')
+    if angle % 2:
+        print (".5", end = '')
+    print ("")
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-120/abigail/python/ch-2.py">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>R</h3>
+
+<div class = "section">
+<p>R has a slightly usual assignment operator (<code>&lt;-</code>), which came to R from APL.
+Indexing arrays requires double brackets. Other than that, the R solution
+is very similar to the solutions in other languages:</p>
+
+<pre><code>DIFF_PER_MINUTE &lt;-  11
+MIN_PER_HOUR    &lt;-  60
+FULL_CIRCLE     &lt;- 720
+
+stdin   &lt;- file ('stdin', 'r')
+time    &lt;- readLines (stdin, n = 1)
+parts   &lt;- strsplit (time, ":")
+hours   &lt;- as.numeric (parts [[1]] [[1]])
+minutes &lt;- as.numeric (parts [[1]] [[2]])
+angle   &lt;- (DIFF_PER_MINUTE * (hours * MIN_PER_HOUR + minutes)) %%
+                                       FULL_CIRCLE
+if (2 * angle &gt;= FULL_CIRCLE) {
+    angle &lt;- FULL_CIRCLE - angle
+}
+cat (angle / 2, "\n")
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-120/abigail/r/ch-2.r">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>Ruby</h3>
+
+<pre><code>diff_per_minute =  11
+min_per_hour    =  60
+full_circle     = 720
+
+ARGF . each_line do
+    |time|
+    hours, minutes = time . split (/:/)
+    angle = (diff_per_minute * (hours . to_i * min_per_hour + minutes . to_i))\
+                                             % full_circle
+    angle = full_circle - angle if 2 * angle &gt;= full_circle
+
+    print (angle / 2)
+    print (".5") if angle % 2 == 1
+    print ("\n")
+end
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-120/abigail/ruby/ch-2.rb">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+
+<h3>Tcl</h3>
+
+<div class = "section">
+<p>Tcl suffers from the same issue as Bash: if a value starts with a <code>0</code>,
+tcl treats it as an octal number, which causes a problem for <code>08</code>
+and <code>09</code>. So, we use the same technique we used in Bash: prepend 
+a <code>1</code> to the number, then subtract <code>100</code>:</p>
+
+<pre><code>set DIFF_PER_MINUTE   11
+set MIN_PER_HOUR      60
+set FULL_CIRCLE      720
+
+while {[gets stdin line] &gt;= 0} {
+    set parts [split $line :]
+    set hours   [expr 1[lindex $parts 0] - 100]
+    set minutes [expr 1[lindex $parts 1] - 100]
+    set angle   [expr (($DIFF_PER_MINUTE * \
+                       ($hours * $MIN_PER_HOUR + $minutes))) % $FULL_CIRCLE]
+    if {2 * $angle &gt;= $FULL_CIRCLE} {
+        set angle [expr $FULL_CIRCLE - $angle]
+    }
+
+    puts -nonewline [expr $angle / 2]
+    if {$angle % 2 == 1} {
+        puts -nonewline ".5"
+    }
+    puts ""
+}
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-120/abigail/tcl/ch-2.tcl">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>Befunge-93</h3>
+
+<p>Without comments:</p>
+
+<pre><code>&gt; &amp; :1+!#@_ ~$ 543*** &amp;+ 65+ * 65432**** % :   6543*** `#v_v
+^                                                        v v
+^   v&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;  /2 :  &lt; -\ ****23456 :  &lt; v
+^   v                                  ^&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;
+^   v
+^   &gt;&gt;&gt; : 56+9* `!#v_ : 554** / "0"+, 554** % &gt; : 55+ / "0"+, &gt; 55+% "0"+, v 
+^                  v                          ^               ^            v
+^                  &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;  : 9 `#^_  &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;^            v
+^                                                                          v
+^                                                    v  ,,".5"  &lt;          v
+^                                                    v          ^          v
+^&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;  , +55  &lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;  _^#  !%2  &lt;&lt;&lt;
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-120/abigail/befunge-93/ch-2.bf93">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+
+<hr id = 'last-line'>
+<div class = 'trailer'>
+<p class = 'prev'><a class = "prev" href = "">&#x261C;</a></p>
+<p class = 'issue'>Please leave any comments as a
+  <a href = 'https://github.com/Abigail/Abigail.github.io/issues'
+     title = 'GitHub issue'>GitHub issue</a>.
+<p class = 'next'><a class = "next" href = "">&#x261E;</a></p>
+</div>
+
+</body>
+</html>

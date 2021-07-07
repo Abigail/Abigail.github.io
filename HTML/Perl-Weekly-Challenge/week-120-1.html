@@ -1,0 +1,246 @@
+<html>
+<head>
+<title>Perl Weekly Challenge 120: Swap Odd/Even bits</title>
+<script src = "https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id = "MathJax-script" async src = "https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.js"></script>
+<script src = '../../JavaScript/jquery.js'></script>
+<script src = '../../JavaScript/navigation.js'></script>
+<link rel = 'preconnect' href = 'https://fonts.gstatic.com'>
+<link rel = 'stylesheet' href = 'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
+<link rel = 'stylesheet' href = '../../Styles/Perl-Weekly-Challenge/main.css'>
+</head>
+
+<body><h1>Perl Weekly Challenge 120: Swap Odd/Even bits</h1><div class = "byline">
+by Abigail<br>
+<img src = "../../Images/jan_sluiters.jpg">
+</div>
+
+
+<h2><a href="https://theweeklychallenge.org/blog/perl-weekly-challenge-120/#TASK1">Challenge</a></h2>
+
+<blockquote>
+  <p>You are given a positive integer <code>$N</code> less than or equal to <code>255</code>.</p>
+  
+  <p>Write a script to swap the odd positioned bit with even positioned
+  bit and print the decimal equivalent of the new binary representation.</p>
+</blockquote>
+
+<h3>Example</h3>
+
+<blockquote>
+<pre><code>Input: $N = 101
+Output: 154
+</code></pre>
+  
+  <p>Binary representation of the given number is <code>01 10 01 01</code>.
+  The new binary representation after the odd/even swap is <code>10 01 10 10</code>.
+  The decimal equivalent of <code>10011010</code> is <code>154</code>.</p>
+
+<pre><code>Input: $N = 18
+Output: 33
+</code></pre>
+  
+  <p>Binary representation of the given number is <code>00 01 00 10</code>.
+  The new binary representation after the odd/even swap is <code>00 10 00 01</code>.
+  The decimal equivalent of <code>100001</code> is <code>33</code>.</p>
+</blockquote>
+
+<h2>Solutions</h2>
+
+<div class = "section">
+<p>This is almost the same exercise as <a href="week-119-1.html">last week's</a>.
+We just have to swap a different set of bits.</p>
+
+<p>If we take a number not exceeding <span class = 'latex-inline'>\(255\)</span>, and look at its binary
+representation, we have:</p>
+
+<p><span class = 'latex-display'>\[ b_7 b_6 b_5 b_4 b_3 b_2 b_1 b_0 \]</span></p>
+
+<p>Swapping the odd positioned bits with the even positioned bits, we get:</p>
+
+<p><span class = 'latex-display'>\[ b_6 b_7 b_4 b_5 b_2 b_3 b_0 b_1 \]</span></p>
+
+<p>Now, we could take the number, get a binary representation, 
+swap the two sets of bits using a regular expression or substrings, 
+and turn this back into a decimal number.</p>
+
+<p>But we can achieve the same things by manipulating the bits
+directly. To do this, we first split the original number,
+which will call <span class = 'latex-inline'>\(N\)</span>, into two parts:</p>
+
+<p>\[ \begin{array}{cccccccc|rcl}
+b_7 &amp; 0   &amp; b_5 &amp; 0   &amp; b_3 &amp; 0   &amp; b_1 &amp; 0   &amp;
+       (N &amp; \&amp; &amp; \text{0x55}) \\
+0   &amp; b_6 &amp; 0   &amp; b_4 &amp; 0   &amp; b_2 &amp; 0   &amp; b_0 &amp;
+       (N &amp; \&amp; &amp; \text{0xAA}) \\ \hline
+b_7 &amp; b_6 &amp; b_5 &amp; b_4 &amp; b_3 &amp; b_2 &amp; b_1 &amp; b_0 &amp;
+          &amp;    &amp;
+            \end{array} \]</p>
+
+<p>We can now shift each part one bit the right or left:</p>
+
+<p>\[ \begin{array}{cccccccc|rclcc}
+0   &amp; b_7 &amp; 0   &amp; b_5 &amp; 0   &amp; b_3 &amp; 0   &amp; b_1 &amp;
+       (N &amp; \&amp; &amp; \text{0x55}) &amp; >> &amp; 1 \\
+b_6 &amp; 0   &amp; b_4 &amp; 0   &amp; b_2 &amp; 0   &amp; b_0 &amp; 0   &amp;
+       (N &amp; \&amp; &amp; \text{0xAA}) &amp; &lt;&lt; &amp; 1 \\ \hline
+b_6 &amp; b_7 &amp; b_4 &amp; b_5 &amp; b_2 &amp; b_3 &amp; b_0 &amp; b_2 &amp;
+          &amp;    &amp;              &amp;    &amp;
+            \end{array} \]</p>
+
+<p>We can now use a bitwise-or (<code>|</code>) or just plain addition to of
+the three parts above to get the final result.</p>
+
+<p>Our solutions looks a lot like the ones in the previous week;
+only the languages lacking bitwise operations looks slightly
+different.</p>
+</div>
+
+<h4>No bitwise operations</h4>
+
+<div class = "section">
+<p>For languages lacking bitwise operations, we will not be manipulating
+the bits. Instead, we will treat the number as a sum of powers of <span class = 'latex-inline'>\(2\)</span>:</p>
+
+<p><span class = 'latex-display'>\[ N = \sum_{i = 0}^7 b_i 2^i, 0 \leq b_i \leq 1 \]</span></p>
+
+<p>We can split this into two groups:</p>
+
+<p>\[ N = \sum_{i = 0, i \text{ odd}}^7  b_i 2^i +
+       \sum_{j = 0, j \text{ even}}^7 b_j 2^j \]</p>
+
+<p>We can now multiply the first group by <span class = 'latex-inline'>\(2\)</span>, while we divide
+the second group by <span class = 'latex-inline'>\(2\)</span>, to get our wanted answer <span class = 'latex-inline'>\(N'\)</span>:</p>
+
+<p>\[ N' = \left(\sum_{i = 0, i \text{ odd}}^7  b_i 2^i\right) \div 2 +
+        \left(\sum_{j = 0, j \text{ even}}^7 b_j 2^j\right) *    2 \]</p>
+
+<p>Which we can rewrite as:</p>
+
+<p>\[ N' = \sum_{i = 0, i \text{ odd}}^7  b_i 2^{i - 1} + 
+        \sum_{j = 0, j \text{ even}}^7 b_j 2^{j + 1} \]</p>
+
+<p>and</p>
+
+<p><span class = 'latex-display'>\[ N' = \sum_{i = 0}^7 b_i 2^{i \% 2 = 1 \text{ ? } i - 1 \text{ : } i + 1} \]</span></p>
+</div>
+
+<h3>Perl</h3>
+
+<div class = "section">
+<p>With the input number in <code>$_</code>:</p>
+
+<pre><code>say + ($_ &amp; 0x55) &lt;&lt; 1 | ($_ &amp; 0xAA) &gt;&gt; 1
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-120/abigail/perl/ch-1.pl">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>Other languages with bitwise operations</h3>
+
+<div class = "section">
+<p>Our implementations in <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-120/abigail/bash/ch-1.sh">Bash</a>, <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-120/abigail/c/ch-1.c">C</a>, <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-120/abigail/go/ch-1.go">Go</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-120/abigail/java/ch-1.java">Java</a>, <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-120/abigail/node/ch-1.js">Node.js</a>, <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-120/abigail/pascal/ch-1.p">Pascal</a>, <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-120/abigail/python/ch-1.py">Python</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-120/abigail/r/ch-1.r">R</a>, <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-120/abigail/ruby/ch-1.rb">Ruby</a>, <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-120/abigail/scheme/ch-1.scm">Scheme</a> and <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-120/abigail/tcl/ch-1.tcl">Tcl</a> are
+very similar to our Perl implementation. </p>
+</div>
+
+<h3>AWK</h3>
+
+<div class = "section">
+<p>AWK doesn't have bitwise operations. So, we're using arithmetic to
+get the powers of <code>2</code> the number is composed off. Each power of
+<code>2</code> is either multiplied by <code>2</code> or divided by <code>2</code>, depending on whether
+the power is even or odd.</p>
+
+<p>This leads to:</p>
+
+<pre><code>{
+    out = 0
+    num = $1
+    for (i = 0; i &lt; 8; i ++) {
+        bit = int ((num - (num % 2 ^ i)) / 2 ^ i) % 2;
+        if (bit) {
+            out += 2 ^ (i + (i % 2 ? -1 : 1))
+        }
+    }
+    print out
+}
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-120/abigail/awk/ch-1.awk">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>bc</h3>
+
+<div class = "section">
+<p>There are not bitwise operations in bc either. So we're using a similar
+solution as the AWK solution. With the input number in <code>num</code>:</p>
+
+<pre><code>out = 0
+for (i = 0; i &lt; 8; i ++) {
+    bit = ((num - (num % 2 ^ i)) / 2 ^ i) % 2
+    if (bit == 1) {
+        if (i % 2 == 1) {
+            out += 2 ^ (i - 1)
+        }
+        if (i % 2 == 0) {
+            out += 2 ^ (i + 1)
+        }
+    }
+}
+out
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-120/abigail/bc/ch-1.bc">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>Lua</h3>
+
+<div class = "section">
+<p>The lua solution is very similar to the AWK solution. With the input
+number in <code>num</code>, we have:</p>
+
+<pre><code>out = 0
+for i = 0, 7 do
+    bit = math . floor ((num - (num % (2 ^ i))) / (2 ^ i)) % 2
+    if bit == 1
+    then
+        if i % 2 == 1
+        then
+            out = out + 2 ^ (i - 1)
+        else
+            out = out + 2 ^ (i + 1)
+        end
+    end
+end
+print (out)
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-120/abigail/lua/ch-1.lua">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>Befunge-93</h3>
+
+<p>Without further comments:</p>
+
+<pre><code>&gt;&gt;&gt;&gt;&gt; &amp; :1+!#@_ : 2% 2*   \ 2/ : 2%      \ 2/ : 2% 8*     \ 2/ : 2% 4* \ 2/ v
+    ^                                                                       v
+&gt;&gt;&gt;&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; : 2% 48** \ 2/ : 2% 44** \ 2/ : 2% 844*** \ 2/   2% 88** v  &gt;&gt;&gt;
+    ^                                                                    v
+    ^&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;  ,+55 . +++++++ &lt;
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-120/abigail/befunge-93/ch-1.bf93">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+
+<hr id = 'last-line'>
+<div class = 'trailer'>
+<p class = 'prev'><a class = "prev" href = "">&#x261C;</a></p>
+<p class = 'issue'>Please leave any comments as a
+  <a href = 'https://github.com/Abigail/Abigail.github.io/issues'
+     title = 'GitHub issue'>GitHub issue</a>.
+<p class = 'next'><a class = "next" href = "">&#x261E;</a></p>
+</div>
+
+</body>
+</html>
