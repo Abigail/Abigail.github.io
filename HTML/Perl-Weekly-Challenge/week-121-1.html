@@ -1,0 +1,280 @@
+<html>
+<head>
+<title>Perl Weekly Challenge 121: Invert Bit</title>
+<script src = "https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id = "MathJax-script" async src = "https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.js"></script>
+<script src = '../../JavaScript/jquery.js'></script>
+<script src = '../../JavaScript/navigation.js'></script>
+<link rel = 'preconnect' href = 'https://fonts.gstatic.com'>
+<link rel = 'stylesheet' href = 'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
+<link rel = 'stylesheet' href = '../../Styles/Perl-Weekly-Challenge/main.css'>
+</head>
+
+<body><h1>Perl Weekly Challenge 121: Invert Bit</h1><div class = "byline">
+by Abigail<br>
+<img src = "../../Images/jan_sluiters.jpg">
+</div>
+
+
+<h2><a href="https://theweeklychallenge.org/blog/perl-weekly-challenge-121/#TASK1">Challenge</a></h2>
+
+<blockquote>
+  <p>You are given integers <code>0 &lt;= $m &lt;= 255</code> and <code>1 &lt;= $n &lt;= 8</code>.</p>
+  
+  <p>Write a script to invert <code>$n</code> bit from the end of the binary
+  representation of <code>$m</code> and print the decimal representation of
+  the new binary number.</p>
+</blockquote>
+
+<h3>Example</h3>
+
+<blockquote>
+<pre><code>Input: $m = 12, $n = 3
+Output: 8
+</code></pre>
+  
+  <p>Binary representation of <code>$m = 00001100</code><br>
+  Invert 3rd bit from the end = <code>00001000</code><br>
+  Decimal equivalent of <code>00001000 = 8</code></p>
+
+<pre><code>Input $m = 18, $n = 4
+Output: 26
+</code></pre>
+  
+  <p>Binary representation of <code>$m = 00010010</code><br>
+  Invert 4th bit from the end = <code>00011010</code><br>
+  Decimal equivalent of <code>00011010 = 26</code></p>
+</blockquote>
+
+<h2>Solution</h2>
+
+<div class = "section">
+<p>Third week in a row where we have to manipulate bits! See
+<a href="week-119-1.html">Swap Nibbles</a> and <a href="week-120-1.html">Swap Odd/Even Bits</a>.</p>
+
+<p>If we take a number, and look at its binary representation, we have:</p>
+
+<p><span class = 'latex-display'>\[ \ldots b_{n+1} b_{n} b_{n-1} \ldots b_3 b_2 b_1 \]</span></p>
+
+<p>Inverting bit <span class = 'latex-inline'>\(n\)</span>, we get:</p>
+
+<p><span class = 'latex-display'>\[ \ldots b_{n+1} \overline{b_{n}} b_{n-1} \ldots b_3 b_2 b_1 \]</span></p>
+
+<p>We can do this by some bit fiddling. Recall the truth table for the
+<a href="https://en.wikipedia.org/wiki/Bitwise_operation#XOR">exclusive or</a> operation:</p>
+
+<p>\[  \begin{array}{|c|c|c|}
+    \hline
+    a &amp; b &amp; a \oplus b \\
+    \hline
+    0 &amp; 0 &amp; 0 \\
+    1 &amp; 0 &amp; 1 \\
+    0 &amp; 1 &amp; 1 \\
+    1 &amp; 1 &amp; 0 \\
+    \hline
+    \end{array} \]</p>
+
+<p>So, we can achieve the given task by taking the bitwise exclusive-or
+of the original number, and <span class = 'latex-inline'>\(1\)</span> shifted <span class = 'latex-inline'>\(n - 1\)</span> places the the left:</p>
+
+<p>\[ \begin{array}{|cccccccc|c|}
+     \hline
+     \ldots &amp; b_{n+1} &amp; b_{n} &amp; b_{n-1} &amp; \ldots &amp; b_3 &amp; b_2 &amp; b_1 &amp;
+        M  \\
+     \ldots &amp;    0    &amp;   1   &amp;    0    &amp; \ldots &amp;  0  &amp;  0  &amp;  0  &amp;
+        1 &lt;&lt; (N - 1) \\
+     \hline
+     \ldots &amp; b_{n+1} &amp; \overline{b_{n}} &amp; b_{n-1} &amp; \ldots &amp; b_3 &amp; b_2 &amp; b_1 &amp;
+        M \oplus (1 &lt;&lt; (N - 1)) \\
+     \hline 
+   \end{array} \]</p>
+
+<p>For all solutions, we assuming the input consists of lines with
+two numbers, <code>$m</code>, and <code>$n</code> on each line. For each input line, we output
+a single number.</p>
+</div>
+
+<h3>Perl</h3>
+
+<div class = "section">
+<p>With the command line options <code>-pla</code>:</p>
+
+<pre><code>$_=$F[0]^1&lt;&lt;--$F[1]
+</code></pre>
+
+<p>The <code>-p</code> option reads the input line by line, executing the program
+for each line, and printing whatever is left in <code>$_</code>.</p>
+
+<p>The <code>-a</code> autosplits each input line on white space, putting the
+results in the array <code>@F</code>. So, for our program, it means that
+<code>$m</code> is available in <code>$F [0]</code>, and <code>$n</code> in <code>$F [1]</code>.</p>
+
+<p>Hence, this simply calculates the wanted number.</p>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-121/abigail/perl/ch-1.pl">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>Languages with bitwise operations</h3>
+
+<div class = "section">
+<p>The implementations in languages with bitwise operations, and all 
+look similar. We'll just give the code fragments doing the calculations:</p>
+</div>
+
+<h4>GNU AWK</h4>
+
+<div class = "section">
+<p>AWK doesn't have bitwise operations, but GNU AWK does:</p>
+
+<pre><code>print xor ($1, lshift (1, $2 - 1))
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-121/abigail/awk/ch-1.gawk">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h4>C</h4>
+
+<pre><code>printf ("%d\n", m ^ (1 &lt;&lt; -- n));
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-121/abigail/c/ch-1.c">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+
+<h4>Go</h4>
+
+<pre><code>fmt . Printf ("%d\n", m ^ (1 &lt;&lt; (n - 1)))
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-121/abigail/go/ch-1.go">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+
+<h4>Java</h4>
+
+<pre><code>System . out . println (m ^ (1 &lt;&lt; (n - 1)));
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-121/abigail/java/ch-1.java">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+
+<h4>Node.js</h4>
+
+<pre><code>console . log (m ^ (1 &lt;&lt; -- n))
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-121/abigail/node/ch-1.js">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+
+<h4>Free Pascal</h4>
+
+<pre><code>writeln (m xor (1 shl (n - 1)));
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-121/abigail/pascal/ch-1.p">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+
+<h4>Python</h4>
+
+<pre><code>print (m ^ (1 &lt;&lt; (n - 1)))
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-121/abigail/python/ch-1.py">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+
+<h4>R</h4>
+
+<pre><code>cat (bitwXor (m, (bitwShiftL (1, n - 1))), "\n")
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-121/abigail/r/ch-1.r">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+
+<h4>Ruby</h4>
+
+<pre><code>puts (m ^ (1 &lt;&lt; (n - 1)))
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-121/abigail/ruby/ch-1.rb">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+
+<h3>Scheme</h3>
+
+<pre><code>(format #t "~d\n" (logxor m (ash 1 (- n 1))))
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-121/abigail/scheme/ch-1.scm">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+
+<h4>Tcl</h4>
+
+<pre><code>puts [expr $m ^ (1 &lt;&lt; ($n - 1))]
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-121/abigail/tcl/ch-1.tcl">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+
+<h3>Languages without bitwise operations</h3>
+
+<div class = "section">
+<p>Without bitwise operations, we have to use arithmetic. First, we find
+out whether the bit is on by dividing (using integer division)
+the number <span class = 'latex-inline'>\(M\)</span> by <span class = 'latex-inline'>\(2^{N-1}\)</span>
+and checking whether the result is odd or even. If it's even, we add
+<span class = 'latex-inline'>\(2^{N-1}\)</span> to <span class = 'latex-inline'>\(M\)</span>, else we subtract <span class = 'latex-inline'>\(2^{N-1}\)</span> from <span class = 'latex-inline'>\(M\)</span>.</p>
+</div>
+
+<h4>Bash</h4>
+
+<pre><code>((n = 2 ** (n - 1)))
+if  (((m / n) % 2))
+then ((m = m  - n))
+else ((m = m  + n))
+fi
+echo $m
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-121/abigail/bash/ch-1.sh">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+
+<h4>bc</h4>
+
+<pre><code>p = 2 ^ (n - 1)
+b = (m / p) % 2
+if (b == 1) {
+    m = m - p
+}
+if (b == 0) {
+    m = m + p
+}
+m
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-121/abigail/bc/ch-1.bc">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+
+<h4>Lua</h4>
+
+<pre><code>x = 1
+for i = 1, n - 1 do
+    x = x * 2
+end
+if  math . floor (m / x) % 2 == 1 then
+    m = m - x
+else
+    m = m + x
+end
+print (m)
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-121/abigail/lua/ch-1.lua">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+
+<h4>Befunge-93</h4>
+
+<pre><code>&gt;&gt;&gt; &amp; :1+!#@_ :&amp; 1- 1 &gt;&gt; \ :! #v_ 1- \ 2* v
+^                     ^        $          v
+^                     ^&lt;&lt;&lt;&lt;&lt;&lt;&lt;   &lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;
+^         v - &lt;                v
+^&lt; ,+55 . &lt;   | %2 \g11 / p11: &lt;
+          ^ + &lt;
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-121/abigail/befunge-93/ch-1.bf93">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+
+<hr id = 'last-line'>
+<div class = 'trailer'>
+<p class = 'prev'><a class = "prev" href = "">&#x261C;</a></p>
+<p class = 'issue'>Please leave any comments as a
+  <a href = 'https://github.com/Abigail/Abigail.github.io/issues'
+     title = 'GitHub issue'>GitHub issue</a>.
+<p class = 'next'><a class = "next" href = "">&#x261E;</a></p>
+</div>
+
+</body>
+</html>

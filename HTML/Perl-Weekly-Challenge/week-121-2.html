@@ -1,0 +1,161 @@
+<html>
+<head>
+<title>Perl Weekly Challenge 121: The Travelling Salesman</title>
+<script src = "https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id = "MathJax-script" async src = "https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.js"></script>
+<script src = '../../JavaScript/jquery.js'></script>
+<script src = '../../JavaScript/navigation.js'></script>
+<link rel = 'preconnect' href = 'https://fonts.gstatic.com'>
+<link rel = 'stylesheet' href = 'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
+<link rel = 'stylesheet' href = '../../Styles/Perl-Weekly-Challenge/main.css'>
+</head>
+
+<body><h1>Perl Weekly Challenge 121: The Travelling Salesman</h1><div class = "byline">
+by Abigail<br>
+<img src = "../../Images/jan_sluiters.jpg">
+</div>
+
+
+<h2><a href="https://theweeklychallenge.org/blog/perl-weekly-challenge-121/#TASK2">Challenge</a></h2>
+
+<blockquote>
+  <p>You are given a <code>N x N</code> matrix containing the distances between <code>N</code> cities.</p>
+  
+  <p>Write a script to find a round trip of minimum length visiting all <code>N</code>
+  cities exactly once and returning to the start.</p>
+  
+  <p><strong>BONUS 1: For a given number <code>N</code>, create a random <code>N x N</code> distance
+  matrix and find a solution for this matrix.</strong><br>
+  <strong>BONUS 2: Find a solution for a random matrix of size <code>15 x 15</code> or
+  <code>20 x 20</code>.</strong></p>
+</blockquote>
+
+<h3>Example</h3>
+
+<blockquote>
+<pre><code>Matrix: [0, 5, 2, 7]
+        [5, 0, 5, 3]
+        [3, 1, 0, 6]
+        [4, 5, 4, 0]
+
+Output:
+        length = 10
+        tour = (0 2 1 3 0)
+</code></pre>
+</blockquote>
+
+<h2>Discussion</h2>
+
+<div class = "section">
+<p>I don't get the bonus challenges. How are they different from the main
+challenge? Is one <code>N</code> different from another <code>N</code>? </p>
+
+<p>The <a href="https://en.wikipedia.org/wiki/travelling_salesman_problem">travelling salesman problem</a> is a famous example of an
+<a href="https://en.wikipedia.org/wiki/NP-completeness">NP-complete</a> problem. In fact, the problem
+is <a href="https://en.wikipedia.org/wiki/NP-hardness">NP-hard</a>.</p>
+
+<p>This means, there are no (known) quick algorithms giving an exact
+solution. Using dynamic programming, the best known algorithms run
+in time <span class = 'latex-inline'>\(\mathcal{O} (n^2 2^n)\)</span>. No algorithm is known which runs
+in <span class = 'latex-inline'>\(\mathcal{o} (2^n)\)</span>.</p>
+
+<p>There are faster heurisitic algorithms known, but they only produce a
+result which is, with high probability, close to the best solution.</p>
+
+<p>To keep our solutions reasonbly simple, we will use brute force,
+trying all possible paths, and remembering the shortest. This gives
+us a running time which is, up to a polynomial factor, <span class = 'latex-inline'>\(\mathcal{O} (n!)\)</span>.</p>
+</div>
+
+<h2>Solution</h2>
+
+<div class = "section">
+<p>Since we want a tour, that is, we have to return to the starting city,
+it doesn't matter where we start. We therefore decide to start and end
+our tour in the first city.</p>
+
+<p>Hence, we want to find the shortest path from first city to the first city,
+with the following conditions: we never visit a city twice, and we visit
+all the cities.</p>
+
+<p>Thus, we create a recursive subroutine (<code>shortest_path</code>) which takes
+four arguments:</p>
+
+<ul>
+<li>The matrix with the distances between the cities</li>
+<li>The city we're starting from (<code>from</code>)</li>
+<li>The destination city (<code>to</code>)</li>
+<li>A set of cities to exclude (<code>exclude</code>)</li>
+</ul>
+
+<p>Initially, the set of excluded cities is empty.</p>
+
+<p>We will return two values: the length of the shortest path, and the
+shortest path itself.</p>
+
+<p>If we have already visited all the other cities, (that is, <code>excluded</code>
+contains all the cities, except <code>to</code>), there is only
+one possible path (from <code>from</code> to <code>to</code>), and
+we return its length, and the one-step path.</p>
+
+<p>Otherwise, for all cities <code>next</code> which aren't <code>from</code>, <code>to</code>, or in <code>exclude</code>
+we call <code>shortest_path</code> with the matrix, <code>next</code> as the starting city,
+<code>to</code> as the destination city, and an exclude set consisting for <code>exclude</code>
+with <code>from</code> added to it. To the result of each call, we add the distance
+between <code>from</code> and <code>next</code>, and remember the minimum value. </p>
+
+<p>This minimum value will be the result of <code>shortest_path</code>.</p>
+</div>
+
+<h3>Perl</h3>
+
+<pre><code>sub shortest_path ($matrix, $from, $to, $exclude) {
+    say "shortest_path (matrix, $from, $to, exclude)";
+    if (1 + keys %$exclude == @$matrix) {
+        # 
+        # We have excluded everything, except the destination.
+        # This makes it the only, and hence, shortest path.
+        #
+        return ($$matrix [$from] [$to], [$to]);
+    }
+
+    # 
+    # Else, try each node other than $from, $to, and what's in $exclude,
+    # as the first step. Then recurse, and return the shortest.
+    #
+    my $shortest = ~0;
+    my @shortest_path;
+    my %new_exclude = (%$exclude, $from =&gt; 1);
+    foreach my $next (0 .. @$matrix - 1) {
+        next if $next == $from || $next == $to || $$exclude {$next};
+        my ($length, $path) = shortest_path ($matrix, $next, $to,
+                                            \%new_exclude);
+        say "$next -&gt; $to ==&gt; $length";
+        if ($shortest &gt; $length + $$matrix [$from] [$next]) {
+            $shortest = $length + $$matrix [$from] [$next];
+            @shortest_path = ($next, @$path);
+        }  
+    }
+    return $shortest, \@shortest_path;
+}
+</code></pre>
+
+<p>Reading in the data, calling <code>shortest_path</code>, and printing the results:</p>
+
+<pre><code>my @matrix = map {[split]} &lt;&gt;;
+
+my  ($length, $path) = shortest_path \@matrix, 0, 0, {};
+say "$length\n0 @$path";
+</code></pre>
+
+<hr id = 'last-line'>
+<div class = 'trailer'>
+<p class = 'prev'><a class = "prev" href = "">&#x261C;</a></p>
+<p class = 'issue'>Please leave any comments as a
+  <a href = 'https://github.com/Abigail/Abigail.github.io/issues'
+     title = 'GitHub issue'>GitHub issue</a>.
+<p class = 'next'><a class = "next" href = "">&#x261E;</a></p>
+</div>
+
+</body>
+</html>

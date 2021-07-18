@@ -44,6 +44,8 @@ let pages = [
     ["week-119-2", "Sequence without 1-on-1"],
     ["week-120-1", "Swap Odd/Even Bits"],
     ["week-120-2", "Clock Angle"],
+    ["week-121-1", "Invert Bit"],
+    ["week-121-2", "The Travelling Salesman"],
 ]
 
 pages . forEach (_ => _ [0] = PWC + "/" + _ [0] + ".html")
