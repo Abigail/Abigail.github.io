@@ -1,0 +1,404 @@
+<html>
+<head>
+<title>Perl Weekly Challenge 122: Average of Stream</title>
+<script src = "https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id = "MathJax-script" async src = "https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.js"></script>
+<script src = '../../JavaScript/jquery.js'></script>
+<script src = '../../JavaScript/navigation.js'></script>
+<link rel = 'preconnect' href = 'https://fonts.gstatic.com'>
+<link rel = 'stylesheet' href = 'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
+<link rel = 'stylesheet' href = '../../Styles/Perl-Weekly-Challenge/main.css'>
+</head>
+
+<body><h1>Perl Weekly Challenge 122: Average of Stream</h1><div class = "byline">
+by Abigail<br>
+<img src = "../../Images/jan_sluiters.jpg">
+</div>
+
+
+<h2><a href="https://theweeklychallenge.org/blog/perl-weekly-challenge-122/#TASK1">Challenge</a></h2>
+
+<blockquote>
+  <p>You are given a stream of numbers, <code>@N</code>.</p>
+  
+  <p>Write a script to print the average of the stream at every point.</p>
+</blockquote>
+
+<h3>Example</h3>
+
+<blockquote>
+<pre><code>Input: @N = (10, 20, 30, 40, 50, 60, 70, 80, 90, ...)
+Output:      10, 15, 20, 25, 30, 35, 40, 45, 50, ...
+</code></pre>
+  
+  <ul>
+  <li>Average of first number is <code>10</code>.</li>
+  <li>Average of first 2 numbers <code>(10 + 20) / 2 = 15</code>.</li>
+  <li>Average of first 3 numbers <code>(10 + 20 + 30) / 3 = 20</code>.</li>
+  <li>Average of first 4 numbers <code>(10 + 20 + 30 + 40) / 4 = 25</code> and so on.</li>
+  </ul>
+</blockquote>
+
+<h2>Solution</h2>
+
+<div class = "section">
+<p>This is a pretty simple task. We will be reading numbers one by one,
+keeping a running sum of the numbers, and the amount of numbers read
+so far &mdash; updating those values for each number read. We then print
+the quotient of the sum and amount of numbers.</p>
+
+<p>We will be assuming the numbers are separated by new lines (so, one
+number per line).</p>
+
+<p>Unless indicated otherwise, our solutions will use the following
+variables:</p>
+
+<ul>
+<li><code>n</code> for the current number read from input.</li>
+<li><code>s</code> the sum of the numbers read so far.</li>
+<li><code>c</code> the count of the numbers read so far.</li>
+</ul>
+</div>
+
+<h3>Perl</h3>
+
+<div class = "section">
+<p>We will be using the <code>-p</code> and <code>-l</code> flags. <code>-p</code> makes that the program
+is executed for each line of the input, with the line available in <code>$_</code>.
+Afterwards, the content of <code>$_</code> is printed.
+The <code>-l</code> strips off the newline of the input, and adds a newline
+when printing.</p>
+
+<p>Instead of using a counter to count the amount of numbers read, we
+will make use of the special variable <code>$.</code>, which contains the current
+line number.</p>
+
+<pre><code>$_=($;+=$_)/$.
+</code></pre>
+
+<p>We keep the running sum of the numbers read so far in the variable <code>$;</code>.
+Each number read will be added to it (<code>$; += $_</code>); this sum we then
+divide with <code>$.</code> and assign back to <code>$_</code>, which is then printed due
+to the <code>-p</code> flag.</p>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-122/abigail/perl/ch-1.pl">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>AWK</h3>
+
+<div class = "section">
+<p>AWK executes its program for each line of input, splits the line on
+whitespace, making the fields available in <code>$1</code>, <code>$2</code>, etc. Since
+we just have a number per line, all we need is <code>$1</code>.</p>
+
+<p>Just like in Perl, there is a special variable which contains the
+current line number &mdash; <code>NR</code> (number of records). This leads to
+the following one-liner:</p>
+
+<pre><code>{print ((s += $1) / NR)}
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-122/abigail/awk/ch-1.awk">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>Bash</h3>
+
+<div class = "section">
+<p>In Bash we have another one liner. No special variables here.</p>
+
+<pre><code>while read n; do echo $(((s += n) / ++ c)); done
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-122/abigail/bash/ch-1.sh">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>Basic</h3>
+
+<div class = "section">
+<p>In our Basic solution, we assume the input is terminated with a <code>0</code>.</p>
+
+<pre><code>100 INPUT n
+110 IF n = 0 THEN END
+150 s = s + n
+160 c = c + 1
+170 PRINT s / c
+200 GOTO 100
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-122/abigail/basic/ch-1.bas">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>bc</h3>
+
+<div class = "section">
+<p>Just like in our Basic solution, we expect the input to be terminated
+with a <code>0</code>:</p>
+
+<pre><code>while (1) {
+    n = read ()
+    if (n == 0) {break}
+    (s += n) / ++ c
+}
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-122/abigail/bc/ch-1.bc">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>Befunge-93</h3>
+
+<div class = "section">
+<p>Befunge-93 does not have any variables. It has a stack, and we can write
+values into the <code>80x24</code> grid which makes up the program.</p>
+
+<p>We keep the sum of numbers at the bottom of the stack, while we track
+the amount of numbers read so far at position <code>(8, 8)</code>.</p>
+
+<pre><code>088p 0 &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;v
+&amp; :1+!#@_ + : 88g1+ :88p / . 55+, &gt;
+</code></pre>
+
+<p>The first line is used to do some initializations. We write a <code>0</code> to 
+position <code>(8, 8)</code> (<code>088p</code>), then put a <code>0</code> on the stack, indicating the
+sum of numbers seen so far.</p>
+
+<p>The second line of the program is the main loop. We start by reading a
+number, and putting it on the stack (<code>&amp;</code>). If we have reached the end 
+of input, <code>-1</code> is put on the stack. So we start by checking for that
+condition, and if it is <code>-1</code>, we terminate: <code>:1+!#@_</code>. This works as
+follows:</p>
+
+<ul>
+<li><code>:</code>: Duplicate the top of the stack.</li>
+<li><code>1</code>: Push <code>1</code> on the stack.</li>
+<li><code>+</code>: Pop the top two numbers of the stack, and push back the sum of those.</li>
+<li><code>!</code>: Pop a number from the stack. If that number is <code>0</code>, push <code>1</code>,
+   else push <code>0</code>.</li>
+<li><code>#</code>: Skip over the next command.</li>
+<li><code>@</code>: Terminate the program. But initially, we skip over this command.</li>
+<li><code>_</code>: Pop a number from the stack. If the number is <code>0</code>, continue to
+   the right. Else, continue to the left. </li>
+</ul>
+
+<p>So, if have reached the end of the input, we have <code>-1</code> on top of the stack.
+Adding <code>1</code> leaves <code>0</code> on top of the stack, which due to the <code>!</code> becomes
+a <code>1</code>. We first skip over the <code>@</code>, but then the <code>_</code> sends us back to
+the <code>@</code>, terminating the program. If, on the other hand, we have read
+a number, we continue with the rest of the program, leaving the read
+number on top of the stack.</p>
+
+<p>So, we now have two numbers on the stack: the sum of the numbers, up
+to the previous number read, and the new number read. We first add
+the two numbers (<code>+</code>), then duplicate the result (<code>:</code>).</p>
+
+<p>We now have to increment the amount of numbers read: first we fetch
+the current amount and put it on the stack (<code>88g</code>), then we add <code>1</code>
+to it (<code>1+</code>). We then write the new amount back, leaving a copy on
+the stack (<code>:88p</code>). </p>
+
+<p>At this moment, we have three values on the stack: the amount of
+numbers on top of the stack, then twice the sum of the numbers.
+We replace the top two numbers on the stack by their quotient (<code>/</code>),
+and print this value (<code>.</code>). We then have to print a newline; a newline
+has ASCII value <code>10</code>, so we have two <code>5</code>s on the stack, add them (<code>+</code>),
+and print the top of the stack (which is now <code>10</code>) as an ASCII character (<code>,</code>).</p>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-122/abigail/befunge-93/ch-1.bf93">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>C</h3>
+
+<div class = "section">
+<p>The C program is pretty straight forward. Simple enough we don't even
+need <code>malloc</code>:</p>
+
+<pre><code>int main (void) {
+    int n;
+    int s = 0;
+    int c = 0;
+
+    while (scanf ("%d", &amp;n) == 1) {
+        printf ("%d\n", (s += n) / ++ c);
+    }
+
+    return (0);
+}
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-122/abigail/c/ch-1.c">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>Go</h3>
+
+<div class = "section">
+<p>The Go program is similar to the C program. A bit more verbose because
+we cannot use <code>+=</code> or prefix <code>++</code> as part of an expression.</p>
+
+<pre><code>func main () {
+    var n, s, c int;
+    s = 0
+    c = 0
+    for {
+        var _, err = fmt . Scanf ("%d", &amp;n)
+        if (err != nil) {
+            break
+        }
+        s += n
+        c ++
+        fmt . Printf ("%d\n", s / c)
+    }
+}
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-122/abigail/go/ch-1.go">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>Java</h3>
+
+<div class = "section">
+<p>Just like in C and Go, we scan for integers to read the next number:</p>
+
+<pre><code>public class ch1 {
+    public static void main (String [] args) {
+        Scanner scanner = new Scanner (System . in);
+        int s = 0, c = 0;
+        while (scanner . hasNext ()) {
+            System . out . println ((s += scanner . nextInt ()) / ++ c);
+        }
+    }
+}
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-122/abigail/java/ch-1.java">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>Lua</h3>
+
+<div class = "section">
+<p>In Lua, we have explicitly convert strings to numbers:</p>
+
+<pre><code>for n in io . lines () do
+    s = s + tonumber (n)
+    c = c + 1
+    print (s / c)
+end
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-122/abigail/lua/ch-1.lua">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>Node.js</h3>
+
+<div class = "section">
+<p>Conversion from strings to numbers in Node.js is done with unary <code>+</code>:</p>
+
+<pre><code>  require ('readline')
+. createInterface ({input: process . stdin})   
+. on              ('line', n =&gt; {console . log ((s +=+ n) / ++ c)})
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-122/abigail/node/ch-1.js">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>Pascal</h3>
+
+<div class = "section">
+<p>Nothing special here:</p>
+
+<pre><code>begin
+    while not eof () do begin
+        readln (n);
+        s := s + n;
+        c := c + 1;
+        writeln (s div c);
+    end
+end.
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-122/abigail/pascal/ch-1.p">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>Python</h3>
+
+<pre><code>for n in fileinput . input ():
+    s = s + int (n)
+    c = c + 1
+    print (s // c)
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-122/abigail/python/ch-1.py">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+
+<h3>R</h3>
+
+<div class = "section">
+<p>In R, assignment is done using the <code>&lt;-</code> operator:</p>
+
+<pre><code>repeat {
+    n &lt;- readLines (stdin, n = 1)
+    if (length (n) == 0) {
+        break
+    }
+    cat ((s &lt;- s + as.integer (n)) / (c &lt;- c + 1), "\n")
+}
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-122/abigail/r/ch-1.r">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>Ruby</h3>
+
+<pre><code>ARGF . each_line do
+    |n|
+    s += n . to_i
+    c += 1
+    puts (s / c)
+end
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-122/abigail/ruby/ch-1.rb">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+
+<h3>Scheme</h3>
+
+<div class = "section">
+<p>Scheme doesn't have loops, but it has recursion. And its operators are
+all prefix operators.</p>
+
+<pre><code>(define (main)
+    (define n (read))
+    (if (not (eof-object? n))
+        (begin
+            (set! s (+ s n))
+            (set! c (+ c 1))
+            (format #t "~d\n" (/ s c))
+            (main)
+        )
+    )
+)
+
+(main)
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-122/abigail/scheme/ch-1.scm">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>Tcl</h3>
+
+<pre><code>while {[gets stdin n] &gt;= 0} {
+    set s [expr $s + $n]
+    set c [expr $c +  1]
+    puts  [expr $s / $c]
+}
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-122/abigail/tcl/ch-1.tcl">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+
+<hr id = 'last-line'>
+<div class = 'trailer'>
+<p class = 'prev'><a class = "prev" href = "">&#x261C;</a></p>
+<p class = 'issue'>Please leave any comments as a
+  <a href = 'https://github.com/Abigail/Abigail.github.io/issues'
+     title = 'GitHub issue'>GitHub issue</a>.
+<p class = 'next'><a class = "next" href = "">&#x261E;</a></p>
+</div>
+
+</body>
+</html>
