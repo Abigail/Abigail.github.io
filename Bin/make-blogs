@@ -133,8 +133,8 @@ sub github_link ($language, $week) {
     $link;
 }
 
-sub full_program ($language, $week) {
-    my $link = github_link ($language, $week);
+sub full_program ($language, $week, $tag) {
+    my $link = github_link (($tag || $language) =~ s/_/ /gr, $week);
     return "Find the [full program]($link) on [GitHub]($GITHUB_URL).\n";
 }
 
@@ -217,7 +217,8 @@ sub process_section ($section, $language, $week) {
     # Replace any lines with FULL_PROGRAM to a section pointing
     # to the file on GitHub.
     #
-    $section =~ s {^FULL_PROGRAM\s*$} {full_program ($language, $week)}gem;
+    $section =~ s {^FULL_PROGRAM(?::(\S+))?\s*$}
+                  {full_program ($language, $week, $1)}gem;
 
     #
     # Process MathJax delimiters
