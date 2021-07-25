@@ -68,25 +68,25 @@ terminate immediately.</p>
 <h3>Perl</h3>
 
 <div class = "section">
-<p>First, we create a subroutine <code>make_chain</code>. It gets two arguments,
-<code>$string</code>, the string we have to turn into a chain, and <code>$start</code>, the
-number the chain should start with. If we can make a chain, we return
+<p>First, we create a subroutine <code>make_sequence</code>. It gets two arguments,
+<code>$string</code>, the string we have to turn into a sequence, and <code>$start</code>, the
+number the sequence should start with. If we can make a sequence, we return
 an array with the chunks (in reverse order &mdash; this is because it's more
 efficient to repeatedly push to an array than to unshift). If we cannot
-make a chain, we return undef.</p>
+make a sequence, we return undef.</p>
 
 <p>In particular, if the starting number equals the whole string, we return
 an one element array with that starting number:</p>
 
-<pre><code>sub make_chain ($string, $start) {
+<pre><code>sub make_sequence ($string, $start) {
     if ($string eq $start) {
         return [$start]
     }
     if (index ($string, $start) == 0) {
         my $tail = substr $string, length $start;
         my $rest;
-        if (($rest = make_chain ($tail, $start + 1)) ||
-            ($rest = make_chain ($tail, $start - 1))) {
+        if (($rest = make_sequence ($tail, $start + 1)) ||
+            ($rest = make_sequence ($tail, $start - 1))) {
             push  @$rest =&gt; $start;
             return $rest;
         } 
@@ -101,9 +101,9 @@ and print the result the first time we get an defined result:</p>
 
 <pre><code>for my $i (1 .. length) {
     #
-    # Try to make a chain with each possible start.
+    # Try to make a sequence with each possible start.
     #
-    my  $result = make_chain $_, substr $_, 0, $i;
+    my  $result = make_sequence $_, substr $_, 0, $i;
     if ($result) {
         say join "," =&gt; reverse @$result;
         last;
@@ -111,9 +111,9 @@ and print the result the first time we get an defined result:</p>
 }
 </code></pre>
 
-<p>Note that we always find a chain &mdash; in the worst case, it's a one
-element chain equal to the entire string. And this is exactly what
-we should print if no chain can be made.</p>
+<p>Note that we always find a sequence &mdash; in the worst case, it's a one
+element sequence equal to the entire string. And this is exactly what
+we should print if no sequence can be made.</p>
 
 <p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-116/abigail/perl/ch-1.pl">full program</a> on <a href="https://github.com">GitHub</a>.</p>
 </div>

@@ -186,7 +186,7 @@ say $ruby_h     "rare_numbers = Array . new";
     # BASIC
     # 
     for my $rn (@{$buckets [$bs]}) {
-        printf $basic_h qq {%03d IF length = %2d THEN PRINT %24s\n}
+        printf $basic_h qq "%03d IF length = %2d THEN PRINT %24s\n"
                      =&gt;    ($basic_ln += 10), $bs, qq {"$rn"}
     }
 
