@@ -47,6 +47,7 @@ let pages = [
     ["week-121-1", "Invert Bit"],
     ["week-121-2", "The Travelling Salesman"],
     ["week-122-1", "Average of Stream"],
+    ["week-122-2", "Basketball Points"],
 ]
 
 pages . forEach (_ => _ [0] = PWC + "/" + _ [0] + ".html")

@@ -1,0 +1,421 @@
+<html>
+<head>
+<title>Perl Weekly Challenge 122: Basketball Points</title>
+<script src = "https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id = "MathJax-script" async src = "https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.js"></script>
+<script src = '../../JavaScript/jquery.js'></script>
+<script src = '../../JavaScript/navigation.js'></script>
+<link rel = 'preconnect' href = 'https://fonts.gstatic.com'>
+<link rel = 'stylesheet' href = 'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
+<link rel = 'stylesheet' href = '../../Styles/Perl-Weekly-Challenge/main.css'>
+</head>
+
+<body><h1>Perl Weekly Challenge 122: Basketball Points</h1><div class = "byline">
+by Abigail<br>
+<img src = "../../Images/jan_sluiters.jpg">
+</div>
+
+
+<h2>[Challenge][task2]</h2>
+
+<blockquote>
+  <p>You are given a score <code>$S</code>.</p>
+  
+  <p>You can win basketball points e.g. 1 point, 2 points and 3 points.</p>
+  
+  <p>Write a script to find out the different ways you can score <code>$S</code>.</p>
+</blockquote>
+
+<h3>Example</h3>
+
+<blockquote>
+<pre><code>Input: $S = 4
+Output: 1 1 1 1
+        1 1 2
+        1 2 1
+        1 3
+        2 1 1
+        2 2
+        3 1
+
+Input: $S = 5
+Output: 1 1 1 1 1
+        1 1 1 2
+        1 1 2 1
+        1 1 3
+        1 2 1 1
+        1 2 2
+        1 3 1
+        2 1 1 1
+        2 1 2
+        2 2 1
+        2 3
+        3 1 1
+        3 2
+</code></pre>
+</blockquote>
+
+<h2>Discussion</h2>
+
+<div class = "section">
+<p>The <a href="https://en.wikipedia.org/wiki/Generalizations_of_Fibonacci_numbers#Tribonacci_numbers">Tribonacci
+Numbers</a>
+are defined as follows:</p>
+
+<p>\[ \mathcal{T}(n) = \begin{cases}
+     0  &amp; \text{if } n \leq 1 \\
+     1  &amp; \text{if } n = 2 \\
+     \mathcal{T}(n - 3) + \mathcal{T}(n - 2) + \mathcal{T}(n - 1) &amp;
+         \text{if } n > 2
+   \end{cases} \]</p>
+
+<p>This sequence is found at the OEIS as <a href="https://oeis.org/A000073">A000073</a>.</p>
+
+<p>There is a formula to calculate <span class = 'latex-inline'>\(\mathcal{T}(n)\)</span> directly, in
+a similar was there is one for the Fibonacci numbers:</p>
+
+<p>\[ \mathcal{T}(n) = \left\lfloor
+   \frac{3 \left(\sqrt[3]{586 + 102\sqrt{33}}\right)
+           \left(\frac{1}{3}(\sqrt[3]{19 + 3\sqrt{33}} +
+                             \sqrt[3]{19 - 3\sqrt{33}} + 1)\right)^n}
+        {\left(\sqrt[3]{586 + 102\sqrt{33}}\right)^2 -
+              2\sqrt[3]{586 + 102\sqrt{33}} + 4}
+\right\rceil \]</p>
+
+<p>Now, the number of ways to decompose a non-negative integer <span class = 'latex-inline'>\(N\)</span> as a sum
+of <code>1</code>s, <code>2</code>s, and <code>3</code>s, is equal to <span class = 'latex-inline'>\(\mathcal{T}(N + 2)\)</span>.</p>
+
+<p>But we don't have to calculate the number of ways to decompose a score,
+we actually have to calculate all the different ways to decompose
+a given score.</p>
+
+<p>The definition of the Tribonacci Numbers gives us a way to calculate
+the all the different decompositions. Let <span class = 'latex-inline'>\(\mathcal{S}(n)\)</span> be the
+set of all decompositions of a score of <span class = 'latex-inline'>\(n - 2\)</span>. Then</p>
+
+<p>\[ \mathcal{S}(n) = \begin{cases}
+   \emptyset &amp; \text{if } n \leq 1,   \\
+   \{ \text{""} \} &amp; \text{if } n = 2 \\
+   \{ \forall x \in \mathcal{S}(n - 1): \text{"1"} \odot x \} \; \cup &amp; \\
+   \{ \forall x \in \mathcal{S}(n - 2): \text{"2"} \odot x \} \; \cup &amp;
+                                                         \text{if } n > 2 \\
+   \{ \forall x \in \mathcal{S}(n - 3): \text{"3"} \odot x \}         &amp;
+   \end{cases} \]</p>
+
+<p>where <span class = 'latex-inline'>\(\odot\)</span> is the concatenation operator.</p>
+
+<p>That is, we can decompose a score of <span class = 'latex-inline'>\(n\)</span> by either first scoring a <span class = 'latex-inline'>\(1\)</span>
+and then decomposing a score of <span class = 'latex-inline'>\(n - 1\)</span>, or first scoring a <span class = 'latex-inline'>\(2\)</span> and
+then decomposing a score of <span class = 'latex-inline'>\(n - 2\)</span>, or first scoring a <span class = 'latex-inline'>\(3\)</span> and then
+decomposing a score of <span class = 'latex-inline'>\(n - 3\)</span>.</p>
+
+<p>The definition given above suggests using a recursive solution. This is
+possible, but instead, we will be using an iterative solution.</p>
+</div>
+
+<h2>Solutions</h2>
+
+<div class = "section">
+<p>We will reading the <code>n</code> from standard input.</p>
+</div>
+
+<h3>Perl</h3>
+
+<div class = "section">
+<p>We start off by initializing the first three sets, \(\mathcal{S}(0), 
+\mathcal{S}(1), \mathcal{S}(2)\):</p>
+
+<pre><code>my @s = ([], [], [""]);
+</code></pre>
+
+<p>Thus two empty sets, and a set consisting of an empty string.</p>
+
+<p>We now repeatedly (<code>n</code> times) add a next set, using the last three
+sets:</p>
+
+<pre><code>map {push @s =&gt; [map {my $s = $_; map {"$s $_"} @{$s [-$s]}} 1 .. 3]} 1 .. &lt;&gt;;
+</code></pre>
+
+<p>We can rewrite this using nested <code>for</code> loops instead of <code>map</code>s to make
+it clear what is happening:</p>
+
+<pre><code>for (1 .. &lt;&gt;) {
+    my @new;
+    for my $s (1 .. 3) {
+        for my $decomposition (@{$s [-$s]}) {
+            push @new =&gt; "$s $decomposition";
+        }
+    }
+    push @s =&gt; \@new;
+}
+</code></pre>
+
+<p>A new set is created by taking all the decompositions for the last
+three sets, and prepending them with <code>1</code>, <code>2</code>, or <code>3</code>.</p>
+
+<p>At the end, we have to print the elements of the last set:</p>
+
+<pre><code>say for @{$s [-1]}
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-122/abigail/perl/ch-2.pl">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>AWK</h3>
+
+<div class = "section">
+<p>We will be using two arrays, <code>c</code>, and <code>s</code>. <code>s [i]</code> will contain
+all the decompositions of a score of <code>i</code>, while <code>c [i]</code> will contain
+the number of decompositions of a score of <code>i</code>.</p>
+
+<p>First, the initialization:</p>
+
+<pre><code>c [0] = 0
+c [1] = 0
+c [2] = 1
+s [2, 0] = ""
+</code></pre>
+
+<p>We can now repeatedly add new entries to <code>s</code> and <code>c</code>. Note that we have
+<code>n</code> in <code>$1</code>:</p>
+
+<pre><code>for (i = 3; i &lt; $1 + 3; i ++) {
+    c [i] = 0
+    for (j = 1; j &lt;= 3; j ++) {
+        for (k = 0; k &lt; c [i - j]; k ++) {
+            s [i, c [i]] = j " " s [i - j, k]
+            c [i] ++
+        }
+    }
+}
+</code></pre>
+
+<p>Finally, we print the result:</p>
+
+<pre><code>for (k = 0; k &lt; c [$1 + 2]; k ++) {
+    print s [$1 + 2, k]
+}
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-122/abigail/awk/ch-2.awk">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>Bash</h3>
+
+<div class = "section">
+<p>For our Bash solution, we need a trick. Bash doesn't have multidimensional
+arrays. We could have used a concatenated key, and an associative array,
+but we do something else instead. Instead of having an array of sets,
+we use an array of strings; each string has all the decompositions 
+concatenated together; and each decomposition starts with a newline.
+(So, the newline acts as a separator, but there is an extra newline
+at the beginning).</p>
+
+<p>The initialization:</p>
+
+<pre><code>declare scores
+l=$'\n'
+scores[2]=$l
+</code></pre>
+
+<p><code>l=$'\n'</code> is a little trick to get a string consisting of just a newline
+into a variable.</p>
+
+<p>We can now repeatedly add a new entry to <code>scores</code>:</p>
+
+<pre><code>for ((i = 3; i &lt; n + 3; i ++))
+do  for ((j = 1; j &lt;= 3; j ++))
+    do  scores[$i]=${scores[$i]}${scores[$((i - j))]//$l/$l$j }
+    done
+done
+</code></pre>
+
+<p>The interesting part is: <code>${scores[$((i - j))]//$l/$l$j }</code>. <code>i</code> is the
+index of new entry, and <code>j</code> is <code>1</code>, <code>2</code>, or <code>3</code>, so <code>${scores[$((i - j))]}</code>
+is one of the last three entries. We then use a regular expression to
+prepend <code>j</code> to each of the decompositions. The general syntax is:
+<code>${word//pattern/replacement}</code>. This takes <code>$word</code>, and replaces each
+non-overlapping occurance of <code>pattern</code> with <code>replacement</code>, returning
+the result. The Perl equivalent would be: <code>$word =~ s/pattern/replacement/gr</code>.</p>
+
+<p>Printing the result is now simply &mdash; we don't have to loop as the
+decompositions are already separated by newlines. But we have to remove
+the first newline:</p>
+
+<pre><code>echo "${scores[$((n + 2))]/$l/}"
+</code></pre>
+
+<p>Note that we have only a single slash before the pattern; this means
+we only replace the first occurance.</p>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-122/abigail/bash/ch-2.sh">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>C</h3>
+
+<div class = "section">
+<p>In C, we have to work hard! Since C doesn't have a way of find out
+the size of an array, nor an efficient method to find the length
+of a string, we will be using three arrays:</p>
+
+<ul>
+<li><code>scores</code>, a two dimensional array of strings (which are pointers to <code>char</code>)</li>
+<li><code>count</code>, which counts the number of decompositions for a specific score</li>
+<li><code>lengths</code>, a two dimensional array, with the length of each of the
+strings in <code>scores</code>.</li>
+</ul>
+
+<p>We'll declare this as: </p>
+
+<pre><code>typedef long long number;
+char  *** scores;
+number  * count;
+size_t ** lengths;
+</code></pre>
+
+<p>Then we read our number <code>n</code>, and allocate space for the arrays:</p>
+
+<pre><code>int n;
+if (scanf ("%d", &amp;n) != 1) {
+    perror ("Unexpected input");
+    exit (1);
+}
+
+if ((scores = (char ***) malloc ((n + 3) * sizeof (char **))) == NULL) {
+    perror ("Malloc scores failed");
+    exit (1);
+}
+if ((count = (number *) malloc ((n + 3) * sizeof (number))) == NULL) {
+    perror ("Malloc count failed");
+    exit (1);
+}
+if ((lengths = (size_t **) malloc ((n + 3) * sizeof (size_t *))) == NULL) {
+    perror ("Malloc lengths failed");
+    exit (1);
+}
+</code></pre>
+
+<p>We can now initialize the first three entries, which requires more
+allocating of memory:</p>
+
+<pre><code>count [0] = 0;
+count [1] = 0;
+count [2] = 1;
+
+if ((scores [2] = (char **) malloc (sizeof (char *))) == NULL) {
+    perror ("Malloc failed");
+    exit (1);
+}
+if ((scores [2] [0] = (char *) malloc (sizeof (char))) == NULL) {
+    perror ("Malloc failed");
+    exit (1);
+}
+if ((lengths [2] = (size_t *) malloc (sizeof (size_t))) == NULL) {
+    perror ("Malloc failed");
+    exit (1);
+}
+scores  [2] [0] [0] = '\0';
+lengths [2] [0]     =   0;
+</code></pre>
+
+<p>We now start the loop in which we add new sets to <code>scores</code>:</p>
+
+<pre><code>for (int i = 3; i &lt; n + 3; i ++) {
+</code></pre>
+
+<p>We start with calculating how many entries there will be in that
+set (which is the sum of the sizes of the previous three sets),
+and allocate memory for <code>scores [i]</code> and <code>lengths [i]</code>:</p>
+
+<pre><code>count [i] = count [i - 1] + count [i - 2] + count [i - 3];
+if ((scores [i] = (char **) malloc (count [i] * sizeof (char *)))
+               == NULL) {
+    perror ("Malloc failed");
+    exit (1);
+}
+if ((lengths [i] = (size_t *) malloc (count [i] * sizeof (size_t)))
+               == NULL) {
+    perror ("Malloc failed");
+    exit (1);
+}
+</code></pre>
+
+<p>It's only now that we can create the entries in the set. Each entry is
+two character longer than the its "<em>parent</em>" entry: first a <code>1</code>, <code>2</code>,
+or <code>3</code>, then a space, then a copy of an entry from one of the three
+previous sets.</p>
+
+<pre><code>number l = 0;
+for (int j = 1; j &lt;= 3; j ++) {
+    for (int k = 0; k &lt; count [i - j]; k ++) {
+        lengths [i] [l] = 2 + lengths [i - j] [k];
+        if ((scores [i] [l] = (char *) malloc
+                   ((lengths [i] [l] + 1) * sizeof (char))) == NULL) {
+            perror ("Malloc failed");
+            exit (1);
+        }
+        scores [i] [l] [0] = j + '0';
+        scores [i] [l] [1] = ' ';
+        strncpy (scores  [i] [l] + 2, scores [i - j] [k],
+                 lengths [i - j] [k]);
+        scores [i] [l] [lengths [i] [l]] = '\0';
+
+        l ++;
+    }
+}
+</code></pre>
+
+<p>At the end of the loop, we can release some memory &mdash; we don't need
+the entry three steps back anymore:</p>
+
+<pre><code>if (i - 3 &gt; 1) {
+    for (int k = 0; k &lt; count [i - 3]; k ++) {
+        free (scores [i - 3] [k]);
+    }
+    free (scores  [i - 3]);
+    free (lengths [i - 3]);
+}
+</code></pre>
+
+<p>After we have created the final set, we can print its entries:</p>
+
+<pre><code>for (int i = 0; i &lt; count  [n + 2]; i ++) {
+    printf ("%s\n", scores [n + 2] [i]);
+}
+</code></pre>
+
+<p>All what now needs to be done, is freeing memory:</p>
+
+<pre><code>for (int i = n; i &lt;= n + 2; i ++) {
+    for (int k = 0; k &lt; count [i]; k ++) {
+        free (scores [i] [k]);
+    }
+    free (scores  [i]);
+    free (lengths [i]);
+}
+
+free (scores);
+free (lengths);
+free (count);
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-122/abigail/c/ch-2.c">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>Other languages</h3>
+
+<p>We have also solutions in <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-122/abigail/lua/ch-2.lua">Lua</a>, <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-122/abigail/node/ch-2.js">Node.js</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-122/abigail/python/ch-2.py">Python</a> and <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-122/abigail/ruby/ch-2.rb">Ruby</a>, which are all similar
+to our Perl solution.</p>
+
+<hr id = 'last-line'>
+<div class = 'trailer'>
+<p class = 'prev'><a class = "prev" href = "">&#x261C;</a></p>
+<p class = 'issue'>Please leave any comments as a
+  <a href = 'https://github.com/Abigail/Abigail.github.io/issues'
+     title = 'GitHub issue'>GitHub issue</a>.
+<p class = 'next'><a class = "next" href = "">&#x261E;</a></p>
+</div>
+
+</body>
+</html>
