@@ -48,6 +48,15 @@ my $GITHUB_REPO    = "perlweeklychallenge-club";
 my $GITHUB_BRANCH  = "master";
 my $CHALLENGE_USER = "abigail";
 
+my $TYPE_UNKNOWN   = 0;
+my $TYPE_PWC       = 1;
+my $TYPE_FC        = 2;
+
+my %TYPE_MAP       = (
+    $PWC_DIR          =>  $TYPE_PWC,
+   'Feature_Compare'  =>  $TYPE_FC,
+);
+
 my %LANGUAGE_INFO = (
     AWK           => {},
    "GNU AWK"      => {name => "awk",    ext => "gawk"},
@@ -342,7 +351,14 @@ chomp (@sources);
 foreach my $source_file (@sources) {
     my $html_file = $source_file =~ s/^$SRC_DIR/$HTML_DIR/r
                                  =~ s/\.md$/.html/r;
-    my ($week)    = $source_file =~ m{.*/week-(.*)\.md};
+
+    my ($dir) = $source_file =~ m {^([^/]+)/};
+    my  $type = $TYPE_MAP {$dir // ""} // $TYPE_UNKNOWN;
+    my  $week = 0;
+
+    if ($type == $TYPE_PWC) {
+        $week = $1 if $source_file =~ m{.*/week-(.*)\.md};
+    }
     next if !@ARGV && -f $html_file && (stat $html_file)   [9] >
                                        (stat $source_file) [9]; # 9: mtime
 
