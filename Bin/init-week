@@ -1,0 +1,99 @@
+#!/opt/perl/bin/perl
+
+use 5.028;
+
+use strict;
+use warnings;
+no  warnings 'syntax';
+
+use experimental 'signatures';
+use experimental 'lexical_subs';
+use LWP::Simple;
+
+my $host = "theweeklychallenge.org";
+my $blog_dir = "/Users/abigail/GitHub/Blogs";
+
+my ($week, $challenge) = @ARGV;
+
+die "$0 <week> <challenge>" unless $week && $challenge;
+
+my $url    = "https://$host/blog/perl-weekly-challenge-$week";
+my $anchor = "$url/#TASK$challenge";
+my $file   = "$blog_dir/Src/Perl-Weekly-Challenge/week-$week-$challenge.md";
+
+if (-f $file) {
+    die "File already exists";
+}
+
+open my $fh, ">", $file or die "open $file: $!";
+
+my $text = get ($url) or die "Failed to fetch $url";
+
+#
+# Capture the relevant section
+#
+$text =~ m {(<h2\s+id="TASK$challenge">(?:.*\n)+?)<br>}
+              or die "Failed to extract text";
+$text = $1;
+
+#
+# Remove lines we don't care about
+#
+$text =~ s/^<h5.*submitted-by.*\n//mg;
+$text =~ s/^<hr>\n//mg;
+
+#
+# Remove title line -- extract the title from it.
+#
+$text =~ s {<h2[^>]+>TASK\s+\#$challenge\s+.\s+(.*)</h2>\n}{} 
+            or die "Failed to extract title";
+my $title = $1;
+
+#
+# Extract the description, and format it.
+#
+$text =~ s{^((?:.*\n)+)(<h2.*Example)}{$2}
+          or die "Failed to extract examples";
+my $description = format_description ($1);
+
+#
+# What is left are the examples
+#
+my $examples = format_examples ($text);
+
+
+#
+# Print it
+#
+say $fh <<"--";
+# Perl Weekly Challenge $week: $title
+
+## [Challenge][task$challenge]
+$description
+
+$examples
+
+[task$challenge]: $anchor
+--
+
+close $fh or die "close $file: $!";
+exit;
+
+sub format_description ($description) {
+    $description =~ s!</?code>!`!gr
+                 =~ s!</p>$!\n> !gmr
+                 =~ s!^<p>!> !gmr
+                 =~ s!&lt;!<!gr
+                 =~ s!&gt;!>!gr
+                 =~ s!&amp;!&!gr;
+}
+
+sub format_examples ($examples) {
+    $examples =~ s!^<h2[^>]+>([^<]+)</h2>!### $1!r
+              =~ s!<pre><code>!!r
+              =~ s!</code></pre>!!r
+              =~ s:^(?!#):>     :gmr;
+    ;
+}
+
+__END__
