@@ -1,0 +1,172 @@
+<html>
+<head>
+<title>Perl Weekly Challenge 123: Ugly Numbers</title>
+<script src = "https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id = "MathJax-script" async src = "https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.js"></script>
+<script src = '../../JavaScript/jquery.js'></script>
+<script src = '../../JavaScript/navigation.js'></script>
+<link rel = 'preconnect' href = 'https://fonts.gstatic.com'>
+<link rel = 'stylesheet' href = 'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
+<link rel = 'stylesheet' href = '../../Styles/Perl-Weekly-Challenge/main.css'>
+</head>
+
+<body><h1>Perl Weekly Challenge 123: Ugly Numbers</h1><div class = "byline">
+by Abigail<br>
+<img src = "../../Images/jan_sluiters.jpg">
+</div>
+
+
+<h2><a href="https://theweeklychallenge.org/blog/perl-weekly-challenge-123/#TASK1">Challenge</a></h2>
+
+<blockquote>
+  <p>You are given an integer <code>$n &gt;= 1</code>.</p>
+  
+  <p>Write a script to find the <code>$n</code>th element of Ugly Numbers.</p>
+  
+  <blockquote>
+    <p>Ugly numbers are those number whose prime factors are <code>2</code>, <code>3</code> or <code>5</code>.
+    For example, the first 10 Ugly Numbers are <code>1</code>, <code>2</code>, <code>3</code>, <code>4</code>, <code>5</code>,
+    <code>6</code>, <code>8</code>, <code>9</code>, <code>10</code>, <code>12</code>.</p>
+  </blockquote>
+</blockquote>
+
+<h3>Examples</h3>
+
+<blockquote>
+<pre><code>Input: $n = 7
+Output: 8
+
+Input: $n = 10
+Output: 12
+</code></pre>
+</blockquote>
+
+<h2>Discussion</h2>
+
+<div class = "section">
+<p>The numbers described above are better known as <a href="https://mathworld.wolfram.com/SmoothNumber.html"><em>5-smooth numbers</em></a>.
+The 5-smooth numbers are listed as <a href="https://oeis.org/A000079">A000079</a> on the
+<a href="https://oeis.org">OEIS</a>.</p>
+
+<p>5-smooth numbers are all the numbers of the form
+<span class = 'latex-inline'>\(2^m \, 3^n \, 5^p, 0 \leq m, 0 \leq n, 0 \leq p\)</span>. This means that
+for each 5-smooth number <span class = 'latex-inline'>\(n\)</span> which isn't equal to 1, is equal to
+twice a 5-smooth number, or thrice times a 5-smooth number, or five times a
+5-smooth number:</p>
+
+<p>\[
+   \begin{array}{|r|r|r|r|r|}
+   \hline
+     &amp;                   &amp; 2 \,\times &amp; 3 \,\times &amp; 5 \,\times \\
+   \hline
+   1 &amp; 2^0 \, 3^0 \, 5^0 &amp;     &amp;     &amp;     \\
+   2 &amp; 2^1 \, 3^0 \, 5^0 &amp;   1 &amp;     &amp;     \\
+   3 &amp; 2^0 \, 3^1 \, 5^0 &amp;     &amp;   1 &amp;     \\
+   4 &amp; 2^2 \, 3^0 \, 5^0 &amp;   2 &amp;     &amp;     \\
+   5 &amp; 2^0 \, 3^0 \, 5^1 &amp;     &amp;     &amp;   1 \\
+   6 &amp; 2^1 \, 3^1 \, 5^0 &amp;   3 &amp;   2 &amp;     \\
+   8 &amp; 2^3 \, 3^0 \, 5^0 &amp;   4 &amp;     &amp;     \\
+   9 &amp; 2^0 \, 3^2 \, 5^0 &amp;     &amp;   3 &amp;     \\
+  10 &amp; 2^1 \, 3^0 \, 5^1 &amp;   5 &amp;     &amp;   2 \\
+  12 &amp; 2^2 \, 3^1 \, 5^0 &amp;   6 &amp;   4 &amp;     \\
+  15 &amp; 2^0 \, 3^1 \, 5^1 &amp;     &amp;   5 &amp;   3 \\
+  16 &amp; 2^4 \, 3^0 \, 5^0 &amp;   8 &amp;     &amp;     \\
+  18 &amp; 2^1 \, 3^2 \, 5^0 &amp;   9 &amp;   6 &amp;     \\
+  20 &amp; 2^2 \, 3^0 \, 5^1 &amp;  10 &amp;     &amp;   4 \\
+  24 &amp; 2^3 \, 3^1 \, 5^0 &amp;  12 &amp;   8 &amp;     \\
+  25 &amp; 2^0 \, 3^0 \, 5^2 &amp;     &amp;     &amp;   5 \\
+  27 &amp; 2^0 \, 3^3 \, 5^0 &amp;     &amp;   9 &amp;     \\
+  30 &amp; 2^1 \, 3^1 \, 5^1 &amp;  15 &amp;  10 &amp;   6 \\
+   \hline
+  \end{array}
+\]</p>
+
+<p>Now take a look at the last three columns: they are the 5-smooth numbers,
+in order! This means, we can create the 5-smooth numbers, by taking
+the 5-smooth numbers, multiplying them with 2, 3 and 5, and merging
+those lists. (How's that for a recursive definition?)</p>
+</div>
+
+<h2>Solution</h2>
+
+<div class = "section">
+<p>Using the discussion above, we will create the 5-smooth/ugly numbers
+one-by-one. We'll keep an array <code>ugly</code>, containing the ugly numbers
+created so far, and three pointers/indices into the array: <code>next_2</code>,
+<code>next_3</code>, and <code>next_5</code>.</p>
+
+<p>We will be maintaining the following invariants:</p>
+
+<ul>
+<li><code>2 * ugly [next_2 - 1] &lt;= N &lt; 2 * ugly [next_2]</code></li>
+<li><code>3 * ugly [next_3 - 1] &lt;= N &lt; 3 * ugly [next_3]</code></li>
+<li><code>5 * ugly [next_5 - 1] &lt;= N &lt; 5 * ugly [next_5]</code></li>
+</ul>
+
+<p>where <code>N</code> is the largest (and most recent) generated ugly number.
+(For the sake of maintaining the invariant, we assume that <code>ugly [-1]</code>
+equals <code>0</code>).</p>
+
+<p>We start off with <code>ugly</code> containing one element, <code>1</code>, and each of
+<code>next_2</code>, <code>next_3</code> and <code>next_5</code> will start off at <code>0</code> (or <code>1</code> for 
+languages where arrays start at <code>1</code>).</p>
+
+<p>Then, in a loop, we calculate the next ugly number as the minimum
+of <code>2 * ugly [next_2]</code>, <code>3 * ugly [next_3]</code> and <code>5 * ugly [next_5]</code>.
+After generating the next ugly number, we will check which of
+<code>next_2</code>, <code>next_3</code>, and <code>next_5</code> need to be incremented, and increment
+those which do. At least one of them needs to be incremented, but it
+may be all three need to. We never need to increment by more than <code>1</code>.</p>
+
+<p>Our solution is quite fast. We spend constant time in each iteration,
+so our running time is <span class = 'latex-inline'>\(\mathcal{O}(N)\)</span>.</p>
+</div>
+
+<h3>Perl</h3>
+
+<div class = "section">
+<p>First the initialization:</p>
+
+<pre><code>use List::Util qw [min];
+my @ugly   = (1);
+my $next_2 =  0;
+my $next_3 =  0;
+my $next_5 =  0;
+</code></pre>
+
+<p>In a loop, which we execute <code>N - 1</code> times:</p>
+
+<p>Calculating the next ugly number:</p>
+
+<pre><code>push @ugly =&gt; min 2 * $ugly [$next_2],
+                  3 * $ugly [$next_3],
+                  5 * $ugly [$next_5];
+</code></pre>
+
+<p>Updating the pointers:</p>
+
+<pre><code>$next_2 ++ if 2 * $ugly [$next_2] &lt;= $ugly [-1];
+$next_3 ++ if 3 * $ugly [$next_3] &lt;= $ugly [-1];
+$next_5 ++ if 5 * $ugly [$next_5] &lt;= $ugly [-1];
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-123/abigail/perl/ch-1.pl">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>Other languages</h3>
+
+<p>We have similar solutions in <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-123/abigail/awk/ch-1.awk">AWK</a>, <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-123/abigail/bash/ch-1.sh">Bash</a>, <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-123/abigail/c/ch-1.c">C</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-123/abigail/lua/ch-1.lua">Lua</a>, <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-123/abigail/node/ch-1.js">Node.js</a>, <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-123/abigail/python/ch-1.py">Python</a>, <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-123/abigail/r/ch-1.r">R</a>
+and <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-123/abigail/ruby/ch-1.rb">Ruby</a>.</p>
+
+<hr id = 'last-line'>
+<div class = 'trailer'>
+<p class = 'prev'><a class = "prev" href = "">&#x261C;</a></p>
+<p class = 'issue'>Please leave any comments as a
+  <a href = 'https://github.com/Abigail/Abigail.github.io/issues'
+     title = 'GitHub issue'>GitHub issue</a>.
+<p class = 'next'><a class = "next" href = "">&#x261E;</a></p>
+</div>
+
+</body>
+</html>
