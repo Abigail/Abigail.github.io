@@ -237,6 +237,16 @@ sub process_section ($section, $language, $week) {
     $section . "\n";
 }
 
+#
+# Given a piece of text, turn it into an Markdown blockquote
+#
+sub block_quote ($text) {$text =~ s/^/> /mgr}
+
+#
+# Given a piece of text, turn it into an Markdown blockquote
+#
+sub code_block ($text) {$text =~ s/^/    /mgr}
+
 
 
 sub pre_process ($text, $week) {
@@ -244,9 +254,24 @@ sub pre_process ($text, $week) {
 
     my $out = "";
 
+    my @tokens = (["\Q~~~~", "\Q~~~~", \&code_block],
+                  ["\Q>>>>", "\Q<<<<", \&block_quote]);
+    my $pat = join '|' => map {@$_ [0, 1]} @tokens;
+
+    TOKEN: {
+        my $changed;
+        foreach my $entry (@tokens) {
+            my ($start, $end, $call_back) = @$entry;
+            $changed ++ if $text =~ s {^$start \h* \n
+                                        ((?:^(?!$pat) \N* \n)*)
+                                        $end \h* \n}
+                                      {$call_back -> ($1)}xem;
+        }
+        redo if $changed;
+    }
+
     #
-    # Iterate over the lines. Use states to determine whether we're
-    # inside a preformatted block (toggle on ~~~~), and what the current
+    # Iterate over the lines. Use a state to determine what the current
     # language is (### <LANG>).
     #
     my $language     = "";
@@ -254,15 +279,6 @@ sub pre_process ($text, $week) {
     my $section      = "";
 
     foreach my $line (split /\n/ => $text) {
-        $preformatted = !$preformatted, next if $line eq "~~~~";
-        if ($preformatted) {
-            if ($section) {
-                $out .= process_section ($section, $language, $week);
-                $section = "";
-            }
-            $out .= "    $line\n";
-            next;
-        }
         if ($line =~ /^###\s+(?<header>.*)/) {
             if ($section) {
                 $out .= process_section ($section, $language, $week);
