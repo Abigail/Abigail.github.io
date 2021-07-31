@@ -41,6 +41,7 @@ my $FREEBSD_URL    = "https://www.freebsd.org/cgi/man.cgi?" .
 my $PYTHON_URL     = "https://docs.python.org/3/library/functions.html";
 my $WIKI_URL       = "https://en.wikipedia.org/wiki";
 my $OEIS_URL       = "https://oeis.org";
+my $MATH_WORLD_URL = "https://mathworld.wolfram.com";
 
 my $GITHUB_URL     = "https://github.com";
 my $GITHUB_USER    = "Abigail";
@@ -187,8 +188,10 @@ sub make_link (%args) {
             if (!$what) {
                 $what = $anchor =~ s/\s+/_/gr;
             }
-            if    ($where eq "wiki") {$url = $WIKI_URL . "/" . $what}
-            elsif ($where eq "oeis") {$url = $OEIS_URL . "/" . $what}
+            if    ($where eq "wiki")      {$url = $WIKI_URL . "/" . $what}
+            elsif ($where eq "oeis")      {$url = $OEIS_URL . "/" . $what}
+            elsif ($where eq "mathworld") {$url = $MATH_WORLD_URL .
+                                                  "/" . $what . ".html"}
         }
     }
     if (!$url && $link eq "github") {
