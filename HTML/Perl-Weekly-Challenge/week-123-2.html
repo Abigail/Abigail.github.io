@@ -1,0 +1,208 @@
+<html>
+<head>
+<title>Perl Weekly Challenge 123: Square Points</title>
+<script src = "https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id = "MathJax-script" async src = "https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.js"></script>
+<script src = '../../JavaScript/jquery.js'></script>
+<script src = '../../JavaScript/navigation.js'></script>
+<link rel = 'preconnect' href = 'https://fonts.gstatic.com'>
+<link rel = 'stylesheet' href = 'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
+<link rel = 'stylesheet' href = '../../Styles/Perl-Weekly-Challenge/main.css'>
+</head>
+
+<body><h1>Perl Weekly Challenge 123: Square Points</h1><div class = "byline">
+by Abigail<br>
+<img src = "../../Images/jan_sluiters.jpg">
+</div>
+
+
+<h2><a href="https://theweeklychallenge.org/blog/perl-weekly-challenge-123/#TASK2">Challenge</a></h2>
+
+<blockquote>
+  <p>You are given coordinates of four points i.e. <code>(x1, y1)</code>, <code>(x2, y2)</code>,
+  <code>(x3, y3)</code> and <code>(x4, y4)</code>.</p>
+  
+  <p>Write a script to find out if the given four points form a square.</p>
+</blockquote>
+
+<h3>Example</h3>
+
+<pre><code>Input: x1 = 10, y1 = 20
+       x2 = 20, y2 = 20
+       x3 = 20, y3 = 10
+       x4 = 10, y4 = 10
+Output: 1 as the given coordinates form a square.
+
+Input: x1 = 12, y1 = 24
+       x2 = 16, y2 = 10
+       x3 = 20, y3 = 12
+       x4 = 18, y4 = 16
+Output: 0 as the given coordinates doesn't form a square.
+</code></pre>
+
+<h2>Solution</h2>
+
+<div class = "section">
+<p><a href="https://en.wikipedia.org/wiki/Squares">Squares</a> are <a href="https://en.wikipedia.org/wiki/quadrilaterals">quadrilaterals</a> which special properties.
+The defining property we will be using is that a square is a <a href="https://en.wikipedia.org/wiki/rhombus">rhombus</a>
+with diagonals of even length. A rhombus is a quadrilateral where all
+sides are of equal length.</p>
+
+<p>So, we have to compare the distances of various pairs of points. The
+distance between two points <span class = 'latex-inline'>\((x_k, y_k)\)</span> and <span class = 'latex-inline'>\((x_l, y_l)\)</span> is given
+by the formula 
+\[
+    \sqrt{(x_k - x_l)^2 + (y_k - y_l)^2}
+\]</p>
+
+<p>So, if we want to compare if the distance between points
+<span class = 'latex-inline'>\((x_k, y_k)\)</span> and <span class = 'latex-inline'>\((x_l, y_l)\)</span> is equal to the distance
+between points <span class = 'latex-inline'>\((x_m, y_m)\)</span> and <span class = 'latex-inline'>\((x_n, y_n)\)</span>, we 
+need to check that</p>
+
+<p>\[
+    \sqrt{(x_k - x_l)^2 + (y_k - y_l)^2} =
+    \sqrt{(x_m - x_n)^2 + (y_m - y_n)^2}
+\]</p>
+
+<p>But we can simplify this. We don't need the actual distance, all we
+need to know is whether two distances are equal. And if <span class = 'latex-inline'>\(d_1 = d_2\)</span>,
+then <span class = 'latex-inline'>\(d_1^2 = d_2^2\)</span>. So it suffices to check</p>
+
+<p>\[
+    (x_k - x_l)^2 + (y_k - y_l)^2 =
+    (x_m - x_n)^2 + (y_m - y_n)^2
+\]</p>
+
+<p>For most of our solutions, we will define a method <code>dist</code>, which gets
+the coordinates of two points, and which returns the square of the
+distance between the points.</p>
+
+<p>We then check whether the distance between points 1 and 2,
+between points 2 and 3, between points 3 and 4, and between points 4 and 1,
+are all equal, and that the distances between points 1 and 3, and
+between points 2 and 4 (the diagonals) are equal.</p>
+
+<p>Below, when the talk about the distance between two points, or the length
+of an edge or diagonal, we actually mean the square of that distance/length.</p>
+</div>
+
+<h3>Perl</h3>
+
+<div class = "section">
+<p>The subroutine <code>dist</code>:</p>
+
+<pre><code>sub dist ($x1, $y1, $x2, $y2) {($x1 - $x2) ** 2 + ($y1 - $y2) ** 2}
+</code></pre>
+
+<p>Then the check becomes easy. <code>$_</code> contains the input:</p>
+
+<pre><code>my  ($x1, $y1, $x2, $y2, $x3, $y3, $x4, $y4) = split;
+say dist ($x1, $y1, $x2, $y2) == dist ($x2, $y2, $x3, $y3) ==
+    dist ($x3, $y3, $x4, $y4) == dist ($x4, $y4, $x1, $x2) &amp;&amp;
+    dist ($x1, $y1, $x3, $y3) == dist ($x2, $y2, $x4, $y4) ? 1 : 0
+</code></pre>
+
+<p>Note that in modern versions of Perl, we can <em>chain</em> comparisons.
+That means, <code>expr1 == expr2 == expr3 == expr4</code> is equivalent to
+<code>expr1 == expr2 &amp;&amp; expr2 == expr3 &amp;&amp; expr3 == expr4 &amp;&amp; expr4 == expr1</code>.</p>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-123/abigail/perl/ch-2.pl">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>Other languages</h3>
+
+<div class = "section">
+<p>We have solutions in <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-123/abigail/awk/ch-2.awk">AWK</a>, <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-123/abigail/bash/ch-2.sh">Bash</a>, <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-123/abigail/bc/ch-2.bc">Bc</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-123/abigail/c/ch-2.c">C</a>, <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-123/abigail/go/ch-2.go">Go</a>, <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-123/abigail/java/ch-2.java">Java</a>, <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-123/abigail/lua/ch-2.lua">Lua</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-123/abigail/node/ch-2.js">Node.js</a>, <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-123/abigail/pascal/ch-2.p">Pascal</a>, <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-123/abigail/python/ch-2.py">Python</a>, <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-123/abigail/ruby/ch-2.rb">Ruby</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-123/abigail/scheme/ch-2.scm">Scheme</a> and <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-123/abigail/tcl/ch-2.tcl">Tcl</a>, which are all very similar to
+the Perl solutions.</p>
+
+<p>There are slight variations. Some languages don't have an exponentiation
+operator, in which case we just multiply factors by themselves. For
+instance, the <code>dist</code> function in Go looks like:</p>
+
+<pre><code>func dist (x1 int, y1 int, x2 int, y2 int) int {
+    return (x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2);
+}
+</code></pre>
+
+<p>And in most languages, comparisons cannot be chained, so we have
+to split them into multiple comparisons. For instance, the test
+in Tcl looks like:</p>
+
+<pre><code>if {[dist $x1 $y1 $x2 $y2] == [dist $x2 $y2 $x3 $y3] &amp;&amp;
+    [dist $x2 $y2 $x3 $y3] == [dist $x3 $y3 $x4 $y4] &amp;&amp;
+    [dist $x3 $y3 $x4 $y4] == [dist $x4 $y4 $x1 $y1] &amp;&amp;
+    [dist $x1 $y1 $x3 $y3] == [dist $x2 $y2 $x4 $y4]} {
+    puts 1
+} else {
+    puts 0
+}
+</code></pre>
+</div>
+
+<h3>R</h3>
+
+<p>Our solution in R is slightly different. With the input in <code>line</code>,
+we first split the input on spaces, giving us an vector with the
+coordinates (as strings):</p>
+
+<pre><code>parts &lt;- strsplit (line, " ")
+</code></pre>
+
+<p>Next, we create two vectors, <code>x</code>, and <code>y</code>, holding the x and y coordinates
+for the four points:</p>
+
+<pre><code>x &lt;- as.numeric (parts [[1]] [c (1, 3, 5, 7)])
+y &lt;- as.numeric (parts [[1]] [c (2, 4, 6, 8)])
+</code></pre>
+
+<p>The <code>c</code> function creates an vector with the given elements, and we use
+this vector to slice out the relevant numbers. <code>as.numeric</code> maps strings
+to numbers.</p>
+
+<p>Now we create two lists with indices:</p>
+
+<pre><code>i1 &lt;- c (1, 2, 3, 4, 1, 3)
+i2 &lt;- c (2, 3, 4, 1, 2, 4)
+</code></pre>
+
+<p>These correspond to the points we want the distance between (between the
+first and second vertex of the square, the second and third vertex of
+the square, etc &mdash; the last two sets are the diagonals).</p>
+
+<p>Now we calculate all the distances in one operation:</p>
+
+<pre><code>z &lt;- (x [i1] - x [i2]) ^ 2 + (y [i1] - y [i2]) ^ 2
+</code></pre>
+
+<p>This works, because in R, operations are done on vectors, and
+basic arithmetic operations are done on each element. Now <code>z [1]</code> to
+<code>z [4]</code> contain the lengths of the edges of the square, and <code>z [5]</code>
+and <code>z [6]</code> contain the lengths of the diagonals.</p>
+
+<p>We can now do the comparisons:</p>
+
+<pre><code>if (z [1] == z [2] &amp;&amp; z [2] == z [3] &amp;&amp; z [3] == z [4] &amp;&amp; z [5] == z [6]) {
+    cat ("1\n")
+}
+else {
+    cat ("0\n")
+}
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-123/abigail/r/ch-2.r">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+
+<hr id = 'last-line'>
+<div class = 'trailer'>
+<p class = 'prev'><a class = "prev" href = "">&#x261C;</a></p>
+<p class = 'issue'>Please leave any comments as a
+  <a href = 'https://github.com/Abigail/Abigail.github.io/issues'
+     title = 'GitHub issue'>GitHub issue</a>.
+<p class = 'next'><a class = "next" href = "">&#x261E;</a></p>
+</div>
+
+</body>
+</html>
