@@ -1,0 +1,119 @@
+<html>
+<head>
+<title>Perl Weekly Challenge 124: Happy Women Day</title>
+<script src = "https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id = "MathJax-script" async src = "https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.js"></script>
+<script src = '../../JavaScript/jquery.js'></script>
+<script src = '../../JavaScript/navigation.js'></script>
+<link rel = 'preconnect' href = 'https://fonts.gstatic.com'>
+<link rel = 'stylesheet' href = 'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
+<link rel = 'stylesheet' href = '../../Styles/Perl-Weekly-Challenge/main.css'>
+</head>
+
+<body><h1>Perl Weekly Challenge 124: Happy Women Day</h1><div class = "byline">
+by Abigail<br>
+<img src = "../../Images/jan_sluiters.jpg">
+</div>
+
+
+<h2><a href="https://theweeklychallenge.org/blog/perl-weekly-challenge-124/#TASK1">Challenge</a></h2>
+
+<blockquote>
+  <p>Write a script to print the Venus Symbol, international gender
+  symbol for women. Please feel free to use any character.</p>
+
+<pre><code>    ^^^^^
+   ^     ^
+  ^       ^
+ ^         ^
+ ^         ^
+ ^         ^
+ ^         ^
+ ^         ^
+  ^       ^
+   ^     ^
+    ^^^^^
+      ^
+      ^
+      ^
+    ^^^^^
+      ^
+      ^
+</code></pre>
+</blockquote>
+
+<h2>Solution</h2>
+
+<div class = "section">
+<p>By far the most trivial Perl Weekly Challenge I've done so far.
+We just have to print a fixed string.</p>
+</div>
+
+<h3>Perl</h3>
+
+<pre><code>print &lt;&lt; '--';
+    ^^^^^
+   ^     ^
+  ^       ^
+ ^         ^
+ ^         ^
+ ^         ^
+ ^         ^
+ ^         ^
+  ^       ^
+   ^     ^
+    ^^^^^
+      ^
+      ^
+      ^
+    ^^^^^
+      ^
+      ^
+--
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-124/abigail/perl/ch-1.pl">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+
+<h3>Other Languages</h3>
+
+<p>We also have trivial solutions in
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-124/abigail/awk/ch-1.awk">AWK</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-124/abigail/bash/ch-1.sh">Bash</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-124/abigail/basic/ch-1.bas">Basic</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-124/abigail/bc/ch-1.bc">bc</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-124/abigail/befunge093/ch-1.befunge093">Befunge093</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-124/abigail/c/ch-1.c">C</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-124/abigail/cobol/ch-1.cb">Cobol</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-124/abigail/csh/ch-1.csh">Csh</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-124/abigail/erlang/ch-1.erl">Erlang</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-124/abigail/forth/ch-1.fs">Forth</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-124/abigail/portran/ch-1.portran">Portran</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-124/abigail/go/ch-1.go">Go</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-124/abigail/java/ch-1.java">Java</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-124/abigail/lua/ch-1.lua">Lua</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-124/abigail/m4/ch-1.m4">m4</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-124/abigail/mmix/ch-1.mmix">MMIX</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-124/abigail/node/ch-1.js">Node.js</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-124/abigail/ocaml/ch-1.ml">OCaml</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-124/abigail/pascal/ch-1.p">Pascal</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-124/abigail/php/ch-1.php">PHP</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-124/abigail/postscript/ch-1.ps">PostScript</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-124/abigail/python/ch-1.py">Python</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-124/abigail/r/ch-1.r">R</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-124/abigail/rexx/ch-1.rexx">Rexx</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-124/abigail/ruby/ch-1.rb">Ruby</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-124/abigail/scheme/ch-1.scm">Scheme</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-124/abigail/sql/ch-1.sql">SQL</a>, and
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-124/abigail/tcl/ch-1.tcl">Tcl</a>.</p>
+
+<hr id = 'last-line'>
+<div class = 'trailer'>
+<p class = 'prev'><a class = "prev" href = "">&#x261C;</a></p>
+<p class = 'issue'>Please leave any comments as a
+  <a href = 'https://github.com/Abigail/Abigail.github.io/issues'
+     title = 'GitHub issue'>GitHub issue</a>.
+<p class = 'next'><a class = "next" href = "">&#x261E;</a></p>
+</div>
+
+</body>
+</html>
