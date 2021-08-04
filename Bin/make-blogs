@@ -235,7 +235,7 @@ sub process_section ($section, $language, $week) {
     #
     # Turn a double dash into an &mdash;
     #
-    $section =~ s/(?<!-)--(?!-)/&mdash;/g;
+    $section =~ s/("--"|'--'|^\h*--\h*$)|(?<!-)--(?!-)/$1 || "&mdash;"/gme;
 
     $section . "\n";
 }
