@@ -40,7 +40,7 @@ let pwc_pages = [
     ["week-117-2", "Find Possible Paths"],
     ["week-118-1", "Binary Palindrome"],
     ["week-118-2", "Adventure of Knight"],
-    ["week-119-1", "Swap Nipples"],
+    ["week-119-1", "Swap Nibbles"],
     ["week-119-2", "Sequence without 1-on-1"],
     ["week-120-1", "Swap Odd/Even Bits"],
     ["week-120-2", "Clock Angle"],
