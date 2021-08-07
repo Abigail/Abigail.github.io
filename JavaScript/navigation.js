@@ -4,7 +4,7 @@
 
 let PWC = "Perl-Weekly-Challenge";
 
-let pages = [
+let pwc_pages = [
     ["week-101-1", "Pack a Spiral"],
     ["week-101-2", "Origin-containing Triangle"],
     ["week-102-1", "Rare Numbers"],
@@ -53,11 +53,29 @@ let pages = [
     ["week-124-1", "Happy Women Day"],
 ]
 
-pages . forEach (_ => _ [0] = PWC + "/" + _ [0] + ".html")
+pwc_pages . forEach (_ => _ [0] = PWC + "/" + _ [0] + ".html")
 
 $(document) . ready (function () {
     let pagename = document . location . href
         pagename = pagename . substr (pagename . lastIndexOf ('/HTML/') + 6)
+
+    if (pagename . match (/^Perl-Weekly-Challenge/)) {
+        navigation ("PWC", pagename, pwc_pages)
+    }
+})
+
+
+//
+// Create the navigational links: pointers at the bottom, and hotkeys
+//
+function navigation (type, pagename, pages) {
+    //
+    // Index is special
+    //
+    if (pagename . match ("/index.html$")) {
+        make_index (type, pages)
+        return
+    }
 
     //
     // Find the index
@@ -93,12 +111,31 @@ $(document) . ready (function () {
                      index < pages . length - 1) {
             location . href = "../" + pages [index + 1] [0]
         }
+
         //
         // Press 'p' or 'P'
         //
         if ((event . which == 80 || event . which == 112) && index > 0) {
             location . href = "../" + pages [index - 1] [0]
         }
+
+        //
+        // Press 'i' or 'I'
+        //
+        if (event . which == 73 || event . which == 105) {
+            location . href = "index.html"
+        }
     })
 
-});
+}
+
+
+//
+// Populate a list with links to the blogs.
+//
+function make_index (type, pages) {
+    pages . reverse () . forEach (entry => {
+        $("#index") . append ("<li><a href = '../" + entry [0] + "'>" +
+                               entry [1] + "</a></li>\n")
+    })
+}
