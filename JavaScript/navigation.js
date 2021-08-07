@@ -127,6 +127,14 @@ function navigation (type, pagename, pages) {
         }
     })
 
+    //
+    // If we click on the image (or rather, the entire div it is in),
+    // go to the index.
+    //
+    $(".byline") . click (() => {
+        location . href = "index.html"
+    })
+
 }
 
 
