@@ -15,7 +15,13 @@ my $blog_dir = "/Users/abigail/GitHub/Blogs";
 
 my ($week, $challenge) = @ARGV;
 
-die "$0 <week> <challenge>" unless $week && $challenge;
+if (!$challenge && $week =~ /-/) {
+    ($week, $challenge) = split /-/ => $week, 2;
+}
+
+die "$0 <week> <challenge>" unless $week      && $week      =~ /^[0-9]+$/ &&
+                                   $challenge && $challenge =~ /^[12]+$/;
+$week = sprintf "%03d" => $week;
 
 my $url    = "https://$host/blog/perl-weekly-challenge-$week";
 my $anchor = "$url/#TASK$challenge";
@@ -69,7 +75,9 @@ say $fh <<"--";
 # Perl Weekly Challenge $week: $title
 
 ## [Challenge][task$challenge]
+>>>>
 $description
+<<<<
 
 $examples
 
@@ -81,18 +89,19 @@ exit;
 
 sub format_description ($description) {
     $description =~ s!</?code>!`!gr
-                 =~ s!</p>$!\n> !gmr
-                 =~ s!^<p>!> !gmr
+                 =~ s!</p>$!\n!gmr
+                 =~ s!^<p>!!gmr
                  =~ s!&lt;!<!gr
                  =~ s!&gt;!>!gr
-                 =~ s!&amp;!&!gr;
+                 =~ s!&amp;!&!gr 
+                 =~ s!(\n\h*){2,}!\n\n!gr
+                 =~ s!\n+$!!r;
 }
 
 sub format_examples ($examples) {
     $examples =~ s!^<h2[^>]+>([^<]+)</h2>!### $1!r
-              =~ s!<pre><code>!!r
-              =~ s!</code></pre>!!r
-              =~ s:^(?!#):>     :gmr;
+              =~ s!<pre><code>!\n~~~~\n!r
+              =~ s!</code></pre>!~~~~\n!r
     ;
 }
 
