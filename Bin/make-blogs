@@ -86,7 +86,7 @@ my %LANGUAGE_INFO = (
 chdir $TOP_DIR or die "chdir: $!";
 
 
-sub header ($title, $week) {
+sub header ($title, $week = 0) {
     #
     # Return the header of the HTML page
     #
@@ -362,6 +362,7 @@ foreach my $source_file (@sources) {
     my $html_file = $source_file =~ s/^$SRC_DIR/$HTML_DIR/r
                                  =~ s/\.md$/.html/r;
     my ($week)    = $source_file =~ m{.*/week-(.*)\.md};
+    $week ||= 0;
     next if !@ARGV && -f $html_file && (stat $html_file)   [9] >
                                        (stat $source_file) [9]; # 9: mtime
 
