@@ -1,0 +1,128 @@
+<html>
+<head>
+<title>Perl Weekly Challenge 124: Tug of War</title>
+<script src = "https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id = "MathJax-script" async src = "https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.js"></script>
+<script src = '../../JavaScript/jquery.js'></script>
+<script src = '../../JavaScript/navigation.js'></script>
+<link rel = 'preconnect' href = 'https://fonts.gstatic.com'>
+<link rel = 'stylesheet' href = 'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
+<link rel = 'stylesheet' href = '../../Styles/Perl-Weekly-Challenge/main.css'>
+</head>
+
+<body><h1>Perl Weekly Challenge 124: Tug of War</h1><div class = "byline">
+by Abigail<br>
+<img src = "../../Images/jan_sluiters.jpg">
+</div>
+
+
+<h2><a href="https://theweeklychallenge.org/blog/perl-weekly-challenge-124/#TASK2">Challenge</a></h2>
+
+<blockquote>
+  <p>You are given a set of <code>$n</code> integers (<code>n1</code>, <code>n2</code>, <code>n3</code>, &hellip;.).</p>
+  
+  <p>Write a script to divide the set in two subsets of <code>n/2</code> sizes each
+  so that the difference of the sum of two subsets is the least. If
+  <code>$n</code> is even then each subset must be of size <code>$n/2</code> each. In case
+  <code>$n</code> is odd then one subset must be <code>($n-1)/2</code> and other must be
+  <code>($n+1)/2</code>.</p>
+</blockquote>
+
+<h3>Example</h3>
+
+<pre><code>Input:        Set = (10, 20, 30, 40, 50, 60, 70, 80, 90, 100)
+Output:  Subset 1 = (30, 40, 60, 70, 80)
+         Subset 2 = (10, 20, 50, 90, 100)
+
+Input:        Set = (10, -15, 20, 30, -25, 0, 5, 40, -5)
+Output:  Subset 1 = (30, 0, 5, -5)
+         Subset 2 = (10, -15, 20, -25, 40)
+</code></pre>
+
+<h2>Solution</h2>
+
+<div class = "section">
+<p>This problem is known to be <a href="https://en.wikipedia.org/wiki/NP-hard">NP-hard</a>. Hence, there is no known
+algorithm which runs in polynomial time. </p>
+
+<p>Hence, we will not bother with much optimization (so, no dynamic
+programming), and will just try every subset of the appropriate size,
+and keep track of the split with the least difference. (Which does not
+have be unique).</p>
+</div>
+
+<h3>Perl</h3>
+
+<p>First, we present a method which gets two sets, finds the difference
+in their sums, and records them if they have a smaller difference than
+we've seen before:</p>
+
+<pre><code>use List::Util qw [sum0];
+
+my $best_diff = ~0;  # Max int
+my @best_set1;
+my @best_set2;
+
+sub check_sets ($set1, $set2) {
+    my $diff = abs (sum (@$set1) - sum (@$set2));
+    if ($diff &lt; $best_diff) {
+        $best_diff = $diff;
+        @best_set1 = @$set1;
+        @best_set2 = @$set2;
+    }
+}
+</code></pre>
+
+<p>Next we present a function to split a set into two equal parts.
+It gets four arguments: <code>set</code> which contains the elements of the
+input set which we have to assigned to a subset yet; <code>set1</code>, and
+<code>set2</code>, the sets we are splitting into; and <code>callback</code>, the method
+we call when we're done splitting the set.</p>
+
+<p>If <code>set1</code> or <code>set2</code> are the required size, we assign the rest of <code>set</code>
+to the other subset and call <code>callback</code>.</p>
+
+<p>Otherwise, we take the first element of <code>set</code>, and add it to <code>set1</code> and
+<code>set2</code> respectively, recursing in each case:</p>
+
+<pre><code>use POSIX qw [floor ceil];
+sub split_set ($set, $set1, $set2, $callback) {
+    my $n = @$set + @$set1 + @$set2;
+
+    if (@$set1 == floor ($n / 2)) {
+        $callback -&gt; ($set1, [@$set2, @$set]);
+    }
+    elsif (@$set2 == ceil ($n / 2)) {
+        $callback -&gt; ([@$set1, @$set], $set2);
+    }
+    else {
+        my $element = $$set [0];
+        split_set ([@$set [1 .. $#$set]], [@$set1, $element], $set2, $callback);
+        split_set ([@$set [1 .. $#$set]], $set1, [@$set2, $element], $callback);
+    }
+}
+</code></pre>
+
+<p>With the input (space separated numbers) in <code>$_</code>, we can call this as:</p>
+
+<pre><code>split_set ([split], [], [], \&amp;check_sets);
+</code></pre>
+
+<p>Printing the result is now easy:</p>
+
+<pre><code>say "@best_set1; @best_set2";
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-124/abigail/perl/ch-2.pl">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+
+<hr id = 'last-line'>
+<div class = 'trailer'>
+<p class = 'prev'><a class = "prev" href = "">&#x261C;</a></p>
+<p class = 'issue'>Please leave any comments as a
+  <a href = 'https://github.com/Abigail/Abigail.github.io/issues'
+     title = 'GitHub issue'>GitHub issue</a>.
+<p class = 'next'><a class = "next" href = "">&#x261E;</a></p>
+</div>
+
+</body>
+</html>
