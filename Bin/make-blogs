@@ -250,6 +250,57 @@ sub block_quote ($text) {$text =~ s/^/> /mgr}
 #
 sub code_block ($text) {$text =~ s/^/    /mgr}
 
+#
+# Process a block of text which should turn into an HTML table.
+#
+# For now, rows are separated by \\, columns by && (like LaTeX).
+# Table level attributes can be given with a leading {..} block.
+# Cell level attributes can be given with a leading {..} block in the cell.
+#
+sub table ($text) {
+    my $attributes = "markdown = '1'";
+    if ($text =~ s/^\s*\{\s*([^}]+)\}\s*\n//) {
+        $attributes .= " " . $1;
+    }
+
+    my $out  = "<table $attributes>\n";
+
+    my @rows = split /\s*\\\\\s*/ => $text;
+    foreach my $rc (keys @rows) {
+        my $row = $rows [$rc];
+        $out .= "  <tr class = 'row-$rc'>\n";
+        my @cells = split /\s*&&\s*/ => $row;
+        my $cc = 0;
+        foreach my $cell (@cells) {
+            #
+            # Grab a block of configuration from the cell,
+            # if it exists.
+            #
+            my $attributes = "";
+            my $cc_inc     = 1;
+            my $td         = "td";
+            if ($cell =~ s/^\s*\{\s*([^}]+)\}\s*//) {
+                my %config = map {split /\s*=\s*/, $_, 2}
+                                  split /\s*;\s*/ => $1;
+                if ((my $rowspan = $config {rs} || 0) > 1) {
+                    $attributes .= " rowspan = '$rowspan'";
+                }
+                if ((my $colspan = $config {cs} || 0) > 1) {
+                    $attributes .= " colspan = '$colspan'";
+                    $cc_inc = $colspan;
+                }
+                $td = "th" if $config {th};
+            }
+
+            $out .= "    <$td class = 'cell-$rc-$cc'$attributes>$cell</td>\n";
+            $cc += $cc_inc;
+        }
+        $out .= "  </tr>\n";
+    }
+    $out .= "</table>\n";
+    $out;
+}
+
 
 
 sub pre_process ($text, $week) {
@@ -257,8 +308,9 @@ sub pre_process ($text, $week) {
 
     my $out = "";
 
-    my @tokens = (["\Q~~~~", "\Q~~~~", \&code_block],
-                  ["\Q>>>>", "\Q<<<<", \&block_quote]);
+    my @tokens = (["\Q~~~~",  "\Q~~~~",  \&code_block],
+                  ["\Q>>>>",  "\Q<<<<",  \&block_quote],
+                  ["\Q|====", "\Q====|", \&table],);
     my $pat = join '|' => map {@$_ [0, 1]} @tokens;
 
     TOKEN: {

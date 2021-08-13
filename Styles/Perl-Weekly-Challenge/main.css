@@ -1,4 +1,4 @@
-html  {
+html, th, td  {
     margin-left:                          6em;
     margin-right:                         4em;
     background:                       #EEEEEE;
@@ -42,7 +42,6 @@ h1:first-of-type {
 h1, h2, h3, h4, h5, h6 {
     font-family:                "Lobster Two";
 }
-
 
 /*
  * Outdent the headers
