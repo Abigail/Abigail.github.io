@@ -1,0 +1,188 @@
+<html>
+<head>
+<title>Perl Weekly Challenge 125: Pythagorean Triples</title>
+<script src = "https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id = "MathJax-script" async src = "https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.js"></script>
+<script src = '../../JavaScript/jquery.js'></script>
+<script src = '../../JavaScript/navigation.js'></script>
+<link rel = 'preconnect' href = 'https://fonts.gstatic.com'>
+<link rel = 'stylesheet' href = 'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
+<link rel = 'stylesheet' href = '../../Styles/Perl-Weekly-Challenge/main.css'>
+</head>
+
+<body><h1>Perl Weekly Challenge 125: Pythagorean Triples</h1><div class = "byline">
+by Abigail<br>
+<img src = "../../Images/jan_sluiters.jpg">
+</div>
+
+
+<h2><a href="https://theweeklychallenge.org/blog/perl-weekly-challenge-125/#TASK1">Challenge</a></h2>
+
+<blockquote>
+  <p>You are given a positive integer <code>$N</code>.</p>
+  
+  <p>Write a script to print all <em>Pythagorean Triples</em> containing <code>$N</code>
+  as a member. Print -1 if it can&rsquo;t be a member of any.</p>
+  
+  <p>Triples with the same set of elements are considered the same, i.e.
+  if your script has already printed <code>(3, 4, 5)</code>, <code>(4, 3, 5)</code> should not
+  be printed.</p>
+  
+  <blockquote>
+    <p>The famous Pythagorean theorem states that in a right angle triangle,
+    the length of the two shorter sides and the length of the longest side
+    are related by <span class = 'latex-inline'>\(a^2 + b^2 = c^2\)</span>.</p>
+  </blockquote>
+  
+  <p>A Pythagorean triple refers to the triple of three integers whose
+  lengths can compose a right-angled triangle.</p>
+</blockquote>
+
+<h3>Example</h3>
+
+<pre><code>Input: $N = 5
+Output: (3, 4, 5)
+        (5, 12, 13)
+
+Input: $N = 13
+Output: (5, 12, 13)
+        (13, 84, 85)
+
+Input: $N = 1
+Output: -1
+</code></pre>
+
+<h2>Solution</h2>
+
+<div class = "section">
+<p>We will resort to doing a brute force search. We will consider two
+cases: first the case where the given number (<span class = 'latex-inline'>\(n\)</span>) isn't the hypotenuse,
+followed by the case where <span class = 'latex-inline'>\(n\)</span> is the hypotenuse. One or both
+cases may result in solutions. (There will be solutions if and only if
+<span class = 'latex-inline'>\(n\)</span> exceeds 2).</p>
+</div>
+
+<h4>Case 1: <span class = 'latex-inline'>\(n\)</span> is not the hypotenuse</h4>
+
+<div class = "section">
+<p>In this case, <span class = 'latex-inline'>\(n\)</span> is one of the shorter sides. W.l.o.g, assume <span class = 'latex-inline'>\(n\)</span>
+is <span class = 'latex-inline'>\(a\)</span>. So, we now must find <span class = 'latex-inline'>\(b\)</span> and <span class = 'latex-inline'>\(c\)</span> such that
+<span class = 'latex-inline'>\(n^2 + b^2 = c^2\)</span>. We do this by trying increasing values of <span class = 'latex-inline'>\(c\)</span>,
+and checking whether <span class = 'latex-inline'>\(b = \sqrt{c^2 - n^2}\)</span> is a perfect square.</p>
+
+<p>Since the <span class = 'latex-inline'>\(c\)</span> is the larger of the numbers, the minimum value of <span class = 'latex-inline'>\(c\)</span>
+to consider is <span class = 'latex-inline'>\(n + 1\)</span>. Note that there are Pythagorian triples where
+<span class = 'latex-inline'>\(c\)</span> is one more than other sides. <span class = 'latex-inline'>\((3, 4, 5)\)</span> and <span class = 'latex-inline'>\((5, 12, 13)\)</span>
+are two examples.</p>
+
+<p>We can stop our search if <span class = 'latex-inline'>\(b > c - 1\)</span>. Then
+\[
+    \begin{array}{lc}
+        b = \sqrt{c^2 - n^2} > c - 1 &amp;&amp; \implies \\
+        b^2 = c^2 - n^2 > (c - 1)^2  &amp;&amp; \implies \\
+        c^2 - (c - 1)^2 > n^2        &amp;&amp; \implies \\
+        c^2 - c^2 + 2 \cdot c - 1 = 2 \cdot c - 1 > n^2 &amp;&amp;
+    \end{array}
+\]</p>
+
+<p>Now, for each <span class = 'latex-inline'>\(c\)</span> within those limits, we calculate
+<span class = 'latex-inline'>\(b^2 = c^2 - n^2\)</span>, and
+<span class = 'latex-inline'>\(b = \lfloor 0.4 + \sqrt{b^2} \rfloor\)</span>. Now, <span class = 'latex-inline'>\(b^2\)</span> is a perfect
+square, if and only if <span class = 'latex-inline'>\(b^2 = b \cdot b\)</span>. And if <span class = 'latex-inline'>\(b^2\)</span> is a perfect
+square, then <span class = 'latex-inline'>\((n, b, c)\)</span> is a Pythagorian Triple.</p>
+</div>
+
+<h4>Case 2: <span class = 'latex-inline'>\(n\)</span> is the hypotenuse</h4>
+
+<div class = "section">
+<p>Then <span class = 'latex-inline'>\(n = c\)</span>. W.l.o.g. assume <span class = 'latex-inline'>\(a &lt; b\)</span> (they cannot equal). Since 
+there are no Pythagorian Triples were one of the sides has length
+<span class = 'latex-inline'>\(1\)</span> or <span class = 'latex-inline'>\(2\)</span>, we have <span class = 'latex-inline'>\(3 \leq a\)</span>. Also, since <span class = 'latex-inline'>\(a &lt; b\)</span>, we have:</p>
+
+<p>\[
+    \begin{array}{lc}
+        a^2 + b^2 = n^2  &amp;&amp; \implies  \\
+        2 \cdot b^2 &lt; n^2 &amp;&amp; \implies \\
+        b^2 &lt; \frac{n^2}{2} &amp;&amp; \implies \\
+        a &lt; b &lt; \sqrt{\frac{n^2}{2}} = \frac{n}{\sqrt{2}} &amp;&amp; \implies \\
+        a \leq \left\lfloor \frac{n}{\sqrt{2}} \right\rfloor &amp;&amp;
+    \end{array}
+\]</p>
+
+<p>So, for each <span class = 'latex-inline'>\(3 \leq a \left\lfloor \frac{n}{\sqrt{2}} \right\rfloor\)</span>
+we calculate <span class = 'latex-inline'>\(b^2 = n^2 - a^2\)</span>, and check whether this is a 
+perfect square in the same was as above. In such a case, <span class = 'latex-inline'>\(a, b, n\)</span>
+is a Pythagorian Triple.</p>
+</div>
+
+<h3>Perl</h3>
+
+<div class = "section">
+<p>First a function which calculates 
+<span class = 'latex-inline'>\(\left\lfloor 0.4 + \sqrt{b^2} \right\rfloor\)</span>:</p>
+
+<pre><code>sub introot ($square) {
+    int (.4 + sqrt ($square));
+}
+</code></pre>
+
+<p>Checking whether <code>$n</code> can be part of a Pythagorian Triple:
+    say (-1) if $n &lt;= 2;</p>
+
+<p>The case where <code>$n</code> is not the hypotenuse:</p>
+
+<pre><code>my $n_sq = $n * $n;
+
+my $c    = $n + 1;
+my $c_sq = $n_sq + 2 * $n + 1;
+while (2 * $c - 1 &lt;= $n_sq) {
+    my $b_sq = $c_sq - $n_sq;
+    my $b    = introot ($b_sq);
+
+    say "$n $b $c" if $b_sq == $b * $b;
+    $c_sq += 2 * $c ++ + 1;  # (c + 1)^2 == c^2 + 2 * c + 1
+}
+</code></pre>
+
+<p>Note that if <span class = 'latex-inline'>\(c = n + 1\)</span>, then <span class = 'latex-inline'>\(c^2 = (n + 1)^2 = n^2 + 2 \cdot n + 1\)</span>.
+In the same way, <span class = 'latex-inline'>\((c + 1)^2 = c^2 + 2 \cdot c + 1\)</span>.</p>
+
+<p>Now, the case where <code>$n</code> is the hypotenuse:</p>
+
+<pre><code>my $max_a = int ($n / sqrt (2));
+for (my $a = 3; $a &lt;= $max_a; $a ++) {
+    my $b_sq = $n_sq - $a * $a;
+    my $b    = introot ($b_sq);
+    say "$a $b $n" if $b_sq == $b * $b;
+}
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-125/abigail/perl/ch-1.pl">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>Other Languages</h3>
+
+<p>We also have very similar solutions in
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-125/abigail/awk/ch-1.awk">AWK</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-125/abigail/c/ch-1.c">C</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-125/abigail/go/ch-1.go">Go</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-125/abigail/java/ch-1.java">Java</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-125/abigail/lua/ch-1.lua">Lua</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-125/abigail/node/ch-1.js">Node.js</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-125/abigail/pascal/ch-1.p">Pascal</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-125/abigail/python/ch-1.py">Python</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-125/abigail/r/ch-1.r">R</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-125/abigail/ruby/ch-1.rb">Ruby</a>, and
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-125/abigail/tcl/ch-1.tcl">Tcl</a>.</p>
+
+<hr id = 'last-line'>
+<div class = 'trailer'>
+<p class = 'prev'><a class = "prev" href = "">&#x261C;</a></p>
+<p class = 'issue'>Please leave any comments as a
+  <a href = 'https://github.com/Abigail/Abigail.github.io/issues'
+     title = 'GitHub issue'>GitHub issue</a>.
+<p class = 'next'><a class = "next" href = "">&#x261E;</a></p>
+</div>
+
+</body>
+</html>
