@@ -1,0 +1,181 @@
+<html>
+<head>
+<title>Perl Weekly Challenge 125: Binary Tree Diameter</title>
+<script src = "https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id = "MathJax-script" async src = "https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.js"></script>
+<script src = '../../JavaScript/jquery.js'></script>
+<script src = '../../JavaScript/navigation.js'></script>
+<link rel = 'preconnect' href = 'https://fonts.gstatic.com'>
+<link rel = 'stylesheet' href = 'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
+<link rel = 'stylesheet' href = '../../Styles/Perl-Weekly-Challenge/main.css'>
+</head>
+
+<body><h1>Perl Weekly Challenge 125: Binary Tree Diameter</h1><div class = "byline">
+by Abigail<br>
+<img src = "../../Images/jan_sluiters.jpg">
+</div>
+
+
+<h2><a href="https://theweeklychallenge.org/blog/perl-weekly-challenge-125/#TASK2">Challenge</a></h2>
+
+<blockquote>
+  <p>You are given binary tree as below:</p>
+
+<pre><code>    1
+   / \
+  2   5
+ / \ / \
+3  4 6  7
+       / \
+      8  10
+     /
+    9
+</code></pre>
+  
+  <p>Write a script to find the diameter of the given binary tree.</p>
+  
+  <blockquote>
+    <p>The diameter of a binary tree is the length of the longest path between any two nodes in a tree. It doesn&rsquo;t have to pass through the root.</p>
+  </blockquote>
+  
+  <p>For the above given binary tree, possible diameters (6) are:</p>
+
+<pre><code>3, 2, 1, 5, 7, 8, 9
+</code></pre>
+  
+  <p>or</p>
+
+<pre><code>4, 2, 1, 5, 7, 8, 9
+</code></pre>
+</blockquote>
+
+<h2>Discussion</h2>
+
+<div class = "section">
+<p>The first thing we notice is that lack of description of how we are going
+to take input. There's an example, but everyone can see that doesn't scale
+to a tree of non-trivial size.</p>
+
+<p>So, we have to content ourselves to create an incomplete program, where
+we leave constructing a tree from the input unimplemented.</p>
+
+<p>(Of course, it could very well be that the intent is that we only write
+a program to find the diameter of the one given tree, but surely, 
+<code>say 6</code> can't be the intended solution).</p>
+
+<p>And since we're writing an incomplete program, we only write a Perl solution.</p>
+</div>
+
+<h3>Diameter</h3>
+
+<div class = "section">
+<p>How do we calculate the diameter of a tree? For that, we first define the
+depth of a tree: this is the length of the longest path from the root to
+a leaf. Recursively, we can define this as:</p>
+
+<p>\[
+    \text{depth } (\mathcal{T}) = \begin{cases} 
+        0 &amp; \text{if } \mathcal{T} = \bot \\
+        \max \left( \begin{array}{l}
+              \text{depth }(\mathcal{T} \rightarrow \text{left}), \\
+              \text{depth }(\mathcal{T} \rightarrow \text{right})
+              \end{array} \right) 
+              &amp; \text{if } \mathcal{T} \neq \bot
+   \end{cases}
+\]</p>
+
+<p>where <span class = 'latex-inline'>\(\mathcal{T} \rightarrow \text{left}\)</span> and
+<span class = 'latex-inline'>\(\mathcal{T} \rightarrow \text{right}\)</span> are the left
+and right child of the tree <span class = 'latex-inline'>\(\mathcal{T}\)</span>. <span class = 'latex-inline'>\(\bot\)</span> stands
+for the empty tree.</p>
+
+<p>Now, the diameter of a tree <span class = 'latex-inline'>\(\mathcal{T}\)</span> either goes via the root 
+of <span class = 'latex-inline'>\(\mathcal{T}\)</span>, or is fully contained in one its children. The length
+of the longest possible path going through the root is equal to the
+sum of the depth of its children, as the longest path from a root always
+ends at a leaf. The diameter only goes through the root, if the longest
+path through the root is greater than the diameter of either of its children.
+Otherwise, the diameter of <span class = 'latex-inline'>\(\mathcal{T}\)</span> is the maximum of the diameters
+of its children. Recursively, the definition is:</p>
+
+<p>\[
+    \text{diameter } (\mathcal{T}) = \begin{cases} 
+        0 &amp; \text{if } \mathcal{T} = \bot \\
+        \max \left( \begin{array}{l}
+              \text{diameter }(\mathcal{T} \rightarrow \text{left}), \\
+              \text{depth }(\mathcal{T} \rightarrow \text{left}) +
+              \text{depth }(\mathcal{T} \rightarrow \text{right}),   \\
+              \text{diameter }(\mathcal{T} \rightarrow \text{right})
+                    \end{array} \right)
+              &amp; \text{if } \mathcal{T} \neq \bot
+   \end{cases}
+\]</p>
+</div>
+
+<h2>Solution</h2>
+
+<h3>Perl</h3>
+
+<p>We create a package <code>Tree</code>, whose instances contain trees. 
+It will have two accessors, <code>left</code> and <code>right</code>, which return the 
+left and right children. Empty trees are undefined. The <code>init</code> function,
+which takes the input and constructs the tree, is left unimplemented:</p>
+
+<pre><code>package Tree {
+    use Hash::Util::FieldHash qw [fieldhash];
+    use List::Util            qw [max];
+
+    fieldhash my %left;
+    fieldhash my %right;
+
+    sub new ($class) {bless do {\my $var} =&gt; $class}
+
+    sub init ($self, $input) {
+        ...;   # Yada, yada, yada
+        $self;
+    }
+
+    sub isleaf ($self) {!$left {$self} || !$right {$self}
+    sub left   ($self) {!$self -&gt; isleaf &amp;&amp; $left  {$self}}
+    sub right  ($self) {!$self -&gt; isleaf &amp;&amp; $right {$self}}
+}
+</code></pre>
+
+<p>Now we can create a method to calculate the diameter. For this, we
+need a method <code>_diameter</code>, which does a postorder walk of a tree,
+returning a tuple: the first element is the depth of the tree,
+the second element is the diameter. <code>diameter</code> will be a wrapper
+which calls <code>_diameter</code> and returns the second return value:</p>
+
+<pre><code>package Tree {
+    sub _diameter ($self) {
+        return (0, 0) if  $self -&gt; isleaf;  # Leaves have no depth nor diameter.
+        my ($ldp, $ldm) = $self -&gt; left  -&gt; _diameter;
+        my ($rdp, $rdm) = $self -&gt; right -&gt; _diameter;
+        (max ($ldp, $rdp), max ($ldm, $rdm, $ldp + $rdp))
+    }
+
+    sub diameter ($self) {
+        ($self -&gt; _diameter ($self)) [1]
+    }
+}
+</code></pre>
+
+<p>Our main program now becomes a single line:</p>
+
+<pre><code>say Tree:: -&gt; new -&gt; init (do {local $/; &lt;&gt;}) -&gt; diameter;
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-125/abigail/perl/ch-2.pl">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+
+<hr id = 'last-line'>
+<div class = 'trailer'>
+<p class = 'prev'><a class = "prev" href = "">&#x261C;</a></p>
+<p class = 'issue'>Please leave any comments as a
+  <a href = 'https://github.com/Abigail/Abigail.github.io/issues'
+     title = 'GitHub issue'>GitHub issue</a>.
+<p class = 'next'><a class = "next" href = "">&#x261E;</a></p>
+</div>
+
+</body>
+</html>
