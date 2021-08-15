@@ -58,15 +58,15 @@ my $title = $1;
 #
 # Extract the description, and format it.
 #
-$text =~ s{^((?:.*\n)+)(<h2.*Example)}{$2}
-          or die "Failed to extract examples";
-my $description = format_description ($1);
-
-#
-# What is left are the examples
-#
-my $examples = format_examples ($text);
-
+my ($description, $examples);
+if ($text =~ s{^((?:.*\n)+)(<h2.*Example)}{$2}) {
+    $description = format_description ($1);
+    $examples    = format_examples ($text);
+}
+else {
+    $description = format_description ($text);
+    $examples    = "";
+}
 
 #
 # Print it
