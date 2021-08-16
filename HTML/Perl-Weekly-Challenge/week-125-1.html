@@ -8,6 +8,7 @@
 <link rel = 'preconnect' href = 'https://fonts.gstatic.com'>
 <link rel = 'stylesheet' href = 'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
 <link rel = 'stylesheet' href = '../../Styles/Perl-Weekly-Challenge/main.css'>
+<link rel = 'stylesheet' href = '../../Styles/Perl-Weekly-Challenge/week-125-1.css'>
 </head>
 
 <body><h1>Perl Weekly Challenge 125: Pythagorean Triples</h1><div class = "byline">
@@ -162,6 +163,7 @@ for (my $a = 3; $a &lt;= $max_a; $a ++) {
 
 <h3>Other Languages</h3>
 
+<div class = "section">
 <p>We also have very similar solutions in
 <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-125/abigail/awk/ch-1.awk">AWK</a>,
 <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-125/abigail/c/ch-1.c">C</a>,
@@ -174,6 +176,76 @@ for (my $a = 3; $a &lt;= $max_a; $a ++) {
 <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-125/abigail/r/ch-1.r">R</a>,
 <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-125/abigail/ruby/ch-1.rb">Ruby</a>, and
 <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-125/abigail/tcl/ch-1.tcl">Tcl</a>.</p>
+</div>
+
+<h2>Speed comparison</h2>
+
+<p>We compared the running times of the various implementations. We did
+this by giving each program the number 1 till 1000 as input. The table
+below gives the results of the running times:</p>
+
+<table>
+  <tr class = 'row-0'>
+    <th class = 'cell-0-0 col-0'>Language</td>
+    <th class = 'cell-0-1 col-1'>Time</td>
+  </tr>
+  <tr class = 'row-1'>
+    <td class = 'cell-1-0 col-0'>Pascal</td>
+    <td class = 'cell-1-1 col-1'>&nbsp;0m 00.78s</td>
+  </tr>
+  <tr class = 'row-2'>
+    <td class = 'cell-2-0 col-0'>Go</td>
+    <td class = 'cell-2-1 col-1'>&nbsp;0m 01.02s</td>
+  </tr>
+  <tr class = 'row-3'>
+    <td class = 'cell-3-0 col-0'>Node.js</td>
+    <td class = 'cell-3-1 col-1'>&nbsp;0m 01.55s</td>
+  </tr>
+  <tr class = 'row-4'>
+    <td class = 'cell-4-0 col-0'>Java</td>
+    <td class = 'cell-4-1 col-1'>&nbsp;0m 02.19s</td>
+  </tr>
+  <tr class = 'row-5'>
+    <td class = 'cell-5-0 col-0'>C</td>
+    <td class = 'cell-5-1 col-1'>&nbsp;0m 02.32s</td>
+  </tr>
+  <tr class = 'row-6'>
+    <td class = 'cell-6-0 col-0'>Lua</td>
+    <td class = 'cell-6-1 col-1'>&nbsp;0m 29.02s</td>
+  </tr>
+  <tr class = 'row-7'>
+    <td class = 'cell-7-0 col-0'>Ruby</td>
+    <td class = 'cell-7-1 col-1'>&nbsp;0m 55.85s</td>
+  </tr>
+  <tr class = 'row-8'>
+    <td class = 'cell-8-0 col-0'>Perl</td>
+    <td class = 'cell-8-1 col-1'>&nbsp;1m 04.15s</td>
+  </tr>
+  <tr class = 'row-9'>
+    <td class = 'cell-9-0 col-0'>AWK</td>
+    <td class = 'cell-9-1 col-1'>&nbsp;1m 11.33s</td>
+  </tr>
+  <tr class = 'row-10'>
+    <td class = 'cell-10-0 col-0'>R</td>
+    <td class = 'cell-10-1 col-1'>&nbsp;1m 23.77s</td>
+  </tr>
+  <tr class = 'row-11'>
+    <td class = 'cell-11-0 col-0'>Python</td>
+    <td class = 'cell-11-1 col-1'>&nbsp;2m 04.96s</td>
+  </tr>
+  <tr class = 'row-12'>
+    <td class = 'cell-12-0 col-0'>Tcl</td>
+    <td class = 'cell-12-1 col-1'>23m 42.27s
+</td>
+  </tr>
+</table>
+
+<p>As we can see, compiled languages are fast (with Pascal the surprising
+winner), while "scripting" languages like Ruby and Perl are a lot
+slower. Python is a about twice as slow as Ruby or Perl. Lua is halfway
+the fast and slow groups.</p>
+
+<p>Tcl is just way, way slower than anything else.</p>
 
 <hr id = 'last-line'>
 <div class = 'trailer'>
