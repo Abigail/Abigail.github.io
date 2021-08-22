@@ -1,0 +1,6 @@
+# table      {width: 30%;}
+table      {border-collapse: collapse;}
+th         {text-align: left;}
+td         {text-align: right; width: 1em;}
+th, td     {border: 1px solid black; padding: 5px;}
+#            width: 10%;}

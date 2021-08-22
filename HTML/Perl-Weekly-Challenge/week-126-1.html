@@ -1,0 +1,542 @@
+<html>
+<head>
+<title>Perl Weekly Challenge 126: Count Numbers</title>
+<script src = "https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id = "MathJax-script" async src = "https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.js"></script>
+<script src = '../../JavaScript/jquery.js'></script>
+<script src = '../../JavaScript/navigation.js'></script>
+<link rel = 'preconnect' href = 'https://fonts.gstatic.com'>
+<link rel = 'stylesheet' href = 'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
+<link rel = 'stylesheet' href = '../../Styles/Perl-Weekly-Challenge/main.css'>
+<link rel = 'stylesheet' href = '../../Styles/Perl-Weekly-Challenge/week-126-1.css'>
+</head>
+
+<body><h1>Perl Weekly Challenge 126: Count Numbers</h1><div class = "byline">
+by Abigail<br>
+<img src = "../../Images/jan_sluiters.jpg">
+</div>
+
+
+<h2><a href="https://theweeklychallenge.org/blog/perl-weekly-challenge-126/#TASK1">Challenge</a></h2>
+
+<blockquote>
+  <p>You are given a positive integer <code>$N</code>.</p>
+  
+  <p>Write a script to print count of numbers from 1 to <code>$N</code> that
+  don&rsquo;t contain digit <code>1</code>.</p>
+</blockquote>
+
+<h3>Example</h3>
+
+<pre><code>Input: $N = 15
+Output: 8
+</code></pre>
+
+<p>There are 8 numbers between <code>1</code> and <code>15</code> that don't contain digit <code>1</code>.
+<code>2, 3, 4, 5, 6, 7, 8, 9</code>.</p>
+
+<pre><code>Input: $N = 25
+Output: 13
+</code></pre>
+
+<p>There are 13 numbers between <code>1</code> and <code>25</code> that don't contain digit <code>1</code>.
+<code>2, 3, 4, 5, 6, 7, 8, 9, 20, 22, 23, 24, 25</code>.</p>
+
+<h2>Discussion</h2>
+
+<div class = "section">
+<p>Let's first focus on generating numbers without a 9. It is not hard
+to see that <span class = 'latex-inline'>\(N^{\text{th}}\)</span> non-negative integer without a 9 can be
+found by converting <span class = 'latex-inline'>\(N\)</span> into base-9. This gives the
+following sequence:</p>
+
+<table>
+  <tr class = 'row-0'>
+    <th class = 'cell-0-0 col-0'><span class = 'latex-inline'>\(N\)</span></td>
+    <td class = 'cell-0-1 col-1'>0</td>
+    <td class = 'cell-0-2 col-2'>1</td>
+    <td class = 'cell-0-3 col-3'>2</td>
+    <td class = 'cell-0-4 col-4'>3</td>
+    <td class = 'cell-0-5 col-5'>4</td>
+    <td class = 'cell-0-6 col-6'>5</td>
+    <td class = 'cell-0-7 col-7'>6</td>
+    <td class = 'cell-0-8 col-8'>7</td>
+    <td class = 'cell-0-9 col-9'>8</td>
+    <td class = 'cell-0-10 col-10'>9</td>
+    <td class = 'cell-0-11 col-11'>10</td>
+    <td class = 'cell-0-12 col-12'>11</td>
+    <td class = 'cell-0-13 col-13'>12</td>
+    <td class = 'cell-0-14 col-14'>13</td>
+    <td class = 'cell-0-15 col-15'>14</td>
+    <td class = 'cell-0-16 col-16'>15</td>
+    <td class = 'cell-0-17 col-17'>16</td>
+    <td class = 'cell-0-18 col-18'>17</td>
+    <td class = 'cell-0-19 col-19'>18</td>
+    <td class = 'cell-0-20 col-20'>19</td>
+    <td class = 'cell-0-21 col-21'>20</td>
+    <td class = 'cell-0-22 col-22'>21</td>
+    <td class = 'cell-0-23 col-23'>22</td>
+    <td class = 'cell-0-24 col-24'>23</td>
+    <td class = 'cell-0-25 col-25'>24</td>
+    <td class = 'cell-0-26 col-26'>25</td>
+    <td class = 'cell-0-27 col-27'>26</td>
+    <td class = 'cell-0-28 col-28'>27</td>
+    <td class = 'cell-0-29 col-29'>28</td>
+    <td class = 'cell-0-30 col-30'>29</td>
+    <td class = 'cell-0-31 col-31'>30</td>
+    <td class = 'cell-0-32 col-32'>...</td>
+  </tr>
+  <tr class = 'row-1'>
+    <th class = 'cell-1-0 col-0'><span class = 'latex-inline'>\(N_9\)</span></td>
+    <td class = 'cell-1-1 col-1'>0</td>
+    <td class = 'cell-1-2 col-2'>1</td>
+    <td class = 'cell-1-3 col-3'>2</td>
+    <td class = 'cell-1-4 col-4'>3</td>
+    <td class = 'cell-1-5 col-5'>4</td>
+    <td class = 'cell-1-6 col-6'>5</td>
+    <td class = 'cell-1-7 col-7'>6</td>
+    <td class = 'cell-1-8 col-8'>7</td>
+    <td class = 'cell-1-9 col-9'>8</td>
+    <td class = 'cell-1-10 col-10'>10</td>
+    <td class = 'cell-1-11 col-11'>11</td>
+    <td class = 'cell-1-12 col-12'>12</td>
+    <td class = 'cell-1-13 col-13'>13</td>
+    <td class = 'cell-1-14 col-14'>14</td>
+    <td class = 'cell-1-15 col-15'>15</td>
+    <td class = 'cell-1-16 col-16'>16</td>
+    <td class = 'cell-1-17 col-17'>17</td>
+    <td class = 'cell-1-18 col-18'>18</td>
+    <td class = 'cell-1-19 col-19'>20</td>
+    <td class = 'cell-1-20 col-20'>21</td>
+    <td class = 'cell-1-21 col-21'>22</td>
+    <td class = 'cell-1-22 col-22'>23</td>
+    <td class = 'cell-1-23 col-23'>24</td>
+    <td class = 'cell-1-24 col-24'>25</td>
+    <td class = 'cell-1-25 col-25'>26</td>
+    <td class = 'cell-1-26 col-26'>27</td>
+    <td class = 'cell-1-27 col-27'>28</td>
+    <td class = 'cell-1-28 col-28'>30</td>
+    <td class = 'cell-1-29 col-29'>31</td>
+    <td class = 'cell-1-30 col-30'>32</td>
+    <td class = 'cell-1-31 col-31'>33</td>
+    <td class = 'cell-1-32 col-32'>...</td>
+  </tr>
+  <tr class = 'row-2'>
+    <th class = 'cell-2-0 col-0'>9-free</td>
+    <td class = 'cell-2-1 col-1'>0</td>
+    <td class = 'cell-2-2 col-2'>1</td>
+    <td class = 'cell-2-3 col-3'>2</td>
+    <td class = 'cell-2-4 col-4'>3</td>
+    <td class = 'cell-2-5 col-5'>4</td>
+    <td class = 'cell-2-6 col-6'>5</td>
+    <td class = 'cell-2-7 col-7'>6</td>
+    <td class = 'cell-2-8 col-8'>7</td>
+    <td class = 'cell-2-9 col-9'>8</td>
+    <td class = 'cell-2-10 col-10'>10</td>
+    <td class = 'cell-2-11 col-11'>11</td>
+    <td class = 'cell-2-12 col-12'>12</td>
+    <td class = 'cell-2-13 col-13'>13</td>
+    <td class = 'cell-2-14 col-14'>14</td>
+    <td class = 'cell-2-15 col-15'>15</td>
+    <td class = 'cell-2-16 col-16'>16</td>
+    <td class = 'cell-2-17 col-17'>17</td>
+    <td class = 'cell-2-18 col-18'>18</td>
+    <td class = 'cell-2-19 col-19'>20</td>
+    <td class = 'cell-2-20 col-20'>21</td>
+    <td class = 'cell-2-21 col-21'>22</td>
+    <td class = 'cell-2-22 col-22'>23</td>
+    <td class = 'cell-2-23 col-23'>24</td>
+    <td class = 'cell-2-24 col-24'>25</td>
+    <td class = 'cell-2-25 col-25'>26</td>
+    <td class = 'cell-2-26 col-26'>27</td>
+    <td class = 'cell-2-27 col-27'>28</td>
+    <td class = 'cell-2-28 col-28'>30</td>
+    <td class = 'cell-2-29 col-29'>31</td>
+    <td class = 'cell-2-30 col-30'>32</td>
+    <td class = 'cell-2-31 col-31'>33</td>
+    <td class = 'cell-2-32 col-32'>...</td>
+  </tr>
+</table>
+
+<p>If we want to generate the <span class = 'latex-inline'>\(N^{\text{th}}\)</span> non-negative integer missing
+a digit other than 9, as a first step, we still start with convert
+<span class = 'latex-inline'>\(N\)</span> into base-9. Then, of the converted number, we replace the digits
+0-8 with the nine digits which are allowed. So, in the case we want
+numbers without a 1, we convert <span class = 'latex-inline'>\(N\)</span> into base-9, then replace 1 by 2, 
+2 by 3, 3 by 4, etc, till we replace 8 by 9. Any 0 remains as is.</p>
+
+<p>This gives the following table:</p>
+
+<table>
+  <tr class = 'row-0'>
+    <th class = 'cell-0-0 col-0'><span class = 'latex-inline'>\(N\)</span></td>
+    <td class = 'cell-0-1 col-1'>0</td>
+    <td class = 'cell-0-2 col-2'>1</td>
+    <td class = 'cell-0-3 col-3'>2</td>
+    <td class = 'cell-0-4 col-4'>3</td>
+    <td class = 'cell-0-5 col-5'>4</td>
+    <td class = 'cell-0-6 col-6'>5</td>
+    <td class = 'cell-0-7 col-7'>6</td>
+    <td class = 'cell-0-8 col-8'>7</td>
+    <td class = 'cell-0-9 col-9'>8</td>
+    <td class = 'cell-0-10 col-10'>9</td>
+    <td class = 'cell-0-11 col-11'>10</td>
+    <td class = 'cell-0-12 col-12'>11</td>
+    <td class = 'cell-0-13 col-13'>12</td>
+    <td class = 'cell-0-14 col-14'>13</td>
+    <td class = 'cell-0-15 col-15'>14</td>
+    <td class = 'cell-0-16 col-16'>15</td>
+    <td class = 'cell-0-17 col-17'>16</td>
+    <td class = 'cell-0-18 col-18'>17</td>
+    <td class = 'cell-0-19 col-19'>18</td>
+    <td class = 'cell-0-20 col-20'>19</td>
+    <td class = 'cell-0-21 col-21'>20</td>
+    <td class = 'cell-0-22 col-22'>21</td>
+    <td class = 'cell-0-23 col-23'>22</td>
+    <td class = 'cell-0-24 col-24'>23</td>
+    <td class = 'cell-0-25 col-25'>24</td>
+    <td class = 'cell-0-26 col-26'>25</td>
+    <td class = 'cell-0-27 col-27'>26</td>
+    <td class = 'cell-0-28 col-28'>27</td>
+    <td class = 'cell-0-29 col-29'>28</td>
+    <td class = 'cell-0-30 col-30'>29</td>
+    <td class = 'cell-0-31 col-31'>30</td>
+    <td class = 'cell-0-32 col-32'>...</td>
+  </tr>
+  <tr class = 'row-1'>
+    <th class = 'cell-1-0 col-0'><span class = 'latex-inline'>\(N_9\)</span></td>
+    <td class = 'cell-1-1 col-1'>0</td>
+    <td class = 'cell-1-2 col-2'>1</td>
+    <td class = 'cell-1-3 col-3'>2</td>
+    <td class = 'cell-1-4 col-4'>3</td>
+    <td class = 'cell-1-5 col-5'>4</td>
+    <td class = 'cell-1-6 col-6'>5</td>
+    <td class = 'cell-1-7 col-7'>6</td>
+    <td class = 'cell-1-8 col-8'>7</td>
+    <td class = 'cell-1-9 col-9'>8</td>
+    <td class = 'cell-1-10 col-10'>10</td>
+    <td class = 'cell-1-11 col-11'>11</td>
+    <td class = 'cell-1-12 col-12'>12</td>
+    <td class = 'cell-1-13 col-13'>13</td>
+    <td class = 'cell-1-14 col-14'>14</td>
+    <td class = 'cell-1-15 col-15'>15</td>
+    <td class = 'cell-1-16 col-16'>16</td>
+    <td class = 'cell-1-17 col-17'>17</td>
+    <td class = 'cell-1-18 col-18'>18</td>
+    <td class = 'cell-1-19 col-19'>20</td>
+    <td class = 'cell-1-20 col-20'>21</td>
+    <td class = 'cell-1-21 col-21'>22</td>
+    <td class = 'cell-1-22 col-22'>23</td>
+    <td class = 'cell-1-23 col-23'>24</td>
+    <td class = 'cell-1-24 col-24'>25</td>
+    <td class = 'cell-1-25 col-25'>26</td>
+    <td class = 'cell-1-26 col-26'>27</td>
+    <td class = 'cell-1-27 col-27'>28</td>
+    <td class = 'cell-1-28 col-28'>30</td>
+    <td class = 'cell-1-29 col-29'>31</td>
+    <td class = 'cell-1-30 col-30'>32</td>
+    <td class = 'cell-1-31 col-31'>33</td>
+    <td class = 'cell-1-32 col-32'>...</td>
+  </tr>
+  <tr class = 'row-2'>
+    <th class = 'cell-2-0 col-0'>1-free</td>
+    <td class = 'cell-2-1 col-1'>0</td>
+    <td class = 'cell-2-2 col-2'>2</td>
+    <td class = 'cell-2-3 col-3'>3</td>
+    <td class = 'cell-2-4 col-4'>4</td>
+    <td class = 'cell-2-5 col-5'>5</td>
+    <td class = 'cell-2-6 col-6'>6</td>
+    <td class = 'cell-2-7 col-7'>7</td>
+    <td class = 'cell-2-8 col-8'>8</td>
+    <td class = 'cell-2-9 col-9'>9</td>
+    <td class = 'cell-2-10 col-10'>20</td>
+    <td class = 'cell-2-11 col-11'>22</td>
+    <td class = 'cell-2-12 col-12'>23</td>
+    <td class = 'cell-2-13 col-13'>24</td>
+    <td class = 'cell-2-14 col-14'>25</td>
+    <td class = 'cell-2-15 col-15'>26</td>
+    <td class = 'cell-2-16 col-16'>27</td>
+    <td class = 'cell-2-17 col-17'>28</td>
+    <td class = 'cell-2-18 col-18'>29</td>
+    <td class = 'cell-2-19 col-19'>30</td>
+    <td class = 'cell-2-20 col-20'>32</td>
+    <td class = 'cell-2-21 col-21'>33</td>
+    <td class = 'cell-2-22 col-22'>34</td>
+    <td class = 'cell-2-23 col-23'>35</td>
+    <td class = 'cell-2-24 col-24'>36</td>
+    <td class = 'cell-2-25 col-25'>37</td>
+    <td class = 'cell-2-26 col-26'>38</td>
+    <td class = 'cell-2-27 col-27'>39</td>
+    <td class = 'cell-2-28 col-28'>40</td>
+    <td class = 'cell-2-29 col-29'>42</td>
+    <td class = 'cell-2-30 col-30'>43</td>
+    <td class = 'cell-2-31 col-31'>44</td>
+    <td class = 'cell-2-32 col-32'>...</td>
+  </tr>
+</table>
+
+<p>This is sequence <a href="https://oeis.org/A052383">A052383</a> in the <a href="https://oeis.org/">OEIS</a>.</p>
+
+<p>Note that if <span class = 'latex-inline'>\(P\)</span> is the <span class = 'latex-inline'>\(N^{\text{th}}\)</span> 1-free number, then there are <span class = 'latex-inline'>\(N\)</span>
+1-free numbers between 1 and <span class = 'latex-inline'>\(P\)</span>. </p>
+
+<p>We don't want to calculate the <span class = 'latex-inline'>\(N^{\text{th}}\)</span> 1-free number, instead we want
+the reverse. The procedure described above can be simply reversed: starting
+from the 1-free number, we replace each of the digits 2-9 with the digits
+1-8, and we interpret the resulting number as a base-9 number.</p>
+
+<p>But there is one more step we need to do. While we can find the answer for
+a 1-free number, the input may contain a 1. Consider a number <span class = 'latex-inline'>\(N\)</span>, and
+let <span class = 'latex-inline'>\(M\)</span> be the largest integer <span class = 'latex-inline'>\(\leq N\)</span> such that <span class = 'latex-inline'>\(M\)</span> contains no 1.
+Now there are as many numbers between 1 and <span class = 'latex-inline'>\(N\)</span> which do not contain a 1,
+as there are numbers between 1 and <span class = 'latex-inline'>\(M\)</span> which do not contain a 1. This is
+easy to see: if the amount of numbers which do not contain a 1 differs,
+there must be a number <span class = 'latex-inline'>\(p\)</span>, <span class = 'latex-inline'>\(M &lt; p \leq N\)</span> which contains a 1. But
+that contradicts the definition of <span class = 'latex-inline'>\(M\)</span>. Note that if <span class = 'latex-inline'>\(N\)</span> does not
+contain a 1, then <span class = 'latex-inline'>\(M = N\)</span>.</p>
+
+<p>Given a number <span class = 'latex-inline'>\(N\)</span>, it's easy to calculate <span class = 'latex-inline'>\(M\)</span>, where <span class = 'latex-inline'>\(M\)</span> is the
+largest number less or equal to <span class = 'latex-inline'>\(N\)</span> which does not contain a 1: find 
+the leftmost 1 in <span class = 'latex-inline'>\(N\)</span>, replace this by a 0, and change any following
+digit by a 9. If <span class = 'latex-inline'>\(N\)</span> does not contain a 1, the number is left unmodified.</p>
+
+<p>So, we need to do three things:</p>
+
+<ol>
+<li>Find the largest number smaller than the input number which does not
+contain a 1.</li>
+<li>Subtract 1 from each non-zero digit.</li>
+<li>Convert the resulting number from base 9 to base 10.</li>
+</ol>
+
+<p>All three things can be done in a single left to right pass.</p>
+</div>
+
+<h2>Efficiency</h2>
+
+<div class = "section">
+<p>The described algorithm is performed in a single left to right pass of
+the input number. Since the third step involves multiplication of an
+increasingly larger number, each pass is going to be linear in the
+number of digits of the input; and we need a number of passes which is
+linear in the number if digits as well. Which means that if our
+input number consists of <span class = 'latex-inline'>\(d\)</span> digits, the running time of our
+algorithm is bounded by <span class = 'latex-inline'>\(\mathcal{O} (d^2)\)</span>. (<span class = 'latex-inline'>\(\mathcal{O}(d)\)</span>
+if you consider multiplication to be a constant time operation).</p>
+</div>
+
+<h3>The na&iuml;ve way</h3>
+
+<div class = "section">
+<p>A tempting way of solving this problem would be to inspect all the numbers
+from 1 till <span class = 'latex-inline'>\(N\)</span>, discarding the ones containing a 1, and tallying
+the remainders. But if we look at the running time of this algorithm,
+we'll see this is <span class = 'latex-inline'>\(\Omega (d \cdot 10^{d-1})\)</span>, where <span class = 'latex-inline'>\(d\)</span> is the 
+the number of digits of the input number.</p>
+
+<p>How dramatic the difference between both implementations is is shown 
+in the table below. First column is the input number <span class = 'latex-inline'>\(N\)</span>. Second column
+is the time (in microseconds) of the solution described above (Perl
+implementation shown below), while the third column is the running time
+of:</p>
+
+<pre><code>$n = &lt;&gt;;
+my $result = grep {!/1/} 1 .. $n;
+</code></pre>
+
+<p>All times are in microseconds:</p>
+
+<table>
+  <tr class = 'row-0'>
+    <th class = 'cell-0-0 col-0'><span class = 'latex-inline'>\(N\)</span></td>
+    <th class = 'cell-0-1 col-1' colspan = '2'>Time (&mu;sec)</td>
+  </tr>
+  <tr class = 'row-1'>
+    <td class = 'cell-1-0 col-0'>10</td>
+    <td class = 'cell-1-1 col-1'>0.518</td>
+    <td class = 'cell-1-2 col-2'>4</td>
+  </tr>
+  <tr class = 'row-2'>
+    <td class = 'cell-2-0 col-0'>20</td>
+    <td class = 'cell-2-1 col-1'>0.846</td>
+    <td class = 'cell-2-2 col-2'>8</td>
+  </tr>
+  <tr class = 'row-3'>
+    <td class = 'cell-3-0 col-0'>50</td>
+    <td class = 'cell-3-1 col-1'>0.751</td>
+    <td class = 'cell-3-2 col-2'>19</td>
+  </tr>
+  <tr class = 'row-4'>
+    <td class = 'cell-4-0 col-0'>100</td>
+    <td class = 'cell-4-1 col-1'>1.103</td>
+    <td class = 'cell-4-2 col-2'>38</td>
+  </tr>
+  <tr class = 'row-5'>
+    <td class = 'cell-5-0 col-0'>200</td>
+    <td class = 'cell-5-1 col-1'>1.158</td>
+    <td class = 'cell-5-2 col-2'>82</td>
+  </tr>
+  <tr class = 'row-6'>
+    <td class = 'cell-6-0 col-0'>500</td>
+    <td class = 'cell-6-1 col-1'>0.963</td>
+    <td class = 'cell-6-2 col-2'>184</td>
+  </tr>
+  <tr class = 'row-7'>
+    <td class = 'cell-7-0 col-0'>1000</td>
+    <td class = 'cell-7-1 col-1'>1.242</td>
+    <td class = 'cell-7-2 col-2'>364</td>
+  </tr>
+  <tr class = 'row-8'>
+    <td class = 'cell-8-0 col-0'>2000</td>
+    <td class = 'cell-8-1 col-1'>1.347</td>
+    <td class = 'cell-8-2 col-2'>759</td>
+  </tr>
+  <tr class = 'row-9'>
+    <td class = 'cell-9-0 col-0'>5000</td>
+    <td class = 'cell-9-1 col-1'>1.239</td>
+    <td class = 'cell-9-2 col-2'>1896</td>
+  </tr>
+  <tr class = 'row-10'>
+    <td class = 'cell-10-0 col-0'>10000</td>
+    <td class = 'cell-10-1 col-1'>1.400</td>
+    <td class = 'cell-10-2 col-2'>3732</td>
+  </tr>
+  <tr class = 'row-11'>
+    <td class = 'cell-11-0 col-0'>20000</td>
+    <td class = 'cell-11-1 col-1'>1.446</td>
+    <td class = 'cell-11-2 col-2'>7650</td>
+  </tr>
+  <tr class = 'row-12'>
+    <td class = 'cell-12-0 col-0'>50000</td>
+    <td class = 'cell-12-1 col-1'>1.542</td>
+    <td class = 'cell-12-2 col-2'>17511</td>
+  </tr>
+  <tr class = 'row-13'>
+    <td class = 'cell-13-0 col-0'>100000</td>
+    <td class = 'cell-13-1 col-1'>1.389</td>
+    <td class = 'cell-13-2 col-2'>38033</td>
+  </tr>
+  <tr class = 'row-14'>
+    <td class = 'cell-14-0 col-0'>200000</td>
+    <td class = 'cell-14-1 col-1'>1.804</td>
+    <td class = 'cell-14-2 col-2'>75876</td>
+  </tr>
+  <tr class = 'row-15'>
+    <td class = 'cell-15-0 col-0'>500000</td>
+    <td class = 'cell-15-1 col-1'>1.781</td>
+    <td class = 'cell-15-2 col-2'>168706</td>
+  </tr>
+  <tr class = 'row-16'>
+    <td class = 'cell-16-0 col-0'>1000000</td>
+    <td class = 'cell-16-1 col-1'>1.596</td>
+    <td class = 'cell-16-2 col-2'>412139</td>
+  </tr>
+  <tr class = 'row-17'>
+    <td class = 'cell-17-0 col-0'>2000000</td>
+    <td class = 'cell-17-1 col-1'>1.885</td>
+    <td class = 'cell-17-2 col-2'>510239</td>
+  </tr>
+  <tr class = 'row-18'>
+    <td class = 'cell-18-0 col-0'>5000000</td>
+    <td class = 'cell-18-1 col-1'>1.921</td>
+    <td class = 'cell-18-2 col-2'>1531234</td>
+  </tr>
+  <tr class = 'row-19'>
+    <td class = 'cell-19-0 col-0'>10000000</td>
+    <td class = 'cell-19-1 col-1'>1.789</td>
+    <td class = 'cell-19-2 col-2'>3452088</td>
+  </tr>
+  <tr class = 'row-20'>
+    <td class = 'cell-20-0 col-0'>20000000</td>
+    <td class = 'cell-20-1 col-1'>2.089</td>
+    <td class = 'cell-20-2 col-2'>8721964</td>
+  </tr>
+  <tr class = 'row-21'>
+    <td class = 'cell-21-0 col-0'>50000000</td>
+    <td class = 'cell-21-1 col-1'>2.115</td>
+    <td class = 'cell-21-2 col-2'>470332870</td>
+  </tr>
+</table>
+
+<p>In our implementation, an input of a 1,000 digits spits out the answer in 
+less than 0.02 seconds. The na&iuml;ve way would not finish before
+the universe ends.</p>
+</div>
+
+<h2>Solution</h2>
+
+<h3>Perl</h3>
+
+<div class = "section">
+<p>As described above in the section Discussion, we find the answer using
+a couple of left to right passes of the input number. We can even 
+condense this in a single left to right pass.</p>
+
+<p>We'll keep two variables to keep state, <code>$result</code>, which at the end
+contains our answer, and <code>$seen_one</code>, to determine whether we have
+spotted a <code>1</code> in our input number. They are both initialized to 0:</p>
+
+<pre><code>my $result   = 0;
+my $seen_one = 0;
+</code></pre>
+
+<p>Then for each digit of our input number (<code>$n</code>) we first multiply
+<code>$result</code> by <code>9</code> (since we're converting from base-9 to base-10):</p>
+
+<pre><code>foreach my $digit (split // =&gt; $n) {
+    $result *= 9;
+</code></pre>
+
+<p>Then we have a three (or four, but in the fourth case, we don't do
+anything) cases:</p>
+
+<ul>
+<li>If we have seen a <code>1</code> in the input (<code>$seen_one</code>), we add <code>8</code> to 
+<code>$result</code>. The <code>8</code> is a combination of finding the largest 1-free
+number not exceeding the input, and the shifting of digits by 1.</li>
+<li>Else, if <code>$digit</code> is <code>1</code>, we set <code>$seen_one</code> to true. We don't have
+to add anything to <code>$result</code> in this case, as this is the first <code>1</code>
+in the input number, and this would be a <code>0</code> when getting the largest
+1-free number smaller than the input number, and a <code>0</code> doesn't
+contribute when converting bases.</li>
+<li>Else, if <code>$digit</code> isn't <code>0</code>, we add <code>$digit - 1</code> to <code>$result</code>.</li>
+</ul>
+
+<p>In the fourth cases, <code>$digit</code> equals <code>0</code>. In that case, nothing needs
+to be done.</p>
+
+<pre><code>if    ($seen_one)   {$result += 8}
+elsif ($digit == 1) {$seen_one = 1}
+elsif ($digit)      {$result += $digit - 1}
+</code></pre>
+
+<p>Now all that is left to be done is print the result:</p>
+
+<pre><code>say $result;
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-126/abigail/perl/ch-1.pl">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>Other Languages</h3>
+
+<p>We also have very similar solutions in
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-126/abigail/awk/ch-1.awk">AWK</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-126/abigail/bash/ch-1.sh">Bash</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-126/abigail/c/ch-1.c">C</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-126/abigail/lua/ch-1.lua">Lua</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-126/abigail/node/ch-1.js">Node.js</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-126/abigail/python/ch-1.py">Python</a>, and
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-126/abigail/ruby/ch-1.rb">Ruby</a>.</p>
+
+<hr id = 'last-line'>
+<div class = 'trailer'>
+<p class = 'prev'><a class = "prev" href = "">&#x261C;</a></p>
+<p class = 'issue'>Please leave any comments as a
+  <a href = 'https://github.com/Abigail/Abigail.github.io/issues'
+     title = 'GitHub issue'>GitHub issue</a>.
+<p class = 'next'><a class = "next" href = "">&#x261E;</a></p>
+</div>
+
+</body>
+</html>
