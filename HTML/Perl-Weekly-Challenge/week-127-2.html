@@ -1,0 +1,156 @@
+<html>
+<head>
+<title>Perl Weekly Challenge 127: Conflict Intervals</title>
+<script src = "https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id = "MathJax-script" async src = "https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.js"></script>
+<script src = '../../JavaScript/jquery.js'></script>
+<script src = '../../JavaScript/navigation.js'></script>
+<link rel = 'preconnect' href = 'https://fonts.gstatic.com'>
+<link rel = 'stylesheet' href = 'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
+<link rel = 'stylesheet' href = '../../Styles/Perl-Weekly-Challenge/main.css'>
+</head>
+
+<body><h1>Perl Weekly Challenge 127: Conflict Intervals</h1><div class = "byline">
+by Abigail<br>
+<img src = "../../Images/jan_sluiters.jpg">
+</div>
+
+
+<h2><a href="https://theweeklychallenge.org/blog/perl-weekly-challenge-127/#TASK2">Challenge</a></h2>
+
+<blockquote>
+  <p>You are given a list of intervals.</p>
+  
+  <p>Write a script to find out if the current interval conflicts with
+  any of the previous intervals.</p>
+</blockquote>
+
+<h3>Examples</h3>
+
+<pre><code>Input: @Intervals = [ (1,4), (3,5), (6,8), (12, 13), (3,20) ]
+Output: [ (3,5), (3,20) ]
+</code></pre>
+
+<ul>
+<li>The 1st interval <code>(1,4)</code> do not have any previous intervals to compare with, so skip it.</li>
+<li>The 2nd interval <code>(3,5)</code> does conflict with previous interval <code>(1,4)</code>.</li>
+<li>The 3rd interval <code>(6,8)</code> do not conflicts with any of the previous intervals <code>(1,4)</code> and <code>(3,5)</code>, so skip it.</li>
+<li>The 4th interval <code>(12,13)</code> again do not conflicts with any of the previous intervals <code>(1,4)</code>, <code>(3,5)</code> and <code>(6,8)</code>, so skip it.</li>
+<li>The 5th interval <code>(3,20)</code> conflicts with the first interval <code>(1,4)</code>.</li>
+</ul>
+
+
+
+<pre><code>Input: @Intervals = [ (3,4), (5,7), (6,9), (10, 12), (13,15) ]
+Output: [ (6,9) ]
+</code></pre>
+
+<ul>
+<li>The 1st interval <code>(3,4)</code> do not have any previous intervals to compare with, so skip it.</li>
+<li>The 2nd interval <code>(5,7)</code> do not conflicts with the previous interval <code>(3,4)</code>, so skip it.</li>
+<li>The 3rd interval <code>(6,9)</code> does conflict with one of the previous intervals <code>(5,7)</code>.</li>
+<li>The 4th interval <code>(10,12)</code> do not conflicts with any of the previous intervals <code>(3,4)</code>, <code>(5,7)</code> and <code>(6,9)</code>, so skip it.</li>
+<li>The 5th interval <code>(13,15)</code> do not conflicts with any of the previous intervals <code>(3,4)</code>, <code>(5,7)</code>, <code>(6,9)</code> and <code>(10,12)</code>, so skip it.</li>
+</ul>
+
+<h2>Discussion</h2>
+
+<div class = "section">
+<p>The description of the challenge and its examples are conflicting.
+The description says it wants us to determine something, so, seeking
+a yes/no answer. However, the examples actually report some of the
+intersecting intervals.</p>
+
+<p>Furthermore, the challenge talks about "the current interval", without
+specifying what a current interval is.</p>
+
+<p>What we will do is to take a set of intervals (each set on its own line),
+and return a true value if there is at least one pair of intersecting
+intervals, and false otherwise.</p>
+
+<p>The challenge is also silent on what kind of intervals we have. Are they
+one-dimensional? Multidimensional? Are the coordinates integers? Rationals?
+Reals? Complex numbers? To make life easier for ourselves, we assume all
+intervals line on the line, and have positive integer coordinates. (Since
+there is no description, all we have to go by is the examples, which use
+intervals with positive integer coordinates on the line).</p>
+</div>
+
+<h3>Interval Tree</h3>
+
+<div class = "section">
+<p>Now, the most efficient way would be to build an <em>interval tree</em>, which
+can be build in <span class = 'latex-inline'>\(\mathcal{O} (N \log N)\)</span> time, with a query time
+of <span class = 'latex-inline'>\(\mathcal{O} (\log N)\)</span> (if we all want to know there is an intersection),
+and which can be updated in <span class = 'latex-inline'>\(\mathcal{O} (\log N)\)</span> time.</p>
+
+<p>We will however use a quadratic algorithm, checking each pair of intervals,
+stopping as soon as we find an intersection.</p>
+</div>
+
+<h2>Solution</h2>
+
+<div class = "section">
+<p>Two intervals, <span class = 'latex-inline'>\(I = (i_l, i_h)\)</span> and <span class = 'latex-inline'>\(J = (j_l, j_h)\)</span>, with
+<span class = 'latex-inline'>\(i_l &lt; i_h\)</span> and <span class = 'latex-inline'>\(j_l &lt; j_h\)</span> intersect if and only if:
+<span class = 'latex-inline'>\(i_h \geq j_l \wedge i_l \leq j_h\)</span>.</p>
+</div>
+
+<h3>Perl</h3>
+
+<div class = "section">
+<p>Given the above statement, we start off with method which takes two
+intervals as parameters, and which returns true if the two intervals
+intersect, and false otherwise. The two intervals are given as
+two element arrays:</p>
+
+<pre><code>my sub intersects ($x, $y) {($$x [1] &gt;= $$y [0]) &amp;&amp; ($$x [0] &lt;= $$y [1])}
+</code></pre>
+
+<p>We're assuming the input is on one line, <code>$_</code>, and contains positive
+integers are coordinates. We will repeatedly read two integers, and
+turn them into an interval:</p>
+
+<pre><code>my @intervals = map {[split /[^0-9]+/]} /[1-9][0-9]*[^0-9]+[1-9][0-9]*/g;
+</code></pre>
+
+<p>Now we're going to make sure the first coordinates of each interval is
+less than the second:</p>
+
+<pre><code>foreach my $interval (@intervals) {
+    @$interval = reverse @$interval if $$interval [1] &lt; $$interval [0];
+}
+</code></pre>
+
+<p>With that, we can check each pair looking for an intersection. If we
+have found one, we're done. Else, we continue:</p>
+
+<pre><code>for (my $i = 1; $i &lt; @intervals; $i ++) {
+    for (my $j = 0; $j &lt; $i; $j ++) {
+        if (intersects $intervals [$i], $intervals [$j]) {
+            say 1;
+            exit;
+        }
+    }
+}
+say 0;
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-127/abigail/perl/ch-2.pl">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>Other languages.</h3>
+
+<p>We also have a solution in <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-127/abigail/awk/ch-2.awk">AWK</a>, which works in a very similar way.</p>
+
+<hr id = 'last-line'>
+<div class = 'trailer'>
+<p class = 'prev'><a class = "prev" href = "">&#x261C;</a></p>
+<p class = 'issue'>Please leave any comments as a
+  <a href = 'https://github.com/Abigail/Abigail.github.io/issues'
+     title = 'GitHub issue'>GitHub issue</a>.
+<p class = 'next'><a class = "next" href = "">&#x261E;</a></p>
+</div>
+
+</body>
+</html>

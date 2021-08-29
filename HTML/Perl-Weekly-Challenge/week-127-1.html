@@ -1,0 +1,162 @@
+<html>
+<head>
+<title>Perl Weekly Challenge 127: Disjoint Sets</title>
+<script src = "https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id = "MathJax-script" async src = "https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.js"></script>
+<script src = '../../JavaScript/jquery.js'></script>
+<script src = '../../JavaScript/navigation.js'></script>
+<link rel = 'preconnect' href = 'https://fonts.gstatic.com'>
+<link rel = 'stylesheet' href = 'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
+<link rel = 'stylesheet' href = '../../Styles/Perl-Weekly-Challenge/main.css'>
+</head>
+
+<body><h1>Perl Weekly Challenge 127: Disjoint Sets</h1><div class = "byline">
+by Abigail<br>
+<img src = "../../Images/jan_sluiters.jpg">
+</div>
+
+
+<h2><a href="https://theweeklychallenge.org/blog/perl-weekly-challenge-127/#TASK1">Challenge</a></h2>
+
+<blockquote>
+  <p>You are given two sets with unique integers.</p>
+  
+  <p>Write a script to figure out if they are disjoint.</p>
+  
+  <blockquote>
+    <p>The two sets are disjoint if they don't have any common members.</p>
+  </blockquote>
+</blockquote>
+
+<h3>Examples</h3>
+
+<pre><code>Input: @S1 = (1, 2, 5, 3, 4)
+       @S2 = (4, 6, 7, 8, 9)
+Output: 0 as the given two sets have common member 4.
+
+Input: @S1 = (1, 3, 5, 7, 9)
+       @S2 = (0, 2, 4, 6, 8)
+Output: 1 as the given two sets do not have common member.
+</code></pre>
+
+<h2>Solution</h2>
+
+<div class = "section">
+<p>Given that the two input sets contain unique integers, the sets
+are disjoint, if and only, their union does not contain duplicates.</p>
+
+<p>There are a few, all simple, ways to check for this.</p>
+</div>
+
+<h3>Perl</h3>
+
+<div class = "section">
+<p>Here, we put all the numbers (from both sets) in a hash, and check
+of the hash has as many keys as the union of the sets. Here, <code>$_</code>
+will contain the input, the sets separated by a semi-colon, and the
+values with a space (the separators don't really matter, as we will
+just extract the numbers).</p>
+
+<p>First we extract the numbers (of both sets) into an array <code>@_</code>:</p>
+
+<pre><code>@_ = /[-+]?[0-9]+/g;
+</code></pre>
+
+<p>We then put the numbers into a hash <code>%_</code>:</p>
+
+<pre><code>%_ = map {$_ =&gt; $_} @_
+</code></pre>
+
+<p>Finally, we contain the number of keys of <code>%_</code> with the number of elements
+of <code>@_</code>. In modern Perls, a hash in scalar context returns the number of
+keys, and an array in scalar context returns the number of elements. 
+So we get:</p>
+
+<pre><code>say %_ == @_ ? 1 : 0;
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-127/abigail/perl/ch-1.pl">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>C</h3>
+
+<div class = "section">
+<p>C lacks hashes, so we use a different strategy here. We take all the
+numbers, sort them, then do a single pass over them seeing if we have
+two indentical subsequent numbers. If we have such a pair, the sets are
+not disjoint; else, the sets are.</p>
+
+<p>Here we have all the numbers in an array (of type <code>int *</code>) <code>numbers</code>;
+this array has <code>i</code> elements. We start off by sorting them, using quicksort:</p>
+
+<pre><code>/*
+ * Compare two numbers
+ */
+int cmp (const void * a, const void * b) {
+    return (* (int *) a - * (int *) b);
+}
+
+qsort (numbers, i, sizeof (int), cmp);
+</code></pre>
+
+<p>Now we can pass over the array, looking for duplicates:</p>
+
+<pre><code>int out = 1;
+for (int j = 1; j &lt; i; j ++) {
+    if (numbers [j] == numbers [j - 1]) {
+        out = 0;
+        break;
+    }
+} 
+
+printf ("%d\n", out);
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-127/abigail/c/ch-1.c">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>Lua</h3>
+
+<div class = "section">
+<p>A third way of solving this is by iterating over the numbers of the
+sets, while keeping a hash of numbers seen. For each of the numbers,
+if we have seen it before, the sets are not disjoint. Else, we store
+the number in the hash, and continue with the next.</p>
+
+<p>Here, <code>line</code> contains the input:</p>
+
+<pre><code>local seen = {}
+local out  = 1
+for number in line : gmatch ("([-+]?[0-9]+)") do
+    if seen [number] then
+        out = 0
+    else
+        seen [number] = 1
+    end
+end
+print (out)
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-127/abigail/lua/ch-1.lua">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>Other languages</h3>
+
+<p>We also have solutions similar to the one in Lua in 
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-127/abigail/awk/ch-1.awk">AWK</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-127/abigail/bash/ch-1.sh">Bash</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-127/abigail/node/ch-1.js">Node.js</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-127/abigail/python/ch-1.py">Python</a>, and
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-127/abigail/ruby/ch-1.rb">Ruby</a>.</p>
+
+<hr id = 'last-line'>
+<div class = 'trailer'>
+<p class = 'prev'><a class = "prev" href = "">&#x261C;</a></p>
+<p class = 'issue'>Please leave any comments as a
+  <a href = 'https://github.com/Abigail/Abigail.github.io/issues'
+     title = 'GitHub issue'>GitHub issue</a>.
+<p class = 'next'><a class = "next" href = "">&#x261E;</a></p>
+</div>
+
+</body>
+</html>
