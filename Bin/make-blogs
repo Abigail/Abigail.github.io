@@ -192,6 +192,7 @@ sub make_link (%args) {
             elsif ($where eq "oeis")      {$url = $OEIS_URL . "/" . $what}
             elsif ($where eq "mathworld") {$url = $MATH_WORLD_URL .
                                                   "/" . $what . ".html"}
+            elsif ($where eq "meta")      {$url = $METACPAN_URL . "/" . $what}
         }
     }
     if (!$url && $link eq "github") {
