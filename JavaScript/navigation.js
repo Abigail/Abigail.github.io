@@ -58,6 +58,7 @@ let pwc_pages = [
     ["week-126-2", "Minesweeper Game"],
     ["week-127-1", "Disjoint Sets"],
     ["week-127-2", "Conflict Intervals"],
+    ["week-128-1", "Maximum Sub-Matrix"],
 ]
 
 pwc_pages . forEach (_ => _ [0] = PWC + "/" + _ [0] + ".html")

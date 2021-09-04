@@ -1,0 +1,161 @@
+<html>
+<head>
+<title>Perl Weekly Challenge 128: Maximum Sub-Matrix</title>
+<script src = "https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id = "MathJax-script" async src = "https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.js"></script>
+<script src = '../../JavaScript/jquery.js'></script>
+<script src = '../../JavaScript/navigation.js'></script>
+<link rel = 'preconnect' href = 'https://fonts.gstatic.com'>
+<link rel = 'stylesheet' href = 'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
+<link rel = 'stylesheet' href = '../../Styles/Perl-Weekly-Challenge/main.css'>
+</head>
+
+<body><h1>Perl Weekly Challenge 128: Maximum Sub-Matrix</h1><div class = "byline">
+by Abigail<br>
+<img src = "../../Images/jan_sluiters.jpg">
+</div>
+
+
+<h2><a href="https://theweeklychallenge.org/blog/perl-weekly-challenge-128/#TASK1">Challenge</a></h2>
+
+<blockquote>
+  <p>You are given <code>m x n</code> binary matrix having <code>0</code> or <code>1</code>.</p>
+  
+  <p>Write a script to find out maximum sub-matrix having only <code>0</code>.</p>
+</blockquote>
+
+<h3>Example 1</h3>
+
+<pre><code>Input : [ 1 0 0 0 1 0 ]
+        [ 1 1 0 0 0 1 ]
+        [ 1 0 0 0 0 0 ]
+
+Output: [ 0 0 0 ]
+        [ 0 0 0 ]
+</code></pre>
+
+<h3>Example 2</h3>
+
+<pre><code>Input : [ 0 0 1 1 ]
+        [ 0 0 0 1 ]
+        [ 0 0 1 0 ]
+
+Output: [ 0 0 ]
+        [ 0 0 ]
+        [ 0 0 ]
+</code></pre>
+
+<h2>Discussion</h2>
+
+<div class = "section">
+<p>This sounds very familiar! In fact, it's almost identical to <a href="https://theweeklychallenge.org/blog/perl-weekly-challenge-087/#TASK2">week 87</a>:</p>
+
+<blockquote>
+  <p>You are given matrix <code>m x n</code> with <code>0</code> and <code>1</code>.</p>
+  
+  <p>Write a script to find the largest rectangle containing only <code>1</code>.
+  Print <code>0</code> if none found.</p>
+</blockquote>
+
+<p>The first difference with this weeks challenge is that in week 87, we were
+asked to find the largest rectangle containing <code>1</code>s, while this week
+we are asked to find the largest rectangle containing <code>0</code>s. </p>
+
+<p>The second difference is that in week 87, it is somehow possible to not
+have a smallest sub-rectangle. Judging from the examples, this happens
+if the largest rectangle is a <code>1 x 1</code> rectangle.</p>
+</div>
+
+<h3>Misleading example</h3>
+
+<div class = "section">
+<p>The first example is a bit misleading. It claims the output should be</p>
+
+<pre><code>[ 0 0 0 ]
+[ 0 0 0 ]
+</code></pre>
+
+<p>However, the input matrix also contains</p>
+
+<pre><code>[ 0 0 ]
+[ 0 0 ]
+[ 0 0 ]
+</code></pre>
+
+<p>which is the same size. So, the output isn't unique!</p>
+</div>
+
+<h2>Solution</h2>
+
+<div class = "section">
+<p>One way to solve this is to copy the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-087/abigail/perl/ch-2.pl">code from week 87</a>,
+rip out the special
+case dealing with a largest rectangle of size <code>1 x 1</code>, and searching for
+<code>0</code>s instead of <code>1</code>s.</p>
+
+<p>But we won't do that. Instead, we take the input of this week, flip each
+<code>1</code> to <code>0</code>, and each <code>0</code> to <code>1</code>, feed this to the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-087/abigail/perl/ch-2.pl">program of week 87</a>,
+and from the output, we flip each <code>1</code> to a <code>0</code>.</p>
+
+<p>Note that this takes care of the case if the largest rectangle is of size
+<code>1 x 1</code> &mdash; in this case the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-087/abigail/perl/ch-2.pl">program from week 87</a> outputs a <code>0</code>,
+which is the <code>1 x 1</code> rectangle we need.</p>
+</div>
+
+<h3>Perl</h3>
+
+<p>First, we need to find the program from week 87. We do this by using
+a path starting from the current program, using the <a href="https://metacpan.org/pod/FindBin">FindBin</a>
+module:</p>
+
+<pre><code>use FindBin;
+my $program = "$FindBin::Bin/../../../challenge-087/abigail/perl/ch-2.pl";
+</code></pre>
+
+<p>Next we run the program, using two pipes: one to feed it input, and one
+to read its output. The <code>open2</code> function from <a href="https://metacpan.org/pod/IPC::Open2">IPC::Open2</a> will do
+that:</p>
+
+<pre><code>use IPC::Open2;
+my $pid = open2 (my $out, my $in, $^X, $program) // die "open failed: $!";
+</code></pre>
+
+<p>Here <code>$^X</code> is the path to executable (<code>perl</code>) which is running us; we'll
+use this to run the code of week 87. <code>$out</code> is a handle from which we
+can read the output of <code>$program</code>, while <code>$in</code> is a handle we can write
+to, and which will feed into <code>$program</code>.</p>
+
+<p>We now read the input, flip the <code>0</code>s and <code>1</code>s, and feed this to <code>$program</code>:</p>
+
+<pre><code>print $in y/01/10/r while &lt;&gt;;
+</code></pre>
+
+<p>We're done feeding input, so we close the handle:</p>
+
+<pre><code>close $in;
+</code></pre>
+
+<p>Time to read the out from <code>$program</code>, flipping each <code>1</code> to a <code>0</code>, and 
+writing this to standard output:</p>
+
+<pre><code>print y/1/0/r while &lt;$out&gt;;
+</code></pre>
+
+<p>And to be a good citizen, we'll reap our child lest it becomes a zombie:</p>
+
+<pre><code>waitpid ($pid, 0);
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-128/abigail/perl/ch-1.pl">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+
+<hr id = 'last-line'>
+<div class = 'trailer'>
+<p class = 'prev'><a class = "prev" href = "">&#x261C;</a></p>
+<p class = 'issue'>Please leave any comments as a
+  <a href = 'https://github.com/Abigail/Abigail.github.io/issues'
+     title = 'GitHub issue'>GitHub issue</a>.
+<p class = 'next'><a class = "next" href = "">&#x261E;</a></p>
+</div>
+
+</body>
+</html>
