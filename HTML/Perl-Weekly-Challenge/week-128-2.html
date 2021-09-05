@@ -1,0 +1,165 @@
+<html>
+<head>
+<title>Perl Weekly Challenge 128: Minimum Platforms</title>
+<script src = "https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id = "MathJax-script" async src = "https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.js"></script>
+<script src = '../../JavaScript/jquery.js'></script>
+<script src = '../../JavaScript/navigation.js'></script>
+<link rel = 'preconnect' href = 'https://fonts.gstatic.com'>
+<link rel = 'stylesheet' href = 'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
+<link rel = 'stylesheet' href = '../../Styles/Perl-Weekly-Challenge/main.css'>
+</head>
+
+<body><h1>Perl Weekly Challenge 128: Minimum Platforms</h1><div class = "byline">
+by Abigail<br>
+<img src = "../../Images/jan_sluiters.jpg">
+</div>
+
+
+<h2><a href="https://theweeklychallenge.org/blog/perl-weekly-challenge-128/#TASK2">Challenge</a></h2>
+
+<blockquote>
+  <p>You are given two arrays of arrival and departure times of trains
+  at a railway station.</p>
+  
+  <p>Write a script to find out the minimum number of platforms needed
+  so that no train needs to wait.</p>
+</blockquote>
+
+<h3>Example 1</h3>
+
+<pre><code>Input: @arrivals   = (11:20, 14:30)
+       @departures = (11:50, 15:00)
+Output: 1
+</code></pre>
+
+<ul>
+<li>The 1st arrival of train is at 11:20 and this is the only train
+at the station, so you need 1 platform.</li>
+<li>Before the second arrival at 14:30, the first train left the station
+at 11:50, so you still need only 1 platform.</li>
+</ul>
+
+<h3>Example 2</h3>
+
+<pre><code>Input: @arrivals   = (10:20, 11:00, 11:10, 12:20, 16:20, 19:00)
+       @departures = (10:30, 13:20, 12:40, 12:50, 20:20, 21:20)
+Output: 3
+</code></pre>
+
+<ul>
+<li>Between 12:20 and 12:40, there would be at least 3 trains at the station,
+so we need minimum 3 platforms.</li>
+</ul>
+
+<h2>Assumptions</h2>
+
+<ul>
+<li>If train A departures at minute X, while train arrives at time X,
+A and B cannot use the same platform.</li>
+<li>There is no minimum distance between trains (or rather, if there is
+a minimum distance, it's less than a minute). That is, if train A
+leaves a platform at minute X, train B can arrive at the same platform
+at time X + 1.</li>
+<li>No two trains can share the same platform &mdash; either the trains are long,
+or the platforms short.</li>
+</ul>
+
+<h2>Solution</h2>
+
+<div class = "section">
+<p>One way of solving this is to take all the arrival and departure times,
+sort them, and process them one by one, keeping a running total of
+platforms needed. For each arrival, we add one, for each departure,
+we subtract one.</p>
+
+<p>But that requires us to sort the arrival and departure times. Using a 
+regular sort (as build in in many languages) would require 
+<span class = 'latex-inline'>\(\Omega (N \log N)\)</span> time, where <span class = 'latex-inline'>\(N\)</span> is the number of arrival and departure
+times. Now, given that all the arrival and departure times are from a
+fixed sized universe, we can write a custom sorting routine which runs
+in linear time.</p>
+
+<p>But we will skip the sorting all together. Instead, we'll create an array
+where for every minute of the day, we count the number of trains in the
+station. There are only <span class = 'latex-inline'>\(24 \cdot 60 = 1440\)</span> minutes in a day, so creating
+the array, and processing a single train can be done in constant time.</p>
+
+<p>For each train, we take the its arrival and departure time, and translate
+it to minutes past midnight (<code>hh:mm == 60 * hh + mm</code> minutes after midnight).
+This gives us a range of minutes, and we'll add one for each of those minutes
+in the given array. When we have processed all trains, we just have find
+the maximum in the array when we're done.</p>
+
+<p>It's unclear whether the input may contains departure times which are
+before the arrival time &mdash; this would be the case of trains which stay
+overnight at the station. We will handle this case, by basically processing
+it as two trains: one from midnight till the departure time, and one from
+the arrival time till midnight.</p>
+</div>
+
+<h3>Perl</h3>
+
+<div class = "section">
+<p>We start off by reading the input: we read a line of arrival times, and
+a line of departure times, and extract the times in <code>hh:mm</code> format
+from them:</p>
+
+<pre><code>my @arrivals   = map {[split /:/]} &lt;&gt; =~ /[0-9][0-9]:[0-9][0-9]/g;
+my @departures = map {[split /:/]} &lt;&gt; =~ /[0-9][0-9]:[0-9][0-9]/g;
+</code></pre>
+
+<p>We need an array for each minute, initialized at all <code>0</code>s:</p>
+
+<pre><code>my @trains = (0) x (24 * 60);
+</code></pre>
+
+<p>Now we process each train, translating the arrival and departure times
+to minutes after midnight. Given those minutes after midnight, we can
+find the range of minutes the trains is at the station (special casing
+trains which arrive before midnight, and leave after). For each minute
+in the range, we increment the counter for that minute:</p>
+
+<pre><code>foreach my $i (keys @arrivals) {
+    my $arrival   = 60 * $arrivals   [$i] [0] + $arrivals   [$i] [1];
+    my $departure = 60 * $departures [$i] [0] + $departures [$i] [1];
+    my @minutes;
+    if ($arrival &lt;= $departure) {
+        @minutes = $arrival .. $departure;
+    }
+    else {
+        @minutes = (0 .. $departure, $arrival .. (24 * 60 - 1));
+    }
+    $trains [$_] ++ for @minutes;
+}
+</code></pre>
+
+<p>Finally, we find the maximum number of trains in the station, and print this:</p>
+
+<pre><code>use List::Util qw [max];
+say max @trains;
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-128/abigail/perl/ch-2.pl">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>Other languages</h3>
+
+<p>We also have similar solutions in 
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-128/abigail/awk/ch-2.awk">AWK</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-128/abigail/c/ch-2.c">C</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-128/abigail/lua/ch-2.lua">Lua</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-128/abigail/node/ch-2.js">Node.js</a>, and
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-128/abigail/python/ch-2.py">Python</a>.</p>
+
+<hr id = 'last-line'>
+<div class = 'trailer'>
+<p class = 'prev'><a class = "prev" href = "">&#x261C;</a></p>
+<p class = 'issue'>Please leave any comments as a
+  <a href = 'https://github.com/Abigail/Abigail.github.io/issues'
+     title = 'GitHub issue'>GitHub issue</a>.
+<p class = 'next'><a class = "next" href = "">&#x261E;</a></p>
+</div>
+
+</body>
+</html>
