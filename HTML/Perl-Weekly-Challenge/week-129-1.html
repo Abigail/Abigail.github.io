@@ -1,0 +1,181 @@
+<html>
+<head>
+<title>Perl Weekly Challenge 129: Root Distance</title>
+<script src = "https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id = "MathJax-script" async src = "https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.js"></script>
+<script src = '../../JavaScript/jquery.js'></script>
+<script src = '../../JavaScript/navigation.js'></script>
+<link rel = 'preconnect' href = 'https://fonts.gstatic.com'>
+<link rel = 'stylesheet' href = 'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
+<link rel = 'stylesheet' href = '../../Styles/Perl-Weekly-Challenge/main.css'>
+</head>
+
+<body><h1>Perl Weekly Challenge 129: Root Distance</h1><div class = "byline">
+by Abigail<br>
+<img src = "../../Images/jan_sluiters.jpg">
+</div>
+
+
+<h2><a href="https://theweeklychallenge.org/blog/perl-weekly-challenge-129/#TASK1">Challenge</a></h2>
+
+<blockquote>
+  <p>You are given a tree and a node of the given tree.</p>
+  
+  <p>Write a script to find out the distance of the given node from the root.</p>
+</blockquote>
+
+<h3>Example 1</h3>
+
+<pre><code>Tree:
+        1
+       / \
+      2   3
+           \
+            4
+           / \
+          5   6
+
+Node: 6
+Output: 3 as the distance of given node 6 from the root (1).
+
+Node: 5
+Output: 3
+
+Node: 2
+Output: 1
+
+Node: 4
+Output: 2
+</code></pre>
+
+<h3>Example 2</h3>
+
+<pre><code>Tree:
+        1
+       / \
+      2   3
+     /     \
+    4       5
+     \     /
+      6   7
+     / \
+    8   9
+
+Node: 7
+Output: 3 as the distance of given node 6 from the root (1).
+
+Node: 8
+Output: 4
+
+Node: 6
+Output: 3
+</code></pre>
+
+<h2>Discussion</h2>
+
+<h3>Lack of input specificition, once again.</h3>
+
+<div class = "section">
+<p>Once again a challenge where we take a tree as input, without a clue
+on how the input looks like, except for some tiny examples which don't
+scale. And this time, we're not even given we have a binary tree &mdash; just
+a tree. I mean, it's all fine and dandy if we have a tree where no node
+has more than two children, and many have just one. But what if a node
+has 27 children? </p>
+
+<p>Therefore, we'll just magic will gives us the tree, and we're not going
+to waste time writing code reading input. Magic will give us the tree
+at the start of the program. We'll assume the tree is given as a hash:
+each node of the tree is a key in the hash, and the values of the hash
+are arrays, where each element of the hash represents an edge from the
+node to one of its neighbours. (This means, we treat edges in the tree
+to not be directed).</p>
+</div>
+
+<h3>Contradiction between specification and examples</h3>
+
+<div class = "section">
+<p>The specification states we're given a tree, and a node. Yet, the examples
+have several nodes per tree.</p>
+
+<p>We can only conclude that the input specification is utterly useless, and,
+yet again, we assume magic which gives us the node.</p>
+</div>
+
+<h2>Solution</h2>
+
+<div class = "section">
+<p>To find the shortest path between two nodes in a graph, one can use a bog
+standard <a href="https://en.wikipedia.org/wiki/breadth-first_search">breadth-first search</a>.
+A tree is a (connected) graph without loops,
+but that doesn't give us any benefits, so we just assume we have a graph.
+A breadth-first search takes time <span class = 'latex-inline'>\(\mathcal{O}(|V| + |E|)\)</span>, where
+<span class = 'latex-inline'>\(V\)</span> is the set of vertices, and <span class = 'latex-inline'>\(E\)</span> the set of edges. Since our input
+is a tree, we have <span class = 'latex-inline'>\(|E| &lt; |V|\)</span>, hence our algorithm runs in
+<span class = 'latex-inline'>\(\mathcal{O}(|V|)\)</span>, which is optimal.</p>
+</div>
+
+<h3>Perl</h3>
+
+<div class = "section">
+<p>Using magic to read in the input, assuming for each input, the root is
+labeled <span class = 'latex-inline'>\(1\)</span>.</p>
+
+<pre><code>my $graph  = do {...};
+my $target = do {...};
+my $root   = 1;
+</code></pre>
+
+<p>For our search, we're using a queue (named <code>@todo</code>), where each element
+of the queue consists of a node to be processed, and the distance of
+the root to that node. We initialize the queue with the root node itself,
+which has distance <code>0</code>. We use a hash <code>%seen</code> to keep track of the
+nodes we have processed:</p>
+
+<pre><code>my @todo = ([$root, 0]);
+my %seen;
+</code></pre>
+
+<p>While our queue is non-empty, we pop off the first element. If this is
+our target, we report the distance, and we're done. If we have already
+processed this node, we continue with the next node in the queue.
+Else, for each of the neighbours of the current node, we push this node
+to the queue, with a distance which is one more than the distance of the
+root to the current node:</p>
+
+<pre><code>while (@todo) {
+    my ($node, $distance) = @{shift @todo}
+    if ($node == $target) {
+        say $distance;
+        exit;
+    }
+    next if $seen {$node} ++;
+    push @todo =&gt; map {[$_, $distance + 1]} @{$$graph {$node}}
+}
+</code></pre>
+
+<p>If we haven't found the target node, either the target doesn't exist,
+or the graph isn't connected, and the target node and the root are
+not in the same component:</p>
+
+<pre><code>say "$target does not exist, or is not connected to the root node";
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-129/abigail/perl/ch-1.pl">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>Other languages</h3>
+
+<p>Other languages don't have magic to create trees.</p>
+
+<hr id = 'last-line'>
+<div class = 'trailer'>
+<p class = 'prev'><a class = "prev" href = "">&#x261C;</a></p>
+<p class = 'issue'>Please leave any comments as a
+  <a href = 'https://github.com/Abigail/Abigail.github.io/issues'
+     title = 'GitHub issue'>GitHub issue</a>.
+<p class = 'next'><a class = "next" href = "">&#x261E;</a></p>
+</div>
+
+</body>
+</html>
