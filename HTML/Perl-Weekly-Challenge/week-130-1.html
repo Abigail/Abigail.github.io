@@ -1,0 +1,163 @@
+<html>
+<head>
+<title>Perl Weekly Challenge 130: Odd Number</title>
+<script src = "https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id = "MathJax-script" async src = "https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.js"></script>
+<script src = '../../JavaScript/jquery.js'></script>
+<script src = '../../JavaScript/navigation.js'></script>
+<link rel = 'preconnect' href = 'https://fonts.gstatic.com'>
+<link rel = 'stylesheet' href = 'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
+<link rel = 'stylesheet' href = '../../Styles/Perl-Weekly-Challenge/main.css'>
+</head>
+
+<body><h1>Perl Weekly Challenge 130: Odd Number</h1><div class = "byline">
+by Abigail<br>
+<img src = "../../Images/jan_sluiters.jpg">
+</div>
+
+
+<h2><a href="https://theweeklychallenge.org/blog/perl-weekly-challenge-130/#TASK1">Challenge</a></h2>
+
+<blockquote>
+  <p>You are given an array of positive integers, such that all the numbers
+  appear even number of times except one number.</p>
+  
+  <p>Write a script to find that integer.</p>
+</blockquote>
+
+<h3>Example 1</h3>
+
+<blockquote>
+<pre><code>Input: @N = (2, 5, 4, 4, 5, 5, 2)
+Output: 5
+</code></pre>
+  
+  <p><code>5</code> appears 3 times in the array where as all other numbers <code>2</code> and <code>4</code>
+  appears exactly twice.</p>
+</blockquote>
+
+<h3>Example 2</h3>
+
+<blockquote>
+<pre><code>Input: @N = (1, 2, 3, 4, 3, 2, 1, 4, 4)
+Output: 4
+</code></pre>
+</blockquote>
+
+<h2>Solution</h2>
+
+<div class = "section">
+<p>This challenge is pretty straight forward. For languages with a hash
+(or map, or dictionary, etc), we extract the positive numbers
+from the input, and count them using the hash. We then find the element
+in the hash for which its count is odd. For languages lacking such
+a construct, we also extract the positive integers from the input,
+and we sort those. We then look at each pair of numbers, and look 
+for a mismatch. If there is a mismatch, the first number of the pair
+is the odd one out. If all pairs match, the last number is the odd one
+out (there will be an odd number of numbers).</p>
+
+<p>We will read the data from standard input. Each line of input is a different
+array &mdash; so we print a number for each line of input. We assume the numbers
+are separated by spaces (required for our solutions in AWK, Bash and C; for
+the other languages, the numbers may be separated by anything non-numeric).</p>
+</div>
+
+<h3>Perl</h3>
+
+<div class = "section">
+<p>Extract the numbers from the input, and count them:</p>
+
+<pre><code>my %numbers;
+$numbers {$_} ++ for /[1-9][0-9]*/g;
+</code></pre>
+
+<p>Find the one number which occurs an odd number of times, and print it:</p>
+
+<pre><code>say grep {$numbers {$_} % 2} keys %numbers;
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-130/abigail/perl/ch-1.pl">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>C</h3>
+
+<div class = "section">
+<p>Read a line of input, and first count the number of positive integers
+it contains:</p>
+
+<pre><code>char *  line    = NULL;
+size_t  len     = 0;
+size_t  str_len;
+while ((str_len = getline (&amp;line, &amp;len, stdin)) != -1) {
+    char * line_ptr = line;
+    int offset = 0;
+    int count  = 0;
+    int number;
+    while (sscanf (line_ptr, "%d%n", &amp;number, &amp;offset) == 1) {
+        count ++;
+        line_ptr += offset;
+    }
+</code></pre>
+
+<p>Given the number of integers, we can allocate an array, and put the
+numbers into an array:</p>
+
+<pre><code>int * numbers;
+if ((numbers = (int *) malloc (count * sizeof (int))) == NULL) {
+    perror ("Malloc failed");
+    exit (1);
+}
+line_ptr = line;
+count = 0;
+while (sscanf (line_ptr, "%d%n", &amp;numbers [count], &amp;offset) == 1) {
+    count ++;
+    line_ptr += offset;
+}
+</code></pre>
+
+<p>We can now sort them, using the buildin <a href="https://www.freebsd.org/cgi/man.cgi?apropos=0&amp;sektion=0&amp;query=qsort"><code>qsort</code></a>. <code>qsort</code> needs
+a helper function, which compares two elements, indicating which one
+is the smaller (or whether they are equal).</p>
+
+<pre><code>int cmp (const void * a, const void * b) {
+    return (* (int *) a - * (int *) b);
+}
+
+qsort (numbers, count, sizeof (int), cmp);
+</code></pre>
+
+<p>We can now find the number which is the odd one out:</p>
+
+<pre><code>int found = 0;
+for (int i = 0; i &lt; count - 1; i += 2) {
+    if (numbers [i] != numbers [i + 1]) {
+        printf ("%d\n", numbers [i]);
+        found ++;
+    }
+}
+if (!found) { /* Must be last element */
+    printf ("%d\n", numbers [count - 1]);
+}
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-130/abigail/c/ch-1.c">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>Other languages</h3>
+
+<p>We also have solutions in <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-130/abigail/awk/ch-1.awk">AWK</a>, <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-130/abigail/bash/ch-1.sh">Bash</a>, <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-130/abigail/lua/ch-1.lua">Lua</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-130/abigail/node/ch-1.js">Node.js</a>, <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-130/abigail/python/ch-1.py">Python</a>, and <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-130/abigail/ruby/ch-1.rb">Ruby</a>. All of them
+are similar to the Perl solution.</p>
+
+<hr id = 'last-line'>
+<div class = 'trailer'>
+<p class = 'prev'><a class = "prev" href = "">&#x261C;</a></p>
+<p class = 'issue'>Please leave any comments as a
+  <a href = 'https://github.com/Abigail/Abigail.github.io/issues'
+     title = 'GitHub issue'>GitHub issue</a>.
+<p class = 'next'><a class = "next" href = "">&#x261E;</a></p>
+</div>
+
+</body>
+</html>

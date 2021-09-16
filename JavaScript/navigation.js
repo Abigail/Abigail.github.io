@@ -62,6 +62,7 @@ let pwc_pages = [
     ["week-128-2", "Minimum Platforms"],
     ["week-129-1", "Root Distance"],
     ["week-129-2", "Add Linked Lists"],
+    ["week-130-1", "Odd Number"],
 ]
 
 pwc_pages . forEach (_ => _ [0] = PWC + "/" + _ [0] + ".html")
