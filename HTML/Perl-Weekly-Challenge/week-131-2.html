@@ -1,0 +1,110 @@
+<html>
+<head>
+<title>Perl Weekly Challenge 131: Find Pairs</title>
+<script src = "https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id = "MathJax-script" async src = "https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.js"></script>
+<script src = '../../JavaScript/jquery.js'></script>
+<script src = '../../JavaScript/navigation.js'></script>
+<link rel = 'preconnect' href = 'https://fonts.gstatic.com'>
+<link rel = 'stylesheet' href = 'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
+<link rel = 'stylesheet' href = '../../Styles/Perl-Weekly-Challenge/main.css'>
+</head>
+
+<body><h1>Perl Weekly Challenge 131: Find Pairs</h1><div class = "byline">
+by Abigail<br>
+<img src = "../../Images/jan_sluiters.jpg">
+</div>
+
+
+<h2><a href="https://theweeklychallenge.org/blog/perl-weekly-challenge-131/#TASK2">Challenge</a></h2>
+
+<blockquote>
+  <p>You are given a string of delimiter pairs and a string to search.</p>
+  
+  <p>Write a script to return two strings, the first with any characters matching the &ldquo;opening character&rdquo; set, the second with any matching the &ldquo;closing character&rdquo; set.</p>
+</blockquote>
+
+<h3>Example 1</h3>
+
+<pre><code>Input:
+    Delimiter pairs: ""[]()
+    Search String: "I like (parens) and the Apple ][+" they said.
+
+Output:
+    "(["
+    ")]"
+</code></pre>
+
+<h3>Example 2</h3>
+
+<pre><code>Input:
+    Delimiter pairs: **//&lt;&gt;
+    Search String: /* This is a comment (in some languages) */ &lt;could be a tag&gt;
+
+Output:
+    /**/&lt;
+    /**/&gt;
+</code></pre>
+
+<h2>Discussion</h2>
+
+<div class = "section">
+<p>What a strange way to phrase the exercise. The entire "delimiter pairs"
+is a red herring. We are not asked to do anything with delimiting pairs.
+This is clear from both examples. Take for instance the first example;
+the first delimiting pair using <code>"</code> for both the opening delimiter and
+the closing delimiter. And the string to search in, uses a single pair
+of double quotes as delimiting pair. Yet, the pair appears in both the
+output strings.</p>
+
+<p>So, basically we are given a string, and two sets of characters we need
+to extract from the string, and for some perverse reason, the two sets
+of characters are interleaved. Weird.</p>
+</div>
+
+<h3>Perl</h3>
+
+<p>First, we read the input. First line of input are the interleaved sets
+of characters to extract - second line of input is the string we want
+to search:</p>
+
+<pre><code>chomp (my $chars = &lt;&gt;);
+$_ = &lt;&gt;;
+</code></pre>
+
+<p>We remove the newline from the first line we read; there is no need to
+bother to remove it from the second line.</p>
+
+<p>We now extract the characters from <code>$char</code> in the odd and even positions,
+giving us two sets of characters. We do this by removing the characters
+on the even and odd positions from <code>$char</code>; and since we use the <code>/r</code>
+modifier, <code>$char</code> itself is unmodified, and the modified string is
+returned. We also escape any slashes in the sets (for reasons which will
+soon be clear).</p>
+
+<pre><code>my $odds = $chars =~ s/(.)./$1/gr =~ s!([/\\])!\\$1!r;
+my $even = $chars =~ s/.(.)/$1/gr =~ s!([/\\])!\\$1!r;
+</code></pre>
+
+<p>We can now use <code>y///dc</code> to remove any characters which aren't in the
+sets we need to extract &mdash; this leaves use with the characters we need
+to extract. Since <code>y///</code> doesn't do interpolation, we use <a href="https://perldoc.perl.org/perlfunc#eval"><code>eval</code></a>.
+And this explains why we need to escape any slashes above.</p>
+
+<pre><code>say eval "y/$odds//dcr";
+say eval "y/$even//dcr";
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-131/abigail/perl/ch-2.pl">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+
+<hr id = 'last-line'>
+<div class = 'trailer'>
+<p class = 'prev'><a class = "prev" href = "">&#x261C;</a></p>
+<p class = 'issue'>Please leave any comments as a
+  <a href = 'https://github.com/Abigail/Abigail.github.io/issues'
+     title = 'GitHub issue'>GitHub issue</a>.
+<p class = 'next'><a class = "next" href = "">&#x261E;</a></p>
+</div>
+
+</body>
+</html>
