@@ -1,0 +1,544 @@
+<html>
+<head>
+<title>Perl Weekly Challenge 132: Mirror Dates</title>
+<script src = "https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id = "MathJax-script" async src = "https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.js"></script>
+<script src = '../../JavaScript/jquery.js'></script>
+<script src = '../../JavaScript/navigation.js'></script>
+<link rel = 'preconnect' href = 'https://fonts.gstatic.com'>
+<link rel = 'stylesheet' href = 'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
+<link rel = 'stylesheet' href = '../../Styles/Perl-Weekly-Challenge/main.css'>
+</head>
+
+<body><h1>Perl Weekly Challenge 132: Mirror Dates</h1><div class = "byline">
+by Abigail<br>
+<img src = "../../Images/jan_sluiters.jpg">
+</div>
+
+
+<h2><a href="https://theweeklychallenge.org/blog/perl-weekly-challenge-132/#TASK1">Challenge</a></h2>
+
+<blockquote>
+  <p>You are given a date (<code>yyyy/mm/dd</code>).</p>
+  
+  <p>Assuming, the given date is your date of birth. Write a script to
+  find the mirror dates of the given date.</p>
+  
+  <p>Dave Cross has built a cool <a href="https://davorg.dev/mirroryear">site</a>
+  that does something similar.</p>
+  
+  <p>Assuming today is <code>2021/09/22</code>:</p>
+</blockquote>
+
+<h3 id="example-1">Example 1</h3>
+
+<blockquote>
+<pre><code>Input: 2021/09/18
+Output: 2021/09/14, 2021/09/26
+</code></pre>
+  
+  <p>On the date you were born, someone who was your current age, would
+  have been born on <code>2021/09/14</code>. Someone born today will be your
+  current age on <code>2021/09/26</code>.</p>
+</blockquote>
+
+<h3 id="example-2">Example 2</h3>
+
+<blockquote>
+<pre><code>Input: 1975/10/10
+Output: 1929/10/27, 2067/09/05
+</code></pre>
+  
+  <p>On the date you were born, someone who was your current age, would
+  have been born on <code>1929/10/27</code>. Someone born today will be your
+  current age on <code>2067/09/05</code>.</p>
+</blockquote>
+
+<h3 id="example-3">Example 3</h3>
+
+<blockquote>
+<pre><code>Input: 1967/02/14
+Output: 1912/07/08, 2076/04/30
+</code></pre>
+  
+  <p>On the date you were born, someone who was your current age, would
+  have been born on <code>1912/07/08</code>.  Someone born today will be your
+  current age on <code>2076/04/30</code>.</p>
+</blockquote>
+
+<h2>Discussion</h2>
+
+<div class = "section">
+<p>The first thing we need to ask when using dates, in particular dates
+in the past is <em>Which calendar?</em>. The <a href="https://en.wikipedia.org/wiki/Gregorian_Calendar">Gregorian Calendar</a> seems
+an obvious choice, but only if one is na&iuml;eve. The Gregorian calendar
+starts on different dates, depending on the country. While the calendar
+was <a href="https://en.wikipedia.org/wiki/Adoption_of_the_Gregorian_calendar">introduced</a> in 1582 in
+some countries, in other countries, it was
+introduced less than 100 years ago.</p>
+
+<p>To make the challenge simpler for us, we will be assuming the
+<a href="https://en.wikipedia.org/wiki/Proleptic_Gregorian_calendar">Proleptic Gregorian calendar</a>. This basically means we are
+assuming the Gregorian calendar has always existed. We will also be
+assuming the year 0 existed.</p>
+</div>
+
+<h2>Solution</h2>
+
+<div class = "section">
+<p>We could use one of the gazillion date modules from CPAN. However, we
+will not. Instead, of the two given dates ("today", and the input date),
+we will calculate the <a href="https://en.wikipedia.org/wiki/Julian_Day">Julian Day Number</a>. Given those,
+we can easily calculate the Julian Day Numbers of the target dates, which
+we then convert back to (proleptic) Gregorian dates.</p>
+
+<p>We will use the
+<a href="https://en.wikipedia.org/wiki/Julian_day#Julian_day_number_calculation">formulas on Wikipedia</a>
+to convert dates to and from Julian Day Numbers.</p>
+
+<p>It should be noted that division needs to be done as <em>integer division</em>,
+with results <em>rounded towards 0</em>. That is, <code>5 / 2 == 2</code>, and <code>-5 / 2 == -2</code>.</p>
+
+<p>For the calculations, we fix "today" as <code>2021/09/22</code> (using a fixed date
+means our tests are deterministic &mdash; and if we fix a date, we may as well
+use the date in the given examples.)</p>
+
+<p>We also be reading dates from standard input, one date per line, and for
+each input date, we output a line with the two target dates.</p>
+</div>
+
+<h3>Perl</h3>
+
+<div class = "section">
+<p>First, we create a sub which takes a year, month, and date and returns
+a Julian Day Number:</p>
+
+<pre><code>sub g2j ($Y, $M, $D) {
+    use integer;
+    (1461 * ($Y + 4800 + ($M - 14) / 12)) / 4  +
+    (367 * ($M - 2 - 12 * (($M - 14) / 12))) / 12 -
+    (3 * (($Y + 4900 + ($M - 14) / 12) / 100)) / 4 + $D - 32075
+}
+</code></pre>
+
+<p>Note the directive <code>use integer;</code>, which causes Perl to do division
+the way C does division between integers. </p>
+
+<p>We also need a sub which takes a Julian Day Number, and returns
+the date:</p>
+
+<pre><code>sub j2g ($J) {
+    use integer;
+    my $e = 4 * ($J + 1401 + (((4 * $J + 274277) / 146097) * 3) / 4 - 38) + 3;
+    my $D =  ((5 * (($e % 1461) / 4) + 2) % 153) / 5 + 1;
+    my $M = (((5 * (($e % 1461) / 4) + 2) / 153 + 2) % 12) + 1;
+    my $Y = ($e / 1461) - 4716 + (12 + 2 - $M) / 12;
+    ($Y, $M, $D)
+}
+</code></pre>
+
+<p>Now we calculate todays Julian Day Number:</p>
+
+<pre><code>my @TODAY = (2021, 9, 22);
+my $julian_today = g2j @TODAY;
+</code></pre>
+
+<p>Read a date (from <code>$_</code>), and calculate its Julian Day Number:</p>
+
+<pre><code>my ($Y, $M, $D) = /[0-9]+/g;
+my $julian_then = g2j $Y, $M, $D;
+</code></pre>
+
+<p>The target Julian Day Numbers are now 
+<code>2 * $julian_then  - $julian_today</code> and <code>2 * $julian_today - $julian_then</code>.
+Which means we can output the result as:</p>
+
+<pre><code>printf "%04d/%02d/%02d, %04d/%02d/%02d\n",
+         j2g (2 * $julian_then  - $julian_today),
+         j2g (2 * $julian_today - $julian_then);
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-132/abigail/perl/ch-1.pl">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>AWK</h3>
+
+<div class = "section">
+<p>The AWK solution is very similar to the Perl solution, but there are
+a few differences. First difference is that AWK doesn't do integer
+division. But it does have a <code>int</code> function which rounds towards <code>0</code>.
+This makes the <code>g2j</code> function as follows:</p>
+
+<pre><code>function g2j (Y, M, D) {
+    return (int ((1461 * (Y +    4800 + int ((M - 14) / 12))) /   4) +        \
+            int ((367 * (M - 2 -   12 * int ((M - 14) / 12))) /  12) -        \
+            int ((3 * int (((Y + 4900 + int ((M - 14) / 12))  / 100))) / 4) + \
+            D - 32075)
+}
+</code></pre>
+
+<p>Second difference is that AWK cannot return arrays or list from functions.
+So, we will return a formatted date from <code>j2g</code>:</p>
+
+<pre><code>function j2g (J) {
+    e  = 4 * (J + 1401 + int (int ((4 * J + 274277) / 146097) * 3 / 4) - 38) + 3
+    D =   int (((5 * (int ((e % 1461) / 4)) + 2) % 153) / 5) + 1
+    M = ((int  ((5 * (int ((e % 1461) / 4)) + 2) / 153) + 2) % 12) + 1
+    Y = int (e / 1461) - 4716 + int ((12 + 2 - M) / 12)
+    return sprintf ("%04d/%02d/%02d", Y, M, D)
+}
+</code></pre>
+
+<p>To set up things, we will set the <code>FS</code> variable to <code>/</code>; that way, AWK
+will split the input for us, giving use the input year, month and date
+in the variables <code>$1</code>, <code>$2</code>, and <code>$3</code>:</p>
+
+<pre><code>BEGIN {
+    FS = "/"
+    TODAY_Y = 2021
+    TODAY_M =    9
+    TODAY_D =   22
+
+    julian_today = g2j(TODAY_Y, TODAY_M, TODAY_D)
+}
+</code></pre>
+
+<p>The main loop is now simple:</p>
+
+<pre><code>{
+    julian_then = g2j($1, $2, $3)
+    print j2g(2 * julian_then  - julian_today) ", " \
+          j2g(2 * julian_today - julian_then)
+}
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-132/abigail/awk/ch-1.awk">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>Bash</h3>
+
+<div class = "section">
+<p>Bash does do integer division (it doesn't deal at all with floating
+point numbers), but to doesn't return values from functions. So we
+have to use global variables to return values. It also uses numbered
+variables as the function parameters. This leads to:</p>
+
+<pre><code>function g2j () {
+    local Y=$1
+    local M=$2
+    local D=$3
+    J=$(( ((1461 * (Y + 4800  +  (M - 14) / 12))  /   4   +
+           (367 * (M - 2 - 12 * ((M - 14) / 12))) /  12   -
+           (3 * ((Y + 4900    +  (M - 14) / 12)   / 100)) / 4 + D - 32075) ))
+}
+</code></pre>
+
+<p>and</p>
+
+<pre><code>function j2g () {
+    local J=$1
+    local e=$(( 4 * (J + 1401 +
+             (((4 * J + 274277) / 146097) * 3) / 4 - 38) + 3 ))
+    D=$((  ((5 * ((e % 1461) / 4) + 2) % 153) / 5 + 1 ))
+    M=$(( (((5 * ((e % 1461) / 4) + 2) / 153 + 2) % 12) + 1 ))
+    Y=$((         (e / 1461) - 4716 + (12 + 2 - M) / 12 ))
+}
+</code></pre>
+
+<p>Setting up the Julian Day Number for today shows how we use the output
+values. Note also that we don't use commas to separate arguments.</p>
+
+<pre><code>g2j 2021 9 22; julian_today=$J
+</code></pre>
+
+<p>We can use the same trick as in AWK to have the input automatically split;
+the variable <code>IFS</code> plays the role of <code>FS</code> in AWK. But there is a catch.
+An input like <code>08</code> or <code>09</code> is interpreted as an (illegal) octal number
+when used in arithmetic. So we have to strip off any leading 0s.
+We do this like this: <code>${d/#0/}</code>, which takes the value in <code>$d</code>, and
+replaces the leading <code>0</code> with an empty string.</p>
+
+<p>This results in the following main loop:</p>
+
+<pre><code>IFS="/"
+while read y m d
+do   g2j ${y/#0/} ${m/#0/} ${d/#0/}; julian_then=$J
+     j2g $(( 2 * julian_then - julian_today ))
+     printf "%04d/%02d/%02d, " $Y $M $D
+     j2g $(( 2 * julian_today - julian_then ))
+     printf "%04d/%02d/%02d\n" $Y $M $D
+done
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-132/abigail/bash/ch-1.sh">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>C</h3>
+
+<div class = "section">
+<p>The <code>g2j</code> function in C is very similar to the one in Perl. Division
+in C between integer types is integer division:</p>
+
+<pre><code>typedef unsigned short date_type;
+
+long g2j (date_type Y, date_type M, date_type D) {
+    return ((1461 * (Y + 4800  +  (M - 14) / 12))  /   4   +
+            (367 * (M - 2 - 12 * ((M - 14) / 12))) /  12   -
+            (3 * ((Y + 4900    +  (M - 14) / 12)   / 100)) / 4 + D - 32075);
+}
+</code></pre>
+
+<p>For the <code>j2g</code> function, we take an additional parameter: an appropriate
+sized array in which we put the date component parts:</p>
+
+<pre><code># define idx_Y 0
+# define idx_M 1
+# define idx_D 2
+
+void j2g (long J, date_type * date) {
+    long e = 4 * (J + 1401 + (((4 * J + 274277) / 146097) * 3) / 4 - 38) + 3;
+    date [idx_D] =  ((5 * ((e % 1461) / 4) + 2) % 153) / 5 + 1;
+    date [idx_M] = (((5 * ((e % 1461) / 4) + 2) / 153 + 2) % 12) + 1;
+    date [idx_Y] =         (e / 1461) - 4716 + (12 + 2 - date [idx_M]) / 12;
+}
+</code></pre>
+
+<p>In the main program, we have to allocate memory for the date components
+of the two dates, and we calculate the Julian Day Number of "today":</p>
+
+<pre><code>unsigned short TODAY [] = {2021, 9, 22};
+
+int main (void) {
+    date_type Y, M, D;
+    date_type * date_early;
+    date_type * date_late;
+
+    if ((date_early = (date_type *) malloc (3 * sizeof (date_type))) == NULL) {
+        perror ("Malloc failed");
+        exit (1);
+    }
+    if ((date_late  = (date_type *) malloc (3 * sizeof (date_type))) == NULL) {
+        perror ("Malloc failed");
+        exit (1);
+    }
+
+    long julian_today = g2j (TODAY [idx_Y], TODAY [idx_M], TODAY [idx_D]);
+</code></pre>
+
+<p>We use <a href="https://www.freebsd.org/cgi/man.cgi?apropos=0&amp;sektion=0&amp;query=scanf"><code>scanf</code></a> to parse the input. The <code>%hu</code> format indicates we
+are reading an unsigned short. This gives use the following main loop:</p>
+
+<pre><code>while (scanf ("%hu/%hu/%hu", &amp;Y, &amp;M, &amp;D) == 3) {
+    long julian_then = g2j (Y, M, D);
+    j2g (2 * julian_then  - julian_today, date_early);
+    j2g (2 * julian_today - julian_then,  date_late);
+    printf ("%04d/%02d/%02d, %04d/%02d/%02d\n",  
+             date_early [idx_Y], date_early [idx_M], date_early [idx_D],
+             date_late  [idx_Y], date_late  [idx_M], date_late  [idx_D]);
+}
+</code></pre>
+
+<p>At the end, we free the allocated memory:</p>
+
+<pre><code>free (date_early);
+free (date_late);
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-132/abigail/c/ch-1.c">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>Lua</h3>
+
+<div class = "section">
+<p>Nieuwer version of Lua (nieuwer than the version I run), has <code>//</code> to
+do integer division. Lua also doesn't have an <code>int</code> function, so we
+roll our own:</p>
+
+<pre><code>function int (x)
+    if x &gt; 0 then
+        return math . floor (x)
+    else
+        return math . ceil (x)
+    end
+end
+</code></pre>
+
+<p><code>math . floor</code> rounds toward <span class = 'latex-inline'>\(- \infty\)</span>, and <code>math . ceil</code> rounds towards
+<span class = 'latex-inline'>\(\infty\)</span>. Since we want to round towards <code>0</code>, we check whether the value
+we want to round is positive or not, and use the appropriate rounding
+function.</p>
+
+<p>This leads to</p>
+
+<pre><code>function g2j (Y, M, D)
+    return (int ((1461 * (Y +    4800 + int ((M - 14) / 12))) /   4) +
+            int ((367 * (M - 2 -   12 * int ((M - 14) / 12))) /  12) -
+            int ((3 * int (((Y + 4900 + int ((M - 14) / 12))  / 100))) / 4) +
+            D - 32075)
+end
+</code></pre>
+
+<p>and</p>
+
+<pre><code>function j2g (J)
+    local e  = 4 * (J + 1401 +
+                    int (int ((4 * J + 274277) / 146097) * 3 / 4) - 38) + 3
+    local D =   int (((5 * (int ((e % 1461) / 4)) + 2) % 153) / 5) + 1
+    local M = ((int  ((5 * (int ((e % 1461) / 4)) + 2) / 153) + 2) % 12) + 1
+    local Y = int (e / 1461) - 4716 + int ((12 + 2 - M) / 12)
+    return Y, M, D
+end
+</code></pre>
+
+<p>The rest of the program looks like:</p>
+
+<pre><code>local julian_today  = g2j (2021, 9, 22)
+local output_format = "%04d/%02d/%02d, %04d/%02d/%02d\n"
+
+for line in io . lines () do
+    local _, _, Y, M, D = line : find ("([0-9]+)/([0-9]+)/([0-9]+)")
+    local julian_then = g2j (Y, M, D)
+    local Y1, M1, D1 = j2g (2 * julian_then  - julian_today)
+    local Y2, M2, D2 = j2g (2 * julian_today - julian_then)
+
+    io . write (output_format : format (Y1, M1, D1, Y2, M2, D2))
+end
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-132/abigail/lua/ch-1.lua">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>Node.js</h3>
+
+<div class = "section">
+<p>In Node.js, we don't have integer division either, nor does it have
+and <code>int</code> function. So we use the same trick as we used in the Lua
+solution (which we don't copy here).</p>
+
+<p>The tricky thing about the Node.js solution is the lack of a usable
+<code>printf</code> functionality. So, we have to create our own.</p>
+
+<p>First, a method to pre-pad numbers with <code>0</code>s till the required length:</p>
+
+<pre><code>function pad (num, l) {
+    let out = num
+    while (out . length &lt; l) {
+        out = "0" + out
+    }
+    return (out)
+}
+</code></pre>
+
+<p>Then we can create pretty print function, which takes two dates (as arrays),
+and formats them:</p>
+
+<pre><code>function pp (d1, d2) {
+    let e1 = d1 . map (x =&gt; x . toString ())
+    let e2 = d2 . map (x =&gt; x . toString ())
+    console . log ("%s/%s/%s, %s/%s/%s",
+                       pad (e1 [0], 4), pad (e1 [1], 2), pad (e1 [2], 2),
+                       pad (e2 [0], 4), pad (e2 [1], 2), pad (e2 [2], 2))
+}
+</code></pre>
+
+<p>This leads to the following main program:</p>
+
+<pre><code>let julian_today = g2j (2021, 9, 22)
+
+  require ('readline')
+. createInterface ({input: process . stdin})
+. on              ('line', line =&gt; {
+    let [Y, M, D] = line . split ('/') . map (x =&gt; +x)
+    let julian_then = g2j (Y, M, D)
+    pp (j2g (2 * julian_then  - julian_today),
+        j2g (2 * julian_today - julian_then))
+})
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-132/abigail/node/ch-1.js">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>Python</h3>
+
+<div class = "section">
+<p>Python has <code>//</code> to do integer division, but this rounds towards
+<span class = 'latex-inline'>\(-\infty\)</span>, which makes it useless for our purposes. Luckily, its
+<code>int</code> method rounds towards <code>0</code>, so we can use that, giving us a
+similar <code>g2j</code> and <code>j2g</code> as we have seen before.</p>
+
+<p>This gives us the following main program:</p>
+
+<pre><code>for line in fileinput . input ():
+    Y, M, D     = map (lambda x: int (x), line . strip () . split ("/"))
+    julian_then = g2j (Y, M, D)
+    Y1, M1, D1  = j2g (2 * julian_then  - julian_today)
+    Y2, M2, D2  = j2g (2 * julian_today - julian_then)
+    print ('{:04d}/{:02d}/{:02d}, {:04d}/{:02d}/{:02d}' .
+              format (Y1, M1, D1, Y2, M2, D2))
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-132/abigail/python/ch-1.py">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>Ruby</h3>
+
+<p>Ruby uses integer division when divising integers, but it rounds towards
+<span class = 'latex-inline'>\(-\infty\)</span>. We therefore create a <code>div</code> function which does integer
+division with rounding towards <code>0</code>:</p>
+
+<pre><code>def div (x, y)
+    return (x . to_f / y) . to_i
+end
+</code></pre>
+
+<p>In this method, we convert one of the arguments to a floating point
+number (using <code>to_f</code>), then, after division, we use <code>to_i</code> to force
+the result to be an integer. <code>to_i</code> rounds towards <code>0</code>.</p>
+
+<p>This gives us the following <code>g2j</code>:</p>
+
+<pre><code>def g2j (y, m, d)
+    return (div(1461 * (y +    4800 + div(m - 14, 12)),   4) +
+            div( 367 * (m - 2 -   12 * div(m - 14, 12)),  12) -
+            div(   3 * div(y +  4900 + div(m - 14, 12), 100), 4) + d - 32075)
+end
+</code></pre>
+
+<p>and <code>j2g</code>:</p>
+
+<pre><code>def j2g (j)
+    e = 4 * (j + 1401 + div(div(4 * j + 274277, 146097) * 3, 4) - 38) + 3;
+    d =   div((5 * div(e % 1461, 4) + 2) % 153, 5) + 1;
+    m = ((div( 5 * div(e % 1461, 4) + 2, 153) + 2) % 12) + 1;
+    y =            div(e,  1461) - 4716 + div(12 + 2 - m, 12);
+    return y, m, d
+end
+</code></pre>
+
+<p>The main program then becomes:</p>
+
+<pre><code>julian_today = g2j 2021, 9, 22
+
+ARGF . each_line do
+    | line |
+    y, m, d = line . strip . split("/") . map {|x| x . to_i}
+    julian_then = g2j y, m, d
+    puts "%04d/%02d/%02d, %04d/%02d/%02d\n" %
+         [j2g(2 * julian_then  - julian_today),
+          j2g(2 * julian_today - julian_then)] . flatten
+end
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-132/abigail/ruby/ch-1.rb">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+
+<hr id = 'last-line'>
+<div class = 'trailer'>
+<p class = 'prev'><a class = "prev" href = "">&#x261C;</a></p>
+<p class = 'issue'>Please leave any comments as a
+  <a href = 'https://github.com/Abigail/Abigail.github.io/issues'
+     title = 'GitHub issue'>GitHub issue</a>.
+<p class = 'next'><a class = "next" href = "">&#x261E;</a></p>
+</div>
+
+</body>
+</html>
