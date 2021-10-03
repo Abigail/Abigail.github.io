@@ -1,0 +1,217 @@
+<html>
+<head>
+<title>Perl Weekly Challenge 132: Hash Join</title>
+<script src = "https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id = "MathJax-script" async src = "https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.js"></script>
+<script src = '../../JavaScript/jquery.js'></script>
+<script src = '../../JavaScript/navigation.js'></script>
+<link rel = 'preconnect' href = 'https://fonts.gstatic.com'>
+<link rel = 'stylesheet' href = 'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
+<link rel = 'stylesheet' href = '../../Styles/Perl-Weekly-Challenge/main.css'>
+</head>
+
+<body><h1>Perl Weekly Challenge 132: Hash Join</h1><div class = "byline">
+by Abigail<br>
+<img src = "../../Images/jan_sluiters.jpg">
+</div>
+
+
+<h2><a href="https://theweeklychallenge.org/blog/perl-weekly-challenge-132/#TASK2">Challenge</a></h2>
+
+<blockquote>
+  <p>Write a script to implement Hash Join algorithm as suggested by
+  <a href="https://en.wikipedia.org/wiki/Hash_join#Classic_hash_join">wikipedia</a>.</p>
+
+<pre><code>1. For each tuple r in the build input R
+   1.1 Add r to the in-memory hash table
+   1.2 If the size of the hash table equals the maximum in-memory size:
+       1.2.1 Scan the probe input S, and add matching join tuples to the
+             output relation
+       1.2.2 Reset the hash table, and continue scanning the build input R
+2. Do a final scan of the probe input S and add the resulting join tuples
+   to the output relation
+</code></pre>
+</blockquote>
+
+<h3 id="example">Example</h3>
+
+<blockquote>
+<pre><code>Input:
+
+@player_ages = (
+        [20, "Alex"  ],
+        [28, "Joe"   ],
+        [38, "Mike"  ],
+        [18, "Alex"  ],
+        [25, "David" ],
+        [18, "Simon" ],
+    );
+
+@player_names = (
+        ["Alex", "Stewart"],
+        ["Joe",  "Root"   ],
+        ["Mike", "Gatting"],
+        ["Joe",  "Blog"   ],
+        ["Alex", "Jones"  ],
+        ["Simon","Duane"  ],
+    );
+
+Output:
+
+Based on index = 1 of @players_age and index = 0 of @players_name.
+
+20, "Alex",  "Stewart"
+20, "Alex",  "Jones"
+18, "Alex",  "Stewart"
+18, "Alex",  "Jones"
+28, "Joe",   "Root"
+28, "Joe",   "Blog"
+38, "Mike",  "Gatting"
+18, "Simon", "Duane"
+</code></pre>
+</blockquote>
+
+<h2>Discussion</h2>
+
+<div class = "section">
+<p>Mapping instructions for a relation database to a language like Perl is
+never easy. But these instructions are particular tricky, mostly because
+of this:</p>
+
+<blockquote>
+  <p>If the size of the hash table equals the maximum in-memory size</p>
+</blockquote>
+
+<p>In Perl, when you reach the maximum in-memory size, you have consumed
+all the memory the OS is willing to give you. Perls solution to a request
+for more memory if the OS isn't willing to give you more is to crash
+(which cannot be trapped).
+You will not have any memory left to do something useful.</p>
+
+<p>Note that dealing with running out of memory is part of the challenge.
+We're not asked to implement the standard hash join algorithm. Right
+above the quoted algorithm, Wikipedia writes:</p>
+
+<blockquote>
+  <p>This algorithm is simple, but it requires that the smaller join
+  relation fits into memory, which is sometimes not the case.
+  A simple approach to handling this situation proceeds as follows:</p>
+</blockquote>
+
+<p>So we really do have to create an algorithm which deals with running
+out of memory. (And this begs the question "which piss poor hardware
+is the weekly challenge running that such a small example runs out
+of memory?").</p>
+
+<p>Now, there is a way out of this. If you building perl with the 
+<code>-DPERL_EMERGENCY_SBRK</code> compilation option, and if you are building
+perl so it uses its own malloc (which it doesn't do by default on most
+platforms), then you can allocate some emergy memory using <code>$^M</code>.</p>
+
+<p>This gives us a trappeble "running out of memory" event, but it's very
+unlikely the program will be left in a state we can continue. So, whatever
+algorithm we come up with, it will be extremely flimsy, and unlikely
+to work. Given that, what is presented below is untested; we could not
+be bothered to recompile perl.</p>
+</div>
+
+<h2>Solution</h2>
+
+<h3>Perl</h3>
+
+<p>First, we check whether the program is run by a perl which can actually
+trap an out of memory event. If not, that's it. Else, we allocate some
+emergency memory. (We're using 1 Mb of emergy memory. No idea whether
+that is realistic or not).</p>
+
+<pre><code>use Config;
+use List::Util 'max';
+
+BEGIN {
+    die "No hash join for you &amp;mdash; recompile first!\n" unless
+        $Config::Config {malloc_cflags} =~ /-DPERL_EMERGENCY_SBRK\b/ &amp;&amp;
+        $Config::Config {usemymalloc} eq 'y';
+
+    $^M = " " x (1 &lt;&lt; 20);  # 1 Mb.
+}
+
+my @R = ...;  # @player_ages in the example
+my @S = ...;  # @player_names in the example
+
+my $idx_R_njk = 0;
+my $idx_R_jk  = 1;
+my $idx_S_jk  = 0;
+my $idx_S_njk = 1;
+</code></pre>
+
+<p>We now create a <code>__DIE__</code> handler, to trap an out of memory event.
+In that case, we call a subroutine called <code>flush</code>.</p>
+
+<pre><code>my %output;
+$SIG {__DIE__} = sub {
+    if ("@_" =~ /Out of memory/) {
+        flush (\@S, $idx_S_jk, \%output)
+    }
+    else {
+        die @_;  # Propagate
+    }
+};
+</code></pre>
+
+<p>The main loop of the program populates the output structure <code>%output</code>.
+This implements step <code>1.1</code> of the algorithm. The hash <code>%output</code> uses
+the ages as keys; each value is an array of first names.</p>
+
+<pre><code>foreach my $r (@R) {
+    push @{$output {$$r [$idx_R_jk]}} =&gt; $$r [$idx_R_njk];
+}
+</code></pre>
+
+<p>If we are running out of memory, <code>flush</code> is called. It processes the
+<code>%output</code> structure, and sends results to standard output. To get the
+memory needed, we undefine <code>$^M</code>, do our thing, release the memory
+used by <code>%output</code>, and set <code>$^M</code> again. This implements step <code>1.2</code>
+of the algorithm above.</p>
+
+<pre><code>sub flush ($S, $idx_S_jk, $output) {
+    undef $^M;  # Release memory.
+
+    # 
+    # Scan $S. For each match in $output, output a line.
+    #
+    foreach my $entry (@$S) {
+        if ($$output {$$entry [$idx_S_jk]}) {
+            for (my $i = 0; $i &lt; @{$$output {$$entry [$idx_S_jk]}}; $i ++) {
+                printf qq [%2d, %-${max_width}s "%s"\n],
+                                 $$output {$$entry [$idx_S_jk]} [$i],
+                           '"' . $$entry [$idx_S_jk] . '",',
+                                 $$entry [$idx_S_njk];
+            }
+        }
+    }
+
+    %$output = ();  # Reset output table
+
+    $^M = " " x (1 &lt;&lt; 20); # Claim emergy memory again
+} 
+</code></pre>
+
+<p>As a final step, after the main loop, we have to call <code>flush</code> again.
+This is step <code>2</code> of the algorithm above:</p>
+
+<pre><code>flush (\@S, $idx_S_jk, \%output);
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-132/abigail/perl/ch-2.pl">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+
+<hr id = 'last-line'>
+<div class = 'trailer'>
+<p class = 'prev'><a class = "prev" href = "">&#x261C;</a></p>
+<p class = 'issue'>Please leave any comments as a
+  <a href = 'https://github.com/Abigail/Abigail.github.io/issues'
+     title = 'GitHub issue'>GitHub issue</a>.
+<p class = 'next'><a class = "next" href = "">&#x261E;</a></p>
+</div>
+
+</body>
+</html>
