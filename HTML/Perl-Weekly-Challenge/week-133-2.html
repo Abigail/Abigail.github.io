@@ -1,0 +1,180 @@
+<html>
+<head>
+<title>Perl Weekly Challenge 133: Smith Numbers</title>
+<script src = "https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id = "MathJax-script" async src = "https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.js"></script>
+<script src = '../../JavaScript/jquery.js'></script>
+<script src = '../../JavaScript/navigation.js'></script>
+<link rel = 'preconnect' href = 'https://fonts.gstatic.com'>
+<link rel = 'stylesheet' href = 'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
+<link rel = 'stylesheet' href = '../../Styles/Perl-Weekly-Challenge/main.css'>
+</head>
+
+<body><h1>Perl Weekly Challenge 133: Smith Numbers</h1><div class = "byline">
+by Abigail<br>
+<img src = "../../Images/jan_sluiters.jpg">
+</div>
+
+
+<h2><a href="https://theweeklychallenge.org/blog/perl-weekly-challenge-133/#TASK2">Challenge</a></h2>
+
+<blockquote>
+  <p>Write a script to generate first 10 <code>Smith Numbers</code> in base 10.</p>
+  
+  <p>According to <a href="https://en.wikipedia.org/wiki/Smith_number"><strong>Wikipedia</strong></a>:</p>
+  
+  <blockquote>
+  In number theory, a Smith number is a composite number for which, in a given number base, the sum of its digits is equal to the sum of the digits in its prime factorization in the given number base.
+  
+  </blockquote>
+</blockquote>
+
+<h3>Solution</h3>
+
+<div class = "section">
+<p>This is mostly about factorizing a number; something we have done
+in previous challenges.</p>
+</div>
+
+<h3>Perl</h3>
+
+<div class = "section">
+<p>We won't be writing our own factorization function. Instead, we will
+use the module <a href="https://metacpan.org/pod/Math::Prime::Util"><code>Math::Prime::Util</code></a> which has a method <code>factor</code>.
+This method takes a non-negative integer as argument, and returns
+a list of factors of that number.</p>
+
+<pre><code>use Math::Prime::Util qw [factor];
+</code></pre>
+
+<p>We will write a subroutine to calculate the sum of the digits of a
+number. In fact, the subroutine will take a list of numbers, and
+returns the sum of all its digits.</p>
+
+<p>We do the latter by concatenating all the given numbers, extracting
+the digits, and summing them:</p>
+
+<pre><code>sub digitsum (@n) {sum "@n" =~ /\d/ag}
+</code></pre>
+
+<p>Now it's just a matter of starting to count from <code>1</code>, checking each
+number whether it's a Smith Number, and stopping once we have ten of them:</p>
+
+<pre><code>my $c = 0;
+my $n = 0;
+do {
+    my @factors = factor ++ $n;
+    $c ++, say $n if @factors &gt; 1 &amp;&amp; digitsum ($n) == digitsum @factors;
+} until $c == $COUNT;
+</code></pre>
+
+<p>Note that we filter out numbers which only have a single factor, as
+Smith Numbers are defined to be composite numbers.</p>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-133/abigail/perl/ch-2.pl">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>C</h3>
+
+<p>We start off with a function which factorizes a number. We will use the
+fact that the ten Smith Numbers we have to produce are all less than
+1000. This means we only have to check primes up to 31 to find factors,
+as <span class = 'latex-inline'>\(31^2 &lt; 1000 &lt; 37^2\)</span>. We also know that no number less than 1000
+has ten or more factors, but it can have nine factors,
+as <span class = 'latex-inline'>\(2^9 &lt; 1000 &lt; 2^{10}\)</span>.</p>
+
+<p>The function takes two arguments: a number to be factorize, and an array
+to populate with factors. The array will be large enough. The function
+returns the number of factors.</p>
+
+<pre><code>short small_primes [] = {2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31};
+# define SMALL_PRIMES_SIZE 11
+# define MAX_FACTORS        9
+
+size_t factorize (short n, short * factors) {
+    size_t f_i = 0;   /* Index in output structure */
+
+    for (size_t i = 0; i &lt; SMALL_PRIMES_SIZE &amp;&amp; n &gt; 1; i ++) {
+        short prime = small_primes [i];
+        while (n % prime == 0) {
+            factors [f_i ++] = prime;
+            n /= prime;
+        }
+    }
+    /*
+     * Possible left over large prime
+     */
+    if (n &gt; 1) {
+        factors [f_i ++] = n;
+    }
+
+    return (f_i);
+}
+</code></pre>
+
+<p>We also have a <code>digitsum</code> function, which takes an array of numbers, and
+returns the sum of all its digits. We do this by taking all the numbers
+from the array, and repeatedly modding and dividing the number by <code>10</code>,
+summing the results of the mod operations:</p>
+
+<pre><code># define BASE 10
+
+short digitsum (size_t n, short * numbers) {
+    short out = 0;
+    char * tmp;
+    for (size_t i = 0; i &lt; n; i ++) {
+        short number = numbers [i];
+        while (number) {
+            out    += number % BASE;
+            number /= BASE;
+        }
+    }
+    return (out);
+}
+</code></pre>
+
+<p>We can now create the main program. First, we have to <a href="https://www.freebsd.org/cgi/man.cgi?apropos=0&amp;sektion=0&amp;query=malloc"><code>malloc</code></a>
+memory for the array which gets populated with the factors:</p>
+
+<pre><code>short * factors;
+if ((factors = (short *) malloc (MAX_FACTORS * sizeof (short))) == NULL) {
+    perror ("Malloc failed");
+    exit (1);
+}
+</code></pre>
+
+<p>We can now try each number, check whether they are a Smith Number,
+and stop when we have ten of them:</p>
+
+<pre><code># define COUNT 10
+
+size_t c = 0;
+short  n = 0;
+
+while (c &lt; COUNT) {
+    size_t fc = factorize (++ n, factors);
+    if (fc &gt; 1 &amp;&amp; digitsum (1, &amp;n) == digitsum (fc, factors)) {
+        printf ("%d\n", n);
+        c ++;
+    }
+}
+</code></pre>
+
+<p>And don't forget to <a href="https://www.freebsd.org/cgi/man.cgi?apropos=0&amp;sektion=0&amp;query=free"><code>free</code></a> the malloced memory!</p>
+
+<pre><code>free (factors);
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-133/abigail/c/ch-2.c">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+
+<hr id = 'last-line'>
+<div class = 'trailer'>
+<p class = 'prev'><a class = "prev" href = "">&#x261C;</a></p>
+<p class = 'issue'>Please leave any comments as a
+  <a href = 'https://github.com/Abigail/Abigail.github.io/issues'
+     title = 'GitHub issue'>GitHub issue</a>.
+<p class = 'next'><a class = "next" href = "">&#x261E;</a></p>
+</div>
+
+</body>
+</html>
