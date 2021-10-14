@@ -253,9 +253,16 @@ sub process_section ($section, $language, $week) {
 sub block_quote ($text) {$text =~ s/^/> /mgr}
 
 #
-# Given a piece of text, turn it into an Markdown blockquote
+# Given a piece of text, turn it into an Markdown blockquote;
+# Remove any HTML escape sequences.
 #
-sub code_block ($text) {$text =~ s/^/    /mgr}
+sub code_block ($text) {
+    $text =~ s/^/    /mgr
+          =~ s/&lt;/</gr
+          =~ s/&gt;/>/gr
+          =~ s/&quot;/"/gr
+          =~ s/&amp;/&/gr
+}
 
 #
 # Process a block of text which should turn into an HTML table.
