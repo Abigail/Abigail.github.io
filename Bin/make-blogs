@@ -39,6 +39,8 @@ my $BASH_URL       = "https://www.gnu.org/software/bash/manual/bash.html";
 my $FREEBSD_URL    = "https://www.freebsd.org/cgi/man.cgi?" .
                                                  "apropos=0&sektion=%d&query";
 my $PYTHON_URL     = "https://docs.python.org/3/library/functions.html";
+my $NODE_URL       = "https://developer.mozilla.org/en-US/docs/Web/" .
+                                                   "JavaScript/Reference";
 my $WIKI_URL       = "https://en.wikipedia.org/wiki";
 my $OEIS_URL       = "https://oeis.org";
 my $MATH_WORLD_URL = "https://mathworld.wolfram.com";
@@ -151,7 +153,7 @@ sub make_link (%args) {
     my $week     = $args {week};
     my $language = $args {language};
     my $url;
-    if ($LANGUAGE_INFO {$language}) {
+    if ($LANGUAGE_INFO {$language} && $link !~ /^#/) {
         # Remove backtics
         $anchor =~ s/^`//;
         $anchor =~ s/`$//;
@@ -180,7 +182,11 @@ sub make_link (%args) {
                 $url = $PYTHON_URL . "#" . $anchor;
             }
         }
+        elsif ($language eq "Node.js") {
+            $url = $NODE_URL . "/" . $link
+        }
     }
+    $link =~ s/^#//;
     if (!$url) {
         if ($link =~ /(?<where>[^:]+)(?::(?<what>.*))?$/) {
             my $where = $+ {where};
