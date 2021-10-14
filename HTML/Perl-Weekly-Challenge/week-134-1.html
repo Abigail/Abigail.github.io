@@ -1,0 +1,481 @@
+<html>
+<head>
+<title>Perl Weekly Challenge 134: Pandigital Numbers</title>
+<script src = "https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id = "MathJax-script" async src = "https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.js"></script>
+<script src = '../../JavaScript/jquery.js'></script>
+<script src = '../../JavaScript/navigation.js'></script>
+<link rel = 'preconnect' href = 'https://fonts.gstatic.com'>
+<link rel = 'stylesheet' href = 'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
+<link rel = 'stylesheet' href = '../../Styles/Perl-Weekly-Challenge/main.css'>
+</head>
+
+<body><h1>Perl Weekly Challenge 134: Pandigital Numbers</h1><div class = "byline">
+by Abigail<br>
+<img src = "../../Images/jan_sluiters.jpg">
+</div>
+
+
+<h2><a href="https://theweeklychallenge.org/blog/perl-weekly-challenge-134/#TASK1">Challenge</a></h2>
+
+<blockquote>
+  <p>Write a script to generate first 5 <em>Pandigital Numbers</em> in base 10.</p>
+  
+  <p>As per the <a href="https://en.wikipedia.org/wiki/Pandigital_number"><strong>wikipedia</strong></a>, it says:</p>
+  
+  <blockquote>
+    <p>A pandigital number is an integer that in a given base has among
+    its significant digits each digit used in the base at least once.</p>
+  </blockquote>
+</blockquote>
+
+<h2>Discussion</h2>
+
+<div class = "section">
+<p>It's clear that the first pandigital numbers are ten digits long,
+and contain each of the digits exactly once. There are
+<span class = 'latex-inline'>\(9 \cdot 9! = 3265920\)</span>
+pandigital numbers with exactly ten digits. Those are all the 
+permutations of the digits 0 to 9, excluding the permutations starting
+with a 0.</p>
+
+<p>Since the pandigital numbers are in order, all the first six
+pandigital numbers start with 1023456, followed by a permutation
+of the digits 7, 8, and 9. Since we only need to generate the
+first five pandigital numbers, the permutations we need are
+789, 798, 879, 897, and 978 (and in that order).</p>
+</div>
+
+<h2>Solution</h2>
+
+<div class = "section">
+<p>Our solutions will have an array with the five permutations of 7, 8,
+and 9 we are interested in. This array will be hardcoded &mdash; this
+set is too small and simple to be bothered with an algorithm to
+generate them.</p>
+
+<p>We will loop over the array, and either print <code>"1023456"</code> and a 
+permutation as a string, or the sum of <code>1023456000</code> and a permutation
+as a number.</p>
+</div>
+
+<h3>AWK</h3>
+
+<div class = "section">
+<p>AWK doesn't have array literals, so we start with populating an array
+with permutations using <a href="https://www.gnu.org/software/gawk/manual/gawk.html#String-Functions"><code>split</code></a>:</p>
+
+<pre><code>n = split ("789 798 879 897 978", tails, " ")
+</code></pre>
+
+<p>This splits the string <code>"789 798 879 897 978"</code> on spaces, with the
+results placed in the array <code>tails</code>. The return value of <code>split</code>
+is the number of resulting fields &mdash; which is the size of the array
+<code>tails</code>.</p>
+
+<p>We can now print the numbers:</p>
+
+<pre><code>for (i = 1; i &lt;= n; i ++) {
+    print "1023456" tails [i]
+}
+</code></pre>
+
+<p>In AWK, concatenation is done by just putting values next to each other.</p>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-134/abigail/awk/ch-1.awk">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>Bash</h3>
+
+<pre><code>for n in 789 798 879 897 978
+do echo 1023456$n
+done
+</code></pre>
+
+<p>In Bash, we don't even have to bother we an array. We can directly
+loop over a list. Concatenation is done by just sticking <code>$n</code> to
+<code>1023456</code>.</p>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-134/abigail/bash/ch-1.sh">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+
+<h3>Basic</h3>
+
+<div class = "section">
+<p>We make use of a very barebones implementation of BASIC:
+<a href="#"><code>Language::Basic</code></a>. This means, no array literals. So, when we
+start off with creating an array, we have to assign each value
+separately:</p>
+
+<pre><code>100 DIM T(5)
+110 T (1) = 789
+120 T (2) = 798
+130 T (3) = 879
+140 T (4) = 897
+150 T (5) = 978
+</code></pre>
+
+<p>Line <code>100</code> declares an array <code>T</code>, of size five. The next five lines
+set the permutations.</p>
+
+<p>We now loop over the array, printing the sum of <code>1023456000</code> and the
+permutation:</p>
+
+<pre><code>200 FOR i = 1 TO 5
+210     PRINT 1023456000 + T (i)
+220 NEXT i
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-134/abigail/basic/ch-1.bas">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>bc</h3>
+
+<div class = "section">
+<p>No array literals in bc either, so again, we have to set each
+value separately. We don't have to declare the variable though:</p>
+
+<pre><code>t[1] = 789; t[2] = 798; t[3] = 879; t[4] = 897; t[5] = 978
+</code></pre>
+
+<p>We can now print the sum of <code>1023456000</code> and each of the
+permutations:</p>
+
+<pre><code>for (i = 1; i &lt;= 5; i ++) {
+    1023456000 + t[i]
+}
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-134/abigail/bc/ch-1.bc">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>Befunge-93</h3>
+
+<div class = "section">
+<p>There are no variables in Befunge-93; just the stack, and the 80x24 cells
+which make up the program. Befunge-93 doesn't have strings either, just
+unsigned integers. </p>
+
+<p>We start up by putting the wanted permutations on the stack &mdash; or rather,
+the ASCII values of the fifteen characters which make up the five
+permutations:</p>
+
+<pre><code>"879798978897987"v
+</code></pre>
+
+<p>Note that we put the last characters first on the stack; this means
+that after excuting the statements above, the top of the stack starts
+with <code>55</code>, <code>56</code>, <code>57</code>, <code>55</code>, <code>57</code>, <code>56</code>, etc, which are the ASCII
+values for <code>7</code>, <code>8</code>, <code>9</code>, <code>7</code>, <code>9</code>, <code>8</code>, etc.</p>
+
+<p>We will now enter a loop: if the stack is empty (or rather, if the top
+of the stack is <code>0</code>), we end the program. Otherwise, we put the ASCII
+values for <code>6</code>, <code>5</code>, <code>4</code>, <code>3</code>, <code>2</code>, <code>0</code>, and <code>1</code> on the stack. We then
+take the first ten items from the stack, and print them as characters.
+We finish the loop by pushing <code>5</code> on the stack twice, adding them (so
+we get <code>10</code> on top of the stack), and printing this as a character.
+This causes the program to print a newline after each pandigital number.</p>
+
+<pre><code>&gt;,,,,,,,,,,55+,  v
+^                :
+^"1023456"       _@
+</code></pre>
+
+<p>Note that we enter the loop on the top right corner, going down.</p>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-134/abigail/befunge-93/ch-1.bf93">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>C</h3>
+
+<div class = "section">
+<p>In C, all variables are typed. So we define an array <code>tail</code> as an
+array of <code>short</code>, since we're dealing with small enough numbers:</p>
+
+<pre><code># define SIZE 5
+
+short tail [] = {789, 798, 879, 897, 978};
+</code></pre>
+
+<p>We can now use a simple loop, using <a href="https://www.freebsd.org/cgi/man.cgi?apropos=0&amp;sektion=0&amp;query=printf"><code>printf</code></a> to print the
+pandigital numbers:</p>
+
+<pre><code>for (size_t i = 0; i &lt; SIZE; i ++) {
+    printf ("1023456%d\n", tail [i]);
+}
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-134/abigail/c/ch-1.c">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>csh</h3>
+
+<div class = "section">
+<p>Just like in Bash, we can directly iterate over a list, without
+first putting the permutations in an array:</p>
+
+<pre><code>foreach i (789 798 879 897 978)
+    echo 1023456$i
+end
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-134/abigail/csh/ch-1.csh">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>Erlang</h3>
+
+<div class = "section">
+<p>Erlang is a functional language. In Erlang, one typically does not
+loop over an array; instead, one uses recursion, combined with
+<a href="https://en.wikipedia.org/wiki/Polymorphism_(computer_science)"><em>polymorphism</em></a>.</p>
+
+<p>We will first define a function <code>pandigital</code>, which takes an array
+as argument. The array consists of the permutations, and the function
+will print the pandigital numbers:</p>
+
+<pre><code>pandigital ([])            -&gt; ok;
+
+pandigital ([Head | List]) -&gt;
+    io:fwrite ("1023456~w~n", [Head]),
+    pandigital (List).
+</code></pre>
+
+<p>If the function is called with an empty array, the function just
+returns without further actions. Otherwise, the function is called
+with a non-empty array, and we have to look at the second definition.
+The first element of the array will be named <code>Head</code>, while the rest
+of array is named <code>List</code>. We will print the pandigital number with
+the permutation <code>Head</code>, and then recurse with <code>List</code>.</p>
+
+<p>We call this function in the following way:</p>
+
+<pre><code>main () -&gt;
+    pandigital ([789, 798, 879, 897, 978]).
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-134/abigail/erlang/ch-1.erl">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>Go</h3>
+
+<div class = "section">
+<p>To iterate over an array in Go, we use <code>for</code> in combination with <code>range</code>.
+<code>for</code> is Go's only looping construct; <code>range</code> lets it iterate over
+a slice. We can give it an array literal as argument, so no need for
+a separate variable:</p>
+
+<pre><code>for _, t := range [] int {789, 798, 879, 897, 978} {
+    fmt . Printf ("1023456%d\n", t)
+}
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-134/abigail/go/ch-1.go">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>Java</h3>
+
+<div class = "section">
+<p>First, we create an array of integers:</p>
+
+<pre><code>int [] tails = {789, 798, 879, 897, 978};
+</code></pre>
+
+<p>We then use a <code>for</code> loop to iterate over the permutations. We add each
+permutation to <code>1023456000</code>, and print it:</p>
+
+<pre><code>int [] tails = {789, 798, 879, 897, 978};
+for (int i: tails) {
+    System . out . println (1023456000 + i);
+}
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-134/abigail/java/ch-1.java">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>Lua</h3>
+
+<div class = "section">
+<p>In Lua, we can directly iterate over a table literal (in Lua, arrays
+are called tables). We use the function <code>ipairs</code>, which returns the
+key-values pairs in order:</p>
+
+<pre><code>for _, tail in ipairs ({789, 798, 879, 897, 978}) do
+    print (1023456000 + tail)
+end
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-134/abigail/lua/ch-1.lua">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>m4</h3>
+
+<div class = "section">
+<p>m4 doesn't have arrays. It doesn't have variables either. It just has
+macros. Macros with can be redefined (in fact, redefining macros in m4
+is quite common). And with some creative use of redefining macros,
+we can simulate arrays:</p>
+
+<pre><code>define(`tail_set',`define(format(``tail[%d]'',`$1'),`1023456$2')')dnl
+</code></pre>
+
+<p>This defines a macro <code>tail_set</code>, which takes two arguments, <code>$1</code>, and
+<code>$2</code>. The first acts as an index, the second as an argument. If the
+macro <code>tail_set</code> gets invoked (say, with arguments <code>3</code> and <code>879</code>), the
+result is that <em>another</em> macro is defined, one which defines <code>tail[3]</code>,
+to expand to <code>1023456879</code>.</p>
+
+<p>Next step is a macro which returns value in the simulated array:</p>
+
+<pre><code>define(`tail',`defn(format(``tail[%d]'',`$1'))')dnl
+</code></pre>
+
+<p>Note the use of <code>defn</code>: if its argument is an existing macro, it exands
+to that macro, else it expands to nothing.</p>
+
+<p>We can now populate the array:</p>
+
+<pre><code>tail_set(`5',`789')dnl
+tail_set(`4',`798')dnl
+tail_set(`3',`879')dnl
+tail_set(`2',`897')dnl
+tail_set(`1',`978')dnl
+</code></pre>
+
+<p>Note that we put the permutations into the simulate array in reversed
+order. This is due to the following macro:</p>
+
+<pre><code>define(`run',`tail($1)
+ifelse($1,1,,`run(eval($1-1))')')dnl
+</code></pre>
+
+<p>The macro <code>run</code> takes a single argument (<code>$1</code>). It first expands
+to <code>tail($1)</code>, which is <code>1023456</code> followed by the corresponding
+permutation. We then look at <code>$1</code>, if it equals <code>1</code>, we're done.
+Else, we expand it to <code>run($1-1)</code>, which is a basic form of
+recursion.</p>
+
+<p>We can now finally kick off a myriad of expansions:</p>
+
+<pre><code>run(5)dnl
+</code></pre>
+
+<p>Note the use of <code>dnl</code> after each macro definition. Anything which isn't
+a macro to be expanded, is copied as-is by m4. Including any newlines
+following a macro definition. The <code>dnl</code> token prevents this.</p>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-134/abigail/m4/ch-1.m4">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>Node.js</h3>
+
+<div class = "section">
+<p>In Node.js, arrays are objects, with a
+<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach"><code>forEach</code></a> method.
+In that method, we print the corresponding pandigital number to
+the console, leaving us with a one-liner:</p>
+
+<pre><code>[789, 798, 879, 897, 978] . forEach (t =&gt; console . log ("1023456" + t))
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-134/abigail/node/ch-1.js">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>Pascal</h3>
+
+<div class = "section">
+<p>In Pascal, variable definition go into a section <code>var</code>. We can also
+use this to initialize the variables. All variables are typed, and
+array elements are of a specific type as well:</p>
+
+<pre><code>var
+    tails: array [1 .. 5] of integer = (789, 798, 879, 897, 978);
+    i: integer;
+</code></pre>
+
+<p>Looping is now easy:</p>
+
+<pre><code>for i := 1 to 5 do begin
+    writeln (1023456000 + tails [i]);
+end
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-134/abigail/pascal/ch-1.p">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>Perl</h3>
+
+<div class = "section">
+<p>In Perl, we can directly iterate over a list. Giving us a simple
+one liner:</p>
+
+<pre><code>say "1023456$_" for qw [789 798 879 897 978];
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-134/abigail/perl/ch-1.pl">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>PHP</h3>
+
+<div class = "section">
+<p>First, defining an array with permutations:</p>
+
+<pre><code>$tails = array (789, 798, 879, 897, 978);
+</code></pre>
+
+<p>Iteration happens with <code>foreach</code>, and PHP does interpolation in the
+similar way as Perl and the shell:</p>
+
+<pre><code>foreach ($tails as &amp;$tail) {
+    echo "1023456$tail\n";
+}
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-134/abigail/php/ch-1.php">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>Python</h3>
+
+<div class = "section">
+<p>In Python, we can directly iterate over a literal list, giving
+use a very simple program:</p>
+
+<pre><code>for t in [789, 798, 879, 897, 978]:
+    print (1023456000 + t)
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-134/abigail/python/ch-1.py">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>R</h3>
+
+<p>In R, vectors (as arrays are named), can be constructed with the
+function <code>c()</code>:</p>
+
+<pre><code>t &lt;- c (789, 798, 879, 897, 978)
+</code></pre>
+
+<p>Now, if we add number to a vector, the number is added to each
+element. So, its easy to get a vector with the pandigital numbers
+we need:</p>
+
+<pre><code>t &lt;- t + 1023456000
+</code></pre>
+
+<p>We can directly print a vector use <code>cat</code>, which has the option
+to specify a separator (space by default):</p>
+
+<pre><code>cat (t, sep = "\n")
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-134/abigail/r/ch-1.r">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+
+<hr id = 'last-line'>
+<div class = 'trailer'>
+<p class = 'prev'><a class = "prev" href = "">&#x261C;</a></p>
+<p class = 'issue'>Please leave any comments as a
+  <a href = 'https://github.com/Abigail/Abigail.github.io/issues'
+     title = 'GitHub issue'>GitHub issue</a>.
+<p class = 'next'><a class = "next" href = "">&#x261E;</a></p>
+</div>
+
+</body>
+</html>
