@@ -1,0 +1,272 @@
+<html>
+<head>
+<title>Perl Weekly Challenge 134: Distinct Terms Count</title>
+<script src = "https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id = "MathJax-script" async src = "https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.js"></script>
+<script src = '../../JavaScript/jquery.js'></script>
+<script src = '../../JavaScript/navigation.js'></script>
+<link rel = 'preconnect' href = 'https://fonts.gstatic.com'>
+<link rel = 'stylesheet' href = 'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
+<link rel = 'stylesheet' href = '../../Styles/Perl-Weekly-Challenge/main.css'>
+<link rel = 'stylesheet' href = '../../Styles/Perl-Weekly-Challenge/week-134-2.css'>
+</head>
+
+<body><h1>Perl Weekly Challenge 134: Distinct Terms Count</h1><div class = "byline">
+by Abigail<br>
+<img src = "../../Images/jan_sluiters.jpg">
+</div>
+
+
+<h2><a href="https://theweeklychallenge.org/blog/perl-weekly-challenge-134/#TASK2">Challenge</a></h2>
+
+<blockquote>
+  <p>You are given 2 positive numbers, <code>$m</code> and <code>$n</code>.</p>
+  
+  <p>Write a script to generate multiplcation table and display count of distinct terms.</p>
+</blockquote>
+
+<h3>Example 1</h3>
+
+<pre><code>Input: $m = 3, $n = 3
+Output:
+
+      x | 1 2 3
+      --+------
+      1 | 1 2 3
+      2 | 2 4 6
+      3 | 3 6 9
+
+Distinct Terms: 1, 2, 3, 4, 6, 9
+Count: 6
+</code></pre>
+
+<h3>Example 2</h3>
+
+<pre><code>Input: $m = 3, $n = 5
+Output:
+
+      x | 1  2  3  4  5
+      --+--------------
+      1 | 1  2  3  4  5
+      2 | 2  4  6  8 10
+      3 | 3  6  9 12 15
+
+Distinct Terms: 1, 2, 3, 4, 5, 6, 8, 9, 10, 12, 15
+Count: 11
+</code></pre>
+
+<h2>Discussion</h2>
+
+<div class = "section">
+<p>The challenge description talks about two things: a multiplication
+table (to be generated), and a count of distinct terms (to be displayed).
+The examples show <strong>three</strong> things: a multiplication table, a list of
+distinct terms, and a count.</p>
+
+<p>Now, the weekly challenge has a long history of examples where it's not
+clear where the expected output ends, and where the description of why
+this is the right answer starts. </p>
+
+<p>The only thing of which it's clear which needs to be outputted is the
+count of distinct terms. </p>
+
+<p>Of the others, the table and list of terms, we assume to be explaination.</p>
+
+<p>If not, then please, please, consider spending a minute more on drafting
+the challenge, and make it clear what you expect.</p>
+</div>
+
+<h2>Solution</h2>
+
+<div class = "section">
+<p>We will just generate all the products
+<span class = 'latex-inline'>\(p = i \cdot j, 1 \leq i \leq m, 1 \leq j \leq n\)</span>. This is more than
+we need, as we will be calculating both <span class = 'latex-inline'>\(i \cdot j\)</span> and <span class = 'latex-inline'>\(j \cdot i\)</span>
+for all <span class = 'latex-inline'>\(1 \leq i &lt; j \leq \text{ min} (m, n)\)</span>, but that will be less
+than twice the optimal number of products.</p>
+
+<p>To keep track of the different products, we will store them in either
+an array/list/vector, or a hash/map/table/associative array, depending on
+the language. </p>
+
+<p>To get the count, we either get the number of elements stored, or we
+keep a running count, incrementing the count each time we get a product
+we have not seen yet.</p>
+
+<p>Below is a matrix showing which solution we have for which language.
+The implementations in the languages listed in the column
+labelled <strong>Array</strong> use an array as the structure which keeps track
+of seen products, while the column labelled <strong>Hash</strong> list implementations
+in languages using a hash as structure.</p>
+
+<p>The row labelled <strong>Size</strong> lists implementations in languages where we get
+the size of the structure to determine the number of distinct products,
+while the row labelled <strong>Count</strong> lists implementations in languages
+where we have a running count.</p>
+
+<table>
+  <tr class = 'row-0'>
+    <td class = 'cell-0-0 col-0'></td>
+    <th class = 'cell-0-1 col-1'>Hash</td>
+    <th class = 'cell-0-2 col-2'>Array</td>
+  </tr>
+  <tr class = 'row-1'>
+    <th class = 'cell-1-0 col-0'>Size</td>
+    <td class = 'cell-1-1 col-1'><a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-134/abigail/awk/ch-2.awk">AWK</a>,     <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-134/abigail/bash/ch-2.sh">Bash</a>, <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-134/abigail/java/ch-2.java">Java</a>,
+               <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-134/abigail/node/ch-2.js">Node.js</a>, <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-134/abigail/perl/ch-2.pl">Perl</a>, <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-134/abigail/python/ch-2.py">Python</a>,
+               <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-134/abigail/ruby/ch-2.rb">Ruby</a>,    <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-134/abigail/tcl/ch-2.tcl">Tcl</a></td>
+    <td class = 'cell-1-2 col-2'><a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-134/abigail/r/ch-2.r">R</a></td>
+  </tr>
+  <tr class = 'row-2'>
+    <th class = 'cell-2-0 col-0'>Count</td>
+    <td class = 'cell-2-1 col-1'><a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-134/abigail/go/ch-2.go">Go</a>, <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-134/abigail/lua/ch-2.lua">Lua</a>, <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-134/abigail/scheme/ch-2.scm">Scheme</a></td>
+    <td class = 'cell-2-2 col-2'><a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-134/abigail/bc/ch-2.bc">bc</a>, <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-134/abigail/c/ch-2.c">C</a>,   <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-134/abigail/pascal/ch-2.p">Pascal</a>
+</td>
+  </tr>
+</table>
+
+<p>For each of the four techniques, we will show one solution.</p>
+
+<p>All our solutions read pairs of numbers from standard input, one pair
+per line. For each pair, we print the number of distinct products to
+standard output.</p>
+</div>
+
+<h3>Tcl</h3>
+
+<div class = "section">
+<p>Our Tcl solution is an example where we're using a hash to keep track
+of which products we have seen, and where we use the size of the resulting
+structure to display the count.</p>
+
+<p>In Tcl, arrays are associative arrays (after all, <em>everything is a string</em>
+in Tcl). </p>
+
+<pre><code>while {[gets stdin line] &gt;= 0} {
+    lassign [split $line " "] n m
+    array set seen { }
+    for {set i 1} {$i &lt;= $n} {incr i} {
+        for {set j 1} {$j &lt;= $m} {incr j} {
+            set seen([expr $i * $j]) 1
+        }
+    }
+    puts [array size seen]
+}
+</code></pre>
+
+<p>An array is defined using the <code>array set</code> statement. The array is
+called <code>seen</code>, and we initialize it to an empty list.</p>
+
+<p>The <code>array size</code> statement returns the number of elements in the
+array.</p>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-134/abigail/tcl/ch-2.tcl">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>Lua</h3>
+
+<div class = "section">
+<p>In Lua, we also use a hash (which Lua calls tables; Lua doesn't have
+different objects for arrays or hashes). But instead of finding out
+the size afterwards, for each product generated, we check if it is
+already in the table. If not, we increment a count.</p>
+
+<pre><code>for line in io . lines () do
+    local _, _, m, n = line : find ("([0-9]+)%s+([0-9]+)")
+    local seen = {}
+    local count = 0
+    for i = 1, m do
+        for j = 1, n do
+            if seen [i * j] == nil then
+                seen [i * j] = 1
+                count = count + 1
+            end
+        end
+    end
+    print (count)
+end
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-134/abigail/lua/ch-2.lua">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>bc</h3>
+
+<div class = "section">
+<p>bc does not have hashes, just arrays. So, we start off with an array
+of <span class = 'latex-inline'>\(m \cdot n\)</span> elements, all initialized to <code>0</code>. For each produced
+product, we set the value on that index to <code>1</code>. Each time we set a
+value from <code>0</code> to <code>1</code>, we increment a count.</p>
+
+<p>Now, it sounds expensive to use an array instead of a hash, as there
+are many numbers between 1 and <span class = 'latex-inline'>\(i \cdot j\)</span> which aren't a product.
+However, for <span class = 'latex-inline'>\(m, n &lt; 10000\)</span>, about 25% of the numbers between 
+<span class = 'latex-inline'>\(1\)</span> and <span class = 'latex-inline'>\(10000^2\)</span> can be written as a product of two numbers
+less than <span class = 'latex-inline'>\(10000\)</span>. So the waste isn't too bad.</p>
+
+<pre><code>while (1) {
+    m = read(); if (m == 0) break
+    n = read(); if (n == 0) break
+    for (i = 1; i &lt;= m * n; i ++) {
+        s[i] = 0
+    }
+    count = 0
+    for (i = 1; i &lt;= n; i ++) {
+        for (j = 1; j &lt;= m; j ++) {
+            if (s[i * j] == 0) {
+                count = count + 1
+                s[i * j] = 1
+            }
+        }
+    }
+    count
+}
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-134/abigail/bc/ch-2.bc">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>R</h3>
+
+<p>For our R solution, we also make use of an array (or vector as they
+are called in R). The array is initialized to all <code>0</code>, and for each
+product we put a <code>1</code> in the array. To get the number of different
+products, we just calculate the sum of all elements in the array;
+R has a build in <code>sum</code> which does that.</p>
+
+<pre><code>stdin &lt;- file ('stdin', 'r')
+repeat {
+    line &lt;- readLines (stdin, n = 1)
+    if (length (line) == 0) {
+        break
+    }
+    parts &lt;- strsplit (line, " ")
+
+    m &lt;- as.numeric (parts [[1]] [[1]])
+    n &lt;- as.numeric (parts [[1]] [[2]])
+
+    seen &lt;- replicate (m * n, 0)
+
+    for (i in 1 : m) {
+        for (j in 1 : n) {
+            seen [[i * j]] &lt;- 1
+        }
+    }
+
+    cat (sum (seen), "\n")
+}
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-134/abigail/r/ch-2.r">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+
+<hr id = 'last-line'>
+<div class = 'trailer'>
+<p class = 'prev'><a class = "prev" href = "">&#x261C;</a></p>
+<p class = 'issue'>Please leave any comments as a
+  <a href = 'https://github.com/Abigail/Abigail.github.io/issues'
+     title = 'GitHub issue'>GitHub issue</a>.
+<p class = 'next'><a class = "next" href = "">&#x261E;</a></p>
+</div>
+
+</body>
+</html>
