@@ -447,6 +447,7 @@ use a very simple program:</p>
 
 <h3>R</h3>
 
+<div class = "section">
 <p>In R, vectors (as arrays are named), can be constructed with the
 function <code>c()</code>:</p>
 
@@ -466,7 +467,91 @@ to specify a separator (space by default):</p>
 <pre><code>cat (t, sep = "\n")
 </code></pre>
 
+<p>We can combine all this, and end up with a one-liner, eliminating
+an array variable:</p>
+
+<pre><code>cat (c (789, 798, 879, 897, 978) + 1023456000, sep = "\n")
+</code></pre>
+
 <p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-134/abigail/r/ch-1.r">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>Ruby</h3>
+
+<div class = "section">
+<p>Just like Node.js, Ruby has a method on arrays to iterate over
+the values: <code>each</code>. Which leads to the following one-liner:</p>
+
+<pre><code>[789, 798, 879, 897, 978] . each {|t| puts (1023456000 + t)}
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-134/abigail/ruby/ch-1.rb">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>Scheme</h3>
+
+<div class = "section">
+<p>Scheme has a unique way of defining an array:</p>
+
+<pre><code>(define t #@1(789 798 879 897 978))
+</code></pre>
+
+<p><code>#()</code> is an array literal. The <code>@1</code> part indicates the first element
+of the array has index <code>1</code>.</p>
+
+<p>The looping construct in Scheme is called <code>do</code>:</p>
+
+<pre><code>(do ((i 1 (1+ i)))
+    ((&gt; i (array-length t)))
+    (format #t "1023456~d\n" (array-ref t i)))
+</code></pre>
+
+<p><code>do</code> takes three arguments. First argument is list of initializations;
+each element of the list consists of a list with three elements:</p>
+
+<ul>
+<li>A variable name</li>
+<li>Its initial value</li>
+<li>An expression to calculate the next value</li>
+</ul>
+
+<p>Here, we have <code>((i 1 (1+ i)))</code>, which means we have just one loop
+variable, <code>i</code>, whose initial value is <code>1</code>, and which gets incremented
+by <code>1</code> after each iteration of the loop. (<code>(1+ i)</code>).</p>
+
+<p>The second argument of <code>do</code> is a list of conditions. If any of the
+conditions is true, the loop is terminated. (This is opposite of
+loop conditions in languages like C or Perl, where the loop terminates
+if the condition is false). Here we have just one condition: 
+<code>(&gt; i (array-length t))</code>, which compares the value in <code>i</code> with 
+the size of the array <code>t</code>. The expression is true if <code>i</code> is larger
+than the array size.</p>
+
+<p>The third argument of <code>do</code> is the body; it gets executed at each
+iteration of the loop. In this body, we print the pandigital number.
+<code>format</code> is the function used in Scheme to print formatted text.
+<code>(array-ref t i)</code> returns the element from <code>t</code> on index <code>i</code>.</p>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-134/abigail/scheme/ch-1.scm">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>Tcl</h3>
+
+<p>In Tcl, we use the construct <code>array set</code> to initialize an array.
+Note that in Tcl, arrays are associative, so we have to provide
+indices as well:</p>
+
+<pre><code>array set tail {0 789 1 798 2 879 3 897 4 978}
+</code></pre>
+
+<p>We now have a simple <code>for</code> loop:</p>
+
+<pre><code>for {set i 0} {$i &lt; [array size tail]} {incr i} {
+    puts "1023456$tail($i)"
+}
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-134/abigail/tcl/ch-1.tcl">full program</a> on <a href="https://github.com">GitHub</a>.</p>
 
 <hr id = 'last-line'>
 <div class = 'trailer'>
