@@ -240,9 +240,11 @@ sub process_section ($section, $language, $week) {
                   {<span class = 'latex-display'>$1</span>}xg;
 
     #
-    # Turn a double dash into an &mdash;
+    # Turn a double dash into an &mdash -- except inside a pre-
+    # formatted section.
     #
-    $section =~ s/("--"|'--'|^\h*--\h*$)|(?<!-)--(?!-)/$1 || "&mdash;"/gme;
+    $section =~ s {("--"|'--'|^\h*--\h*$|^    .*)|(?<!-)--(?!-)}
+                  {$1 || "&mdash;"}gme;
 
     $section . "\n";
 }
