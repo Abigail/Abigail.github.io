@@ -285,7 +285,7 @@ sub table ($text) {
     foreach my $rc (keys @rows) {
         my $row = $rows [$rc];
         $out .= "  <tr class = 'row-$rc'>\n";
-        my @cells = split /\s*&\s*/ => $row, -1;
+        my @cells = split /\s*&(?![A-Za-z0-9#])\s*/ => $row, -1;
         my $cc = 0;
         foreach my $cell (@cells) {
             #
