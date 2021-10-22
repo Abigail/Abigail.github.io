@@ -9,6 +9,9 @@ no  warnings 'syntax';
 use experimental 'signatures';
 use experimental 'lexical_subs';
 use LWP::Simple;
+use Getopt::Long;
+
+GetOptions (force  =>  \my $force);
 
 my $host = "theweeklychallenge.org";
 my $blog_dir = "/Users/abigail/GitHub/Blogs";
@@ -27,7 +30,7 @@ my $url    = "https://$host/blog/perl-weekly-challenge-$week";
 my $anchor = "$url/#TASK$challenge";
 my $file   = "$blog_dir/Src/Perl-Weekly-Challenge/week-$week-$challenge.md";
 
-if (-f $file) {
+if (-f $file && !$force) {
     die "File already exists";
 }
 
