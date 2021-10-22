@@ -62,7 +62,7 @@ my $title = $1;
 # Extract the description, and format it.
 #
 my ($description, $examples);
-if ($text =~ s{^((?:.*\n)+?)(<h2.*Example)}{$2}) {
+if ($text =~ s{^((?:.*\n)+?)(<h[2-6].*Example)}{$2}) {
     $description = format_description ($1);
     $examples    = format_examples ($text);
 }
@@ -105,7 +105,7 @@ sub format_description ($description) {
 }
 
 sub format_examples ($examples) {
-    $examples =~ s!^<h2[^>]+>([^<]+)</h2>!### $1!mrg
+    $examples =~ s!^<h[2-6][^>]+>([^<]+)</h[2-6]>!### $1!mrg
               =~ s!<pre><code>!\n~~~~\n!rg
               =~ s!</code></pre>!~~~~\n!rg
               =~ s!^### Example [0-9]+\K:!!mrg
