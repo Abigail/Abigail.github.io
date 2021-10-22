@@ -194,7 +194,14 @@ sub make_link (%args) {
             }
         }
         elsif ($language eq "Node.js") {
-            $url = $NODE_URL . "/" . $link
+            if ($link) {
+                $url = $NODE_URL . "/$link";
+            }
+            else {
+                if (my $chapter = $LINK_GROUP {Java} {$anchor}) {
+                    $url = $NODE_URL . "/$chapter/$anchor";
+                }
+            }
         }
     }
     $link =~ s/^#//;
@@ -494,6 +501,8 @@ sub init_link_group () {
         [qw [Go builtin
                   append cap close complex copy delete imag len make
                   new panic print println real recover]],
+        [qw [Node.js Global_Objects/String
+                  replace trim match length]],
     );
 
     foreach my $entry (@entries) {
