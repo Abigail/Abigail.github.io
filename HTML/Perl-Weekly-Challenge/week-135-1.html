@@ -1,0 +1,674 @@
+<html>
+<head>
+<title>Perl Weekly Challenge 135: Middle 3-digits</title>
+<script src = "https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id = "MathJax-script" async src = "https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.js"></script>
+<script src = '../../JavaScript/jquery.js'></script>
+<script src = '../../JavaScript/navigation.js'></script>
+<link rel = 'preconnect' href = 'https://fonts.gstatic.com'>
+<link rel = 'stylesheet' href = 'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
+<link rel = 'stylesheet' href = '../../Styles/Perl-Weekly-Challenge/main.css'>
+</head>
+
+<body><h1>Perl Weekly Challenge 135: Middle 3-digits</h1><div class = "byline">
+by Abigail<br>
+<img src = "../../Images/jan_sluiters.jpg">
+</div>
+
+
+<h2><a href="https://theweeklychallenge.org/blog/perl-weekly-challenge-135/#TASK1">Challenge</a></h2>
+
+<blockquote>
+  <p>You are given an integer.</p>
+  
+  <p>Write a script find out the middle 3-digits of the given integer,
+  if possible otherwise throw sensible error.</p>
+</blockquote>
+
+<h3>Example 1</h3>
+
+<pre><code>Input: $n = 1234567
+Output: 345
+</code></pre>
+
+<h3>Example 2</h3>
+
+<pre><code>Input: $n = -123
+Output: 123
+</code></pre>
+
+<h3>Example 3</h3>
+
+<pre><code>Input: $n = 1
+Output: too short
+</code></pre>
+
+<h3>Example 4</h3>
+
+<pre><code>Input: $n = 10
+Output: even number of digits
+</code></pre>
+
+<h2>Solution</h2>
+
+<div class = "section">
+<p>We need to do a couple of things, all fairly trivial:</p>
+
+<ol>
+<li>Read a line from standard input.</li>
+<li>Remove a leading sign, as we can basically ignore it.</li>
+<li>Check we're left with only digits; error if not.</li>
+<li>Check we have an odd number of digits; error if not.</li>
+<li>Check we have at least three digits; error if not.</li>
+<li>Extract the middle three digits, and print them.</li>
+</ol>
+
+<p>The third step technically isn't required, as it's a given we're getting
+an integer. But we check anyway.</p>
+
+<p>Note that a two digit integer fails validation twice: it's too short,
+and it has an even number of digits. The fourth example shows we should
+give an error for the second failure (and not the first).</p>
+
+<p>As usual, we will be accepting multiple integers, assuming one
+integer per line of input. For each integer, we'll print the
+middle three digits, or an error if necessary.</p>
+</div>
+
+<h3>AWK</h3>
+
+<div class = "section">
+<p>AWK is very suitable to repeatedly do something to a line of input,
+and to repeat this for each line of input.</p>
+
+<p>We start off with stripping a leading sign, if any:</p>
+
+<pre><code>/^[-+]/         {$0 = substr ($0, 2)}
+</code></pre>
+
+<p><code>$0</code> holds the current line of input, and it's an lvalue, so we can
+assign to it.</p>
+
+<p>We can now do the validation. If it fails a validation, we print an
+error message, and continue with the next line of input:</p>
+
+<pre><code>/[^0-9]/        {print "not an integer";        next}
+/^(..)*$/       {print "even number of digits"; next}
+length ($0) &lt; 3 {print "too short";             next}
+</code></pre>
+
+<p>We can now print the middle three digits:</p>
+
+<pre><code>{print substr ($0, 1 + (length ($0) - 3) / 2, 3)}
+</code></pre>
+
+<p><a href="https://www.gnu.org/software/gawk/manual/gawk.html#String-Functions"><code>substr</code></a> in AWK takes three arguments: the string we want to
+extract a substring from; the position from where to start (first
+character is on position 1), and the length of the substring.</p>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-135/abigail/awk/ch-1.awk">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>Bash</h3>
+
+<div class = "section">
+<p>We first start off reading a line of input using <a href="https://www.gnu.org/software/bash/manual/bash.html#Bash-Builtins"><code>read</code></a>:</p>
+
+<pre><code>while read line; do
+</code></pre>
+
+<p>First, we strip off a leading sign, if any, using
+<a href="https://www.gnu.org/software/bash/manual/bash.html#Shell-Parameter-Expansion">parameter expansion</a>:</p>
+
+<pre><code>line=${line/#[-+]/}
+</code></pre>
+
+<p>This takes what is in the variable <code>line</code>, and performs a substitution:
+replacing <code>#[-+]</code> with nothing (because there is nothing following
+the second slash. Where most languages use <code>^</code> to indicate the
+beginning of a string, here, this role is played by <code>#</code>.</p>
+
+<p>We now check whether we are left with just digits:</p>
+
+<pre><code>if [[ $line =~ [^0-9] ]]
+then echo "not an integer"
+</code></pre>
+
+<p><a href="https://www.gnu.org/software/bash/manual/bash.html#Bash-Conditional-Expressions"><code>[[</code></a> introduces <em>Bash Conditional
+Expressions</em>. The expression results in a true/false result. Here,
+we are matching <code>line</code> against a regular expression. Note that we
+don't need a delimiter here.</p>
+
+<p>Checking for the right amount of digits:</p>
+
+<pre><code>elif ((${#line} % 2 == 0))
+then echo "even number of digits"
+elif ((${#line} &lt; 3))
+then echo "too short"
+</code></pre>
+
+<p><a href="https://www.gnu.org/software/bash/manual/bash.html#Shell-Arithmetic"><code>((</code></a> introduces <em>Shell Arithmetic</em>.</p>
+
+<p>If we have passed all validations, we can print the right substring:</p>
+
+<pre><code>echo ${line:$(((${#line} - 3) / 2)):3}
+</code></pre>
+
+<p>We do this with several other
+<a href="https://www.gnu.org/software/bash/manual/bash.html#Shell-Parameter-Expansion">parameter expansions</a>.</p>
+
+<p><code>${#line}</code> is the first parameter expansion. The result is the length
+of the string in <code>line</code>.</p>
+
+<p><code>$(((${#line} - 3) / 2))</code> takes what is inside <code>$(( ))</code> and treats
+it as an arithmetic expression. The result is the start index of
+substring we want.</p>
+
+<p>We use another type of parameter expansion to get the substring:
+<code>${line:position:length}</code> gets <code>length</code> characters from <code>line</code>,
+starting at position <code>position</code>.</p>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-135/abigail/bash/ch-1.sh">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>C</h3>
+
+<div class = "section">
+<p>We start off with reading a line from standard input. <a href="https://www.freebsd.org/cgi/man.cgi?apropos=0&amp;sektion=0&amp;query=getline"><code>getline</code></a>
+will do the job:</p>
+
+<pre><code>char *  line    = NULL;
+size_t  len     = 0;
+size_t  str_len;
+while ((str_len = getline (&amp;line, &amp;len, stdin)) != -1) {
+</code></pre>
+
+<p>The string (with terminating newline) will be put into the character
+array <code>line</code>, while the return value of <code>getline</code> is the length
+of the line. (<code>getline</code> will do the <a href="https://www.freebsd.org/cgi/man.cgi?apropos=0&amp;sektion=0&amp;query=malloc"><code>malloc</code></a>ing for us, and
+populate <code>len</code> with the number of bytes allocated; we will not
+use <code>len</code> in our program).</p>
+
+<p>We start with removing a leading sign, if any (if there is any
+space following the sign, we will remove this as well):</p>
+
+<pre><code>char * line_ptr = line;
+if (* line_ptr == '-' || * line_ptr == '+') {
+    str_len --;
+    line_ptr ++;
+    while (isspace (* line_ptr)) {
+        line_ptr ++;
+        str_len --;
+    }
+}
+</code></pre>
+
+<p>The result is that afterwards, <code>line_ptr</code> will point to the first
+character following the sign. </p>
+
+<p>Next step is to make sure all the other characters are digits.
+Note that our string still contains a newline:</p>
+
+<pre><code>bool done = false;
+char * line_ptr2 = line_ptr;
+while (* line_ptr2 &amp;&amp; * line_ptr2 != '\n') {
+    if (!isdigit (* line_ptr2)) {
+        printf ("not an integer\n");
+        done = true;
+        break;
+    }
+    line_ptr2 ++;
+}
+if (done) {
+    continue;
+}
+</code></pre>
+
+<p>C cannot break out of nested loops, so we determine the input
+contains a non-digit, we set a boolean, and do the 
+<code>continue</code> after we're done with the inner loop.</p>
+
+<p>We can now check we have the right amount of digits (while
+remembering we have a trailing newline):</p>
+
+<pre><code>if (str_len % 2 == 1) {
+    printf ("even number of digits\n");
+    continue;
+}
+
+if (str_len &lt; 4) {
+    printf ("too short\n");
+    continue;
+}
+</code></pre>
+
+<p>We can print the middle three digits, which we print one by one,
+followed by a newline:</p>
+
+<pre><code>size_t mid = (str_len - 3) / 2;
+for (size_t i = 0; i &lt; 3; i ++) {
+    printf ("%c", line_ptr [mid + i]);
+}
+printf ("\n");
+</code></pre>
+
+<p>It's C, so, we shouldn't forget the <a href="https://www.freebsd.org/cgi/man.cgi?apropos=0&amp;sektion=0&amp;query=free"><code>free</code></a> allocated
+memory:</p>
+
+<pre><code>free (line);
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-135/abigail/c/ch-1.c">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>Go</h3>
+
+<div class = "section">
+<p>First, we have to read a line from standard input:</p>
+
+<pre><code>    var reader = bufio . NewReader (os. Stdin)
+main_loop:
+    for {
+        var text, err = reader . ReadString ('\n')
+        if (err != nil) {
+            break
+        }
+</code></pre>
+
+<p>Stripping off the newline we do with <a href="https://pkg.go.dev/strings#TrimRight"><code>TrimRight</code></a> in the <code>string</code>
+module:</p>
+
+<pre><code>text = strings . TrimRight (text, "\n")
+</code></pre>
+
+<p>Go has immutable strings, so we have a leading sign, we take a
+<a href="https://go.dev/blog/slices-intro"><em>slice</em></a>
+from the string, and assign that back to the string:</p>
+
+<pre><code>if (text [0:1] == "-" || text [0:1] == "+") {
+    text = text [1:]
+}
+</code></pre>
+
+<p>We now check whether the string contains just digits. For that,
+we iterate over the <a href="https://go.dev/blog/strings"><em>runes</em></a> of the string:</p>
+
+<pre><code>for _, rune := range text {
+    if rune &lt; '0' || rune &gt; '9' {
+        fmt . Print ("not an integer\n")
+        continue main_loop
+    }
+}
+</code></pre>
+
+<p>We can now check for the correct number of digits. 
+<a href="https://pkg.go.dev/builtin#len"><code>len</code></a> returns the length of a string:</p>
+
+<pre><code>if len (text) % 2 == 0 {
+    fmt . Print ("even number of digits\n")
+    continue main_loop
+}
+
+if len (text) &lt; 3 {
+    fmt . Print ("too short\n")
+    continue main_loop
+}
+</code></pre>
+
+<p>Now we can print the required digits, using a slice:</p>
+
+<pre><code>fmt . Printf ("%s\n", text [(len (text) - 3) / 2 :
+                            (len (text) + 3) / 2])
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-135/abigail/go/ch-1.go">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>Java</h3>
+
+<div class = "section">
+<p>Java requires even more work to be done to just read a line of input:</p>
+
+<pre><code>Scanner scanner = new Scanner (System . in);
+try {
+    while (true) {
+        String line = scanner . nextLine ();
+</code></pre>
+
+<p>This time, we first check whether we have an integer, by using a regular
+expression. The
+<a href="https://docs.oracle.com/javase/7/docs/api/java/util/regex/Pattern.html#matches(java.lang.String,%20java.lang.CharSequence)"><code>matches</code></a>
+function in the <code>Pattern</code> class
+tries to match the given pattern against the given string:</p>
+
+<pre><code>if (!Pattern . matches ("^[-+]?[0-9]+$", line)) {
+    System . out . println ("not an integer");
+    continue;
+}
+</code></pre>
+
+<p>If the string starts with a sign, we get rid of it. Java strings
+are immutable, so we take a substring and assign it back to the
+string:</p>
+
+<pre><code>if (Pattern . matches ("^[-+].*", line)) {
+    line = line . substring (1);
+}
+</code></pre>
+
+<p>We can now check for the right amount of digits:</p>
+
+<pre><code>int ll = line . length ();
+if (ll % 2 == 0) {
+    System . out . println ("even number of digits");
+    continue;
+}
+if (ll &lt; 3) {
+    System . out . println ("too short");
+    continue;
+}
+</code></pre>
+
+<p>Finally, we print the wanted digits:</p>
+
+<pre><code>System . out . println (line . substring ((ll - 3) / 2,
+                                         (ll + 3) / 2));
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-135/abigail/java/ch-1.java">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>Lua</h3>
+
+<div class = "section">
+<p>First, we strip off the sign. <code>line</code> contains
+a line from standard input:</p>
+
+<pre><code>line = line : gsub ("^[-+]%s*", "")
+</code></pre>
+
+<p>Our set of validations:</p>
+
+<pre><code>if line : find ("%D") then
+    print ("not an integer")
+else
+    if line : len () % 2 == 0 then
+        print ("even number of digits")
+    else
+        if line : len () &lt; 3 then
+            print ("too short")
+</code></pre>
+
+<p>And the printing of the middle digits:</p>
+
+<pre><code>local start = 1 + (line : len () - 3) / 2
+print (line : sub (start, start + 2))
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-135/abigail/lua/ch-1.lua">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>Node.js</h3>
+
+<div class = "section">
+<p>First, we strip off the sign and the trailing newline. <code>line</code> contains
+a line from standard input:</p>
+
+<pre><code>line . replace (/^[-+]/, '') . trim ()
+</code></pre>
+
+<p><a href="#"><code>replace</code></a> takes two arguments, a pattern, and a replacement,
+while <a href="#"><code>trim</code></a> removes whitespace from either end of the string.
+Neither method changes a string &mdash; they return the modified string.</p>
+
+<p>We now do the validations as a sequence of <code>if/else</code> statements:</p>
+
+<pre><code>if (line . match (/[^0-9]/)) {
+    console . log ("not an integer")
+}
+else {
+    if (line . length % 2 == 0) {
+        console . log ("even number of digits")
+    }
+    else {
+        if (line . length &lt; 3) {
+            console . log ("too short")
+        }
+    }
+}
+</code></pre>
+
+<p><a href="#"><code>match</code></a> takes a pattern as argument, and returns true if the
+pattern matches the string it's applied to.</p>
+
+<p>Finally, the printing:</p>
+
+<pre><code>console . log (line . substr ((line . length - 3) / 2, 3))
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-135/abigail/node/ch-1.js">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>Perl</h3>
+
+<div class = "section">
+<p>Perl has powerful regexes: it has the ability to run code, and dynamically
+create sub-patterns. </p>
+
+<p>We use this to validate the number, and select the middle digits at the
+same time; if it fails, we do additional checks, all using regular expressions
+to find out why it fails:</p>
+
+<pre><code>say /^[-+]?([0-9]*)([0-9]{3})([0-9]*)$
+    (??{length ($1) == length ($3) ? "" : "(*FAIL)"})/x
+                              ? $2
+  : /^[-+]?[0-9]*[^0-9].*\n/  ? "not an integer"
+  : /^[-+]?(?:[0-9][0-9])*\n/ ? "even number of digits"
+  :                             "too short"
+</code></pre>
+
+<p><code>$_</code> contains the line of input (with a trailing newline). The first
+regular expression does the validation, and selecting of the middle
+digits. We can break down the expression as follows:</p>
+
+<pre><code>/^               # Match from the beginning
+ [-+]?           # An optional sign
+ ([0-9]*)        # Zero or more digits; capture group $1
+ ([0-9]{3})      # Exactly three digits; capture group $2
+ ([0-9]*)        # Zero or more digits; capture group $3
+ $               # End of string
+ (??{            # Run the following code, and treat its value
+                 # as a sub-pattern to be matched at this point.
+     length ($1) == length ($3)  # If capture groups $1 and $3 are same length:
+             ? ""                # Match an empty string (always succeeds)
+             : "(*FAIL)"         # Else fail (and backtrack)
+ })/x
+</code></pre>
+
+<p>The latter part, forcing that the first and third capture group
+have the same number of digits, means that if the entire match
+succeeds, <code>$2</code> contains the middle three digits: it must be the
+middle three, as the entire number (without sign) is <code>$1$2$3</code>,
+and <code>$1</code> and <code>$3</code> contain the same amount of digits.</p>
+
+<p>If the match fails, we need to find out why it fails:</p>
+
+<pre><code>/^[-+]?[0-9]*[^0-9].*\n/
+</code></pre>
+
+<p>This pattern matches if the input line contains, except a leading sign
+and trailing newline, a character which is not a digit.</p>
+
+<pre><code>/^[-+]?(?:[0-9][0-9])*\n/ 
+</code></pre>
+
+<p>This pattern matches if, and only if, the input line contains an even
+number of digits (note that if we execute this pattern, we already know
+all the characters between the beginning (and possible sign) and the
+trailing newline are all digits.</p>
+
+<p>If this last pattern fails as well, the only possibility which is left,
+is that the input number contains less than three digits.</p>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-135/abigail/perl/ch-1.pl">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>Python</h3>
+
+<div class = "section">
+<p>The Python solution follows the same strategy as most implementations.</p>
+
+<p>First, we remove any leading sign, and the trailing newline. <code>line</code>
+contains our line of input:</p>
+
+<pre><code>line = re . sub (r'^[-+]', '', line . strip ())
+</code></pre>
+
+<p>String are immutable in Python, so all the methods return the modified
+string, without modifying the original. </p>
+
+<p>Validating and printing the middle three digits is easy:</p>
+
+<pre><code>ll = len (line)
+if re . search (r'[^0-9]', line):
+    print ("not an integer")
+elif ll % 2 == 0:
+    print ("even number of digits")
+elif ll &lt; 3:
+    print ("too short")
+else:
+    print (line [(ll - 3) // 2 : (ll + 3) // 2])
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-135/abigail/python/ch-1.py">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>Ruby</h3>
+
+<div class = "section">
+<p>The Ruby solution looks very similar to the Python solution. The
+current line of input is in the variable <code>line</code>:</p>
+
+<pre><code>line = line . strip() . gsub(/^[-+]/, "")
+ll   = line . length
+if line . match (/[^0-9]/) then
+    puts ("not an integer")
+elsif ll % 2 == 0 then
+    puts ("even number of digits")
+elsif ll &lt; 3 then
+    puts ("too short")
+else
+    puts (line [((ll - 3) / 2) . to_i .. ((ll + 2) / 2) . to_i])
+end
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-135/abigail/ruby/ch-1.rb">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>Scheme</h3>
+
+<div class = "section">
+<p>Our Scheme solution isn't very different from other solutions &mdash; it just
+<em>looks</em> different:</p>
+
+<pre><code>(define line (read-line))
+</code></pre>
+
+<p>This creates a variable <code>line</code>, and we initialize it with a line from
+standard input.</p>
+
+<p>We first check whether the input contains an integer, and we capture
+the numbers:</p>
+
+<pre><code>(set! is-number (string-match "^[-+]?([0-9]+)$" line))
+</code></pre>
+
+<p><code>string-match</code> takes two arguments, and matches the first argument
+(the pattern) against the second argument. If the match succeeds,
+a <em>match object</em> is returned; else, <code>#f</code> is returned.</p>
+
+<p>We first check whether the match succeed; if it doesn't, we print
+the appropriate message:</p>
+
+<pre><code>(if (not is-number)
+    (display "not an integer")
+    ...
+</code></pre>
+
+<p>If it does match, <code>not is-number</code> is fails, so the <code>if</code> statement executes
+its third argument (represented by <code>...</code> above). This third argument is:</p>
+
+<pre><code>(begin
+    (set! number (match:substring is-number 1))
+    (set! ll (string-length number))
+    (if (= (modulo ll 2) 0)
+        (display "even number of digits")
+        (if (&lt; ll 3)
+            (display "too short")
+            (display (substring number (/ (- ll 3) 2)
+                                       (/ (+ ll 3) 2)))
+        )
+    )
+)
+</code></pre>
+
+<p>Remember the capture in the first pattern? The match object can be
+queried for that using <code>match:substring</code>. This function takes the
+arguments, a match object, and the number of the capture we want.
+In our case, this is the number without sign.</p>
+
+<p><code>string-length</code> returns the length of its argument.</p>
+
+<p>The rest of the code is fairly straightforward. Remember that in
+scheme, all operators are postfix operators (and as such, there
+isn't any difference between operators and functions).</p>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-135/abigail/scheme/ch-1.scm">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>Tcl</h3>
+
+<p>Our Tcl solution starts with:</p>
+
+<pre><code>if {[regexp {^[-+]?([0-9]+)$} $line -&gt; digits]} {
+    ...
+} else {
+    puts "not an integer"
+}
+</code></pre>
+
+<p>where <code>$line</code> contains the current line of input. <code>regexp</code> takes
+at least two parameters: a pattern, a value to match against.
+Subsequent parameters, if any, are use to write captures to,
+where the first capture is the entire match; each subsequent capture
+is a next group of parens. Here <code>-&gt;</code> isn't a funny piece of syntax,
+it is the third argument to <code>regexp</code>, indicating we don't need
+the entire match. But we do want what was matched by the first set
+of parens: this is written to the variable <code>digits</code>.</p>
+
+<p>If the match fails, we're printing <code>not an integer</code>. Else, we run what's
+in the placeholder <code>...</code>:</p>
+
+<pre><code>set ll [string length $digits]
+if {[expr $ll % 2] == 0} {
+    puts "even number of digits"
+} elseif {[expr $ll &lt; 3]} {
+    puts "too short"
+} else {
+    puts [string range $digits [expr ($ll - 3) / 2]\
+                               [expr ($ll + 2) / 2]]
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-135/abigail/tcl/ch-1.tcl">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+
+<hr id = 'last-line'>
+<div class = 'trailer'>
+<p class = 'prev'><a class = "prev" href = "">&#x261C;</a></p>
+<p class = 'issue'>Please leave any comments as a
+  <a href = 'https://github.com/Abigail/Abigail.github.io/issues'
+     title = 'GitHub issue'>GitHub issue</a>.
+<p class = 'next'><a class = "next" href = "">&#x261E;</a></p>
+</div>
+
+</body>
+</html>
