@@ -41,6 +41,7 @@ my $FREEBSD_URL    = "https://www.freebsd.org/cgi/man.cgi?" .
 my $PYTHON_URL     = "https://docs.python.org/3/library/functions.html";
 my $NODE_URL       = "https://developer.mozilla.org/en-US/docs/Web/" .
                                                    "JavaScript/Reference";
+my $GO_URL         = "https://pkg.go.dev";
 my $WIKI_URL       = "https://en.wikipedia.org/wiki";
 my $OEIS_URL       = "https://oeis.org";
 my $MATH_WORLD_URL = "https://mathworld.wolfram.com";
@@ -84,6 +85,8 @@ my %LANGUAGE_INFO = (
     SQL           => {},
     Tcl           => {},
 );
+
+my %LINK_GROUP; init_link_group ();
 
 chdir $TOP_DIR or die "chdir: $!";
 
@@ -167,14 +170,22 @@ sub make_link (%args) {
             }
         }
         elsif ($language eq "GNU AWK" || $language eq "AWK") {
-            $url = $GAWK_URL . "#" . $link;
+            $url = $GAWK_URL . "#" . ($link || $LINK_GROUP {AWK} {$anchor}
+                                            || "");
         }
         elsif ($language eq "Bash") {
-            $url = $BASH_URL . "#" . $link;
+            $url = $BASH_URL . "#" . ($link || $LINK_GROUP {Bash} {$anchor}
+                                            || "");
         }
         elsif ($language eq "C") {
             if (!$link || $link =~ /^[0-9]$/) {
                 $url = sprintf $FREEBSD_URL . "=" . $anchor => $link || 0;
+            }
+        }
+        elsif ($language eq "Go") {
+            if (!$link && $LINK_GROUP {Go} {$anchor}) {
+                $url = $GO_URL . "/" . $LINK_GROUP {Go} {$anchor}
+                               . "#" . $anchor;
             }
         }
         elsif ($language eq "Python") {
@@ -466,5 +477,33 @@ foreach my $source_file (@sources) {
         --
     close $fh or die "close $html_file: $!";
 }
+
+
+
+sub init_link_group () {
+    my @entries = (
+        [qw [AWK String-Functions
+                 asort asorti gensub gsub index length match patsplit split
+                 sprintf strtonum sub substr tolower toupper]],
+        [qw [Bash Bash-Builtins
+                  alias bind builtin caller command declare echo enable
+                  help let local logout mapfile printf read readarray
+                  typeset ulimit unalias]],
+        [qw [Go strings
+                  TrimRight TrimRightFunc TrimSpace TrimSuffix]],
+        [qw [Go builtin
+                  append cap close complex copy delete imag len make
+                  new panic print println real recover]],
+    );
+
+    foreach my $entry (@entries) {
+        my $language = shift @$entry;
+        my $anchor   = shift @$entry;
+        foreach my $function (@$entry) {
+            $LINK_GROUP {$language} {$function} = $anchor;
+        }
+    }
+}
+
 
 __END__
