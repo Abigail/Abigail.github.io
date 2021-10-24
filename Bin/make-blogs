@@ -33,6 +33,7 @@ my $FONTS          = join "&" => map {"family=$_"} @FONTS;
 my $FONT_URL       = "https://fonts.googleapis.com/css2?$FONTS&display=swap";
 
 my $PERLFUNC_URL   = "https://perldoc.perl.org/perlfunc";
+my $PERLDOC_URL    = "https://perldoc.perl.org";
 my $METACPAN_URL   = "https://metacpan.org/pod";
 my $GAWK_URL       = "https://www.gnu.org/software/gawk/manual/gawk.html";
 my $BASH_URL       = "https://www.gnu.org/software/bash/manual/bash.html";
@@ -167,6 +168,9 @@ sub make_link (%args) {
                 #
                 $url = $anchor =~ /::/ ? $METACPAN_URL . "/" . $anchor
                                        : $PERLFUNC_URL . "#" . $anchor;
+            }
+            elsif ($link =~ /doc:/p) {
+                $url = $PERLDOC_URL . "/" . ${^POSTMATCH}
             }
         }
         elsif ($language eq "GNU AWK" || $language eq "AWK") {
