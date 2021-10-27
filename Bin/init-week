@@ -99,8 +99,8 @@ sub format_description ($description) {
                  =~ s!&amp;!&!gr 
                  =~ s!(\n\h*){2,}!\n\n!gr
                  =~ s!\n+$!!r
-                 =~ s!^<blockquote>\n?!>>>>\n!gr
-                 =~ s!^</blockquote>\n?!<<<<\n!gr
+                 =~ s!^(?:> )*\K<blockquote>\n?!>>>>\n!gr
+                 =~ s!^(?:> )*\K</blockquote>\n?!<<<<\n!gr
     ;
 }
 
