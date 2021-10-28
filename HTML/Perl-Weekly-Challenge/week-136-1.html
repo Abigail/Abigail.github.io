@@ -1,0 +1,234 @@
+<html>
+<head>
+<title>Perl Weekly Challenge 136: Two Friendly</title>
+<script src = "https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id = "MathJax-script" async src = "https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.js"></script>
+<script src = '../../JavaScript/jquery.js'></script>
+<script src = '../../JavaScript/navigation.js'></script>
+<link rel = 'preconnect' href = 'https://fonts.gstatic.com'>
+<link rel = 'stylesheet' href = 'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
+<link rel = 'stylesheet' href = '../../Styles/Perl-Weekly-Challenge/main.css'>
+</head>
+
+<body><h1>Perl Weekly Challenge 136: Two Friendly</h1><div class = "byline">
+by Abigail<br>
+<img src = "../../Images/jan_sluiters.jpg">
+</div>
+
+
+<h2><a href="https://theweeklychallenge.org/blog/perl-weekly-challenge-136/#TASK1">Challenge</a></h2>
+
+<blockquote>
+  <p>You are given 2 positive numbers, <code>$m</code> and <code>$n</code>.</p>
+  
+  <p>Write a script to find out if the given two numbers are <em>Two Friendly</em>.</p>
+  
+  <blockquote>
+    <p>Two positive numbers, m and n are two friendly when
+    <span class = 'latex-inline'>\(\text{gcd }(m, n) = 2^p\)</span> where <span class = 'latex-inline'>\(p > 0\)</span>. The greatest common divisor
+    (gcd) of a set of numbers is the largest positive number that divides all
+    the numbers in the set without remainder.</p>
+  </blockquote>
+</blockquote>
+
+<h3>Example 1</h3>
+
+<pre><code>Input: $m = 8, $n = 24
+Output: 1
+
+Reason: gcd(8,24) = 8 = 2^3
+</code></pre>
+
+<h3>Example 2</h3>
+
+<pre><code>Input: $m = 26, $n = 39
+Output: 0
+
+Reason: gcd(26,39) = 13
+</code></pre>
+
+<h3>Example 3</h3>
+
+<pre><code>Input: $m = 4, $n = 10
+Output: 1
+
+Reason: gcd(4,10) = 2 = 2^1
+</code></pre>
+
+<h2>Solution</h2>
+
+<div class = "section">
+<p>We need to do two things: calculate the greatest common divisor, and
+determine whether a number is a power of 2.</p>
+</div>
+
+<h3>Greatest Common Divisor</h3>
+
+<div class = "section">
+<p>Calculating the greatest common divisor is something we have done
+several times in previous weeks. So we will just copy its code.</p>
+
+<p>For most languages, we use <a href="https://en.wikipedia.org/wiki/Binary_GCD_algorithm">Stein's algorithm</a>.</p>
+
+<p>Here is Stein's algorithm in C:</p>
+
+<pre><code>long long gcd (long long u, long long v) {
+    long long u_odd = u % 2;
+    long long v_odd = v % 2;
+
+    return u == v || !v     ? u
+         :           !u     ? v
+         : !u_odd &amp;&amp; !v_odd ? gcd (u &gt;&gt; 1, v &gt;&gt; 1) &lt;&lt; 1
+         : !u_odd &amp;&amp;  v_odd ? gcd (u &gt;&gt; 1, v)
+         :  u_odd &amp;&amp; !v_odd ? gcd (u,      v &gt;&gt; 1)
+         :  u     &gt;   v     ? gcd (u - v,  v)
+         :                    gcd (v - u,  u);
+}
+</code></pre>
+
+<p>and here it is in Scheme:</p>
+
+<pre><code>(define (gcd u v)
+    (define u_odd (= (modulo u 2) 1))
+    (define v_odd (= (modulo v 2) 1))
+    (cond ((= u v) u)
+          ((= u 0) v)
+          ((= v 0) u)
+          ((and (not u_odd) (not v_odd)) (ash (gcd (ash u -1) (ash v -1)) 1))
+          ((and (not u_odd)      v_odd)       (gcd (ash u -1)      v))
+          ((and      u_odd  (not v_odd))      (gcd      u     (ash v -1)))
+          ((&gt; u v)                            (gcd (- u v) v))
+          (else                               (gcd (- v u) u)))
+)
+</code></pre>
+
+<p>A few languages don't have bit shifting operations. In those languages,
+we implemented a recursive version of 
+<a href="https://en.wikipedia.org/wiki/Euclidean_algorithm#Implementations">Euclids algorithm</a>.</p>
+
+<p>As an example, we will show the implementation in Lua:</p>
+
+<pre><code>function gcd (a, b)
+    if b &gt;  a then return gcd (b, a) end
+    if b == 0 then return a          end
+                   return gcd (b, a % b)
+end
+</code></pre>
+</div>
+
+<h3>Power of 2?</h3>
+
+<div class = "section">
+<p>To find out whether a number is a power of 2, we repeatedly divide
+that number by 2, until we cannot evenly the number by 2 again.
+If we end with the number being 1, the original was a power of 2.
+Otherwise, it is not.</p>
+
+<p>We can generalize this, by using a method <code>is_power_of_n</code>, which
+takes two arguments, <code>number</code> and <code>n</code>, and which returns true if
+<span class = 'latex-inline'>\(\text{number} = n^p\)</span> for some non-negative integer p.</p>
+
+<p>We define this function recursively:</p>
+
+<ul>
+<li>if <code>number</code> is less than <code>1</code>, we return false.</li>
+<li>if <code>number</code> equals <code>1</code>, we return true, as <span class = 'latex-inline'>\(n^0 = 1\)</span> for all <span class = 'latex-inline'>\(n \neq 0\)</span>.</li>
+<li>if <code>number % n</code> is not <code>0</code>, we return false, as we cannot
+evenly divide <code>number</code> by <code>n</code>.</li>
+<li>otherwise, we recurse calling <code>is_power_of_n</code> with <code>number / n</code> and <code>n</code>
+as arguments.</li>
+</ul>
+
+<p>We also create a wrapper function <code>is_power_of_2</code>, which takes one
+argument <code>number</code>, and just calls <code>is_power_of_n (number, 2)</code>.</p>
+
+<p>Here is an example implementation in R:</p>
+
+<pre><code>is_power_of_n &lt;- function (number, n) {
+         if (number &lt;  1)      {FALSE}
+    else if (number == 1)      {TRUE}
+    else if (number %% n != 0) {FALSE}
+    else                       {is_power_of_n (number / n, n)}
+}
+
+is_power_of_2 &lt;- function (number) {
+    is_power_of_n (number, 2)
+}
+</code></pre>
+
+<p>and an implementation in Tcl:</p>
+
+<pre><code>proc is_power_of_n {number n} {
+    if {$number &lt;  1} {return 0}
+    if {$number == 1} {return 1}
+    if {$number % $n} {return 0}
+                       return [is_power_of_n [expr $number / $n] $n]
+}
+
+proc is_power_of_2 {number} {
+    return [is_power_of_n $number 2]
+}
+</code></pre>
+</div>
+
+<h3>Tying it all together</h3>
+
+<div class = "section">
+<p>What's rest is just a few lines of code which read in the data,
+calls the two functions, and prints the result. Note that if the
+greatest common divisor equals <code>1</code>, this is a power of <code>2</code>, 
+but it's not a two friendly, so we check for that.</p>
+
+<p>This is the Perl code tying it together:</p>
+
+<pre><code>while (&lt;&gt;) {
+    my  $r = gcd split;
+    say $r &gt; 1 &amp;&amp; is_power_of_2 ($r) ? 1 : 0
+}
+</code></pre>
+
+<p>And here is how we do this in Lua:</p>
+
+<pre><code>for line in io . lines () do
+    local _, _, n, m = line : find ("([0-9]+)%s+([0-9]+)")
+    local r = gcd (tonumber (n), tonumber (m))
+    if r &gt; 1 and is_power_of_2 (r) then
+        print (1)
+    else
+        print (0)
+    end
+end
+</code></pre>
+</div>
+
+<h3>Implementations</h3>
+
+<p>We have implementations in
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-136/abigail/awk/ch-1.gawk">GNU AWK</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-136/abigail/bash/ch-1.sh">Bash</a>
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-136/abigail/bc/ch-1.bc">bc</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-136/abigail/c/ch-1.c">C</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-136/abigail/go/ch-1.go">Go</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-136/abigail/java/ch-1.java">Java</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-136/abigail/lua/ch-1.lua">Lua</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-136/abigail/node/ch-1.js">Node.js</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-136/abigail/pascal/ch-1.p">Pascal</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-136/abigail/perl/ch-1.pl">Perl</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-136/abigail/python/ch-1.py">Python</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-136/abigail/r/ch-1.r">R</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-136/abigail/ruby/ch-1.rb">Ruby</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-136/abigail/scheme/ch-1.scm">Scheme</a>, and
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-136/abigail/tcl/ch-1.tcl">Tcl</a>
+on <a href="https://www.github.com">GitHub</a>.</p>
+
+<hr id = 'last-line'>
+<div class = 'trailer'>
+<p class = 'prev'><a class = "prev" href = "">&#x261C;</a></p>
+<p class = 'issue'>Please leave any comments as a
+  <a href = 'https://github.com/Abigail/Abigail.github.io/issues'
+     title = 'GitHub issue'>GitHub issue</a>.
+<p class = 'next'><a class = "next" href = "">&#x261E;</a></p>
+</div>
+
+</body>
+</html>

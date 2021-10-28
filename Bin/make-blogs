@@ -11,9 +11,10 @@ use experimental 'lexical_subs';
 
 use Text::Markdown qw [markdown];
 
-my $POLYFILL_URL  = "https://polyfill.io/v3/polyfill.min.js?features=es6";
-my $MATHJAX_URL   = "https://cdn.jsdelivr.net/npm/mathjax@3/" .
-                            "es5/tex-mml-chtml.js";
+my $POLYFILL_URL   = "https://polyfill.io/v3/polyfill.min.js?features=es6";
+my $MATHJAX_URL    = "https://cdn.jsdelivr.net/npm/mathjax@3/" .
+                             "es5/tex-mml-chtml.js";
+my $CHART_URL      = "https://cdn.jsdelivr.net/npm/chart.js";
 
 my $HOME           = $ENV {HOME};
 my $TOP_DIR        = "$HOME/GitHub/Blogs";
@@ -33,6 +34,7 @@ my $FONTS          = join "&" => map {"family=$_"} @FONTS;
 my $FONT_URL       = "https://fonts.googleapis.com/css2?$FONTS&display=swap";
 
 my $PERLFUNC_URL   = "https://perldoc.perl.org/perlfunc";
+my $PERLDOC_URL    = "https://perldoc.perl.org";
 my $METACPAN_URL   = "https://metacpan.org/pod";
 my $GAWK_URL       = "https://www.gnu.org/software/gawk/manual/gawk.html";
 my $BASH_URL       = "https://www.gnu.org/software/bash/manual/bash.html";
@@ -91,10 +93,12 @@ my %LINK_GROUP; init_link_group ();
 chdir $TOP_DIR or die "chdir: $!";
 
 
-sub header ($title, $week = 0) {
+sub header ($title, %args) {
     #
     # Return the header of the HTML page
     #
+
+    my $week = $args {week} || 0;
 
     my $styles = join "\n" =>
         map  {"<link rel = 'stylesheet' href = '../../$_'>"}
@@ -104,14 +108,21 @@ sub header ($title, $week = 0) {
                         "$PWC_DIR/week-$week";
 
     my $scripts = join "\n" =>
-        map {"<script src = '../../$JAVASCRIPT_DIR/$_.js'></script>"}
-             @SCRIPTS;
+        map  {"<script src = '../../$_'></script>"}
+        grep {-f}
+        map  {"$JAVASCRIPT_DIR/$_.js"}
+             @SCRIPTS, "$PWC_DIR/week-$week";
 
-    return <<~ "--";
+    my $chart_js = "";
+       $chart_js = "<script id = 'chart-script' async src = '$CHART_URL'>" .
+                  "</script>" if $args {has_canvas};
+
+    return <<~ "--" =~ s/^\s*\n//gmr;
         <head>
         <title>$title</title>
         <script src = "$POLYFILL_URL"></script>
         <script id = "MathJax-script" async src = "$MATHJAX_URL"></script>
+        $chart_js
         $scripts
         <link rel = 'preconnect' href = 'https://fonts.gstatic.com'>
         <link rel = 'stylesheet' href = '$FONT_URL'>
@@ -167,6 +178,9 @@ sub make_link (%args) {
                 #
                 $url = $anchor =~ /::/ ? $METACPAN_URL . "/" . $anchor
                                        : $PERLFUNC_URL . "#" . $anchor;
+            }
+            elsif ($link =~ /doc:/p) {
+                $url = $PERLDOC_URL . "/" . ${^POSTMATCH}
             }
         }
         elsif ($language eq "GNU AWK" || $language eq "AWK") {
@@ -469,9 +483,10 @@ foreach my $source_file (@sources) {
 
     $html_text = post_process ($html_text);
 
-    my ($title) = $html_text =~ m{<h1>(.*?)</h1>};
+    my ($title)     = $html_text   =~ m{<h1>(.*?)</h1>};
+    my  $has_canvas = $source_text =~ /^<canvas/m;
 
-    my $header  = header ($title, $week);
+    my $header  = header ($title, week => $week, has_canvas => $has_canvas);
     my $trailer = trailer ($week);
     open my $fh, ">", $html_file or die "open $html_file: $!";
     print $fh <<~ "--";

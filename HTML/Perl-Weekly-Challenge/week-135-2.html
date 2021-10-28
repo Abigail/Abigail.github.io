@@ -1,0 +1,487 @@
+<html>
+<head>
+<title>Perl Weekly Challenge 135: Validate SEDOL</title>
+<script src = "https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id = "MathJax-script" async src = "https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.js"></script>
+<script src = '../../JavaScript/jquery.js'></script>
+<script src = '../../JavaScript/navigation.js'></script>
+<link rel = 'preconnect' href = 'https://fonts.gstatic.com'>
+<link rel = 'stylesheet' href = 'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
+<link rel = 'stylesheet' href = '../../Styles/Perl-Weekly-Challenge/main.css'>
+</head>
+
+<body><h1>Perl Weekly Challenge 135: Validate SEDOL</h1><div class = "byline">
+by Abigail<br>
+<img src = "../../Images/jan_sluiters.jpg">
+</div>
+
+
+<h2><a href="https://theweeklychallenge.org/blog/perl-weekly-challenge-135/#TASK2">Challenge</a></h2>
+
+<blockquote>
+  <p>You are given 7-characters alphanumeric SEDOL.</p>
+  
+  <p>Write a script to validate the given SEDOL. Print 1 if it is a valid SEDOL otherwise 0.</p>
+  
+  <p>For more information about <strong>SEDOL</strong>, please checkout the <a href="https://en.wikipedia.org/wiki/SEDOL"><strong>wikipedia</strong></a> page.</p>
+</blockquote>
+
+<h3>Example 1</h3>
+
+<pre><code>Input: $SEDOL = '2936921'
+Output: 1
+</code></pre>
+
+<h3>Example 2</h3>
+
+<pre><code>Input: $SEDOL = '1234567'
+Output: 0
+</code></pre>
+
+<h3>Example 3</h3>
+
+<pre><code>Input: $SEDOL = 'B0YBKL9'
+Output: 1
+</code></pre>
+
+<h2>Discussion</h2>
+
+<div class = "section">
+<p>The <a href="https://en.wikipedia.org/wiki/SEDOL">SEDOL Wikipedia page</a> explains SEDOL codes consists of
+six alpha numerical characters, followed by a check digit. Although not
+explicitly mentioned, all the examples, including the example code,
+assume the letters are capitals. Vowels are not used. (Vowels in this
+context means the letters <code>A</code>, <code>E</code>, <code>I</code>, <code>O</code>, and <code>U</code>; <code>Y</code> is not a vowel
+here.)</p>
+
+<p>To calculate the checksum, we first have to map each character to a value.
+Digits map to themselves; letters map consecutively, with <code>A</code> mapping to 10,
+up to <code>Z</code> mapping to 36. For mapping purposes, we do <strong>not</strong> skip the vowels.
+We then multiply values we got after mapping the characters by different
+weights, depending on their position:</p>
+
+<ul>
+<li>First value is multiplied by 1</li>
+<li>Second value is multiplied by 3</li>
+<li>Third value is multiplied by 1</li>
+<li>Fourth value is multiplied by 3</li>
+<li>Fifth value is multiplied by 7</li>
+<li>Sixth value is multiplied by 9</li>
+<li>Seventh value (the check digit) is multiplied by 1</li>
+</ul>
+
+<p>A SEDOL code is valid if the sum of the multiplied values is evenly
+divisible by 10.</p>
+</div>
+
+<h2>Solutions</h2>
+
+<div class = "section">
+<p>Note that since we are only interested in having a check sum which
+is divisible by 10, everything will also work out if we map <code>A</code> to <code>Z</code>
+to 0 to 25. We will do this for most solutions.</p>
+
+<p>Each solution will read SEDOL codes from standard input, one code per
+line, outputting a <code>0</code> or <code>1</code> for each code, depending whether the
+code is valid or not.</p>
+</div>
+
+<h3>Perl</h3>
+
+<div class = "section">
+<p>We first start off with creating a hash which we can use to map characters
+to values:</p>
+
+<pre><code>my %c = do {my $c = 0; map {$_ =&gt; $c ++} 0 .. 9, 'A' .. 'Z'};
+</code></pre>
+
+<p>Given that, the rest is just a (long) one-liner:</p>
+
+<pre><code>say /^((?[[0-9A-Z]-[AEIOU]]))@{["((?1))" x 5]}([0-9])$/x &amp;&amp;
+($c {$1} + 3 * $c {$2} + $c {$3} + 7 * $c {$4} + 3 * $c {$5} + 9 * $c {$6} +
+ $c {$7}) % 10 == 0 || 0 while &lt;&gt;;
+</code></pre>
+
+<p>Let's have a closer look at the regexp. It starts off with:</p>
+
+<pre><code>/^                 # Match at the beginning of the string
+ (                 # Start of capture group 1
+   (?[             # Perform character class arithmetic
+     [0-9A-Z]      # Character class matching a digit, or an uppercase letter
+        -          # ... except ...
+     [AEIOU]       # vowels
+   ])              # End of character class arithmetic
+ )                 # End of capture group 1
+</code></pre>
+
+<p>So this matches the first character of a SEDOL code, and, if the entire
+pattern matches, it makes the first character available in <code>$1</code>.</p>
+
+<p>The next part of the pattern is:</p>
+
+<pre><code>@{["((?1))" x 5]}
+</code></pre>
+
+<p>What is going on here? First, we have the
+<a href="https://metacpan.org/dist/perlsecret/view/lib/perlsecret.pod#Baby-cart"><em>baby cart</em></a>
+operator, <code>@{[ ]}</code>. It evaluates the expression inside the brackets (in
+list context), and interpolates the result in the string
+(or regexp in this case).</p>
+
+<p>Inside the brackets, we have:</p>
+
+<pre><code>"((?1))" x 5
+</code></pre>
+
+<p>This is the <a href="https://perldoc.perl.org/perlop#Multiplicative-Operators"><em>repetition operator</em></a> (<code>x</code>).
+It takes the string on the left of it, and repeats that as many times as
+the value on its right. So, this results in fives times <code>((?1))</code>.</p>
+
+<p>Since this is interpolated in the regexp. Now, what does <code>((?1))</code> mean
+in a regexp? The outer parenthesis are capturing parethesis. So this
+is capturing <code>$2</code>, <code>$3</code>, <code>$4</code>, <code>$5</code>, and <code>$6</code>.</p>
+
+<p>But what is <code>(?1)</code>? This is a <a href="https://perldoc.perl.org/perlre"><em>recursive subpattern</em></a>.
+It means to repeat the same pattern as in the first capture group. 
+So, all this means we're capturing the next five characters, as long as they
+are valid SEDOL characters (else, the entire match will fail).</p>
+
+<p>The final part of the regexp is simple:</p>
+
+<pre><code>([0-9])$
+</code></pre>
+
+<p>It matches a digit, followed by the end of the string. The matched digit
+is going to be placed in <code>$7</code>.</p>
+
+<p>The regular expression matches if and only if it is matched against a
+syntactical valid SEDOL (that is, exactly seven characters, all of the
+allowed alpha numerics). And if it matches, each of its seven characters
+are available in <code>$1</code> to <code>$7</code>.</p>
+
+<p>We can now easily calculate the checksum:</p>
+
+<pre><code>    $c {$1} + 3 * $c {$2} + $c {$3} + 7 * $c {$4} +
+3 * $c {$5} + 9 * $c {$6} + $c {$7}
+</code></pre>
+
+<p>which we then check if it is divisible by <code>10</code>: <code>% 10 == 0</code>. </p>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-135/abigail/perl/ch-2.pl">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>AWK</h3>
+
+<div class = "section">
+<p>First we create an array <code>w</code> with weights, and an array <code>c</code> which maps
+characters to values:</p>
+
+<pre><code>BEGIN {
+    ord_0 = 48
+    ord_9 = 57
+    ord_A = 65
+    ord_Z = 90
+    split ("1 3 1 7 3 9 1", w, " ")
+    for (i = ord_0; i &lt;= ord_9; i ++) {
+        c [sprintf ("%c", i)] = i - ord_0
+    }
+    for (i = ord_A; i &lt;= ord_Z; i ++) {
+        c [sprintf ("%c", i)] = i - ord_A
+    }
+}
+</code></pre>
+
+<p>Then we do some validation: each character should be a digit, or an upper
+case letters excluding vowels, the string should be exactly seven
+characters long, and the string should end with a digit:</p>
+
+<pre><code>/[^0-9BCDFGHJKLMNPQRSTVWXYZ]/ {print 0; next}
+length ($0) != 7              {print 0; next}
+/[^0-9]$/                     {print 0; next}
+</code></pre>
+
+<p>Now we calculate the check sum, and verify whether it is divisible by 10:</p>
+
+<pre><code>{
+    check = 0
+    for (i = 1; i &lt;= 7; i ++) {
+        check += w [i] * c [substr ($0, i, 1)]
+    }
+    print (check % 10 == 0 ? 1 : 0)
+}
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-135/abigail/awk/ch-2.awk">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>Bash</h3>
+
+<div class = "section">
+<p>First, we create an array with weights, and some constants:</p>
+
+<pre><code>w=(1 3 1 7 3 9 1)
+
+printf -v ord_0 %d "'0"
+printf -v ord_A %d "'A"
+</code></pre>
+
+<p>With the input line in <code>line</code>, we can first so some basic validation:</p>
+
+<pre><code>if ((${#line} != 7))
+then echo 0
+elif [[ $line =~ [^0-9BCDFGHJKLMNPQRSTVWXYZ] ]]
+then echo 0
+elif [[ $line =~ [^0-9]$ ]]
+then echo 0
+else
+</code></pre>
+
+<p>If this all validates, we can calculate the check sum, and validate it:</p>
+
+<pre><code>((check = 0))
+for ((i = 0; i &lt; 7; i ++))
+do  char=${line:$i:1}
+    printf -v ord %d "'$char"
+    if [[ $char =~ [0-9] ]]
+    then ((value = ord - ord_0))
+    else ((value = ord - ord_A))
+    fi
+    ((check += ${w[i]} * value))
+done
+if ((check % 10 == 0))
+then echo 1
+else echo 0
+fi
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-135/abigail/bash/ch-2.sh">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>C</h3>
+
+<div class = "section">
+<p>An array of weights:</p>
+
+<pre><code>short w [] = {1, 3, 1, 7, 3, 9, 1};
+</code></pre>
+
+<p>We won't be using regular expressions in our C solution; instead we scan
+over the string checking each character.</p>
+
+<p>Here, we have the input line in the variable <code>line</code>, and its length
+in a variable <code>str_len</code>. The line includes a newline.</p>
+
+<pre><code>char * line_ptr = line;
+short valid = 1;
+if (str_len == 8) {
+    int check = 0;
+    for (size_t i = 0; i &lt; 7 &amp;&amp; valid; i ++) {
+        char first = 0;
+        if ('0' &lt;= line_ptr [i] &amp;&amp; line_ptr [i] &lt;= '9') {
+            first = '0';
+        }
+        else {
+            if ('B' &lt;= line_ptr [i] &amp;&amp; line_ptr [i] &lt;= 'Z' &amp;&amp;
+                       line_ptr [i] != 'E'                 &amp;&amp;
+                       line_ptr [i] != 'I'                 &amp;&amp;
+                       line_ptr [i] != 'O'                 &amp;&amp;
+                       line_ptr [i] != 'U'                 &amp;&amp;
+                       i &lt; 6) {
+                first = 'A';
+            }
+            else {
+                valid = 0;
+            }
+        }
+        check += (line_ptr [i] - first) * w [i];
+    }
+    if (check % 10 != 0) {
+        valid = 0;
+    }
+}
+else {
+    valid = 0;
+}
+printf ("%d\n", valid);
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-135/abigail/c/ch-2.c">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>Go</h3>
+
+<div class = "section">
+<p>An array of weights:</p>
+
+<pre><code>var w = [] rune {1, 3, 1, 7, 3, 9, 1}
+</code></pre>
+
+<p>In Go a <code>rune</code> is a type for (Unicode) character values.</p>
+
+<p>We pick up validation when <code>text</code> contains the line of input, trimmed
+of its newline. First, we check for syntax:</p>
+
+<pre><code>match, _ := regexp . MatchString (
+    "^[0-9BCDFGHJKLMNPQRSTVWXYZ]{6}[0-9]$", text)
+</code></pre>
+
+<p>This validates if <code>text</code> contains 6 alpha-nums (without vowels), followed
+by a digit; else we fail and continue:</p>
+
+<pre><code>if !match {
+    fmt . Print ("0\n")
+    continue
+}
+</code></pre>
+
+<p>Calculating and validating the check sum:</p>
+
+<pre><code>var check rune = 0
+for i, rune := range text {
+    if rune &lt;= '9' {
+        rune -= '0'
+    } else {
+        rune -= 'A'
+    }
+    check += w [i] * rune
+}
+if check % 10 == 0 {
+    fmt . Print ("1\n")
+} else {
+    fmt . Print ("0\n")
+}
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-135/abigail/go/ch-2.go">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>Scheme</h3>
+
+<div class = "section">
+<p>For our scheme solution, we start off with a function which takes a
+<code>byte</code> (in effect, an ASCII value), and which returns the value it
+is mapped to:</p>
+
+<pre><code>(define ords  (bytevector-&gt;u8-list (string-&gt;bytevector "09A" "UTF-8")))
+(define ord-0 (list-ref ords 0))
+(define ord-9 (list-ref ords 1))
+(define ord-A (list-ref ords 2))
+(define (byte-&gt;val b)
+    (if (&lt;= b ord-9)
+        (-  b ord-0)
+        (-  b ord-A)))
+</code></pre>
+
+<p>We start off with the three character string <code>09A</code>, which we then turn
+into a <em>bytevector</em> in <code>UTF-8</code> encoding. This is a superset of ASCII,
+and the three characters in the string are all ASCII characters.</p>
+
+<p><code>string-&gt;bytevector</code> turns the string into a bytevector, while
+<code>bytevector-&gt;u8-list</code> takes this bytevector and turns it into a
+list. This list is placed in the variable <code>ords</code>.</p>
+
+<p>Next is setting three constants, <code>ord-0</code>, <code>ord-9</code>, and <code>ord-A</code>; these
+will hold the ASCII values for <code>0</code>, <code>9</code>, and <code>A</code>. <code>list-ref</code> is a function
+which takes two arguments, a list and an index. It will return the element
+on said index.</p>
+
+<p>Finally, we define a function <code>byte-&gt;val</code> which takes a byte as argument (<code>b</code>),
+and returns the mapping value. If the byte is the value of a digit 
+<code>(&lt;= b ord-9)</code>, we subtract the value of the digit <code>0</code>: <code>(- b ord-0)</code>,
+else we subtract the value of the letter <code>A</code>: <code>(- b ord-A)</code>.</p>
+
+<p>Defining an array of weights is easy:</p>
+
+<pre><code>(define w (list 1 3 1 7 3 9 1))
+</code></pre>
+
+<p>Next, we need a bunch of variables:</p>
+
+<pre><code>(define pat "^[0-9BCDFGHJKLMNPQRSTVWXYZ]{6}[0-9]$") ;; Pattern to match with
+(define is-sedol)                                   ;; Match object
+(define valid 0)                                    ;; Is the SEDOL valid?
+(define check 0)                                    ;; Checksum
+(define values)                                     ;; mapped values of SEDOL
+(define sedol (read-line))                          ;; Line of input
+</code></pre>
+
+<p>We start with matching the input against the pattern. If it fails,
+it can never be a valid SEDOL:</p>
+
+<pre><code>(set! is-sedol (string-match pat sedol))
+</code></pre>
+
+<p>If the match succeeds, we will take the characters, map them to their
+ASCII values, and then, using the <code>byte-&gt;val</code> function above, calculate
+their mapped values:</p>
+
+<pre><code>(if (regexp-match? is-sedol)
+    (begin
+        (set! values
+            (map-in-order byte-&gt;val
+                (bytevector-&gt;u8-list
+                    (string-&gt;bytevector
+                        (match:substring is-sedol 0) "UTF-8"))))
+</code></pre>
+
+<p><code>match:substring</code> returns a capture of the match, with the zeroth capture
+being the entire match. (This is how we get rid of the newline which is
+in <code>sedol</code>). <code>string-&gt;bytevector</code> and <code>bytevector-&gt;u8-list</code> gives us
+a list of ASCII values (similar to what is explained above).
+<code>map-in-order</code> takes two arguments, a function and a list: it applies
+the function to each element of the list. Finally, the <code>set!</code> assigns
+this to <code>values</code>.</p>
+
+<p>We can now calculate the checksum without an explicit loop:</p>
+
+<pre><code>(set! check
+    (fold (lambda (weight val sum) (+ sum (* weight val))) 0 w values)
+)
+</code></pre>
+
+<p><code>lambda</code> creates an anonymous function. Here we have a function taking 
+three arguments. It will multiply the first two, and add them to the third.</p>
+
+<p><code>fold</code> takes three or more arguments: a function, an initial value,
+and a list of lists. It will repeatedly call the function, with the next
+elements of the lists as parameters. The last parameter is the return
+value of the previous invocation of the function (and the initial value
+the first time it is called). The return value of the last invocation
+if the final value.</p>
+
+<p>Now that we have the checksum, we can test whether it is divisible by <code>10</code>.
+If it does, the input is a valid SEDOL:</p>
+
+<pre><code>(if (= 0 (modulo check 10)) (set! valid 1))
+</code></pre>
+
+<p>Printing the result is easy:</p>
+
+<pre><code>(display valid)(newline)
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-135/abigail/scheme/ch-2.scm">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>Other languages</h3>
+
+<p>We also have solutions in other languages, solutions which are very 
+similar to one of the other solutions:
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-135/abigail/java/ch-2.java">Java</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-135/abigail/lua/ch-2.lua">Lua</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-135/abigail/node/ch-2.js">Node.js</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-135/abigail/python/ch-2.py">Python</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-135/abigail/ruby/ch-2.rb">Ruby</a>, and
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-135/abigail/tcl/ch-2.tcl">Tcl</a>.</p>
+
+<hr id = 'last-line'>
+<div class = 'trailer'>
+<p class = 'prev'><a class = "prev" href = "">&#x261C;</a></p>
+<p class = 'issue'>Please leave any comments as a
+  <a href = 'https://github.com/Abigail/Abigail.github.io/issues'
+     title = 'GitHub issue'>GitHub issue</a>.
+<p class = 'next'><a class = "next" href = "">&#x261E;</a></p>
+</div>
+
+</body>
+</html>
