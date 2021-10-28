@@ -4,9 +4,10 @@
 <script src = "https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
 <script id = "MathJax-script" async src = "https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.js"></script>
 <script id = 'chart-script' async src = 'https://cdn.jsdelivr.net/npm/chart.js'></script>
+<script src = '../../JavaScript/Perl-Weekly-Challenge/week-136-2-b.js'></script>
+<script src = '../../JavaScript/Perl-Weekly-Challenge/week-136-2.js'></script>
 <script src = '../../JavaScript/jquery.js'></script>
 <script src = '../../JavaScript/navigation.js'></script>
-<script src = '../../JavaScript/Perl-Weekly-Challenge/week-136-2.js'></script>
 <link rel = 'preconnect' href = 'https://fonts.gstatic.com'>
 <link rel = 'stylesheet' href = 'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
 <link rel = 'stylesheet' href = '../../Styles/Perl-Weekly-Challenge/main.css'>
@@ -145,6 +146,23 @@ up to 10,000. No number below 10,000 has more than 89 different ways
 to be partitioned into different sums of Fibonacci numbers.</p>
 
 <div><canvas id = "points"></div>
+</div>
+
+<h3>Do it yourself</h3>
+
+<div class = "section">
+<p>Input a number below, and it shows in how many ways it can be
+written as a sum of distinct Fibonacci Numbers:<br></p>
+
+<div>
+<input type = "number" id = "input">
+Compare cached and uncached implementations:
+<input type = "checkbox" id = "no_cache"><br>
+<button id = "button" onclick = "handle_count()"
+        stype = "width: 100%">Calculate</button>
+</div>
+
+<p><span id = "output"></span></p>
 </div>
 
 <h3>Other languages</h3>
