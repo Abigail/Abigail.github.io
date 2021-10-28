@@ -662,5 +662,4 @@ $(document) . ready (function () {
         document.getElementById('points'),
         points_config
     );
-    console . log (points . map ((e, i) => {return {"x": i, "y": e}}));
 })
