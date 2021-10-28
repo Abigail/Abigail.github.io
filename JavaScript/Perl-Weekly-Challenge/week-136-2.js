@@ -649,7 +649,7 @@ const points_config = {
 };
 
 
-$(document) . ready (function () {
+window . addEventListener ("load", function () {
     const NoCacheChart = new Chart (
         document.getElementById('nocache'),
         no_cache_config
