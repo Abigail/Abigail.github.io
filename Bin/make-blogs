@@ -107,11 +107,12 @@ sub header ($title, %args) {
                         "$PWC_DIR/main",
                         "$PWC_DIR/week-$week";
 
+    my @scripts = sort glob "$JAVASCRIPT_DIR/$PWC_DIR/week-$week*.js";
     my $scripts = join "\n" =>
         map  {"<script src = '../../$_'></script>"}
+        @scripts,
         grep {-f}
-        map  {"$JAVASCRIPT_DIR/$_.js"}
-             @SCRIPTS, "$PWC_DIR/week-$week";
+        map  {"$JAVASCRIPT_DIR/$_.js"} @SCRIPTS;
 
     my $chart_js = "";
        $chart_js = "<script id = 'chart-script' async src = '$CHART_URL'>" .
