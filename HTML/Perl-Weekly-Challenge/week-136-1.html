@@ -3,6 +3,7 @@
 <title>Perl Weekly Challenge 136: Two Friendly</title>
 <script src = "https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
 <script id = "MathJax-script" async src = "https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.js"></script>
+<script src = '../../JavaScript/Perl-Weekly-Challenge/week-136-1.js'></script>
 <script src = '../../JavaScript/jquery.js'></script>
 <script src = '../../JavaScript/navigation.js'></script>
 <link rel = 'preconnect' href = 'https://fonts.gstatic.com'>
@@ -203,9 +204,10 @@ end
 
 <h3>Implementations</h3>
 
+<div class = "section">
 <p>We have implementations in
 <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-136/abigail/awk/ch-1.gawk">GNU AWK</a>,
-<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-136/abigail/bash/ch-1.sh">Bash</a>
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-136/abigail/bash/ch-1.sh">Bash</a>,
 <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-136/abigail/bc/ch-1.bc">bc</a>,
 <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-136/abigail/c/ch-1.c">C</a>,
 <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-136/abigail/go/ch-1.go">Go</a>,
@@ -220,6 +222,18 @@ end
 <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-136/abigail/scheme/ch-1.scm">Scheme</a>, and
 <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-136/abigail/tcl/ch-1.tcl">Tcl</a>
 on <a href="https://www.github.com">GitHub</a>.</p>
+</div>
+
+<h3>Live demo</h3>
+
+<p><div id = "demo">
+Enter two positive integers, to check if they are two friendly:<br>
+First number: <input type = "number" id = "first" pattern = "^[0-9]+$">
+Second number: <input type = "number" id = "second" pattern = "^[0-9]+$">
+<button id = "button" onclick = "two_friendly()">Check</button>
+<p>
+<span id = "result"></span>
+</div></p>
 
 <hr id = 'last-line'>
 <div class = 'trailer'>
