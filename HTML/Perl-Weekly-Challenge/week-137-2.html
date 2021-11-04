@@ -1,0 +1,262 @@
+<html>
+<head>
+<title>Perl Weekly Challenge 137: Lychrel Number</title>
+<script src = "https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id = "MathJax-script" async src = "https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.js"></script>
+<script id = 'chart-script' async src = 'https://cdn.jsdelivr.net/npm/chart.js'></script>
+<script src = '../../JavaScript/Perl-Weekly-Challenge/week-137-2-a.js'></script>
+<script src = '../../JavaScript/Perl-Weekly-Challenge/week-137-2-b.js'></script>
+<script src = '../../JavaScript/Perl-Weekly-Challenge/week-137-2.js'></script>
+<script src = '../../JavaScript/jquery.js'></script>
+<script src = '../../JavaScript/navigation.js'></script>
+<link rel = 'preconnect' href = 'https://fonts.gstatic.com'>
+<link rel = 'stylesheet' href = 'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
+<link rel = 'stylesheet' href = '../../Styles/Perl-Weekly-Challenge/main.css'>
+</head>
+
+<body><h1>Perl Weekly Challenge 137: Lychrel Number</h1><div class = "byline">
+by Abigail<br>
+<img src = "../../Images/jan_sluiters.jpg">
+</div>
+
+
+<h2><a href="https://theweeklychallenge.org/blog/perl-weekly-challenge-137/#TASK2">Challenge</a></h2>
+
+<blockquote>
+  <p>You are given a number, <code>10 &lt;= $n &lt;= 1000</code>.</p>
+  
+  <p>Write a script to find out if the given number is Lychrel number.
+  To keep the task simple, we impose the following rules:</p>
+  
+  <ul>
+  <li>Stop if the number of iterations reached <code>500</code>.</li>
+  <li>Stop if you end up with number <code>&gt;= 10_000_000</code>.</li>
+  </ul>
+  
+  <p>If you stop because of any of the above two rules then we
+  expect <code>1</code> as an output.</p>
+  
+  <p>According to <a href="https://en.wikipedia.org/wiki/Lychrel_number">wikipedia</a>:</p>
+  
+  <blockquote>
+    <p>A Lychrel number is a natural number that cannot form a palindrome
+    through the iterative process of repeatedly reversing its digits
+    and adding the resulting numbers.</p>
+  </blockquote>
+</blockquote>
+
+<h3>Example 1</h3>
+
+<blockquote>
+<pre><code>Input: $n = 56
+Output: 0
+</code></pre>
+  
+  <p>After 1 iteration, we found a palindrome number.<br>
+  <code>56 + 65 = 121</code>.</p>
+</blockquote>
+
+<h3>Example 2</h3>
+
+<blockquote>
+<pre><code>Input: $n = 57
+Output: 0
+</code></pre>
+  
+  <p>After 2 iterations, we found a palindrome number.<br>
+  <code>57 +  75 = 132</code><br>
+  <code>132 + 231 = 363</code></p>
+</blockquote>
+
+<h3>Example 3</h3>
+
+<blockquote>
+<pre><code>Input: $n = 59
+Output: 0
+</code></pre>
+  
+  <p>After 3 iterations, we found a palindrome number.<br>
+  <code>59 +  95 =  154</code><br>
+  <code>154 + 451 =  605</code><br>
+  <code>605 + 506 = 1111</code></p>
+</blockquote>
+
+<h2>Discussion</h2>
+
+<div class = "section">
+<p>This is a bit of a peculiar task. We are asked to find Lychrel numbers,
+yet there are (in base 10), no known Lychrel numbers. For most of the numbers
+below 1,000, it is known they are not Lychrel. The numbers which are not
+known to be Lychrel form sequence <a href="https://oeis.org/A023108">A023108</a> in the
+<a href="https://oeis.org">OEIS</a>. There are 13 numbers below 1,000 which are
+not known to be Lychrel; of which two are so-called "seeds": 196,
+and 986. All the other unknowns quickly convergence to the same sequence
+as is generated when starting from 196.</p>
+
+<p>This makes that the extra condition (at most 500 iterations, or reaching
+10,000,000 or higher) is of interest. But there are some oddities. First,
+it causes some numbers known to not be a Lychrel, to be reported to be one.
+Take for instance the number 89. If we reverse it and add it to itself,
+and do this process 24 times, we reach 8,813,200,023,188, which is a
+palindrome. Which makes 89 <em>not</em> a Lychrel number. However, 
+8,813,200,023,188 exceeds 10,000,000, so the wanted program will report
+this as a Lychrel number. In fact, there are 42 numbers below 1,000
+whose sequence gets terminated because it reaches 10,000,000. Of those
+42, 29 are known not to be Lychrel numbers. It's not until we increase
+the cut-off to 8,813,200,023,189 that we only report 13 numbers to be
+Lychrel numbers: exactly the 13 numbers below 1,000 of which it is not
+known whether they are Lychrel numbers or not.</p>
+
+<p>Second, the limit of 500 iterations is pointless. The numbers grow rapidly,
+and for each of the numbers up to 1000, we reach a number which is either
+a palindrome or which is at least 10,000,000 in at most 12 steps. Even
+if we raise the cut-off value to 8,813,200,023,189, it never takes more
+than 27 iterations to either reach a palindrome, or to exceed the cut-off
+value.</p>
+
+<p>Here is a plot of how many iterations we need for the numbers from 10
+to 1000 to find the answer. Points in green mean the number converges
+to a palindrome less than 10,000,000. Each of them is reached in nine
+iterations or less. Points in red reach a number exceeding 10,000,000.</p>
+
+<div>
+<canvas id = "iterations">
+</div>
+
+<p>So, we might as well forget about the 500 iterations limit; which is 
+exactly what we do in our solutions.</p>
+</div>
+
+<h2>Live Demo</h2>
+
+<div class = "section">
+<p>Enter a number below, hit the calculate button, and we tell you
+whether the sequence reaches a palindrome, or whether it hits
+one of the (configurable) limits: max iterations, or the cut-off value.</p>
+
+<table>
+  <tr class = 'row-0'>
+    <td class = 'cell-0-0 col-0'>Starting number:</td>
+    <td class = 'cell-0-1 col-1'><input type = 'number' id = 'num'></td>
+  </tr>
+  <tr class = 'row-1'>
+    <td class = 'cell-1-0 col-0'>Max iterations:</td>
+    <td class = 'cell-1-1 col-1'><input type = 'number' value = '500' id = 'max_iter'></td>
+  </tr>
+  <tr class = 'row-2'>
+    <td class = 'cell-2-0 col-0'>Cut-off:</td>
+    <td class = 'cell-2-1 col-1'><input type = 'number' value = '10000000' id = 'cut_off'></td>
+  </tr>
+  <tr class = 'row-3'>
+    <td class = 'cell-3-0 col-0' colspan = '2'><button style = "width: 100%;" onclick = "lychrel ()">Calculate</button>
+</td>
+  </tr>
+</table>
+
+<p><span id = 'result'></span></p>
+</div>
+
+<h2>Solutions</h2>
+
+<h3>Perl</h3>
+
+<div class = "section">
+<p>In Perl, it's very easy to reverse a number. <a href="https://perldoc.perl.org/perlfunc#reverse"><code>reverse</code></a> reverses
+a string, but in Perl conversions between numbers and strings happen
+automatically.</p>
+
+<p>A function to check whether a number is a Lychrel number (according
+to the definition in the challenge, not the definition the rest of
+the world uses) is easy. As stated above, we don't check for the 
+number of iterations. Which leaves us with two checks:</p>
+
+<ul>
+<li>If the number exceeds 10,000,000, we return true.</li>
+<li>If the number equals its reverse, we return false.</li>
+<li>Else, we recurse.</li>
+</ul>
+
+<p>This gives us:</p>
+
+<pre><code>sub is_lychrel ($n) {
+    $n &gt;= 10_000_000   ? 1
+  : $n eq reverse ($n) ? 0
+  : is_lychrel ($n + reverse $n)}
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-137/abigail/perl/ch-2.pl">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>Pascal</h3>
+
+<div class = "section">
+<p>Most other languages either don't have a build in reverse method, or
+don't automatically convert between strings and numbers. In those cases,
+we need to write our own <code>reverse</code> method. This is a pretty simple
+process, and we use the same algorithm in each language. For instance,
+in Pascal, we use:</p>
+
+<pre><code>function reverse (num: Longint): Longint;
+    var
+        rev: Longint;
+
+    begin
+        rev := 0;
+        while num &gt; 0 do begin
+            rev := rev * 10;
+            rev := rev + (num mod 10);
+            num := num div 10;
+        end;
+        reverse := rev;
+    end;
+</code></pre>
+
+<p>It boils down to repeatedly chopping off the last digit of <code>num</code>
+(which is our input value), and adding it to <code>rev</code> (the return
+value). But by first multiplying <code>rev</code> by <code>10</code> before adding a new
+digit, we end up with the wanted result.</p>
+
+<p>The check function then looks like:</p>
+
+<pre><code>function ly (num: Longint): integer;
+    begin
+        if num &gt;= 10000000 then
+            ly := 1
+        else if num = reverse (num) then
+            ly := 0
+        else 
+            ly := ly (num + reverse (num))
+    end;
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-137/abigail/pascal/ch-2.p">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>Other Languages</h3>
+
+<p>We also have solutions in
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-137/abigail/awk/ch-2.awk">AWK</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-137/abigail/bash/ch-2.sh">Bash</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-137/abigail/bc/ch-2.bc">bc</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-137/abigail/c/ch-2.c">C</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-137/abigail/go/ch-2.go">Go</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-137/abigail/java/ch-2.java">Java</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-137/abigail/lua/ch-2.lua">Lua</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-137/abigail/node/ch-2.js">Node.js</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-137/abigail/python/ch-2.py">Python</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-137/abigail/r/ch-2.r">R</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-137/abigail/ruby/ch-2.rb">Ruby</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-137/abigail/scheme/ch-2.scm">Scheme</a>, and
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-137/abigail/tcl/ch-2.tcl">Tcl</a>.</p>
+
+<hr id = 'last-line'>
+<div class = 'trailer'>
+<p class = 'prev'><a class = "prev" href = "">&#x261C;</a></p>
+<p class = 'issue'>Please leave any comments as a
+  <a href = 'https://github.com/Abigail/Abigail.github.io/issues'
+     title = 'GitHub issue'>GitHub issue</a>.
+<p class = 'next'><a class = "next" href = "">&#x261E;</a></p>
+</div>
+
+</body>
+</html>
