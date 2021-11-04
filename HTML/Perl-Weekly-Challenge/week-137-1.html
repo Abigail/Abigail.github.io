@@ -1,0 +1,372 @@
+<html>
+<head>
+<title>Perl Weekly Challenge 137: Long Year</title>
+<script src = "https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id = "MathJax-script" async src = "https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.js"></script>
+<script src = '../../JavaScript/Perl-Weekly-Challenge/week-137-1.js'></script>
+<script src = '../../JavaScript/jquery.js'></script>
+<script src = '../../JavaScript/navigation.js'></script>
+<link rel = 'preconnect' href = 'https://fonts.gstatic.com'>
+<link rel = 'stylesheet' href = 'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
+<link rel = 'stylesheet' href = '../../Styles/Perl-Weekly-Challenge/main.css'>
+<link rel = 'stylesheet' href = '../../Styles/Perl-Weekly-Challenge/week-137-1.css'>
+</head>
+
+<body><h1>Perl Weekly Challenge 137: Long Year</h1><div class = "byline">
+by Abigail<br>
+<img src = "../../Images/jan_sluiters.jpg">
+</div>
+
+
+<h2><a href="https://theweeklychallenge.org/blog/perl-weekly-challenge-137/#TASK1">Challenge</a></h2>
+
+<blockquote>
+  <p>Write a script to find all the years between <code>1900</code> and <code>2100</code> which is a <code>Long Year</code>.</p>
+  
+  <blockquote>
+  A year is Long if it has 53 weeks.
+  
+  </blockquote>
+  
+  <p>For more information about Long Year, please refer to
+  <a href="https://en.wikipedia.org/wiki/ISO_week_date#Weeks_per_year">Wikipedia</a>.</p>
+</blockquote>
+
+<h3>Expected Output</h3>
+
+<blockquote>
+<pre><code>1903, 1908, 1914, 1920, 1925,
+1931, 1936, 1942, 1948, 1953,
+1959, 1964, 1970, 1976, 1981,
+1987, 1992, 1998, 2004, 2009,
+2015, 2020, 2026, 2032, 2037,
+2043, 2048, 2054, 2060, 2065,
+2071, 2076, 2082, 2088, 2093,
+2099
+</code></pre>
+</blockquote>
+
+<h2>Discussion</h2>
+
+<div class = "section">
+<p>No year contains 53 full weeks, and all years contain 52 weeks and some
+days. So, the one line definition of <em>Long Year</em> needs some clearification.</p>
+
+<p>This refers to how ISO numbers weeks. ISO weeks start on Mondays, ending
+on Sundays, and written as <code>yyyyWnn</code>, where <code>yyyy</code> is the year, and <code>nn</code>
+the week number (<code>W</code> is just the letter <code>W</code>). </p>
+
+<p>The first week of the year is the first week which has at least four days
+in January. This means that the last days of December could be part of
+week <code>01</code> of the next year, or that the first days of January could be
+part of the last week of the previous year. (This means that at the
+end or the beginning of the year, the <code>yyyy</code> part of the ISO week number
+the date falls into may not equal the current year).</p>
+
+<p>Since years are slightly longer than 52 weeks, every now and then we have
+a year with a week 53.</p>
+
+<p>In particular, a year has a 53<sup>rd</sup> week if one of the conditions
+is true:</p>
+
+<ul>
+<li>The last day of the year (December 31) is a Thursday.</li>
+<li>The last day of the year is a Friday, and the year is a leap year.</li>
+</ul>
+</div>
+
+<h3>The Gregorian calendar repeats</h3>
+
+<div class = "section">
+<p>The cycle of leap years in the Gregorian calendar repeats every 400
+years. 400 years in the Gregorian calendar means 146097 days (400 times
+365 days plus 97 leap days). And 146097 = 7 * 20871, so 400 years have
+an exact number of weeks.</p>
+
+<p>This means that the cycle of Long Years repeats every 400 years. So, if
+we have the Long Years in a 400 year period, we can easily expand this
+to get all the Long Years. There are 71 Long Years in each 400 year period.
+For the period 2000 to 2399, we have the following Long Years:</p>
+
+<table>
+  <tr class = 'row-0'>
+    <td class = 'cell-0-0 col-0'>2004</td>
+    <td class = 'cell-0-1 col-1'>2009</td>
+    <td class = 'cell-0-2 col-2'>2015</td>
+    <td class = 'cell-0-3 col-3'>2020</td>
+    <td class = 'cell-0-4 col-4'>2026</td>
+    <td class = 'cell-0-5 col-5'>2032</td>
+    <td class = 'cell-0-6 col-6'>2037</td>
+    <td class = 'cell-0-7 col-7'>2043</td>
+    <td class = 'cell-0-8 col-8'>2048</td>
+  </tr>
+  <tr class = 'row-1'>
+    <td class = 'cell-1-0 col-0'>2054</td>
+    <td class = 'cell-1-1 col-1'>2060</td>
+    <td class = 'cell-1-2 col-2'>2065</td>
+    <td class = 'cell-1-3 col-3'>2071</td>
+    <td class = 'cell-1-4 col-4'>2076</td>
+    <td class = 'cell-1-5 col-5'>2082</td>
+    <td class = 'cell-1-6 col-6'>2088</td>
+    <td class = 'cell-1-7 col-7'>2093</td>
+    <td class = 'cell-1-8 col-8'>2099</td>
+  </tr>
+  <tr class = 'row-2'>
+    <td class = 'cell-2-0 col-0'>2105</td>
+    <td class = 'cell-2-1 col-1'>2111</td>
+    <td class = 'cell-2-2 col-2'>2116</td>
+    <td class = 'cell-2-3 col-3'>2122</td>
+    <td class = 'cell-2-4 col-4'>2128</td>
+    <td class = 'cell-2-5 col-5'>2133</td>
+    <td class = 'cell-2-6 col-6'>2139</td>
+    <td class = 'cell-2-7 col-7'>2144</td>
+    <td class = 'cell-2-8 col-8'>2150</td>
+  </tr>
+  <tr class = 'row-3'>
+    <td class = 'cell-3-0 col-0'>2156</td>
+    <td class = 'cell-3-1 col-1'>2161</td>
+    <td class = 'cell-3-2 col-2'>2167</td>
+    <td class = 'cell-3-3 col-3'>2172</td>
+    <td class = 'cell-3-4 col-4'>2178</td>
+    <td class = 'cell-3-5 col-5'>2184</td>
+    <td class = 'cell-3-6 col-6'>2189</td>
+    <td class = 'cell-3-7 col-7'>2195</td>
+    <td class = 'cell-3-8 col-8'></td>
+  </tr>
+  <tr class = 'row-4'>
+    <td class = 'cell-4-0 col-0'>2201</td>
+    <td class = 'cell-4-1 col-1'>2207</td>
+    <td class = 'cell-4-2 col-2'>2212</td>
+    <td class = 'cell-4-3 col-3'>2218</td>
+    <td class = 'cell-4-4 col-4'>2224</td>
+    <td class = 'cell-4-5 col-5'>2229</td>
+    <td class = 'cell-4-6 col-6'>2235</td>
+    <td class = 'cell-4-7 col-7'>2240</td>
+    <td class = 'cell-4-8 col-8'>2246</td>
+  </tr>
+  <tr class = 'row-5'>
+    <td class = 'cell-5-0 col-0'>2252</td>
+    <td class = 'cell-5-1 col-1'>2257</td>
+    <td class = 'cell-5-2 col-2'>2263</td>
+    <td class = 'cell-5-3 col-3'>2268</td>
+    <td class = 'cell-5-4 col-4'>2274</td>
+    <td class = 'cell-5-5 col-5'>2280</td>
+    <td class = 'cell-5-6 col-6'>2285</td>
+    <td class = 'cell-5-7 col-7'>2291</td>
+    <td class = 'cell-5-8 col-8'>2296</td>
+  </tr>
+  <tr class = 'row-6'>
+    <td class = 'cell-6-0 col-0'>2303</td>
+    <td class = 'cell-6-1 col-1'>2308</td>
+    <td class = 'cell-6-2 col-2'>2314</td>
+    <td class = 'cell-6-3 col-3'>2320</td>
+    <td class = 'cell-6-4 col-4'>2325</td>
+    <td class = 'cell-6-5 col-5'>2331</td>
+    <td class = 'cell-6-6 col-6'>2336</td>
+    <td class = 'cell-6-7 col-7'>2342</td>
+    <td class = 'cell-6-8 col-8'>2348</td>
+  </tr>
+  <tr class = 'row-7'>
+    <td class = 'cell-7-0 col-0'>2353</td>
+    <td class = 'cell-7-1 col-1'>2359</td>
+    <td class = 'cell-7-2 col-2'>2364</td>
+    <td class = 'cell-7-3 col-3'>2370</td>
+    <td class = 'cell-7-4 col-4'>2376</td>
+    <td class = 'cell-7-5 col-5'>2381</td>
+    <td class = 'cell-7-6 col-6'>2387</td>
+    <td class = 'cell-7-7 col-7'>2392</td>
+    <td class = 'cell-7-8 col-8'>2398
+</td>
+  </tr>
+</table>
+
+<p>To find out whether a year before 2000 or after 2400 is a Long Year,
+just add or substract the appropriate multiple of 400 and check 
+the table.</p>
+</div>
+
+<h2>Live Demo</h2>
+
+<div class = "section">
+<p>Enter a year in the (<a href="https://en.wikipedia.org/wiki/Proleptic_Gregorian_calendar">proleptic</a>)
+Gregorian calendar, and hit the Calculate button to check whether
+the year in a Long Year or not.</p>
+
+<p>Enter a year: <input type = "number" id = year> 
+<button onclick = "is_long_year ()">Calculate</button></p>
+
+<p><span id = "result"></span></p>
+</div>
+
+<h2>Solutions</h2>
+
+<div class = "section">
+<p>Our main solution takes a list of offsets of Long Years for 400
+year periods starting at years <span class = 'latex-inline'>\(400 \cdot k\)</span>. We calculate all
+the Long Years in the 400 year periods starting in 1600 and 2000
+(so we get all the Long Years from 1600 to 2400), and then selecting
+the years between 1900 and 2100.</p>
+
+<p>For a select few languages, we have implemented an alternative solution.
+This solution calculates the day of the week of December 31 of the year.
+If that day is a Thursday, or if that day is a Friday, and the year is
+a leap year, the year is a Long Year.</p>
+</div>
+
+<h3>Perl</h3>
+
+<h4>Main solution</h4>
+
+<pre><code>my @start_years       = qw [1600 2000];
+my @long_year_offsets = qw [004 009 015 020 ... 387 392 398]; # All 71 offsets
+
+say for grep {1900 &lt;= $_ &lt;= 2100}
+         map {my $fy = $_; map {$_ + $fy} @long_year_offsets} @start_years
+</code></pre>
+
+<p>This uses a nested map to get all the possible sums of a start year
+and an offset, then greps the ones between 1900 and 2100, which are
+printed.</p>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-137/abigail/perl/ch-1.pl">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+
+<h4>Alternative solution</h4>
+
+<div class = "section">
+<p>First, we calculate the <a href="https://en.wikipedia.org/wiki/Doomsday_rile">doomsday</a> of the year.
+This is the day of the week certain days in a year all share:
+4/4, 6/6, 8/8, 10/10, 12/12, 5/9, 9/5, 7/11, 11/7, <a href="https://en.wikipedia.org/wiki/Pi_Day">Pi Day</a>,
+and the last day of Februari, using an algorithm devised by
+<a href="https://en.wikipedia.org/wiki/John_Horton_Conway">John Conway</a>:</p>
+
+<pre><code>sub doomsday ($year) {
+    use integer;
+    my $anchor   = (2, 0, 5, 5) [($year / 100) % 4];
+    my $y        = $year % 100;
+    my $doomsday = ((($y / 12) + ($y % 12) + (($y % 12) / 4)) + $anchor) % 7;
+    $doomsday;
+}
+</code></pre>
+
+<p>The return value is a integer 0 to 6, with 0 indicating Sunday, and 
+6 a Saturday.</p>
+
+<p>This gives us the day of the week of December 12. To calculate 
+the day of the week of December 31, we subtract 12, add 31,
+and take this modulo 7. All we have to do is check if it's a Thursday,
+or a Friday and a leap year:</p>
+
+<pre><code>foreach my $year (1900 .. 2100) {
+    my $doomsday = doomsday ($year);
+    my $dec_31   = ($doomsday - 12 + 31) % 7;
+    say $year if $dec_31 == 4 || $dec_31 == 5 &amp;&amp; is_leap $year;
+}
+</code></pre>
+
+<p>with the following code to determine whether a year is a leap year:</p>
+
+<pre><code>sub is_leap ($year) {
+    ($year % 400 == 0) || ($year % 4 == 0) &amp;&amp; ($year % 100 != 0)
+}
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-137/abigail/perl/ch-1a.pl">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>Go</h3>
+
+<div class = "section">
+<p>Our Go solution looks very similar to the main Perl solution, except
+that we use a nested for loop to calculate the Long Years:</p>
+
+<pre><code>func main () {
+    start_years       := [] int {1600, 2000}
+    long_year_offsets := [] int {4, 9, 15, ..., 387, 392, 398};
+
+    for _, start_year := range start_years {
+        for _, offset := range long_year_offsets {
+            year := start_year + offset
+            if 1900 &lt;= year &amp;&amp; year &lt;= 2100 {
+                fmt . Println (year)
+            }
+        }
+    }
+}
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-137/abigail/go/ch-1.go">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>R</h3>
+
+<div class = "section">
+<p>The R solution uses nested for loops as well, but it uses a trick R
+has: if you add a number to a vector, the result is a vector with the
+number added to each element of the original vector. This gives us:</p>
+
+<pre><code>start_years       &lt;- c (1600, 2000)
+long_year_offsets &lt;- c (4, 9, 15, ..., 387, 392, 398)
+
+for (start_year in start_years) {
+    for (year in start_year + long_year_offsets) {
+        if (1900 &lt;= year &amp;&amp; year &lt;= 2100) {
+            cat (year, "\n")
+        }
+    }
+}
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-137/abigail/r/ch-1.r">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>Erlang</h3>
+
+<div class = "section">
+<p>Erlang is a functional language, so we have to write our loops
+in a functional way:</p>
+
+<pre><code>long_year ([], _) -&gt; ok;
+long_year (_, []) -&gt; ok;
+
+long_year ([Start], [Offset | Offsets]) -&gt;
+    Year = Start + Offset,
+    if (1900 =&lt; Year) and (Year =&lt; 2100) -&gt; io:fwrite ("~B~n", [Year]);
+        true -&gt; ok
+    end,
+    long_year ([Start], Offsets);
+
+long_year ([Start | Starts], Offsets) -&gt;
+    long_year ([Start], Offsets),
+    long_year (Starts, Offsets).
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-137/abigail/erlang/ch-1.erl">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>Other Languages</h3>
+
+<p>We also have solutions in:
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-137/abigail/awk/ch-1.awk">AWK</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-137/abigail/bash/ch-1.sh">Bash</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-137/abigail/bc/ch-1.bc">bc</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-137/abigail/c/ch-1.c">C</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-137/abigail/java/ch-1.java">Java</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-137/abigail/lua/ch-1.lua">Lua</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-137/abigail/node/ch-1.js">Node.js</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-137/abigail/pascal/ch-1.p">Pascal</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-137/abigail/python/ch-1.py">Python</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-137/abigail/ruby/ch-1.rb">Ruby</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-137/abigail/scheme/ch-1.scm">Scheme</a>, and
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-137/abigail/tcl/ch-1.tcl">Tcl</a>.</p>
+
+<hr id = 'last-line'>
+<div class = 'trailer'>
+<p class = 'prev'><a class = "prev" href = "">&#x261C;</a></p>
+<p class = 'issue'>Please leave any comments as a
+  <a href = 'https://github.com/Abigail/Abigail.github.io/issues'
+     title = 'GitHub issue'>GitHub issue</a>.
+<p class = 'next'><a class = "next" href = "">&#x261E;</a></p>
+</div>
+
+</body>
+</html>

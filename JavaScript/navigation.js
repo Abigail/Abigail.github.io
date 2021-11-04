@@ -75,6 +75,7 @@ let pwc_pages = [
     ["week-135-2", "Validate SEDOL"],
     ["week-136-1", "Two Friendly"],
     ["week-136-2", "Fibonacci Sequence"],
+    ["week-137-1", "Long Year"],
     ["week-137-2", "Lychrel Number"],
 ]
 
