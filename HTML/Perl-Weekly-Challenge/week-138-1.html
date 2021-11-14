@@ -1,0 +1,228 @@
+<html>
+<head>
+<title>Perl Weekly Challenge 138: Workdays</title>
+<script src = "https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id = "MathJax-script" async src = "https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.js"></script>
+<script src = '../../JavaScript/Perl-Weekly-Challenge/week-138-1.js'></script>
+<script src = '../../JavaScript/jquery.js'></script>
+<script src = '../../JavaScript/navigation.js'></script>
+<link rel = 'preconnect' href = 'https://fonts.gstatic.com'>
+<link rel = 'stylesheet' href = 'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
+<link rel = 'stylesheet' href = '../../Styles/Perl-Weekly-Challenge/main.css'>
+<link rel = 'stylesheet' href = '../../Styles/Perl-Weekly-Challenge/week-138-1.css'>
+</head>
+
+<body><h1>Perl Weekly Challenge 138: Workdays</h1><div class = "byline">
+by Abigail<br>
+<img src = "../../Images/jan_sluiters.jpg">
+</div>
+
+
+<h2><a href="https://theweeklychallenge.org/blog/perl-weekly-challenge-138/#TASK1">Challenge</a></h2>
+
+<blockquote>
+  <p>You are given a year, <code>$year</code> in 4-digits form.</p>
+  
+  <p>Write a script to calculate the total number of workdays in the given year.</p>
+  
+  <blockquote>
+  For the task, we consider, Monday - Friday as workdays.
+  
+  </blockquote>
+</blockquote>
+
+<h3>Example 1</h3>
+
+<pre><code>Input: $year = 2021
+Output: 261
+</code></pre>
+
+<h3>Example 2</h3>
+
+<pre><code>Input: $year = 2020
+Output: 262
+</code></pre>
+
+<h2>Discussion</h2>
+
+<div class = "section">
+<p>Every year has 260, 261 or 262 workdays. The only variables are the on
+which day of the week the year starts, and whether the year is a leap year
+or not.</p>
+
+<p>For regular years, if the year starts on weekday, it ends on the same 
+weekday, and the year has 261 work days. If a regular year starts on a
+weekend, it ends on a weekend, and the year has 260 work days.</p>
+
+<p>For leap years, if the year starts on a Monday to Thursday, it ends on
+Tuesday to Friday, giving the year 262 work days. If a leap year starts
+on a Friday, it ends on a Saturday, giving 261 work days. If a leap year
+starts on a Saturday, it ends on a Sunday, giving 260 work days. If a 
+leap year starts on a Sunday, it ends on a Monday, giving the year 261
+work days. So, we can just a lookup table, with 14 values (7 for regular
+years, and 7 for leap years).</p>
+
+<p>But we don't have to calculate the weekday of Jan 1. As long as we have
+the weekday of a particular date, there will be fixed 'offset' from
+that date to Jan 1 (the offset may differ between a leap year and a
+regular year). For this challenge, we will use the
+<a href="https://en.wikipedia.org/wiki/Doomsday_rule">doomsday value</a>, which we have used as in
+the <a href="https://abigail.github.io/HTML/Perl-Weekly-Challenge/week-137-1.html">alternative solution</a> of the challenge of <a href="https://theweeklychallenge.org/blog/perl-weekly-challenge-137/#TASK1">week 137</a>.</p>
+
+<p>This gives the following lookup table:</p>
+
+<table>
+  <tr class = 'row-0'>
+    <td class = 'cell-0-0 col-0'></td>
+    <th class = 'cell-0-1 col-1' colspan = '2'>Regular Year</td>
+    <th class = 'cell-0-3 col-3' colspan = '2'>Leap Year</td>
+  </tr>
+  <tr class = 'row-1'>
+    <th class = 'cell-1-0 col-0'>Doomsday Value</td>
+    <th class = 'cell-1-1 col-1'>Jan 1</td>
+    <th class = 'cell-1-2 col-2'>Work days</td>
+    <th class = 'cell-1-3 col-3'>Jan 1</td>
+    <th class = 'cell-1-4 col-4'>Work days</td>
+  </tr>
+  <tr class = 'row-2'>
+    <td class = 'cell-2-0 col-0'>0</td>
+    <td class = 'cell-2-1 col-1'>Friday</td>
+    <td class = 'cell-2-2 col-2'>261</td>
+    <td class = 'cell-2-3 col-3'>Thursday</td>
+    <td class = 'cell-2-4 col-4'>262</td>
+  </tr>
+  <tr class = 'row-3'>
+    <td class = 'cell-3-0 col-0'>1</td>
+    <td class = 'cell-3-1 col-1'>Saturday</td>
+    <td class = 'cell-3-2 col-2'>260</td>
+    <td class = 'cell-3-3 col-3'>Friday</td>
+    <td class = 'cell-3-4 col-4'>261</td>
+  </tr>
+  <tr class = 'row-4'>
+    <td class = 'cell-4-0 col-0'>2</td>
+    <td class = 'cell-4-1 col-1'>Sunday</td>
+    <td class = 'cell-4-2 col-2'>260</td>
+    <td class = 'cell-4-3 col-3'>Saturday</td>
+    <td class = 'cell-4-4 col-4'>260</td>
+  </tr>
+  <tr class = 'row-5'>
+    <td class = 'cell-5-0 col-0'>3</td>
+    <td class = 'cell-5-1 col-1'>Monday</td>
+    <td class = 'cell-5-2 col-2'>261</td>
+    <td class = 'cell-5-3 col-3'>Sunday</td>
+    <td class = 'cell-5-4 col-4'>261</td>
+  </tr>
+  <tr class = 'row-6'>
+    <td class = 'cell-6-0 col-0'>4</td>
+    <td class = 'cell-6-1 col-1'>Tuesday</td>
+    <td class = 'cell-6-2 col-2'>261</td>
+    <td class = 'cell-6-3 col-3'>Monday</td>
+    <td class = 'cell-6-4 col-4'>262</td>
+  </tr>
+  <tr class = 'row-7'>
+    <td class = 'cell-7-0 col-0'>5</td>
+    <td class = 'cell-7-1 col-1'>Wednesday</td>
+    <td class = 'cell-7-2 col-2'>261</td>
+    <td class = 'cell-7-3 col-3'>Tuesday</td>
+    <td class = 'cell-7-4 col-4'>262</td>
+  </tr>
+  <tr class = 'row-8'>
+    <td class = 'cell-8-0 col-0'>6</td>
+    <td class = 'cell-8-1 col-1'>Thursday</td>
+    <td class = 'cell-8-2 col-2'>261</td>
+    <td class = 'cell-8-3 col-3'>Wednesday</td>
+    <td class = 'cell-8-4 col-4'>262</td>
+  </tr>
+</table>
+</div>
+
+<h2>Live Demo</h2>
+
+<div class = "section">
+<p>Enter a year in the (<a href="https://en.wikipedia.org/wiki/Proleptic_Gregorian_calendar">proleptic</a>)
+Gregorian calendar, and hit the Calculate button to calculate the
+number of work days in that year.</p>
+
+<p>Enter a year: <input type = "number" id = year> 
+<button onclick = "work_days ()">Calculate</button></p>
+
+<p><span id = "result"></span></p>
+</div>
+
+<h2>Solution</h2>
+
+<div class = "section">
+<p>Our solutions will be reading years from standard input (one year per
+line), and write the number of work days of those year to standard
+output.</p>
+</div>
+
+<h3>Perl</h3>
+
+<div class = "section">
+<p>First, we copy the calculation of the doomsday value and the check
+whether a year is a leap year from the previous week:</p>
+
+<pre><code>my $SUNDAY    = 0;
+my $MONDAY    = 1;
+my $TUESDAY   = 2;
+my $WEDNESDAY = 3;
+my $THURSDAY  = 4;
+my $FRIDAY    = 5;
+my $SATURDAY  = 6;
+
+sub doomsday ($year = $_) {
+    use integer;
+    my $anchor   = ($TUESDAY, $SUNDAY, $FRIDAY, $WEDNESDAY) [($year / 100) % 4];
+    my $y        = $year % 100;
+    my $doomsday = ((($y / 12) + ($y % 12) + (($y % 12) / 4)) + $anchor) % 7;
+    $doomsday;
+}
+
+sub is_leap ($year = $_) {
+    ($year % 400 == 0) || ($year % 4 == 0) &amp;&amp; ($year % 100 != 0) ? 1 : 0
+}
+</code></pre>
+
+<p>Then it's just a matter of defining a lookup table, reading the
+input, and printing the value we can look up:</p>
+
+<pre><code>while (&lt;&gt;) {
+    say $lookup [is_leap] [doomsday]
+}
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-138/abigail/perl/ch-1.pl">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>Other languages</h3>
+
+<p>We also have implementation in a bunch of different language; they all
+use the same algorithm as the Perl:</p>
+
+<p><a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-138/abigail/awk/ch-1.awk">AWK</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-138/abigail/bash/ch-1.sh">Bash</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-138/abigail/bc/ch-1.bc">bc</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-138/abigail/c/ch-1.c">C</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-138/abigail/go/ch-1.go">Go</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-138/abigail/java/ch-1.java">Java</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-138/abigail/lua/ch-1.lua">Lua</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-138/abigail/node/ch-1.js">Node.js</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-138/abigail/pascal/ch-1.p">Pascal</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-138/abigail/python/ch-1.py">Python</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-138/abigail/r/ch-1.r">R</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-138/abigail/ruby/ch-1.rb">Ruby</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-138/abigail/scheme/ch-1.scm">Scheme</a>, and
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-138/abigail/tcl/ch-1.tcl">Tcl</a>.</p>
+
+<hr id = 'last-line'>
+<div class = 'trailer'>
+<p class = 'prev'><a class = "prev" href = "">&#x261C;</a></p>
+<p class = 'issue'>Please leave any comments as a
+  <a href = 'https://github.com/Abigail/Abigail.github.io/issues'
+     title = 'GitHub issue'>GitHub issue</a>.
+<p class = 'next'><a class = "next" href = "">&#x261E;</a></p>
+</div>
+
+</body>
+</html>
