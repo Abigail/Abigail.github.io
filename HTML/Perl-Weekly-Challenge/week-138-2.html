@@ -1,0 +1,156 @@
+<html>
+<head>
+<title>Perl Weekly Challenge 138: Split Number</title>
+<script src = "https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id = "MathJax-script" async src = "https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.js"></script>
+<script src = '../../JavaScript/jquery.js'></script>
+<script src = '../../JavaScript/navigation.js'></script>
+<link rel = 'preconnect' href = 'https://fonts.gstatic.com'>
+<link rel = 'stylesheet' href = 'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
+<link rel = 'stylesheet' href = '../../Styles/Perl-Weekly-Challenge/main.css'>
+</head>
+
+<body><h1>Perl Weekly Challenge 138: Split Number</h1><div class = "byline">
+by Abigail<br>
+<img src = "../../Images/jan_sluiters.jpg">
+</div>
+
+
+<h2><a href="https://theweeklychallenge.org/blog/perl-weekly-challenge-138/#TASK2">Challenge</a></h2>
+
+<blockquote>
+  <p>You are given a perfect square.</p>
+  
+  <p>Write a script to figure out if the square root the given number is same as sum of 2 or more splits of the given number.</p>
+</blockquote>
+
+<h3>Example 1</h3>
+
+<pre><code>Input: $n = 81
+Output: 1
+</code></pre>
+
+<p>Since, <code>sqrt (81) = 8 + 1</code>.</p>
+
+<h3>Example 2</h3>
+
+<pre><code>Input: $n = 9801
+Output: 1
+</code></pre>
+
+<p>Since, <code>sqrt (9801) = 98 + 0 + 1</code>.</p>
+
+<h3>Example 3</h3>
+
+<pre><code>Input: $n = 36
+Output: 0
+</code></pre>
+
+<p>Since, <code>sqrt (36) != 3 + 6</code>.</p>
+
+<h2>Solution</h2>
+
+<div class = "section">
+<p>All our solutions read numbers from standard input (one number per line),
+and write zeros (if the number cannot be split) and ones (if the number
+can be split): one result per input number.</p>
+
+<p>We will assume the given numbers are perfect squares, we are not doing
+any input validation.</p>
+
+<p>We will solve this using recursion. </p>
+
+<p>Let the input number be <span class = 'latex-inline'>\(N\)</span>, and let <span class = 'latex-inline'>\(T = \sqrt{N}\)</span>. We can write
+<span class = 'latex-display'>\[ N = \sum_{i=0}^k b_i \cdot 10^i, 0 \leq b_i &lt; 10, 10^k \leq N &lt; 10^{k+1} \]</span></p>
+
+<p>Let <span class = 'latex-inline'>\(f(T, N)\)</span> be a function which returns <span class = 'latex-inline'>\(1\)</span> if <span class = 'latex-inline'>\(N\)</span> can be split
+into parts such that the parts sum to <span class = 'latex-inline'>\(T\)</span>, and which returns <span class = 'latex-inline'>\(0\)</span>
+otherwise. Then:</p>
+
+<p>\[ f(T, N) = \begin{cases} 
+     1 &amp; \text{if } \begin{cases}
+          T = N, \text {or} \\
+          \exists j: 0 &lt; j \leq k \wedge f(T - \sum_{i=0}^j b_j \cdot 10^i,
+                                               \sum_{i=j}^k b_i \cdot 10^{i-j})
+                    \end{cases} \\
+     0 &amp; \text{otherwise}
+             \end{cases} \]</p>
+
+<p>We can write <span class = 'latex-inline'>\(\sum_{i=0}^j b_j \cdot 10^i\)</span> as <span class = 'latex-inline'>\(N \text{mod } 10^j\)</span> and
+<span class = 'latex-inline'>\(\sum_{i=j}^k b_i \cdot 10^{i-j}\)</span> as <span class = 'latex-inline'>\(\lfloor \frac{N}{10^j} \rfloor\)</span>.</p>
+
+<p>We can easily translate the function <span class = 'latex-inline'>\(f\)</span> to code. Note that the requirement
+of the challenge states that <span class = 'latex-inline'>\(N\)</span> must be split into two or more parts;
+the definition of <span class = 'latex-inline'>\(f\)</span> does not account for that. However, the only case for
+which <span class = 'latex-inline'>\(f\)</span> does not split <span class = 'latex-inline'>\(N\)</span> into more than one part is the case
+where <span class = 'latex-inline'>\(T = N\)</span>. But we have <span class = 'latex-inline'>\(T = \sqrt{N}\)</span>, and the only solutions
+for <span class = 'latex-inline'>\(N = \sqrt{N}\)</span> are <span class = 'latex-inline'>\(N = 0\)</span> and <span class = 'latex-inline'>\(N = 1\)</span>. We can easily check
+that condition outside of an implementation of <span class = 'latex-inline'>\(f\)</span>.</p>
+</div>
+
+<h3>Perl</h3>
+
+<div class = "section">
+<p>First, a method, <code>can_split</code>, which implements the function <span class = 'latex-inline'>\(f\)</span>
+described above:</p>
+
+<pre><code>sub can_split ($target, $number) {
+    return 0 if $target &gt;  $number || $target &lt; 0;
+    return 1 if $target == $number;
+
+    my $pow_10 = 10;
+
+    while ($pow_10 &lt;= $number) {
+        use integer;
+        return 1 if can_split ($target - ($number % $pow_10), 
+                                          $number / $pow_10);
+        $pow_10 *= 10;
+    }
+
+    return 0;
+}
+</code></pre>
+
+<p>Now, all what needs to be done is read the input, check the input
+number isn't <code>0</code> or <code>1</code>, and check the return value of <code>can_split</code>:</p>
+
+<pre><code>while (&lt;&gt;) {
+    chomp;
+    say $_ &gt; 1 &amp;&amp; can_split (sqrt ($_), $_) ? 1 : 0
+}
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-138/abigail/perl/ch-2.pl">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>Other languages</h3>
+
+<p>We also have implementation in a bunch of different language; they all
+use the same algorithm as the Perl implementation:</p>
+
+<p><a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-138/abigail/awk/ch-2.awk">AWK</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-138/abigail/bash/ch-2.sh">Bash</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-138/abigail/bc/ch-2.bc">bc</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-138/abigail/c/ch-2.c">C</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-138/abigail/go/ch-2.go">Go</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-138/abigail/java/ch-2.java">Java</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-138/abigail/lua/ch-2.lua">Lua</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-138/abigail/node/ch-2.js">Node.js</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-138/abigail/pascal/ch-2.p">Pascal</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-138/abigail/python/ch-2.py">Python</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-138/abigail/r/ch-2.r">R</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-138/abigail/ruby/ch-2.rb">Ruby</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-138/abigail/scheme/ch-2.scm">Scheme</a>, and
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-138/abigail/tcl/ch-2.tcl">Tcl</a>.</p>
+
+<hr id = 'last-line'>
+<div class = 'trailer'>
+<p class = 'prev'><a class = "prev" href = "">&#x261C;</a></p>
+<p class = 'issue'>Please leave any comments as a
+  <a href = 'https://github.com/Abigail/Abigail.github.io/issues'
+     title = 'GitHub issue'>GitHub issue</a>.
+<p class = 'next'><a class = "next" href = "">&#x261E;</a></p>
+</div>
+
+</body>
+</html>
