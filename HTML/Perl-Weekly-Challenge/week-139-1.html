@@ -1,0 +1,415 @@
+<html>
+<head>
+<title>Perl Weekly Challenge 139: JortSort</title>
+<script src = "https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id = "MathJax-script" async src = "https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.js"></script>
+<script src = '../../JavaScript/jquery.js'></script>
+<script src = '../../JavaScript/navigation.js'></script>
+<link rel = 'preconnect' href = 'https://fonts.gstatic.com'>
+<link rel = 'stylesheet' href = 'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
+<link rel = 'stylesheet' href = '../../Styles/Perl-Weekly-Challenge/main.css'>
+</head>
+
+<body><h1>Perl Weekly Challenge 139: JortSort</h1><div class = "byline">
+by Abigail<br>
+<img src = "../../Images/jan_sluiters.jpg">
+</div>
+
+
+<h2><a href="https://theweeklychallenge.org/blog/perl-weekly-challenge-139/#TASK1">Challenge</a></h2>
+
+<blockquote>
+  <p>You are given a list of numbers.</p>
+  
+  <p>Write a script to implement JortSort. It should return true/false depending if the given list of numbers are already sorted.</p>
+</blockquote>
+
+<h3>Example 1</h3>
+
+<pre><code>Input: @n = (1,2,3,4,5)
+Output: 1
+
+Since the array is sorted, it prints 1.
+</code></pre>
+
+<h3>Example 2</h3>
+
+<pre><code>Input: @n = (1,3,2,4,5)
+Output: 0
+
+Since the array is NOT sorted, it prints 0.
+</code></pre>
+
+<h2>Discussion</h2>
+
+<div class = "section">
+<p><a href="https://jort.technology/">JortSort</a> is a joke.</p>
+
+<p>The original jortSort actually sorts input, then compares the
+sorted input with the original input.</p>
+
+<p>It's not clear whether sorting is necessary for a jortSort, or
+whether any function which returns whether its input is sorted
+or not qualifies as a jortSort.
+The challenge is silent on this subject. So, we won't bother
+with sorting, and just check whether the input is sorted or not.</p>
+</div>
+
+<h2>Solution</h2>
+
+<div class = "section">
+<p>A list <span class = 'latex-inline'>\(L\)</span> is sorted, if and only if, there isn't an index 
+<span class = 'latex-inline'>\(i > 0\)</span> such that <span class = 'latex-inline'>\(L [i - i] > L [i]\)</span>.</p>
+
+<p>And that translates to a very simple piece of code.</p>
+</div>
+
+<h3>AWK</h3>
+
+<pre><code>{
+    sorted = 1
+    for (i = 2; i &lt;= NF; i ++) {
+        if ($(i - 1) &gt; $i) {
+            sorted = 0
+        }
+    }
+    print sorted
+}
+</code></pre>
+
+<p>AWK already splits the input for us, putting the values into
+<code>$1</code>, <code>$2</code>, etc. </p>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-139/abigail/awk/ch-1.awk">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+
+<h3>Bash</h3>
+
+<div class = "section">
+<p>After reading the input into an array <code>list</code>, we'll do:</p>
+
+<pre><code>((sorted = 1))
+for ((i = 1; i &lt; ${#list[@]}; i ++))
+do  if ((${list[$i - 1]} &gt; ${list[$i]}))
+    then ((sorted = 0))
+    fi
+done
+echo $sorted
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-139/abigail/bash/ch-1.sh">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>bc</h3>
+
+<div class = "section">
+<p>In our bc solution, we assume the input is terminated by a <code>0</code>.</p>
+
+<pre><code>prev = read()
+sorted = 1;
+while (1) {
+    next = read()
+    if (next == 0) { # End of input
+        sorted
+        break 
+    }
+    if (prev &gt; next) {
+        sorted = 0
+    }
+    prev = next
+}
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-139/abigail/bc/ch-1.bc">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>C</h3>
+
+<div class = "section">
+<p>Here, we pick up the code after we have read a line of input into
+the variable <code>line</code>, of type <code>char *</code>.</p>
+
+<pre><code>int offset = 0;
+int off;
+int prev, next;   
+bool sorted = true;
+if (sscanf (line, "%d%n", &amp;prev, &amp;offset) != 1) {
+    perror ("Failure to scan");
+    exit (1);
+}
+while (sscanf (line + offset, "%d%n", &amp;next, &amp;off) == 1) {
+    offset += off;
+    if (prev &gt; next) {
+        sorted = false;
+    }
+    prev = next;
+}
+printf ("%d\n", sorted ? 1 : 0);
+</code></pre>
+
+<p>We use [<code>sscanf</code>] to extract integers from the line of input, comparing
+each integer (except the first) with the previous one. </p>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-139/abigail/c/ch-1.c">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>Go</h3>
+
+<div class = "section">
+<p>Here, we have read in the data into a string <code>line</code>:</p>
+
+<pre><code>list   := strings . Split (line, " ")
+
+sorted := true
+for i := 1; sorted &amp;&amp; i &lt; len (list); i ++ {
+    prev, _ := strconv . Atoi (list [i - 1])
+    next, _ := strconv . Atoi (list [i])
+    sorted = prev &lt;= next
+}
+
+if (sorted) {
+    fmt . Println (1)
+} else {
+    fmt . Println (0)
+}
+</code></pre>
+
+<p>We're using <a href="https://pkg.go.dev/strconv#Atoi"><code>Atoi</code></a> to map a
+string into an integer, as Go doesn't automatically convert
+strings into integer.</p>
+
+<p>It's a pity Go lacks a ternary operator.</p>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-139/abigail/go/ch-1.go">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>Java</h3>
+
+<div class = "section">
+<p>With <code>line</code> a string containing the input, we get a solution very
+similar to the Go solution:</p>
+
+<pre><code>String [] list = line . split (" ");
+boolean sorted = true;
+for (int i = 1; sorted &amp;&amp; i &lt; list . length; i ++) { 
+    sorted = Integer . parseInt (list [i - 1]) &lt;= 
+             Integer . parseInt (list [i]); 
+}
+System . out . println (sorted ? 1 : 0);
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-139/abigail/java/ch-1.java">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>Lua</h3>
+
+<div class = "section">
+<p>Lua lacks a <code>split</code> function, nor does it have something like
+<code>scanf</code>. So, we're using pattern matching to extract numbers
+from the input line <code>line</code>:</p>
+
+<pre><code>local sorted = 1
+local prev   = nil
+for next in line : gmatch ("[0-9]+") do
+    if prev ~= nil and prev &gt; next then
+        sorted = 0
+    end
+    prev = next
+end
+print (sorted)
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-139/abigail/lua/ch-1.lua">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>Node.js</h3>
+
+<div class = "section">
+<p>Our Node.js solution also uses pattern matching to extract the
+numbers from the line of input, and uses <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reduce"><code>reduce</code></a> to loop
+over the array of numbers, checking if all elements are in order:</p>
+
+<pre><code>console . log (line . match (/[0-9]+/gi) . reduce ((sorted, _, i, list) =&gt; {
+    if (i &gt; 0 &amp;&amp; list [i - 1] &gt; list [i]) {sorted = 0}
+    return sorted},
+    1) 
+)
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-139/abigail/node/ch-1.js">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>Pascal</h3>
+
+<div class = "section">
+<p>In Pascal, we can read in the numbers one by one, allowing us to 
+easily compare consecutive numbers:</p>
+
+<pre><code>var
+    prev, next: integer;
+    sorted: integer;
+
+begin
+    sorted := 1;
+    read (prev);
+    while not eoln do begin
+        read (next);
+        if prev &gt; next then begin
+            sorted := 0;
+        end;
+        prev := next;
+    end;
+    readln ();
+    writeln (sorted);
+end.
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-139/abigail/pascal/ch-1.p">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>Perl</h3>
+
+<div class = "section">
+<p>In Perl, we also use pattern matching to extract the numbers from
+the input, which is in <code>$_</code>. Unlike most other solutions, we don't
+require an additional <code>sorted</code> variable. Instead, we use <a href="https://perldoc.perl.org/perlfunc#grep"><code>grep</code></a>
+to find out whether any pairs of numbers are in unsorted order:</p>
+
+<pre><code>my @list = /[0-9]+/g;
+say grep ({$list [$_ - 1] &gt; $list [$_]} 1 .. $#list) ? 0 : 1
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-139/abigail/perl/ch-1.pl">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>Python</h3>
+
+<div class = "section">
+<p>In Python, we just split the input, and loop over the resulting list:</p>
+
+<pre><code>list = line . split (" ")
+sorted = 1
+for i in range (1, len (list)):
+    if list [i - 1] &gt; list [i]:
+        sorted = 0
+print (sorted)
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-139/abigail/python/ch-1.py">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>R</h3>
+
+<div class = "section">
+<p>In R, we can use <code>strsplit</code> to split the input, and <code>as.numeric</code>
+to map strings to numbers. Then it's our familiar loop:</p>
+
+<pre><code>parts  &lt;- strsplit (line, " ")
+list   &lt;- as.numeric (parts [[1]])
+sorted &lt;- 1
+if (length (list) &gt; 1) {
+    for (i in 2 : length (list)) {
+        if (list [i - 1] &gt; list [i]) {
+            sorted &lt;- 0
+        }
+    }
+}       
+cat (sorted, "\n")
+</code></pre>
+
+<p>Note we do need a seperate check for the length of the list. If we have
+a one element list, the loop <code>for (i in 2 : length (list)) { .. }</code> would
+be executed twice: first with <code>i = 2</code>, then with <code>i = 1</code>. Which would
+not be what we want.</p>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-139/abigail/r/ch-1.r">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>Ruby</h3>
+
+<div class = "section">
+<p>Our Ruby solution is similar to other solutions. We use
+<a href="https://ruby-doc.org/core-2.4.0/Array.html#method-i-map"><code>map</code></a><code>.with_index</code>
+to iterate over the list. We're only
+interested in the index, so we use <code>_</code> to signal we're not
+interested in the element.</p>
+
+<pre><code>sorted = 1
+list = line . strip() . split(" ")
+list . map . with_index do
+    | _, i |
+    if i &gt; 0 &amp;&amp; list [i - 1] &gt; list [i] then
+        sorted = 0
+    end
+end
+puts (sorted)
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-139/abigail/ruby/ch-1.rb">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>Scheme</h3>
+
+<div class = "section">
+<p>Our Scheme solution looks very different. Iterating over lists isn't
+very Scheme-like. Instead, we use a recursive method:</p>
+
+<ul>
+<li>A list with less than two elements is sorted.</li>
+<li>Else, if the first element is larger than the second, the list is
+not sorted.</li>
+<li>Else, the list is sorted if the list following the first element is
+sorted.</li>
+</ul>
+
+<p>This leads the following function:</p>
+
+<pre><code>(define (is-sorted list)
+    (cond ((&lt; (length list) 2)                     1)
+          ((&gt; (list-ref list 0) (list-ref list 1)) 0)
+          (else (is-sorted (cdr list))))
+)
+</code></pre>
+
+<p>After having read the input into a line <code>line</code>, we call the function
+above as:</p>
+
+<pre><code>(display (is-sorted (map-in-order string-&gt;number (string-split line #\ ))))
+(newline)
+</code></pre>
+
+<p><code>string-split</code> splits the input line on spaces (<code>\#</code>). We map the resulting
+strings to numbers by applying <code>string-number</code> on each element (due to
+<code>map-in-order</code>). The resulting list of numbers is then passed to
+<code>is-sorted</code>, and its return value is printed.</p>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-139/abigail/scheme/ch-1.scm">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>Tcl</h3>
+
+<p>Our Tcl solution looks like many other solutions:</p>
+
+<pre><code>set list [split $line " "]
+set result 1
+for {set i 1} {$i &lt; [llength $list]} {incr i} {
+    if {[lindex $list [expr $i - 1]] &gt; [lindex $list $i]} {
+        set result 0
+        break
+    }
+}
+puts $result
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-139/abigail/tcl/ch-1.tcl">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+
+<hr id = 'last-line'>
+<div class = 'trailer'>
+<p class = 'prev'><a class = "prev" href = "">&#x261C;</a></p>
+<p class = 'issue'>Please leave any comments as a
+  <a href = 'https://github.com/Abigail/Abigail.github.io/issues'
+     title = 'GitHub issue'>GitHub issue</a>.
+<p class = 'next'><a class = "next" href = "">&#x261E;</a></p>
+</div>
+
+</body>
+</html>
