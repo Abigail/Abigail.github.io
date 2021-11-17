@@ -1,0 +1,156 @@
+<html>
+<head>
+<title>Perl Weekly Challenge 139: Long Primes</title>
+<script src = "https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id = "MathJax-script" async src = "https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.js"></script>
+<script src = '../../JavaScript/jquery.js'></script>
+<script src = '../../JavaScript/navigation.js'></script>
+<link rel = 'preconnect' href = 'https://fonts.gstatic.com'>
+<link rel = 'stylesheet' href = 'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
+<link rel = 'stylesheet' href = '../../Styles/Perl-Weekly-Challenge/main.css'>
+</head>
+
+<body><h1>Perl Weekly Challenge 139: Long Primes</h1><div class = "byline">
+by Abigail<br>
+<img src = "../../Images/jan_sluiters.jpg">
+</div>
+
+
+<h2><a href="https://theweeklychallenge.org/blog/perl-weekly-challenge-139/#TASK2">Challenge</a></h2>
+
+<blockquote>
+  <p>Write a script to generate first 5 <code>Long Primes</code>.</p>
+  
+  <blockquote>
+  A prime number (p) is called Long Prime if (1/p) has an infinite decimal expansion repeating every (p-1) digits.
+  
+  </blockquote>
+</blockquote>
+
+<h3>Example</h3>
+
+<div class = "section">
+<p><span class = 'latex-inline'>\(7\)</span> is a long prime since <span class = 'latex-inline'>\(\frac{1}{7} = 0.\overline{1428571}\)</span>.
+The repeating part (<span class = 'latex-inline'>\(142857\)</span>) size is <span class = 'latex-inline'>\(6\)</span> i.e. one less
+than the prime number <span class = 'latex-inline'>\(7\)</span>.</p>
+
+<p>Also <span class = 'latex-inline'>\(17\)</span> is a long prime since
+<span class = 'latex-inline'>\(\frac{1}{17} = 0.\overline{0588235294117647}\)</span>.
+The repeating part (<span class = 'latex-inline'>\(0588235294117647\)</span>) size is <span class = 'latex-inline'>\(16\)</span> i.e. one less
+than the prime number <span class = 'latex-inline'>\(17\)</span>.</p>
+
+<p>Another example, <span class = 'latex-inline'>\(2\)</span> is not a long prime as <span class = 'latex-inline'>\(\frac{1}{2} = 0.5\)</span>.
+There is no repeating part in this case.</p>
+</div>
+
+<h2>Discussion</h2>
+
+<p>Wikipedia call long primes <a href="https://en.wikipedia.org/wiki/Full_reptend_prime">Full reptend prime</a>.</p>
+
+<p>A naive method would be to take a prime number, and see whether
+its decimal fraction repeats. But that means, having to deal
+with floating point numbers, and that's hard in general.</p>
+
+<p>For instance, in Perl, even a 64 bit perl, <span class = 'latex-inline'>\(\frac{1}{23}\)</span> equals
+<code>0.0434782608695652174</code>. But that's enough to determine whether
+the fraction repeats with period 22 - as we only have 19 digits 
+of precision. In many other languages, the situation is similar.</p>
+
+<p>Luckily, there is an alternative way. As the Wikipedia page points
+out, for a full reptend prime <span class = 'latex-inline'>\(p\)</span>, the quotient</p>
+
+<p><span class = 'latex-display'>\[ \frac{b^{p - 1} - 1}{p} \]</span></p>
+
+<p>gives a <a href="https://en.wikipedia.org/wiki/cyclic_number">cyclic number</a>, where <span class = 'latex-inline'>\(b\)</span> is the base we are
+working in (so, for us <span class = 'latex-inline'>\(b = 10\)</span>).</p>
+
+<p>Now, <span class = 'latex-inline'>\(\frac{b^{p - 1} - 1}{p}\)</span> becomes large quickly if <span class = 'latex-inline'>\(p\)</span>
+increases. For instance, if <span class = 'latex-inline'>\(b = 10\)</span> and <span class = 'latex-inline'>\(p = 23\)</span>, the quotient
+is <span class = 'latex-inline'>\(43478260869565217391\)</span> which is larger than a 64 bit integer can 
+hold.</p>
+
+<p>We could use big integers to calculate the quotient, but that doesn't
+work for languages with no, or poor, support for large integers.</p>
+
+<p>But there is a different way. We don't need the actual quotient. All
+we want to know is that the resulting number doesn't contain repeats.
+We can do this by performing <em>long division</em> and check all the
+intermediate results are different.</p>
+
+<p>For instance, if <span class = 'latex-inline'>\(b = 10\)</span> and <span class = 'latex-inline'>\(p = 7\)</span>, <span class = 'latex-inline'>\(b^{p - 1} - 1\)</span> equals
+<span class = 'latex-inline'>\(999999\)</span>. Dividing that by <span class = 'latex-inline'>\(7\)</span> gives:</p>
+
+<p>\[
+  \begin{align*}
+    &amp; \text{ }\text{ }142857                                       \\
+  7 &amp; \overline{\big)999999}                                       \\
+    &amp; \:\text{ }\underline{7}                                      \\
+    &amp; \:\text{ }29                                                 \\
+    &amp; \:\text{ }\underline{28}                                     \\
+    &amp; \:\text{ }\text{ }\text{ }19                                 \\
+    &amp; \:\text{ }\text{ }\text{ }\underline{14}                     \\
+    &amp; \:\text{ }\text{ }\text{ }\text{ }\text{ }59                 \\
+    &amp; \:\text{ }\text{ }\text{ }\text{ }\text{ }\underline{56}     \\
+    &amp; \:\text{ }\text{ }\text{ }\text{ }\text{ }\text{ }\text{ }39 \\
+    &amp; \:\text{ }\text{ }\text{ }\text{ }\text{ }\text{ }\text{ }
+                \underline{35}                                     \\
+    &amp; \:\text{ }\text{ }\text{ }\text{ }\text{ }\text{ }\text{ }
+                \text{ }\text{ }49                                 \\
+    &amp; \:\text{ }\text{ }\text{ }\text{ }\text{ }\text{ }\text{ }
+                \text{ }\text{ }\underline{49}                     \\
+    &amp; \:\text{ }\text{ }\text{ }\text{ }\text{ }\text{ }\text{ }
+                \text{ }\text{ }\text{ }\text{ }0                  \\
+  \end{align*}
+\]</p>
+
+<p>We are interested in the sequence <span class = 'latex-inline'>\(2, 1, 5, 3, 4, 0\)</span>. Since it does
+not contain duplicates, the quotient doesn't repeat, and hence, <span class = 'latex-inline'>\(7\)</span>
+is a long prime.</p>
+
+<p>If, on the other hand, we do the same for <span class = 'latex-inline'>\(11\)</span>, we get:</p>
+
+<p>\[
+  \begin{align*}
+    &amp; \text{ }\text{ }076923076923                                 \\
+ 13 &amp; \overline{\big)999999999999}                                 \\
+    &amp; \:\text{ }\underline{0}                                      \\
+    &amp; \:\text{ }99                                                 \\
+    &amp; \:\text{ }\underline{91}                                     \\
+    &amp; \:\text{ }\text{ }\text{ }89                                 \\
+    &amp; \:\text{ }\text{ }\text{ }\underline{78}                     \\
+    &amp; \:\text{ }\text{ }\text{ }119                                \\
+    &amp; \:\text{ }\text{ }\text{ }\underline{117}                    \\
+    &amp; \:\text{ }\text{ }\text{ }\text{ }\text{ }\text{ }\text{ }29 \\
+    &amp; \:\text{ }\text{ }\text{ }\text{ }\text{ }\text{ }\text{ }
+                \underline{26}                                     \\
+    &amp; \:\text{ }\text{ }\text{ }\text{ }\text{ }\text{ }\text{ }
+                \text{ }\text{ }39                                 \\
+    &amp; \:\text{ }\text{ }\text{ }\text{ }\text{ }\text{ }\text{ }
+                \text{ }\text{ }\underline{39}                     \\
+    &amp; \:\text{ }\text{ }\text{ }\text{ }\text{ }\text{ }\text{ }
+                \text{ }\text{ }\text{ }\text{ }09                 \\
+    &amp; \:\text{ }\text{ }\text{ }\text{ }\text{ }\text{ }\text{ }
+                \text{ }\text{ }\text{ }\text{ }\text{ }\text{ }
+                \underline{0}                                      \\
+    &amp; \:\text{ }\text{ }\text{ }\text{ }\text{ }\text{ }\text{ }
+                \text{ }\text{ }\text{ }\text{ }\text{ }\text{ }
+                \cdots                                             \\
+  \end{align*}
+\]</p>
+
+<p>Now, the sequence we are interested in starts with
+<span class = 'latex-inline'>\(9, 8, 11, 2, 3, 0, 9, \ldots\)</span>. As soon as we have seen the
+second <span class = 'latex-inline'>\(9\)</span>, we know the quotient will repeat, and hence,
+<span class = 'latex-inline'>\(11\)</span> is not a long prime.</p>
+
+<hr id = 'last-line'>
+<div class = 'trailer'>
+<p class = 'prev'><a class = "prev" href = "">&#x261C;</a></p>
+<p class = 'issue'>Please leave any comments as a
+  <a href = 'https://github.com/Abigail/Abigail.github.io/issues'
+     title = 'GitHub issue'>GitHub issue</a>.
+<p class = 'next'><a class = "next" href = "">&#x261E;</a></p>
+</div>
+
+</body>
+</html>
