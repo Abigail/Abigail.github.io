@@ -213,7 +213,7 @@ sub make_link (%args) {
                 $url = $NODE_URL . "/$link";
             }
             else {
-                if (my $chapter = $LINK_GROUP {Java} {$anchor}) {
+                if (my $chapter = $LINK_GROUP {$language} {$anchor}) {
                     $url = $NODE_URL . "/$chapter/$anchor";
                 }
             }
@@ -519,6 +519,8 @@ sub init_link_group () {
                   new panic print println real recover]],
         [qw [Node.js Global_Objects/String
                   replace trim match length]],
+        [qw [Node.js Global_Objects/Array
+                  reduce]],
     );
 
     foreach my $entry (@entries) {
