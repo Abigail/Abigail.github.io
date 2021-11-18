@@ -3,11 +3,14 @@
 <title>Perl Weekly Challenge 139: Long Primes</title>
 <script src = "https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
 <script id = "MathJax-script" async src = "https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.js"></script>
+<script src = '../../JavaScript/Perl-Weekly-Challenge/week-139-2.js'></script>
 <script src = '../../JavaScript/jquery.js'></script>
 <script src = '../../JavaScript/navigation.js'></script>
+<script src = '../../JavaScript/long_division.js'></script>
 <link rel = 'preconnect' href = 'https://fonts.gstatic.com'>
 <link rel = 'stylesheet' href = 'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
 <link rel = 'stylesheet' href = '../../Styles/Perl-Weekly-Challenge/main.css'>
+<link rel = 'stylesheet' href = '../../Styles/Perl-Weekly-Challenge/week-139-2.css'>
 </head>
 
 <body><h1>Perl Weekly Challenge 139: Long Primes</h1><div class = "byline">
@@ -45,6 +48,7 @@ There is no repeating part in this case.</p>
 
 <h2>Discussion</h2>
 
+<div class = "section">
 <p>Wikipedia call long primes <a href="https://en.wikipedia.org/wiki/Full_reptend_prime">Full reptend prime</a>.</p>
 
 <p>A naive method would be to take a prime number, and see whether
@@ -55,6 +59,9 @@ with floating point numbers, and that's hard in general.</p>
 <code>0.0434782608695652174</code>. But that's enough to determine whether
 the fraction repeats with period 22 - as we only have 19 digits 
 of precision. In many other languages, the situation is similar.</p>
+
+<div class = "long_division" data-dividend = "999999999999"
+     id    = "long-div-2"    data-divisor  = "13"></div>
 
 <p>Luckily, there is an alternative way. As the Wikipedia page points
 out, for a full reptend prime <span class = 'latex-inline'>\(p\)</span>, the quotient</p>
@@ -69,6 +76,9 @@ increases. For instance, if <span class = 'latex-inline'>\(b = 10\)</span> and <
 is <span class = 'latex-inline'>\(43478260869565217391\)</span> which is larger than a 64 bit integer can 
 hold.</p>
 
+<div class = "long_division" data-dividend = "999999"
+     id    = "long-div-1"    data-divisor  = "7"></div>
+
 <p>We could use big integers to calculate the quotient, but that doesn't
 work for languages with no, or poor, support for large integers.</p>
 
@@ -78,70 +88,165 @@ We can do this by performing <em>long division</em> and check all the
 intermediate results are different.</p>
 
 <p>For instance, if <span class = 'latex-inline'>\(b = 10\)</span> and <span class = 'latex-inline'>\(p = 7\)</span>, <span class = 'latex-inline'>\(b^{p - 1} - 1\)</span> equals
-<span class = 'latex-inline'>\(999999\)</span>. Dividing that by <span class = 'latex-inline'>\(7\)</span> gives:</p>
+<span class = 'latex-inline'>\(999999\)</span>. On the left, we have the long division of those numbers.
+What we are interested in is the numbers left over after subtracting
+the appropriate multiple of <span class = 'latex-inline'>\(7\)</span>, this the values below the lines
+(and without the dropped <span class = 'latex-inline'>\(9\)</span>). Here, they are \(9 - 7 = 2,
+29 - 28 = 1, 19 - 14 = 2, 59 - 56 = 3, 39 - 35 = 4, 49 - 49 = 0\).
+There are no duplicates in this sequence, so the quotient doesn't
+repeat (<span class = 'latex-inline'>\(\frac{10^6 - 1}{7} = 142857\)</span>), and hence, <span class = 'latex-inline'>\(7\)</span> is a long prime.</p>
+
+<p>But if we look at the long division of <span class = 'latex-inline'>\(10^{12} - 1\)</span> and <span class = 'latex-inline'>\(13\)</span> on
+the right, we see that the sequence is
+<span class = 'latex-inline'>\(9, 8, 11, 2, 3, 0, 9, 8, 11, 2, 3, 0\)</span>. This sequence repeats,
+and hence the quotient repeats: <span class = 'latex-inline'>\(\frac{10^{12} - 1}{13} = 076923076923\)</span>.
+This makes <span class = 'latex-inline'>\(13\)</span> not a long prime.</p>
+
+<p>Note that in the latter case, we don't need to do the full calculation.
+As soon as we find an intermediate value we have seen before
+(here the <span class = 'latex-inline'>\(9\)</span>), we know the number is not a long prime, and there
+is no need to continue the calculations.</p>
+
+<p>Now, we could just iterate over the primes and see if there are no
+repeats when doing the long division. But that would require us to
+generate primes. In Perl, we could use
+<a href="https://metacpan.org/pod/Math::Prime::Util"><code>Math::Prime::Util</code></a>,
+but not every language has such a module.</p>
+
+<p>Instead, we just check every number starting from 2. Composite
+numbers will give a duplicate when doing the long division, so
+any number which passes the no-duplicates check has to be prime.</p>
+</div>
+
+<h2>Live Demo</h2>
+
+<div class = "section">
+<p>Input a number, hit Calculate, and it shows whether the number
+is a long prime or not.</p>
+
+<p><input type = number id = long_prime_input>
+<button onclick = "long_prime ()">Calculate</button>
+<span id = "result"></span></p>
+</div>
+
+<h2>Solution</h2>
+
+<div class = "section">
+<p>Each solution will contain two parts: a function <code>is_long</code> which takes
+a number, and returns a true or false value depending on whether the
+number is a long prime or not, and a main part which counts up from 2,
+skipping numbers which evenly divide 10, and then calls <code>is_long</code>, 
+printing the numbers which are long primes, up to the required amount.</p>
+
+<p>The <code>is_long</code> method will perform the long division described above.
+Note that we do not have to calculate a number of the form
+<span class = 'latex-inline'>\(10^{p - 1} - 1\)</span>, where <span class = 'latex-inline'>\(p\)</span> is the argument to <code>is_long</code>.
+<span class = 'latex-inline'>\(10^{p - 1} - 1\)</span> will be a string of <span class = 'latex-inline'>\(p - 1\)</span> <span class = 'latex-inline'>\(9\)</span>s, so when
+performing the long division, we always "<em>drop down</em>" a <span class = 'latex-inline'>\(9\)</span>.</p>
+
+<p>The sequence <span class = 'latex-inline'>\(a_n\)</span> for a given number <span class = 'latex-inline'>\(p\)</span> can be calculated
+as follows:</p>
 
 <p>\[
-  \begin{align*}
-    &amp; \text{ }\text{ }142857                                       \\
-  7 &amp; \overline{\big)999999}                                       \\
-    &amp; \:\text{ }\underline{7}                                      \\
-    &amp; \:\text{ }29                                                 \\
-    &amp; \:\text{ }\underline{28}                                     \\
-    &amp; \:\text{ }\text{ }\text{ }19                                 \\
-    &amp; \:\text{ }\text{ }\text{ }\underline{14}                     \\
-    &amp; \:\text{ }\text{ }\text{ }\text{ }\text{ }59                 \\
-    &amp; \:\text{ }\text{ }\text{ }\text{ }\text{ }\underline{56}     \\
-    &amp; \:\text{ }\text{ }\text{ }\text{ }\text{ }\text{ }\text{ }39 \\
-    &amp; \:\text{ }\text{ }\text{ }\text{ }\text{ }\text{ }\text{ }
-                \underline{35}                                     \\
-    &amp; \:\text{ }\text{ }\text{ }\text{ }\text{ }\text{ }\text{ }
-                \text{ }\text{ }49                                 \\
-    &amp; \:\text{ }\text{ }\text{ }\text{ }\text{ }\text{ }\text{ }
-                \text{ }\text{ }\underline{49}                     \\
-    &amp; \:\text{ }\text{ }\text{ }\text{ }\text{ }\text{ }\text{ }
-                \text{ }\text{ }\text{ }\text{ }0                  \\
-  \end{align*}
+    a_n = \begin{cases}
+           0                          &amp; \text{if } n = 0 \\
+          (10 * a_{n - 1} + 9) \mod p &amp; \text{if } n > 0 \\
+          \end{cases}
 \]</p>
 
-<p>We are interested in the sequence <span class = 'latex-inline'>\(2, 1, 5, 3, 4, 0\)</span>. Since it does
-not contain duplicates, the quotient doesn't repeat, and hence, <span class = 'latex-inline'>\(7\)</span>
-is a long prime.</p>
+<p>We need <span class = 'latex-inline'>\(p - 2\)</span> terms of this sequence. If there are no duplicates,
+the given number is a long prime. Note that <span class = 'latex-inline'>\(\forall i: 0 \leq a_i &lt; p\)</span>.</p>
+</div>
 
-<p>If, on the other hand, we do the same for <span class = 'latex-inline'>\(11\)</span>, we get:</p>
+<h3>Perl</h3>
 
-<p>\[
-  \begin{align*}
-    &amp; \text{ }\text{ }076923076923                                 \\
- 13 &amp; \overline{\big)999999999999}                                 \\
-    &amp; \:\text{ }\underline{0}                                      \\
-    &amp; \:\text{ }99                                                 \\
-    &amp; \:\text{ }\underline{91}                                     \\
-    &amp; \:\text{ }\text{ }\text{ }89                                 \\
-    &amp; \:\text{ }\text{ }\text{ }\underline{78}                     \\
-    &amp; \:\text{ }\text{ }\text{ }119                                \\
-    &amp; \:\text{ }\text{ }\text{ }\underline{117}                    \\
-    &amp; \:\text{ }\text{ }\text{ }\text{ }\text{ }\text{ }\text{ }29 \\
-    &amp; \:\text{ }\text{ }\text{ }\text{ }\text{ }\text{ }\text{ }
-                \underline{26}                                     \\
-    &amp; \:\text{ }\text{ }\text{ }\text{ }\text{ }\text{ }\text{ }
-                \text{ }\text{ }39                                 \\
-    &amp; \:\text{ }\text{ }\text{ }\text{ }\text{ }\text{ }\text{ }
-                \text{ }\text{ }\underline{39}                     \\
-    &amp; \:\text{ }\text{ }\text{ }\text{ }\text{ }\text{ }\text{ }
-                \text{ }\text{ }\text{ }\text{ }09                 \\
-    &amp; \:\text{ }\text{ }\text{ }\text{ }\text{ }\text{ }\text{ }
-                \text{ }\text{ }\text{ }\text{ }\text{ }\text{ }
-                \underline{0}                                      \\
-    &amp; \:\text{ }\text{ }\text{ }\text{ }\text{ }\text{ }\text{ }
-                \text{ }\text{ }\text{ }\text{ }\text{ }\text{ }
-                \cdots                                             \\
-  \end{align*}
-\]</p>
+<div class = "section">
+<p>The <code>is_long</code> function is now straight forward with the formula above:</p>
 
-<p>Now, the sequence we are interested in starts with
-<span class = 'latex-inline'>\(9, 8, 11, 2, 3, 0, 9, \ldots\)</span>. As soon as we have seen the
-second <span class = 'latex-inline'>\(9\)</span>, we know the quotient will repeat, and hence,
-<span class = 'latex-inline'>\(11\)</span> is not a long prime.</p>
+<pre><code>my $BASE = 10;
+
+sub is_long ($number) {
+    my $rest = 0;
+    my %seen;
+    for (2 .. $number) {
+        return 0 if $seen {$rest = ($rest * $BASE + $BASE - 1) % $number} ++;
+    }
+    return 1;
+}
+</code></pre>
+
+<p>And the main function:</p>
+
+<pre><code>my $COUNT = 5;
+
+my $number = 1;
+while ($COUNT) {
+    $number ++;
+    next if $BASE % $number == 0;
+    next unless is_long $number;
+    say $number;
+    $COUNT --;
+}
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-139/abigail/perl/ch-2.pl">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>Scheme</h3>
+
+<div class = "section">
+<p>The <code>is-long</code> function:</p>
+
+<pre><code>(define BASE  10)
+
+(define (is-long number)
+    (define seen (make-array 0 number))
+    (define rest 0)
+    (define r #t)
+
+    (do ((i 2 (1+ i)))
+        ((&gt; i number))
+        (set! rest (modulo (+ (* rest BASE) BASE -1) number))
+        (if (= (array-ref seen rest) 1)
+            (set! r #f))
+        (array-set! seen 1 rest))
+
+    r
+)
+</code></pre>
+
+<p>And the main program:</p>
+
+<pre><code>(define COUNT  5)
+
+(do ((number 2 (1+ number)))
+    ((= COUNT 0))
+    (cond ((= (modulo BASE number) 0) #f)
+          ((is-long number)
+               (begin (display number)(newline)
+                      (set! COUNT (- COUNT 1))))))
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-139/abigail/scheme/ch-2.scm">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>Other languages</h3>
+
+<p>Implementations in other languages are very similar to Perl solution.
+We also have solutions in:
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-139/abigail/awk/ch-2.awk">AWK</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-139/abigail/bash/ch-2.sh">Bash</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-139/abigail/bc/ch-2.bc">bc</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-139/abigail/c/ch-2.c">C</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-139/abigail/go/ch-2.go">Go</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-139/abigail/java/ch-2.java">Java</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-139/abigail/lua/ch-2.lua">Lua</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-139/abigail/node/ch-2.js">Node.js</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-139/abigail/pascal/ch-2.p">Pascal</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-139/abigail/python/ch-2.py">Python</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-139/abigail/r/ch-2.r">R</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-139/abigail/ruby/ch-2.rb">Ruby</a>, and
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-139/abigail/tcl/ch-2.tcl">Tcl</a>.</p>
 
 <hr id = 'last-line'>
 <div class = 'trailer'>

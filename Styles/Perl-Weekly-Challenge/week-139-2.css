@@ -1,0 +1,15 @@
+div#long-div-1    {float: left;
+                   padding-left:  .5em;
+                   padding-right:  1em;
+                   margin-right:   1em;
+                   border-right:   1px solid black;}
+
+div#long-div-2    {float: right;
+                   padding-right: .5em;
+                   padding-left:   1em;
+                   margin-left:    1em;
+                   border-left:    1px solid black;}
+
+div.long_division {margin-top:   -.8em;}
+
+hr                {clear: both;}
