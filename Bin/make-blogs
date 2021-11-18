@@ -112,7 +112,8 @@ sub header ($title, %args) {
         map  {"<script src = '../../$_'></script>"}
         @scripts,
         grep {-f}
-        map  {"$JAVASCRIPT_DIR/$_.js"} @SCRIPTS;
+        map  {"$JAVASCRIPT_DIR/$_.js"}
+               @SCRIPTS, split /,\s*/ => ($args {script} // "");
 
     my $chart_js = "";
        $chart_js = "<script id = 'chart-script' async src = '$CHART_URL'>" .
@@ -358,6 +359,19 @@ sub pre_process ($text, $week) {
 
     my $out = "";
 
+    #
+    # Scan for directives, which are of the format
+    #
+    #   <!-- %% directive        --> or
+    #   <!-- %% directive: value -->
+    #
+
+    my %directives;
+    while ($text =~ s/^\s*<!--\s*%%\s*(\S+)(?:\s*:\s*(.*\S))?\s*-->\s*\n//m) {
+        $directives {$1} = $2 // 1;
+    }
+
+
     my @tokens = (["\Q~~~~",  "\Q~~~~",  \&code_block],
                   ["\Q>>>>",  "\Q<<<<",  \&block_quote],
                   ["\Q|====", "\Q====|", \&table],);
@@ -399,7 +413,7 @@ sub pre_process ($text, $week) {
         $out .= process_section ($section, $language, $week);
     }
 
-    return $out;
+    return $out, \%directives;
 }
 
 
@@ -469,8 +483,9 @@ foreach my $source_file (@sources) {
                                        (stat $source_file) [9]; # 9: mtime
 
     my $source_text = `cat $source_file`;
+    my $directives;
 
-    $source_text = pre_process $source_text, $week;
+    ($source_text, $directives) = pre_process $source_text, $week;
 
     my $html_text   = markdown ($source_text => {
         empty_element_suffix => ">"
@@ -485,9 +500,11 @@ foreach my $source_file (@sources) {
     $html_text = post_process ($html_text);
 
     my ($title)     = $html_text   =~ m{<h1>(.*?)</h1>};
-    my  $has_canvas = $source_text =~ /^<canvas/m;
 
-    my $header  = header ($title, week => $week, has_canvas => $has_canvas);
+    $$directives {has_canvas} = 1 if $source_text =~ /^<canvas/m;
+    $$directives {week}       = $week;
+
+    my $header  = header ($title, %$directives);
     my $trailer = trailer ($week);
     open my $fh, ">", $html_file or die "open $html_file: $!";
     print $fh <<~ "--";
