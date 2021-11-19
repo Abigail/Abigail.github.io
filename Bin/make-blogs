@@ -34,6 +34,13 @@ my $TYPE2DIR       = {
     $TYPE_ADVENT    =>  $DIR_ADVENT,
 };
 
+my $TYPE2NAV       = {
+    $TYPE_PWC       =>  "nav_weekly_challenge",
+    $TYPE_FC        =>  "nav_feature_compare",
+    $TYPE_ADVENT    =>  "nav_advent",
+};
+
+
 my $STYLE_DIR      = "Styles";
 my $JAVASCRIPT_DIR = "JavaScript";
 my @SCRIPTS        = qw [jquery navigation];
@@ -112,6 +119,7 @@ sub header ($title, $directives) {
     #
     my $dir  = $$directives {dir};
     my $base = $$directives {base};
+    my $type = $$directives {type};
 
     my $styles = join "\n" =>
         map  {"<link rel = 'stylesheet' href = '../../$_'>"}
@@ -126,7 +134,9 @@ sub header ($title, $directives) {
         @scripts,
         grep {-f}
         map  {"$JAVASCRIPT_DIR/$_.js"}
-               @SCRIPTS, split /,\s*/ => ($$directives {script} // "");
+               @SCRIPTS,
+               $$TYPE2NAV {$type},
+               split /,\s*/ => ($$directives {script} // "");
 
     my $chart_js = "";
        $chart_js = "<script id = 'chart-script' async src = '$CHART_URL'>" .

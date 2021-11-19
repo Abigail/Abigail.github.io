@@ -92,6 +92,9 @@ $(document) . ready (function () {
     if (pagename . match (/^Perl-Weekly-Challenge/)) {
         navigation ("PWC", pagename, pwc_pages)
     }
+    else {
+        navigation (window . type, pagename, window . pages)
+    }
 })
 
 
