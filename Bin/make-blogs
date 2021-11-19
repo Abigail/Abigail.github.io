@@ -20,7 +20,20 @@ my $HOME           = $ENV {HOME};
 my $TOP_DIR        = "$HOME/GitHub/Blogs";
 my $SRC_DIR        = "Src";
 my $HTML_DIR       = "HTML";
-my $PWC_DIR        = "Perl-Weekly-Challenge";
+my $DIR_PWC        = "Perl-Weekly-Challenge";
+my $DIR_FC         = "Feature-Compare";
+my $DIR_ADVENT     = "Advent-of-Code";
+
+my $TYPE_PWC       = 1;
+my $TYPE_FC        = $TYPE_PWC + 1;
+my $TYPE_ADVENT    = $TYPE_FC  + 1;
+
+my $TYPE2DIR       = {
+    $TYPE_PWC       =>  $DIR_PWC,
+    $TYPE_FC        =>  $DIR_FC,
+    $TYPE_ADVENT    =>  $DIR_ADVENT,
+};
+
 my $STYLE_DIR      = "Styles";
 my $JAVASCRIPT_DIR = "JavaScript";
 my @SCRIPTS        = qw [jquery navigation];
@@ -93,31 +106,31 @@ my %LINK_GROUP; init_link_group ();
 chdir $TOP_DIR or die "chdir: $!";
 
 
-sub header ($title, %args) {
+sub header ($title, $directives) {
     #
     # Return the header of the HTML page
     #
-
-    my $week = $args {week} || 0;
+    my $dir  = $$directives {dir};
+    my $base = $$directives {base};
 
     my $styles = join "\n" =>
         map  {"<link rel = 'stylesheet' href = '../../$_'>"}
         grep {-f}
         map  {"$STYLE_DIR/$_.css"} "main",
-                        "$PWC_DIR/main",
-                        "$PWC_DIR/week-$week";
+                                   "$dir/main",
+                                   "$dir/$base";
 
-    my @scripts = sort glob "$JAVASCRIPT_DIR/$PWC_DIR/week-$week*.js";
+    my @scripts = sort glob "$JAVASCRIPT_DIR/$dir/$base*.js";
     my $scripts = join "\n" =>
         map  {"<script src = '../../$_'></script>"}
         @scripts,
         grep {-f}
         map  {"$JAVASCRIPT_DIR/$_.js"}
-               @SCRIPTS, split /,\s*/ => ($args {script} // "");
+               @SCRIPTS, split /,\s*/ => ($$directives {script} // "");
 
     my $chart_js = "";
        $chart_js = "<script id = 'chart-script' async src = '$CHART_URL'>" .
-                  "</script>" if $args {has_canvas};
+                  "</script>" if $$directives {has_canvas};
 
     return <<~ "--" =~ s/^\s*\n//gmr;
         <head>
@@ -246,7 +259,8 @@ sub make_link (%args) {
 my $link_pattern = qr {\[    (?<anchor> [^]]*) \]
                        \( \# (?<link>   [^)]*) \)}x;
 
-sub process_section ($section, $language, $week) {
+sub process_section ($section, $language, $directives) {
+    my $week = $$directives {week};
     #
     # Step one, find the links starting with a #, and process them.
     #
@@ -308,6 +322,7 @@ sub code_block ($text) {
 # Cell level attributes can be given with a leading {..} block in the cell.
 #
 sub table ($text) {
+    my $skip = qr [\s* (?: <!-- (?:[^-]+ | -(?!-))* --> \s*)* ]x;
     my $attributes = "markdown = '1'";
     if ($text =~ s/^\s*\{\s*([^}]+)\}\s*\n//) {
         $attributes .= " " . $1;
@@ -318,7 +333,7 @@ sub table ($text) {
     my @rows = split /\s*\\\\\s*/ => $text;
     foreach my $rc (keys @rows) {
         my $row = $rows [$rc];
-        $out .= "  <tr class = 'row-$rc'>\n";
+        $out .= "  <tr class = 'row-$rc' markdown = '1'>\n";
         my @cells = split /\s*&(?![A-Za-z0-9#])\s*/ => $row, -1;
         my $cc = 0;
         foreach my $cell (@cells) {
@@ -326,10 +341,11 @@ sub table ($text) {
             # Grab a block of configuration from the cell,
             # if it exists.
             #
-            my $attributes = "";
+            my $attributes = "markdown = '1'";
             my $cc_inc     = 1;
             my $td         = "td";
-            if ($cell =~ s/^\s*\{\s*([^}]+)\}\s*//) {
+            my $class      = "";
+            if ($cell =~ s/^$skip\{\s*([^}]+)\}\s*//) {
                 my %config = map {split /\s*=\s*/, $_, 2}
                                   split /\s*;\s*/ => $1;
                 if ((my $rowspan = $config {rs} || 0) > 1) {
@@ -340,21 +356,23 @@ sub table ($text) {
                     $cc_inc = $colspan;
                 }
                 $td = "th" if $config {th};
+                $class = $config {class} // "";
             }
 
-            $out .= "    <$td class = 'cell-$rc-$cc col-$cc'$attributes>" .
-                                     "$cell</td>\n";
+            $out .= "    <$td class = 'cell-$rc-$cc col-$cc $class'" .
+                            " $attributes>$cell</td>\n";
             $cc += $cc_inc;
         }
         $out .= "  </tr>\n";
     }
     $out .= "</table>\n";
+
     $out;
 }
 
 
 
-sub pre_process ($text, $week) {
+sub pre_process ($text, $directives) {
     state $lang_pat = join "|" => map {quotemeta $_} keys %LANGUAGE_INFO;
 
     my $out = "";
@@ -366,11 +384,9 @@ sub pre_process ($text, $week) {
     #   <!-- %% directive: value -->
     #
 
-    my %directives;
     while ($text =~ s/^\s*<!--\s*%%\s*(\S+)(?:\s*:\s*(.*\S))?\s*-->\s*\n//m) {
-        $directives {$1} = $2 // 1;
+        $$directives {$1} = $2 // 1;
     }
-
 
     my @tokens = (["\Q~~~~",  "\Q~~~~",  \&code_block],
                   ["\Q>>>>",  "\Q<<<<",  \&block_quote],
@@ -400,7 +416,7 @@ sub pre_process ($text, $week) {
     foreach my $line (split /\n/ => $text) {
         if ($line =~ /^###\s+(?<header>.*)/) {
             if ($section) {
-                $out .= process_section ($section, $language, $week);
+                $out .= process_section ($section, $language, $directives);
                 $section = "";
             }
             $language = $+ {header};
@@ -410,10 +426,30 @@ sub pre_process ($text, $week) {
         $section .= $line . "\n";
     }
     if ($section) {
-        $out .= process_section ($section, $language, $week);
+        $out .= process_section ($section, $language, $directives);
     }
 
-    return $out, \%directives;
+    extract_ref_links ($text);
+
+    return $out;
+}
+
+#
+# In some cases, markdown doesn't process [link][ref] // [ref]: URL.
+# So, we will handle them ourselves.
+#
+{
+    my %link_ref;
+    sub extract_ref_links ($text) {
+        while ($text =~ /\[([^]]+)\]:\s*(\S+)/g) {
+            $link_ref {$1} = $2;
+        }
+    }
+    sub create_ref_links ($text) {
+        my $refs = join "|" => keys %link_ref;
+        $text =~ s {\[([^]]+)\]\[($refs)\]}
+                   {<a href = '$link_ref{$2}'>$1</a>}gr;
+    }
 }
 
 
@@ -450,6 +486,11 @@ sub post_process ($text) {
     #
     $text =~ s {<(p|div)>\s*</\g{1}>} {}gi;
 
+    #
+    # Create ref links not processed
+    #
+    $text = create_ref_links ($text);
+
     $text;
 }
 
@@ -463,61 +504,6 @@ sub trailer ($week) {<<~ "--"}
     <p class = 'next'><a class = "next" href = "">&#x261E;</a></p>
     </div>
     --
-
-#
-# For now, we just handle Perl Weekly Challenges
-#
-my @sources =
-   @ARGV ? map {/^[0-9]{3}-[0-9]$/ ? "$SRC_DIR/$PWC_DIR/week-$_.md"
-                                   :  $_} @ARGV
-         : `find $SRC_DIR -name "*.md"`;
-
-chomp (@sources);
-
-foreach my $source_file (@sources) {
-    my $html_file = $source_file =~ s/^$SRC_DIR/$HTML_DIR/r
-                                 =~ s/\.md$/.html/r;
-    my ($week)    = $source_file =~ m{.*/week-(.*)\.md};
-    $week ||= 0;
-    next if !@ARGV && -f $html_file && (stat $html_file)   [9] >
-                                       (stat $source_file) [9]; # 9: mtime
-
-    my $source_text = `cat $source_file`;
-    my $directives;
-
-    ($source_text, $directives) = pre_process $source_text, $week;
-
-    my $html_text   = markdown ($source_text => {
-        empty_element_suffix => ">"
-    });
-    $html_text = "<body>$html_text";
-
-    #
-    # Add a newline before the closing </div>
-    #
-    $html_text =~ s{</div>\s*$}{\n</div>};
-
-    $html_text = post_process ($html_text);
-
-    my ($title)     = $html_text   =~ m{<h1>(.*?)</h1>};
-
-    $$directives {has_canvas} = 1 if $source_text =~ /^<canvas/m;
-    $$directives {week}       = $week;
-
-    my $header  = header ($title, %$directives);
-    my $trailer = trailer ($week);
-    open my $fh, ">", $html_file or die "open $html_file: $!";
-    print $fh <<~ "--";
-        <html>
-        $header
-        $html_text
-        $trailer
-        </body>
-        </html>
-        --
-    close $fh or die "close $html_file: $!";
-}
-
 
 
 sub init_link_group () {
@@ -548,6 +534,81 @@ sub init_link_group () {
         }
     }
 }
+
+
+
+#
+# Main program
+#
+die "$0 source-file ..." unless @ARGV;
+my @todo;
+foreach my $arg (@ARGV) {
+    my ($type, $base);
+    if ($arg =~ /^[0-9]{3}-[0-9]$/) {
+        $type = $TYPE_PWC;
+        $base  = "week-$arg";
+    }
+    elsif ($arg =~ /^(20[0-9]{2})(?:12)?-[0-9]{2}$/) {
+        $type = $TYPE_ADVENT;
+        $base = "$1/$1-12-$2";
+    }
+    elsif ($arg =~ /^fc-(.*)/) {
+        $type = $TYPE_FC;
+        $base = "$1";
+    }
+    else {
+        die "Don't know what to do with $arg";
+    }
+    push @todo => [$type, $$TYPE2DIR {$type}, $base];
+}
+
+foreach my $todo (@todo) {
+    my ($type, $dir, $base) = @$todo;
+    my $source_file = "$SRC_DIR/$dir/$base.md";
+    my $html_file   = "$HTML_DIR/$dir/$base.html";
+
+    my $week = $type == $TYPE_PWC && $base =~ /^week-(.*)/ ? $1 : 0;
+
+    my $source_text = `cat $source_file`;
+    my $directives  = {};
+    $$directives {week} = $week;
+    $$directives {base} = $base;
+    $$directives {type} = $type;
+    $$directives {dir}  = $dir;
+
+    $source_text = pre_process $source_text, $directives;
+
+    my $html_text   = markdown ($source_text => {
+        empty_element_suffix => ">"
+    });
+    $html_text = "<body>$html_text";
+
+    #
+    # Add a newline before the closing </div>
+    #
+    $html_text =~ s{</div>\s*$}{\n</div>};
+
+    $html_text = post_process ($html_text);
+
+    my ($title)     = $html_text   =~ m{<h1>(.*?)</h1>};
+
+    $$directives {has_canvas} = 1 if $source_text =~ /^<canvas/m;
+    $$directives {week}       = $week;
+
+    my $header  = header ($title, $directives);
+    my $trailer = trailer ($week);
+    open my $fh, ">", $html_file or die "open $html_file: $!";
+    print $fh <<~ "--";
+        <html>
+        $header
+        $html_text
+        $trailer
+        </body>
+        </html>
+        --
+    close $fh or die "close $html_file: $!";
+}
+
 
 
 __END__
