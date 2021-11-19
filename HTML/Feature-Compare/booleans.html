@@ -1,0 +1,180 @@
+<html>
+<head>
+<title>Booleans</title>
+<script src = "https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id = "MathJax-script" async src = "https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.js"></script>
+<script src = '../../JavaScript/jquery.js'></script>
+<script src = '../../JavaScript/navigation.js'></script>
+<link rel = 'preconnect' href = 'https://fonts.gstatic.com'>
+<link rel = 'stylesheet' href = 'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
+<link rel = 'stylesheet' href = '../../Styles/main.css'>
+<link rel = 'stylesheet' href = '../../Styles/Feature-Compare/booleans.css'>
+</head>
+
+<body><h1>Booleans</h1><div class = "byline">
+by Abigail<br>
+<img src = "../../Images/jan_sluiters.jpg">
+</div>
+
+
+<h2>Introduction</h2>
+
+<p>In this article, we compare what different languages use as boolean
+values. Some languages will have a boolean type. Other languages
+will treat certain values as <em>true</em>, and other values as <em>false</em>.</p>
+
+<p>In the table below, an entry in the column <code>Type</code> means the language
+has a boolean type. The <strong>False</strong> and <strong>True</strong> columns indicate the
+constants the language has for <em>false</em> and <em>true</em>. Values in the
+<strong>Falsy</strong> and <strong>Truthy</strong> columns indicate values which evaluate
+to <em>false</em> or <em>true</em> when used in a boolean context. If these latter
+columns are marked N/A, using values other than the one in the
+<strong>False</strong> and <strong>True</strong> column give a type error.</p>
+
+<table>
+  <tr class = 'row-0' markdown = '1'>
+    <th class = 'cell-0-0 col-0 ' markdown = '1'>Language</td>
+    <th class = 'cell-0-1 col-1 ' markdown = '1'>Type</td>
+    <th class = 'cell-0-2 col-2 ' markdown = '1'>False</td>
+    <th class = 'cell-0-3 col-3 ' markdown = '1'>True</td>
+    <th class = 'cell-0-4 col-4 ' markdown = '1'>Falsy</td>
+    <th class = 'cell-0-5 col-5 ' markdown = '1'>Truthy</td>
+    <th class = 'cell-0-6 col-6 ' markdown = '1'>Remarks</td>
+  </tr>
+  <tr class = 'row-1' markdown = '1'>
+    <th class = 'cell-1-0 col-0 lang' markdown = '1'>AWK</td>
+    <td class = 'cell-1-1 col-1 na' markdown = '1' colspan = '3'>N/A</td>
+    <td class = 'cell-1-4 col-4 ' markdown = '1'><code>0</code>, <code>""</code></td>
+    <td class = 'cell-1-5 col-5 ' markdown = '1'>Anything else</td>
+    <td class = 'cell-1-6 col-6 ' markdown = '1'><code>"0"</code> is truthy (!)</td>
+  </tr>
+  <tr class = 'row-2' markdown = '1'>
+    <th class = 'cell-2-0 col-0 lang' markdown = '1'>Bash</td>
+    <td class = 'cell-2-1 col-1 na' markdown = '1' colspan = '3'>N/A</td>
+    <td class = 'cell-2-4 col-4 ' markdown = '1'><code>0</code>, non-numeric strings</td>
+    <td class = 'cell-2-5 col-5 ' markdown = '1'>Numbers other than <code>0</code></td>
+    <td class = 'cell-2-6 col-6 ' markdown = '1'>This is for the <code>(( ))</code> construct</td>
+  </tr>
+  <tr class = 'row-3' markdown = '1'>
+    <th class = 'cell-3-0 col-0 lang' markdown = '1'>bc</td>
+    <td class = 'cell-3-1 col-1 na' markdown = '1' colspan = '3'>N/A</td>
+    <td class = 'cell-3-4 col-4 ' markdown = '1'><code>0</code></td>
+    <td class = 'cell-3-5 col-5 ' markdown = '1'>Anything else</td>
+    <td class = 'cell-3-6 col-6 ' markdown = '1'></td>
+  </tr>
+  <tr class = 'row-4' markdown = '1'>
+    <th class = 'cell-4-0 col-0 lang' markdown = '1'>C</td>
+    <td class = 'cell-4-1 col-1 ' markdown = '1'><a href = 'https://pubs.opengroup.org/onlinepubs/007904975/basedefs/stdbool.h.html'><code>bool</code></a></td>
+    <td class = 'cell-4-2 col-2 ' markdown = '1'><code>false</code></td>
+    <td class = 'cell-4-3 col-3 ' markdown = '1'><code>true</code></td>
+    <td class = 'cell-4-4 col-4 ' markdown = '1'><code>0</code>, <code>NULL</code></td>
+    <td class = 'cell-4-5 col-5 ' markdown = '1'>Anything else</td>
+    <td class = 'cell-4-6 col-6 ' markdown = '1'><code># include &lt;stdbool.h&gt;</code> for <code>bool</code>, <code>false</code>, and <code>true</code>.</td>
+  </tr>
+  <tr class = 'row-5' markdown = '1'>
+    <th class = 'cell-5-0 col-0 lang' markdown = '1'>Go</td>
+    <td class = 'cell-5-1 col-1 ' markdown = '1'><a href = 'https://golang.org/ref/spec#Boolean_types'><code>bool</code></a></td>
+    <td class = 'cell-5-2 col-2 ' markdown = '1'><code>false</code></td>
+    <td class = 'cell-5-3 col-3 ' markdown = '1'><code>true</code></td>
+    <td class = 'cell-5-4 col-4 na' markdown = '1' colspan = '2'>N/A</td>
+    <td class = 'cell-5-6 col-6 ' markdown = '1'></td>
+  </tr>
+  <tr class = 'row-6' markdown = '1'>
+    <th class = 'cell-6-0 col-0 lang' markdown = '1'>Java</td>
+    <td class = 'cell-6-1 col-1 ' markdown = '1'><a href = 'https://www.w3schools.com/java/java_booleans.asp'><code>boolean</code></a></td>
+    <td class = 'cell-6-2 col-2 ' markdown = '1'><code>false</code></td>
+    <td class = 'cell-6-3 col-3 ' markdown = '1'><code>true</code></td>
+    <td class = 'cell-6-4 col-4 na' markdown = '1' colspan = '2'>N/A</td>
+    <td class = 'cell-6-6 col-6 ' markdown = '1'></td>
+  </tr>
+  <tr class = 'row-7' markdown = '1'>
+    <th class = 'cell-7-0 col-0 lang' markdown = '1'>Lua</td>
+    <td class = 'cell-7-1 col-1 ' markdown = '1'></td>
+    <td class = 'cell-7-2 col-2 ' markdown = '1'><code>false</code></td>
+    <td class = 'cell-7-3 col-3 ' markdown = '1'><code>true</code></td>
+    <td class = 'cell-7-4 col-4 ' markdown = '1'><code>nil</code></td>
+    <td class = 'cell-7-5 col-5 ' markdown = '1'>Anything else</td>
+    <td class = 'cell-7-6 col-6 ' markdown = '1'><code>0</code> and <code>""</code> are truthy (!)</td>
+  </tr>
+  <tr class = 'row-8' markdown = '1'>
+    <th class = 'cell-8-0 col-0 lang' markdown = '1'>Node.js</td>
+    <td class = 'cell-8-1 col-1 ' markdown = '1'><code>Boolean</code></td>
+    <td class = 'cell-8-2 col-2 ' markdown = '1'><code>false</code></td>
+    <td class = 'cell-8-3 col-3 ' markdown = '1'><code>true</code></td>
+    <td class = 'cell-8-4 col-4 ' markdown = '1'><code>undefined</code>, <code>null</code>, <code>0</code>, <code>NaN</code>, <code>""</code></td>
+    <td class = 'cell-8-5 col-5 ' markdown = '1'>Anything else</td>
+    <td class = 'cell-8-6 col-6 ' markdown = '1'><a href = 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean'><code>Boolean</code></a> is an object type.</td>
+  </tr>
+  <tr class = 'row-9' markdown = '1'>
+    <th class = 'cell-9-0 col-0 lang' markdown = '1'>Pascal</td>
+    <td class = 'cell-9-1 col-1 ' markdown = '1'><a href = 'https://wiki.freepascal.org/Boolean'><code>boolean</code></a></td>
+    <td class = 'cell-9-2 col-2 ' markdown = '1'><code>false</code></td>
+    <td class = 'cell-9-3 col-3 ' markdown = '1'><code>true</code></td>
+    <td class = 'cell-9-4 col-4 na' markdown = '1' colspan = '2'>N/A</td>
+    <td class = 'cell-9-6 col-6 ' markdown = '1'></td>
+  </tr>
+  <tr class = 'row-10' markdown = '1'>
+    <th class = 'cell-10-0 col-0 lang' markdown = '1'>Perl</td>
+    <td class = 'cell-10-1 col-1 na' markdown = '1' colspan = '3'>N/A</td>
+    <td class = 'cell-10-4 col-4 ' markdown = '1'><code>undef</code>, <code>0</code>, <code>"0"</code>, <code>""</code>, <code>()</code></td>
+    <td class = 'cell-10-5 col-5 ' markdown = '1'>Anything else</td>
+    <td class = 'cell-10-6 col-6 ' markdown = '1'></td>
+  </tr>
+  <tr class = 'row-11' markdown = '1'>
+    <th class = 'cell-11-0 col-0 lang' markdown = '1'>Python</td>
+    <td class = 'cell-11-1 col-1 ' markdown = '1'></td>
+    <td class = 'cell-11-2 col-2 ' markdown = '1'><code>False</code></td>
+    <td class = 'cell-11-3 col-3 ' markdown = '1'><code>True</code></td>
+    <td class = 'cell-11-4 col-4 ' markdown = '1'><code>None</code>, <code>0</code>, <code>""</code>, <code>()</code>, <code>[]</code>, <code>{}</code></td>
+    <td class = 'cell-11-5 col-5 ' markdown = '1'>Anything else</td>
+    <td class = 'cell-11-6 col-6 ' markdown = '1'><code>"0"</code> is truthy (!)</td>
+  </tr>
+  <tr class = 'row-12' markdown = '1'>
+    <th class = 'cell-12-0 col-0 lang' markdown = '1'>R</td>
+    <td class = 'cell-12-1 col-1 ' markdown = '1'></td>
+    <td class = 'cell-12-2 col-2 ' markdown = '1'><code>FALSE</code></td>
+    <td class = 'cell-12-3 col-3 ' markdown = '1'><code>TRUE</code></td>
+    <td class = 'cell-12-4 col-4 ' markdown = '1'><code>F</code>, <code>0</code></td>
+    <td class = 'cell-12-5 col-5 ' markdown = '1'><code>T</code>, any number other than <code>0</code></td>
+    <td class = 'cell-12-6 col-6 ' markdown = '1'><code>F</code> and <code>T</code> are predefined variables;
+Strings give a type error</td>
+  </tr>
+  <tr class = 'row-13' markdown = '1'>
+    <th class = 'cell-13-0 col-0 lang' markdown = '1'>Ruby</td>
+    <td class = 'cell-13-1 col-1 ' markdown = '1'></td>
+    <td class = 'cell-13-2 col-2 ' markdown = '1'><code>false</code></td>
+    <td class = 'cell-13-3 col-3 ' markdown = '1'><code>true</code></td>
+    <td class = 'cell-13-4 col-4 ' markdown = '1'><code>nil</code></td>
+    <td class = 'cell-13-5 col-5 ' markdown = '1'>Anything else</td>
+    <td class = 'cell-13-6 col-6 ' markdown = '1'><code>0</code>, <code>"0"</code> and <code>""</code> are truthy (!)</td>
+  </tr>
+  <tr class = 'row-14' markdown = '1'>
+    <th class = 'cell-14-0 col-0 lang' markdown = '1'>Scheme</td>
+    <td class = 'cell-14-1 col-1 ' markdown = '1'></td>
+    <td class = 'cell-14-2 col-2 ' markdown = '1'><code>#f</code>/<code>#false</code></td>
+    <td class = 'cell-14-3 col-3 ' markdown = '1'><code>#t</code>/<code>#true</code></td>
+    <td class = 'cell-14-4 col-4 ' markdown = '1'></td>
+    <td class = 'cell-14-5 col-5 ' markdown = '1'>Anything else</td>
+    <td class = 'cell-14-6 col-6 ' markdown = '1'><code>0</code>, <code>"0"</code> and <code>""</code> are truthy (!)</td>
+  </tr>
+  <tr class = 'row-15' markdown = '1'>
+    <th class = 'cell-15-0 col-0 lang' markdown = '1'>Tcl</td>
+    <td class = 'cell-15-1 col-1 na' markdown = '1' colspan = '3'>N/A</td>
+    <td class = 'cell-15-4 col-4 ' markdown = '1'><code>0</code>, <code>false</code>, <code>no</code>, <code>off</code></td>
+    <td class = 'cell-15-5 col-5 ' markdown = '1'><code>true</code>, <code>yes</code>, <code>on</code>, any number other than <code>0</code></td>
+    <td class = 'cell-15-6 col-6 ' markdown = '1'>Strings other than the ones in the <strong>Falsy</strong> and <strong>Truthy</strong> columns
+give a type error</td>
+  </tr>
+</table>
+
+<hr id = 'last-line'>
+<div class = 'trailer'>
+<p class = 'prev'><a class = "prev" href = "">&#x261C;</a></p>
+<p class = 'issue'>Please leave any comments as a
+  <a href = 'https://github.com/Abigail/Abigail.github.io/issues'
+     title = 'GitHub issue'>GitHub issue</a>.
+<p class = 'next'><a class = "next" href = "">&#x261E;</a></p>
+</div>
+
+</body>
+</html>

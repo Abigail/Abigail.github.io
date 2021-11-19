@@ -1,0 +1,7 @@
+table    {border: 1px solid black;
+          border-collapse: collapse;}
+td, th   {border: 1px solid black;
+          padding-left: 5px;
+          padding-right: 5px;}
+th.lang  {text-align: left;}
+td.na    {text-align: center;}
