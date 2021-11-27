@@ -1,0 +1,7 @@
+td, th {border: solid black 1px;
+        padding-left: 5px;
+        padding-right: 5px;}
+.col-0 {text-align: left;
+        font-weight: bold;}
+.col-1 {white-space: nowrap;}
+table  {border-collapse: collapse;}

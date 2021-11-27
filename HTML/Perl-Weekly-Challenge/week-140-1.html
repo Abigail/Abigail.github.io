@@ -1,0 +1,319 @@
+<html>
+<head>
+<title>Perl Weekly Challenge 140: Add Binary</title>
+<script src = "https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id = "MathJax-script" async src = "https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.js"></script>
+<script src = '../../JavaScript/jquery.js'></script>
+<script src = '../../JavaScript/navigation.js'></script>
+<link rel = 'preconnect' href = 'https://fonts.gstatic.com'>
+<link rel = 'stylesheet' href = 'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
+<link rel = 'stylesheet' href = '../../Styles/main.css'>
+<link rel = 'stylesheet' href = '../../Styles/Perl-Weekly-Challenge/main.css'>
+<link rel = 'stylesheet' href = '../../Styles/Perl-Weekly-Challenge/week-140-1.css'>
+</head>
+
+<body><h1>Perl Weekly Challenge 140: Add Binary</h1><div class = "byline">
+by Abigail<br>
+<img src = "../../Images/jan_sluiters.jpg">
+</div>
+
+
+<h2><a href="https://theweeklychallenge.org/blog/perl-weekly-challenge-140/#TASK1">Challenge</a></h2>
+
+<blockquote>
+  <p>You are given two decimal-coded binary numbers, <code>$a</code> and <code>$b</code>.</p>
+  
+  <p>Write a script to simulate the addition of the given binary numbers.</p>
+  
+  <blockquote>
+  The script should simulate something like $a + $b. (operator overloading)
+  
+  </blockquote>
+</blockquote>
+
+<h3>Example 1</h3>
+
+<pre><code>Input: $a = 11; $b = 1;
+Output: 100
+</code></pre>
+
+<h3>Example 2</h3>
+
+<pre><code>Input: $a = 101; $b = 1;
+Output: 110
+</code></pre>
+
+<h3>Example 3</h3>
+
+<pre><code>Input: $a = 100; $b = 11;
+Output: 111
+</code></pre>
+
+<h2>Discussion</h2>
+
+<div class = "section">
+<p>The challenge description is very confusing. What on earth is a 
+<em>decimal-coded binary number</em>? Google doesn't know, and if you search
+for it, it gives you results for
+<a href="https://en.wikipedia.org/wiki/Binary-coded_decimal]">Binary Coded Decimals</a> &mdash; which are well known.
+But it doesn't look like we are dealing with Binary-coded decimals.</p>
+
+<p>Then we are asked to simulate the addtion of binary numbers. Which is a
+bit confusing. Virtual every general purpuse computer created in the past
+70 years does arithmetic using binary. Are we asked to simulate something
+which is already done? How so? The examples are of no use, what they're
+showing has as little to do with simulating anything as it as to do with
+spinach.</p>
+
+<p>Then it mentions "operator overloading" out of the blue. What should we
+overload? Overload the <code>+</code> operator to do addition instead of, well, uhm,
+addition? </p>
+
+<p>Gosh, someone really, really ought to proofread those challenges. It won't
+take more than a few seconds to give this a thumbs down.</p>
+
+<p>As it is often the case, we'll completely ignore the silly instructions
+and deduce a challenge from the examples. We'll reframe the challenge as:</p>
+
+<ul>
+<li>You are given two numbers in binary representation.</li>
+<li>Add them, and show the result in a binary representation.</li>
+</ul>
+</div>
+
+<h2>Solution</h2>
+
+<div class = "section">
+<p>The challenge now really boils down to mapping numbers back and forth
+between an integer and decimal representation. Some languages have
+support for that, some languages have functions which can be used to
+do this mapping, and in some languages, we have to roll our own.</p>
+
+<p>In each implementation, we assume the input consists of one or more lines,
+with two non-negative integers in binary representation on each line.
+For each line of input, we write a line with the sum of the two numbers
+to standard output.</p>
+</div>
+
+<h3>Perl</h3>
+
+<div class = "section">
+<p>Perl doesn't have build in function dedicated to mapping numbers from
+one base to the other, but it does have functions which can be used.
+To map an integer in binary representation to a regular integer, we
+prepend the binary number with <code>0b</code>, and use <a href="https://perldoc.perl.org/perlfunc#oct"><code>oct</code></a>. To get the
+binary representation of a number, we <a href="https://perldoc.perl.org/perlfunc#sprintf"><code>sprintf</code></a> with the <code>%b</code>
+format. This gives us a one-liner:</p>
+
+<pre><code>say sprintf "%b" =&gt; eval join " + " =&gt; map {oct "0b$_"} split while &lt;&gt;;
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-140/abigail/perl/ch-1.pl">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>Ruby</h3>
+
+<div class = "section">
+<p>Ruby is an example of a language which can build in methods to do
+the necessary mappings. <a href="https://apidock.com/ruby/String/to_i"><code>to_i</code></a> is a method which can be
+applied on a string, and which returns the integer value of the
+string. <code>to_i</code> takes an optional argument to state in which base
+the number is represented. In the same way <a href="https://apidock.com/ruby/BigDecimal/to_s"><code>to_s</code></a> is a method
+which can be applied on integers, and which returns a string with
+the representation of that integer. It also takes an optional
+argument: the base in which represent the number.</p>
+
+<p>This leads to the following short program:</p>
+
+<pre><code>ARGF . each_line do
+    | line |
+    a, b = line . strip() . split (" ")
+    puts (a . to_i(2) + b . to_i(2)) . to_s(2)
+end
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-140/abigail/ruby/ch-1.rb">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>AWK</h3>
+
+<div class = "section">
+<p>AWK doesn't have any support to convert numbers from one base to another.
+So, we have to roll our own, which isn't very hard. First, a subroutine
+which takes a number in binary, and returns a regular integer:</p>
+
+<pre><code>function bin2dec (bin, dec, digits, n) {
+    dec = 0
+    n = split (bin, digits, "")
+    for (i = 1; i &lt;= n; i ++) {
+        dec = 2 * dec + digits [i]
+    }
+    return (dec)
+}
+</code></pre>
+
+<p>and a subroutine which does the reverse:</p>
+
+<pre><code>function dec2bin (dec, bin) {
+    while (dec) {
+        bin = dec % 2 bin
+        dec = int (dec / 2)
+    }
+    return (bin)
+}
+</code></pre>
+
+<p>Given those, the main program is just a one-liner:</p>
+
+<pre><code>{ print dec2bin(bin2dec($1) + bin2dec($2)) }
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-140/abigail/awk/ch-1.awk">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>bc</h3>
+
+<div class = "section">
+<p>bc has a trick up its sleeve. We can just tell it in which base its
+input is, and which base its output should be written in. So we can
+just add the numbers, stopping processing input after reading a <code>0</code>:</p>
+
+<pre><code>obase=2
+ibase=2
+
+while (1) {
+    a = read(); if (a == 0) {break}
+    b = read(); if (b == 0) {break}
+    a + b
+}
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-140/abigail/bc/ch-1.bc">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>Scheme</h3>
+
+<div class = "section">
+<p>In Scheme, we have to roll our own mapping functions. In Scheme, we prefer
+recursion over looping, giving use the following functions:</p>
+
+<pre><code>(define (bin2dec bin) 
+    (define len (string-length bin))
+    (cond ((= len 0) 0)
+          (else (+ (string-&gt;number (string-take-right bin 1))
+                   (* 2 (bin2dec   (string-drop-right bin 1)))))))
+</code></pre>
+
+<p>and</p>
+
+<pre><code>(define (_dec2bin dec)
+    (cond ((= dec 0) "")
+          (else (string-concatenate
+                   (list (_dec2bin       (floor-quotient dec 2))
+                         (number-&gt;string (modulo         dec 2)))))))
+
+(define (dec2bin dec)
+    (cond ((= dec 0) "0")
+          (else (_dec2bin dec))))
+</code></pre>
+
+<p>Giving us the following main program:</p>
+
+<pre><code>(define (main)
+    (define line (read-line))
+    (define parts)
+    (if (not (eof-object? line))
+        (begin
+            (display (dec2bin (fold + 0 (map bin2dec (string-split line #\ )))))
+            (newline)
+            (main)
+        )
+    )
+)
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-140/abigail/scheme/ch-1.scm">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>Other languages</h3>
+
+<p>The table below shows us for which other languages we have solutions.
+The first column has the language name, the second column the function
+we use to convert a number (<code>bin</code>) in binary representation to a regular
+interger, which the third column shows the function we use to convert
+an integer (<code>dec</code>) to its binary representation.</p>
+
+<p>If the function is called <code>bin2dec</code> or <code>dec2bin</code>, its a function we
+have written (which will work in a similar was as the AWK solution
+above).</p>
+
+<table>
+  <tr class = 'row-0' markdown = '1'>
+    <th class = 'cell-0-0 col-0 ' markdown = '1'>Language</td>
+    <th class = 'cell-0-1 col-1 ' markdown = '1'>Binary to Decimal</td>
+    <th class = 'cell-0-2 col-2 ' markdown = '1'>Decimal to Binary</td>
+  </tr>
+  <tr class = 'row-1' markdown = '1'>
+    <td class = 'cell-1-0 col-0 ' markdown = '1'><a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-140/abigail/bash/ch-1.sh">Bash</a></td>
+    <td class = 'cell-1-1 col-1 ' markdown = '1'><code>bin2dec $bin</code></td>
+    <td class = 'cell-1-2 col-2 ' markdown = '1'><code>dec2bin $dec</code></td>
+  </tr>
+  <tr class = 'row-2' markdown = '1'>
+    <td class = 'cell-2-0 col-0 ' markdown = '1'><a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-140/abigail/c/ch-1.c">C</a></td>
+    <td class = 'cell-2-1 col-1 ' markdown = '1'><code>strtol (bin, NULL, 2)</code></td>
+    <td class = 'cell-2-2 col-2 ' markdown = '1'><code>dec2bin (dec)</code></td>
+  </tr>
+  <tr class = 'row-3' markdown = '1'>
+    <td class = 'cell-3-0 col-0 ' markdown = '1'><a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-140/abigail/go/ch-1.go">Go</a></td>
+    <td class = 'cell-3-1 col-1 ' markdown = '1'><code>strconv . ParseInt (bin, 2, 0)</code></td>
+    <td class = 'cell-3-2 col-2 ' markdown = '1'><code>strconv . FormatInt (dec, 2)</code></td>
+  </tr>
+  <tr class = 'row-4' markdown = '1'>
+    <td class = 'cell-4-0 col-0 ' markdown = '1'><a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-140/abigail/java/ch-1.java">Java</a></td>
+    <td class = 'cell-4-1 col-1 ' markdown = '1'><code>Integer . parseInt (bin, 2)</code></td>
+    <td class = 'cell-4-2 col-2 ' markdown = '1'><code>Integer . toBinaryString (dec)</code></td>
+  </tr>
+  <tr class = 'row-5' markdown = '1'>
+    <td class = 'cell-5-0 col-0 ' markdown = '1'><a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-140/abigail/lua/ch-1.lua">Lua</a></td>
+    <td class = 'cell-5-1 col-1 ' markdown = '1'><code>tonumber (bin, 2)</code></td>
+    <td class = 'cell-5-2 col-2 ' markdown = '1'><code>dec2bin (dec)</code></td>
+  </tr>
+  <tr class = 'row-6' markdown = '1'>
+    <td class = 'cell-6-0 col-0 ' markdown = '1'><a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-140/abigail/node/ch-1.js">Node.js</a></td>
+    <td class = 'cell-6-1 col-1 ' markdown = '1'><code>parseInt (bin, 2)</code></td>
+    <td class = 'cell-6-2 col-2 ' markdown = '1'><code>dec . toString (2)</code></td>
+  </tr>
+  <tr class = 'row-7' markdown = '1'>
+    <td class = 'cell-7-0 col-0 ' markdown = '1'><a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-140/abigail/pascal/ch-1.p">Pascal</a></td>
+    <td class = 'cell-7-1 col-1 ' markdown = '1'><code>bin2dec (bin)</code></td>
+    <td class = 'cell-7-2 col-2 ' markdown = '1'><code>Dec2Numb (bin, 1, 10)</code></td>
+  </tr>
+  <tr class = 'row-8' markdown = '1'>
+    <td class = 'cell-8-0 col-0 ' markdown = '1'><a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-140/abigail/python/ch-1.py">Python</a></td>
+    <td class = 'cell-8-1 col-1 ' markdown = '1'><code>int (bin, 2)</code></td>
+    <td class = 'cell-8-2 col-2 ' markdown = '1'><code>bin (dec) [2:]</code></td>
+  </tr>
+  <tr class = 'row-9' markdown = '1'>
+    <td class = 'cell-9-0 col-0 ' markdown = '1'><a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-140/abigail/r/ch-1.r">R</a></td>
+    <td class = 'cell-9-1 col-1 ' markdown = '1'><code>strtoi (bin, 2)</code></td>
+    <td class = 'cell-9-2 col-2 ' markdown = '1'><code>as.integer (paste (as.integer
+                                 (rev (intToBit (dec))), collapse = ""))</code></td>
+  </tr>
+  <tr class = 'row-10' markdown = '1'>
+    <td class = 'cell-10-0 col-0 ' markdown = '1'><a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-140/abigail/tcl/ch-1.tcl">Tcl</a></td>
+    <td class = 'cell-10-1 col-1 ' markdown = '1'><code>bin2dec $bin</code></td>
+    <td class = 'cell-10-2 col-2 ' markdown = '1'><code>dec2bin $dec</code></td>
+  </tr>
+</table>
+
+<hr id = 'last-line'>
+<div class = 'trailer'>
+<p class = 'prev'><a class = "prev" href = "">&#x261C;</a></p>
+<p class = 'issue'>Please leave any comments as a
+  <a href = 'https://github.com/Abigail/Abigail.github.io/issues'
+     title = 'GitHub issue'>GitHub issue</a>.
+<p class = 'next'><a class = "next" href = "">&#x261E;</a></p>
+</div>
+
+</body>
+</html>
