@@ -169,6 +169,8 @@ function navigation (type, pagename, pages) {
         location . href = "index.html"
     })
 
+    $(".byline") . attr ("title", "Go to index")
+
 }
 
 
