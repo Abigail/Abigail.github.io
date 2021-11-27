@@ -63,6 +63,7 @@ my $FREEBSD_URL    = "https://www.freebsd.org/cgi/man.cgi?" .
 my $PYTHON_URL     = "https://docs.python.org/3/library/functions.html";
 my $NODE_URL       = "https://developer.mozilla.org/en-US/docs/Web/" .
                                                    "JavaScript/Reference";
+my $RUBY_URL       = "https://apidock.com/ruby";
 my $GO_URL         = "https://pkg.go.dev";
 my $WIKI_URL       = "https://en.wikipedia.org/wiki";
 my $OEIS_URL       = "https://oeis.org";
@@ -240,6 +241,12 @@ sub make_link (%args) {
                 if (my $chapter = $LINK_GROUP {$language} {$anchor}) {
                     $url = $NODE_URL . "/$chapter/$anchor";
                 }
+            }
+        }
+        elsif ($language eq "Ruby") {
+            if ($link) {
+                $url  = $RUBY_URL . "/$link";
+                $url .= "/$anchor" unless $link =~ m{/};
             }
         }
     }
