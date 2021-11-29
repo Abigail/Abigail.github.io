@@ -160,10 +160,15 @@ sub header ($title, $directives) {
 #
 # Create a link to the full program on GitHub
 #
-sub github_link ($language, $week) {
+sub github_link ($language, $week, $info = "") {
     my ($week_nr, $part_nr) = split /-/ => $week;
     my $lang_info = $LANGUAGE_INFO {$language};
-    my $link = sprintf "%s/%s/%s/blob/%s/challenge-%03d/%s/%s/ch-%d.%s" =>
+    my  %info;
+    if ($info) {
+        my @chunks = split /;\s*/ => $info;
+        %info = map {split /\s*=\s*/ => $_, 2} @chunks;
+    }
+    my $link = sprintf "%s/%s/%s/blob/%s/challenge-%03d/%s/%s/ch-%s.%s" =>
                         $GITHUB_URL,
                         $GITHUB_USER,
                         $GITHUB_REPO,
@@ -171,13 +176,13 @@ sub github_link ($language, $week) {
                         $week_nr,
                         $CHALLENGE_USER,
                         $$lang_info {name} || lc $language,
-                        $part_nr,
+                        $info {part_nr}    || $part_nr,
                         $$lang_info {ext}  || lc $language;
     $link;
 }
 
-sub full_program ($language, $week, $tag) {
-    my $link = github_link (($tag || $language) =~ s/_/ /gr, $week);
+sub full_program ($language, $week, $tag, $info) {
+    my $link = github_link (($tag || $language) =~ s/_/ /gr, $week, $info);
     return "Find the [full program]($link) on [GitHub]($GITHUB_URL).\n";
 }
 
@@ -292,8 +297,8 @@ sub process_section ($section, $language, $directives) {
     # Replace any lines with FULL_PROGRAM to a section pointing
     # to the file on GitHub.
     #
-    $section =~ s {^FULL_PROGRAM(?::(\S+))?\s*$}
-                  {full_program ($language, $week, $1)}gem;
+    $section =~ s {^FULL_PROGRAM(?::([^\s;]+))?(?:;(\S+))?\s*$}
+                  {full_program ($language, $week, $1, $2)}gem;
 
     #
     # Process MathJax delimiters
