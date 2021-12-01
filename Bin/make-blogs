@@ -597,7 +597,17 @@ foreach my $arg (@ARGV) {
         $base = "$1";
     }
     else {
-        die "Don't know what to do with $arg";
+        my $arg = $arg =~ s!^$SRC_DIR/!!r;
+        foreach my $t (keys %$TYPE2DIR) {
+            my $dir = $$TYPE2DIR {$t};
+            if (index ($arg, $dir) == 0) {
+                $type = $t;
+                $base = (substr $arg, 1 + length $dir) =~ s/\.md$//r;
+                last;
+            }
+        }
+
+        die "Don't know what to do with $arg" unless $type && $base;
     }
     push @todo => [$type, $$TYPE2DIR {$type}, $base];
 }
