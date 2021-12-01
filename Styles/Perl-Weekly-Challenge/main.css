@@ -116,10 +116,10 @@ span.latex-display {
 
 /*
  * Divs with headers; which may or may not have counters.
- */
 body {
     counter-reset:           lemma definition;
 }
+ */
 
 div.headed-div::before {
     margin-left:                         -1em;

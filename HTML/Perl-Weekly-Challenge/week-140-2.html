@@ -1,0 +1,569 @@
+<html>
+<head>
+<title>Perl Weekly Challenge 140: Multiplication Table</title>
+<script src = "https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id = "MathJax-script" async src = "https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.js"></script>
+<script id = 'chart-script' async src = 'https://cdn.jsdelivr.net/npm/chart.js'></script>
+<script src = '../../JavaScript/Perl-Weekly-Challenge/week-140-2-a.js'></script>
+<script src = '../../JavaScript/Perl-Weekly-Challenge/week-140-2-b.js'></script>
+<script src = '../../JavaScript/jquery.js'></script>
+<script src = '../../JavaScript/navigation.js'></script>
+<link rel = 'preconnect' href = 'https://fonts.gstatic.com'>
+<link rel = 'stylesheet' href = 'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
+<link rel = 'stylesheet' href = '../../Styles/main.css'>
+<link rel = 'stylesheet' href = '../../Styles/Perl-Weekly-Challenge/main.css'>
+<link rel = 'stylesheet' href = '../../Styles/Perl-Weekly-Challenge/week-140-2.css'>
+</head>
+
+<body><h1>Perl Weekly Challenge 140: Multiplication Table</h1><div class = "byline">
+by Abigail<br>
+<img src = "../../Images/jan_sluiters.jpg">
+</div>
+
+
+<h2><a href="https://theweeklychallenge.org/blog/perl-weekly-challenge-140/#TASK2">Challenge</a></h2>
+
+<blockquote>
+  <p>You are given 3 positive integers, <code>$i</code>, <code>$j</code> and <code>$k</code>.</p>
+  
+  <p>Write a script to print the <code>$k</code>th element in the sorted multiplication table of <code>$i</code> and <code>$j</code>.</p>
+</blockquote>
+
+<h3>Example 1</h3>
+
+<pre><code>Input: $i = 2; $j = 3; $k = 4
+Output: 3
+</code></pre>
+
+<p>Since the multiplication of 2 x 3 is as below:</p>
+
+<pre><code>    1 2 3
+    2 4 6
+</code></pre>
+
+<p>The sorted multiplication table:</p>
+
+<pre><code>    1 2 2 3 4 6
+</code></pre>
+
+<p>Now the 4th element in the table is <code>3</code>.</p>
+
+<h3>Example 2</h3>
+
+<pre><code>Input: $i = 3; $j = 3; $k = 6
+Output: 4
+</code></pre>
+
+<p>Since the multiplication of 3 x 3 is as below:</p>
+
+<pre><code>    1 2 3
+    2 4 6
+    3 6 9
+</code></pre>
+
+<p>The sorted multiplication table:</p>
+
+<pre><code>    1 2 2 3 3 4 6 6 9
+</code></pre>
+
+<p>Now the 6th element in the table is <code>4</code>.</p>
+
+<h2>Discussion</h2>
+
+<h3>The naive way</h3>
+
+<div class = "section">
+<p>It's tempting to just calculate all the products \(m \cdot n,
+1 \leq m \leq i, 1 \leq n \leq j\), sort them, and take the
+<span class = 'latex-inline'>\(k^{\text{th}}\)</span> number. This works well for tiny numbers, but
+it will quickly use a large amount of memory. Below is a graph of
+the amount of memory used in a Perl program when creating a list
+of all the products <span class = 'latex-inline'>\(m \cdot n, 1 \leq m, n \leq i\)</span> (we are
+assuming <span class = 'latex-inline'>\(i = j\)</span>). As we can see, it grows quadratically, and
+we will be using more than 1 Gb of memory when
+<span class = 'latex-inline'>\(i = j = 5750\)</span>, while we use more than 2 Gb of memory when
+<span class = 'latex-inline'>\(i = j = 8000\)</span>.</p>
+
+<div>
+<canvas id = "memsize1">
+</div>
+
+<p>Implementations in other languages may use less memory (because
+they require less memory to store on integer), but they will show
+that same quadratic behaviour.</p>
+
+<p>Such a list would contain <span class = 'latex-inline'>\(\mathcal{O} (i \cdot j)\)</span> elements. 
+If we generate the numbers in the list column by column, or row
+by row, we can sort them in
+<span class = 'latex-inline'>\(\mathcal{O} (i \cdot j \cdot \log (\text{min} (i, j)))\)</span>, which 
+dominates the running time.</p>
+
+<p>For <span class = 'latex-inline'>\(i = \Theta(j)\)</span>, we get a running time of <span class = 'latex-inline'>\(\mathcal{O} (i^2 \log i)\)</span>,
+with a memory usage of <span class = 'latex-inline'>\(\mathcal{O} (i^2)\)</span>.</p>
+</div>
+
+<h3>Using a heap</h3>
+
+<div class = "section">
+<p>Below, we have a table with values <span class = 'latex-inline'>\(i \cdot j\)</span>. We can easily see
+that this table has the property that the values in each column (and
+each row), strictly increase:</p>
+
+<table id = heap-table>
+  <tr class = 'row-0' markdown = '1'>
+    <td class = 'cell-0-0 col-0 ' markdown = '1'></td>
+    <td class = 'cell-0-1 col-1 ' markdown = '1'></td>
+    <th class = 'cell-0-2 col-2 ' markdown = '1' colspan = '10'>i</td>
+  </tr>
+  <tr class = 'row-1' markdown = '1'>
+    <td class = 'cell-1-0 col-0 ' markdown = '1'></td>
+    <td class = 'cell-1-1 col-1 ' markdown = '1'></td>
+    <th class = 'cell-1-2 col-2 ' markdown = '1'>1</td>
+    <th class = 'cell-1-3 col-3 ' markdown = '1'>2</td>
+    <th class = 'cell-1-4 col-4 ' markdown = '1'>3</td>
+    <th class = 'cell-1-5 col-5 ' markdown = '1'>4</td>
+    <th class = 'cell-1-6 col-6 ' markdown = '1'>5</td>
+    <th class = 'cell-1-7 col-7 ' markdown = '1'>6</td>
+    <th class = 'cell-1-8 col-8 ' markdown = '1'>7</td>
+    <th class = 'cell-1-9 col-9 ' markdown = '1'>8</td>
+    <th class = 'cell-1-10 col-10 ' markdown = '1'>9</td>
+    <th class = 'cell-1-11 col-11 ' markdown = '1'>10</td>
+    <th class = 'cell-1-12 col-12 ' markdown = '1'>&hellip;</td>
+  </tr>
+  <tr class = 'row-2' markdown = '1'>
+    <th class = 'cell-2-0 col-0 ' markdown = '1' rowspan = '10'>j</td>
+    <th class = 'cell-2-1 col-1 ' markdown = '1'>1</td>
+    <td class = 'cell-2-2 col-2 ' markdown = '1'><code>1</code></td>
+    <td class = 'cell-2-3 col-3 ' markdown = '1'><code>2</code></td>
+    <td class = 'cell-2-4 col-4 ' markdown = '1'><code>3</code></td>
+    <td class = 'cell-2-5 col-5 ' markdown = '1'><code>4</code></td>
+    <td class = 'cell-2-6 col-6 ' markdown = '1'><code>5</code></td>
+    <td class = 'cell-2-7 col-7 ' markdown = '1'><code>6</code></td>
+    <td class = 'cell-2-8 col-8 ' markdown = '1'><code>7</code></td>
+    <td class = 'cell-2-9 col-9 ' markdown = '1'><code>8</code></td>
+    <td class = 'cell-2-10 col-10 ' markdown = '1'><code>9</code></td>
+    <td class = 'cell-2-11 col-11 ' markdown = '1'><code>10</code></td>
+    <td class = 'cell-2-12 col-12 ' markdown = '1'>&hellip;</td>
+  </tr>
+  <tr class = 'row-3' markdown = '1'>
+    <th class = 'cell-3-0 col-0 ' markdown = '1'>2</td>
+    <td class = 'cell-3-1 col-1 ' markdown = '1'><code>2</code></td>
+    <td class = 'cell-3-2 col-2 ' markdown = '1'><code>4</code></td>
+    <td class = 'cell-3-3 col-3 ' markdown = '1'><code>6</code></td>
+    <td class = 'cell-3-4 col-4 ' markdown = '1'><code>8</code></td>
+    <td class = 'cell-3-5 col-5 ' markdown = '1'><code>10</code></td>
+    <td class = 'cell-3-6 col-6 ' markdown = '1'><code>12</code></td>
+    <td class = 'cell-3-7 col-7 ' markdown = '1'><code>14</code></td>
+    <td class = 'cell-3-8 col-8 ' markdown = '1'><code>16</code></td>
+    <td class = 'cell-3-9 col-9 ' markdown = '1'><code>18</code></td>
+    <td class = 'cell-3-10 col-10 ' markdown = '1'><code>20</code></td>
+    <td class = 'cell-3-11 col-11 ' markdown = '1'>&hellip;</td>
+  </tr>
+  <tr class = 'row-4' markdown = '1'>
+    <th class = 'cell-4-0 col-0 ' markdown = '1'>3</td>
+    <td class = 'cell-4-1 col-1 ' markdown = '1'><code>3</code></td>
+    <td class = 'cell-4-2 col-2 ' markdown = '1'><code>6</code></td>
+    <td class = 'cell-4-3 col-3 ' markdown = '1'><code>9</code></td>
+    <td class = 'cell-4-4 col-4 ' markdown = '1'><code>12</code></td>
+    <td class = 'cell-4-5 col-5 ' markdown = '1'><code>15</code></td>
+    <td class = 'cell-4-6 col-6 ' markdown = '1'><code>18</code></td>
+    <td class = 'cell-4-7 col-7 ' markdown = '1'><code>21</code></td>
+    <td class = 'cell-4-8 col-8 ' markdown = '1'><code>24</code></td>
+    <td class = 'cell-4-9 col-9 ' markdown = '1'><code>27</code></td>
+    <td class = 'cell-4-10 col-10 ' markdown = '1'><code>30</code></td>
+    <td class = 'cell-4-11 col-11 ' markdown = '1'>&hellip;</td>
+  </tr>
+  <tr class = 'row-5' markdown = '1'>
+    <th class = 'cell-5-0 col-0 ' markdown = '1'>4</td>
+    <td class = 'cell-5-1 col-1 ' markdown = '1'><code>4</code></td>
+    <td class = 'cell-5-2 col-2 ' markdown = '1'><code>8</code></td>
+    <td class = 'cell-5-3 col-3 ' markdown = '1'><code>12</code></td>
+    <td class = 'cell-5-4 col-4 ' markdown = '1'><code>16</code></td>
+    <td class = 'cell-5-5 col-5 ' markdown = '1'><code>20</code></td>
+    <td class = 'cell-5-6 col-6 ' markdown = '1'><code>24</code></td>
+    <td class = 'cell-5-7 col-7 ' markdown = '1'><code>28</code></td>
+    <td class = 'cell-5-8 col-8 ' markdown = '1'><code>32</code></td>
+    <td class = 'cell-5-9 col-9 ' markdown = '1'><code>36</code></td>
+    <td class = 'cell-5-10 col-10 ' markdown = '1'><code>40</code></td>
+    <td class = 'cell-5-11 col-11 ' markdown = '1'>&hellip;</td>
+  </tr>
+  <tr class = 'row-6' markdown = '1'>
+    <th class = 'cell-6-0 col-0 ' markdown = '1'>5</td>
+    <td class = 'cell-6-1 col-1 ' markdown = '1'><code>5</code></td>
+    <td class = 'cell-6-2 col-2 ' markdown = '1'><code>10</code></td>
+    <td class = 'cell-6-3 col-3 ' markdown = '1'><code>15</code></td>
+    <td class = 'cell-6-4 col-4 ' markdown = '1'><code>20</code></td>
+    <td class = 'cell-6-5 col-5 ' markdown = '1'><code>25</code></td>
+    <td class = 'cell-6-6 col-6 ' markdown = '1'><code>30</code></td>
+    <td class = 'cell-6-7 col-7 ' markdown = '1'><code>35</code></td>
+    <td class = 'cell-6-8 col-8 ' markdown = '1'><code>40</code></td>
+    <td class = 'cell-6-9 col-9 ' markdown = '1'><code>45</code></td>
+    <td class = 'cell-6-10 col-10 ' markdown = '1'><code>50</code></td>
+    <td class = 'cell-6-11 col-11 ' markdown = '1'>&hellip;</td>
+  </tr>
+  <tr class = 'row-7' markdown = '1'>
+    <th class = 'cell-7-0 col-0 ' markdown = '1'>6</td>
+    <td class = 'cell-7-1 col-1 ' markdown = '1'><code>6</code></td>
+    <td class = 'cell-7-2 col-2 ' markdown = '1'><code>12</code></td>
+    <td class = 'cell-7-3 col-3 ' markdown = '1'><code>18</code></td>
+    <td class = 'cell-7-4 col-4 ' markdown = '1'><code>24</code></td>
+    <td class = 'cell-7-5 col-5 ' markdown = '1'><code>30</code></td>
+    <td class = 'cell-7-6 col-6 ' markdown = '1'><code>36</code></td>
+    <td class = 'cell-7-7 col-7 ' markdown = '1'><code>42</code></td>
+    <td class = 'cell-7-8 col-8 ' markdown = '1'><code>48</code></td>
+    <td class = 'cell-7-9 col-9 ' markdown = '1'><code>54</code></td>
+    <td class = 'cell-7-10 col-10 ' markdown = '1'><code>60</code></td>
+    <td class = 'cell-7-11 col-11 ' markdown = '1'>&hellip;</td>
+  </tr>
+  <tr class = 'row-8' markdown = '1'>
+    <th class = 'cell-8-0 col-0 ' markdown = '1'>7</td>
+    <td class = 'cell-8-1 col-1 ' markdown = '1'><code>7</code></td>
+    <td class = 'cell-8-2 col-2 ' markdown = '1'><code>14</code></td>
+    <td class = 'cell-8-3 col-3 ' markdown = '1'><code>21</code></td>
+    <td class = 'cell-8-4 col-4 ' markdown = '1'><code>28</code></td>
+    <td class = 'cell-8-5 col-5 ' markdown = '1'><code>35</code></td>
+    <td class = 'cell-8-6 col-6 ' markdown = '1'><code>42</code></td>
+    <td class = 'cell-8-7 col-7 ' markdown = '1'><code>49</code></td>
+    <td class = 'cell-8-8 col-8 ' markdown = '1'><code>56</code></td>
+    <td class = 'cell-8-9 col-9 ' markdown = '1'><code>63</code></td>
+    <td class = 'cell-8-10 col-10 ' markdown = '1'><code>70</code></td>
+    <td class = 'cell-8-11 col-11 ' markdown = '1'>&hellip;</td>
+  </tr>
+  <tr class = 'row-9' markdown = '1'>
+    <th class = 'cell-9-0 col-0 ' markdown = '1'>8</td>
+    <td class = 'cell-9-1 col-1 ' markdown = '1'><code>8</code></td>
+    <td class = 'cell-9-2 col-2 ' markdown = '1'><code>16</code></td>
+    <td class = 'cell-9-3 col-3 ' markdown = '1'><code>24</code></td>
+    <td class = 'cell-9-4 col-4 ' markdown = '1'><code>32</code></td>
+    <td class = 'cell-9-5 col-5 ' markdown = '1'><code>40</code></td>
+    <td class = 'cell-9-6 col-6 ' markdown = '1'><code>48</code></td>
+    <td class = 'cell-9-7 col-7 ' markdown = '1'><code>56</code></td>
+    <td class = 'cell-9-8 col-8 ' markdown = '1'><code>64</code></td>
+    <td class = 'cell-9-9 col-9 ' markdown = '1'><code>72</code></td>
+    <td class = 'cell-9-10 col-10 ' markdown = '1'><code>80</code></td>
+    <td class = 'cell-9-11 col-11 ' markdown = '1'>&hellip;</td>
+  </tr>
+  <tr class = 'row-10' markdown = '1'>
+    <th class = 'cell-10-0 col-0 ' markdown = '1'>9</td>
+    <td class = 'cell-10-1 col-1 ' markdown = '1'><code>9</code></td>
+    <td class = 'cell-10-2 col-2 ' markdown = '1'><code>18</code></td>
+    <td class = 'cell-10-3 col-3 ' markdown = '1'><code>27</code></td>
+    <td class = 'cell-10-4 col-4 ' markdown = '1'><code>36</code></td>
+    <td class = 'cell-10-5 col-5 ' markdown = '1'><code>45</code></td>
+    <td class = 'cell-10-6 col-6 ' markdown = '1'><code>54</code></td>
+    <td class = 'cell-10-7 col-7 ' markdown = '1'><code>63</code></td>
+    <td class = 'cell-10-8 col-8 ' markdown = '1'><code>72</code></td>
+    <td class = 'cell-10-9 col-9 ' markdown = '1'><code>81</code></td>
+    <td class = 'cell-10-10 col-10 ' markdown = '1'><code>90</code></td>
+    <td class = 'cell-10-11 col-11 ' markdown = '1'>&hellip;</td>
+  </tr>
+  <tr class = 'row-11' markdown = '1'>
+    <th class = 'cell-11-0 col-0 ' markdown = '1'>10</td>
+    <td class = 'cell-11-1 col-1 ' markdown = '1'><code>10</code></td>
+    <td class = 'cell-11-2 col-2 ' markdown = '1'><code>20</code></td>
+    <td class = 'cell-11-3 col-3 ' markdown = '1'><code>30</code></td>
+    <td class = 'cell-11-4 col-4 ' markdown = '1'><code>40</code></td>
+    <td class = 'cell-11-5 col-5 ' markdown = '1'><code>50</code></td>
+    <td class = 'cell-11-6 col-6 ' markdown = '1'><code>60</code></td>
+    <td class = 'cell-11-7 col-7 ' markdown = '1'><code>70</code></td>
+    <td class = 'cell-11-8 col-8 ' markdown = '1'><code>80</code></td>
+    <td class = 'cell-11-9 col-9 ' markdown = '1'><code>90</code></td>
+    <td class = 'cell-11-10 col-10 ' markdown = '1'><code>100</code></td>
+    <td class = 'cell-11-11 col-11 ' markdown = '1'>&hellip;</td>
+  </tr>
+  <tr class = 'row-12' markdown = '1'>
+    <td class = 'cell-12-0 col-0 ' markdown = '1'></td>
+    <th class = 'cell-12-1 col-1 ' markdown = '1'>&vellip;</td>
+    <td class = 'cell-12-2 col-2 ' markdown = '1'>&vellip;</td>
+    <td class = 'cell-12-3 col-3 ' markdown = '1'>&vellip;</td>
+    <td class = 'cell-12-4 col-4 ' markdown = '1'>&vellip;</td>
+    <td class = 'cell-12-5 col-5 ' markdown = '1'>&vellip;</td>
+    <td class = 'cell-12-6 col-6 ' markdown = '1'>&vellip;</td>
+    <td class = 'cell-12-7 col-7 ' markdown = '1'>&vellip;</td>
+    <td class = 'cell-12-8 col-8 ' markdown = '1'>&vellip;</td>
+    <td class = 'cell-12-9 col-9 ' markdown = '1'>&vellip;</td>
+    <td class = 'cell-12-10 col-10 ' markdown = '1'>&vellip;</td>
+    <td class = 'cell-12-11 col-11 ' markdown = '1'>&vellip;</td>
+    <td class = 'cell-12-12 col-12 ' markdown = '1'></td>
+  </tr>
+</table>
+
+<p>We can make use of this property to <strong>not</strong> calculate and store
+all the values.</p>
+
+<p>Instead, we will be using a <a href="https://en.wikipedia.org/wiki/Heap_(data_structure)">heap</a>
+<span class = 'latex-inline'>\(\mathcal{H}\)</span>. In this
+heap, we store the columns of the table above &mdash; or rather, the highest
+number in each column we haven't processed.</p>
+
+<p>We intialize the heap with the top values of each column (thus, the 
+numbers <span class = 'latex-inline'>\(1 \ldots i\)</span>). We then repeat the following <span class = 'latex-inline'>\(k - 1\)</span> times:</p>
+
+<ol>
+<li>Look at the top element of the <span class = 'latex-inline'>\(\mathcal{H}\)</span>
+(the one with the lowest value).</li>
+<li>If this is the bottom element of a column, remove it from <span class = 'latex-inline'>\(\mathcal{H}\)</span>.</li>
+<li>Else, replace the element with next element of the same column.</li>
+<li>Rebalance <span class = 'latex-inline'>\(\mathcal{H}\)</span>.</li>
+</ol>
+
+<p>Now, the <span class = 'latex-inline'>\(k^\text{th}\)</span> element will be the top of <span class = 'latex-inline'>\(\mathcal{H}\)</span>.</p>
+
+<p>We will never have more than <span class = 'latex-inline'>\(i\)</span> elements in <span class = 'latex-inline'>\(\mathcal{H}\)</span>.
+Building a heap takes time linear to the size of the heap, so we 
+can build the heap in <span class = 'latex-inline'>\(\mathcal{O} (i)\)</span> time.</p>
+
+<p>Getting the minimum element from a heap takes constant time. Rebalancing
+a heap (after remove or replacing the top element) takes
+<span class = 'latex-inline'>\(\mathcal{O} (\log i)\)</span>.</p>
+
+<p>So, the running time of this algorithm is <span class = 'latex-inline'>\(\mathcal{O} (k \cdot \log i)\)</span>,
+while using <span class = 'latex-inline'>\(\mathcal{O} (i)\)</span> memory.</p>
+
+<p>Since <span class = 'latex-inline'>\(k\)</span> can be as large as <span class = 'latex-inline'>\(i \cdot j\)</span>, the asymptotic running
+time is not an improvement of the naive algorithm, but the memory
+usage is a huge improvement.</p>
+</div>
+
+<h3>Counting divisors</h3>
+
+<div class = "section">
+<div class = "observation headed-div"><br><p>
+The <span class = 'latex-inline'>\(k^\text{th}\)</span> element of the multiplication table will not exceed <span class = 'latex-inline'>\(k\)</span>.
+In fact, other than the extreem cases, <span class = 'latex-inline'>\(k = 1\)</span> and <span class = 'latex-inline'>\(k = i \cdot j\)</span>,
+the answer will be less than <span class = 'latex-inline'>\(k\)</span>.
+</p></div>
+
+<div class = "observation headed-div"><br><p>
+For each number <span class = 'latex-inline'>\(n\)</span>, we can easily determine how often <span class = 'latex-inline'>\(n\)</span> appears
+in the multiplication table.
+</p></div>
+
+<div class = "lemma headed-div"><br><p>
+For each divisor <span class = 'latex-inline'>\(d\)</span> of <span class = 'latex-inline'>\(n\)</span>, such that <span class = 'latex-inline'>\(d \leq i\)</span> and 
+<span class = 'latex-inline'>\(\frac{n}{d} \leq j\)</span>, <span class = 'latex-inline'>\(n\)</span> appears exactly once in the multiplication table
+of <span class = 'latex-inline'>\(i\)</span> and <span class = 'latex-inline'>\(j\)</span>.
+</p></div>
+
+<p>So, we can just count numbers <span class = 'latex-inline'>\(n\)</span>, starting from <span class = 'latex-inline'>\(1\)</span>, find all its
+divisors, and use this to calculate how often <span class = 'latex-inline'>\(n\)</span> appears in the
+multiplication table. It's then easy to keep track of which number appears
+on place <span class = 'latex-inline'>\(k\)</span>.</p>
+
+<p>To find all divisors <span class = 'latex-inline'>\(d\)</span> of a given number <span class = 'latex-inline'>\(n\)</span>, we just look at
+all numbers <span class = 'latex-inline'>\(c, 1 \leq c \leq \sqrt{n}\)</span>. If <span class = 'latex-inline'>\(n \text{ mod } c = 0\)</span>,
+then both <span class = 'latex-inline'>\(c\)</span> and <span class = 'latex-inline'>\(\frac{n}{c}\)</span> are divisors of <span class = 'latex-inline'>\(n\)</span>.</p>
+
+<p>So, we can find all divisors of a number <span class = 'latex-inline'>\(n\)</span> in <span class = 'latex-inline'>\(\mathcal{O}(\sqrt{n})\)</span>
+time.</p>
+
+<p>The number of divisors of <span class = 'latex-inline'>\(n\)</span> is <span class = 'latex-inline'>\(\mathcal{o} (n^\epsilon)\)</span> for
+all <span class = 'latex-inline'>\(\epsilon > 0\)</span>. </p>
+
+<p>This means the running time of this algorithm is <span class = 'latex-inline'>\(\mathcal{O} (k \sqrt{k})\)</span>.
+The memory usage is either constant, or, if we produce a list of all
+divisors, <span class = 'latex-inline'>\(\mathcal{o} (k^\epsilon)\)</span> for all <span class = 'latex-inline'>\(\epsilon > 0\)</span>.</p>
+</div>
+
+<h2>Solutions</h2>
+
+<div class = "section">
+<p>Each solution will read lines from standard input. Each line consists
+of three numbers, <code>i</code>, <code>j</code>, and <code>k</code>. For each line of input, it writes a
+line of output.</p>
+
+<p>We will not perform any input validation. We assume each of <code>i</code>, <code>j</code>, and <code>k</code>
+are positive integers, and that <code>k &lt;= i * j</code>.</p>
+</div>
+
+<h3>Perl</h3>
+
+<h4>The naive way</h4>
+
+<div class = "section">
+<p>This one is pretty straightforward:</p>
+
+<pre><code>while (&lt;&gt;) {
+    my ($i, $j, $k) = split;
+    say +(sort {$a &lt;=&gt; $b} map {my $l = $_; map {$_ * $l} 1 .. $j} 1 .. $i)
+         [$k - 1];
+}
+</code></pre>
+
+<p>A nested map to calculate all the products, then we sort them and take
+the right value from the sorted list.</p>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-140/abigail/perl/ch-2b.pl">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h4>Using a heap</h4>
+
+<div class = "section">
+<p>What we will be storing in the heap will be pairs of numbers: $i, which
+indicates the column of the multiplication table, and $j, which will
+indicate the row in the multiplication table. The product of those
+numbers will be the value in the table.</p>
+
+<p>We will implement our heap as an array, where a node on index <code>$p</code>
+has its children on indices <code>2 * $p + 1</code> and <code>2 * $p + 2</code>. (This is
+a very standard way of implementing a fixed size heap).</p>
+
+<p>Creating a heap is easy &mdash; if the values in the array are sorted,
+it's automatically a heap:</p>
+
+<pre><code>sub make_heap ($i) {[map {[$_, 1]} 1 .. $i]}
+</code></pre>
+
+<p>Next, we need a couple of helper functions: <code>prod</code> takes a pair and
+returns its product, and <code>left</code> and <code>right</code> which take an index, and
+return the index of the left and right child:</p>
+
+<pre><code>sub prod  ($pair)  {$$pair [0] * $$pair [1]}
+sub left  ($index) {2 * $index + 1}
+sub right ($index) {2 * $index + 2}
+</code></pre>
+
+<p>Then we need a method to rebalance a heap. It's called with the index
+of the one element which is '<em>out of order</em>' &mdash; <code>0</code> by default:</p>
+
+<pre><code>sub rebalance ($heap, $index = 0) {
+    my $index1 = left  $index;    # Left  child
+    my $index2 = right $index;    # Right child
+    return if $index1 &gt; $#$heap;  # No children, so we're done.
+    my $p = prod $$heap [$index];
+    #
+    # Find the smallest of the children
+    #
+    my $p1 = prod $$heap [$index1];
+    if ($index2 &lt;= $#$heap) {
+        my $p2 = prod $$heap [$index2];
+        #
+        # Right child is smaller than left child, so right child wins
+        #
+        if ($p2 &lt; $p1) {
+            $p1 = $p2;
+            $index1 = $index2;
+        }
+    }
+    #
+    # Now, $p1 is the smallest child, and on index $index1.
+    # If the smallest child is smaller than the current element,
+    # swap, and recurse. Else, we're done.
+    #
+    if ($p1 &lt; $p) {
+        @$heap [$index, $index1] = @$heap [$index1, $index];
+        rebalance ($heap, $index1);
+    }
+}
+</code></pre>
+
+<p>The function is recursive. It terminates if either the out of order
+node doesn't have any children, or none of its children are less than
+the node itself. Otherwise, we swap the node with the lesser of its
+children, and recurse.</p>
+
+<p>Finally, the main program:</p>
+
+<pre><code>while (&lt;&gt;) {
+    my ($i, $j, $k) = split;
+    ($j, $i) = ($i, $j) if $j &lt; $i;
+    my $heap = make_heap ($i);
+    while ($k -- &gt; 1) {
+        $$heap [0] [1] = $$heap [0] [1] &gt;= $j ? $i * $j + 1
+                                              : $$heap [0] [1] + 1;
+        rebalance ($heap);
+    }
+    say prod $$heap [0];
+}
+</code></pre>
+
+<p>Note that we don't actually delete an element from the heap. If we
+have reached the bottom of the column, we replace it with such a high
+value it exceeds the maximum value in the multiplication table, so
+it will never bubble to the top again.</p>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-140/abigail/perl/ch-2a.pl">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h4>Counting divisors</h4>
+
+<div class = "section">
+<p>We now want to find all the divisors of a given number. 
+<a href="https://metacpan.org/pod/Math::Prime::Util"><code>Math::Prime::Util</code></a> has a function <code>fordivsors</code> which does
+exactly that. It takes a code reference and a number <code>n</code> as arguments,
+and calls the code reference for each divisor of <code>n</code>.</p>
+
+<p>So, we can just count up from <code>1</code>, count the divisors <code>d</code> for each number,
+such that <code>d &lt;= i</code> and <code>n / d &lt;= j</code>, and stop if we have seen <code>k</code> divisors: </p>
+
+<pre><code>while (&lt;&gt;) {
+    my ($n, $i, $j, $k) = (0, split);
+    fordivisors {$_ &lt;= $i &amp;&amp; $n / $_ &lt;= $j &amp;&amp; !-- $k &amp;&amp; say $n} ++ $n
+           while $k &gt;= 1;
+}
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-140/abigail/perl/ch-2.pl">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>Go</h3>
+
+<div class = "section">
+<p>For other languages, we only implement the algorithm which counts
+divisors. We won't be using libraries which returns all the divisors,
+so to get the divisors of a number <span class = 'latex-inline'>\(n\)</span>, we just try each number
+<span class = 'latex-inline'>\(1 \leq d \leq \frac{n}{d}\)</span>: if <span class = 'latex-inline'>\(n \text{ mode } d = 0\)</span>, then
+both <span class = 'latex-inline'>\(d\)</span> and <span class = 'latex-inline'>\(\frac{n}{d}\)</span> are divisors of <span class = 'latex-inline'>\(n\)</span>.</p>
+
+<p>Which leads the following program (here, we have already read <code>i</code>, <code>j</code>,
+and <code>k</code>):</p>
+
+<pre><code>n := int64 (0)
+for ;k &gt; 0; {
+    n ++
+    s := int64 (math . Sqrt (float64 (n)))
+    for d := int64 (1); d &lt;= s &amp;&amp; k &gt; 0; d ++ {
+        if (n % d == 0) {
+            if (d &lt;= i &amp;&amp; n / d &lt;= j) {k --}
+            if (d &lt;= j &amp;&amp; n / d &lt;= i) {k --}
+            if (n == d * d)           {k ++}
+        }
+    }
+}
+fmt . Println (n)
+</code></pre>
+
+<p>Note the special case when <code>n</code> is a proper square. In that case, we do not
+want to count its square root as a divisor twice.</p>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-140/abigail/go/ch-2.go">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>Other Languages</h3>
+
+<p>We also have implementations (all very similar to the Go implementation) in
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-140/abigail/awk/ch-2.awk">AWK</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-140/abigail/bash/ch-2.sh">Bash</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-140/abigail/bc/ch-2.bc">bc</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-140/abigail/c/ch-2.c">C</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-140/abigail/java/ch-2.java">Java</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-140/abigail/lua/ch-2.lua">Lua</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-140/abigail/node/ch-2.js">Node.js</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-140/abigail/pascal/ch-2.p">Pascal</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-140/abigail/python/ch-2.py">Python</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-140/abigail/r/ch-2.r">R</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-140/abigail/ruby/ch-2.rb">Ruby</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-140/abigail/scheme/ch-2.scm">Scheme</a>, and
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-140/abigail/tcl/ch-2.tcl">Tcl</a>.</p>
+
+<hr id = 'last-line'>
+<div class = 'trailer'>
+<p class = 'prev'><a class = "prev" href = "">&#x261C;</a></p>
+<p class = 'issue'>Please leave any comments as a
+  <a href = 'https://github.com/Abigail/Abigail.github.io/issues'
+     title = 'GitHub issue'>GitHub issue</a>.
+<p class = 'next'><a class = "next" href = "">&#x261E;</a></p>
+</div>
+
+</body>
+</html>

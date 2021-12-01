@@ -63,6 +63,7 @@ my $FREEBSD_URL    = "https://www.freebsd.org/cgi/man.cgi?" .
 my $PYTHON_URL     = "https://docs.python.org/3/library/functions.html";
 my $NODE_URL       = "https://developer.mozilla.org/en-US/docs/Web/" .
                                                    "JavaScript/Reference";
+my $RUBY_URL       = "https://apidock.com/ruby";
 my $GO_URL         = "https://pkg.go.dev";
 my $WIKI_URL       = "https://en.wikipedia.org/wiki";
 my $OEIS_URL       = "https://oeis.org";
@@ -161,7 +162,7 @@ sub header ($title, $directives) {
 #
 # Create a link to the full program on GitHub
 #
-sub github_link ($language, $week, $directives) {
+sub github_link ($language, $week, $info = "", $directives = {}) {
     my $link;
     if ($$directives {type} == $TYPE_ADVENT) {
         $link = sprintf "%s/%s/AdventofCode%4d/blob/%s/Day_%02d/solution.pl" =>
@@ -174,6 +175,11 @@ sub github_link ($language, $week, $directives) {
     else {
         my ($week_nr, $part_nr) = split /-/ => $week;
         my $lang_info = $LANGUAGE_INFO {$language};
+        my  %info;
+        if ($info) {
+            my @chunks = split /;\s*/ => $info;
+            %info = map {split /\s*=\s*/ => $_, 2} @chunks;
+        }
         $link = sprintf "%s/%s/%s/blob/%s/challenge-%03d/%s/%s/ch-%d.%s" =>
                          $GITHUB_URL,
                          $GITHUB_USER,
@@ -182,14 +188,15 @@ sub github_link ($language, $week, $directives) {
                          $week_nr,
                          $CHALLENGE_USER,
                          $$lang_info {name} || lc $language,
-                         $part_nr,
+                         $info {part_nr}    || $part_nr,
                          $$lang_info {ext}  || lc $language;
     }
     $link;
 }
 
-sub full_program ($language, $week, $tag, $directives) {
-    my $link = github_link (($tag || $language) =~ s/_/ /gr, $week, $directives);
+sub full_program ($language, $week, $tag, $info, $directives) {
+    my $link = github_link (($tag || $language) =~ s/_/ /gr,
+                             $week, $info, $directives);
     return "Find the [full program]($link) on [GitHub]($GITHUB_URL).\n";
 }
 
@@ -255,6 +262,12 @@ sub make_link (%args) {
                 }
             }
         }
+        elsif ($language eq "Ruby") {
+            if ($link) {
+                $url  = $RUBY_URL . "/$link";
+                $url .= "/$anchor" unless $link =~ m{/};
+            }
+        }
     }
     $link =~ s/^#//;
     if (!$url) {
@@ -299,8 +312,8 @@ sub process_section ($section, $language, $directives) {
     # Replace any lines with FULL_PROGRAM to a section pointing
     # to the file on GitHub.
     #
-    $section =~ s {^FULL_PROGRAM(?::(\S+))?\s*$}
-                  {full_program ($language, $week, $1, $directives)}gem;
+    $section =~ s {^FULL_PROGRAM(?::([^\s;]+))?(?:;(\S+))?\s*$}
+                  {full_program ($language, $week, $1, $2, $directives)}gem;
 
     #
     # Process MathJax delimiters

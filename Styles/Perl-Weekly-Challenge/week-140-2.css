@@ -1,0 +1,10 @@
+table#heap-table             {margin-left: auto;
+                              margin-right: auto;}
+table#heap-table td          {text-align: right;}
+table#heap-table tr.row-1 th {text-align: right;}
+table#heap-table tr.row-0 th {text-align: center;}
+table#heap-table          th,
+table#heap-table          td {vertical-align: baseline;
+                              padding-left:   4px;
+                              padding-right:  4px;}
+table#heap-table th.cell-2-0 {vertical-align: middle;}
