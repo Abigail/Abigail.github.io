@@ -1,0 +1,146 @@
+<html>
+<head>
+<title>Perl Weekly Challenge 141: Number Divisors</title>
+<script src = "https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id = "MathJax-script" async src = "https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.js"></script>
+<script src = '../../JavaScript/jquery.js'></script>
+<script src = '../../JavaScript/navigation.js'></script>
+<link rel = 'preconnect' href = 'https://fonts.gstatic.com'>
+<link rel = 'stylesheet' href = 'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
+<link rel = 'stylesheet' href = '../../Styles/main.css'>
+<link rel = 'stylesheet' href = '../../Styles/Perl-Weekly-Challenge/main.css'>
+</head>
+
+<body><h1>Perl Weekly Challenge 141: Number Divisors</h1><div class = "byline">
+by Abigail<br>
+<img src = "../../Images/jan_sluiters.jpg">
+</div>
+
+
+<h2><a href="https://theweeklychallenge.org/blog/perl-weekly-challenge-141/#TASK1">Challenge</a></h2>
+
+<blockquote>
+  <p>Write a script to find <code>lowest 10 positive integers</code> having exactly <code>8 divisors</code>.</p>
+</blockquote>
+
+<h3>Example</h3>
+
+<pre><code>24 is the first such number having exactly 8 divisors.
+1, 2, 3, 4, 6, 8, 12 and 24.
+</code></pre>
+
+<h2>Discussion</h2>
+
+<div class = "section">
+<div class = "observation headed-div"><br><p>
+A positive integer has an odd number of divisors if and only
+the number is a square.
+</p></div>
+
+<div class = "observation headed-div"><br><p>
+If <span class = 'latex-inline'>\(d\)</span> is a divisor of <span class = 'latex-inline'>\(n\)</span>, then <span class = 'latex-inline'>\(\frac{n}{d}\)</span> is also
+a divisor of <span class = 'latex-inline'>\(n\)</span>.
+</p></div>
+
+<div class = "observation headed-div"><br><p>
+For every divisor <span class = 'latex-inline'>\(d\)</span> of a number <span class = 'latex-inline'>\(n\)</span>, where <span class = 'latex-inline'>\(n\)</span> is not a square,
+exactly one of <span class = 'latex-inline'>\(d\)</span> and <span class = 'latex-inline'>\(\frac{n}{d}\)</span> is less than <span class = 'latex-inline'>\(\sqrt{n}\)</span>.
+</p></div>
+
+<p>This means that any number which is a square cannot have exactly
+eight divisors. And for non-squares <span class = 'latex-inline'>\(n\)</span>, the number has exactly eight
+divisors, if, and only if, <span class = 'latex-inline'>\(n\)</span> has exactly four divisors less 
+than <span class = 'latex-inline'>\(\sqrt{n}\)</span>.</p>
+</div>
+
+<h2>Solutions</h2>
+
+<h3>Perl</h3>
+
+<div class = "section">
+<p>The module <a href="https://metacpan.org/pod/Math::Prime::Util"><code>Math::Prime::Util</code></a> has a method <code>divisors</code> which,
+in scalar context, returns the number if divisors a number has.</p>
+
+<p>Which means that, after using the module, we're left with a one-liner:</p>
+
+<pre><code>use Math::Prime::Util qw [divisors];
+
+8 == divisors (++ $::n) &amp;&amp; say ($::n) &amp;&amp; $::c ++ while $::c &lt; 10;
+</code></pre>
+
+<p>Don't turn on warnings, as <code>$::c</code> starts off as undefined.</p>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-141/abigail/perl/ch-1.pl">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>Ruby</h3>
+
+<div class = "section">
+<p>For all our other implementations, we start inspecting numbers <code>n</code>
+starting from <code>1</code>. We can skip squares immediately. If the number
+isn't a square, we count divisors, by checking all numbers <code>d</code> from <code>1</code>
+to the square root of <code>n</code>. If <code>d</code> is a divisor of <code>n</code>, we increment
+the divisor count by <code>2</code>.</p>
+
+<p>We can break the loop if we have seen more than <code>8</code> divisors.</p>
+
+<p>If a number <code>n</code> has <code>8</code> divisors, we print <code>n</code>. Once we have printed
+<code>10</code> such numbers, we're done.</p>
+
+<pre><code>count          = 10
+nr_of_divisors =  8
+
+n = 0
+while count &gt; 0 do
+    n = n + 1
+    s = Math . sqrt(n) . floor()
+    if n == s * s then
+       next
+    end
+    c = 0
+    for d in 1 .. s do
+        if n % d == 0 then
+            c = c + 2
+            if c &gt; nr_of_divisors then
+                break
+            end
+        end
+    end
+    if c == nr_of_divisors then
+        puts (n)
+        count = count - 1
+    end
+end
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-141/abigail/ruby/ch-1.rb">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>Other Language</h3>
+
+<p>We also have implementations (all very similar to the Ruby implementation) in
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-141/abigail/awk/ch-1.awk">AWK</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-141/abigail/bash/ch-1.sh">Bash</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-141/abigail/bc/ch-1.bc">bc</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-141/abigail/c/ch-1.c">C</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-141/abigail/go/ch-1.go">Go</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-141/abigail/java/ch-1.java">Java</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-141/abigail/lua/ch-1.lua">Lua</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-141/abigail/node/ch-1.js">Node.js</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-141/abigail/pascal/ch-1.p">Pascal</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-141/abigail/python/ch-1.py">Python</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-141/abigail/r/ch-1.r">R</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-141/abigail/scheme/ch-1.scm">Scheme</a>, and
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-141/abigail/tcl/ch-1.tcl">Tcl</a>.</p>
+
+<hr id = 'last-line'>
+<div class = 'trailer'>
+<p class = 'prev'><a class = "prev" href = "">&#x261C;</a></p>
+<p class = 'issue'>Please leave any comments as a
+  <a href = 'https://github.com/Abigail/Abigail.github.io/issues'
+     title = 'GitHub issue'>GitHub issue</a>.
+<p class = 'next'><a class = "next" href = "">&#x261E;</a></p>
+</div>
+
+</body>
+</html>

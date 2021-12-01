@@ -118,30 +118,31 @@ span.latex-display {
  * Divs with headers; which may or may not have counters.
  */
 body {
-    counter-reset:           lemma definition observation;
+    counter-reset:               lemma definition;
+    counter-reset:                    observation;
 }
 
 div.headed-div::before {
-    margin-left:                         -1em;
-    font-family:                "Lobster Two";
+    margin-left:                             -1em;
+    font-family:                    "Lobster Two";
 }
 
 div.headed-div p:first-of-type {
-    margin-top:                             0;
+    margin-top:                                 0;
 }
 
 div.lemma::before {
-    counter-increment:                  lemma;
-    content:          "Lemma " counter(lemma);
+    counter-increment:                    lemma;
+    content:             "Lemma " counter(lemma);
 }
 
 div.definition::before {
-    counter-increment:             definition;
-    content: "Definition " counter(definition);
+    counter-increment:               definition;
+    content:   "Definition " counter(definition);
 }
 
 div.observation::before {
-    counter-increment:            observation;
+    counter-increment:              observation;
     content: "Observation " counter(observation);
 }
 
