@@ -1,0 +1,122 @@
+<html>
+<head>
+<title>Advent Of Code 2021, Day 1: Sonar Sweep</title>
+<script src = "https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id = "MathJax-script" async src = "https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.js"></script>
+<script src = '../../../JavaScript/jquery.js'></script>
+<script src = '../../../JavaScript/navigation.js'></script>
+<script src = '../../../JavaScript/nav_advent_of_code.js'></script>
+<link rel = 'preconnect' href = 'https://fonts.gstatic.com'>
+<link rel = 'stylesheet' href = 'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
+<link rel = 'stylesheet' href = '../../../Styles/main.css'>
+</head>
+
+<body><h1>Advent Of Code 2021, Day 1: Sonar Sweep</h1><div class = "byline">
+by Abigail<br>
+<img src = "../../../Images/jan_sluiters.jpg">
+</div>
+
+
+<h2><a href="https://adventofcode.com/2021/day/1">Challenge</a></h2>
+
+<div class = "section">
+<p>You are given a file with depth measurements; one measurement
+per line.</p>
+
+<p>For example, we may have this file of measurements:</p>
+
+<pre><code>199
+200
+208
+210
+200
+207
+240
+269
+260
+263
+</code></pre>
+</div>
+
+<h4>Part 1</h4>
+
+<div class = "section">
+<p>For part 1, we have to report how many measurements are
+larger than the previous measurement.</p>
+
+<p>So, for the example file, these are the measurements
+<code>200</code>, <code>208</code>, <code>210</code>, <code>207</code>, <code>240</code>, <code>269</code>, and <code>263</code>, 
+seven measurements in total. The first measurement
+isn't larger because there is no previous measurement.</p>
+</div>
+
+<h4>Part 2</h4>
+
+<div class = "section">
+<p>For part 2, we have to look at <em>three-measurement sliding windows</em>.
+Taken the example above, we get:</p>
+
+<pre><code>199  A      
+200  A B    
+208  A B C  
+210    B C D
+200      C D E
+207        D E F
+240          E F G  
+269            F G H
+260              G H
+263                H
+</code></pre>
+
+<p>The first measurement is marked <code>A</code> and equals <code>199 + 200 + 208 == 607</code>.
+The second measurement is marked <code>B</code>, and equals
+<code>200 + 208 + 210 == 618</code>, so this is an increase.</p>
+
+<p>We do not consider any windows of size less than 3.</p>
+
+<p>For the example file, we have <code>B &gt; A</code>, <code>E &gt; D</code>, <code>F &gt; E</code>, <code>G &gt; F</code>, and
+<code>H &gt; G</code>, for a total of five increases.</p>
+</div>
+
+<h2>Solution</h2>
+
+<p>First order of business is to read in the data, into an array:</p>
+
+<pre><code>my @depths = &lt;&gt;;
+</code></pre>
+
+<p>To get the answer to part 1, we just have to compare each pair of
+successive elements, grep the ones where the second is larger than
+the first, and count how many we got.</p>
+
+<p><a href="https://perldoc.perl.org/perlfunc#grep"><code>grep</code></a> in scalar context returns a count of matches, so we can
+do part 1 in just one line:</p>
+
+<pre><code>my $count1 = grep {$depths [$_] &gt; $depths [$_ - 1]} 1 .. $#depths;
+</code></pre>
+
+<p>Now, for part 2, the sum of the ith window is
+<code>$w [i] = $depths [$i] + $depths [$i + 1] + $depths [$i + 2]</code>, while
+the sum of the next window is
+<code>$w [i + 1] = $depths [$i + 1] + $depths [$i + 2] + $depths [$i + 3]</code>.
+Now, we want cases where <code>$w [i + 1] &lt; $w [i]</code>. If we work out
+the details, we're left with <code>$depths [$i + 3] &lt; $depths [$i]</code>.</p>
+
+<p>Which means we can solve part 2 in the same way as part 1:</p>
+
+<pre><code>my $count2 = grep {$depths [$_] &gt; $depths [$_ - 3]} 3 .. $#depths;
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/AdventofCode2021/blob/master/Day_01/solution.pl">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+
+<hr id = 'last-line'>
+<div class = 'trailer'>
+<p class = 'prev'><a class = "prev" href = "">&#x261C;</a></p>
+<p class = 'issue'>Please leave any comments as a
+  <a href = 'https://github.com/Abigail/Abigail.github.io/issues'
+     title = 'GitHub issue'>GitHub issue</a>.
+<p class = 'next'><a class = "next" href = "">&#x261E;</a></p>
+</div>
+
+</body>
+</html>

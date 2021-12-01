@@ -175,8 +175,9 @@ function navigation (type, pagename, pages) {
 // Populate a list with links to the blogs.
 //
 function make_index (type, pages) {
+    let up = type == "ADV" ? "../.." : ".."
     pages . reverse () . forEach (entry => {
-        $("#index") . append ("<li><a href = '../" + entry [0] + "'>" +
+        $("#index") . append ("<li><a href = '" + up + "/" + entry [0] + "'>" +
                                entry [1] + "</a></li>\n")
     })
 }

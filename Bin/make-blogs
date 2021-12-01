@@ -22,7 +22,7 @@ my $SRC_DIR        = "Src";
 my $HTML_DIR       = "HTML";
 my $DIR_PWC        = "Perl-Weekly-Challenge";
 my $DIR_FC         = "Feature-Compare";
-my $DIR_ADVENT     = "Advent-of-Code";
+my $DIR_ADVENT     = "AdventOfCode";
 
 my $TYPE_PWC       = 1;
 my $TYPE_FC        = $TYPE_PWC + 1;
@@ -37,7 +37,7 @@ my $TYPE2DIR       = {
 my $TYPE2NAV       = {
     $TYPE_PWC       =>  "nav_weekly_challenge",
     $TYPE_FC        =>  "nav_feature_compare",
-    $TYPE_ADVENT    =>  "nav_advent",
+    $TYPE_ADVENT    =>  "nav_advent_of_code",
 };
 
 
@@ -121,8 +121,10 @@ sub header ($title, $directives) {
     my $base = $$directives {base};
     my $type = $$directives {type};
 
+    my $up   = $type eq $TYPE_ADVENT ? "../../.." : "../..";
+
     my $styles = join "\n" =>
-        map  {"<link rel = 'stylesheet' href = '../../$_'>"}
+        map  {"<link rel = 'stylesheet' href = '$up/$_'>"}
         grep {-f}
         map  {"$STYLE_DIR/$_.css"} "main",
                                    "$dir/main",
@@ -130,7 +132,7 @@ sub header ($title, $directives) {
 
     my @scripts = sort glob "$JAVASCRIPT_DIR/$dir/$base*.js";
     my $scripts = join "\n" =>
-        map  {"<script src = '../../$_'></script>"}
+        map  {"<script src = '$up/$_'></script>"}
         @scripts,
         grep {-f}
         map  {"$JAVASCRIPT_DIR/$_.js"}
@@ -159,24 +161,35 @@ sub header ($title, $directives) {
 #
 # Create a link to the full program on GitHub
 #
-sub github_link ($language, $week) {
-    my ($week_nr, $part_nr) = split /-/ => $week;
-    my $lang_info = $LANGUAGE_INFO {$language};
-    my $link = sprintf "%s/%s/%s/blob/%s/challenge-%03d/%s/%s/ch-%d.%s" =>
+sub github_link ($language, $week, $directives) {
+    my $link;
+    if ($$directives {type} == $TYPE_ADVENT) {
+        $link = sprintf "%s/%s/AdventofCode%4d/blob/%s/Day_%02d/solution.pl" =>
                         $GITHUB_URL,
                         $GITHUB_USER,
-                        $GITHUB_REPO,
+                        $$directives {year},
                         $GITHUB_BRANCH,
-                        $week_nr,
-                        $CHALLENGE_USER,
-                        $$lang_info {name} || lc $language,
-                        $part_nr,
-                        $$lang_info {ext}  || lc $language;
+                        $$directives {day}
+    }
+    else {
+        my ($week_nr, $part_nr) = split /-/ => $week;
+        my $lang_info = $LANGUAGE_INFO {$language};
+        $link = sprintf "%s/%s/%s/blob/%s/challenge-%03d/%s/%s/ch-%d.%s" =>
+                         $GITHUB_URL,
+                         $GITHUB_USER,
+                         $GITHUB_REPO,
+                         $GITHUB_BRANCH,
+                         $week_nr,
+                         $CHALLENGE_USER,
+                         $$lang_info {name} || lc $language,
+                         $part_nr,
+                         $$lang_info {ext}  || lc $language;
+    }
     $link;
 }
 
-sub full_program ($language, $week, $tag) {
-    my $link = github_link (($tag || $language) =~ s/_/ /gr, $week);
+sub full_program ($language, $week, $tag, $directives) {
+    my $link = github_link (($tag || $language) =~ s/_/ /gr, $week, $directives);
     return "Find the [full program]($link) on [GitHub]($GITHUB_URL).\n";
 }
 
@@ -271,6 +284,7 @@ my $link_pattern = qr {\[    (?<anchor> [^]]*) \]
 
 sub process_section ($section, $language, $directives) {
     my $week = $$directives {week};
+    $language = "Perl" if $$directives {type} == $TYPE_ADVENT;
     #
     # Step one, find the links starting with a #, and process them.
     #
@@ -286,7 +300,7 @@ sub process_section ($section, $language, $directives) {
     # to the file on GitHub.
     #
     $section =~ s {^FULL_PROGRAM(?::(\S+))?\s*$}
-                  {full_program ($language, $week, $1)}gem;
+                  {full_program ($language, $week, $1, $directives)}gem;
 
     #
     # Process MathJax delimiters
@@ -463,18 +477,21 @@ sub pre_process ($text, $directives) {
 }
 
 
-sub by_line {<<~ "--"}
+sub by_line ($directives) {
+    my $up = $$directives {type} == $TYPE_ADVENT ? "../../.." : "../..";
+    <<~ "--"
     <div class = "byline">
     by Abigail<br>
-    <img src = "../../Images/jan_sluiters.jpg">
+    <img src = "$up/Images/jan_sluiters.jpg">
     </div>
     --
+}
 
-sub post_process ($text) {
+sub post_process ($text, $directives) {
     #
     # Add a line after the first <h1>
     #
-    $text =~ s{</h1>.*\K}{by_line}e;
+    $text =~ s{</h1>.*\K}{by_line ($directives)}e;
 
     #
     # Turn sections between headers into divs
@@ -558,9 +575,9 @@ foreach my $arg (@ARGV) {
         $type = $TYPE_PWC;
         $base  = "week-$arg";
     }
-    elsif ($arg =~ /^(20[0-9]{2})(?:12)?-[0-9]{2}$/) {
+    elsif ($arg =~ /^(20[0-9]{2})(?:-12)?-([0-9]{2})$/) {
         $type = $TYPE_ADVENT;
-        $base = "$1/$1-12-$2";
+        $base = "$1/day-$2";
     }
     elsif ($arg =~ /^fc-(.*)/) {
         $type = $TYPE_FC;
@@ -577,7 +594,9 @@ foreach my $todo (@todo) {
     my $source_file = "$SRC_DIR/$dir/$base.md";
     my $html_file   = "$HTML_DIR/$dir/$base.html";
 
-    my $week = $type == $TYPE_PWC && $base =~ /^week-(.*)/ ? $1 : 0;
+    my $week = $type == $TYPE_PWC    && $base =~ /^week-(.*)/  ? $1 : 0;
+    my $year = $type == $TYPE_ADVENT && $base =~ m{^([0-9]+)/} ? $1 : 0;
+    my $day  = $type == $TYPE_ADVENT && $base =~ m{/day-(.*)}  ? $1 : 0;
 
     my $source_text = `cat $source_file`;
     my $directives  = {};
@@ -585,6 +604,8 @@ foreach my $todo (@todo) {
     $$directives {base} = $base;
     $$directives {type} = $type;
     $$directives {dir}  = $dir;
+    $$directives {year} = $year;
+    $$directives {day}  = $day;
 
     $source_text = pre_process $source_text, $directives;
 
@@ -598,7 +619,7 @@ foreach my $todo (@todo) {
     #
     $html_text =~ s{</div>\s*$}{\n</div>};
 
-    $html_text = post_process ($html_text);
+    $html_text = post_process ($html_text, $directives);
 
     my ($title)     = $html_text   =~ m{<h1>(.*?)</h1>};
 
