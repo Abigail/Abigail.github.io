@@ -382,6 +382,7 @@ sub table ($text) {
     my $out  = "<table $attributes>\n";
 
     my @rows = split /\s*\\\\\s*/ => $text;
+    my %skip;
     foreach my $rc (keys @rows) {
         my $row = $rows [$rc];
         $out .= "  <tr class = 'row-$rc' markdown = '1'>\n";
@@ -396,11 +397,13 @@ sub table ($text) {
             my $cc_inc     = 1;
             my $td         = "td";
             my $class      = "";
+            my $rs         = 1;
             if ($cell =~ s/^$skip\{\s*([^}]+)\}\s*//) {
                 my %config = map {split /\s*=\s*/, $_, 2}
                                   split /\s*;\s*/ => $1;
                 if ((my $rowspan = $config {rs} || 0) > 1) {
                     $attributes .= " rowspan = '$rowspan'";
+                    $rs = $rowspan;
                 }
                 if ((my $colspan = $config {cs} || 0) > 1) {
                     $attributes .= " colspan = '$colspan'";
@@ -410,8 +413,26 @@ sub table ($text) {
                 $class = $config {class} // "";
             }
 
+            $cc ++ while $skip {$rc} {$cc};
+
             $out .= "    <$td class = 'cell-$rc-$cc col-$cc $class'" .
                             " $attributes>$cell</td>\n";
+
+            #
+            # Keep track of cells which are to be "skipped", because
+            # they're covered due to a rowspan earlier.
+            #
+            if ($rs > 1) {
+                for my $row_offset (2 .. $rs) {
+                    for my $col_offset (1 .. $cc_inc) {
+                        printf "{%d}{%d} = 1\n", $rc + $row_offset - 1,
+                                                 $cc + $col_offset - 1;
+                        $skip {$rc + $row_offset - 1}
+                              {$cc + $col_offset - 1} 
+                              = 1;
+                    }
+                }
+            }
             $cc += $cc_inc;
         }
         $out .= "  </tr>\n";
