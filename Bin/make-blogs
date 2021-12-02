@@ -162,24 +162,27 @@ sub header ($title, $directives) {
 #
 # Create a link to the full program on GitHub
 #
-sub github_link ($language, $week, $info = "", $directives = {}) {
+sub github_link ($language, $info = "", $directives = {}) {
     my $link;
+    my $lang_info = $LANGUAGE_INFO {$language};
+    my  %info;
+    if ($info) {
+        my @chunks = split /;\s*/ => $info;
+        %info = map {split /\s*=\s*/ => $_, 2} @chunks;
+    }
+
     if ($$directives {type} == $TYPE_ADVENT) {
-        $link = sprintf "%s/%s/AdventofCode%4d/blob/%s/Day_%02d/solution.pl" =>
-                        $GITHUB_URL,
+        $link = sprintf "%s/%s/AdventofCode%4d/blob/%s/Day_%02d/solution%s.%s"
+                    =>  $GITHUB_URL,
                         $GITHUB_USER,
                         $$directives {year},
                         $GITHUB_BRANCH,
-                        $$directives {day}
+                        $$directives {day},
+                        $info {part_nr} ? "-" . $info {part_nr} : "",
+                        $$lang_info {ext}  || lc $language,
     }
     else {
-        my ($week_nr, $part_nr) = split /-/ => $week;
-        my $lang_info = $LANGUAGE_INFO {$language};
-        my  %info;
-        if ($info) {
-            my @chunks = split /;\s*/ => $info;
-            %info = map {split /\s*=\s*/ => $_, 2} @chunks;
-        }
+        my ($week_nr, $part_nr) = split /-/ => $$directives {week};
         $link = sprintf "%s/%s/%s/blob/%s/challenge-%03d/%s/%s/ch-%d.%s" =>
                          $GITHUB_URL,
                          $GITHUB_USER,
@@ -194,9 +197,9 @@ sub github_link ($language, $week, $info = "", $directives = {}) {
     $link;
 }
 
-sub full_program ($language, $week, $tag, $info, $directives) {
+sub full_program ($language, $tag, $info, $directives) {
     my $link = github_link (($tag || $language) =~ s/_/ /gr,
-                             $week, $info, $directives);
+                             $info, $directives);
     return "Find the [full program]($link) on [GitHub]($GITHUB_URL).\n";
 }
 
@@ -223,6 +226,9 @@ sub make_link (%args) {
                 #
                 $url = $anchor =~ /::/ ? $METACPAN_URL . "/" . $anchor
                                        : $PERLFUNC_URL . "#" . $anchor;
+            }
+            elsif ($link =~ /^op:/p) {
+                $url = $PERLDOC_URL . "/perlop#" . ${^POSTMATCH}
             }
             elsif ($link =~ /doc:/p) {
                 $url = $PERLDOC_URL . "/" . ${^POSTMATCH}
@@ -297,7 +303,14 @@ my $link_pattern = qr {\[    (?<anchor> [^]]*) \]
 
 sub process_section ($section, $language, $directives) {
     my $week = $$directives {week};
-    $language = "Perl" if $$directives {type} == $TYPE_ADVENT;
+
+    #
+    # Default to Perl
+    #
+    $language =~ s/^(?:Very\s+)Evil\s+//i;
+    if (!$language || !$LANGUAGE_INFO {$language}) {
+        $language = "Perl";
+    }
     #
     # Step one, find the links starting with a #, and process them.
     #
@@ -312,8 +325,9 @@ sub process_section ($section, $language, $directives) {
     # Replace any lines with FULL_PROGRAM to a section pointing
     # to the file on GitHub.
     #
-    $section =~ s {^FULL_PROGRAM(?::([^\s;]+))?(?:;(\S+))?\s*$}
-                  {full_program ($language, $week, $1, $2, $directives)}gem;
+    $section =~ s {^FULL_PROGRAM(?::(?<tag>[^\s;]+))?(?:;(?<info>\S+))?\s*$}
+                  {full_program ($language, $+ {tag}, $+ {info},
+                                 $directives)}gem;
 
     #
     # Process MathJax delimiters
