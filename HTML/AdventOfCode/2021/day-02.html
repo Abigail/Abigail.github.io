@@ -1,0 +1,247 @@
+<html>
+<head>
+<title>Advent Of Code 2021, Day 2: Dive!</title>
+<script src = "https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id = "MathJax-script" async src = "https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.js"></script>
+<script src = '../../../JavaScript/jquery.js'></script>
+<script src = '../../../JavaScript/navigation.js'></script>
+<script src = '../../../JavaScript/nav_advent_of_code.js'></script>
+<link rel = 'preconnect' href = 'https://fonts.gstatic.com'>
+<link rel = 'stylesheet' href = 'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
+<link rel = 'stylesheet' href = '../../../Styles/main.css'>
+<link rel = 'stylesheet' href = '../../../Styles/AdventOfCode/main.css'>
+<link rel = 'stylesheet' href = '../../../Styles/AdventOfCode/2021/day-02.css'>
+</head>
+
+<body><h1>Advent Of Code 2021, Day 2: Dive!</h1><div class = "byline">
+by Abigail<br>
+<img src = "../../../Images/jan_sluiters.jpg">
+</div>
+
+
+<h2><a href="https://adventofcode.com/2021/day/2">Challenge</a></h2>
+
+<div class = "section">
+<p>We're given an <a href="https://adventofcode.com/2021/day/2/input">input file</a>
+with instructions of moving a submarine. The file looks like this:</p>
+
+<pre><code>forward 5
+down 5
+forward 8
+up 3
+down 8
+forward 2
+</code></pre>
+</div>
+
+<h4>Part One</h4>
+
+<div class = "section">
+<p>In Part One, we keep track of two variables: the <em>horizontal position</em>
+(the direction the submarine has travelled in the forward
+direction), and the <em>depth</em> (how deep the submarine has dived):</p>
+
+<p>The instructions are to be interpreted as:</p>
+
+<ul>
+<li><code>forward X</code> increases the horizontal position by <code>X</code> units.</li>
+<li><code>down X</code> increases the depth by <code>X</code> units.</li>
+<li><code>up X</code> decreases the depth by <code>X</code> units.</li>
+</ul>
+
+<p>To get the answer, we have to process all the instructions from the
+input, and then multiply the final horizontal position with the final depth.</p>
+
+<p>For the example file above, the answer would be 
+<span class = "answer">150</span>.</p>
+</div>
+
+<h4>Part Two</h4>
+
+<div class = "section">
+<p>In Part Two, we introduce an additional parameter to track: <em>aim</em>.</p>
+
+<p>Now, the instructions are to be interpreted as:</p>
+
+<ul>
+<li><code>down X</code> increases your aim by <code>X</code> units.</li>
+<li><code>up X</code> decreases your aim by <code>X</code> units.</li>
+<li><code>forward X</code> does two things:
+<ul>
+<li>It increases your horizontal position by <code>X</code> units.</li>
+<li>It increases your depth by your aim multiplied by <code>X</code>.</li>
+</ul></li>
+</ul>
+
+<p>Again, to get the answer, we process all the instructions, then
+multiply the final horizontal position, and final depth.</p>
+
+<p>For the example file above, the answer would be
+<span class = "answer">900</span>.</p>
+</div>
+
+<h2>Solutions</h2>
+
+<div class = "section">
+<div class = "observation headed-div"><br><p>
+For both parts, the final horizontal position will be the same.
+</p></div>
+
+<div class = "observation headed-div"><br><p>
+The value of the depth in part one, is equal to the value of aim in part two.
+</p></div>
+</div>
+
+<h3>Perl</h3>
+
+<div class = "section">
+<p>For our Perl solution, we use three variable to keep track:</p>
+
+<ul>
+<li><code>$forward</code>: the horizontal position of the submarine.</li>
+<li><code>$depth1</code>: the depth of the submarine in part one, and the value 
+         of the aim in part two.</li>
+<li><code>$depth2</code>: the depth of the submarine in part two.</li>
+</ul>
+
+<p>First, we initialize the variables:</p>
+
+<pre><code>my $forward = 0;
+my $depth1  = 0;
+my $depth2  = 0;
+</code></pre>
+
+<p>Then we loop over the input, updating the appropriate variables
+depending on the command:</p>
+
+<pre><code>while (&lt;&gt;) {
+    my ($cmd, $amount) = split;
+    if ($cmd =~ /^f/) {$forward += $amount; $depth2 += $amount * $depth1}
+    if ($cmd =~ /^d/) {$depth1  += $amount}
+    if ($cmd =~ /^u/) {$depth1  -= $amount}
+}
+</code></pre>
+
+<p>Then we can print the solutions:</p>
+
+<pre><code>say "Solution 1: ", $forward * $depth1;
+say "Solution 2: ", $forward * $depth2;
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/AdventofCode2021/blob/master/Day_02/solution.pl">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>Bash</h3>
+
+<div class = "section">
+<p>Remarkably, our Bash solution is very similar to the Perl solution.
+We don't need to bother initializing our variables, so we go straight
+to the loop:</p>
+
+<pre><code>while read cmd amount
+do  case $cmd in
+        f*) ((forward += amount))
+            ((depth2  += amount * depth1)) ;;     
+        d*) ((depth1  += amount))          ;;     
+        u*) ((depth1  -= amount))          ;;     
+    esac
+done
+</code></pre>
+
+<p>Instead of three <code>if</code> statements, we have a single <code>case</code> statement,
+but the effect is the same. In either case, exactly one of the options
+will be executed.</p>
+
+<p>After the loop, we print the results:</p>
+
+<pre><code>echo Solution 1: $((forward * depth1))
+echo Solution 2: $((forward * depth2))
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/AdventofCode2021/blob/master/Day_02/solution.sh">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>Evil Perl</h3>
+
+<div class = "section">
+<p>Inspired by a <a href="https://pastebin.com/XrQMnVGR">solution</a> from
+<a href="https://www.reddit.com/user/musifter/">musifter</a>, we can
+write the main loop also as:</p>
+
+<pre><code>while (&lt;&gt;) {
+    my ($cmd, $amount) = split;
+    $forward += !('forward' cmp $cmd) * $amount;
+    $depth1  +=  ('forward' cmp $cmd) * $amount;
+    $depth2  += !('forward' cmp $cmd) * $amount * $depth1;
+}
+</code></pre>
+
+<p>Note the absense of an <code>if</code> statement in the loop.</p>
+
+<p>How does this work? They key lies in the value of <code>'forward' cmp $cmd</code>.
+<a href="https://perldoc.perl.org/perlop#Equality-Operators"><code>cmp</code></a>. It compares two strings, and returns
+<code>-1</code>, <code>0</code>, or <code>1</code> depending if the first string is (string-wise) less,
+equal or greater than the second.</p>
+
+<p><code>forward</code> lies in between <code>down</code> and <code>up</code>. So, we get the
+following table:</p>
+
+<table>
+  <tr class = 'row-0' markdown = '1'>
+    <td class = 'cell-0-0 col-0 ' markdown = '1'><code>$cmd</code></td>
+    <td class = 'cell-0-1 col-1 ' markdown = '1'><code>('forward' cmp $cmd)</code></td>
+    <td class = 'cell-0-2 col-2 ' markdown = '1'><code>!('forward' cmp $cmd)</code></td>
+  </tr>
+  <tr class = 'row-1' markdown = '1'>
+    <td class = 'cell-1-0 col-0 ' markdown = '1'><code>"down"</code></td>
+    <td class = 'cell-1-1 col-1 ' markdown = '1'><code>1</code></td>
+    <td class = 'cell-1-2 col-2 ' markdown = '1'><code>0</code></td>
+  </tr>
+  <tr class = 'row-2' markdown = '1'>
+    <td class = 'cell-2-0 col-0 ' markdown = '1'><code>"forward"</code></td>
+    <td class = 'cell-2-1 col-1 ' markdown = '1'><code>0</code></td>
+    <td class = 'cell-2-2 col-2 ' markdown = '1'><code>1</code></td>
+  </tr>
+  <tr class = 'row-3' markdown = '1'>
+    <td class = 'cell-3-0 col-0 ' markdown = '1'><code>"up"</code></td>
+    <td class = 'cell-3-1 col-1 ' markdown = '1'><code>-1</code></td>
+    <td class = 'cell-3-2 col-2 ' markdown = '1'><code>0</code></td>
+  </tr>
+</table>
+
+<p>The result is that if the command is <code>forward</code>, we increment 
+<code>$forward</code> and <code>$depth2</code>, but we leave <code>$depth1</code> unmodified.
+If the command is <code>down</code>, we increment <code>$depth1</code> by <code>$amount</code>,
+leaving <code>$forward</code> and <code>$depth2</code> unmodified. And if the command
+is <code>up</code>, we decrement <code>$depth1</code> by <code>$amount</code> (because
+<code>('forward' cmp $cmd)</code> is <code>-1</code>), leaving <code>$forward</code> and <code>$depth2</code> unmodified.</p>
+
+<p>This is exactly the same as we did in the regular Perl solution.</p>
+
+<p>Find the <a href="https://github.com/Abigail/AdventofCode2021/blob/master/Day_02/solution-2.pl">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>Very Evil Perl</h3>
+
+<p>We also have a very evil Perl solution (works only for Part One):</p>
+
+<pre><code>perl -pale'${$F[0]}+=$F[1]}{$_=$forward*($down-$up)' input
+</code></pre>
+
+<p>This abuses symbolic references, and exploits the ways how <code>perl</code>
+(the program, not the language), modifies the source of the program
+it's about to compile when seeing a <code>-p</code> or <code>-n</code> command line switch,
+by using the
+<a href="https://metacpan.org/dist/perlsecret/view/lib/perlsecret.pod#Eskimo-greeting">Eskimo greeting</a>.</p>
+
+<hr id = 'last-line'>
+<div class = 'trailer'>
+<p class = 'prev'><a class = "prev" href = "">&#x261C;</a></p>
+<p class = 'issue'>Please leave any comments as a
+  <a href = 'https://github.com/Abigail/Abigail.github.io/issues'
+     title = 'GitHub issue'>GitHub issue</a>.
+<p class = 'next'><a class = "next" href = "">&#x261E;</a></p>
+</div>
+
+</body>
+</html>

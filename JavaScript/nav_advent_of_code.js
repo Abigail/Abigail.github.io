@@ -6,6 +6,7 @@ let dir   = "AdventOfCode/2021";
 
 let pages = [
     ["day-01", "Sonar Sweep"],
+    ["day-02", "Dive!"],
 ]
 
 pages . forEach (entry => {
