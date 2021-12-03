@@ -227,6 +227,9 @@ sub make_link (%args) {
                 $url = $anchor =~ /::/ ? $METACPAN_URL . "/" . $anchor
                                        : $PERLFUNC_URL . "#" . $anchor;
             }
+            elsif ($link =~ /^meta:/p) {
+                $url = $METACPAN_URL . "/" . ${^POSTMATCH}
+            }
             elsif ($link =~ /^op:/p) {
                 $url = $PERLDOC_URL . "/perlop#" . ${^POSTMATCH}
             }
