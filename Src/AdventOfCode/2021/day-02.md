@@ -146,7 +146,7 @@ while (<>) {
 Note the absense of an `if` statement in the loop.
 
 How does this work? They key lies in the value of `'forward' cmp $cmd`.
-[`cmp`](#op:Equality-Operators). It compares two strings, and returns
+[`cmp`](#op:Equality-Operators) compares two strings, and returns
 `-1`, `0`, or `1` depending if the first string is (string-wise) less,
 equal or greater than the second.
 

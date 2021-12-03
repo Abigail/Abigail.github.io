@@ -425,8 +425,6 @@ sub table ($text) {
             if ($rs > 1) {
                 for my $row_offset (2 .. $rs) {
                     for my $col_offset (1 .. $cc_inc) {
-                        printf "{%d}{%d} = 1\n", $rc + $row_offset - 1,
-                                                 $cc + $col_offset - 1;
                         $skip {$rc + $row_offset - 1}
                               {$cc + $col_offset - 1} 
                               = 1;
