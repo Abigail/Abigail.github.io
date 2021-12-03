@@ -1,0 +1,202 @@
+<html>
+<head>
+<title>Advent Of Code 2021, Day 3: Binary Diagnostic</title>
+<script src = "https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id = "MathJax-script" async src = "https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.js"></script>
+<script src = '../../../JavaScript/jquery.js'></script>
+<script src = '../../../JavaScript/navigation.js'></script>
+<script src = '../../../JavaScript/nav_advent_of_code.js'></script>
+<link rel = 'preconnect' href = 'https://fonts.gstatic.com'>
+<link rel = 'stylesheet' href = 'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
+<link rel = 'stylesheet' href = '../../../Styles/main.css'>
+<link rel = 'stylesheet' href = '../../../Styles/AdventOfCode/main.css'>
+</head>
+
+<body><h1>Advent Of Code 2021, Day 3: Binary Diagnostic</h1><div class = "byline">
+by Abigail<br>
+<img src = "../../../Images/jan_sluiters.jpg">
+</div>
+
+
+<h2><a href="https://adventofcode.com/2021/day/3">Challenge</a></h2>
+
+<div class = "section">
+<p>We are given a diagnostic report, with binary numbers like:</p>
+
+<pre><code>00100
+11110
+10110
+10111
+10101
+01111
+00111
+11100
+10000
+11001
+00010
+01010
+</code></pre>
+</div>
+
+<h4>Part One</h4>
+
+<div class = "section">
+<p>For Part One, we first have to calculate the <em>gamma rate</em> and
+the <em>epsilon rate</em>. For the gamma rate, we have to find the
+most common bit on each position. For the epsilone rate, we
+have to find the least common bit on each position.</p>
+
+<p>So, for the example file above, the <em>gamma rate</em> is <code>10110</code>,
+or <code>22</code> in decimal while the <em>epsilon rate</em> is <code>01001</code>, or
+<code>9</code> in decimal.</p>
+
+<p>The wanted result is the produce of both numbers, so
+<span class = "answer">198</span>.</p>
+</div>
+
+<h4>Part Two</h4>
+
+<div class = "section">
+<p>In Part Two, we need to calculate the <em>oxygen generator rating</em>,
+and the <em>CO<sub>2</sub> scrubber rating</em>.</p>
+
+<p>The ratings don't need to be calculated &mdash; they need to be found
+in the list. We do this repeatedly as follows:</p>
+
+<ul>
+<li>Start with the current position being the first bit.</li>
+<li>Find the most common bit and least common bit in the current 
+position.</li>
+<li>For the <em>oxygen generator rating</em>, keep the values where the
+bit in the current position equals the most common bit in that
+position.</li>
+<li>For the <em>CO<sub>2</sub> scrubber rating</em>, keep the values
+where the bit in the current position equals the least common
+bit in that position.</li>
+<li>Stop filtering when there is one value left.</li>
+<li>Increment the current position.</li>
+</ul>
+
+<p>If <code>1</code> and <code>0</code> occur equally often, we break the tie by considering
+<code>1</code> to be the most frequent bit.</p>
+
+<p>For the example file above, the <em>oxygen generator rating</em>
+is <code>10111</code>, or <code>23</code> in decimal. The <em>CO<sub>2</sub> scrubber rating</em> 
+is <code>01010</code>, or <code>10</code> in decimal.</p>
+
+<p>The wanted result is the product of the two numbers, so
+<span class = "answer">230</span>.</p>
+</div>
+
+<h2>Solution</h2>
+
+<div class = "section">
+<div class = "observation headed-div"><br><p>
+If the most occuring bit in a column is <code>b</code>, then the least occuring
+bit is <code>1 - b</code>.
+</p></div>
+</div>
+
+<h3>Perl</h3>
+
+<p>First, we need to read the input, and put it into a datastructure.
+We'll use a 2-dimensional array: each value of the input we split
+into individual characters (hence, bits):</p>
+
+<pre><code>my $input   = [map {chomp; [split //]} &lt;&gt;];
+</code></pre>
+
+<p><a href="https://perldoc.perl.org/perlop#I/O-Operators"><code>&lt;&gt;</code></a> reads in the data; since it's in list
+context, it splits the input, returning a list of strings, each
+string a line of input. Each string is fed into the <a href="https://perldoc.perl.org/perlfunc#map"><code>map</code></a>.
+<a href="https://perldoc.perl.org/perlfunc#chomp"><code>chomp</code></a> removes the newline, and then we <a href="https://perldoc.perl.org/perlfunc#split"><code>split</code></a> the string
+into indivual characters, storing them into an array.
+So, the <code>map</code> returns a list of array(refs), making <code>$input</code> a reference
+to a two-dimensional array.</p>
+
+<p>All input values have the same number of bits, so we can get the
+number of bits by just looking at the first entry:</p>
+
+<pre><code>my $nr_bits = @{$$input [0]};
+</code></pre>
+
+<p>Evaluating an array in scalar context gives use the number of elements
+in the array.</p>
+
+<p>Next, we define a subroutine taking two arguments, a position and
+a reference to an array. It will return which bit (<code>1</code> or <code>0</code>) occurs
+most frequently on the given position. We find out which bit is used
+most often by summing the values of each of the bits (using
+<a href="https://metacpan.org/pod/List::Util#sum0"><code>sum0</code></a> from <a href="https://metacpan.org/pod/List::Util"><code>List::Util</code></a>.
+This sum equals the number of <code>1</code> bits.
+If the sum equals or exceeds half the size 
+of the input array, the most frequent bit is <code>1</code>, else it is <code>0</code>. 
+If there is a tie, <code>1</code> will be returned.</p>
+
+<pre><code>sub most_used ($pos, $list) {
+    my $ones = sum0 map {$$_ [$pos]} @$list;
+    $ones &gt;= @$list / 2 ? 1 : 0
+}
+</code></pre>
+
+<p>We can now calculate the bits for the <em>gamma rate</em> of Part One: we just
+find out which bit is used most frequently on each position:</p>
+
+<pre><code>my @max = map {most_used $_, $input} 0 .. $nr_bits - 1;
+</code></pre>
+
+<p>For the bits of the <em>epsilon rate</em>, we just flip the bits:</p>
+
+<pre><code>my @min = map {1 - $_} @max;
+</code></pre>
+
+<p>To turn those arrays of bits into integers, we use string interpolation
+and <a href="https://perldoc.perl.org/perlfunc#oct"><code>oct</code></a>:</p>
+
+<pre><code>local $" = "";
+my $gamma   = oct "0b@max";
+my $epsilon = oct "0b@min";
+</code></pre>
+
+<p>For Part Two, we copy the input array, then repeatedly find the
+most/least used bit on a particular position, and filter out the values
+with those bits, until we are left with just one value:</p>
+
+<pre><code>my @oxygen    = @$input;
+my @co2       = @$input;
+for (my $pos  = 0; $pos &lt; $nr_bits; $pos ++) {
+    my $o_bit =     most_used $pos, \@oxygen;
+    my $c_bit = 1 - most_used $pos, \@co2;
+    @oxygen   = grep {$$_ [$pos] == $o_bit} @oxygen if @oxygen &gt; 1;
+    @co2      = grep {$$_ [$pos] == $c_bit} @co2    if @co2    &gt; 1;
+}
+</code></pre>
+
+<p>Now, <code>@oxygen</code> and <code>@co2</code> will contain exactly one element (each element
+an array of bits). We can turn those into integers in the same way
+as we did above:</p>
+
+<pre><code>local $" = "";
+my $oxygen  = oct "0b@{$oxygen [0]}";
+my $co2     = oct "0b@{$co2    [0]}";
+</code></pre>
+
+<p>All that is left is to print the answers:</p>
+
+<pre><code>say "Solution 1: ", $gamma  * $epsilon;
+say "Solution 2: ", $oxygen * $co2;
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/AdventofCode2021/blob/master/Day_03/solution.pl">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+
+<hr id = 'last-line'>
+<div class = 'trailer'>
+<p class = 'prev'><a class = "prev" href = "">&#x261C;</a></p>
+<p class = 'issue'>Please leave any comments as a
+  <a href = 'https://github.com/Abigail/Abigail.github.io/issues'
+     title = 'GitHub issue'>GitHub issue</a>.
+<p class = 'next'><a class = "next" href = "">&#x261E;</a></p>
+</div>
+
+</body>
+</html>
