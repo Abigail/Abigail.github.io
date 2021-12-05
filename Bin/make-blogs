@@ -171,7 +171,8 @@ sub github_link ($language, $info = "", $directives = {}) {
         %info = map {split /\s*=\s*/ => $_, 2} @chunks;
     }
 
-    if ($$directives {type} == $TYPE_ADVENT) {
+    if ($$directives {type} &&
+        $$directives {type} == $TYPE_ADVENT) {
         $link = sprintf "%s/%s/AdventofCode%4d/blob/%s/Day_%02d/solution%s.%s"
                     =>  $GITHUB_URL,
                         $GITHUB_USER,
@@ -294,7 +295,7 @@ sub make_link (%args) {
         }
     }
     if (!$url && $link eq "github") {
-        $url = github_link ($anchor, $week);
+        $url = github_link ($anchor, "", {week => $week});
     }
     $url //= "#$link";
 
