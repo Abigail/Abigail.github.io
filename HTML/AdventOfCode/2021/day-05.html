@@ -1,0 +1,206 @@
+<html>
+<head>
+<title>Advent Of Code 2021, Day 5: Hydrothermal Venture</title>
+<script src = "https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id = "MathJax-script" async src = "https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.js"></script>
+<script src = '../../../JavaScript/jquery.js'></script>
+<script src = '../../../JavaScript/navigation.js'></script>
+<script src = '../../../JavaScript/nav_advent_of_code.js'></script>
+<link rel = 'preconnect' href = 'https://fonts.gstatic.com'>
+<link rel = 'stylesheet' href = 'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
+<link rel = 'stylesheet' href = '../../../Styles/main.css'>
+<link rel = 'stylesheet' href = '../../../Styles/AdventOfCode/main.css'>
+</head>
+
+<body><h1>Advent Of Code 2021, Day 5: Hydrothermal Venture</h1><div class = "byline">
+by Abigail<br>
+<img src = "../../../Images/jan_sluiters.jpg">
+</div>
+
+
+<h2><a href="https://adventofcode.com/2021/day/5">Challenge</a></h2>
+
+<div class = "section">
+<p>We are given a file with line segments, like the following
+example file:</p>
+
+<pre><code>0,9 -&gt; 5,9
+8,0 -&gt; 0,8
+9,4 -&gt; 3,4
+2,2 -&gt; 2,1
+7,0 -&gt; 7,4
+6,4 -&gt; 2,0
+0,9 -&gt; 2,9
+3,4 -&gt; 1,4
+0,0 -&gt; 8,8
+5,5 -&gt; 8,2
+</code></pre>
+
+<p>Each line of input is a line segment, and we're given its begin
+and end coordinates. We'll call the first set of coordinates
+<span class = 'latex-inline'>\(x_1, y_1\)</span> and the second set of coordinates <span class = 'latex-inline'>\(x_2, y_2\)</span>.</p>
+
+<p>It's given that each line segment is either horizontal (<span class = 'latex-inline'>\(y_1 = y_2\)</span>),
+vertical (<span class = 'latex-inline'>\(x_1 = x_2\)</span>) or diagonal on a 45&deg; angle
+(<span class = 'latex-inline'>\(|x_1 - x_2| = |y_1 - y_2|\)</span>).</p>
+
+<p>We are interested in the number of points (with integer coordinates)
+which are covered by at least two lines.</p>
+</div>
+
+<h4>Part One</h4>
+
+<div class = "section">
+<p>In Part One, we will only be considering horizontal and vertical lines.</p>
+
+<p>Drawing the horizontal and vertical lines in a grid gives use the
+following diagram:</p>
+
+<pre><code>.......1..
+..1....1..
+..1....1..
+.......1..
+.112111211
+..........
+..........
+..........
+..........
+222111....
+</code></pre>
+
+<p>Here <code>.</code> indicates a point which is not covered by any line segments,
+and points with a number show the number of lines covering that segment.
+We have five points which are covered by at least two line segments,
+so in the example, <span class = "answer">5</span> is going to be the
+desired answer.</p>
+</div>
+
+<h4>Part Two</h4>
+
+<div class = "section">
+<p>For Part Two, we will be considering all line segments. Which, for the
+example input, would lead to the following diagram:</p>
+
+<pre><code>1.1....11.
+.111...2..
+..2.1.111.
+...1.2.2..
+.112313211
+...1.2....
+..1...1...
+.1.....1..
+1.......1.
+222111....
+</code></pre>
+
+<p>We have twelve points which are covered by at least two line segments,
+so the desired answer is <span class = "answer">12</span>.</p>
+</div>
+
+<h2>Solution</h2>
+
+<h3>Perl</h3>
+
+<p>This is going to be quite easy. We will be keeping two hashes (one for
+part one, one for part two) which maps coordinates to number of line segments
+covering the point with those coordinates:</p>
+
+<pre><code>my %vents1;
+my %vents2;
+</code></pre>
+
+<p>Iterating over the input line by line, we first extract the coordinates.
+We could first split on <code>-&gt;</code>, then on <code>,</code>, but we won't. We will extract
+the numbers directly (we know all coordinates are non-negative integers):</p>
+
+<pre><code>my ($x1, $y1, $x2, $y2) = /[0-9]+/g;
+</code></pre>
+
+<p>Now, we want the <em>slope</em> of the line segment, that is, if we're going 
+to walk from <span class = 'latex-inline'>\((x_1, y_1)\)</span> to <span class = 'latex-inline'>\((x_2, y_2)\)</span> which steps do we take
+in the <span class = 'latex-inline'>\(x\)</span> and <span class = 'latex-inline'>\(y\)</span> direction to get to the next point.
+Each of the steps is going to be <span class = 'latex-inline'>\(-1\)</span>, <span class = 'latex-inline'>\(0\)</span> or <span class = 'latex-inline'>\(1\)</span>:</p>
+
+<ul>
+<li>For a horizontal line, the <span class = 'latex-inline'>\(y\)</span> coordinate is fixed, so the step
+value in the <span class = 'latex-inline'>\(y\)</span> dimension is <span class = 'latex-inline'>\(0\)</span>; while the step value in the
+<span class = 'latex-inline'>\(x\)</span> dimension is <span class = 'latex-inline'>\(-1\)</span> (if <span class = 'latex-inline'>\(x_1 > x_2\)</span>), or <span class = 'latex-inline'>\(1\)</span> (if <span class = 'latex-inline'>\(x_1 &lt; x_2\)</span>).</li>
+<li>For a vertical line, the <span class = 'latex-inline'>\(x\)</span> coordinate is fixed, so the step
+value in the <span class = 'latex-inline'>\(x\)</span> dimension is <span class = 'latex-inline'>\(0\)</span>; while the step value in the
+<span class = 'latex-inline'>\(y\)</span> dimension is <span class = 'latex-inline'>\(-1\)</span> (if <span class = 'latex-inline'>\(y_1 > y_2\)</span>), or <span class = 'latex-inline'>\(1\)</span> (if <span class = 'latex-inline'>\(y_1 &lt; y_2\)</span>).</li>
+<li>For diagonal lines, neither step value is <span class = 'latex-inline'>\(0\)</span>. The step value 
+in the <span class = 'latex-inline'>\(x\)</span> dimension is <span class = 'latex-inline'>\(-1\)</span> (if <span class = 'latex-inline'>\(x_1 > x_2\)</span>),
+or <span class = 'latex-inline'>\(1\)</span> (if <span class = 'latex-inline'>\(x_1 &lt; x_2\)</span>), while the step value in the
+<span class = 'latex-inline'>\(y\)</span> dimension is <span class = 'latex-inline'>\(-1\)</span> (if <span class = 'latex-inline'>\(y_1 > y_2\)</span>), or <span class = 'latex-inline'>\(1\)</span> (if <span class = 'latex-inline'>\(y_1 &lt; y_2\)</span>).</li>
+</ul>
+
+<p>If we call the step values <span class = 'latex-inline'>\(d_x\)</span> and <span class = 'latex-inline'>\(d_y\)</span>, we have</p>
+
+<p>\[
+    d_x = \begin{cases}
+                           -1 &amp; \text{if } x_2 &lt; x_1 \\
+                 \phantom{-}0 &amp; \text{if } x_2 = x_1 \\
+                 \phantom{-}1 &amp; \text{if } x_2 > x_1
+          \end{cases} \qquad \text{and} \qquad
+    d_y = \begin{cases}
+                           -1 &amp; \text{if } y_2 &lt; y_1 \\
+                 \phantom{-}0 &amp; \text{if } y_2 = y_1 \\
+                 \phantom{-}1 &amp; \text{if } y_2 > y_1
+          \end{cases}
+\]</p>
+
+<p>Comparing two numbers and returning <code>-1</code>, <code>0</code>, <code>1</code> depending
+on the order of its arguments is exactly what the
+<a href="op:#Equality-Operators"><code>&lt;=&gt;</code></a> operator does, so we can
+translate the equation above to code easily:</p>
+
+<pre><code>my ($dx, $dy) = ($x2 &lt;=&gt; $x1, $y2 &lt;=&gt; $y1);
+</code></pre>
+
+<p>Next, we want the <em>distance</em> between the end-points, that is,
+the number of steps we need to reach the other end. For horizontal
+and diagonal lines, the absolute difference of the <span class = 'latex-inline'>\(x\)</span> coordinates
+gives us the difference. For vertical lines, the difference between
+the <span class = 'latex-inline'>\(x\)</span> coordinates is <span class = 'latex-inline'>\(0\)</span>; in that case, the absolute difference
+of the <span class = 'latex-inline'>\(y\)</span> coordinates gives us the number of steps.</p>
+
+<p>Code wise, that leads to:</p>
+
+<pre><code>my $dist = abs ($x1 - $x2) || abs ($y1 - $y2);
+</code></pre>
+
+<p>Now, all the points on a line segment are of the form 
+<span class = 'latex-inline'>\((x_1 + k \cdot d_x, y_1 + k \cdot d_y),\; 0 \leq k \leq \text{dist}\)</span>.</p>
+
+<p>This means, we're ready to mark all the points of all line
+segments. For part one, we only need horizontal and vertical lines;
+for horizontal lines, we have <span class = 'latex-inline'>\(d_y = 0\)</span>, and for vertical lines,
+we have <span class = 'latex-inline'>\(d_x = 0\)</span>. So, for part one, we only consider cases
+where <code>$dx * $dy == 0</code>:</p>
+
+<pre><code>unless ($dx * $dy) {
+    $vents1 {$x1 + $_ * $dx, $y1 + $_ * $dy} ++ for 0 .. $dist;
+}
+$vents2 {$x1 + $_ * $dx, $y1 + $_ * $dy} ++ for 0 .. $dist;
+</code></pre>
+
+<p>All what is left is find out how many points we have which are
+marked more than once:</p>
+
+<pre><code>say "Solution 1: ", scalar grep {$_ &gt; 1} values %vents1;
+say "Solution 2: ", scalar grep {$_ &gt; 1} values %vents2;
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/AdventofCode2021/blob/master/Day_05/solution.pl">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+
+<hr id = 'last-line'>
+<div class = 'trailer'>
+<p class = 'prev'><a class = "prev" href = "">&#x261C;</a></p>
+<p class = 'issue'>Please leave any comments as a
+  <a href = 'https://github.com/Abigail/Abigail.github.io/issues'
+     title = 'GitHub issue'>GitHub issue</a>.
+<p class = 'next'><a class = "next" href = "">&#x261E;</a></p>
+</div>
+
+</body>
+</html>
