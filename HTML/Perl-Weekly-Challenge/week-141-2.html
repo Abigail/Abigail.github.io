@@ -1,0 +1,296 @@
+<html>
+<head>
+<title>Perl Weekly Challenge 141: Like Numbers</title>
+<script src = "https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id = "MathJax-script" async src = "https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.js"></script>
+<script src = '../../JavaScript/jquery.js'></script>
+<script src = '../../JavaScript/navigation.js'></script>
+<link rel = 'preconnect' href = 'https://fonts.gstatic.com'>
+<link rel = 'stylesheet' href = 'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
+<link rel = 'stylesheet' href = '../../Styles/main.css'>
+<link rel = 'stylesheet' href = '../../Styles/Perl-Weekly-Challenge/main.css'>
+</head>
+
+<body><h1>Perl Weekly Challenge 141: Like Numbers</h1><div class = "byline">
+by Abigail<br>
+<img src = "../../Images/jan_sluiters.jpg">
+</div>
+
+
+<h2><a href="https://theweeklychallenge.org/blog/perl-weekly-challenge-141/#TASK2">Challenge</a></h2>
+
+<blockquote>
+  <p>You are given positive integers, <code>$m</code> and <code>$n</code>.</p>
+  
+  <p>Write a script to find total count of integers created using the digits of <code>$m</code> which is also divisible by <code>$n</code>.</p>
+  
+  <p>Repeating of digits are not allowed. Order/Sequence of digits can&rsquo;t be altered. You are only allowed to use (n-1) digits at the most. For example, 432 is not acceptable integer created using the digits of 1234. Also for 1234, you can only have integers having no more than three digits.</p>
+</blockquote>
+
+<h3>Example 1</h3>
+
+<pre><code>Input: $m = 1234, $n = 2
+Output: 9
+
+Possible integers created using the digits of 1234 are:
+1, 2, 3, 4, 12, 13, 14, 23, 24, 34, 123, 124, 134 and 234.
+
+There are 9 integers divisible by 2 such as:
+2, 4, 12, 14, 24, 34, 124, 134 and 234.
+</code></pre>
+
+<h3>Example 2</h3>
+
+<pre><code>Input: $m = 768, $n = 4
+Output: 3
+
+Possible integers created using the digits of 768 are:
+7, 6, 8, 76, 78 and 68.
+
+There are 3 integers divisible by 4 such as:
+8, 76 and 68.
+</code></pre>
+
+<h2>Discussion</h2>
+
+<div class = "section">
+<p>First, some clearification. The description says <em>You are only allowed to use
+(n-1) digits</em>, but this n has no relation to <code>$n</code>. It seems to mean the
+number of digits in <code>$m</code>. Confusing if you don't define what n is!</p>
+
+<p>Second, it's unclear what <em>repeating of digits are
+[<a href="https://en.wikipedia.org/wiki/Sic">sic</a>] not allowed</em> means. If
+we have <code>$m = 1232</code> and <code>$n = 2</code>, should we count <code>22</code>? <code>2</code> is repeated,
+but is it the same digit? What about <code>12</code>? Count it once, or twice?
+We take the stance that if digits appear on different places in
+<code>$m</code>, we consider them as being different. So, we count <code>22</code>, and
+we count <code>12</code> twice.</p>
+
+<p>Third, what to do with <code>0</code>s and leading <code>0</code>s? What if we have <code>$m = 1009</code>, and
+<code>$n = 3</code>? Some of the substrings of <code>$m</code> are <code>0</code>, <code>0</code>, <code>9</code>, <code>00</code>, <code>09,</code>09<code>,
+and</code>009<code>. We decide to count them all, and hence, would give</code>7` as answer.</p>
+</div>
+
+<h2>Solution</h2>
+
+<div class = "section">
+<p>In our solutions, <code>n</code> will refer to the <strong>first</strong> number, and <code>m</code> to the
+<strong>second</strong> number, so the other way around as in the challenge description.</p>
+
+<p>We will solve this recursively. We define a subroutine <code>substrings</code>
+which will count the substrings of the given number matching the specified
+criteria. It takes the following arguments:</p>
+
+<ul>
+<li><code>n</code>: a string. Initially called with the first number of the input.</li>
+<li><code>m</code>: a number. Initially called with the second number of the input;
+this number will passed on unmodified to recursive calls.</li>
+<li><code>prefix</code>: a number. This is a prefix of a constructed number so far.
+Initially called with <code>-1</code>, which has as meaning "no prefix".</li>
+<li><code>max</code>: a number. Initially called with the first number of the input;
+this number will passed on unmodified to recursive calls.</li>
+</ul>
+
+<p>The method works by removing the first character of the first argument
+(<code>n</code>), and then recursing twice: once with that character added to
+the prefix, and once not.</p>
+
+<p>Recursion ends if <code>substrings</code> is called with an empty string as first
+argument. <code>prefix</code> will now be a substring of the input, and we have
+to decide whether we are going to count it or not:</p>
+
+<ul>
+<li>If <code>prefix == -1</code>, we reached this by never selecting any character.
+We do not consider this value, so we return <code>0</code>.</li>
+<li>If <code>prefix == max</code>, we reached this by selecting all characters.
+This is not allowed by the challenge specification, so we return <code>0</code>.</li>
+<li>Otherwise, we check whether <code>m</code> is a proper divisor of <code>prefix</code>
+(<code>prefix % m == 0</code>), if so, we count <code>prefix</code> and return <code>1</code>, else,
+we return <code>0</code>.</li>
+</ul>
+
+<p>If we are recursing, in the case of selecting the first character of <code>n</code>,
+we need to calculate the new prefix. First, we set <code>fc</code> to be the value
+represented by the first character of <code>n</code> (so <code>0 &lt;= fc &lt;= 9</code>). Then,
+if <code>prefix == -1</code>, we make the recursive call with <code>prefix = fc</code>,
+else, we make the recursive call with <code>prefix = 10 * prefix + fc</code>.</p>
+
+<p>Given this, the implementations in the various languages are remarkably
+similar. We present a small selection.</p>
+</div>
+
+<h3>Perl</h3>
+
+<div class = "section">
+<p>The <code>substrings</code> function:</p>
+
+<pre><code>sub substrings ($n, $m, $prefix = -1, $max = $n) {
+    if (!length $n) {
+        return $prefix &gt; -1   &amp;&amp;
+               $prefix &lt; $max &amp;&amp;
+               $prefix % $m == 0 ? 1 : 0;
+    }
+    my $fc       = substr ($n, 0, 1);
+    my $n_prefix = 10 * ($prefix == -1 ? 0 : $prefix) + $fc;
+    substrings (substr ($n, 1), $m, $n_prefix, $max) +
+    substrings (substr ($n, 1), $m, $prefix,   $max);
+}
+</code></pre>
+
+<p>Which we call as:</p>
+
+<pre><code>say substrings split while &lt;&gt;;
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-141/abigail/perl/ch-2.pl">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>Java</h3>
+
+<div class = "section">
+<p>The <code>substrings</code> function:</p>
+
+<pre><code>public static int substrings (String n, int m, int prefix, int max) {
+    if (n . length () == 0) {
+        return prefix &gt; -1   &amp;&amp;
+               prefix &lt; max  &amp;&amp;
+               prefix % m == 0 ? 1 : 0;
+    }
+
+    int fc       = Integer . parseInt (n . substring (0, 1));
+    int n_prefix = 10 * (prefix == -1 ? 0 : prefix) + fc;
+    String tail  = n . substring (1, n. length ());
+
+    return substrings (tail, m, n_prefix, max) +
+           substrings (tail, m,   prefix, max);
+}
+</code></pre>
+
+<p>And the main function:</p>
+
+<pre><code>public static void main (String [] args) {
+    Scanner scanner = new Scanner (System . in);
+    while (scanner . hasNextInt ()) {
+        int n = scanner . nextInt ();
+        int m = scanner . nextInt ();
+        System . out . println (
+            substrings (Integer . toString (n), m, -1, n));
+    }
+}
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-141/abigail/java/ch-2.java">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>R</h3>
+
+<div class = "section">
+<p>The <code>substrings</code> function:</p>
+
+<pre><code>substrings &lt;- function (n, m, prefix, max) {
+    if (nchar (n) == 0) {
+        if (prefix &gt; -1 &amp;&amp; prefix &lt; max &amp;&amp; prefix %% m == 0) {
+            return (1)
+        }
+        else {
+            return (0)
+        }
+    }
+
+    fc   &lt;- as.numeric (substr (n, 0, 1))
+    tail &lt;- substr (n, 2, nchar (n))
+    if (prefix &lt; 0) {
+        n_prefix &lt;- fc
+    } else {
+        n_prefix &lt;- 10 * prefix + fc
+    }
+
+    return (substrings (tail, m, n_prefix, max) +
+            substrings (tail, m,   prefix, max))
+}
+</code></pre>
+
+<p>And the main program:</p>
+
+<pre><code>stdin &lt;- file ('stdin', 'r')
+repeat {
+    line &lt;- readLines (stdin, n = 1)
+    if (length (line) == 0) {
+        break
+    }
+    parts &lt;- strsplit (line, " ")
+    list  &lt;- parts [[1]]
+
+    cat (substrings (list [[1]], as.numeric (list [[2]]), -1,
+                                 as.numeric (list [[1]])), "\n")
+}
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-141/abigail/r/ch-2.r">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>Scheme</h3>
+
+<div class = "section">
+<p>The <code>substrings</code> function:</p>
+
+<pre><code>(define (fc n)              (string-&gt;number (string-take n 1)))
+(define (tail n)                            (string-drop n 1))
+(define (n_prefix prefix n) (if (= prefix -1) (fc n) (+ (* prefix 10) (fc n))))
+
+(define (substrings n m prefix max)
+    (if (string-null? n)
+        (if (and (&gt; prefix -1)
+                 (&lt; prefix max)
+                 (= (modulo prefix m) 0)) 1 0)
+        (+ (substrings (tail n) m (n_prefix prefix n) max)
+           (substrings (tail n) m           prefix    max))))
+</code></pre>
+
+<p>And the main program:</p>
+
+<pre><code>(define (main)
+    (define line (read-line))
+    (define parts)
+    (if (not (eof-object? line))
+        (begin
+            (set! parts (string-split line #\ ))
+            (display (substrings (list-ref parts 0)
+                                 (string-&gt;number (list-ref parts 1))
+                                 -1
+                                 (string-&gt;number (list-ref parts 0))))
+            (newline)
+            (main)
+        )
+    )
+)
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-141/abigail/scheme/ch-2.scm">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>Other Languages</h3>
+
+<p>We also have implementation in:
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-141/abigail/awk/ch-2.awk">AWK</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-141/abigail/bash/ch-2.sh">Bash</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-141/abigail/c/ch-2.c">C</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-141/abigail/go/ch-2.go">Go</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-141/abigail/lua/ch-2.lua">Lua</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-141/abigail/node/ch-2.js">Node.js</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-141/abigail/pascal/ch-2.p">Pascal</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-141/abigail/python/ch-2.py">Python</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-141/abigail/ruby/ch-2.rb">Ruby</a>, and
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-141/abigail/tcl/ch-2.tcl">Tcl</a>.</p>
+
+<hr id = 'last-line'>
+<div class = 'trailer'>
+<p class = 'prev'><a class = "prev" href = "">&#x261C;</a></p>
+<p class = 'issue'>Please leave any comments as a
+  <a href = 'https://github.com/Abigail/Abigail.github.io/issues'
+     title = 'GitHub issue'>GitHub issue</a>.
+<p class = 'next'><a class = "next" href = "">&#x261E;</a></p>
+</div>
+
+</body>
+</html>
