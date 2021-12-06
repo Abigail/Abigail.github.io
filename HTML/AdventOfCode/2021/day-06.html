@@ -1,0 +1,270 @@
+<html>
+<head>
+<title>Advent Of Code 2021, Day 6: Lanternfish</title>
+<script src = "https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id = "MathJax-script" async src = "https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.js"></script>
+<script src = '../../../JavaScript/jquery.js'></script>
+<script src = '../../../JavaScript/navigation.js'></script>
+<script src = '../../../JavaScript/nav_advent_of_code.js'></script>
+<link rel = 'preconnect' href = 'https://fonts.gstatic.com'>
+<link rel = 'stylesheet' href = 'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
+<link rel = 'stylesheet' href = '../../../Styles/main.css'>
+<link rel = 'stylesheet' href = '../../../Styles/AdventOfCode/main.css'>
+</head>
+
+<body><h1>Advent Of Code 2021, Day 6: Lanternfish</h1><div class = "byline">
+by Abigail<br>
+<img src = "../../../Images/jan_sluiters.jpg">
+</div>
+
+
+<h2><a href="https://adventofcode.com/2021/day/6">Challenge</a></h2>
+
+<div class = "section">
+<p>We have to deal with fast spawning fish, and we have to model
+their growth rate.</p>
+
+<p>We know a new lantarnfish creates a new lanternfish every 7 days.
+With the exception of freshly spawned lantarnfish &mdash; they
+spawn their first new fish after 9 days (and then a new fish
+every 7 days).</p>
+
+<p>But not all fish are on the part of their cycle: while one
+lantarnfish may have 4 days left before it spawns another
+fish, another lantarnfish may spawn one 2 days from now.</p>
+
+<p>What we are given is a list of numbers, each number is the
+number of days left for a particular fish before it spawns
+another one.</p>
+
+<p>For instance, suppose we are given the following list:</p>
+
+<pre><code>3,4,3,1,2
+</code></pre>
+
+<p>This means we start with five fish. The first and third fish will spawn
+three days from now; the second fish four days from now, the fourth
+fish tomorrow, and the fifth fish two days from now.</p>
+
+<p>Simulating this over the next 18 days, we get:</p>
+
+<pre><code>Initial state: 3,4,3,1,2
+After  1 day:  2,3,2,0,1
+After  2 days: 1,2,1,6,0,8
+After  3 days: 0,1,0,5,6,7,8
+After  4 days: 6,0,6,4,5,6,7,8,8
+After  5 days: 5,6,5,3,4,5,6,7,7,8
+After  6 days: 4,5,4,2,3,4,5,6,6,7
+After  7 days: 3,4,3,1,2,3,4,5,5,6
+After  8 days: 2,3,2,0,1,2,3,4,4,5
+After  9 days: 1,2,1,6,0,1,2,3,3,4,8
+After 10 days: 0,1,0,5,6,0,1,2,2,3,7,8
+After 11 days: 6,0,6,4,5,6,0,1,1,2,6,7,8,8,8
+After 12 days: 5,6,5,3,4,5,6,0,0,1,5,6,7,7,7,8,8
+After 13 days: 4,5,4,2,3,4,5,6,6,0,4,5,6,6,6,7,7,8,8
+After 14 days: 3,4,3,1,2,3,4,5,5,6,3,4,5,5,5,6,6,7,7,8
+After 15 days: 2,3,2,0,1,2,3,4,4,5,2,3,4,4,4,5,5,6,6,7
+After 16 days: 1,2,1,6,0,1,2,3,3,4,1,2,3,3,3,4,4,5,5,6,8
+After 17 days: 0,1,0,5,6,0,1,2,2,3,0,1,2,2,2,3,3,4,4,5,7,8
+After 18 days: 6,0,6,4,5,6,0,1,1,2,6,0,1,1,1,2,2,3,3,4,6,7,8,8,8,8
+</code></pre>
+
+<p>Given this list, after 18 days we have 26 fish; after 80 days,
+we will have <span class = "answer">5934</span> fish, and
+after 256 days, we have <span class = "answer">26984457539</span>
+fish.</p>
+</div>
+
+<h4>Part One</h4>
+
+<div class = "section">
+<p>Given the input, calculate the number of fish on day 80.</p>
+</div>
+
+<h4>Part Two</h4>
+
+<div class = "section">
+<p>Given the input, calculate the number of fish on day 256.</p>
+</div>
+
+<h2>Solution</h2>
+
+<div class = "section">
+<p>It should be obvious both parts are basically the same thing, just with
+a larger number. Part One could be solved by modelling each fish
+separately, but Advent of Code veterans would see Part Two coming,
+where you certainly cannot do this.</p>
+
+<p>What we should realize that each fish only has at most 9 different states.
+Either is spawns today, or in one of the next 8 days. And if two fish
+are in the same state on a certain day, they will be in the same state
+on any subsequent day (the reverse is not true!).</p>
+
+<p>This means, we can group the fish in equivalence classes (based on their
+internal timer), and calculate what happens with each class. For that,
+we create a vector <span class = 'latex-inline'>\(f\)</span>:</p>
+
+<p>\[
+    f = \left(\begin{array}{c}t_0 \\ t_1 \\ t_2 \\ t_3 \\ t_4 \\
+                              t_5 \\ t_6 \\ t_7 \\ t_8
+              \end{array}\right)
+\]</p>
+
+<p>where <span class = 'latex-inline'>\(c_n\)</span> is the number of fish which will spawn <span class = 'latex-inline'>\(n\)</span> days from
+now.</p>
+
+<p>We can now define the following sequence:</p>
+
+<p>\[
+    f_{g+1} = \left(\begin{array}{c}
+                  t^g_1 \\
+                  t^g_2 \\
+                  t^g_3 \\
+                  t^g_4 \\
+                  t^g_5 \\
+                  t^g_6 \\
+                  t^g_7 + t^g_0 \\
+                  t^g_8 \\
+                  t^g_0 \end{array}\right), \; g > 0,
+     \qquad\qquad f_0 = 
+              \left(\begin{array}{c}
+                  t^0_0 \\
+                  t^0_1 \\
+                  t^0_2 \\
+                  t^0_3 \\
+                  t^0_4 \\
+                  t^0_5 \\
+                  t^0_6 \\
+                  t^0_7 \\
+                  t^0_8 \end{array}\right)
+\]</p>
+
+<p>where <span class = 'latex-inline'>\(f^g_i\)</span> is element <span class = 'latex-inline'>\(i\)</span> from <span class = 'latex-inline'>\(f_g\)</span>.</p>
+
+<p>We can also write this as a matrix transformation:</p>
+
+<p>\[
+    f_{g+1} = \left(
+        \begin{array}{ccccccccc}
+        0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
+        0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
+        0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
+        0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
+        0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 \\
+        0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 \\
+        1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 \\
+        0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 \\
+        1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
+        \end{array}\right) = A \cdot f_g
+\]</p>
+</div>
+
+<h4>Iteration</h4>
+
+<div class = "section">
+<p>Starting with <span class = 'latex-inline'>\(f_0\)</span>, we can do the transformation the appropriate
+number of times, then sum the values in <span class = 'latex-inline'>\(f_{80}\)</span> and <span class = 'latex-inline'>\(f_{256}\)</span>.</p>
+</div>
+
+<h4>Matrix exponentiation</h4>
+
+<div class = "section">
+<p>We have <span class = 'latex-inline'>\(f_g = A^g \cdot f_0\)</span>. So, we can just raise the matrix <span class = 'latex-inline'>\(A\)</span>
+to the power <span class = 'latex-inline'>\(g\)</span>, and apply that to <span class = 'latex-inline'>\(f_0\)</span>.</p>
+</div>
+
+<h3>Perl</h3>
+
+<div class = "section">
+<p>We start off with some initialization, and reading of the input:</p>
+
+<pre><code>my $GENERATIONS1 =  80;
+my $GENERATIONS2 = 256;
+my $TIMERS       =   9;
+
+my @fish = (0) x $TIMERS;
+   $fish [$_] ++ foreach split /,/ =&gt; &lt;&gt;;
+</code></pre>
+
+<p>Now <code>$fish [$i]</code> will contain the number of which which will spawn 
+<code>$i</code> days from now.</p>
+</div>
+
+<h4>Iteration</h4>
+
+<div class = "section">
+<p>Iterating over the sequence is easy:</p>
+
+<pre><code>for (1 .. $GENERATIONS2) {
+    @fish      = @fish [1 .. $TIMERS - 1, 0];
+    $fish [6] += $fish [$TIMERS - 1];
+    say "Solution 1: ", sum @fish if $_ == $GENERATIONS1;
+    say "Solution 2: ", sum @fish if $_ == $GENERATIONS2;
+}
+</code></pre>
+</div>
+
+<h4>Matrix exponentation</h4>
+
+<div class = "section">
+<p>To do matrix exponentation, we have to turn the initial number 
+of fish into a vector, and define the matrix (which was named <span class = 'latex-inline'>\(A\)</span>
+above). So, after reading the data, we do:</p>
+
+<pre><code>my $fish   = Math::Matrix:: -&gt; new (map {[$_ || 0]} @fish);
+my $matrix = Math::Matrix:: -&gt; new ([0, 1, 0, 0, 0, 0, 0, 0, 0],
+                                    [0, 0, 1, 0, 0, 0, 0, 0, 0],
+                                    [0, 0, 0, 1, 0, 0, 0, 0, 0],
+                                    [0, 0, 0, 0, 1, 0, 0, 0, 0],
+                                    [0, 0, 0, 0, 0, 1, 0, 0, 0],
+                                    [0, 0, 0, 0, 0, 0, 1, 0, 0],
+                                    [1, 0, 0, 0, 0, 0, 0, 1, 0],
+                                    [0, 0, 0, 0, 0, 0, 0, 0, 1],
+                                    [1, 0, 0, 0, 0, 0, 0, 0, 0],);
+</code></pre>
+
+<p>Now, we raise <code>$matrix</code> to the number of generations, and apply
+it to the <code>$fish</code> vector. <a href="https://metacpan.org/pod/Math::Matrix"><code>Math::Matrix</code></a> objects are overloaded,
+so we can just use <code>**</code> and <code>*</code>. It also has a <code>sum</code> method which
+sums the elements of a matrix. The result of <code>sum</code> is another object,
+which, if stringified, results in a number with <code>0</code>s after a 
+decimal dot, and a newline. So, we remove this before printing.
+Hence, we get:</p>
+
+<pre><code>say "Solution 1: ", (($matrix ** $GENERATIONS1 * $fish) -&gt; sum) =~ s/\..*//sr;
+say "Solution 2: ", (($matrix ** $GENERATIONS2 * $fish) -&gt; sum) =~ s/\..*//sr;
+</code></pre>
+</div>
+
+<h4>Closed form solution</h4>
+
+<p>Given the matrix exponentation, we can easily create a closed form 
+solution, by raising the matrix to the appropriate number of times,
+and summing the columns. This would lead to (after reading in the data):</p>
+
+<pre><code>say "Solution 1: ",
+          1421 * $fish [0] +       1401 * $fish [1] +       1191 * $fish [2] +
+          1154 * $fish [3] +       1034 * $fish [4] +        950 * $fish [5] +
+           905 * $fish [6] +        779 * $fish [7] +        768 * $fish [8];
+
+say "Solution 2: ",
+    6703087164 * $fish [0] + 6206821033 * $fish [1] + 5617089148 * $fish [2] +
+    5217223242 * $fish [3] + 4726100874 * $fish [4] + 4368232009 * $fish [5] +
+    3989468462 * $fish [6] + 3649885552 * $fish [7] + 3369186778 * $fish [8];
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/AdventOfCode2021/blob/master/Day_06/solution.pl">iterative solution</a>, the 
+<a href="https://github.com/Abigail/AdventOfCode2021/blob/master/Day_06/solution-2.pl">matrix exponentation solution</a> and the
+<a href="https://github.com/Abigail/AdventOfCode2021/blob/master/Day_06/solution-3.pl">closed-form solution</a> on <a href="https://github.com/">GitHub</a></p>
+
+<hr id = 'last-line'>
+<div class = 'trailer'>
+<p class = 'prev'><a class = "prev" href = "">&#x261C;</a></p>
+<p class = 'issue'>Please leave any comments as a
+  <a href = 'https://github.com/Abigail/Abigail.github.io/issues'
+     title = 'GitHub issue'>GitHub issue</a>.
+<p class = 'next'><a class = "next" href = "">&#x261E;</a></p>
+</div>
+
+</body>
+</html>
