@@ -1,0 +1,64 @@
+<html>
+<head>
+<title>Perl Weekly Challenge 142: Divisor Last Digit</title>
+<script src = "https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script src = "../../JavaScript/jquery.js"></script>
+<script id = "MathJax-script" async src = "https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.js"></script>
+<script src = '../../JavaScript/navigation.js'></script>
+<link rel = 'preconnect' href = 'https://fonts.gstatic.com'>
+<link rel = 'stylesheet' href = 'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
+<link rel = 'stylesheet' href = '../../Styles/main.css'>
+<link rel = 'stylesheet' href = '../../Styles/Perl-Weekly-Challenge/main.css'>
+</head>
+
+<body><h1>Perl Weekly Challenge 142: Divisor Last Digit</h1><div class = "byline">
+by Abigail<br>
+<img src = "../../Images/jan_sluiters.jpg">
+</div>
+
+
+<h2><a href="https://theweeklychallenge.org/blog/perl-weekly-challenge-142/#TASK1">Challenge</a></h2>
+
+<blockquote>
+  <p>You are given positive integers, <code>$m</code> and <code>$n</code>.</p>
+  
+  <p>Write a script to find total count of divisors of <code>$m</code> having last digit <code>$n</code>.</p>
+</blockquote>
+
+<h2>Discussion</h2>
+
+<div class = "section">
+<p>Given the first task of <a href="https://theweeklychallenge.org/blog/perl-weekly-challenge-141/#TASK1">last week</a>, this is very boring. Last week,
+we were asked to find the divisors of numbers, and report those who had
+8 divisors. The <a href="https://theweeklychallenge.org/blog/perl-weekly-challenge-140/#TASK2">week before</a> we also had a task which
+we solved by finding the divisors.</p>
+
+<p>Hence, this week, we just give a minimal Perl solution, and won't
+bother copy-and-pasting code for other languages.</p>
+</div>
+
+<h2>Solution</h2>
+
+<h3>Perl</h3>
+
+<pre><code>perl -MMath::Prime::Util=divisors -pale '$_ = grep {/$F[1]$/} divisors $F[0]'
+</code></pre>
+
+<p>We read pairs of numbers from standard input, find the divisors of the
+first number (<code>$F[0]</code>), filter those ending in the second number
+(<code>$F[1]</code>), and print the amount (<code>-p</code> cause perl to print the content
+of <code>$_</code>).</p>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-142/abigail/perl/ch-1.pl">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+
+<hr id = 'last-line'>
+<div class = 'trailer'>
+<p class = 'prev'><a class = "prev" href = "">&#x261C;</a></p>
+<p class = 'issue'>Please leave any comments as a
+  <a href = 'https://github.com/Abigail/Abigail.github.io/issues'
+     title = 'GitHub issue'>GitHub issue</a>.
+<p class = 'next'><a class = "next" href = "">&#x261E;</a></p>
+</div>
+
+</body>
+</html>
