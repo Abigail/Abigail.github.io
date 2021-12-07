@@ -2,11 +2,12 @@
 <head>
 <title>Perl Weekly Challenge 132: Hash Join</title>
 <script src = "https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script src = "../../JavaScript/jquery.js"></script>
 <script id = "MathJax-script" async src = "https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.js"></script>
-<script src = '../../JavaScript/jquery.js'></script>
 <script src = '../../JavaScript/navigation.js'></script>
 <link rel = 'preconnect' href = 'https://fonts.gstatic.com'>
 <link rel = 'stylesheet' href = 'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
+<link rel = 'stylesheet' href = '../../Styles/main.css'>
 <link rel = 'stylesheet' href = '../../Styles/Perl-Weekly-Challenge/main.css'>
 </head>
 
@@ -128,7 +129,7 @@ that is realistic or not).</p>
 use List::Util 'max';
 
 BEGIN {
-    die "No hash join for you &amp;mdash; recompile first!\n" unless
+    die "No hash join for you -- recompile first!\n" unless
         $Config::Config {malloc_cflags} =~ /-DPERL_EMERGENCY_SBRK\b/ &amp;&amp;
         $Config::Config {usemymalloc} eq 'y';
 
