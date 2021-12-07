@@ -114,6 +114,8 @@ function navigation (type, pagename, pages) {
         return
     }
 
+    let up = type == "ADV" ? "../../" : "../"
+
     //
     // Find the index
     //
@@ -125,16 +127,16 @@ function navigation (type, pagename, pages) {
     }
 
     if (index > 0) {
-        $("a.prev") . attr ("href", "../" + pages [index - 1] [0])
-        $("a.prev") . attr ("title",        pages [index - 1] [1])
+        $("a.prev") . attr ("href", up + pages [index - 1] [0])
+        $("a.prev") . attr ("title",     pages [index - 1] [1])
     }
     else {
         $("p.prev") . css ("visibility", "hidden")
     }
 
     if (index >= 0 && index < pages . length - 1) {
-        $("a.next") . attr ("href", "../" + pages [index + 1] [0])
-        $("a.next") . attr ("title",        pages [index + 1] [1])
+        $("a.next") . attr ("href", up + pages [index + 1] [0])
+        $("a.next") . attr ("title",     pages [index + 1] [1])
     }
     else {
         $("p.next") . css ("visibility", "hidden")
@@ -146,14 +148,14 @@ function navigation (type, pagename, pages) {
         //
         if ((event . which == 78 || event . which == 110) &&
                      index < pages . length - 1) {
-            location . href = "../" + pages [index + 1] [0]
+            location . href = up + pages [index + 1] [0]
         }
 
         //
         // Press 'p' or 'P'
         //
         if ((event . which == 80 || event . which == 112) && index > 0) {
-            location . href = "../" + pages [index - 1] [0]
+            location . href = up + pages [index - 1] [0]
         }
 
         //
