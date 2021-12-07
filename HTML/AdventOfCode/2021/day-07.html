@@ -4,6 +4,9 @@
 <script src = "https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
 <script src = "../../../JavaScript/jquery.js"></script>
 <script id = "MathJax-script" async src = "https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.js"></script>
+<script id = 'chart-script' async src = 'https://cdn.jsdelivr.net/npm/chart.js'></script>
+<script src = '../../../JavaScript/AdventOfCode/2021/day-07-1.js'></script>
+<script src = '../../../JavaScript/AdventOfCode/2021/day-07-2.js'></script>
 <script src = '../../../JavaScript/AdventOfCode/main-header.js'></script>
 <script src = '../../../JavaScript/navigation.js'></script>
 <script src = '../../../JavaScript/nav_advent_of_code.js'></script>
@@ -112,6 +115,7 @@ say "Solution 2: ", min map {cost2 $_, \@nums} min (@nums) .. max (@nums);
 
 <h4>Using Statistics</h4>
 
+<div class = "section">
 <p>The sum of the costs of part one will be minimized for the <a href="https://en.wikipedia.org/wiki/median"><em>median</em></a> of
 <span class = 'latex-inline'>\(\mathcal{S}\)</span>, while the sum of the costs for part two will be minimized
 for the <a href="https://en.wikipedia.org/wiki/arithmetic_mean"><em>arithmetic mean</em></a> of <span class = 'latex-inline'>\(\mathcal{S}\)</span>.</p>
@@ -143,7 +147,17 @@ say "Solution 2: ", min cost2 (floor ($mean),   \@nums),
 <a href="https://metacpan.org/dist/perl/view/ext/POSIX/lib/POSIX.pod"><code>POSIX</code></a>.</p>
 
 <p>Find the <a href="https://github.com/Abigail/AdventofCode2021/blob/master/Day_07/solution-2.pl">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
 
+<h2>Visualization</h2>
+
+<p>Below is a graph show the fuel costs depending on where the
+crabs converge.</p>
+
+<div>
+<canvas id = fuel></canvas>
+
+</div>
 <hr id = 'last-line'>
 <div class = 'trailer'>
 <p class = 'prev'><a class = "prev" href = "">&#x261C;</a></p>

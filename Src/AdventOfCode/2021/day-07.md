@@ -118,3 +118,12 @@ We are importing `min` and `sum` from [`List::Util`](#),
 [`POSIX`](https://metacpan.org/dist/perl/view/ext/POSIX/lib/POSIX.pod).
 
 FULL_PROGRAM;part_nr=2
+
+## Visualization
+
+Below is a graph show the fuel costs depending on where the
+crabs converge.
+
+<div>
+<canvas id = fuel></canvas>
+</div>
