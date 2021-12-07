@@ -1,0 +1,157 @@
+<html>
+<head>
+<title>Advent Of Code 2021, Day 7: The Treachery of Whales</title>
+<script src = "https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script src = "../../../JavaScript/jquery.js"></script>
+<script id = "MathJax-script" async src = "https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.js"></script>
+<script src = '../../../JavaScript/AdventOfCode/main-header.js'></script>
+<script src = '../../../JavaScript/navigation.js'></script>
+<script src = '../../../JavaScript/nav_advent_of_code.js'></script>
+<link rel = 'preconnect' href = 'https://fonts.gstatic.com'>
+<link rel = 'stylesheet' href = 'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
+<link rel = 'stylesheet' href = '../../../Styles/main.css'>
+<link rel = 'stylesheet' href = '../../../Styles/AdventOfCode/main.css'>
+</head>
+
+<body><h1>Advent Of Code 2021, Day 7: The Treachery of Whales</h1><div class = "byline">
+by Abigail<br>
+<img src = "../../../Images/jan_sluiters.jpg">
+</div>
+
+
+<h2><a href="https://adventofcode.com/2021/day/7">Challenge</a></h2>
+
+<div class = "section">
+<p>We are given a set <span class = 'latex-inline'>\(\mathcal{S}\)</span> of numbers:</p>
+
+<pre><code>16,1,2,0,4,2,7,1,2,14
+</code></pre>
+
+<p>We are looking for another number <span class = 'latex-inline'>\(N\)</span> (integer) which minimizes a
+certain measurement: the sum of the <em>cost</em> between <span class = 'latex-inline'>\(N\)</span>
+and each element of <span class = 'latex-inline'>\(\mathcal{S}\)</span>.</p>
+</div>
+
+<h4>Part One</h4>
+
+<div class = "section">
+<p>For Part One, the <em>cost</em> between two numbers is just the
+absolute value of their difference.</p>
+
+<p>For the given example set, the answer will be <span class = "answer">37</span>.</p>
+</div>
+
+<h4>Part Two</h4>
+
+<div class = "section">
+<p>For part two, the <em>cost</em> is defined as:</p>
+
+<ul>
+<li>if the absolute difference is <span class = 'latex-inline'>\(1\)</span>, then the cost is <span class = 'latex-inline'>\(1\)</span>.</li>
+<li>if the absolute difference is <span class = 'latex-inline'>\(2\)</span>, then the cost is <span class = 'latex-inline'>\(1 + 2 = 3\)</span>.</li>
+<li>if the absolute difference is <span class = 'latex-inline'>\(3\)</span>, then the cost is <span class = 'latex-inline'>\(1 + 2 + 3 = 6\)</span>.</li>
+<li>etc.</li>
+</ul>
+
+<p>That is, if the absolute difference is <span class = 'latex-inline'>\(k\)</span>, the cost is the
+<span class = 'latex-inline'>\(k^{\text{th}}\)</span> <a href="https://en.wikipedia.org/wiki/triangle_number"><em>triangle number</em></a>.</p>
+
+<p>For the given example set, the answer will be <span class = "answer">168</span>.</p>
+</div>
+
+<h2>Solution</h2>
+
+<div class = "section">
+<p>We will present two ways of solving the problem, a brute force one,
+and one which uses statistics.</p>
+
+<p>For triangle numbers, we have:</p>
+
+<p>\[
+    1 + 2 + \ldots + n = \sum_{k = 1}^n k = \frac{n * (n + 1)}{2}
+\]</p>
+</div>
+
+<h3>Perl</h3>
+
+<div class = "section">
+<p>First, we read in the data:</p>
+
+<pre><code>my @nums = &lt;&gt; =~ /[0-9]+/g;
+</code></pre>
+
+<p>Next, we define two functions to calculate costs. <code>cost1</code> calculates
+the cost for part one, while <code>cost2</code> calculates the cost for part two.
+Both functions take two arguments: a number (<code>$target</code>), and a reference
+to an array with numbers (<code>$nums</code>). What they return is the sum of the
+costs between <code>$target</code> and each of the elements of <code>$nums</code>:</p>
+
+<pre><code>sub cost1 ($target, $nums) {
+    sum map {abs ($target - $_)} @$nums;
+}
+
+sub cost2 ($target, $nums) {
+    sum map {my $n = abs ($target - $_); $n * ($n + 1) / 2} @$nums;
+}
+</code></pre>
+</div>
+
+<h4>Brute Force</h4>
+
+<div class = "section">
+<p>For the brute force approach, we calculate the sum of the costs
+for every possible integer between the minimum and maximum values
+of <code>@nums</code>, and report the minimum:</p>
+
+<pre><code>say "Solution 1: ", min map {cost1 $_, \@nums} min (@nums) .. max (@nums);
+say "Solution 2: ", min map {cost2 $_, \@nums} min (@nums) .. max (@nums);
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/AdventofCode2021/blob/master/Day_07/solution.pl">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h4>Using Statistics</h4>
+
+<p>The sum of the costs of part one will be minimized for the <a href="https://en.wikipedia.org/wiki/median"><em>median</em></a> of
+<span class = 'latex-inline'>\(\mathcal{S}\)</span>, while the sum of the costs for part two will be minimized
+for the <a href="https://en.wikipedia.org/wiki/arithmetic_mean"><em>arithmetic mean</em></a> of <span class = 'latex-inline'>\(\mathcal{S}\)</span>.</p>
+
+<p>Now, both the <em>median</em> and the <em>mean</em> may be non-integers. But if
+we look at the sum of the costs when going from the minimum value
+of <span class = 'latex-inline'>\(\mathcal{S}\)</span> to the maximum value of <span class = 'latex-inline'>\(\mathcal{S}\)</span>, the
+sum of the costs will strictly decrease from the minimum value
+of <span class = 'latex-inline'>\(\mathcal{S}\)</span> to the <em>median</em>/<em>mean</em>, and then strictly
+increase till we have reached the maximum value of <span class = 'latex-inline'>\(\mathcal{S}\)</span>.</p>
+
+<p>So, we will be calculating the costs for the <em>median</em>/<em>mean</em> rounded
+up, and rounded down: the minimum of those will be the answer.</p>
+
+<p>Which leads to:</p>
+
+<pre><code>my $median = median @nums;
+my $mean   =   mean @nums;
+
+say "Solution 1: ", min cost1 (floor ($median), \@nums),
+                        cost1 ( ceil ($median), \@nums);
+say "Solution 2: ", min cost2 (floor ($mean),   \@nums),
+                        cost2 ( ceil ($mean),   \@nums);
+</code></pre>
+
+<p>We are importing <code>min</code> and <code>sum</code> from <a href="https://metacpan.org/pod/List::Util"><code>List::Util</code></a>,
+<code>median</code> and <code>mean</code> from <a href="https://metacpan.org/pod/Statistics::Basic"><code>Statistics::Basic</code></a>, and
+<code>floor</code> and <code>ceil</code> from
+<a href="https://metacpan.org/dist/perl/view/ext/POSIX/lib/POSIX.pod"><code>POSIX</code></a>.</p>
+
+<p>Find the <a href="https://github.com/Abigail/AdventofCode2021/blob/master/Day_07/solution-2.pl">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+
+<hr id = 'last-line'>
+<div class = 'trailer'>
+<p class = 'prev'><a class = "prev" href = "">&#x261C;</a></p>
+<p class = 'issue'>Please leave any comments as a
+  <a href = 'https://github.com/Abigail/Abigail.github.io/issues'
+     title = 'GitHub issue'>GitHub issue</a>.
+<p class = 'next'><a class = "next" href = "">&#x261E;</a></p>
+</div>
+
+</body>
+</html>
