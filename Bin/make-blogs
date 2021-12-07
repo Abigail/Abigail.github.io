@@ -43,7 +43,7 @@ my $TYPE2NAV       = {
 
 my $STYLE_DIR      = "Styles";
 my $JAVASCRIPT_DIR = "JavaScript";
-my @SCRIPTS        = qw [jquery navigation];
+my @SCRIPTS        = qw [navigation];
 my $FULL_HTML_DIR  = "$TOP_DIR/$HTML_DIR";
 my $FULL_SRC_DIR   = "$TOP_DIR/$SRC_DIR";
 my @FONTS          = map {s/ /+/r} ("Lobster Two",
@@ -131,7 +131,8 @@ sub header ($title, $directives) {
                                    "$dir/main",
                                    "$dir/$base";
 
-    my @scripts = sort glob "$JAVASCRIPT_DIR/$dir/$base*.js";
+    my @scripts = sort glob "$JAVASCRIPT_DIR/$dir/$base*.js " .
+                            "$JAVASCRIPT_DIR/$dir/main-*.js";
     my $scripts = join "\n" =>
         map  {"<script src = '$up/$_'></script>"}
         @scripts,
@@ -149,6 +150,7 @@ sub header ($title, $directives) {
         <head>
         <title>$title</title>
         <script src = "$POLYFILL_URL"></script>
+        <script src = "$up/$JAVASCRIPT_DIR/jquery.js"></script>
         <script id = "MathJax-script" async src = "$MATHJAX_URL"></script>
         $chart_js
         $scripts
