@@ -218,17 +218,18 @@ sub make_link (%args) {
     my $week     = $args {week};
     my $language = $args {language};
     my $url;
+    my $clean_anchor = $anchor =~ s/^[*`]+//r
+                               =~ s/[*`]+$//r;
     if ($LANGUAGE_INFO {$language} && $link !~ /^#/) {
         # Remove backtics
-        $anchor =~ s/^`//;
-        $anchor =~ s/`$//;
         if ($language eq "Perl") {
             if (!$link) {
                 #
                 # Does the link point to a module?
                 #
-                $url = $anchor =~ /::/ ? $METACPAN_URL . "/" . $anchor
-                                       : $PERLFUNC_URL . "#" . $anchor;
+                $url = $clean_anchor =~ /::/
+                            ? $METACPAN_URL . "/" . $clean_anchor
+                            : $PERLFUNC_URL . "#" . $clean_anchor;
             }
             elsif ($link =~ /^meta:/p) {
                 $url = $METACPAN_URL . "/" . ${^POSTMATCH}
@@ -241,27 +242,27 @@ sub make_link (%args) {
             }
         }
         elsif ($language eq "GNU AWK" || $language eq "AWK") {
-            $url = $GAWK_URL . "#" . ($link || $LINK_GROUP {AWK} {$anchor}
+            $url = $GAWK_URL . "#" . ($link || $LINK_GROUP {AWK} {$clean_anchor}
                                             || "");
         }
         elsif ($language eq "Bash") {
-            $url = $BASH_URL . "#" . ($link || $LINK_GROUP {Bash} {$anchor}
-                                            || "");
+            $url = $BASH_URL . "#" . ($link                              ||
+                                      $LINK_GROUP {Bash} {$clean_anchor} || "");
         }
         elsif ($language eq "C") {
             if (!$link || $link =~ /^[0-9]$/) {
-                $url = sprintf $FREEBSD_URL . "=" . $anchor => $link || 0;
+                $url = sprintf $FREEBSD_URL . "=" . $clean_anchor => $link || 0;
             }
         }
         elsif ($language eq "Go") {
-            if (!$link && $LINK_GROUP {Go} {$anchor}) {
-                $url = $GO_URL . "/" . $LINK_GROUP {Go} {$anchor}
-                               . "#" . $anchor;
+            if (!$link && $LINK_GROUP {Go} {$clean_anchor}) {
+                $url = $GO_URL . "/" . $LINK_GROUP {Go} {$clean_anchor}
+                               . "#" . $clean_anchor;
             }
         }
         elsif ($language eq "Python") {
             if (!$link) {
-                $url = $PYTHON_URL . "#" . $anchor;
+                $url = $PYTHON_URL . "#" . $clean_anchor;
             }
         }
         elsif ($language eq "Node.js") {
@@ -269,15 +270,15 @@ sub make_link (%args) {
                 $url = $NODE_URL . "/$link";
             }
             else {
-                if (my $chapter = $LINK_GROUP {$language} {$anchor}) {
-                    $url = $NODE_URL . "/$chapter/$anchor";
+                if (my $chapter = $LINK_GROUP {$language} {$clean_anchor}) {
+                    $url = $NODE_URL . "/$chapter/$clean_anchor";
                 }
             }
         }
         elsif ($language eq "Ruby") {
             if ($link) {
                 $url  = $RUBY_URL . "/$link";
-                $url .= "/$anchor" unless $link =~ m{/};
+                $url .= "/$clean_anchor" unless $link =~ m{/};
             }
         }
     }
@@ -287,7 +288,7 @@ sub make_link (%args) {
             my $where = $+ {where};
             my $what  = $+ {what};
             if (!$what) {
-                $what = $anchor =~ s/\s+/_/gr;
+                $what = $clean_anchor =~ s/\s+/_/gr;
             }
             if    ($where eq "wiki")      {$url = $WIKI_URL . "/" . $what}
             elsif ($where eq "oeis")      {$url = $OEIS_URL . "/" . $what}
@@ -297,7 +298,7 @@ sub make_link (%args) {
         }
     }
     if (!$url && $link eq "github") {
-        $url = github_link ($anchor, "", {week => $week});
+        $url = github_link ($clean_anchor, "", {week => $week});
     }
     $url //= "#$link";
 
