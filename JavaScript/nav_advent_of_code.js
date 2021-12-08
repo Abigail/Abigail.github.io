@@ -12,6 +12,7 @@ let pages = [
     ["day-05", "Hydrothermal Venture"],
     ["day-06", "Lanternfish"],
     ["day-07", "The Treachery of Whales"],
+    ["day-08", "Seven Segment Search"],
 ]
 
 pages . forEach (entry => {

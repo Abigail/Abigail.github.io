@@ -1,0 +1,405 @@
+<html>
+<head>
+<title>Advent Of Code 2021, Day 8: Seven Segment Search</title>
+<script src = "https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script src = "../../../JavaScript/jquery.js"></script>
+<script id = "MathJax-script" async src = "https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.js"></script>
+<script src = '../../../JavaScript/AdventOfCode/main-header.js'></script>
+<script src = '../../../JavaScript/navigation.js'></script>
+<script src = '../../../JavaScript/nav_advent_of_code.js'></script>
+<link rel = 'preconnect' href = 'https://fonts.gstatic.com'>
+<link rel = 'stylesheet' href = 'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
+<link rel = 'stylesheet' href = 'https://fontlibrary.org//face/segment7' media = 'screen' type = 'text/css'> 
+<link rel = 'stylesheet' href = '../../../Styles/main.css'>
+<link rel = 'stylesheet' href = '../../../Styles/AdventOfCode/main.css'>
+<link rel = 'stylesheet' href = '../../../Styles/AdventOfCode/2021/day-08.css'>
+</head>
+
+<body><h1>Advent Of Code 2021, Day 8: Seven Segment Search</h1><div class = "byline">
+by Abigail<br>
+<img src = "../../../Images/jan_sluiters.jpg">
+</div>
+
+
+<h2><a href="https://adventofcode.com/2021/day/8">Challenge</a></h2>
+
+<div class = "section">
+<p>A seven-segment display looks like:</p>
+
+<pre><code>   0       1       2       3       4       5       6      7        8       9
+ aaaa    ....    aaaa    aaaa    ....    aaaa    aaaa    aaaa    aaaa    aaaa
+b    c  .    c  .    c  .    c  b    c  b    .  b    .  .    c  b    c  b    c
+b    c  .    c  .    c  .    c  b    c  b    .  b    .  .    c  b    c  b    c
+ ....    ....    dddd    dddd    dddd    dddd    dddd    ....    dddd    dddd
+e    f  .    f  e    .  .    f  .    f  .    f  e    f  .    f  e    f  .    f
+e    f  .    f  e    .  .    f  .    f  .    f  e    f  .    f  e    f  .    f
+ gggg    ....    gggg    gggg    ....    gggg    gggg    ....    gggg    gggg
+</code></pre>
+
+<p>To light up a number, say <code>1</code>, segments <code>c</code> and <code>f</code> are turned on.</p>
+
+<p>However, we have to deal with a situation where the segments are wired
+randomly. Our task is to figure out what is going on.</p>
+
+<p>We will be given a file with entries like this:</p>
+
+<pre><code>acedgfb cdfbe gcdfa fbcad dab cefabd cdfgeb eafb cagedb ab | cdfeb fcadb cdfeb cdbaf
+</code></pre>
+
+<p>The first ten entries, before the <code>|</code>, are ten different signals. They
+correspond to the signals send to light up the digits <code>0</code> to <code>9</code>, in
+some order. The four entries after the <code>|</code> are signals send to a 
+particular display.</p>
+
+<p>Each line of input corresponds to a different, four digit display.
+On each line, we first have 10 different signals, followed by a
+<code>|</code>, followed by the signals send to a display. While the segments
+are wired identical for each digit in a display, they are wired
+differently between displays.</p>
+</div>
+
+<h4>Part One</h4>
+
+<div class = "section">
+<p>Take this example input:</p>
+
+<pre><code>be cfbegad cbdgef fgaecd cgeb fdcge agebfd fecdb fabcd edb | fdgacbe cefdb cefbgd gcbe
+edbfga begcd cbg gc gcadebf fbgde acbgfd abcde gfcbed gfec | fcgedb cgb dgebacf gc
+fgaebd cg bdaec gdafb agbcfd gdcbef bgcad gfac gcb cdgabef | cg cg fdcagb cbg
+fbegcd cbd adcefb dageb afcb bc aefdc ecdab fgdeca fcdbega | efabcd cedba gadfec cb
+aecbfdg fbg gf bafeg dbefa fcge gcbea fcaegb dgceab fcbdga | gecf egdcabf bgf bfgea
+fgeab ca afcebg bdacfeg cfaedg gcfdb baec bfadeg bafgc acf | gebdcfa ecba ca fadegcb
+dbcfg fgd bdegcaf fgec aegbdf ecdfab fbedc dacgb gdcebf gf | cefg dcbef fcge gbcadfe
+bdfegc cbegaf gecbf dfcage bdacg ed bedf ced adcbefg gebcd | ed bcgafe cdgba cbgef
+egadfb cdbfeg cegd fecab cgb gbdefca cg fgcdab egfdb bfceg | gbdfcae bgc cg cgb
+gcafb gcf dcaebfg ecagb gf abcdeg gaef cafbge fdbac fegbdc | fgae cfgab fg bagce
+</code></pre>
+
+<p>For Part One, we are asked to determine how many <code>1</code>s, <code>4</code>s, <code>7</code>s and <code>8</code>s
+are shown on all displays. These digits have a unique amount of segments
+(two, four, three and seven) and can be fairly easily deduced. For the
+given example input, the answer would be <span class = "answer">26</span>.</p>
+</div>
+
+<h4>Part Two</h4>
+
+<div class = "section">
+<p>For Part Two, we have to deduce all the digits in all the displays. 
+For each display, we have to find the four digit number, and then
+we have to sum all those numbers. This sum will be the answer.</p>
+
+<p>For the given example input, the answer to Part Two will be
+<span class = "answer">61229</span>.</p>
+</div>
+
+<h2>Solution</h2>
+
+<table>
+  <tr class = 'row-0' markdown = '1'>
+    <td class = 'cell-0-0 col-0 ' markdown = '1'></td>
+    <td class = 'cell-0-1 col-1 ' markdown = '1'>#</td>
+    <td class = 'cell-0-2 col-2 ' markdown = '1'>0</td>
+    <td class = 'cell-0-3 col-3 ' markdown = '1'>1</td>
+    <td class = 'cell-0-4 col-4 ' markdown = '1'>2</td>
+    <td class = 'cell-0-5 col-5 ' markdown = '1'>3</td>
+    <td class = 'cell-0-6 col-6 ' markdown = '1'>4</td>
+    <td class = 'cell-0-7 col-7 ' markdown = '1'>5</td>
+    <td class = 'cell-0-8 col-8 ' markdown = '1'>6</td>
+    <td class = 'cell-0-9 col-9 ' markdown = '1'>7</td>
+    <td class = 'cell-0-10 col-10 ' markdown = '1'>8</td>
+    <td class = 'cell-0-11 col-11 ' markdown = '1'>9</td>
+  </tr>
+  <tr class = 'row-1' markdown = '1'>
+    <td class = 'cell-1-0 col-0 ' markdown = '1'>0</td>
+    <td class = 'cell-1-1 col-1 ' markdown = '1'>6</td>
+    <td class = 'cell-1-2 col-2 ' markdown = '1'></td>
+    <td class = 'cell-1-3 col-3 ' markdown = '1'>2</td>
+    <td class = 'cell-1-4 col-4 ' markdown = '1'>4</td>
+    <td class = 'cell-1-5 col-5 ' markdown = '1'>4</td>
+    <td class = 'cell-1-6 col-6 ' markdown = '1'>3</td>
+    <td class = 'cell-1-7 col-7 ' markdown = '1'>4</td>
+    <td class = 'cell-1-8 col-8 ' markdown = '1'>5</td>
+    <td class = 'cell-1-9 col-9 ' markdown = '1'>3</td>
+    <td class = 'cell-1-10 col-10 ' markdown = '1'>6</td>
+    <td class = 'cell-1-11 col-11 ' markdown = '1'>5</td>
+  </tr>
+  <tr class = 'row-2' markdown = '1'>
+    <td class = 'cell-2-0 col-0 ' markdown = '1'>1</td>
+    <td class = 'cell-2-1 col-1 ' markdown = '1'>2</td>
+    <td class = 'cell-2-2 col-2 ' markdown = '1'>2</td>
+    <td class = 'cell-2-3 col-3 ' markdown = '1'></td>
+    <td class = 'cell-2-4 col-4 ' markdown = '1'>1</td>
+    <td class = 'cell-2-5 col-5 ' markdown = '1'>2</td>
+    <td class = 'cell-2-6 col-6 ' markdown = '1'>2</td>
+    <td class = 'cell-2-7 col-7 ' markdown = '1'>1</td>
+    <td class = 'cell-2-8 col-8 ' markdown = '1'>1</td>
+    <td class = 'cell-2-9 col-9 ' markdown = '1'>2</td>
+    <td class = 'cell-2-10 col-10 ' markdown = '1'>2</td>
+    <td class = 'cell-2-11 col-11 ' markdown = '1'>2</td>
+  </tr>
+  <tr class = 'row-3' markdown = '1'>
+    <td class = 'cell-3-0 col-0 ' markdown = '1'>2</td>
+    <td class = 'cell-3-1 col-1 ' markdown = '1'>5</td>
+    <td class = 'cell-3-2 col-2 ' markdown = '1'>4</td>
+    <td class = 'cell-3-3 col-3 ' markdown = '1'>1</td>
+    <td class = 'cell-3-4 col-4 ' markdown = '1'></td>
+    <td class = 'cell-3-5 col-5 ' markdown = '1'>4</td>
+    <td class = 'cell-3-6 col-6 ' markdown = '1'>2</td>
+    <td class = 'cell-3-7 col-7 ' markdown = '1'>3</td>
+    <td class = 'cell-3-8 col-8 ' markdown = '1'>4</td>
+    <td class = 'cell-3-9 col-9 ' markdown = '1'>2</td>
+    <td class = 'cell-3-10 col-10 ' markdown = '1'>5</td>
+    <td class = 'cell-3-11 col-11 ' markdown = '1'>4</td>
+  </tr>
+  <tr class = 'row-4' markdown = '1'>
+    <td class = 'cell-4-0 col-0 ' markdown = '1'>3</td>
+    <td class = 'cell-4-1 col-1 ' markdown = '1'>5</td>
+    <td class = 'cell-4-2 col-2 ' markdown = '1'>4</td>
+    <td class = 'cell-4-3 col-3 ' markdown = '1'>2</td>
+    <td class = 'cell-4-4 col-4 ' markdown = '1'>4</td>
+    <td class = 'cell-4-5 col-5 ' markdown = '1'></td>
+    <td class = 'cell-4-6 col-6 ' markdown = '1'>3</td>
+    <td class = 'cell-4-7 col-7 ' markdown = '1'>4</td>
+    <td class = 'cell-4-8 col-8 ' markdown = '1'>4</td>
+    <td class = 'cell-4-9 col-9 ' markdown = '1'>3</td>
+    <td class = 'cell-4-10 col-10 ' markdown = '1'>5</td>
+    <td class = 'cell-4-11 col-11 ' markdown = '1'>5</td>
+  </tr>
+  <tr class = 'row-5' markdown = '1'>
+    <td class = 'cell-5-0 col-0 ' markdown = '1'>4</td>
+    <td class = 'cell-5-1 col-1 ' markdown = '1'>4</td>
+    <td class = 'cell-5-2 col-2 ' markdown = '1'>3</td>
+    <td class = 'cell-5-3 col-3 ' markdown = '1'>2</td>
+    <td class = 'cell-5-4 col-4 ' markdown = '1'>2</td>
+    <td class = 'cell-5-5 col-5 ' markdown = '1'>3</td>
+    <td class = 'cell-5-6 col-6 ' markdown = '1'></td>
+    <td class = 'cell-5-7 col-7 ' markdown = '1'>3</td>
+    <td class = 'cell-5-8 col-8 ' markdown = '1'>3</td>
+    <td class = 'cell-5-9 col-9 ' markdown = '1'>2</td>
+    <td class = 'cell-5-10 col-10 ' markdown = '1'>4</td>
+    <td class = 'cell-5-11 col-11 ' markdown = '1'>4</td>
+  </tr>
+  <tr class = 'row-6' markdown = '1'>
+    <td class = 'cell-6-0 col-0 ' markdown = '1'>5</td>
+    <td class = 'cell-6-1 col-1 ' markdown = '1'>5</td>
+    <td class = 'cell-6-2 col-2 ' markdown = '1'>4</td>
+    <td class = 'cell-6-3 col-3 ' markdown = '1'>1</td>
+    <td class = 'cell-6-4 col-4 ' markdown = '1'>3</td>
+    <td class = 'cell-6-5 col-5 ' markdown = '1'>4</td>
+    <td class = 'cell-6-6 col-6 ' markdown = '1'>3</td>
+    <td class = 'cell-6-7 col-7 ' markdown = '1'></td>
+    <td class = 'cell-6-8 col-8 ' markdown = '1'>5</td>
+    <td class = 'cell-6-9 col-9 ' markdown = '1'>2</td>
+    <td class = 'cell-6-10 col-10 ' markdown = '1'>5</td>
+    <td class = 'cell-6-11 col-11 ' markdown = '1'>5</td>
+  </tr>
+  <tr class = 'row-7' markdown = '1'>
+    <td class = 'cell-7-0 col-0 ' markdown = '1'>6</td>
+    <td class = 'cell-7-1 col-1 ' markdown = '1'>6</td>
+    <td class = 'cell-7-2 col-2 ' markdown = '1'>5</td>
+    <td class = 'cell-7-3 col-3 ' markdown = '1'>1</td>
+    <td class = 'cell-7-4 col-4 ' markdown = '1'>4</td>
+    <td class = 'cell-7-5 col-5 ' markdown = '1'>4</td>
+    <td class = 'cell-7-6 col-6 ' markdown = '1'>3</td>
+    <td class = 'cell-7-7 col-7 ' markdown = '1'>5</td>
+    <td class = 'cell-7-8 col-8 ' markdown = '1'></td>
+    <td class = 'cell-7-9 col-9 ' markdown = '1'>2</td>
+    <td class = 'cell-7-10 col-10 ' markdown = '1'>6</td>
+    <td class = 'cell-7-11 col-11 ' markdown = '1'>5</td>
+  </tr>
+  <tr class = 'row-8' markdown = '1'>
+    <td class = 'cell-8-0 col-0 ' markdown = '1'>7</td>
+    <td class = 'cell-8-1 col-1 ' markdown = '1'>3</td>
+    <td class = 'cell-8-2 col-2 ' markdown = '1'>3</td>
+    <td class = 'cell-8-3 col-3 ' markdown = '1'>2</td>
+    <td class = 'cell-8-4 col-4 ' markdown = '1'>2</td>
+    <td class = 'cell-8-5 col-5 ' markdown = '1'>3</td>
+    <td class = 'cell-8-6 col-6 ' markdown = '1'>2</td>
+    <td class = 'cell-8-7 col-7 ' markdown = '1'>2</td>
+    <td class = 'cell-8-8 col-8 ' markdown = '1'>2</td>
+    <td class = 'cell-8-9 col-9 ' markdown = '1'></td>
+    <td class = 'cell-8-10 col-10 ' markdown = '1'>3</td>
+    <td class = 'cell-8-11 col-11 ' markdown = '1'>3</td>
+  </tr>
+  <tr class = 'row-9' markdown = '1'>
+    <td class = 'cell-9-0 col-0 ' markdown = '1'>8</td>
+    <td class = 'cell-9-1 col-1 ' markdown = '1'>7</td>
+    <td class = 'cell-9-2 col-2 ' markdown = '1'>6</td>
+    <td class = 'cell-9-3 col-3 ' markdown = '1'>2</td>
+    <td class = 'cell-9-4 col-4 ' markdown = '1'>5</td>
+    <td class = 'cell-9-5 col-5 ' markdown = '1'>5</td>
+    <td class = 'cell-9-6 col-6 ' markdown = '1'>4</td>
+    <td class = 'cell-9-7 col-7 ' markdown = '1'>5</td>
+    <td class = 'cell-9-8 col-8 ' markdown = '1'>6</td>
+    <td class = 'cell-9-9 col-9 ' markdown = '1'>3</td>
+    <td class = 'cell-9-10 col-10 ' markdown = '1'></td>
+    <td class = 'cell-9-11 col-11 ' markdown = '1'>6</td>
+  </tr>
+  <tr class = 'row-10' markdown = '1'>
+    <td class = 'cell-10-0 col-0 ' markdown = '1'>9</td>
+    <td class = 'cell-10-1 col-1 ' markdown = '1'>6</td>
+    <td class = 'cell-10-2 col-2 ' markdown = '1'>5</td>
+    <td class = 'cell-10-3 col-3 ' markdown = '1'>2</td>
+    <td class = 'cell-10-4 col-4 ' markdown = '1'>4</td>
+    <td class = 'cell-10-5 col-5 ' markdown = '1'>5</td>
+    <td class = 'cell-10-6 col-6 ' markdown = '1'>4</td>
+    <td class = 'cell-10-7 col-7 ' markdown = '1'>5</td>
+    <td class = 'cell-10-8 col-8 ' markdown = '1'>5</td>
+    <td class = 'cell-10-9 col-9 ' markdown = '1'>3</td>
+    <td class = 'cell-10-10 col-10 ' markdown = '1'>6</td>
+    <td class = 'cell-10-11 col-11 ' markdown = '1'></td>
+  </tr>
+</table>
+
+<p>The key to the solution is to determine what is unique about
+the signals for each number.</p>
+
+<p>Take a look at the table on the right. The first column has
+the ten digits. The second column, marked with a #, indicates
+how many segments the digit uses. The next ten columns show
+how many segments the digit shares with the other nine digits.</p>
+
+<p>We can see that four digits have a unique number of segments:
+<span class = "segment7">1</span> uses two segments,
+<span class = "segment7">4</span> uses four segments,
+<span class = "segment7">7</span> uses three segments, and
+<span class = "segment7">8</span> uses seven segments.</p>
+
+<p>The other digits can be grouped into two groups:
+<span class = "segment7">0</span>,
+<span class = "segment7">6</span>, and
+<span class = "segment7">9</span> all use six segments,
+while
+<span class = "segment7">2</span>,
+<span class = "segment7">3</span>, and
+<span class = "segment7">5</span> all use five segments.
+We can distinguish between those digits to look at the
+number of segments they share with digits we have already
+identified.</p>
+
+<p>Looking at the table, of the group
+<span class = "segment7">0</span>,
+<span class = "segment7">6</span>, and
+<span class = "segment7">9</span> one of them
+(<span class = "segment7">6</span>) shares
+exactly one segment with
+<span class = "segment7">1</span>, while the other
+two share two segments. Having identified <span class = "segment7">6</span>,
+we can distinguish between
+<span class = "segment7">0</span>, and
+<span class = "segment7">9</span> by comparing them with
+<span class = "segment7">4</span>: <span class = "segment7">0</span>
+shares three segments with <span class = "segment7">4</span>,
+while <span class = "segment7">9</span> shares four segments.</p>
+
+<p>Which leaves use the group of
+<span class = "segment7">2</span>,
+<span class = "segment7">3</span>, and
+<span class = "segment7">5</span>. When we compare those numbers
+with <span class = "segment7">1</span>, then
+<span class = "segment7">3</span> has two segments in common,
+while the other two digits have one segment in common. To
+distinguish between <span class = "segment7">2</span>,
+and <span class = "segment7">5</span>, we compare them with
+<span class = "segment7">9</span>. If they have five segments
+in common, the digit is a <span class = "segment7">5</span>,
+else, it's a <span class = "segment7">2</span>.</p>
+
+<h3>Perl</h3>
+
+<p>First thing we do is read a line of input. We will sort the segments
+in the signals &mdash; that way each digit has always the same representation.
+That is, an <span class = "segment7">8</span> will always be representated
+as <code>abcdefg</code> (all seven segments are on), instead of <code>bdecagf</code> or
+<code>gfedcba</code>. And if for <span class = "segment7">7</span>, the segments
+<code>b</code>, <code>d</code> and <code>f</code> are used, we always represent that as <code>bdf</code>.</p>
+
+<pre><code>chomp;
+my ($input, $output) = split /\s*\|\s*/;
+
+my @input  = map {join "" =&gt; sort split //} split ' ' =&gt; $input;
+my @output = map {join "" =&gt; sort split //} split ' ' =&gt; $output;
+</code></pre>
+
+<p>Now, <code>@input</code> contains the first ten signals, and <code>@output</code> the
+signals for the display.</p>
+
+<p>Next, we will group the input signals by their length:</p>
+
+<pre><code>my @buckets;
+foreach my $i (@input) {
+    push @{$buckets [length $i]} =&gt; $i;
+}
+</code></pre>
+
+<p>Since some of the lengths are unique for some digits, we can
+fill in some digits. <code>@digits</code> maps digits to their signal:</p>
+
+<pre><code>my @digits;
+$digits [1] = $buckets [2] [0];
+$digits [4] = $buckets [4] [0];
+$digits [7] = $buckets [3] [0];
+$digits [8] = $buckets [7] [0];
+</code></pre>
+
+<p>We will create a helper function. Given the signals of two digits,
+it will return how many segments they have in common:</p>
+
+<pre><code>sub shares ($f, $s) {
+    grep {$s =~ /$_/} split // =&gt; $f;
+}
+</code></pre>
+
+<p>We can now distinguish between <code>0</code>, <code>6</code>, and <code>9</code>, and between
+<code>2</code>, <code>3</code>, and <code>5</code> by comparing the number of shared segments
+to known digits:</p>
+
+<pre><code>foreach my $try (@{$buckets [6]}) {
+    $digits [shares ($try, $digits [1]) == 1 ? 6
+           : shares ($try, $digits [4]) == 3 ? 0
+           :                                   9] = $try;
+}
+
+foreach my $try (@{$buckets [5]}) {
+    $digits [shares ($try, $digits [1]) == 2 ? 3
+           : shares ($try, $digits [9]) == 5 ? 5
+           :                                   2] = $try;
+}
+</code></pre>
+
+<p>We now know the signals for each of the digits. So, we create
+a lookup table which maps the signals to the digits:</p>
+
+<pre><code>my %display;
+$display {$digits [$_]} = $_ for keys @digits;
+</code></pre>
+
+<p>Now it's just a matter of counting and adding:</p>
+
+<pre><code>$count1 += grep {$display {$_} == 1 ||
+                 $display {$_} == 4 ||
+                 $display {$_} == 7 ||
+                 $display {$_} == 8}      @output;
+
+$count2 += join "" =&gt; map {$display {$_}} @output;
+</code></pre>
+
+<p>And we print the results:</p>
+
+<pre><code>say "Solution 1: ", $count1;
+say "Solution 2: ", $count2;
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/AdventofCode2021/blob/master/Day_08/solution.pl">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+
+<hr id = 'last-line'>
+<div class = 'trailer'>
+<p class = 'prev'><a class = "prev" href = "">&#x261C;</a></p>
+<p class = 'issue'>Please leave any comments as a
+  <a href = 'https://github.com/Abigail/Abigail.github.io/issues'
+     title = 'GitHub issue'>GitHub issue</a>.
+<p class = 'next'><a class = "next" href = "">&#x261E;</a></p>
+</div>
+
+</body>
+</html>
