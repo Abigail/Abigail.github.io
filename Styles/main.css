@@ -158,3 +158,10 @@ span.qed:hover::after {
     font-weight:                         bold;
     content:                            "qed";
 }
+
+
+.segment7 {
+    font-family:           'Segment7Standard';
+    font-weight:                       normal;
+    font-style:                        italic;
+}

@@ -52,6 +52,7 @@ my @FONTS          = map {s/ /+/r} ("Lobster Two",
                                     'Sorts Mill Goudy:ital@1',);
 my $FONTS          = join "&" => map {"family=$_"} @FONTS;
 my $FONT_URL       = "https://fonts.googleapis.com/css2?$FONTS&display=swap";
+my $LCD_FONT_URL   = "https://fontlibrary.org//face/segment7";
 
 my $PERLFUNC_URL   = "https://perldoc.perl.org/perlfunc";
 my $PERLDOC_URL    = "https://perldoc.perl.org";
@@ -113,7 +114,6 @@ my %LINK_GROUP; init_link_group ();
 
 chdir $TOP_DIR or die "chdir: $!";
 
-
 sub header ($title, $directives) {
     #
     # Return the header of the HTML page
@@ -146,6 +146,13 @@ sub header ($title, $directives) {
        $chart_js = "<script id = 'chart-script' async src = '$CHART_URL'>" .
                   "</script>" if $$directives {has_canvas};
 
+    my @fonts = ("<link rel = 'preconnect' href = 'https://fonts.gstatic.com'>",
+                 "<link rel = 'stylesheet' href = '$FONT_URL'>");
+    push @fonts => "<link rel = 'stylesheet' href = '$LCD_FONT_URL' " .
+                       "media = 'screen' type = 'text/css'> "
+             if grep {$_ eq "LCD"} @{$$directives {font} || []};
+    my $fonts = join "\n" => @fonts;
+
     return <<~ "--" =~ s/^\s*\n//gmr;
         <head>
         <title>$title</title>
@@ -154,8 +161,7 @@ sub header ($title, $directives) {
         <script id = "MathJax-script" async src = "$MATHJAX_URL"></script>
         $chart_js
         $scripts
-        <link rel = 'preconnect' href = 'https://fonts.gstatic.com'>
-        <link rel = 'stylesheet' href = '$FONT_URL'>
+        $fonts
         $styles
         </head>
         --
@@ -457,12 +463,23 @@ sub pre_process ($text, $directives) {
     #
     # Scan for directives, which are of the format
     #
-    #   <!-- %% directive        --> or
-    #   <!-- %% directive: value -->
+    #   <!-- %%  directive        --> or
+    #   <!-- %%  directive: value --> or
+    #   <!-- %%% directive: value -->    (Used for multiple values)
     #
 
-    while ($text =~ s/^\s*<!--\s*%%\s*(\S+)(?:\s*:\s*(.*\S))?\s*-->\s*\n//m) {
-        $$directives {$1} = $2 // 1;
+    while ($text =~ s/^\s*<!--\s*%%(%?)\s*(\S+)(?:\s*:\s*(.*\S))?\s*
+                            -->\s*\n//xm) {
+        my $multiple = !!$1;
+        my $key      =   $2;
+        my $value    =   $3 // 1;
+        if ($multiple) {
+                   $$directives {$key} ||= [];
+            push @{$$directives {$key}} => $value;
+        }
+        else {
+            $$directives {$key} = $value;
+        }
     }
 
     my @tokens = (["\Q~~~~",  "\Q~~~~",  \&code_block],
