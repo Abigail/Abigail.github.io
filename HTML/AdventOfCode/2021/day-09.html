@@ -1,0 +1,156 @@
+<html>
+<head>
+<title>Advent Of Code 2021, Day 9: Smoke Basin</title>
+<script src = "https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script src = "../../../JavaScript/jquery.js"></script>
+<script id = "MathJax-script" async src = "https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.js"></script>
+<script src = '../../../JavaScript/AdventOfCode/main-header.js'></script>
+<script src = '../../../JavaScript/navigation.js'></script>
+<script src = '../../../JavaScript/nav_advent_of_code.js'></script>
+<link rel = 'preconnect' href = 'https://fonts.gstatic.com'>
+<link rel = 'stylesheet' href = 'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
+<link rel = 'stylesheet' href = '../../../Styles/main.css'>
+<link rel = 'stylesheet' href = '../../../Styles/AdventOfCode/main.css'>
+</head>
+
+<body><h1>Advent Of Code 2021, Day 9: Smoke Basin</h1><div class = "byline">
+by Abigail<br>
+<img src = "../../../Images/jan_sluiters.jpg">
+</div>
+
+
+<h2><a href="https://adventofcode.com/2021/day/9">Challenge</a></h2>
+
+<div class = "section">
+<p>We are given a heightmap as follows:</p>
+
+<pre><code>2199943210
+3987894921
+9856789892
+8767896789
+9899965678
+</code></pre>
+
+<p>Each number (all single digits) corresponds to a height: <code>0</code> is
+the lowest, and <code>9</code> is the heightest.</p>
+</div>
+
+<h4>Part One</h4>
+
+<div class = "section">
+<p>Part One asks us the find the <em>low points</em>: points which are
+lower than any of its orthogonally adjacent locations. The <em>risk
+level</em> of a point is its heigth plus one. We need to report
+the sum of the risk levels of the low points.</p>
+
+<p>For the given example, the answer is <span class = "answer">15</span>.</p>
+</div>
+
+<h4>Part Two</h4>
+
+<div class = "section">
+<p>Part Two defines basins:</p>
+
+<blockquote>
+  <p>A basin is all locations that eventually flow downward to a single
+  low point. Therefore, every low point has a basin, although some
+  basins are very small. Locations of height 9 do not count as being
+  in any basin, and all other locations will always be part of exactly
+  one basin.</p>
+</blockquote>
+
+<p>That's a bit of a tricky definition. But it does mean that the input
+is such that every basin has exactly one low point, and every basin
+is either bounded by the edge of the input, or by <code>9</code>s.</p>
+
+<p>The <em>size</em> of a basin is the number of points in a basin. For Part Two,
+we are asked to find the three largests basins, and report the product
+of their sizes.</p>
+
+<p>For the example input, we get <span class = "answer">1134</span>
+as answer, as the three largest basins have sizes <code>9</code>, <code>9</code>, and <code>14</code>,
+and <code>1134</code> is the product of those three numbers.</p>
+</div>
+
+<h2>Solution</h2>
+
+<h3>Perl</h3>
+
+<p>We first read in the map. For that, we use a 2-dimensional array. 
+At the end of each row, we add a <code>9</code>, and we add an additional
+row with all <code>9</code>s. The advantage of that is, we can look at all
+the neighbours of a point by adding/substracting 1 from its indices
+without worrying about boundaries &mdash; indexing by <code>-1</code> gives the last
+element of an array.</p>
+
+<pre><code>my @floor = map {[(/[0-9]/g), 9]} &lt;&gt;;
+push @floor =&gt; [(9) x @{$floor [0]}];
+
+my $X =   @floor      - 1;
+my $Y = @{$floor [0]} - 1;
+</code></pre>
+
+<p>We now create a method <code>basin_size</code> which takes three arguments:
+<code>$x</code>, <code>$y</code> (the coordinates of a low point), and <code>$floor</code>, the
+height map. Not only will it count the size of the basin, it
+also sets the height of any point of the basin to <code>9</code>. This
+not only prevents us from counting a point in the basin more
+than once, it also has a very tiny speed up later on.</p>
+
+<p>We're using a basic <a href="https://en.wikipedia.org/wiki/breadth-first_search">breadth-first search</a>.</p>
+
+<pre><code>sub basin_size ($x, $y, $floor) {
+    my $size = 0;
+    my @todo = ([$x, $y]);
+    while (my $point = shift @todo) {
+        my ($px, $py) = @$point;
+        next if $$floor [$px] [$py] == 9;
+        $$floor [$px] [$py] = 9;
+        $size ++;
+        push @todo =&gt;  [$px - 1, $py],     [$px + 1, $py],
+                       [$px,     $py - 1], [$px,     $py + 1];
+    }
+    $size;
+}
+</code></pre>
+
+<p>We can now scan the map, and if we have a low point, calculate the
+size of the basin. We keep the basin sizes in an array:</p>
+
+<pre><code>my @basins;
+
+foreach my $x (0 .. $X - 1) {
+    foreach my $y (0 .. $Y - 1) {
+        if ($floor [$x] [$y] &lt; $floor [$x - 1] [$y]     &amp;&amp;
+            $floor [$x] [$y] &lt; $floor [$x + 1] [$y]     &amp;&amp;
+            $floor [$x] [$y] &lt; $floor [$x]     [$y - 1] &amp;&amp;
+            $floor [$x] [$y] &lt; $floor [$x]     [$y + 1]) {
+            $sum += $floor [$x] [$y] + 1;
+            push @basins =&gt; basin_size $x, $y, \@floor;
+        }
+    }
+}
+</code></pre>
+
+<p>Given the basin sizes, it's easy to calculate the product of the
+three largests:</p>
+
+<pre><code>@basins = sort {$a &lt;=&gt; $b} @basins;
+
+say "Solution 1: ", $sum;
+say "Solution 2: ", $basins [-1] * $basins [-2] * $basins [-3];
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/AdventofCode2021/blob/master/Day_09/solution.pl">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+
+<hr id = 'last-line'>
+<div class = 'trailer'>
+<p class = 'prev'><a class = "prev" href = "">&#x261C;</a></p>
+<p class = 'issue'>Please leave any comments as a
+  <a href = 'https://github.com/Abigail/Abigail.github.io/issues'
+     title = 'GitHub issue'>GitHub issue</a>.
+<p class = 'next'><a class = "next" href = "">&#x261E;</a></p>
+</div>
+
+</body>
+</html>
