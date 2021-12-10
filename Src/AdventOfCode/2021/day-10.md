@@ -42,7 +42,7 @@ wrong set of parenthesis:
 [[<<span class = 'incorrect'>[</span>([])<span class = 'incorrect'>)</span><([[{}[[()]]]
 [{[{<span class = 'incorrect'>(</span>{}<span class = 'incorrect'>]</span>{}}([{[{{{}}([]
 [<(<(<(<span class = 'incorrect'><</span>{}<span class = 'incorrect'>)</span>)><([]([]()
-<{([(<span class = 'incorrect'>[</span>[(<>()){}]<span class = 'incorrect'>></span>(<<{{
+<{([(<span class = 'incorrect'>[</span>[(<>()){}]<span class = 'incorrect'>></span>(<<{<span>{</span>
 </code></pre>
 
 
