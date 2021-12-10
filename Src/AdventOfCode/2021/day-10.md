@@ -162,3 +162,26 @@ say "Solution 2: ", (sort {$a <=> $b} @scores) [@scores / 2];
 ~~~~
 
 FULL_PROGRAM
+
+#### Single Regexp
+
+For Part One, we could use a single regular expression:
+
+~~~~
+my $pattern = << '--';
+  (?(DEFINE)
+      (?<balanced> (?: \( (?&balanced)* \)
+                     | \[ (?&balanced)* \]
+                     | \{ (?&balanced)* \}
+                     |  < (?&balanced)* >)*)
+  )
+  (?| [[({] (?&balanced) (>)
+    | [[(<] (?&balanced) (\})
+    | [[{<] (?&balanced) (\))
+    | [({<] (?&balanced) (\]))
+--
+~~~~
+
+Now, if one matches `/$pattern/x` against a line, if matches if and
+only if that line is corrupted -- and if it does, `$2` contains the
+first non-matching closing parenthesis.

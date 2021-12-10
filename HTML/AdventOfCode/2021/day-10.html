@@ -65,7 +65,7 @@ wrong set of parenthesis:</p>
 [[<<span class = 'incorrect'>[</span>([])<span class = 'incorrect'>)</span><([[{}[[()]]]
 [{[{<span class = 'incorrect'>(</span>{}<span class = 'incorrect'>]</span>{}}([{[{{{}}([]
 [<(<(<(<span class = 'incorrect'><</span>{}<span class = 'incorrect'>)</span>)><([]([]()
-<{([(<span class = 'incorrect'>[</span>[(<>()){}]<span class = 'incorrect'>></span>(<<{{
+<{([(<span class = 'incorrect'>[</span>[(<>()){}]<span class = 'incorrect'>></span>(<<{<span>{</span>
 </code></pre>
 
 <p>The incorrect closing parenthesis are <code>}</code>, <code>)</code>, <code>]</code>, <code>)</code>, and <code>&gt;</code>.
@@ -141,6 +141,7 @@ are characters without a closing delimiter.</p>
 
 <h3>Perl</h3>
 
+<div class = "section">
 <p>In our Perl solution, we won't use a stack. Instead, we repeatedly
 remove pairs of delimiters: <code>()</code>, <code>[]</code>, <code>{}</code>, <code>&lt;&gt;</code>. This will
 remove all substrings which are correctly balanced. </p>
@@ -189,6 +190,29 @@ say "Solution 2: ", (sort {$a &lt;=&gt; $b} @scores) [@scores / 2];
 </code></pre>
 
 <p>Find the <a href="https://github.com/Abigail/AdventofCode2021/blob/master/Day_10/solution.pl">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h4>Single Regexp</h4>
+
+<p>For Part One, we could use a single regular expression:</p>
+
+<pre><code>my $pattern = &lt;&lt; '--';
+  (?(DEFINE)
+      (?&lt;balanced&gt; (?: \( (?&amp;balanced)* \)
+                     | \[ (?&amp;balanced)* \]
+                     | \{ (?&amp;balanced)* \}
+                     |  &lt; (?&amp;balanced)* &gt;)*)
+  )
+  (?| [[({] (?&amp;balanced) (&gt;)
+    | [[(&lt;] (?&amp;balanced) (\})
+    | [[{&lt;] (?&amp;balanced) (\))
+    | [({&lt;] (?&amp;balanced) (\]))
+--
+</code></pre>
+
+<p>Now, if one matches <code>/$pattern/x</code> against a line, if matches if and
+only if that line is corrupted &mdash; and if it does, <code>$2</code> contains the
+first non-matching closing parenthesis.</p>
 
 <hr id = 'last-line'>
 <div class = 'trailer'>
