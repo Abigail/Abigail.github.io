@@ -345,11 +345,13 @@ sub process_section ($section, $language, $directives) {
     #
     # Process MathJax delimiters
     #
-    $section =~ s/(?<!\\)(\\[]()[])/\\$1/g;
-    $section =~ s {(\\ \\ \( .*? \\ \\ \))}
-                  {<span class = 'latex-inline'>$1</span>}xg;
-    $section =~ s {(\\ \\ \[ .*? \\ \\ \])}
-                  {<span class = 'latex-display'>$1</span>}xg;
+    unless ($section =~ s/^\s*<!--\s*%\s*no mathjax\s*-->\s*$//m) {
+        $section =~ s/(?<!\\)(\\[]()[])/\\$1/g;
+        $section =~ s {(\\ \\ \( .*? \\ \\ \))}
+                      {<span class = 'latex-inline'>$1</span>}xg;
+        $section =~ s {(\\ \\ \[ .*? \\ \\ \])}
+                      {<span class = 'latex-display'>$1</span>}xg;
+    }
 
     #
     # Turn a double dash into an &mdash -- except inside a pre-
