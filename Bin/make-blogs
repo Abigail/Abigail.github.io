@@ -357,7 +357,7 @@ sub process_section ($section, $language, $directives) {
     # Turn a double dash into an &mdash -- except inside a pre-
     # formatted section.
     #
-    $section =~ s {("--"|'--'|^\h*--\h*$|^    .*)|(?<!-)--(?!-)}
+    $section =~ s {("--"|'--'|^\h*--\h*$|^    .*|<!--|-->)|(?<!-)--(?!-)}
                   {$1 || "&mdash;"}gme;
 
     $section . "\n";
