@@ -202,10 +202,11 @@ We can now continue with this path, and consider all the neighbours of
 the next cave as possible continuations. We'll have to include the
 cave we're now entering in the set of visited caves:
 
+{% raw %}
 ~~~~
 push @todo => map {[$_, {%$seen, $next => 1}, $twice]} keys %{$caves {$next}};
 ~~~~
-<!-- %} %} -->
+{% endraw %}
 
 Once if we have exhausted all possible paths, we can print the results:
 
