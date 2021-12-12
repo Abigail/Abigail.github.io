@@ -463,6 +463,11 @@ sub pre_process ($text, $directives) {
     my $out = "";
 
     #
+    # Remove tags which are only there to satifsy GitHub
+    #
+    $text =~ s/^\{%\s+(?:end)?raw\s+%\}\h*\n//gm;
+
+    #
     # Scan for directives, which are of the format
     #
     #   <!-- %%  directive        --> or
