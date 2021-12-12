@@ -1,0 +1,246 @@
+<html>
+<head>
+<title>Advent Of Code 2021, Day 12: Passage Pathing</title>
+<script src = "https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script src = "../../../JavaScript/jquery.js"></script>
+<script id = "MathJax-script" async src = "https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.js"></script>
+<script src = '../../../JavaScript/AdventOfCode/main-header.js'></script>
+<script src = '../../../JavaScript/navigation.js'></script>
+<script src = '../../../JavaScript/nav_advent_of_code.js'></script>
+<link rel = 'preconnect' href = 'https://fonts.gstatic.com'>
+<link rel = 'stylesheet' href = 'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
+<link rel = 'stylesheet' href = '../../../Styles/main.css'>
+<link rel = 'stylesheet' href = '../../../Styles/AdventOfCode/main.css'>
+</head>
+
+<body><h1>Advent Of Code 2021, Day 12: Passage Pathing</h1><div class = "byline">
+by Abigail<br>
+<img src = "../../../Images/jan_sluiters.jpg">
+</div>
+
+
+<h2><a href="https://adventofcode.com/2021/day/12">Challenge</a></h2>
+
+<div class = "section">
+<p>Today, we are going to have to navigate a cave system. We have a
+cave system of connected caves. There are two types of caves:
+small caves and large caves. We also have a start and end cave.</p>
+
+<p>Our input consists of a set of connection, each line represents a
+connection between two caves. Large caves have their name in all
+capitals, while small caves have their name in lower case. The
+start and end cave are marked with obvious names:</p>
+
+<pre><code>start-A
+start-b
+A-c
+A-b
+b-d
+A-end
+b-end
+</code></pre>
+
+<p>This corresponds roughly to the following cave system:</p>
+
+<pre><code>                            +---+
+                            | c |
+                            +-+-+
+                              |
+                           +--+--+
+                           |     |
+                       +---+  A  +---+
+           +-------+   |   |     |   |   +-------+
+           |       +---+   +--+--+   +---+       |
+           | start |          |          |  end  |
+           |       +---+      |      +---+       |
+           +-------+   |    +-+-+    |   +-------+
+                       +----+ b +----+
+                            +-+-+
+                              |
+                            +-+-+
+                            | d |
+                            +---+
+</code></pre>
+
+<p>Now, we are not interested in finding a path, we want to know
+<em>all</em> paths from the start cave to the end cave, under certain
+conditions.</p>
+</div>
+
+<h4>Part One</h4>
+
+<div class = "section">
+<p>For Part One, we want the number of paths from the start cave to the
+end cave, where we do not visit a small cave more than once. For the
+example input above, we have <span class = "answer">10</span> qualifying
+paths:</p>
+
+<pre><code>start,A,b,A,c,A,end
+start,A,b,A,end
+start,A,b,end
+start,A,c,A,b,A,end
+start,A,c,A,b,end
+start,A,c,A,end
+start,A,end
+start,b,A,c,A,end
+start,b,A,end
+start,b,end
+</code></pre>
+</div>
+
+<h4>Part Two</h4>
+
+<div class = "section">
+<p>In Part Two, we still want to know the number of qualifying paths, but
+now we are allowed to visit one (but not more than one) small cave twice.
+We cannot revisit the start cave, nor leave the end cave. Under this
+condition, we have <span class = "answer">36</span> qualifying paths:</p>
+
+<pre><code>start,A,b,A,b,A,c,A,end
+start,A,b,A,b,A,end
+start,A,b,A,b,end
+start,A,b,A,c,A,b,A,end
+start,A,b,A,c,A,b,end
+start,A,b,A,c,A,c,A,end
+start,A,b,A,c,A,end
+start,A,b,A,end
+start,A,b,d,b,A,c,A,end
+start,A,b,d,b,A,end
+start,A,b,d,b,end
+start,A,b,end
+start,A,c,A,b,A,b,A,end
+start,A,c,A,b,A,b,end
+start,A,c,A,b,A,c,A,end
+start,A,c,A,b,A,end
+start,A,c,A,b,d,b,A,end
+start,A,c,A,b,d,b,end
+start,A,c,A,b,end
+start,A,c,A,c,A,b,A,end
+start,A,c,A,c,A,b,end
+start,A,c,A,c,A,end
+start,A,c,A,end
+start,A,end
+start,b,A,b,A,c,A,end
+start,b,A,b,A,end
+start,b,A,b,end
+start,b,A,c,A,b,A,end
+start,b,A,c,A,b,end
+start,b,A,c,A,c,A,end
+start,b,A,c,A,end
+start,b,A,end
+start,b,d,b,A,c,A,end
+start,b,d,b,A,end
+start,b,d,b,end
+start,b,end
+</code></pre>
+</div>
+
+<h2>Solution</h2>
+
+<div class = "section">
+<p>We will solve this using a <a href="https://en.wikipedia.org/wiki/depth-first_search">depth-first search</a>. (We could have
+used a <a href="https://en.wikipedia.org/wiki/breadth-first_search">breadth-first search</a> as easily &mdash; in our solution, the
+difference is a <code>shift</code> vs a <code>pop</code>). We could have used recursion, but
+we prefer a <a href="https://en.wikipedia.org/wiki/Stack_(abstract_data_type)">stack</a>
+(or <a href="https://en.wikipedia.org/wiki/FIFO_(computing_and_electronics)">queue</a> if we had opted for
+a depth-first search).</p>
+</div>
+
+<h3>Perl</h3>
+
+<p>First we need to read in the data. We use a data structure <code>%caves</code> to
+map the cave system. <code>%caves</code> is a multi-level hash. If two caves
+<code>A</code> and <code>B</code> are connected, we have <code>$caves {A} {B} = 1</code> and
+<code>$caves {B} {A} = 1</code>, with the exception of the caves <code>start</code> and <code>end</code>.
+We won't have entries where <code>start</code> is the second key, nor will we
+have entries where <code>end</code> is the first key.</p>
+
+<pre><code>my $START = "start";
+my $END   = "end";
+
+my %caves;
+while (&lt;&gt;) {
+    my ($from, $to) = /[A-Z]+/gi;
+    $caves {$from} {$to} = 1 unless $from eq $END   || $to eq $START;
+    $caves {$to} {$from} = 1 unless $from eq $START || $to eq $END;
+}
+</code></pre>
+
+<p>During our search, we need a list of <em>states</em> we still need to process.
+A state corresponds to a partial path starting from the start cave.
+The path may reach a dead-end, reach the end, or branch into multiple
+paths.</p>
+
+<p>Each partial path consists of three items:</p>
+
+<ul>
+<li>The <em>next</em> cave we're about to process.</li>
+<li>A set indicating which caves we have visited on this path (we do not
+have to care about the order).</li>
+<li>A boolean indicating whether we have visited a small cave twice
+already.</li>
+</ul>
+
+<p>We'll have a stack <code>@todo</code> with states we still need to process. We
+start with a single state:</p>
+
+<pre><code>my @todo = ([$START, {}, 0]);
+</code></pre>
+
+<p>This means, we have an empty path so far, and the next cave we are
+considering to enter is the start cave.</p>
+
+<p>We will now loop until the stack is empty. To count paths, we
+need two counters, one for each challenge part.</p>
+
+<pre><code>my $paths1 = 0;
+my $paths2 = 0;
+while (@todo) {
+    my ($next, $seen, $twice) = @{pop @todo};
+</code></pre>
+
+<p>If the next cave is the end cave, we're done with this path,
+and we count the path. If we have visited a small cave more
+than once, we only count it for part two; else, it counts 
+for both part one and part two.</p>
+
+<pre><code>if ($next eq $END) {
+    $paths1 ++ if !$twice;
+    $paths2 ++;
+    next;
+}
+</code></pre>
+
+<p>Next, we have to determine whether we can continue with this path.
+We cannot if the next cave is small, we have been in this cave, and
+we have been to a small twice:</p>
+
+<pre><code>next if $next eq lc $next &amp;&amp; $$seen {$next} &amp;&amp; $twice ++;
+</code></pre>
+
+<p>We can now continue with this path, and consider all the neighbours of
+the next cave as possible continuations. We'll have to include the
+cave we're now entering in the set of visited caves:</p>
+
+<pre><code>push @todo =&gt; map {[$_, {%$seen, $next =&gt; 1}, $twice]} keys %{$caves {$next}};
+</code></pre>
+
+<p>Once if we have exhausted all possible paths, we can print the results:</p>
+
+<pre><code>say "Solution 1: ", $paths1;
+say "Solution 2: ", $paths2;
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/AdventofCode2021/blob/master/Day_12/solution.pl">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+
+<hr id = 'last-line'>
+<div class = 'trailer'>
+<p class = 'prev'><a class = "prev" href = "">&#x261C;</a></p>
+<p class = 'issue'>Please leave any comments as a
+  <a href = 'https://github.com/Abigail/Abigail.github.io/issues'
+     title = 'GitHub issue'>GitHub issue</a>.
+<p class = 'next'><a class = "next" href = "">&#x261E;</a></p>
+</div>
+
+</body>
+</html>

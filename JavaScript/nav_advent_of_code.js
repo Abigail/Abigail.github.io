@@ -16,6 +16,7 @@ let pages = [
     ["day-09", "Smoke Basin"],
     ["day-10", "Syntax Scoring"],
     ["day-11", "Dumbo Octopus"],
+    ["day-12", "Passage Pathing"],
 ]
 
 pages . forEach (entry => {
