@@ -205,6 +205,7 @@ cave we're now entering in the set of visited caves:
 ~~~~
 push @todo => map {[$_, {%$seen, $next => 1}, $twice]} keys %{$caves {$next}};
 ~~~~
+<!-- %} %} -->
 
 Once if we have exhausted all possible paths, we can print the results:
 

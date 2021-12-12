@@ -225,6 +225,8 @@ cave we're now entering in the set of visited caves:</p>
 <pre><code>push @todo =&gt; map {[$_, {%$seen, $next =&gt; 1}, $twice]} keys %{$caves {$next}};
 </code></pre>
 
+<!-- %} %} -->
+
 <p>Once if we have exhausted all possible paths, we can print the results:</p>
 
 <pre><code>say "Solution 1: ", $paths1;
