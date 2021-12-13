@@ -1,4 +1,4 @@
-# Advent Of Code 2021, Day 13: Passage Pathing
+# Advent Of Code 2021, Day 13: Transparent Origami
 
 ## [Challenge](https://adventofcode.com/2021/day/12)
 
