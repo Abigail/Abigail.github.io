@@ -18,6 +18,7 @@ let pages = [
     ["day-11", "Dumbo Octopus"],
     ["day-12", "Passage Pathing"],
     ["day-13", "Transparent Origami"],
+    ["day-14", "Extended Polymerization"],
 ]
 
 pages . forEach (entry => {

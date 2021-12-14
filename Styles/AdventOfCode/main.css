@@ -4,3 +4,6 @@ span.answer     {color:                              green;
                  font-family: 'Source Code Pro', monospace;
                  font-size:                            95%;}
 
+
+span.important  {color: red;}
+

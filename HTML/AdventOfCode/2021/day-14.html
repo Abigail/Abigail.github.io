@@ -1,0 +1,238 @@
+<html>
+<head>
+<title>Advent Of Code 2021, Day 14: Extended Polymerization</title>
+<script src = "https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script src = "../../../JavaScript/jquery.js"></script>
+<script id = "MathJax-script" async src = "https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.js"></script>
+<script src = '../../../JavaScript/AdventOfCode/main-header.js'></script>
+<script src = '../../../JavaScript/navigation.js'></script>
+<script src = '../../../JavaScript/nav_advent_of_code.js'></script>
+<link rel = 'preconnect' href = 'https://fonts.gstatic.com'>
+<link rel = 'stylesheet' href = 'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
+<link rel = 'stylesheet' href = '../../../Styles/main.css'>
+<link rel = 'stylesheet' href = '../../../Styles/AdventOfCode/main.css'>
+</head>
+
+<body><h1>Advent Of Code 2021, Day 14: Extended Polymerization</h1><div class = "byline">
+by Abigail<br>
+<img src = "../../../Images/jan_sluiters.jpg">
+</div>
+
+
+<h2><a href="https://adventofcode.com/2021/day/14">Challenge</a></h2>
+
+<div class = "section">
+<p>In todays challenge, we are going to create a polymer. Polymers
+consists of strings of elements, each element a capital letter.
+We will be
+given a <em>template</em> and a list of <em>pair insertion</em> rules. For
+instance:</p>
+
+<pre><code>NNCB
+
+CH -&gt; B
+HH -&gt; N
+CB -&gt; H
+NH -&gt; C
+HB -&gt; C
+HC -&gt; B
+HN -&gt; C
+NN -&gt; C
+BH -&gt; H
+NC -&gt; B
+NB -&gt; B
+BN -&gt; B
+BB -&gt; N
+BC -&gt; B
+CC -&gt; N
+CN -&gt; C
+</code></pre>
+
+<p>Each rule of the form <code>AB -&gt; C</code> means that if the polymer contains
+a pair <code>AB</code>, a <code>C</code> gets inserted in the next generation.</p>
+
+<p>For the given template, <code>NNCB</code>, we can calculate the polymer after
+the first generation as follows:</p>
+
+<ul>
+<li>The pair <code>NN</code> matches the rule <code>NN -&gt; C</code>, so a <code>C</code> gets inserted
+after the first <code>N</code>.</li>
+<li>The pair <code>NC</code> matches the rule <code>NC -&gt; B</code>, so a <code>B</code> gets inserted
+after the second <code>N</code>.</li>
+<li>The pair <code>CB</code> matches the rule <code>CB -&gt; H</code>, so an <code>H</code> gets inserted
+after the <code>C</code>.</li>
+</ul>
+
+<p>All rules get applied simultaneously, so inserted elements don't
+play a role until the next generation.</p>
+
+<p>Starting the template <code>NNCB</code>, we get the following polymers in the first
+couple of generations. Inserted elements in the given generation are
+marked in red.</p>
+
+<ul>
+<li>After the first generation: <code>N<span class = "important">C</span>N<span class = "important">B</span>C<span class = "important">H</span>B</code>.</li>
+<li>After the second generation: <code>N<span class = "important">B</span>C<span class = "important">C</span>N<span class = "important">B</span>B<span class = "important">B</span>C<span class = "important">B</span>H<span class = "important">C</span>B</code>.</li>
+<li>After the third generation: <code>N<span class = "important">B</span>B<span class = "important">B</span>C<span class = "important">N</span>C<span class = "important">C</span>N<span class = "important">B</span>B<span class = "important">N</span>B<span class = "important">N</span>B<span class = "important">B</span>C<span class = "important">H</span>B<span class = "important">H</span>H<span class = "important">B</span>C<span class = "important">H</span>B</code>.</li>
+<li>After the fourth generation: <code>N<span class = "important">B</span>B<span class = "important">N</span>B<span class = "important">N</span>B<span class = "important">B</span>C<span class = "important">C</span>N<span class = "important">B</span>C<span class = "important">N</span>C<span class = "important">C</span>N<span class = "important">B</span>B<span class = "important">N</span>B<span class = "important">B</span>N<span class = "important">B</span>B<span class = "important">B</span>N<span class = "important">B</span>B<span class = "important">N</span>B<span class = "important">B</span>C<span class = "important">B</span>H<span class = "important">C</span>B<span class = "important">H</span>H<span class = "important">N</span>H<span class = "important">C</span>B<span class = "important">B</span>C<span class = "important">B</span>H<span class = "important">C</span>B</code>.</li>
+</ul>
+
+<p>The polymer keeps rapidly growing in each generation. After 10 steps,
+the polymer contains 3073 elements.</p>
+</div>
+
+<h4>Part One</h4>
+
+<div class = "section">
+<p>In generation 10, we look at the most frequently occuring element
+in the polymer, and the least frequently occuring element. We
+need to report the difference of their occurrences.</p>
+
+<p>For the given example, after 10 generations, <code>B</code> occurs <code>1749</code> times,
+<code>C</code> occurs <code>298</code> times, <code>H</code> occurs <code>161</code> times, and <code>N</code> occurs <code>865</code>
+times. So, the difference between the most frequently occurring element 
+and least frequently occurring element is
+<code>1749 - 161 = <span class = 'answer'>1588</span></code>.</p>
+</div>
+
+<h4>Part Two</h4>
+
+<div class = "section">
+<p>We still want the difference of occurrences of the most frequently
+occurring element, and the least frequently occuring element, but
+now in generation 40. For the given example, the most frequently
+occurring element is <code>B</code>, occurring <code>2192039569602</code> times, while <code>H</code>
+appears the least frequently, <code>3849876073</code> occurrences. So, the result of
+the given example input is <code>2192039569602 - 3849876073 =
+<span class = "answer">2188189693529</span></code>.</p>
+</div>
+
+<h2>Solution</h2>
+
+<div class = "section">
+<div class = "observation headed-div"><br><p>
+The input has 10 different elements, and 100 rules, so there is
+a production rule for every pair of elements.
+</p></div>
+
+<div class = "observation headed-div"><br><p>
+The length of the polymer grows rapidly. If the template has length
+<span class = 'latex-inline'>\(l\)</span>, then the length of the polymer in generation <span class = 'latex-inline'>\(G\)</span> is
+<span class = 'latex-inline'>\(1 + (l - 1) \cdot 2^G\)</span>. Given the input length of <span class = 'latex-inline'>\(20\)</span>, in generation
+10, the polymer has length <span class = 'latex-inline'>\(19457\)</span>, while in generation 40,
+this has grown to a length of <span class = 'latex-inline'>\(20890720927745\)</span>.
+</p></div>
+
+<div class = "observation headed-div"><br><p>
+In each generation, the first element and last element are the
+same as the first and last element of the previous generation.
+And hence, as the first and last element of the template.
+</p></div>
+
+<div class = "observation headed-div"><br><p>
+The production of a new element is only determined by the elements
+surrouding it: the production rules are very localized.
+</p></div>
+</div>
+
+<h3>Perl</h3>
+
+<p>The second observation should make it clear that generating the
+entire polymer is out of the question (that will be workable for
+Part One, but not Part Two). But since the production of one pair
+is never influenced by the production of a different pair, whether
+in the next generation, or any subsequent generation (observation 4),
+instead of the tracking the entire polymer, we can just track how
+often each pair of elements there are.</p>
+
+<p>To start off, we read the template, and turn this into hash, mapping
+pairs to their counts:</p>
+
+<pre><code>chomp (my $template = &lt;&gt;);
+my $pairs;
+  $$pairs {"$1$2"} ++ while $template =~ /(.)(?=(.))/g;
+</code></pre>
+
+<p>The pattern <code>/(.)(?=(.))/g</code> matches each element of the template (<code>(.)</code>),
+which is followed by another element (<code>(?=(.))</code>). The matching element
+is placed in <code>$1</code>, the following element is <code>$2</code>, meaning that 
+<code>"$1$2"</code> is a pair of elements. Since the following element is matched
+with a look-a-head (<code>(?=)</code>), the following element is not consumed in
+the match, and we iterate over all overlapping pairs.</p>
+
+<p>We now read in all the rules. We map each pair (left hand side of
+the rule) to the <em>two</em> new pairs it generates. That is, if we
+have a rule <code>AB -&gt; C</code>, the new pairs which are generated by this
+rule are <code>AC</code> and <code>CB</code>.</p>
+
+<pre><code>my $rules;
+while (&lt;&gt;) {
+    /^([A-Z])([A-Z]) \s* -&gt; \s* ([A-Z])/x or next;
+    $$rules {"$1$2"} = ["$1$3", "$3$2"];
+}
+</code></pre>
+
+<p>We will wrap the calculation of a next generation into a subroutine.
+The subroutine takes two arguments, the set of rules, and the set
+of pairs and their counts:</p>
+
+<pre><code>sub next_gen ($rules, $pairs) {
+    my %new;
+    while (my ($pair, $count) = each %$pairs) {
+        $new {$_} += $count foreach @{$$rules {$pair}};
+    }
+    \%new;
+}
+</code></pre>
+
+<p>We will simply iterate over each pair, get the new pairs it creates
+and add them as often as the original pair occurs to the new set
+of pairs. When we've done all pairs, we return the result.</p>
+
+<p>To get the differences of the most frequent and least frequent
+occurrences, we have another subroutine:</p>
+
+<pre><code>use List::Util qw [min max];
+sub minmax ($pairs, $template) {
+    my %count;
+    $count {substr $_, 0, 1} += $$pairs {$_} for keys %$pairs;
+    $count {substr $template, -1} ++;
+    my $min = min values %count;
+    my $max = max values %count;
+    $max - $min;
+}
+</code></pre>
+
+<p>The subroutine gets the set of pairs and their counts, and the original
+template. Since every element of a polymer, except the last, occurs
+exactly once as the first element of a pair, we take the counts of
+first elements of all the pairs. Then we add the last element of the
+template, which is the same as the last element of the polymer 
+(observation 3).</p>
+
+<p>Once we have counted how frequent each element occurs, we take the
+minimum and maximum of those values, and return the difference.</p>
+
+<p>Now it's just a matter of calculating the right number of generations,
+and report the right numbers:</p>
+
+<pre><code>$pairs = next_gen $rules, $pairs for  1 .. 10;
+say "Solution 1: ", minmax $pairs, $template;
+
+$pairs = next_gen $rules, $pairs for 11 .. 40;
+say "Solution 2: ", minmax $pairs, $template;
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/AdventofCode2021/blob/master/Day_14/solution.pl">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+
+<hr id = 'last-line'>
+<div class = 'trailer'>
+<p class = 'prev'><a class = "prev" href = "">&#x261C;</a></p>
+<p class = 'issue'>Please leave any comments as a
+  <a href = 'https://github.com/Abigail/Abigail.github.io/issues'
+     title = 'GitHub issue'>GitHub issue</a>.
+<p class = 'next'><a class = "next" href = "">&#x261E;</a></p>
+</div>
+
+</body>
+</html>
