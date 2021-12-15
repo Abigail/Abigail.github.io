@@ -1,0 +1,222 @@
+<html>
+<head>
+<title>Advent Of Code 2021, Day 15: Chiton</title>
+<script src = "https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script src = "../../../JavaScript/jquery.js"></script>
+<script id = "MathJax-script" async src = "https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.js"></script>
+<script src = '../../../JavaScript/AdventOfCode/main-header.js'></script>
+<script src = '../../../JavaScript/navigation.js'></script>
+<script src = '../../../JavaScript/nav_advent_of_code.js'></script>
+<link rel = 'preconnect' href = 'https://fonts.gstatic.com'>
+<link rel = 'stylesheet' href = 'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
+<link rel = 'stylesheet' href = '../../../Styles/main.css'>
+<link rel = 'stylesheet' href = '../../../Styles/AdventOfCode/main.css'>
+</head>
+
+<body><h1>Advent Of Code 2021, Day 15: Chiton</h1><div class = "byline">
+by Abigail<br>
+<img src = "../../../Images/jan_sluiters.jpg">
+</div>
+
+
+<h2><a href="https://adventofcode.com/2021/day/15">Challenge</a></h2>
+
+<div class = "section">
+<p>We are given a risk map like this example:</p>
+
+<pre><code>1163751742
+1381373672
+2136511328
+3694931569
+7463417111
+1319128137
+1359912421
+3125421639
+1293138521
+2311944581
+</code></pre>
+
+<p>Each position has a risk level. Restriction is limited to moving
+horizontally or vertically.</p>
+</div>
+
+<h4>Part One</h4>
+
+<div class = "section">
+<p>For Part One, we are asked to find a path from the top left corner
+to the bottom right corner which minimizes the sum of the risks values
+of each point on the path. (We don't count the risk level of the
+start point).</p>
+
+<p>For the example, we have the following path which minimizes the
+risk:</p>
+
+<pre><code><span class = "important">1</span>163751742
+<span class = "important">1</span>381373672
+<span class = "important">2</span><span class = "important">1</span><span class = "important">3</span><span class = "important">6</span><span class = "important">5</span><span class = "important">1</span><span class = "important">1</span>328
+369493<span class = "important">1</span><span class = "important">5</span>69
+7463417<span class = "important">1</span>11
+1319128<span class = "important">1</span><span class = "important">3</span>7
+13599124<span class = "important">2</span>1
+31254216<span class = "important">3</span>9
+12931385<span class = "important">2</span><span class = "important">1</span>
+231194458<span class = "important">1</span>
+</code></pre>
+
+<p>The total risk of this path is <span class = "answer">40</span>.</p>
+</div>
+
+<h4>Part Two</h4>
+
+<div class = "section">
+<p>In Part Two, we still need a map from top left to bottom right
+which minimizes the risk, but the map is much larger: the original
+map is tiled five times in each direction. (So, the resulting
+map is 25 times as large as the original map). The risk values on
+each of the tiles are the same as the original map, but we add
+the <a href="https://en.wikipedia.org/wiki/Manhattan_distance">Manhattan distance</a> of the tile to the original map.
+And values exceeding 9 wrap around (skipping 0).</p>
+
+<p>With the example input, total risk of path which minimizes the
+risk is <span class = "answer">315</span>.</p>
+</div>
+
+<h2>Solution</h2>
+
+<div class = "section">
+<p>We will be using a variation on <a href="https://en.wikipedia.org/wiki/Dijkstra's_algorithm">Dijkstra's algorithm</a>;
+this will be equivalent of using a <a href="https://en.wikipedia.org/wiki/Breadth-first_search">Breadth-first search</a>.</p>
+</div>
+
+<h3>Perl</h3>
+
+<h4>Heap</h4>
+
+<p>Before we dive into the main solve, we will first look at
+implementing a <a href="#heap">heap</a>, as we will be using one.</p>
+
+<p>Heaps are used to quickly insert values, and find/extract a minimum
+value. The heap we will be using is a binary tree structure, with
+the feature that the value in each node is less than the value of
+each of its children. We call this feature the <em>heap condition</em>.
+Our particular implementation will use an array to implement
+a heap. The root of a heap will be at index <span class = 'latex-inline'>\(0\)</span>. And for a node
+on index <span class = 'latex-inline'>\(i\)</span>, its children will be on indices <span class = 'latex-inline'>\(2 \cdot i + 1\)</span>,
+and <span class = 'latex-inline'>\(2 \cdot i + 2\)</span>; if an index of a child exceeds the size
+of the array, the node doesn't have that child.</p>
+
+<p>We'll be using a single heap in our program, so we just have a
+global variable for the heap. The elements in the heap will be
+3-element array (see below) &mdash; for the heap, we are only interested
+in the value on index <code>2</code>. </p>
+
+<p>Initialization is as follows:</p>
+
+<pre><code>my @heap;
+sub init_heap () {
+    @heap = ([0, 0, 0])
+}
+</code></pre>
+
+<p>That is, we initialize a heap with just one element: <code>[0, 0, 0]</code>.</p>
+
+<p>Before we discussing adding or removing elements from the heap,
+we need two rebalance functions. Adding or removing an element
+leaves a datastructure which is almost a heap: it will have at
+most one node which violates the <em>heap condition</em>.</p>
+
+<p>The first rebalance function is one which we will call if a node
+at the top of the heap violates the <em>heap condition</em>. In such a
+case, we first find the smaller of its children, then compare the
+child with the parent. If the parent is less than the child, the
+heap condition is restored, and we're done. Else, we swap the 
+values in the parent and the smaller of children. This restores
+the heap condition in the parent, but now the heap condition in
+the child may be violated; hence, we recurse:</p>
+
+<pre><code>sub rebalance_d ($root = 0) {
+    return unless 2 * $root + 1 &lt; @heap;
+    # 
+    # Find smaller of the children.
+    #
+    my $smaller = 2 * $root + 1;
+    if (2 * $root + 2 &lt; @heap &amp;&amp; $heap [2 * $root + 2] [2] &lt;
+                                 $heap [2 * $root + 1] [2]) {
+        $smaller ++;
+    }
+    # 
+    # If childer are larger, we're done.
+    #
+    return if $heap [$root] [2] &lt; $heap [$smaller] [2];
+
+    # 
+    # Swap and recurse
+    #
+    @heap [$root, $smaller] = @heap [$smaller, $root];
+
+    rebalance_d ($smaller);
+}
+</code></pre>
+
+<p>The other rebalance function we use if the heap condition is violated
+near the bottom of the heap. We then compare the node with its parent.
+If the value in the parent is less than the node, the heap condition
+is restored (and we are done). Else, we swap the node with its parent,
+and recurse with the parent:</p>
+
+<pre><code>sub rebalance_u ($index = @heap - 1) {
+    # 
+    # If at root, we're rebalanced.
+    #
+    return unless $index;
+
+    # 
+    # If the element is larger than its parent, we're done.
+    #
+    my $parent = int (($index - 1) / 2);
+    return unless $heap [$index] [2] &lt; $heap [$parent] [2];
+
+    # 
+    # Else, swap and recurse.
+    #
+    @heap [$index, $parent] = @heap [$parent, $index];
+    rebalance_u ($parent);
+}
+</code></pre>
+
+<p>We are now ready to add an element to the heap. We do so by just
+pushing an element to the array. This may make the last element
+of the heap violate the heap condition, so we call <code>rebalance_u</code>
+to restore the heap condition:</p>
+
+<pre><code>sub add_to_heap ($element) {
+    push @heap =&gt; $element;  
+    rebalance_u;
+}
+</code></pre>
+
+<p>Extracting the minimum value we do by removing the last element
+of the heap (so, popping an element of the array), and putting
+this element in the top of the heap. Since this may violate
+the heap condition, we have to rebalance from the top. We will
+also return the element which was at the top of the heap:</p>
+
+<pre><code>sub extract () {
+    my $min = $heap [0];
+    $heap [0] = pop @heap;
+    rebalance_d;
+    $min;
+}
+</code></pre>
+
+<hr id = 'last-line'>
+<div class = 'trailer'>
+<p class = 'prev'><a class = "prev" href = "">&#x261C;</a></p>
+<p class = 'issue'>Please leave any comments as a
+  <a href = 'https://github.com/Abigail/Abigail.github.io/issues'
+     title = 'GitHub issue'>GitHub issue</a>.
+<p class = 'next'><a class = "next" href = "">&#x261E;</a></p>
+</div>
+
+</body>
+</html>
