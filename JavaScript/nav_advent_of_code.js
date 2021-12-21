@@ -21,6 +21,7 @@ let pages = [
     ["day-14", "Extended Polymerization"],
     ["day-15", "Chiton"],
     ["day-20", "Trench Map"],
+    ["day-21", "Dirac Dice"],
 ]
 
 pages . forEach (entry => {

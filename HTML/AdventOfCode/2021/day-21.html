@@ -1,0 +1,305 @@
+<html>
+<head>
+<title>Advent Of Code 2021, Day 21: Dirac Dice</title>
+<script src = "https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script src = "../../../JavaScript/jquery.js"></script>
+<script id = "MathJax-script" async src = "https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.js"></script>
+<script src = '../../../JavaScript/AdventOfCode/main-header.js'></script>
+<script src = '../../../JavaScript/navigation.js'></script>
+<script src = '../../../JavaScript/nav_advent_of_code.js'></script>
+<link rel = 'preconnect' href = 'https://fonts.gstatic.com'>
+<link rel = 'stylesheet' href = 'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
+<link rel = 'stylesheet' href = '../../../Styles/main.css'>
+<link rel = 'stylesheet' href = '../../../Styles/AdventOfCode/main.css'>
+<link rel = 'stylesheet' href = '../../../Styles/AdventOfCode/2021/day-21.css'>
+</head>
+
+<body><h1>Advent Of Code 2021, Day 21: Dirac Dice</h1><div class = "byline">
+by Abigail<br>
+<img src = "../../../Images/jan_sluiters.jpg">
+</div>
+
+
+<h2><a href="https://adventofcode.com/2021/day/21">Challenge</a></h2>
+
+<div class = "section">
+<p>In todays challenge, we are going to play a game. We have two
+players, and a circular track with 10 positions, marked <code>1</code> to <code>10</code>.
+Since the track is circular, <code>1</code> follows <code>10</code>.
+Each player has a pawn, starting at a random location (which will
+be our input), and a score of <code>0</code>.
+Players take turns (starting with player 1). During each turn, a
+player rolls a die three times, advances their pawn as many
+positions as the sum of those rolls, and adds the score their pawn
+finishes up on to their score.</p>
+
+<p>So, if a player stands on position <code>7</code> and rolls <code>6</code>, <code>4</code>, <code>5</code>, she
+advances to position <code>2</code>, adding <code>2</code> to her score.</p>
+</div>
+
+<h4>Part One</h4>
+
+<div class = "section">
+<p>For the first game, we are going to use a deterministic <code>100</code> sided die.
+The die will roll <code>1</code> on the first roll, <code>2</code> on the second, <code>3</code> on the third,
+etc. Once it has rolled <code>100</code> times, it starts over again with a roll of <code>1</code>.</p>
+
+<p>The game ends once a player has a score of <code>1000</code> or more.</p>
+
+<p>We are asked to calculate the product of the number of rolls until
+the game ends, and the score of the <em>losing</em> player.</p>
+
+<p>With starting positions of <code>4</code> and <code>8</code> for player 1 and player 2,
+the game ends on turn <code>331</code>, with player 1 having a score of <code>1000</code>.
+The die has been rolled <code>993</code> times, and player 2 has a score of <code>745</code>.
+So, the answer would then be <span class = "answer">739785</span>.</p>
+</div>
+
+<h4>Part Two</h4>
+
+<div class = "section">
+<p>In the second game, we swap the deterministic die with a three sided
+<em>Dirac die</em>. Rolling a Dirac die causes the universe to split into
+multiple copies: one for each possible outcome of the die (so, in this
+case, the universe splits into three different universes on each roll).</p>
+
+<p>The game now ends when a player reaches a score of <code>21</code>. We're asked to
+find the player which wins in the most universes, and report in how
+many universes that player wins.</p>
+
+<p>With the starting positions of <code>4</code> and <code>8</code>, player 1 wins in
+<code>444356092776315</code> universes, and player 2 wins in <code>341960390180808</code>
+universes. So, we would report <span class = "answer">444356092776315</span>.</p>
+</div>
+
+<h2>Solution</h2>
+
+<h3>Perl</h3>
+
+<div class = "section">
+<p>Reading the input is trivial, it's just two lines where we need the
+number at the end of each line:</p>
+
+<pre><code>my @start = map {/([0-9]+)$/} &lt;&gt;;
+</code></pre>
+
+<p><code>$start [0]</code> will be the starting position of the first player, and
+<code>$start [1]</code> will be the starting position of the second player.</p>
+
+<p>We start off with a helper method, <code>move</code>. It gets the following arguments:</p>
+
+<ul>
+<li><code>$positions</code>: an arrayref with the current positions of the two players.</li>
+<li><code>$scores</code>: an arrayref with the current scores of the two players.</li>
+<li><code>$player</code>: the player whose turn it is (either <code>0</code> for the first player,
+or <code>1</code> for the second player)</li>
+<li><code>@rolls</code> a list of die rolls made in this turn.</li>
+</ul>
+
+<p>The method will update the position and score:</p>
+
+<pre><code>sub move ($positions, $scores, $player, @rolls) {
+    $$positions [$player]  += $_ for @rolls;
+    $$positions [$player]  %= 10;
+    $$positions [$player] ||= 10;
+    $$scores    [$player]  += $$positions [$player];
+}
+</code></pre>
+</div>
+
+<h4>Part One</h4>
+
+<div class = "section">
+<p>To calculate the result of Part One, we use a method <code>part_one</code>, which
+as argument gets the list of starting positions of the two players.</p>
+
+<p>We start off with some initializations:</p>
+
+<pre><code>sub part_one (@position) {
+    my @score  = (0, 0);       # Scores of each player
+    my @rolls  = (1 .. 100);   # Initial set of rolls
+    my $rolls  = 0;            # Roll count
+
+    my $player = 0;            # Player whose turn it is
+</code></pre>
+
+<p>We then start a bare block, which we will use as an infinite loop (due to
+a <code>redo</code> at the bottom of the loop):</p>
+
+<pre><code>    {
+        ... loop body ...
+
+        redo;
+    }
+</code></pre>
+
+<p>In the loop body, we first move the current player, and adjust their
+score. For that, we need
+the next three rolls from <code>@rolls</code>, which we will <a href="https://perldoc.perl.org/perlfunc#splice"><code>splice</code></a> off.
+We will also adjust the roll count:</p>
+
+<pre><code>move \@position, \@score, $player, splice @rolls =&gt; 0, 3;
+$rolls += 3;
+</code></pre>
+
+<p>If the current player now has a score of at least <code>1000</code>, the game ends,
+and we exit the loop:</p>
+
+<pre><code>last if $score [$player] &gt;= 1000;
+</code></pre>
+
+<p>If we have less than three rolls left in <code>@rolls</code>, we add another 100:</p>
+
+<pre><code>push @rolls =&gt; (1 .. 100) if @rolls &lt; 3;
+</code></pre>
+
+<p>As last action in the body of the loop, we make the other player the
+current player:</p>
+
+<pre><code>$player = 1 - $player;
+</code></pre>
+
+<p>Once we have exited the loop (due to the game ending), we can calculate
+the required results. <code>$player</code> is the winning player, so the losing
+player is <code>$player - 1</code>. Which gives the following return statement:</p>
+
+<pre><code>return $score [1 - $player] * $rolls;
+</code></pre>
+
+<p>Calling the method, and printing the result:</p>
+
+<pre><code>say "Solution 1: ", part_one @start;
+</code></pre>
+</div>
+
+<h4>Part Two</h4>
+
+<p>For Part Two, we will first investigate the possible results of rolling
+three <code>3</code> sided dice, and how frequent the result occurs:</p>
+
+<table>
+  <tr class = 'row-0' markdown = '1'>
+    <th class = 'cell-0-0 col-0 ' markdown = '1'>Roll</td>
+    <th class = 'cell-0-1 col-1 ' markdown = '1'>Frequency</td>
+    <th class = 'cell-0-2 col-2 ' markdown = '1'>Possible rolls</td>
+  </tr>
+  <tr class = 'row-1' markdown = '1'>
+    <td class = 'cell-1-0 col-0 ' markdown = '1'>3</td>
+    <td class = 'cell-1-1 col-1 ' markdown = '1'>1</td>
+    <td class = 'cell-1-2 col-2 ' markdown = '1'><code>(1, 1, 1)</code></td>
+  </tr>
+  <tr class = 'row-2' markdown = '1'>
+    <td class = 'cell-2-0 col-0 ' markdown = '1'>4</td>
+    <td class = 'cell-2-1 col-1 ' markdown = '1'>3</td>
+    <td class = 'cell-2-2 col-2 ' markdown = '1'><code>(2, 1, 1)</code></td>
+  </tr>
+  <tr class = 'row-3' markdown = '1'>
+    <td class = 'cell-3-0 col-0 ' markdown = '1'>5</td>
+    <td class = 'cell-3-1 col-1 ' markdown = '1'>6</td>
+    <td class = 'cell-3-2 col-2 ' markdown = '1'><code>(3, 1, 1)</code>, <code>(2, 2, 1)</code></td>
+  </tr>
+  <tr class = 'row-4' markdown = '1'>
+    <td class = 'cell-4-0 col-0 ' markdown = '1'>6</td>
+    <td class = 'cell-4-1 col-1 ' markdown = '1'>7</td>
+    <td class = 'cell-4-2 col-2 ' markdown = '1'><code>(3, 2, 1)</code>, <code>(2, 2, 2)</code></td>
+  </tr>
+  <tr class = 'row-5' markdown = '1'>
+    <td class = 'cell-5-0 col-0 ' markdown = '1'>7</td>
+    <td class = 'cell-5-1 col-1 ' markdown = '1'>6</td>
+    <td class = 'cell-5-2 col-2 ' markdown = '1'><code>(3, 3, 1)</code>, <code>(3, 2, 2)</code></td>
+  </tr>
+  <tr class = 'row-6' markdown = '1'>
+    <td class = 'cell-6-0 col-0 ' markdown = '1'>8</td>
+    <td class = 'cell-6-1 col-1 ' markdown = '1'>3</td>
+    <td class = 'cell-6-2 col-2 ' markdown = '1'><code>(3, 3, 2)</code></td>
+  </tr>
+  <tr class = 'row-7' markdown = '1'>
+    <td class = 'cell-7-0 col-0 ' markdown = '1'>9</td>
+    <td class = 'cell-7-1 col-1 ' markdown = '1'>1</td>
+    <td class = 'cell-7-2 col-2 ' markdown = '1'><code>(3, 3, 3)</code></td>
+  </tr>
+</table>
+
+<p>Part two, we will solve with a recursive subroutine. This gets five
+arguments:</p>
+
+<ul>
+<li><code>$position0</code>, <code>$position1</code>, the current positions of the players.</li>
+<li><code>$score0</code>, <code>$score1</code>, the current scores of the players. If not given,
+the scores are assumed to be <code>0</code>.</li>
+<li><code>$player</code>, the player whose turn it is. </li>
+</ul>
+
+<p>The subroutine will return a 2 element array, with the first element
+the number of universes in which the first player wins, and the
+second element the number of universes the second player wins.</p>
+
+<p>We will cache results, so we won't repeatedly calculate the same results:</p>
+
+<pre><code>sub part_two ($position0, $position1, $score0 = 0, $score1 = 0, $player = 0) {
+    state $cache;
+    $$cache {$position0, $position1, $score0, $score1, $player} //= do {
+        my $out;
+        ... body ...
+        $out;
+    }
+}
+</code></pre>
+
+<p>In the section marked <code>body</code>, we first check if either player has won:</p>
+
+<pre><code>        $out = [1, 0] if $score0 &gt;= 21;
+        $out = [0, 1] if $score1 &gt;= 21;
+</code></pre>
+
+<p>If not, we will recurse with each possible outcome of the three die rolls,
+multiply the result with the frequency of each of the rolls, and summing
+all the results:</p>
+
+<pre><code>        if (!$out) {
+            $out = [0, 0];
+            foreach my $roll ([3, 1], [4, 3], [5, 6], [6, 7],
+                              [7, 6], [8, 3], [9, 1]) {
+                my ($roll, $frequency)  = @$roll;
+
+                #
+                # Move the current player according to the roll
+                #
+                my @position = ($position0, $position1);
+                my @score    = ($score0,    $score1);
+                move \@position, \@score, $player, $roll;
+
+                #
+                # And recurse
+                #
+                my $results = part_two (@position, @score, 1 - $player);
+
+                #
+                # Sum results
+                #
+                $$out [$_] += $$results [$_] * $frequency for 0, 1;
+            }
+        } 
+</code></pre>
+
+<p>We can now call the subroutine, and report the maximum of the two
+returned values:</p>
+
+<pre><code>use List::Util qw [max];
+
+say "Solution 2: ", max @{part_two @start};
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/AdventofCode2021/blob/master/Day_21/solution.pl">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+
+<hr id = 'last-line'>
+<div class = 'trailer'>
+<p class = 'prev'><a class = "prev" href = "">&#x261C;</a></p>
+<p class = 'issue'>Please leave any comments as a
+  <a href = 'https://github.com/Abigail/Abigail.github.io/issues'
+     title = 'GitHub issue'>GitHub issue</a>.
+<p class = 'next'><a class = "next" href = "">&#x261E;</a></p>
+</div>
+
+</body>
+</html>
