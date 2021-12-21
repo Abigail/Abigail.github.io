@@ -1,0 +1,262 @@
+<html>
+<head>
+<title>Advent Of Code 2021, Day 20: Trench Map</title>
+<script src = "https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script src = "../../../JavaScript/jquery.js"></script>
+<script id = "MathJax-script" async src = "https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.js"></script>
+<script src = '../../../JavaScript/AdventOfCode/main-header.js'></script>
+<script src = '../../../JavaScript/navigation.js'></script>
+<script src = '../../../JavaScript/nav_advent_of_code.js'></script>
+<link rel = 'preconnect' href = 'https://fonts.gstatic.com'>
+<link rel = 'stylesheet' href = 'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
+<link rel = 'stylesheet' href = '../../../Styles/main.css'>
+<link rel = 'stylesheet' href = '../../../Styles/AdventOfCode/main.css'>
+<link rel = 'stylesheet' href = '../../../Styles/AdventOfCode/2021/day-20.css'>
+</head>
+
+<body><h1>Advent Of Code 2021, Day 20: Trench Map</h1><div class = "byline">
+by Abigail<br>
+<img src = "../../../Images/jan_sluiters.jpg">
+</div>
+
+
+<h2><a href="https://adventofcode.com/2021/day/20">Challenge</a></h2>
+
+<div class = "section">
+<p>Today, we're going to play a variant of Life, to be specific,
+a <a href="https://www.conwaylife.com/wiki/Non-isotropic_Life-like_cellular_automaton#Range-1_Moore_neighbourhood"><em>non-isotropic Life like cellular automaton with a range 1
+Moore neigbhourhood</em></a>. Non-isotropic means that rule set
+of the automaton is neither totalistic, nor isotropic. Totalistic
+means the rule on whether a cell is born or survives only depends
+on the number of neighbours, and its current state. Isotropic 
+automatons have rules which are invariant under rotations and
+reflections.</p>
+
+<p>A range-1 Moore neigbhourhood means we are considering the current
+cell, and all its eight neighbours, so a 3 x 3 block of cells. Since
+each cell can be on or off, there are <span class = 'latex-inline'>\(2^9 = 512\)</span> possibilities
+to consider.</p>
+
+<p>We are given an input consisting of two parts. First, we have a
+<a href="https://www.conwaylife.com/wiki/Rule_integer">rule-integer</a> encoded as a string of 512 <code>.</code>s and
+<code>#</code>s:</p>
+
+<pre><code>..#.#..#####.#.#.#.###.##.....###.##.#..###.####..#####..#....#..#..##..##
+#..######.###...####..#..#####..##..#.#####...##.#.#..#.##..#.#......#.###
+.######.###.####...#.##.##..#..#..#####.....#.#....###..#.##......#.....#.
+.#..#..##..#...##.######.####.####.#.#...#.......#..#.#.#...####.##.#.....
+.#..#...##.#.##..#...##.#.##..###.#......#.#.......#.#.#.####.###.##...#..
+...####.#..#..#.##.#....##..#.####....##...##..#...#......#.#.......#.....
+..##..####..#...#.#.#...##..#.#..###..#####........#..####......#..#
+</code></pre>
+
+<p>This will be all on one line &mdash; we only added line breaks here for
+display purposes.</p>
+
+<p>Second, we have a starting generation (generation 0), like this:</p>
+
+<pre><code>#..#.
+#....
+##..#
+..#..
+..###
+</code></pre>
+
+<p>where <code>.</code> indicates an OFF cell, and <code>#</code> an ON cell.</p>
+
+<p>To generate the next generation, we apply the rules to all cells in
+parallel. Consider the middle cell (red) and its neighbourhood (blue):</p>
+
+<pre><code>#..#.
+#<span class = 'neighbour'>...</span>.
+#<span class = 'neighbour'>#</span><span class = 'important'>.</span><span class = 'neighbour'>.</span>#
+.<span class = 'neighbour'>.#.</span>.
+..###
+</code></pre>
+
+<p>Placing the 9 cells after each other, we get <code>...#...#.</code>. Replacing each
+<code>.</code> with <code>0</code>, and each <code>#</code> with <code>1</code>, we get <code>000100010</code>. Interpreting
+that as a binary number, we get <code>34</code>. Now, if we look at character <code>34</code>
+in the rule integer above, it's a <code>#</code>. This means that the cell in the
+middle will be an ON cell in the next generation.</p>
+
+<p>If we apply the rule to each cell in the zeroth generation, we will
+end up with this as the first generation:</p>
+
+<pre><code>.##.##.
+#..#.#.
+##.#..#
+####..#
+.#..##.
+..##..#
+...#.#.
+</code></pre>
+
+<p>Applying the rules on each cell again, we end up with the second generation:</p>
+
+<pre><code>.......#.
+.#..#.#..
+#.#...###
+#...##.#.
+#.....#.#
+.#.#####.
+..#.#####
+...##.##.
+....###..
+</code></pre>
+</div>
+
+<h4>Part One</h4>
+
+<div class = "section">
+<p>For Part One, we have to calculate the number of ON cells two generations
+after the starting generation. For the given example, this is
+<span class = 'answer'>35</span> ON cells.</p>
+</div>
+
+<h4>Part Two</h4>
+
+<div class = "section">
+<p>For Part Two, we want the number of ON cells fifty generations after the
+start generation. For the given example, this is
+<span class = 'answer'>3351</span>.</p>
+</div>
+
+<h2>Discussion</h2>
+
+<div class = "section">
+<p>We should realize that for Life-like automaton, the field is infinite.
+The examples above only show the smallest bounding box which shows all
+the ON cells, but in all directions, there are an infinite amount of
+OFF cells.</p>
+
+<p>And that really matters for the real input. There, the first character
+of the rule integer is <code>#</code>, and the last character is <code>.</code>. This means
+that an OFF cell which is surrounded by only OFF cells, will be ON in the
+next generation. And an ON cell which is surrounded by only ON cells
+will of OFF in the next generation. In other words, a starting universe
+with no ON cells, will have the entire universe filled with ON cells in
+the next generation, and will be completely dark in the following generation,
+altenating between all ON and all OFF ever after.</p>
+</div>
+
+<h3>Perl</h3>
+
+<p>We will keep the <em>rule integer</em> as a reference to an array with
+512 elements, each either <code>0</code> (an OFF cell) or <code>1</code> (an ON cell).
+We can read the first line of input, and build this array in one
+statement:</p>
+
+<pre><code>my $rule_integer = [map {/#/ ? 1 : 0} split // =&gt; scalar &lt;&gt;];&lt;&gt;;
+</code></pre>
+
+<p>The second <code>&lt;&gt;</code> read and discards an empty line.</p>
+
+<p>We keep the <em>interesting</em> cells in a hashref <code>$universe</code>. We index in
+the hash using the x and y coordinates of a cell. (We assign <code>(0, 0)</code>
+as the coordinates of the top-left cell in the input &mdash; during the
+creation of the various generations, we'll end up with negative 
+coordinates.) We'll have <em>three</em> different states:</p>
+
+<ul>
+<li>If the value of a cell is <code>1</code>, the cell is an ON cell.</li>
+<li>If the value of a cell is <code>0</code>, the cell is an OFF cell.</li>
+<li>If the value of a cell is undefined (which happens if it's not
+present), this cell is considered to be "too far out". The cell
+will be OFF on even generations, and ON on odd generations.</li>
+</ul>
+
+<p>We intialize this as:</p>
+
+<pre><code>my $universe;
+my $x = 0;
+while (&lt;&gt;) {
+    my $y = 0;
+    foreach my $cell (/[.#]/g) {
+        $$universe {$x, $y} = 1 if $cell eq '#';
+        $y ++;
+    }
+    $x ++;
+}
+</code></pre>
+
+<p>We then create a subroutine <code>next_gen</code> to calculate the next generation.
+It gets three arguments:</p>
+
+<ul>
+<li><code>$universe</code>: a hashref with the state of the universe, as described above.</li>
+<li><code>$rule_integer</code>: a hashref with 512 <code>0</code>s and <code>1</code>s, as described above.</li>
+<li><code>$generation</code>: the <em>current</em> generation.</li>
+</ul>
+
+<p>For each ON cell in the universe, we calculate waht the state of each cell
+in a 5 x 5 square around the ON cell will be in the next generation.
+To calculate the next state of a particular cell, we look at all the
+cells in a 3 x 3 square, mapping their ON and OFF values to a binary
+number, and looking that to lookup the next state in <code>$rule_integer</code>.
+If we want to know the ON/OFF state of a cell which isn't in the
+<code>$universe</code> structure, we calculate it from <code>$generation</code> and the first
+element of <code>$rule_integer</code>: if the first element is <code>0</code>, such a cell
+is always OFF; else it's OFF in even generations, and ON in odd generations).</p>
+
+<pre><code>sub next_gen ($universe, $rule_integer, $generation) {
+    my $new_universe;
+    my $seen;
+
+    foreach my $cell (keys %$universe) {
+        next unless $$universe {$cell};
+        my ($X, $Y) = split $; =&gt; $cell;
+
+        #
+        # Calculate each cell in a 5 x 5 neighbourhood
+        #
+        foreach my $dX (-2 .. 2) {
+            my $x = $X + $dX;
+            foreach my $dY (-2 .. 2) {
+                my $y = $Y + $dY;
+                next if $$seen {$x, $y} ++;
+
+                #
+                # For each cell to inspect, we need the
+                # cells in a 3 x 3 neighbourhood
+                #
+                my $bits = "0b";
+                foreach my $dx (-1 .. 1) {
+                    my $xp = $x + $dx;
+                    foreach my $dy (-1 .. 1) {
+                        my $yp = $y + $dy;
+                        $bits .= $$universe {$xp, $yp} //
+                                    ($$rule_integer [0] * ($generation % 2));
+                    }
+                }
+                $$new_universe {$x, $y} = $$rule_integer [oct $bits];
+            }
+        }
+    }
+    $new_universe;
+}
+</code></pre>
+
+<p>Now we just call <code>next_gen</code> the right amount of times, and count
+the number of ON cells:</p>
+
+<pre><code>$universe = next_gen $universe, $rule_integer, $_ for 0 ..  1;
+say "Solution 1: ", scalar grep {$_} values %$universe;
+
+$universe = next_gen $universe, $rule_integer, $_ for 2 .. 49;
+say "Solution 2: ", scalar grep {$_} values %$universe;
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/AdventofCode2021/blob/master/Day_20/solution.pl">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+
+<hr id = 'last-line'>
+<div class = 'trailer'>
+<p class = 'prev'><a class = "prev" href = "">&#x261C;</a></p>
+<p class = 'issue'>Please leave any comments as a
+  <a href = 'https://github.com/Abigail/Abigail.github.io/issues'
+     title = 'GitHub issue'>GitHub issue</a>.
+<p class = 'next'><a class = "next" href = "">&#x261E;</a></p>
+</div>
+
+</body>
+</html>
