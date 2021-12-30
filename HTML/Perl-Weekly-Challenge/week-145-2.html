@@ -1,0 +1,260 @@
+<html>
+<head>
+<title>Perl Weekly Challenge 145: Palindromic Tree</title>
+<script src = "https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script src = "../../JavaScript/jquery.js"></script>
+<script id = "MathJax-script" async src = "https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.js"></script>
+<script src = '../../JavaScript/navigation.js'></script>
+<link rel = 'preconnect' href = 'https://fonts.gstatic.com'>
+<link rel = 'stylesheet' href = 'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
+<link rel = 'stylesheet' href = '../../Styles/main.css'>
+<link rel = 'stylesheet' href = '../../Styles/Perl-Weekly-Challenge/main.css'>
+</head>
+
+<body><h1>Perl Weekly Challenge 145: Palindromic Tree</h1><div class = "byline">
+by Abigail<br>
+<img src = "../../Images/jan_sluiters.jpg">
+</div>
+
+
+<h2><a href="https://theweeklychallenge.org/blog/perl-weekly-challenge-145/#TASK2">Challenge</a></h2>
+
+<blockquote>
+  <p>You are given a string <code>$s</code>.</p>
+  
+  <p>Write a script to create a <code>Palindromic Tree</code> for the given string.</p>
+  
+  <p>I found this <a href="https://medium.com/@alessiopiergiacomi/eertree-or-palindromic-tree-82453e75025b"><strong>blog</strong></a> exaplaining <code>Palindromic Tree</code> in detail.</p>
+</blockquote>
+
+<h3>Example 1</h3>
+
+<pre><code>Input: $s = 'redivider'
+Output: r redivider e edivide d divid i ivi v
+</code></pre>
+
+<h3>Example 2</h3>
+
+<pre><code>Input: $s = 'deific'
+Output: d e i ifi f c
+</code></pre>
+
+<h3>Example 3</h3>
+
+<pre><code>Input: $s = 'rotors'
+Output: r rotor o oto t s
+</code></pre>
+
+<h3>Example 4</h3>
+
+<pre><code>Input: $s = 'challenge'
+Output: c h a l ll e n g
+</code></pre>
+
+<h3>Example 5</h3>
+
+<pre><code>Input: $s = 'champion'
+Output: c h a m p i o n
+</code></pre>
+
+<h3>Example 6</h3>
+
+<pre><code>Input: $s = 'christmas'
+Output: c h r i s t m a
+</code></pre>
+
+<h2>Discussion</h2>
+
+<div class = "section">
+<p>This is one of the many challenges which makes we want to turn away
+from the Perl Weekly Challenge, and never look back.</p>
+
+<p>The challenge description asks us to do a specific thing (create a 
+<em>Palindromic Tree</em>, which is a graph based data structure), then the
+examples completely ignore that, and just lists all the palindromic
+substrings of the input, with duplicates removed.</p>
+
+<p>So, is it:</p>
+
+<ul>
+<li><em>Do as I say</em>, or</li>
+<li><em>Do as I do</em>?</li>
+</ul>
+
+<p>We will opt for the latter. And since there is, obviously, no requirement
+on the order of the outputted substrings, we will assume the order given
+in the examples (same order as their first appearance in the input) is
+an artifact of the algorithm used, and not a requirement. </p>
+</div>
+
+<h3>Unicode and Combining Characters</h3>
+
+<div class = "section">
+<p>With Unicode, graphemes are not the same as characters. A grapheme
+can consist of more than one character, or can be expressed in 
+multiple ways.</p>
+
+<p>Take for instance '&ograve;'. This could be a single character,
+<a href="https://www.compart.com/en/unicode/U+00F2"><code>Latin Small Letter O with Grave</code></a>.
+Or it could be two:
+<a href="https://www.compart.com/en/unicode/U+006F"><code>Latin Small Letter O</code></a> followed by
+<a href="https://www.compart.com/en/unicode/U+0300"><code>Combining Grave Accent</code></a>.
+If the former is a palindrome, should the latter be? What if we have
+'&ograve;&ograve;' where one of the graphemes consists of an 'o' and
+a combining accent?</p>
+
+<p>We decide to ignore all of this, and only look at the character level.
+So, '&ograve;' is a palindrome if and only if it's a single character.</p>
+</div>
+
+<h2>Solutions</h2>
+
+<div class = "section">
+<p>We will assume the input consists of one or more lines; for each line (sans
+its newline), we calculate the palindromic substrings.</p>
+</div>
+
+<h3>Perl</h3>
+
+<div class = "section">
+<p>The "usual way" to get all the substrings of string to have have
+two nested for loops, iterating over the indices. However, we
+can abuse Perls regexp engine:</p>
+
+<pre><code>/(.+)(?{code})(*FAIL)/
+</code></pre>
+
+<p>Here, <code>(.+)</code> matches any substring, putting the matched substring in
+<code>$1</code>. Perl will prefer the left-most, longest
+substring, but only under the condition the rest of the pattern matches.
+<code>(?{code})</code> is a construct which always matches &mdash; its point is to execute
+<code>code</code>. It will be executed each time <code>(.+)</code> matches, and <code>code</code> will have
+access to <code>$1</code>. <code>(*FAIL)</code> however, is a construct which will always fail
+to match, causing the engine to backtrack.</p>
+
+<p>The result is that Perl will try to match each and every substring with
+<code>(.+)</code> before finally concluding there is no match. We don't care about
+the actual not matching; we do care about the side effect: <code>code</code> is
+executed exactly once for every substring.</p>
+
+<p>So, what will be put into <code>code</code>? A check if the substring is a palindrome,
+and if so, we collect it:</p>
+
+<pre><code>my %seen;
+/(.+)(?{$seen {$1} ++ if $1 eq reverse $1})(*FAIL)/;
+</code></pre>
+
+<p>A palindrome reads the same back to front as front to back, so comparing
+it to its <a href="https://perldoc.perl.org/perlfunc#reverse"><code>reverse</code></a> will do.</p>
+
+<p>Now <code>%seen</code> will have all the palindromic substrings as its keys, which
+we can easily print:</p>
+
+<pre><code>local $, = $";
+say keys %seen;
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-145/abigail/perl/ch-2.pl">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>Tcl</h3>
+
+<div class = "section">
+<p>Our Tcl solution will use two nested loops to extract all substrings.
+If the substring is a palindrome, we put it in a dictionary. At the
+end, we print the keys of the dictionary:</p>
+
+<pre><code>while {[gets stdin line] &gt;= 0} {
+    set palindromes [dict create]
+    for {set i 0} {$i &lt; [string length $line]} {incr i} {
+        for {set j $i} {$j &lt; [string length $line]} {incr j} {
+            set str [string range $line $i $j]
+            if {$str == [string reverse $str]} {
+                dict set palindromes $str 1
+            }
+        }
+    }
+    puts [dict keys $palindromes]
+}
+</code></pre>
+
+<p><code>string range</code> gives the substring.</p>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-145/abigail/tcl/ch-2.tcl">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>Go</h3>
+
+<div class = "section">
+<p>Go doesn't have a method to reverse a string, so, we first create a 
+method to check whether a string is a palindrome:</p>
+
+<pre><code>func is_palindrome (str string) bool {
+    runes := [] rune (str)
+    for i, j := 0, len (runes) - 1; i &lt; j; i, j = i + 1, j - 1 {
+        if runes [i] != runes [j] {
+            return false
+        }
+    }
+    return true
+}
+</code></pre>
+
+<p>In Go, strings can be split into sequences of
+<a href="https://go.dev/blog/strings"><em>runes</em></a>, where a rune
+is more or less equivalent to a Unicode code point. Once split
+into runes we'll use two pointers, one from the start and counting
+upwards, and one from the end counting downwards. We'll compare
+the runes under the pointers, and return false if there is any
+pair which differs. If all pairs agree, it's a palindrome.</p>
+
+<p>We can now use two nested loops to get substrings of the input line
+(<code>text</code>), and if the substring is a palindrome, we store it in a
+<a href="https://go.dev/blog/maps"><code>map</code></a>. At the end, we print the keys
+from the map:</p>
+
+<pre><code>palindromes := make (map [string] bool)
+for i := 0; i &lt; len (text) - 1; i ++ {
+    for j := i; j &lt; len (text) - 1; j ++ {
+        substr := text [i : j + 1]
+        if is_palindrome (substr) {
+            palindromes [substr] = true
+        }
+    }
+}
+for k := range palindromes {
+    fmt . Printf ("%s ", k)
+}
+fmt . Println ("")
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-145/abigail/go/ch-2.go">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>Other languages</h3>
+
+<p>We also have implementations in:</p>
+
+<p><a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-145/abigail/awk/ch-2.awk">AWK</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-145/abigail/bash/ch-2.sh">Bash</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-145/abigail/c/ch-2.c">C</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-145/abigail/java/ch-2.java">Java</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-145/abigail/lua/ch-2.lua">Lua</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-145/abigail/node/ch-2.js">Node.js</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-145/abigail/pascal/ch-2.p">Pascal</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-145/abigail/python/ch-2.py">Python</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-145/abigail/r/ch-2.r">R</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-145/abigail/ruby/ch-2.rb">Ruby</a>, and
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-145/abigail/scheme/ch-2.scm">Scheme</a>.</p>
+
+<hr id = 'last-line'>
+<div class = 'trailer'>
+<p class = 'prev'><a class = "prev" href = "">&#x261C;</a></p>
+<p class = 'issue'>Please leave any comments as a
+  <a href = 'https://github.com/Abigail/Abigail.github.io/issues'
+     title = 'GitHub issue'>GitHub issue</a>.
+<p class = 'next'><a class = "next" href = "">&#x261E;</a></p>
+</div>
+
+</body>
+</html>
