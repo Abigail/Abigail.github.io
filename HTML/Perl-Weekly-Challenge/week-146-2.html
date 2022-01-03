@@ -1,0 +1,154 @@
+<html>
+<head>
+<title>Perl Weekly Challenge 146: Curious Fraction Tree</title>
+<script src = "https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script src = "../../JavaScript/jquery.js"></script>
+<script id = "MathJax-script" async src = "https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.js"></script>
+<script src = '../../JavaScript/navigation.js'></script>
+<link rel = 'preconnect' href = 'https://fonts.gstatic.com'>
+<link rel = 'stylesheet' href = 'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
+<link rel = 'stylesheet' href = '../../Styles/main.css'>
+<link rel = 'stylesheet' href = '../../Styles/Perl-Weekly-Challenge/main.css'>
+</head>
+
+<body><h1>Perl Weekly Challenge 146: Curious Fraction Tree</h1><div class = "byline">
+by Abigail<br>
+<img src = "../../Images/jan_sluiters.jpg">
+</div>
+
+
+<h2><a href="https://theweeklychallenge.org/blog/perl-weekly-challenge-146/#TASK2">Challenge</a></h2>
+
+<blockquote>
+  <p>Consider the following <code>Curious Fraction Tree</code>:</p>
+  
+  <p><img src = "https://theweeklychallenge.org/images/blog/wk-146.png"></p>
+  
+  <p>You are given a fraction, member of the tree created similar to the above
+  sample.</p>
+  
+  <p>Write a script to find out the parent and grandparent of the given member.</p>
+</blockquote>
+
+<h3>Example 1</h3>
+
+<blockquote>
+<pre><code>Input: $member = '3/5';
+Output: parent = '3/2' and grandparent = '1/2'
+</code></pre>
+</blockquote>
+
+<h3>Example 2</h3>
+
+<blockquote>
+<pre><code>Input: $member = '4/3';
+Output: parent = '1/3' and grandparent = '1/2'
+</code></pre>
+</blockquote>
+
+<h2>Discussion</h2>
+
+<div class = "section">
+<p>This challenge is defined piss poorly. All we have is an image, a name,
+and to do something with a member of a tree <em>create similar to the
+above example</em>. We can only guess what the similar tree looks like.
+Does it start with a different root? Does the similar tree actually have
+more than 15 members? Is there a different relation between parent
+nodes and children nodes?</p>
+
+<p>Let's just ignore everything past the first sentence, go to Google,
+and type in 
+"Curious Fraction Tree", and just go whatever the first hit gives.</p>
+
+<p>Hmmm, that's easy! A curious fraction tree is a tree with the following
+properties:</p>
+
+<ul>
+<li>The root contains <code>1/1</code></li>
+<li>If a node contains <code>a/b</code>, then its children contain <code>a/(a + b)</code> and
+<code>(a + b)/b</code>.</li>
+</ul>
+
+<p>That's it! See how easy it is to write an unambiguous description? No
+need for participants to extrapolate from an image. No confusing references
+to <em>similar trees</em>.</p>
+
+<p>Some people may call ambiguous challenges a feature. I call it sloppiness.</p>
+
+<p>Oh, BTW, given the image above, what is the grandparent of <code>1/2</code>? What's
+the parent of <code>1/1</code>? Aargh. More sloppiness!</p>
+</div>
+
+<h2>Solution</h2>
+
+<div class = "section">
+<p>We will be reading fractions from standard input, one fraction per
+line. For each read fraction, we'll write the parent and grandparent
+on a line of standard output. (If a fraction doesn't have a grandparent,
+we only write the parent; if the fraction doesn't have a parent, we
+write an empty line.)</p>
+
+<p>Given the definition of the tree, given in the "Discussion" section
+above, it's really easy to calculate the parent <span class = 'latex-inline'>\(\mathcal{P}\)</span> of a node:</p>
+
+<p>\[
+    \mathcal{P} \left(\frac{a}{b}\right) = \begin{cases}
+        \frac{a}{b - a} &amp; \text{if } a &lt; b \\
+        \frac{a - b}{b} &amp; \text{if } a > b
+    \end{cases}
+\]</p>
+</div>
+
+<h3>Perl</h3>
+
+<div class = "section">
+<p>Translating the formula above is easy. We just have to take care of
+not showing the root of <code>1/1</code>. This happens if either the numerator
+or denominator of the calculation is <code>0</code>. If so, we exit the loop early.</p>
+
+<pre><code>while (&lt;&gt;) {
+    my ($a, $b) = /[0-9]+/g;
+    for (1, 2) {
+        $a &lt; $b ? ($b -= $a) : ($a -= $b);
+        last unless $a &amp;&amp; $b;
+        print "$a/$b ";
+    }
+    print "\n";
+}
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-146/abigail/perl/ch-2.pl">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>Other languages</h3>
+
+<p>We also have solutions in the following languages:</p>
+
+<p><a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-146/abigail/awk/ch-2.awk">AWK</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-146/abigail/bash/ch-2.sh">Bash</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-146/abigail/bc/ch-2.bc">bc</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-146/abigail/c/ch-2.c">C</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-146/abigail/go/ch-2.go">Go</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-146/abigail/java/ch-2.java">Java</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-146/abigail/lua/ch-2.lua">Lua</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-146/abigail/node/ch-2.js">Node.js</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-146/abigail/pascal/ch-2.p">Pascal</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-146/abigail/python/ch-2.py">Python</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-146/abigail/r/ch-2.r">R</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-146/abigail/ruby/ch-2.rb">Ruby</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-146/abigail/tcl/ch-2.tcl">Tcl</a>, and
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-146/abigail/scheme/ch-2.scm">Scheme</a>.</p>
+
+<p>They all use the same algorithm as we used in the Perl solution.</p>
+
+<hr id = 'last-line'>
+<div class = 'trailer'>
+<p class = 'prev'><a class = "prev" href = "">&#x261C;</a></p>
+<p class = 'issue'>Please leave any comments as a
+  <a href = 'https://github.com/Abigail/Abigail.github.io/issues'
+     title = 'GitHub issue'>GitHub issue</a>.
+<p class = 'next'><a class = "next" href = "">&#x261E;</a></p>
+</div>
+
+</body>
+</html>

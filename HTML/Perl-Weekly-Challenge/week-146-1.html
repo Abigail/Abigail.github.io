@@ -1,0 +1,113 @@
+<html>
+<head>
+<title>Perl Weekly Challenge 146: 10001st Prime Number</title>
+<script src = "https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script src = "../../JavaScript/jquery.js"></script>
+<script id = "MathJax-script" async src = "https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.js"></script>
+<script src = '../../JavaScript/navigation.js'></script>
+<link rel = 'preconnect' href = 'https://fonts.gstatic.com'>
+<link rel = 'stylesheet' href = 'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
+<link rel = 'stylesheet' href = '../../Styles/main.css'>
+<link rel = 'stylesheet' href = '../../Styles/Perl-Weekly-Challenge/main.css'>
+</head>
+
+<body><h1>Perl Weekly Challenge 146: 10001st Prime Number</h1><div class = "byline">
+by Abigail<br>
+<img src = "../../Images/jan_sluiters.jpg">
+</div>
+
+
+<h2><a href="https://theweeklychallenge.org/blog/perl-weekly-challenge-146/#TASK1">Challenge</a></h2>
+
+<blockquote>
+  <p>Write a script to generate the <code>10001st</code> prime number.</p>
+</blockquote>
+
+<h2>Discussion</h2>
+
+<div class = "section">
+<p>The 10001st prime number is <code>104743</code>. (This is
+<a href="https://projecteuler.net/problem=7">task 7</a> of 
+<a href="https://projecteuler.net/">project Euler</a>).</p>
+
+<p>Fixed output challenges are boring. They're just glorified 
+<a href="https://en.wikipedia.org/wiki/Hello,_World">Hello, World</a> programs.</p>
+</div>
+
+<h2>Solutions</h2>
+
+<h3>Perl</h3>
+
+<div class = "section">
+<p>The easiest Perl solution is just a one liner:</p>
+
+<pre><code>say 104743
+</code></pre>
+
+<p>For the sake of not being entirely trivial, we make use of
+<a href="https://metacpan.org/pod/Math::Prime::Util::PrimeArray"><code>Math::Prime::Util::PrimeArray</code></a>. It provides a tied
+array, where the <code>N</code>th element is the <code>N</code>th prime number.</p>
+
+<p>Which results in</p>
+
+<pre><code>use Math::Prime::Util::PrimeArray;
+tie my @p, 'Math::Prime::Util::PrimeArray';
+say $p [10000];
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-146/abigail/perl/ch-1.pl">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>Fortran</h3>
+
+<pre><code>program ch1
+    implicit none
+    write (*, *) "104743"
+</code></pre>
+
+<p>What's there to say? We just have to print <code>104743</code> &mdash; which we do.</p>
+
+<h3>Other languages</h3>
+
+<p>We also have trivial solutions in</p>
+
+<p><a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-146/abigail/awk/ch-1.awk">AWK</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-146/abigail/bash/ch-1.sh">Bash</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-146/abigail/basic/ch-1.bas">Basic</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-146/abigail/bc/ch-1.bc">bc</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-146/abigail/befunge-93/ch-1.bf93">Befunge-93</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-146/abigail/c/ch-1.c">C</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-146/abigail/cobol/ch-1.cb">Cobol</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-146/abigail/csh/ch-1.csh">Csh</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-146/abigail/erlang/ch-1.erl">Erlang</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-146/abigail/forth/ch-1.fs">Forth</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-146/abigail/go/ch-1.go">Go</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-146/abigail/java/ch-1.java">Java</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-146/abigail/lua/ch-1.lua">Lua</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-146/abigail/m4/ch-1.m4">m4</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-146/abigail/mmix/ch-1.mmix">MMIX</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-146/abigail/node/ch-1.js">Node.js</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-146/abigail/ocaml/ch-1.ml">OCaml</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-146/abigail/pascal/ch-1.p">Pascal</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-146/abigail/php/ch-1.php">PHP</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-146/abigail/postscript/ch-1.ps">PostScript</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-146/abigail/python/ch-1.py">Python</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-146/abigail/r/ch-1.r">R</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-146/abigail/rexx/ch-1.rexx">Rexx</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-146/abigail/ruby/ch-1.rb">Ruby</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-146/abigail/scheme/ch-1.scm">Scheme</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-146/abigail/sed/ch-1.sed">Sed</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-146/abigail/sql/ch-1.sql">SQL</a>, and
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-146/abigail/tcl/ch-1.tcl">Tcl</a>.</p>
+
+<hr id = 'last-line'>
+<div class = 'trailer'>
+<p class = 'prev'><a class = "prev" href = "">&#x261C;</a></p>
+<p class = 'issue'>Please leave any comments as a
+  <a href = 'https://github.com/Abigail/Abigail.github.io/issues'
+     title = 'GitHub issue'>GitHub issue</a>.
+<p class = 'next'><a class = "next" href = "">&#x261E;</a></p>
+</div>
+
+</body>
+</html>

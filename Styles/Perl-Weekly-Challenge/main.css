@@ -74,7 +74,7 @@ div.byline {
     font-family:     'Pinyon Script', cursive;
 }
 
-img {
+div.byline img {
     width:                               100%;
     object-fit:                       contain;
 }
