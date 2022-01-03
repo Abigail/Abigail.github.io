@@ -1,0 +1,213 @@
+<html>
+<head>
+<title>Perl Weekly Challenge 145: Dot Product</title>
+<script src = "https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script src = "../../JavaScript/jquery.js"></script>
+<script id = "MathJax-script" async src = "https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.js"></script>
+<script src = '../../JavaScript/navigation.js'></script>
+<link rel = 'preconnect' href = 'https://fonts.gstatic.com'>
+<link rel = 'stylesheet' href = 'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
+<link rel = 'stylesheet' href = '../../Styles/main.css'>
+<link rel = 'stylesheet' href = '../../Styles/Perl-Weekly-Challenge/main.css'>
+</head>
+
+<body><h1>Perl Weekly Challenge 145: Dot Product</h1><div class = "byline">
+by Abigail<br>
+<img src = "../../Images/jan_sluiters.jpg">
+</div>
+
+
+<h2><a href="https://theweeklychallenge.org/blog/perl-weekly-challenge-145/#TASK1">Challenge</a></h2>
+
+<blockquote>
+  <p>You are given 2 arrays of same size, <code>@a</code> and <code>@b</code>.</p>
+  
+  <p>Write a script to implement <code>Dot Product</code>.</p>
+</blockquote>
+
+<h3>Example:</h3>
+
+<pre><code>@a = (1, 2, 3);
+@b = (4, 5, 6);
+
+$dot_product = (1 * 4) + (2 * 5) + (3 * 6) =&gt; 4 + 10 + 18 =&gt; 32
+</code></pre>
+
+<h2>Discussion</h2>
+
+<div class = "section">
+<p>There is nothing difficult about this challenge. We just have to pairwise
+multiply the coordinates, and sum them, as the <a href="https://en.wikipedia.org/wiki/dot_product">dot product</a> of
+two vectors is defined as:</p>
+
+<p>\[
+    v_a \bullet v_b = \sum_{i=1}^n a_i \cdot b_i, \:\text{where }
+    v_a = (a_1, \ldots, a_n) \:\text{and } v_b = (b_1, \ldots, b_n)
+\]</p>
+</div>
+
+<h2>Solution</h2>
+
+<div class = "section">
+<p>We will be assuming we have two lines of input, each line having the
+coordinates of one vector. The coordinates will be separated by a space,
+and we will assume both vectors have the same number of coordinates.</p>
+
+<p>For some languages, we will assume the coordinates are integers.</p>
+</div>
+
+<h3>Perl</h3>
+
+<div class = "section">
+<p><a href="https://metacpan.org/pod/Math::Matrix"><code>Math::Matrix</code></a> has many useful operations on matrices (and vectors
+are just one-dimensional matrices), including
+<a href="https://metacpan.org/pod/Math::Matrix#dot_product()"><code>dotproduct</code></a>, which, as
+the name suggests, returns the dot product of two vectors.</p>
+
+<p>Which leads to the following simple program:</p>
+
+<pre><code>use Math::Matrix;
+say Math::Matrix:: -&gt; new ([split ' ' =&gt; scalar &lt;&gt;]) -&gt; dot_product
+   (Math::Matrix:: -&gt; new ([split ' ' =&gt; scalar &lt;&gt;]));
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-145/abigail/perl/ch-1.pl">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>Scheme</h3>
+
+<div class = "section">
+<p>Here we define a recursive function to calculate the dot product:</p>
+
+<pre><code>(define (dotproduct a b)
+    (if (null? a) 0
+        (+ (* (car a) (car b))
+              (dotproduct (cdr a) (cdr b)))))
+</code></pre>
+
+<p>This defines a method <code>dotproduct</code> which takes arguments <code>a</code> and <code>b</code>,
+which we assume are lists of equal length. Lists in Scheme are
+implemented as (nested)
+<a href="https://www.gnu.org/software/guile/manual/html_node/Pairs.html"><em>pairs</em></a>.
+<code>car</code> gets the first element of a pair &mdash; so the first element of a list.
+<code>cdr</code> gets the second element of a pair, hence, all but the first element
+of a list. So, <code>dotproduct</code> first checks the length of this: if the list
+is empty (<code>null?</code>), we return <code>0</code>. Else, we multiply the first elements
+of the input lists, and add this to the recursive call to <code>dotproduct</code>
+with the remainders (<code>cdr</code>) of the input lists.</p>
+
+<p>We read input using <code>read-line</code>, which we split on spaces (<code>string-split</code>),
+and convert the results to numbers using <code>string-&gt;number</code>. This gives
+the following code:</p>
+
+<pre><code>(display (dotproduct (map string-&gt;number (string-split (read-line) #\ ))
+                     (map string-&gt;number (string-split (read-line) #\ ))))
+(newline)
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-145/abigail/scheme/ch-1.scm">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>Python</h3>
+
+<div class = "section">
+<p>Here, we use simple iteration over lists to calculate the wanted
+result. First, we use <a href="https://docs.python.org/3/tutorial/datastructures.html#list-comprehensions"><em>list comprehension</em></a> to read the input,
+and turn it in into lists of integers:</p>
+
+<pre><code>a = [int (x) for x in input () . split (" ")]
+b = [int (x) for x in input () . split (" ")]
+</code></pre>
+
+<p>Now it's a simple loop:</p>
+
+<pre><code>sum = 0
+for i in range (len (a)):
+    sum = sum + a [i] * b [i]
+
+print (sum)
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-145/abigail/python/ch-1.py">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>R</h3>
+
+<div class = "section">
+<p>R actually <em>has</em> an operator to calculate the dot product (<code>%*%</code>). 
+<code>readLines</code> read input, <code>strsplit</code> splits a string, while
+<code>as.numeric</code> transforms strings into numbers. This gives us the
+following compact program:</p>
+
+<pre><code>stdin &lt;- file ('stdin', 'r')
+
+cat (as.numeric (strsplit (readLines (stdin, n = 1), " ") [[1]]) %*%
+     as.numeric (strsplit (readLines (stdin, n = 1), " ") [[1]]), "\n")
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-145/abigail/r/ch-1.r">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>Pascal</h3>
+
+<div class = "section">
+<p>In our Pascal solution, we first read all the integers from the input,
+putting them all in a single array:</p>
+
+<pre><code>var
+    n, size, j, half, sum: integer;
+    numbers: array of integer;
+
+begin
+    size := 0;
+    while not eof do begin
+        read (n);
+        inc (size);
+        setlength (numbers, size);
+        numbers [size - 1] := n;
+    end;
+</code></pre>
+
+<p>We then calculate the dot product by treating the first half of the array
+as the first vector, and the second half of the array as the second 
+vector:</p>
+
+<pre><code>    sum := 0;
+    half := (size - 1) div 2;
+    for j := 0 to half do begin
+        sum := sum + numbers [j] * numbers [half + j];
+    end;
+
+    writeln (sum);
+end.
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-145/abigail/pascal/ch-1.p">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>Other languages</h3>
+
+<p>We also have implementations in:</p>
+
+<p><a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-145/abigail/awk/ch-1.awk">AWK</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-145/abigail/bash/ch-1.sh">Bash</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-145/abigail/bc/ch-1.bc">bc</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-145/abigail/c/ch-1.c">C</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-145/abigail/go/ch-1.go">Go</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-145/abigail/java/ch-1.java">Java</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-145/abigail/lua/ch-1.lua">Lua</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-145/abigail/node/ch-1.js">Node.js</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-145/abigail/ruby/ch-1.rb">Ruby</a>, and
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-145/abigail/tcl/ch-1.tcl">Tcl</a></p>
+
+<hr id = 'last-line'>
+<div class = 'trailer'>
+<p class = 'prev'><a class = "prev" href = "">&#x261C;</a></p>
+<p class = 'issue'>Please leave any comments as a
+  <a href = 'https://github.com/Abigail/Abigail.github.io/issues'
+     title = 'GitHub issue'>GitHub issue</a>.
+<p class = 'next'><a class = "next" href = "">&#x261E;</a></p>
+</div>
+
+</body>
+</html>

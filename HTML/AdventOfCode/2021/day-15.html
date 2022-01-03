@@ -92,6 +92,7 @@ this will be equivalent of using a <a href="https://en.wikipedia.org/wiki/Breadt
 
 <h4>Heap</h4>
 
+<div class = "section">
 <p>Before we dive into the main solve, we will first look at
 implementing a <a href="#heap">heap</a>, as we will be using one.</p>
 
@@ -208,6 +209,108 @@ also return the element which was at the top of the heap:</p>
     $min;
 }
 </code></pre>
+</div>
+
+<h4>Main Solve</h4>
+
+<p>First, we are going to read in the data. We'll store the map (which in
+the long description of the challenge is a cave, hence the variable
+name) in a 2-dimensional array, <code>@cave</code>:</p>
+
+<pre><code>my @cave   =  map {[/[0-9]/g]} &lt;&gt;;
+
+my $SIZE_X =   @cave;
+my $SIZE_Y = @{$cave [0]};
+</code></pre>
+
+<p>To access the entries in the map, we could just do a direct lookup,
+and, for part two, use a much larger 2-dimensional array, but instead,
+we use a subroutine <code>cell</code> to return the risk value of a particular set of x/y
+coordinates. It gets a third argument (<code>$factor</code>) indicating how many
+times the base map has been tiled (so, for part one, this argument will
+be <code>1</code>, and for part two, this will be <code>5</code>). We also have a hash <code>%seen</code>
+which will contain the coordinates of the map we have already processed.
+If <code>cell</code> is called with coordinates outside of the map, or coordinates
+of a point we have already processed, <code>undef</code> is returned, otherwise, the
+risk value.</p>
+
+<pre><code>sub cell ($x, $y, $factor = 1) {
+    return if $x &lt; 0 || $x &gt;= $factor * $SIZE_X ||
+              $y &lt; 0 || $y &gt;= $factor * $SIZE_Y ||
+              $seen {$x, $y};
+
+    my $val = $cave [$x % $SIZE_X] [$y % $SIZE_Y] + int ($x / $SIZE_X) +
+                                                    int ($y / $SIZE_Y);
+    $val -= 9 if $val &gt; 9;
+
+    $val;
+}
+</code></pre>
+
+<p>Now, we are ready to solve the map, using a subroutine <code>solve</code>. It gets
+an argument <code>$factor</code> with the same meaning as <code>cell</code> above.</p>
+
+<p>We start off by clearing out <code>%seen</code>: we haven't visited any cells yet.
+We also initialize the heap. In the heap, we store 3-element arrays,
+the first two elements of this array are the x and y coordinates of
+a cell; the third is the total risk accumulated to get to this cell.
+(Each cell could appear at most four times in the heap: once for each
+direction).</p>
+
+<pre><code>sub solve ($factor = 1) {
+    %seen = ();
+    init_heap; # It's initialized with [0, 0, 0] (top-left, no-risk)
+</code></pre>
+
+<p>We now loop as long as there are entries in the heap. We start off by
+extracting the value with the lowest value from the heap, putting the
+coordinates of the cell in <code>$x</code> and <code>$y</code>, and the accumulated risk
+in <code>$risk</code>:</p>
+
+<pre><code>    while (@heap) {
+        my ($x, $y, $risk) = @{extract ()};
+</code></pre>
+
+<p>First thing we now do is check if we have reached the bottom-right.
+If so, we're done, and <code>$risk</code> contains the minimum accumulated risk
+to reach this point. Which is why we return at this point:</p>
+
+<pre><code>        if ($x == $SIZE_X * $factor - 1 &amp;&amp; $y == $SIZE_Y * $factor - 1) {
+            return $risk;
+        }
+</code></pre>
+
+<p>We now check whether we have visited this cell before. If so, we did
+this with risk equal or less than <code>$risk</code>, so whatever we do now, it
+cannot lead to a better path than we already have. Hence, we continue
+with the next iteration of the loop. We also mark that we have visited
+this cell:</p>
+
+<pre><code>next if $seen {$x, $y} ++;
+</code></pre>
+
+<p>We will now inspect all neigbhours of the current cell. If they are
+unvisited, and within bounds, we add the new cell (with the total risk
+to get there) to the heap:</p>
+
+<pre><code>        for my $diff ([1, 0], [-1, 0], [0, 1], [0, -1]) {
+            my $new_x = $x + $$diff [0];
+            my $new_y = $y + $$diff [1];
+           (my $cell  = cell ($new_x, $new_y, $factor)) // next;
+            add_to_heap [$new_x, $new_y, $risk + $cell];
+        }
+</code></pre>
+
+<p>And that is the end of the loop, and the end of the subroutine.</p>
+
+<p>All what is left now is call the solve method, and
+print the result:</p>
+
+<pre><code>say "Solution 1: ", solve 1;
+say "Solution 2: ", solve 5;
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/AdventofCode2021/blob/master/Day_15/solution.pl">full program</a> on <a href="https://github.com">GitHub</a>.</p>
 
 <hr id = 'last-line'>
 <div class = 'trailer'>

@@ -187,3 +187,113 @@ sub extract () {
     $min;
 }
 ~~~~
+
+#### Main Solve
+
+First, we are going to read in the data. We'll store the map (which in
+the long description of the challenge is a cave, hence the variable
+name) in a 2-dimensional array, `@cave`:
+
+~~~~
+my @cave   =  map {[/[0-9]/g]} <>;
+
+my $SIZE_X =   @cave;
+my $SIZE_Y = @{$cave [0]};
+~~~~
+
+To access the entries in the map, we could just do a direct lookup,
+and, for part two, use a much larger 2-dimensional array, but instead,
+we use a subroutine `cell` to return the risk value of a particular set of x/y
+coordinates. It gets a third argument (`$factor`) indicating how many
+times the base map has been tiled (so, for part one, this argument will
+be `1`, and for part two, this will be `5`). We also have a hash `%seen`
+which will contain the coordinates of the map we have already processed.
+If `cell` is called with coordinates outside of the map, or coordinates
+of a point we have already processed, `undef` is returned, otherwise, the
+risk value.
+
+~~~~
+sub cell ($x, $y, $factor = 1) {
+    return if $x < 0 || $x >= $factor * $SIZE_X ||
+              $y < 0 || $y >= $factor * $SIZE_Y ||
+              $seen {$x, $y};
+
+    my $val = $cave [$x % $SIZE_X] [$y % $SIZE_Y] + int ($x / $SIZE_X) +
+                                                    int ($y / $SIZE_Y);
+    $val -= 9 if $val > 9;
+
+    $val;
+}
+~~~~
+
+
+Now, we are ready to solve the map, using a subroutine `solve`. It gets
+an argument `$factor` with the same meaning as `cell` above.
+
+We start off by clearing out `%seen`: we haven't visited any cells yet.
+We also initialize the heap. In the heap, we store 3-element arrays,
+the first two elements of this array are the x and y coordinates of
+a cell; the third is the total risk accumulated to get to this cell.
+(Each cell could appear at most four times in the heap: once for each
+direction).
+
+~~~~
+sub solve ($factor = 1) {
+    %seen = ();
+    init_heap; # It's initialized with [0, 0, 0] (top-left, no-risk)
+~~~~
+
+We now loop as long as there are entries in the heap. We start off by
+extracting the value with the lowest value from the heap, putting the
+coordinates of the cell in `$x` and `$y`, and the accumulated risk
+in `$risk`:
+
+~~~~
+    while (@heap) {
+        my ($x, $y, $risk) = @{extract ()};
+~~~~
+
+First thing we now do is check if we have reached the bottom-right.
+If so, we're done, and `$risk` contains the minimum accumulated risk
+to reach this point. Which is why we return at this point:
+
+~~~~
+        if ($x == $SIZE_X * $factor - 1 && $y == $SIZE_Y * $factor - 1) {
+            return $risk;
+        }
+~~~~
+
+We now check whether we have visited this cell before. If so, we did
+this with risk equal or less than `$risk`, so whatever we do now, it
+cannot lead to a better path than we already have. Hence, we continue
+with the next iteration of the loop. We also mark that we have visited
+this cell:
+
+~~~~
+next if $seen {$x, $y} ++;
+~~~~
+
+We will now inspect all neigbhours of the current cell. If they are
+unvisited, and within bounds, we add the new cell (with the total risk
+to get there) to the heap:
+
+~~~~
+        for my $diff ([1, 0], [-1, 0], [0, 1], [0, -1]) {
+            my $new_x = $x + $$diff [0];
+            my $new_y = $y + $$diff [1];
+           (my $cell  = cell ($new_x, $new_y, $factor)) // next;
+            add_to_heap [$new_x, $new_y, $risk + $cell];
+        }
+~~~~
+
+And that is the end of the loop, and the end of the subroutine.
+
+All what is left now is call the solve method, and
+print the result:
+
+~~~~
+say "Solution 1: ", solve 1;
+say "Solution 2: ", solve 5;
+~~~~
+
+FULL_PROGRAM
