@@ -1,0 +1,213 @@
+<html>
+<head>
+<title>Perl Weekly Challenge 147: Pentagon Numbers</title>
+<script src = "https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script src = "../../JavaScript/jquery.js"></script>
+<script id = "MathJax-script" async src = "https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.js"></script>
+<script src = '../../JavaScript/navigation.js'></script>
+<link rel = 'preconnect' href = 'https://fonts.gstatic.com'>
+<link rel = 'stylesheet' href = 'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
+<link rel = 'stylesheet' href = '../../Styles/main.css'>
+<link rel = 'stylesheet' href = '../../Styles/Perl-Weekly-Challenge/main.css'>
+</head>
+
+<body><h1>Perl Weekly Challenge 147: Pentagon Numbers</h1><div class = "byline">
+by Abigail<br>
+<img src = "../../Images/jan_sluiters.jpg">
+</div>
+
+
+<h2><a href="https://theweeklychallenge.org/blog/perl-weekly-challenge-147/#TASK2">Challenge</a></h2>
+
+<blockquote>
+  <p>Write a script to find the first pair of <code>Pentagon Numbers</code> whose sum and difference are also a <code>Pentagon Number</code>.</p>
+  
+  <blockquote>
+  Pentagon numbers can be defined as P(n) = n(3n - 1)/2.
+  
+  </blockquote>
+</blockquote>
+
+<h3>Example</h3>
+
+<pre><code>The first 10 Pentagon Numbers are:
+1, 5, 12, 22, 35, 51, 70, 92, 117 and 145.
+
+P(4) + P(7) = 22 + 70 = 92 = P(8)
+but
+P(4) - P(7) = |22 - 70| = 48 is not a Pentagon Number.
+</code></pre>
+
+<h2>Discussion</h2>
+
+<div class = "section">
+<p>Pentagonal numbers are sequence <a href="https://oeis.org/A000326">A000326</a> 
+in <a href="https://oeis.org">the on-line encyclopedia of integer sequences</a>.
+(Note that the OEIS has <span class = 'latex-inline'>\(P (0) = 0\)</span> as the first number).</p>
+
+<p>To make life for ourselves a bit more spicy, we will try to solve this
+challenge without making use of multiplication or division. In order to
+do that, we will derive a formula for the next pentagonal number.</p>
+
+<p>We define the n<sup>th</sup> pentagonal number as:</p>
+
+<p>\[
+    \mathcal{P} (n) = \frac{n \cdot (3 \cdot n - 1)}{2}
+\] </p>
+
+<p>Then</p>
+
+<p>\[
+    \begin{array}{lcl}
+       \mathcal{P} (n + 1)
+       &amp; = &amp;   \frac{(n + 1) \cdot (3 \cdot (n + 1) - 1)}{2}                \\
+       &amp; = &amp;   \frac{(n + 1) \cdot (3 \cdot n + 2)}{2}                      \\
+       &amp; = &amp;   \frac{3 \cdot n \cdot n + 5 \cdot n + 2}{2}                  \\
+       &amp; = &amp;   \frac{3 \cdot n \cdot n - n + 6 \cdot n + 2}{2}              \\
+       &amp; = &amp;   \frac{n \cdot (3 \cdot n - 1) + 6 \cdot n + 2}{2}            \\
+       &amp; = &amp;   \frac{n \cdot (3 \cdot n - 1)}{2} + \frac{6 \cdot n + 2}{2}  \\
+       &amp; = &amp;   \mathcal{P} (n) + 3 \cdot n + 1                              \\
+       &amp; = &amp;   \mathcal{P} (n) + n + n + n + 1
+    \end{array}
+\]</p>
+</div>
+
+<h2>Solution</h2>
+
+<div class = "section">
+<p>In our solution, we will have a loop, where we process the next pentagonal,
+<code>p</code>, number in each iteration. We will also keep a hash or array of all
+previous pentagonal numbers.</p>
+
+<p>For each previous pentagonal number <code>s</code> (with <code>s &lt;= p / 2</code>),
+we will check if both
+<code>p - s</code> and <code>p - s - s</code> are pentagonal numbers. If so, we have the answer
+as <code>s</code> and <code>p - s</code> are pentagonal numbers and so are their sum
+(<code>s + p - s = p</code>) and difference (<code>p - s - s</code>). </p>
+</div>
+
+<h3>Perl</h3>
+
+<div class = "section">
+<p>We can write this in a compact way in Perl:</p>
+
+<pre><code>my %pentagon;
+
+MAIN: for (;;) {
+    state $n = 0;
+    state $p = 0;
+    $pentagon {$p += $n + $n + $n ++ + 1} ++;
+
+    $_ + $_ &lt; $p &amp;&amp; $pentagon  {$p - $_}
+                 &amp;&amp; $pentagon  {$p - $_ - $_}
+                 &amp;&amp; say ("$_ ", $p - $_)
+                 &amp;&amp; last MAIN for keys %pentagon;
+}
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-147/abigail/perl/ch-2.pl">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>C</h3>
+
+<div class = "section">
+<p>Most languages nowadays have hashes, maps, dictionaries or something
+else to store arbitrary keys and quickly find if a key is present.
+C does not. Therefore, in our C solution, we keep track of previous
+pentagonal numbers in an array. To find whether a number is present,
+we use a binary search. We have wrapped this into a function:</p>
+
+<pre><code>bool is_pentagonal (int candidate, int * pentagon, size_t max) {
+    size_t low  = 0;
+    size_t high = max;
+    while (low &lt; high) {
+        size_t mid = (low + high) / 2;
+        if (pentagon [mid] == candidate) {return true;}
+        if (pentagon [mid]  &lt; candidate) {low  = mid + 1;}
+        if (pentagon [mid]  &gt; candidate) {high = mid;}
+    }
+    return false;
+}
+</code></pre>
+
+<p>Here, <code>candidate</code> is the number we're searching, <code>pentagon</code> is the array
+we are searching in, and <code>max</code> is the number of elements in <code>pentagon</code>.</p>
+
+<p>The main program uses the same algorithm as Perl. It's far more verbose,
+because we have to do the memory management ourselves:</p>
+
+<pre><code>int main (void) {
+    int *  pentagon =  NULL;
+    int    n        =     0;
+    int    p        =     0;
+    size_t cap      =   100;
+    size_t high     =     0;
+    bool   done     = false;
+
+    if ((pentagon = (int *) malloc (cap * sizeof (int))) == NULL) {
+        perror ("Malloc failed");
+        return (1);
+    }
+
+    while (!done) {
+        p += n + n + n + 1;
+        n ++;
+        if (high &gt;= cap) {
+            cap *= 2;
+            if ((pentagon =
+                     (int *) realloc (pentagon, cap * sizeof (int))) == NULL) {
+                perror ("Realloc failed");
+                return (1);
+            }
+        }
+        pentagon [high ++] = p;
+
+        for (size_t i = 0; i &lt; high &amp;&amp;
+                           pentagon [i] + pentagon [i] &lt; p &amp;&amp;
+                          !done; i ++) {
+            int seen = pentagon [i];
+            if (is_pentagonal (p - seen,        pentagon, high) &amp;&amp;
+                is_pentagonal (p - seen - seen, pentagon, high)) {
+                printf ("%d %d\n", seen, p - seen);
+                done = true;
+            }
+        }
+    }
+
+    return (0);
+}
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-147/abigail/c/ch-2.c">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>Other Languages</h3>
+
+<p>We also have implementations in other languages; the implementation 
+similar to the Perl or C implementation (or some hybrid):</p>
+
+<p><a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-147/abigail/awk/ch-2.awk">AWK</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-147/abigail/bash/ch-2.sh">Bash</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-147/abigail/bc/ch-2.bc">bc</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-147/abigail/go/ch-2.go">Go</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-147/abigail/java/ch-2.java">Java</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-147/abigail/lua/ch-2.lua">Lua</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-147/abigail/node/ch-2.js">Node.js</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-147/abigail/pascal/ch-2.p">Pascal</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-147/abigail/python/ch-2.py">Python</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-147/abigail/r/ch-2.r">R</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-147/abigail/ruby/ch-2.rb">Ruby</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-147/abigail/scheme/ch-2.scm">Scheme</a>, and
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-147/abigail/tcl/ch-2.tcl">Tcl</a>.</p>
+
+<hr id = 'last-line'>
+<div class = 'trailer'>
+<p class = 'prev'><a class = "prev" href = "">&#x261C;</a></p>
+<p class = 'issue'>Please leave any comments as a
+  <a href = 'https://github.com/Abigail/Abigail.github.io/issues'
+     title = 'GitHub issue'>GitHub issue</a>.
+<p class = 'next'><a class = "next" href = "">&#x261E;</a></p>
+</div>
+
+</body>
+</html>
