@@ -14,6 +14,8 @@ use Text::Markdown qw [markdown];
 my $POLYFILL_URL   = "https://polyfill.io/v3/polyfill.min.js?features=es6";
 my $MATHJAX_URL    = "https://cdn.jsdelivr.net/npm/mathjax@3/" .
                              "es5/tex-mml-chtml.js";
+my $SVG_URL        = 'https://cdn.jsdelivr.net/npm/@svgdotjs/' .
+                             'svg.js@3.0/dist/svg.min.js';
 my $CHART_URL      = "https://cdn.jsdelivr.net/npm/chart.js";
 
 my $HOME           = $ENV {HOME};
@@ -23,21 +25,48 @@ my $HTML_DIR       = "HTML";
 my $DIR_PWC        = "Perl-Weekly-Challenge";
 my $DIR_FC         = "Feature-Compare";
 my $DIR_ADVENT     = "AdventOfCode";
+my $DIR_TALK       = "Talks";
 
 my $TYPE_PWC       = 1;
-my $TYPE_FC        = $TYPE_PWC + 1;
-my $TYPE_ADVENT    = $TYPE_FC  + 1;
+my $TYPE_FC        = $TYPE_PWC    + 1;
+my $TYPE_ADVENT    = $TYPE_FC     + 1;
+my $TYPE_TALK      = $TYPE_ADVENT + 1;
 
-my $TYPE2DIR       = {
-    $TYPE_PWC       =>  $DIR_PWC,
-    $TYPE_FC        =>  $DIR_FC,
-    $TYPE_ADVENT    =>  $DIR_ADVENT,
+my $INFO_DIR       = 0;
+my $INFO_NAV       = 1;
+my $INFO_UP        = 2;
+my $INFO_IS_TALK   = 3;
+
+my $TYPE_INFO = {
+    $TYPE_PWC      =>  {
+        $INFO_DIR      =>  $DIR_PWC,
+        $INFO_NAV      =>  "nav_weekly_challenge",
+        $INFO_UP       =>  "../..",
+    },
+    $TYPE_FC       =>  {
+        $INFO_DIR      =>  $DIR_FC,
+        $INFO_NAV      =>  "nav_feature_compare",
+        $INFO_UP       =>  "../..",
+    },
+    $TYPE_ADVENT   =>  {
+        $INFO_DIR      =>  $DIR_ADVENT,
+        $INFO_NAV      =>  "nav_advent_of_code",
+        $INFO_UP       =>  "../../..",
+    },
+    $TYPE_TALK     =>  {
+        $INFO_DIR      =>  $DIR_TALK,
+        $INFO_NAV      =>  "nav_talks",
+        $INFO_UP       =>  "../../..",
+        $INFO_IS_TALK  =>  1,
+    },
 };
 
-my $TYPE2NAV       = {
-    $TYPE_PWC       =>  "nav_weekly_challenge",
-    $TYPE_FC        =>  "nav_feature_compare",
-    $TYPE_ADVENT    =>  "nav_advent_of_code",
+
+my $TYPE2UP        = {
+    $TYPE_PWC       =>  "../..",
+    $TYPE_FC        =>  "../..",
+    $TYPE_ADVENT    =>  "../../..",
+    $TYPE_TALK      =>  "../../..",
 };
 
 
@@ -122,24 +151,49 @@ sub header ($title, $directives) {
     my $base = $$directives {base};
     my $type = $$directives {type};
 
-    my $up   = $type eq $TYPE_ADVENT ? "../../.." : "../..";
+    my $up   = $$TYPE_INFO {$type} {$INFO_UP};
+
+    #
+    # Create a list of files (without extension) to check for
+    # styles and JavaScript.
+    #
+    my @files = do {
+        my  @parts = split '/' => $base;
+        pop @parts;
+        my  @dirs  = ("", $dir,
+                      map {join '/' => $dir, @parts [0 .. $_]} keys @parts);;
+        my  @files = map {s!^/+!!r} map {("$_/main", "$_/main-*")} @dirs;
+
+        #
+        # Add specific files depending on directives
+        #
+        if ($$directives {"svg-grid"}) {
+            push @files => map {s!^/+!!r} map {"$_/svg-grid"} @dirs;
+        }
+
+        (@files, "$dir/$base", "$dir/$base-*")
+    };
+
+    my @style_files  = @files;
+    my @script_files = @files;
+
 
     my $styles = join "\n" =>
         map  {"<link rel = 'stylesheet' href = '$up/$_'>"}
         grep {-f}
-        map  {"$STYLE_DIR/$_.css"} "main",
-                                   "$dir/main",
-                                   "$dir/$base";
+        map  {glob "$STYLE_DIR/$_.css"} @style_files;
 
-    my @scripts = sort glob "$JAVASCRIPT_DIR/$dir/$base*.js " .
-                            "$JAVASCRIPT_DIR/$dir/main-*.js";
+    my @scripts = sort
+                  grep {-f}
+                  map  {glob "$JAVASCRIPT_DIR/$_.js"} @script_files;
+    
     my $scripts = join "\n" =>
         map  {"<script src = '$up/$_'></script>"}
         @scripts,
         grep {-f}
         map  {"$JAVASCRIPT_DIR/$_.js"}
                @SCRIPTS,
-               $$TYPE2NAV {$type},
+               $$TYPE_INFO {$type} {$INFO_NAV},
                split /,\s*/ => ($$directives {script} // "");
 
     my $chart_js = "";
@@ -555,7 +609,9 @@ sub pre_process ($text, $directives) {
 
 
 sub by_line ($directives) {
-    my $up = $$directives {type} == $TYPE_ADVENT ? "../../.." : "../..";
+    my $type = $$directives {type};
+    return "" if $$TYPE_INFO {$type} {$INFO_IS_TALK};
+    my $up = $$TYPE_INFO {$type} {$INFO_UP};
     <<~ "--"
     <div class = "byline">
     by Abigail<br>
@@ -595,10 +651,68 @@ sub post_process ($text, $directives) {
     #
     $text = create_ref_links ($text);
 
+    #
+    # Add divs to make a responsive svg grid
+    #
+    if (my $svg_grid = $$directives {"svg-grid"}) {
+        my ($pre, $post) = ("", "");
+        my $class = "svg_box_$svg_grid";
+        my $width = $svg_grid eq "middle" ? 3 : 2;
+        my $empty = "<div class = 'bogus'></div>\n" x $width;
+        my $svg   = "<div class = 'svg-box'></div>\n";
+
+           $pre  .= "<div class = '$class'>\n";
+           $pre  .= $empty;
+
+        if ($svg_grid eq "left") {
+            #
+            # We then have first an SVG images then (optionally) some
+            # test to the right of it.
+            #
+            $pre  .= $svg;
+            $pre  .= "<div class = 'svg_box_info_right'>\n";
+            $post .= "</div>\n";
+        }
+
+        if ($svg_grid eq "middle") {
+            #
+            # We have an SVG image on the middle. For now, we assume
+            # no text around it.
+            #
+            $pre .= "<div class = 'svg_box_info_left'></div>\n";
+            $pre .= $svg;
+            $pre .= "<div class = 'svg_box_info_right'></div>\n";
+        }
+
+        if ($svg_grid eq "right") {
+            #
+            # We first (optionally) have some text to the left, then
+            # an SVG image.
+            #
+            $pre  .= "<div class = 'svg_box_info_left'>\n";
+            $post .= "</div>\n";
+            $post .= $svg;
+        }
+
+        $post .= $empty;
+        $post .= "</div>\n";
+
+        #
+        # $pre comes have (the first) </h1>.
+        # $post comes before </body>.
+        #
+        $text =~ s!</h1>\K!$pre!i;
+        $text .= $post;
+    }
+
     $text;
 }
 
-sub trailer ($week) {<<~ "--"}
+sub trailer ($directives) {
+    my $week = $$directives {week};
+    my $type = $$directives {type};
+    return "" if $$TYPE_INFO {$type} {$INFO_IS_TALK};
+    <<~ "--";
     <hr id = 'last-line'>
     <div class = 'trailer'>
     <p class = 'prev'><a class = "prev" href = "">&#x261C;</a></p>
@@ -608,6 +722,7 @@ sub trailer ($week) {<<~ "--"}
     <p class = 'next'><a class = "next" href = "">&#x261E;</a></p>
     </div>
     --
+}
 
 
 sub init_link_group () {
@@ -650,7 +765,7 @@ foreach my $arg (@ARGV) {
     my ($type, $base);
     if ($arg =~ /^[0-9]{3}-[0-9]$/) {
         $type = $TYPE_PWC;
-        $base  = "week-$arg";
+        $base = "week-$arg";
     }
     elsif ($arg =~ /^(20[0-9]{2})(?:-12)?-([0-9]{2})$/) {
         $type = $TYPE_ADVENT;
@@ -660,10 +775,14 @@ foreach my $arg (@ARGV) {
         $type = $TYPE_FC;
         $base = "$1";
     }
+    elsif ($arg =~ m {^Talks/([^/]+/\.+)(\.md)?$}) {
+        $type = $TYPE_TALK;
+        $base = "$1";
+    }
     else {
         my $arg = $arg =~ s!^$SRC_DIR/!!r;
-        foreach my $t (keys %$TYPE2DIR) {
-            my $dir = $$TYPE2DIR {$t};
+        foreach my $t (keys %$TYPE_INFO) {
+            my $dir = $$TYPE_INFO {$t} {$INFO_DIR};
             if (index ($arg, $dir) == 0) {
                 $type = $t;
                 $base = (substr $arg, 1 + length $dir) =~ s/\.md$//r;
@@ -673,7 +792,7 @@ foreach my $arg (@ARGV) {
 
         die "Don't know what to do with $arg" unless $type && $base;
     }
-    push @todo => [$type, $$TYPE2DIR {$type}, $base];
+    push @todo => [$type, $$TYPE_INFO {$type} {$INFO_DIR}, $base];
 }
 
 foreach my $todo (@todo) {
@@ -714,7 +833,7 @@ foreach my $todo (@todo) {
     $$directives {week}       = $week;
 
     my $header  = header ($title, $directives);
-    my $trailer = trailer ($week);
+    my $trailer = trailer ($directives);
     open my $fh, ">", $html_file or die "open $html_file: $!";
     print $fh <<~ "--";
         <html>
