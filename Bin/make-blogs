@@ -177,6 +177,12 @@ sub header ($title, $directives) {
     my @style_files  = @files;
     my @script_files = @files;
 
+    #
+    # Ugly hack. Need to do this is in a more structured way
+    #
+    if ($base =~ /Sudoku/) {
+        push @script_files => "sudoku";
+    }
 
     my $styles = join "\n" =>
         map  {"<link rel = 'stylesheet' href = '$up/$_'>"}
@@ -200,6 +206,10 @@ sub header ($title, $directives) {
        $chart_js = "<script id = 'chart-script' async src = '$CHART_URL'>" .
                   "</script>" if $$directives {has_canvas};
 
+    my $svg_js = "";
+       $svg_js = "<script id = 'svg-script' src = '$SVG_URL'>" .
+                "</script>\n" if $$directives {"svg-grid"};
+
     my @fonts = ("<link rel = 'preconnect' href = 'https://fonts.gstatic.com'>",
                  "<link rel = 'stylesheet' href = '$FONT_URL'>");
     push @fonts => "<link rel = 'stylesheet' href = '$LCD_FONT_URL' " .
@@ -214,6 +224,7 @@ sub header ($title, $directives) {
         <script src = "$up/$JAVASCRIPT_DIR/jquery.js"></script>
         <script id = "MathJax-script" async src = "$MATHJAX_URL"></script>
         $chart_js
+        $svg_js
         $scripts
         $fonts
         $styles
