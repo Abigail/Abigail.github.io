@@ -14,6 +14,8 @@ use Text::Markdown qw [markdown];
 my $POLYFILL_URL   = "https://polyfill.io/v3/polyfill.min.js?features=es6";
 my $MATHJAX_URL    = "https://cdn.jsdelivr.net/npm/mathjax@3/" .
                              "es5/tex-mml-chtml.js";
+my $SVG_URL        = 'https://cdn.jsdelivr.net/npm/@svgdotjs/' .
+                             'svg.js@3.0/dist/svg.min.js';
 my $CHART_URL      = "https://cdn.jsdelivr.net/npm/chart.js";
 
 my $HOME           = $ENV {HOME};
@@ -33,7 +35,7 @@ my $TYPE_TALK      = $TYPE_ADVENT + 1;
 my $INFO_DIR       = 0;
 my $INFO_NAV       = 1;
 my $INFO_UP        = 2;
-my $INFO_NO_BLOG   = 3;
+my $INFO_IS_TALK   = 3;
 
 my $TYPE_INFO = {
     $TYPE_PWC      =>  {
@@ -55,7 +57,7 @@ my $TYPE_INFO = {
         $INFO_DIR      =>  $DIR_TALK,
         $INFO_NAV      =>  "nav_talks",
         $INFO_UP       =>  "../../..",
-        $INFO_NO_BLOG  =>  1,
+        $INFO_IS_TALK  =>  1,
     },
 };
 
@@ -161,17 +163,35 @@ sub header ($title, $directives) {
         my  @dirs  = ("", $dir,
                       map {join '/' => $dir, @parts [0 .. $_]} keys @parts);;
         my  @files = map {s!^/+!!r} map {("$_/main", "$_/main-*")} @dirs;
+
+        #
+        # Add specific files depending on directives
+        #
+        if ($$directives {"svg-grid"}) {
+            push @files => map {s!^/+!!r} map {"$_/svg-grid"} @dirs;
+        }
+
         (@files, "$dir/$base", "$dir/$base-*")
     };
+
+    my @style_files  = @files;
+    my @script_files = @files;
+
+    #
+    # Ugly hack. Need to do this is in a more structured way
+    #
+    if ($base =~ /Sudoku/) {
+        push @script_files => "sudoku";
+    }
 
     my $styles = join "\n" =>
         map  {"<link rel = 'stylesheet' href = '$up/$_'>"}
         grep {-f}
-        map  {glob "$STYLE_DIR/$_.css"} @files;
+        map  {glob "$STYLE_DIR/$_.css"} @style_files;
 
     my @scripts = sort
                   grep {-f}
-                  map  {glob "$JAVASCRIPT_DIR/$_.js"} @files;
+                  map  {glob "$JAVASCRIPT_DIR/$_.js"} @script_files;
     
     my $scripts = join "\n" =>
         map  {"<script src = '$up/$_'></script>"}
@@ -185,6 +205,10 @@ sub header ($title, $directives) {
     my $chart_js = "";
        $chart_js = "<script id = 'chart-script' async src = '$CHART_URL'>" .
                   "</script>" if $$directives {has_canvas};
+
+    my $svg_js = "";
+       $svg_js = "<script id = 'svg-script' src = '$SVG_URL'>" .
+                "</script>\n" if $$directives {"svg-grid"};
 
     my @fonts = ("<link rel = 'preconnect' href = 'https://fonts.gstatic.com'>",
                  "<link rel = 'stylesheet' href = '$FONT_URL'>");
@@ -200,6 +224,7 @@ sub header ($title, $directives) {
         <script src = "$up/$JAVASCRIPT_DIR/jquery.js"></script>
         <script id = "MathJax-script" async src = "$MATHJAX_URL"></script>
         $chart_js
+        $svg_js
         $scripts
         $fonts
         $styles
@@ -596,7 +621,7 @@ sub pre_process ($text, $directives) {
 
 sub by_line ($directives) {
     my $type = $$directives {type};
-    return "" if $$TYPE_INFO {$type} {$INFO_NO_BLOG};
+    return "" if $$TYPE_INFO {$type} {$INFO_IS_TALK};
     my $up = $$TYPE_INFO {$type} {$INFO_UP};
     <<~ "--"
     <div class = "byline">
@@ -637,13 +662,67 @@ sub post_process ($text, $directives) {
     #
     $text = create_ref_links ($text);
 
+    #
+    # Add divs to make a responsive svg grid
+    #
+    if (my $svg_grid = $$directives {"svg-grid"}) {
+        my ($pre, $post) = ("", "");
+        my $class = "svg_box_$svg_grid";
+        my $width = $svg_grid eq "middle" ? 3 : 2;
+        my $empty = "<div class = 'bogus'></div>\n" x $width;
+        my $svg   = "<div class = 'svg-box'></div>\n";
+
+           $pre  .= "<div class = '$class'>\n";
+           $pre  .= $empty;
+
+        if ($svg_grid eq "left") {
+            #
+            # We then have first an SVG images then (optionally) some
+            # test to the right of it.
+            #
+            $pre  .= $svg;
+            $pre  .= "<div class = 'svg_box_info_right'>\n";
+            $post .= "</div>\n";
+        }
+
+        if ($svg_grid eq "middle") {
+            #
+            # We have an SVG image on the middle. For now, we assume
+            # no text around it.
+            #
+            $pre .= "<div class = 'svg_box_info_left'></div>\n";
+            $pre .= $svg;
+            $pre .= "<div class = 'svg_box_info_right'></div>\n";
+        }
+
+        if ($svg_grid eq "right") {
+            #
+            # We first (optionally) have some text to the left, then
+            # an SVG image.
+            #
+            $pre  .= "<div class = 'svg_box_info_left'>\n";
+            $post .= "</div>\n";
+            $post .= $svg;
+        }
+
+        $post .= $empty;
+        $post .= "</div>\n";
+
+        #
+        # $pre comes have (the first) </h1>.
+        # $post comes before </body>.
+        #
+        $text =~ s!</h1>\K!$pre!i;
+        $text .= $post;
+    }
+
     $text;
 }
 
 sub trailer ($directives) {
     my $week = $$directives {week};
     my $type = $$directives {type};
-    return "" if $$TYPE_INFO {$type} {$INFO_NO_BLOG};
+    return "" if $$TYPE_INFO {$type} {$INFO_IS_TALK};
     <<~ "--";
     <hr id = 'last-line'>
     <div class = 'trailer'>
