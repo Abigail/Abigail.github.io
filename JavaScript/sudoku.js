@@ -13,6 +13,7 @@ class Sudoku {
         this . size      = args . size   || 9
         this . add_to    = args . add_to || 'div.svg-box'
         this . rect_size = 100
+        this . margin    =  50  // rect_size / 2
         this . id        = "sudoku"
     }
 
@@ -27,11 +28,6 @@ class Sudoku {
         //
         // Calculate the parameters for the viewbox.
         //
-   //   let viewbox_min_x  =           -.5  * rect_size;
-   //   let viewbox_min_y  =           -.5  * rect_size;
-   //   let viewbox_width  =  (width  +  1) * rect_size;
-   //   let viewbox_height =  (height +  1) * rect_size;
-
         let viewbox_min_x  =  0
         let viewbox_min_y  =  0
         let viewbox_width  =  (width  +  1) * rect_size
@@ -46,8 +42,6 @@ class Sudoku {
                             . size    ('100%', '100%')
                             . viewbox (viewbox_min_x, viewbox_min_y,
                                        viewbox_width, viewbox_height)
-                                       // xMaxYMin meet ?
-                         // . attr    ({preserveAspectRatio: "xMidYMid meet"})
                             . attr    ({preserveAspectRatio: "xMaxYMin meet"})
 
         this . sudoku = sudoku
@@ -62,23 +56,41 @@ class Sudoku {
 
         let sudoku    = this . sudoku
         let rect_size = this . rect_size
+        let margin    = this . margin
         let size      = this . size
+        let box_size  = Math . sqrt (size)
+        
+        //
+        // Create the grid lines
+        //
+
+        let x_min = margin
+        let y_min = margin
+        let x_max = margin + size * rect_size
+        let y_max = margin + size * rect_size
 
         //
-        // Create the squares
+        // Vertical lines
         //
-        let x, y
-        for (x = 1; x <= size; x ++) {
-            for (y = 1; y <= size; y ++) {
-                let id     = "R" + x . toString () + "C" + y . toString ()
-                let square = sudoku . rect     (rect_size, rect_size)
-                                    . cx       (x * rect_size)
-                                    . cy       (y * rect_size)
-                                    . id       (id)
-                                    . fill     ("#fff")
-                                    . stroke   ({color: "#000", width: 2})
-                                    . addClass ("sudoku-square")
+        let c = 0
+        for (let x = x_min; x <= x_max; x += rect_size) {
+            let line = sudoku . line (x, y_min, x, y_max)
+            if (c % box_size == 0) {
+                line . addClass ("boundary")
             }
+            c ++
+        }
+
+        //
+        // Horizontal lines
+        //
+        c = 0
+        for (let y = y_min; y <= y_max; y += rect_size) {
+            let line = sudoku . line (x_min, y, x_max, y)
+            if (c % box_size == 0) {
+                line . addClass ("boundary")
+            }
+            c ++
         }
     }
 }

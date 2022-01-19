@@ -1,0 +1,13 @@
+svg.sudoku {
+    fill:                             white;
+}
+
+line {
+    stroke:        #000;
+    stroke-width:     3;
+}
+
+
+line.boundary {
+    stroke-width:     5;
+}

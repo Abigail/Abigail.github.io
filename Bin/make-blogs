@@ -174,15 +174,15 @@ sub header ($title, $directives) {
         (@files, "$dir/$base", "$dir/$base-*")
     };
 
-    my @style_files  = @files;
-    my @script_files = @files;
-
     #
     # Ugly hack. Need to do this is in a more structured way
     #
     if ($base =~ /Sudoku/) {
-        push @script_files => "sudoku";
+        push @files => "sudoku";
     }
+
+    my @style_files  = @files;
+    my @script_files = @files;
 
     my $styles = join "\n" =>
         map  {"<link rel = 'stylesheet' href = '$up/$_'>"}
