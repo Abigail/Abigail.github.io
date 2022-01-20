@@ -88,11 +88,19 @@ class Sudoku {
         //
         for (let row = 1; row <= size; row ++) {
             for (let col = 1; col <= size; col ++) {
-                let id_name = Sudoku . coord_to_id (row, col)
-                let rect = sudoku . rect (rect_size, rect_size)
-                                  . cx   (col * rect_size)
-                                  . cy   (row * rect_size)
-                                  . id   (id_name)
+                let id_name     = Sudoku . coord_to_id (row, col)
+                let house = box_size * Math . floor ((row - 1) / box_size) +
+                                       Math . floor ((col - 1) / box_size) + 1
+                let row_class   = `R${row}`
+                let col_class   = `C${col}`
+                let house_class = `H${house}`
+                let rect = sudoku . rect     (rect_size, rect_size)
+                                  . cx       (col * rect_size)
+                                  . cy       (row * rect_size)
+                                  . id       (id_name)
+                                  . addClass (row_class)
+                                  . addClass (col_class)
+                                  . addClass (house_class)
             }
         }
         
