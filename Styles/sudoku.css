@@ -11,3 +11,8 @@ line {
 line.boundary {
     stroke-width:     5;
 }
+
+
+rect {
+    fill:          #fff;
+}

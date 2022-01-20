@@ -59,6 +59,19 @@ class Sudoku {
         let margin    = this . margin
         let size      = this . size
         let box_size  = Math . sqrt (size)
+
+        //
+        // Create the squares
+        //
+        for (let x = 1; x <= size; x ++) {
+            for (let y = 1; y <= size; y ++) {
+                let id_name = "R" + x . toString () + "C" + y . toString ()
+                let rect = sudoku . rect (rect_size, rect_size)
+                                  . cx   (x * rect_size)
+                                  . cy   (y * rect_size)
+                                  . id   (id_name)
+            }
+        }
         
         //
         // Create the grid lines
