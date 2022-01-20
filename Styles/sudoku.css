@@ -16,3 +16,11 @@ line.boundary {
 rect {
     fill:          #fff;
 }
+
+text {
+    font-size:     130%;
+}
+
+text.clue {
+    fill:          #000;
+}

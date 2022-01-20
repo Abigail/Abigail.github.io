@@ -1,4 +1,3 @@
 # Sudoku
 
-<!-- %% svg-grid: left -->
-Something something something.
+<!-- %% svg-grid: middle -->

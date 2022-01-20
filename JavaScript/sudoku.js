@@ -2,6 +2,30 @@
 // Displaying Sudokus and variants
 //
 
+//
+// Helper functions
+//
+
+//
+// Return type of object
+//
+function find_type (obj) {
+    if (obj == null) {
+        return (obj + '') . toLowerCase ()
+    }
+    let deep_type = Object . prototype . toString . call (obj)
+                           . slice (8, -1) . toLowerCase ()
+    if (deep_type === 'generatorfunction') {
+        return 'function'
+    }
+    return deep_type . match
+        (/^(array|bigint|date|error|function|generator|regexp|symbol)$/)
+        ? deep_type
+        : (typeof obj === 'object' || typeof obj === 'function')
+                        ? 'object'
+                        : typeof obj
+}
+
 class Sudoku {
     //
     // Construct a sudoku puzzle. We take the following options:
@@ -104,6 +128,80 @@ class Sudoku {
                 line . addClass ("boundary")
             }
             c ++
+        }
+    }
+
+
+    //
+    // Given a pair of coordinates (0 based), return the row/column id
+    //
+    static coord_to_id (row, col) {
+        return "R" + (row + 1) . toString () + "C" + (col + 1) . toString ()
+    }
+
+    //
+    // Given an id, return the row/column (0 - based)
+    //
+    static id_to_coord (id) {
+        return [... id . matchAll (/[0-9]+/g)] . map (x => + x [0] - 1)
+    }
+
+
+    //
+    // Given a set of clues in some form, normalize them
+    //
+    set_clues (clues) {
+        if (!clues) {
+            return
+        }
+
+        let clue_type = find_type (clues);
+        let out  = {}
+
+        if (clue_type === 'array') {
+            //
+            // For now, assume an array of number. '0' means no clue.
+            //
+            for (let x = 0; x < this . size; x ++) {
+                for (let y = 0; y < this . size; y ++) {
+                    let val = clues [x] [y]
+                    if (val > 0) {
+                        let id   = Sudoku . coord_to_id (x, y);
+                        console . log (`(${x}, ${y}) => ${id}`)
+                        out [id] = val
+                    }
+                }
+            }
+        }
+
+        if (clue_type === 'object') {
+            //
+            // Assume it's of the form {RxCy => val}, with val > 0.
+            //
+            out = clues
+        }
+
+        this . clues = out
+    }
+
+
+    draw_clues (args = {}) {
+        this . set_clues (args ["clues"])
+        let clues     = this . clues
+        let rect_size = this . rect_size
+        if (!clues) {
+            return
+        }
+
+        for (const id in clues) {
+            let val        = clues [id]
+            let [row, col] = Sudoku . id_to_coord (id)
+            let plain      = this . sudoku
+                                  . plain (val . toString ())
+                                  . attr  ({x: (col + 1)   * rect_size,
+                                            y: (row + 1.2) * rect_size,
+                                           "text-anchor": "middle"})
+                                  . addClass ("clue")
         }
     }
 }
