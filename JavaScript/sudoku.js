@@ -86,12 +86,12 @@ class Sudoku {
         //
         // Create the squares
         //
-        for (let x = 1; x <= size; x ++) {
-            for (let y = 1; y <= size; y ++) {
-                let id_name = "R" + x . toString () + "C" + y . toString ()
+        for (let row = 1; row <= size; row ++) {
+            for (let col = 1; col <= size; col ++) {
+                let id_name = Sudoku . coord_to_id (row, col)
                 let rect = sudoku . rect (rect_size, rect_size)
-                                  . cx   (x * rect_size)
-                                  . cy   (y * rect_size)
+                                  . cx   (col * rect_size)
+                                  . cy   (row * rect_size)
                                   . id   (id_name)
             }
         }
@@ -142,17 +142,17 @@ class Sudoku {
 
 
     //
-    // Given a pair of coordinates (0 based), return the row/column id
+    // Given a pair of coordinates (1-based), return the row/column id
     //
     static coord_to_id (row, col) {
-        return "R" + (row + 1) . toString () + "C" + (col + 1) . toString ()
+        return "R" + row . toString () + "C" + col . toString ()
     }
 
     //
-    // Given an id, return the row/column (0 - based)
+    // Given an id, return the row/column (1-based)
     //
     static id_to_coord (id) {
-        return [... id . matchAll (/[0-9]+/g)] . map (x => + x [0] - 1)
+        return [... id . matchAll (/[0-9]+/g)] . map (x => + x)
     }
 
 
@@ -175,8 +175,7 @@ class Sudoku {
                 for (let y = 0; y < this . size; y ++) {
                     let val = clues [x] [y]
                     if (val > 0) {
-                        let id   = Sudoku . coord_to_id (x, y);
-                        console . log (`(${x}, ${y}) => ${id}`)
+                        let id   = Sudoku . coord_to_id (x + 1, y + 1);
                         out [id] = val
                     }
                 }
@@ -207,8 +206,8 @@ class Sudoku {
             let [row, col] = Sudoku . id_to_coord (id)
             let plain      = this . sudoku
                                   . plain (val . toString ())
-                                  . attr  ({x: (col + 1)   * rect_size,
-                                            y: (row + 1.2) * rect_size,
+                                  . attr  ({x: (col)       * rect_size,
+                                            y: (row + 0.2) * rect_size,
                                            "text-anchor": "middle"})
                                   . addClass ("clue")
         }
