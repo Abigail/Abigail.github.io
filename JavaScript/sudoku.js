@@ -69,7 +69,6 @@ class Sudoku {
                             . attr    ({preserveAspectRatio: "xMaxYMin meet"})
 
         this . sudoku = sudoku
-        console . log ("Created sudoku")
     }
 
     //
@@ -106,11 +105,18 @@ class Sudoku {
         let x_max = margin + size * rect_size
         let y_max = margin + size * rect_size
 
+        let border = sudoku . path (`M ${x_min} ${y_min} H ${x_max} ` +
+                                             `V ${y_max} H ${x_min} Z`)
+                            . addClass ("border")
+
         //
         // Vertical lines
         //
-        let c = 0
+        let c = 1
         for (let x = x_min; x <= x_max; x += rect_size) {
+            if (x == x_min || x == x_max) {
+                continue
+            }
             let line = sudoku . line (x, y_min, x, y_max)
             if (c % box_size == 0) {
                 line . addClass ("boundary")
@@ -121,8 +127,11 @@ class Sudoku {
         //
         // Horizontal lines
         //
-        c = 0
+        c = 1
         for (let y = y_min; y <= y_max; y += rect_size) {
+            if (y == y_min || y == y_max) {
+                continue
+            }
             let line = sudoku . line (x_min, y, x_max, y)
             if (c % box_size == 0) {
                 line . addClass ("boundary")

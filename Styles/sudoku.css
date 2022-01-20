@@ -3,24 +3,31 @@ svg.sudoku {
 }
 
 line {
-    stroke:        #000;
-    stroke-width:     3;
+    stroke:                           black;
+    stroke-width:                         3;
 }
 
 
 line.boundary {
-    stroke-width:     5;
+    stroke-width:                         5;
 }
 
 
+path.border {
+    stroke-width:                         8;
+    stroke:                           black;
+    stroke-linejoin:                  round;
+    fill:                              none;
+}
+
 rect {
-    fill:          #fff;
+    fill:                             white;
 }
 
 text {
-    font-size:     130%;
+    font-size:                         130%;
 }
 
 text.clue {
-    fill:          #000;
+    fill:                             black;
 }
