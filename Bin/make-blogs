@@ -192,13 +192,23 @@ sub header ($title, $directives) {
     my @scripts = sort
                   grep {-f}
                   map  {glob "$JAVASCRIPT_DIR/$_.js"} @script_files;
+
+    #
+    # Another ugly hack
+    #
+    my @scripts2;
+    if ($$TYPE_INFO {$type} {$INFO_IS_TALK}) {
+        my $d = $base =~ s!/.+!!r;
+        @scripts2 = map {"$dir/$_"} @SCRIPTS;
+        push @scripts2 => "$dir/$d/pages";
+    }
     
     my $scripts = join "\n" =>
         map  {"<script src = '$up/$_'></script>"}
         @scripts,
         grep {-f}
         map  {"$JAVASCRIPT_DIR/$_.js"}
-               @SCRIPTS,
+               @scripts2,
                $$TYPE_INFO {$type} {$INFO_NAV},
                split /,\s*/ => ($$directives {script} // "");
 
