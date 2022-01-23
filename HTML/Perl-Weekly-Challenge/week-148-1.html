@@ -1,0 +1,266 @@
+<html>
+<head>
+<title>Perl Weekly Challenge 148: Eban Numbers</title>
+<script src = "https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script src = "../../JavaScript/jquery.js"></script>
+<script id = "MathJax-script" async src = "https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.js"></script>
+<script src = '../../JavaScript/navigation.js'></script>
+<link rel = 'preconnect' href = 'https://fonts.gstatic.com'>
+<link rel = 'stylesheet' href = 'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
+<link rel = 'stylesheet' href = '../../Styles/main.css'>
+<link rel = 'stylesheet' href = '../../Styles/Perl-Weekly-Challenge/main.css'>
+<link rel = 'stylesheet' href = '../../Styles/Perl-Weekly-Challenge/week-148-1.css'>
+</head>
+
+<body><h1>Perl Weekly Challenge 148: Eban Numbers</h1><div class = "byline">
+by Abigail<br>
+<img src = "../../Images/jan_sluiters.jpg">
+</div>
+
+
+<h2><a href="https://theweeklychallenge.org/blog/perl-weekly-challenge-148/#TASK1">Challenge</a></h2>
+
+<blockquote>
+  <p>Write a script to generate all <code>Eban Numbers</code> &lt;= 100.</p>
+  
+  <blockquote>
+  An Eban number is a number that has no letter &lsquo;e&rsquo; in it when the number is spelled in English (American or British).
+  
+  </blockquote>
+  
+  <h3>Example</h3>
+
+<pre><code>2, 4, 6, 30, 32 are the first 5 Eban numbers.
+</code></pre>
+</blockquote>
+
+<h2>Discussion</h2>
+
+<div class = "section">
+<p>This is sequence <a href="https://oeis.org/A006933">A006933</a> in
+<a href="https://oeis.org">The On-Line Encyclopedia of Integer Sequences</a>.</p>
+
+<p>Given that we're asked to produce the first N numbers of a sequence,
+for a fixed N, an easy solution would be:</p>
+
+<pre><code>say "2 4 6 30 32 34 36 40 42 44 46 50 52 54 56 60 62 64 66";
+</code></pre>
+</div>
+
+<h2>Solution</h2>
+
+<div class = "section">
+<p>A solution would be to translate the numbers into English, check
+whether the number contains an "<code>e</code>", and print the numbers which
+don't contain an "<code>e</code>".</p>
+
+<p>But that is doing more work than needed. </p>
+
+<p>Let's first look at the <em>structure</em> of English numbers. Single digit
+numbers consist of a single word. Double digit numbers (starting from 20)
+all have the form "<em>footy</em>-<em>bar</em>", where the "<em>footy</em>" is the same for
+all numbers starting with the same digit, and <em>bar</em> is the word for the
+last digit. Numbers 13 till 19 all end in <em>teen</em>. And we have special
+words for 10, 11, 12 and 100. </p>
+
+<p>Look at the following table:</p>
+
+<table>
+  <tr class = 'row-0' markdown = '1'>
+    <th class = 'cell-0-0 col-0 ' markdown = '1'>Number</td>
+    <th class = 'cell-0-1 col-1 ' markdown = '1'>English</td>
+    <th class = 'cell-0-2 col-2 ' markdown = '1'>Has "e"</td>
+  </tr>
+  <tr class = 'row-1' markdown = '1'>
+    <td class = 'cell-1-0 col-0 ' markdown = '1'>0</td>
+    <td class = 'cell-1-1 col-1 ' markdown = '1'>ZERO</td>
+    <td class = 'cell-1-2 col-2 ' markdown = '1'>Y</td>
+  </tr>
+  <tr class = 'row-2' markdown = '1'>
+    <td class = 'cell-2-0 col-0 ' markdown = '1'>1</td>
+    <td class = 'cell-2-1 col-1 ' markdown = '1'>ONE</td>
+    <td class = 'cell-2-2 col-2 ' markdown = '1'>Y</td>
+  </tr>
+  <tr class = 'row-3' markdown = '1'>
+    <td class = 'cell-3-0 col-0 ' markdown = '1'>2</td>
+    <td class = 'cell-3-1 col-1 ' markdown = '1'>TWO</td>
+    <td class = 'cell-3-2 col-2 ' markdown = '1'>N</td>
+  </tr>
+  <tr class = 'row-4' markdown = '1'>
+    <td class = 'cell-4-0 col-0 ' markdown = '1'>3</td>
+    <td class = 'cell-4-1 col-1 ' markdown = '1'>THREE</td>
+    <td class = 'cell-4-2 col-2 ' markdown = '1'>Y</td>
+  </tr>
+  <tr class = 'row-5' markdown = '1'>
+    <td class = 'cell-5-0 col-0 ' markdown = '1'>4</td>
+    <td class = 'cell-5-1 col-1 ' markdown = '1'>FOUR</td>
+    <td class = 'cell-5-2 col-2 ' markdown = '1'>N</td>
+  </tr>
+  <tr class = 'row-6' markdown = '1'>
+    <td class = 'cell-6-0 col-0 ' markdown = '1'>5</td>
+    <td class = 'cell-6-1 col-1 ' markdown = '1'>FIVE</td>
+    <td class = 'cell-6-2 col-2 ' markdown = '1'>Y</td>
+  </tr>
+  <tr class = 'row-7' markdown = '1'>
+    <td class = 'cell-7-0 col-0 ' markdown = '1'>6</td>
+    <td class = 'cell-7-1 col-1 ' markdown = '1'>SIX</td>
+    <td class = 'cell-7-2 col-2 ' markdown = '1'>N</td>
+  </tr>
+  <tr class = 'row-8' markdown = '1'>
+    <td class = 'cell-8-0 col-0 ' markdown = '1'>7</td>
+    <td class = 'cell-8-1 col-1 ' markdown = '1'>SEVEN</td>
+    <td class = 'cell-8-2 col-2 ' markdown = '1'>Y</td>
+  </tr>
+  <tr class = 'row-9' markdown = '1'>
+    <td class = 'cell-9-0 col-0 ' markdown = '1'>8</td>
+    <td class = 'cell-9-1 col-1 ' markdown = '1'>EIGHT</td>
+    <td class = 'cell-9-2 col-2 ' markdown = '1'>Y</td>
+  </tr>
+  <tr class = 'row-10' markdown = '1'>
+    <td class = 'cell-10-0 col-0 ' markdown = '1'>9</td>
+    <td class = 'cell-10-1 col-1 ' markdown = '1'>NINE</td>
+    <td class = 'cell-10-2 col-2 ' markdown = '1'>Y</td>
+  </tr>
+  <tr class = 'row-11' markdown = '1'>
+    <td class = 'cell-11-0 col-0 ' markdown = '1'>10</td>
+    <td class = 'cell-11-1 col-1 ' markdown = '1'>TEN</td>
+    <td class = 'cell-11-2 col-2 ' markdown = '1'>Y</td>
+  </tr>
+  <tr class = 'row-12' markdown = '1'>
+    <td class = 'cell-12-0 col-0 ' markdown = '1'>11</td>
+    <td class = 'cell-12-1 col-1 ' markdown = '1'>ELEVEN</td>
+    <td class = 'cell-12-2 col-2 ' markdown = '1'>Y</td>
+  </tr>
+  <tr class = 'row-13' markdown = '1'>
+    <td class = 'cell-13-0 col-0 ' markdown = '1'>12</td>
+    <td class = 'cell-13-1 col-1 ' markdown = '1'>TWELVE</td>
+    <td class = 'cell-13-2 col-2 ' markdown = '1'>Y</td>
+  </tr>
+  <tr class = 'row-14' markdown = '1'>
+    <td class = 'cell-14-0 col-0 ' markdown = '1'>1?</td>
+    <td class = 'cell-14-1 col-1 ' markdown = '1'>*-TEEN</td>
+    <td class = 'cell-14-2 col-2 ' markdown = '1'>Y</td>
+  </tr>
+  <tr class = 'row-15' markdown = '1'>
+    <td class = 'cell-15-0 col-0 ' markdown = '1'>2?</td>
+    <td class = 'cell-15-1 col-1 ' markdown = '1'>TWENTY-*</td>
+    <td class = 'cell-15-2 col-2 ' markdown = '1'>Y</td>
+  </tr>
+  <tr class = 'row-16' markdown = '1'>
+    <td class = 'cell-16-0 col-0 ' markdown = '1'>3?</td>
+    <td class = 'cell-16-1 col-1 ' markdown = '1'>THIRTY-*</td>
+    <td class = 'cell-16-2 col-2 ' markdown = '1'>N</td>
+  </tr>
+  <tr class = 'row-17' markdown = '1'>
+    <td class = 'cell-17-0 col-0 ' markdown = '1'>4?</td>
+    <td class = 'cell-17-1 col-1 ' markdown = '1'>FORTY-*</td>
+    <td class = 'cell-17-2 col-2 ' markdown = '1'>N</td>
+  </tr>
+  <tr class = 'row-18' markdown = '1'>
+    <td class = 'cell-18-0 col-0 ' markdown = '1'>5?</td>
+    <td class = 'cell-18-1 col-1 ' markdown = '1'>FIFTY-*</td>
+    <td class = 'cell-18-2 col-2 ' markdown = '1'>N</td>
+  </tr>
+  <tr class = 'row-19' markdown = '1'>
+    <td class = 'cell-19-0 col-0 ' markdown = '1'>6?</td>
+    <td class = 'cell-19-1 col-1 ' markdown = '1'>SIXTY-*</td>
+    <td class = 'cell-19-2 col-2 ' markdown = '1'>N</td>
+  </tr>
+  <tr class = 'row-20' markdown = '1'>
+    <td class = 'cell-20-0 col-0 ' markdown = '1'>7?</td>
+    <td class = 'cell-20-1 col-1 ' markdown = '1'>SEVENTY-*</td>
+    <td class = 'cell-20-2 col-2 ' markdown = '1'>Y</td>
+  </tr>
+  <tr class = 'row-21' markdown = '1'>
+    <td class = 'cell-21-0 col-0 ' markdown = '1'>8?</td>
+    <td class = 'cell-21-1 col-1 ' markdown = '1'>EIGHTY-*</td>
+    <td class = 'cell-21-2 col-2 ' markdown = '1'>Y</td>
+  </tr>
+  <tr class = 'row-22' markdown = '1'>
+    <td class = 'cell-22-0 col-0 ' markdown = '1'>9?</td>
+    <td class = 'cell-22-1 col-1 ' markdown = '1'>NINETY-*</td>
+    <td class = 'cell-22-2 col-2 ' markdown = '1'>Y</td>
+  </tr>
+  <tr class = 'row-23' markdown = '1'>
+    <td class = 'cell-23-0 col-0 ' markdown = '1'>100</td>
+    <td class = 'cell-23-1 col-1 ' markdown = '1'>HUNDRED</td>
+    <td class = 'cell-23-2 col-2 ' markdown = '1'>Y
+</td>
+  </tr>
+</table>
+
+<p>From this table, we can conclude a number (not exceeding 100) contains
+an "<code>e</code>" iff the number contains a <code>1</code>, a <code>7</code>, an <code>8</code>, or a <code>9</code>, or if
+the number ends with a <code>3</code> or a <code>5</code>, or if the number starts with a <code>2</code>
+and is followed by another digit, or if the number is <code>0</code>.</p>
+
+<p>So, we can take this list of numbers up to 100 and use the conclusion
+reached above to filter out the numbers containing an "<code>e</code>". Either using
+a regular expression, or by inspecting the individual digits.</p>
+</div>
+
+<h3>Perl</h3>
+
+<div class = "section">
+<p>In Perl, this is just a one liner:</p>
+
+<pre><code>say join " " =&gt; grep {!/^0$ | [1789] | ^2. | [35]$/x} 0 .. 100;
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-148/abigail/perl/ch-1.pl">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>C</h3>
+
+<div class = "section">
+<p>C doesn't have native regular expressions. So, we will just get the
+tens and unit digits, and do the checks:</p>
+
+<pre><code>int main (void) {
+    for (int i = 0; i &lt;= 100; i ++) {
+        int u = i % 10;
+        int t = i / 10;
+        if (!(i == 0 || t == 1 || u == 1 || t == 7 || u == 7
+                     || t == 8 || u == 8 || t == 9 || u == 9
+                     || t == 2 || u == 3 || u == 5 || i == 100)) {
+            printf ("%d ", i);
+        }
+    }
+    printf ("\n");
+}
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-148/abigail/c/ch-1.c">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>Other languages</h3>
+
+<p>We also have implementation in a bunch of other languages, which
+all either use a regular expression (as the Perl solution does),
+or inspect the digits (as the C solution does):</p>
+
+<p><a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-148/abigail/awk/ch-1.awk">AWK</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-148/abigail/bash/ch-1.sh">Bash</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-148/abigail/bc/ch-1.bc">bc</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-148/abigail/go/ch-1.go">Go</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-148/abigail/java/ch-1.java">Java</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-148/abigail/lua/ch-1.lua">Lua</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-148/abigail/node/ch-1.js">Node.js</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-148/abigail/pascal/ch-1.p">Pascal</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-148/abigail/python/ch-1.py">Python</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-148/abigail/r/ch-1.r">R</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-148/abigail/ruby/ch-1.rb">Ruby</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-148/abigail/tcl/ch-1.tcl">Tcl</a>, and
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-148/abigail/scheme/ch-1.scm">Scheme</a>.</p>
+
+<hr id = 'last-line'>
+<div class = 'trailer'>
+<p class = 'prev'><a class = "prev" href = "">&#x261C;</a></p>
+<p class = 'issue'>Please leave any comments as a
+  <a href = 'https://github.com/Abigail/Abigail.github.io/issues'
+     title = 'GitHub issue'>GitHub issue</a>.
+<p class = 'next'><a class = "next" href = "">&#x261E;</a></p>
+</div>
+
+</body>
+</html>
