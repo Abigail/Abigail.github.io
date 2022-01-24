@@ -1,0 +1,345 @@
+<html>
+<head>
+<title>Perl Weekly Challenge 148: Cardano Triplets</title>
+<script src = "https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script src = "../../JavaScript/jquery.js"></script>
+<script id = "MathJax-script" async src = "https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.js"></script>
+<script src = '../../JavaScript/navigation.js'></script>
+<link rel = 'preconnect' href = 'https://fonts.gstatic.com'>
+<link rel = 'stylesheet' href = 'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
+<link rel = 'stylesheet' href = '../../Styles/main.css'>
+<link rel = 'stylesheet' href = '../../Styles/Perl-Weekly-Challenge/main.css'>
+</head>
+
+<body><h1>Perl Weekly Challenge 148: Cardano Triplets</h1><div class = "byline">
+by Abigail<br>
+<img src = "../../Images/jan_sluiters.jpg">
+</div>
+
+
+<h2><a href="https://theweeklychallenge.org/blog/perl-weekly-challenge-148/#TASK2">Challenge</a></h2>
+
+<blockquote>
+  <p>Write a script to generate first <code>5 Cardano Triplets</code>.</p>
+  
+  <blockquote>
+  A triplet of positive integers (a,b,c) is called a Cardano Triplet
+  if it satisfies the below condition.
+  </blockquote>
+  
+  <p>\[
+     \sqrt[3]{a + b \cdot \sqrt{c}} + \sqrt[3]{a - b \cdot \sqrt{c}} = 1
+  \]</p>
+</blockquote>
+
+<h3>Example</h3>
+
+<pre><code>(2,1,5) is the first Cardano Triplets.
+</code></pre>
+
+<h2>Discussion</h2>
+
+<div class = "section">
+<p>First point of business is, what defines the first 5 triplets? Do we
+order them on smallest a, then smallest b? Do we order them on
+the minimum of a, b, and c (breaking ties with the second smallest)?
+Do we order them on the sum of a, b and c? Something else?</p>
+
+<p>We decide to order them on the sum of a, b, and c.</p>
+</div>
+
+<h4>Project Euler</h4>
+
+<div class = "section">
+<p>Cordano triplets are the subject of
+<a href="https://projecteuler.net/problem=251">task 251</a> of
+<a href="https://projecteuler.net">Project Euler</a>.</p>
+</div>
+
+<h3>Solution</h3>
+
+<div class = "section">
+<p>We start off by manipulating the formula above to eliminate the
+cube and square roots ([U3]):</p>
+
+<p>\[
+   \begin{array}{lcl}
+   \sqrt[3]{a + b \sqrt{c}} + \sqrt[3]{a - b \sqrt{c}} = 1 &amp;
+          \implies &amp; \\
+   \sqrt[3]{a + b \sqrt{c}} = 1 - \sqrt[3]{a - b \sqrt{c}} &amp;
+          \implies &amp; \text{(cubing both sides)} \\
+   a + b \sqrt{c} = 1 - 3 \left(\sqrt[3]{a - b \sqrt{c}}\right)
+                          \left(1 - \sqrt[3]{a - b \sqrt{c}}\right) -
+                          a + b \sqrt{c} &amp;
+          \implies &amp; \\
+   2 a - 1 = -3 \left(\sqrt[3]{a - b \sqrt{c}}\right)
+                \left(1 - \sqrt[3]{a - b \sqrt{c}}\right) &amp;
+          \implies &amp; \text{(identity on second line)} \\
+   2 a - 1 = -3 \left(\sqrt[3]{a - b \sqrt{c}}\right)
+                \left(\sqrt[3]{a + b \sqrt{c}}\right) &amp;
+          \implies &amp; \text{(cubing both sides)} \\
+   8 a^3 - 12 a^2 + 6 a - 1 = -27 \left(a^2 - b^2 c\right) &amp;
+          \implies &amp; \\
+   8 a^3 + 15 a^2 + 6 a - 27 b^2 c = 1
+   \end{array} \tag{1}
+\]</p>
+
+<p>Given the formula <span class = 'latex-inline'>\(8 a^3 + 15 a^2 + 6 a - 27 b^2 c = 1\)</span>, we can
+think of a parametrization.</p>
+
+<p>Let's take this modulo <span class = 'latex-inline'>\(3\)</span> [JM]:</p>
+
+<p>\[
+   \begin{array}{lcl}
+    8 a^3 + 15 a^2 + 6 a - 27 b^2 c \equiv 1 \text{ mod } 3 &amp; \implies &amp;
+        \text{(}15 a^2 \text{, } 6 a \text{, and } 27 b^2 c
+        \text{ are all divisible by } 3 \text{)} \\
+    2 a^3 \equiv 1 \text{ mod } 3 &amp; \implies &amp;
+        \text{(multiply both sides by 2)} \\
+    4 a^3 \equiv 2 \text{ mod } 3 &amp; \implies &amp; \\
+    a^3 \equiv 2 \text{ mod } 3 &amp; \implies &amp; \\
+    a \equiv 2 \text{ mod } 3 &amp; \implies &amp; \\
+    a = 3 k + 2 \text{ for some integer } k \geq 0 &amp; &amp;
+    \end{array} \tag{2}
+\]</p>
+
+<p>Now, if we plug in the result of (2) into the result of (1), we get:</p>
+
+<p>\[
+   \begin{array}{lcl}
+    8 a^3 + 15 a^2 + 6 a - 27 b^2 c = 1 &amp; \implies &amp; \\
+    27 b^2 c = 8 a^3 + 15 a^2 + 6 a - 1 &amp; \implies &amp; \text{(result of (2))} \\
+    27 b^2 c = 8 (3 k + 2)^3 + 15 (3k + 2)^2 + 6 (3k + 2) - 1 
+                                        &amp; \implies &amp; \text{(Mathematica)} \\
+    27 b^2 c = 27 (k + 1)^2 (8k + 5) &amp; \implies &amp; \\
+    b^2 c = (k + 1)^2 (8k + 5) &amp; &amp;
+    \end{array}
+\]</p>
+
+<p>So, for each <span class = 'latex-inline'>\(k \geq 0\)</span> we find an <span class = 'latex-inline'>\(a\)</span>, and a <span class = 'latex-inline'>\(b^2 c\)</span>. But there
+can be multiple solutions for <span class = 'latex-inline'>\(b\)</span> and <span class = 'latex-inline'>\(c\)</span>:</p>
+
+<ol>
+<li>Each divisor <span class = 'latex-inline'>\(d_1\)</span> of <span class = 'latex-inline'>\(k + 1\)</span> will be a solution for <span class = 'latex-inline'>\(b\)</span>.</li>
+<li>For each divisor <span class = 'latex-inline'>\(d_2\)</span> of <span class = 'latex-inline'>\(8k + 5\)</span>, if <span class = 'latex-inline'>\(d_2\)</span> is a perfect square,
+<span class = 'latex-inline'>\(\sqrt{d_2}\)</span> will be a solution for <span class = 'latex-inline'>\(b\)</span>.</li>
+<li>For each divisor <span class = 'latex-inline'>\(d_1\)</span> found in step 1, and each divisor
+<span class = 'latex-inline'>\(\sqrt{d_2}\)</span> found in step 2, <span class = 'latex-inline'>\(d_1 \sqrt{d_2}\)</span> will be a solution
+for <span class = 'latex-inline'>\(b\)</span>.</li>
+</ol>
+
+<p>Once we have <span class = 'latex-inline'>\(k\)</span> and <span class = 'latex-inline'>\(b\)</span>, we can calculate
+\[
+    c = \frac{(k + 1)^2 (8 k + 5)}{b^2}
+\]</p>
+</div>
+
+<h4>Stopping criterium</h4>
+
+<div class = "section">
+<p>How do we know we can stop generating triangles? We will keep an array
+of the best 5 triangles found so far. If <span class = 'latex-inline'>\(3 k + 2 = a\)</span> is larger
+than the largest of the sums of the best 5 triangles found so far,
+we know we cannot do better with larger <span class = 'latex-inline'>\(k\)</span>, so we can stop.</p>
+</div>
+
+<h3>Perl</h3>
+
+<div class = "section">
+<p>First, we start off with some initialization. We keep the best
+triples found so far in an array <code>@out</code> &mdash; for each triple, we
+also store its sum. We initialize <code>@out</code> with high numbers, 
+much larger than any triple we will report. We also keep track
+of the index of the largest triple in <code>@out</code>:</p>
+
+<pre><code>use Math::Prime::Util qw [divisors];
+use List::Util        qw [sum];    
+
+my $COUNT = 5;   
+my $A     = 0;
+my $B     = 1;   
+my $C     = 2;
+my $SUM   = 3;
+my @out;
+foreach my $i (0 .. $COUNT - 1) {
+    $out [$i]        = [(999999) x 3];  
+    $out [$i] [$SUM] = sum @{$out [$i]};
+}
+
+my $max_index = 0;
+</code></pre>
+
+<p>We then start a loop, incrementing <code>k</code>. Given a <code>k</code>, we find <code>a</code>, and
+store the value <code>k + 1</code> and <code>8 * k + 5</code>.</p>
+
+<pre><code>for (my $k = 0; 3 * $k + 2 &lt;= $out [$max_index] [$SUM]; $k ++) {
+    my $a  = 3 * $k + 2;
+    my $f1 =     $k + 1;
+    my $f2 = 8 * $k + 5;
+</code></pre>
+
+<p>We then find the divisors of <code>f1</code>, and the square roots of the divisors
+of <code>f2</code>, discarding the ones which are integers:</p>
+
+<pre><code>my @d1 = divisors ($f1);
+my @d2 = grep {$_ == int ($_)} map {sqrt $_} divisors ($f2);
+</code></pre>
+
+<p>We know multiply each element of <code>@d1</code> and <code>@d2</code>, assign this to <code>b</code>,
+and calculate <code>c</code>. If the sum of <code>a</code>, <code>b</code> and <code>c</code> is better than the
+fifth best triple found so far, we discard the fifth best triple,
+replacing it with <code>a</code>, <code>b</code> and <code>c</code>. But we only do this if
+<code>a</code>, <code>b</code> and <code>c</code> are not yet in <code>@out</code>: we don't need duplicates:</p>
+
+<pre><code>foreach my $d1 (@d1) {
+  D2:
+    foreach my $d2 (@d2) {
+        my $b = $d1 * $d2;
+        my $c = $f1 * $f1 * $f2 / ($b * $b);
+        if ($a + $b + $c &lt; $out [$max_index] [$SUM]) {
+            #
+            # Avoid duplicate entries
+            #
+            foreach my $info (@out) {
+                next D2 if $$info [$A] == $a &amp;&amp; $$info [$B] == $b;
+            }
+
+            #
+            # Put triple in the output structure
+            #
+            $out [$max_index] = [$a, $b, $c, $a + $b + $c];
+</code></pre>
+
+<p>We now have to find the index of the newest fifth best triple:</p>
+
+<pre><code>#
+# Find the index of the new highest value
+#
+$max_index = 0;
+my $max_sum = $out [$max_index] [$SUM];
+for (my $i = 1; $i &lt; $COUNT; $i ++) {
+    if ($out [$i] [$SUM] &gt; $max_sum) {
+        $max_index = $i;
+        $max_sum   = $out [$i] [$SUM];
+    }
+}
+</code></pre>
+
+<p>Once we have found all triples, we can print them:</p>
+
+<pre><code>say "@$_[$A, $B, $C]" for @out;
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-148/abigail/perl/ch-2.pl">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>Python</h3>
+
+<div class = "section">
+<p>Most languages don't have a divisor method (or they may have in some
+module, but I generally don't go searching for them), so we have to
+find the divisors ourselves. Python for instance.</p>
+
+<p>We'll skip the initialization, and dive directly into the body
+of the main loop, where we have to find the divisors of <code>f1</code>
+and <code>f2</code>:</p>
+
+<pre><code>a  = 3 * k + 2
+f1 =     k + 1
+f2 = 8 * k + 5
+
+d1 = []
+for i in range (1, f1 + 1):
+    if i * i &gt; f1:
+        break
+    if f1 % i == 0:
+        d1 . append (i)
+        if i != f1 // i: 
+            d1 . append (f1 // i)
+
+
+d2 = []
+for i in range (1, f2 + 1):
+    if i * i &gt; f2:
+        break
+    if f2 % i == 0:
+        s1 = math . isqrt (i)
+        s2 = math . isqrt (f2 // i)
+        if s1 * s1 == i:
+            d2 . append (s1)
+        if s2 * s2 == f2 // i and s1 != s2:
+            d2 . append (s2)
+</code></pre>
+
+<p>Finding the possibilities for <code>b</code> and <code>c</code> isn't very different from
+the Perl solution:</p>
+
+<pre><code>for d1v in d1:
+    for d2v in d2:
+        b = d1v * d2v
+        c = f1 * f1 * f2 // (b * b)
+
+        if a + b + c &lt; out [max_index] [SUM]:
+            seen = False
+            for i in range (COUNT):
+                if out [i] [A] == a and out [i] [B] == b:
+                    seen = true
+                    break
+            if seen:
+                break
+
+            out [max_index] = [a, b, c, a + b + c]
+
+            max_index = 0
+            max_sum   = out [max_index] [SUM]
+            for i in range (1, COUNT):
+                if max_sum &lt; out [i] [SUM]:
+                    max_sum   = out [i] [SUM]
+                    max_index = i
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-148/abigail/python/ch-2.py">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>Other languages</h3>
+
+<div class = "section">
+<p>We also have implementation in some other languages, all using
+a very similar algorithm:</p>
+
+<p><a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-148/abigail/awk/ch-2.awk">AWK</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-148/abigail/bc/ch-2.bc">bc</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-148/abigail/c/ch-2.c">C</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-148/abigail/go/ch-2.go">Go</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-148/abigail/java/ch-2.java">Java</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-148/abigail/lua/ch-2.lua">Lua</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-148/abigail/node/ch-2.js">Node.js</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-148/abigail/pascal/ch-2.p">Pascal</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-148/abigail/r/ch-2.r">R</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-148/abigail/ruby/ch-2.rb">Ruby</a>, and
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-148/abigail/tcl/ch-2.tcl">Tcl</a>.</p>
+</div>
+
+<h2>References</h2>
+
+<ul>
+<li>[U3] <a href="https://math.stackexchange.com/questions/2160805/cardano-triplet-transformation#2160812">Cardano Triplet transformation</a> 
+on <a href="https://math.stackexchange.com/">Math stackexchange</a>.
+Answered by user 371838.</li>
+<li>[JM] <a href="https://math.stackexchange.com/questions/1885095/parametrization-of-cardano-triplet#1885139">Parametrization of Cardano triplet</a>
+on <a href="https://math.stackexchange.com/">Math stackexchange</a>. Answered
+by <a href="https://math.stackexchange.com/users/305862/jean-marie">Jean Marie</a>.</li>
+<li>[MW] <a href="https://www.wolframalpha.com/input/?i=8+%283+k+%2B+2%29%5E3+%2B+15+%283k+%2B+2%29%5E2+%2B+6+%283k+%2B+2%29+-+1">Mathematica</a>.</li>
+</ul>
+
+<hr id = 'last-line'>
+<div class = 'trailer'>
+<p class = 'prev'><a class = "prev" href = "">&#x261C;</a></p>
+<p class = 'issue'>Please leave any comments as a
+  <a href = 'https://github.com/Abigail/Abigail.github.io/issues'
+     title = 'GitHub issue'>GitHub issue</a>.
+<p class = 'next'><a class = "next" href = "">&#x261E;</a></p>
+</div>
+
+</body>
+</html>
