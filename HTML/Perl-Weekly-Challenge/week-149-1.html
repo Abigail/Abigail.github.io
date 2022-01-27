@@ -1,0 +1,216 @@
+<html>
+<head>
+<title>Perl Weekly Challenge 149: Fibonacci Digit Sum</title>
+<script src = "https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script src = "../../JavaScript/jquery.js"></script>
+<script id = "MathJax-script" async src = "https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.js"></script>
+<script src = '../../JavaScript/navigation.js'></script>
+<link rel = 'preconnect' href = 'https://fonts.gstatic.com'>
+<link rel = 'stylesheet' href = 'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
+<link rel = 'stylesheet' href = '../../Styles/main.css'>
+<link rel = 'stylesheet' href = '../../Styles/Perl-Weekly-Challenge/main.css'>
+</head>
+
+<body><h1>Perl Weekly Challenge 149: Fibonacci Digit Sum</h1><div class = "byline">
+by Abigail<br>
+<img src = "../../Images/jan_sluiters.jpg">
+</div>
+
+
+<h2><a href="https://theweeklychallenge.org/blog/perl-weekly-challenge-149/#TASK1">Challenge</a></h2>
+
+<blockquote>
+  <p>Given an input <code>$N</code>, generate the first <code>$N</code> numbers for which the sum of their digits is a Fibonacci number.</p>
+</blockquote>
+
+<h3>Example</h3>
+
+<pre><code>f(20)=[0, 1, 2, 3, 5, 8, 10, 11, 12, 14, 17, 20, 21, 23, 26, 30, 32, 35, 41, 44]
+</code></pre>
+
+<h2>Discussion</h2>
+
+<div class = "section">
+<p>This is sequence <a href="https://oeis.org/A028840">A028840</a> in
+<a href="https://oeis.org">The On-Line Encyclopedia of Integer Sequences</a>.</p>
+</div>
+
+<h2>Solution</h2>
+
+<div class = "section">
+<p>We need to do two things: given a number, find the sum of its digits,
+and given a number, check whether that number if a Fibonacci number.</p>
+
+<p>The first taks is similar to what was needed in <a href="week-133-2.html">week 133</a>,
+so we can reuse the code.</p>
+</div>
+
+<h3>Perl</h3>
+
+<div class = "section">
+<p>First, we create a method which, given a (non-negative) integer, 
+returns the sum of its digit. We do this by getting the digits
+one at a time, from the right, using modulus and integer division:</p>
+
+<pre><code>sub digitsum ($number) {
+    my $sum  =  0;
+    my $base = 10;
+    while ($number &gt; 0) {
+        use integer;
+        $sum    += $number % $base;
+        $number /= $base;
+    }
+    return $sum;
+}
+</code></pre>
+
+<p>To check whether a number is a Fibonacci number, we keep a hash which
+contains Fibonacci numbers. If we have a number <code>N</code> of which we want
+to know whether it's a Fibonacci number, we first check what the largest
+number in our hash is. If it's less than <code>N</code>, we generate successive
+numbers until we reach or exceed <code>N</code>. Then we do a simple look up.</p>
+
+<pre><code>sub is_fib ($n) {
+    state  $fib = {0 =&gt; 1, 1 =&gt; 1};
+    state  $fib_prev = 0; 
+    state  $fib_last = 1; 
+    while ($fib_last &lt; $n) {
+        ($fib_prev, $fib_last) = ($fib_last, $fib_prev + $fib_last);   
+        $$fib {$fib_last}      = 1;
+    }
+    $$fib {$n}
+}
+</code></pre>
+
+<p>We can then print the numbers in a simple loop:</p>
+
+<pre><code>while (&lt;&gt;) {
+    for (my ($k, $N) = (0, 0 + $_); $N &gt; 0; $k ++) {
+        $N --, print "$k " if is_fib digitsum $k
+    }
+    print "\n";
+}
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-149/abigail/perl/ch-1.pl">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>Bc</h3>
+
+<div class = "section">
+<p>bc doesn't have hashes. So, we keep the generated Fibonacci numbers
+in an array. Once we have generated enough, we will do a binary
+search to see whether the input number is a Fibonacci or not.</p>
+
+<pre><code>fib_prev  = 1       
+fib_last  = 1       
+fib [0]   = 0
+fib [1]   = 1
+fib_count = 2
+
+define is_fib (n) {
+    auto t, min, max
+    while (fib_last &lt; n) {
+        t        = fib_last
+        fib_last = fib_prev + fib_last
+        fib_prev = t
+        fib [fib_count] = fib_last
+        fib_count = fib_count + 1
+    }
+    min = 0
+    max = fib_count
+    while (min &lt; max) {
+        mid = (min + max) / 2
+        if (fib [mid] == n) {
+            return (1)
+        }
+        if (fib [mid] &lt; n) {
+            min = mid + 1
+        } else {
+            max = mid
+        }
+    }
+    return (0)
+}
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-149/abigail/perl/ch-1.pl">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>Scheme</h3>
+
+<div class = "section">
+<p>For our Scheme solution, we use a recursive solution to calculate
+the sum of the digits of a number:</p>
+
+<pre><code>(define (digit_sum n)
+    (define base 10)
+    (if (= n 0) 0 (+ (modulo n base) (digit_sum (floor/ n base)))))
+</code></pre>
+
+<p>To check if a number is a Fibonacci number, this time, we're not
+storing numbers generated so far. We use pure recursion:</p>
+
+<pre><code>(define (_is_fib n prev last)
+    (cond ((= n prev) #t)
+          ((&lt; n prev) #f)
+          (else (_is_fib n last (+ last prev)))))
+
+(define (is_fib n) (_is_fib n 0 1))
+</code></pre>
+
+<p>Since recursion is the name of the game in Scheme, we use recursion
+for the loop which prints out the numbers:</p>
+
+<pre><code>(define (digit_fib k n)
+    (cond ((= n 0) #f)
+          ((is_fib (digit_sum k))
+             (begin (format #t "~d " k) (digit_fib (+ k 1) (- n 1))))
+          (else (digit_fib (+ k 1) n))))
+</code></pre>
+
+<p>Here, <code>k</code> is the first number to check, and <code>n</code> is the amount of
+numbers we still want to check. The main program (also recursive)
+looks like this:</p>
+
+<pre><code>(define (main)
+    (define n (read-line))
+    (define k 0)
+    (if (not (eof-object? n))
+        (begin
+            (digit_fib 0 (string-&gt;number n))
+            (newline)
+            (main))))
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-149/abigail/scheme/ch-1.scm">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>Other languages</h3>
+
+<p>We also have implementations, all similar to the Perl one, in:</p>
+
+<p><a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-149/abigail/awk/ch-1.awk">AWK</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-149/abigail/bash/ch-1.sh">Bash</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-149/abigail/c/ch-1.c">C</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-149/abigail/go/ch-1.go">Go</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-149/abigail/java/ch-1.java">Java</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-149/abigail/lua/ch-1.lua">Lua</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-149/abigail/node/ch-1.js">Node.js</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-149/abigail/pascal/ch-1.p">Pascal</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-149/abigail/python/ch-1.py">Python</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-149/abigail/r/ch-1.r">R</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-149/abigail/ruby/ch-1.rb">Ruby</a>, and
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-149/abigail/tcl/ch-1.tcl">Tcl</a>.</p>
+
+<hr id = 'last-line'>
+<div class = 'trailer'>
+<p class = 'prev'><a class = "prev" href = "">&#x261C;</a></p>
+<p class = 'issue'>Please leave any comments as a
+  <a href = 'https://github.com/Abigail/Abigail.github.io/issues'
+     title = 'GitHub issue'>GitHub issue</a>.
+<p class = 'next'><a class = "next" href = "">&#x261E;</a></p>
+</div>
+
+</body>
+</html>
