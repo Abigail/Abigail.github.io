@@ -1,0 +1,124 @@
+<html>
+<head>
+<title>Perl Weekly Challenge 150: Square-free Integer</title>
+<script src = "https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script src = "../../JavaScript/jquery.js"></script>
+<script id = "MathJax-script" async src = "https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.js"></script>
+<script src = '../../JavaScript/navigation.js'></script>
+<link rel = 'preconnect' href = 'https://fonts.gstatic.com'>
+<link rel = 'stylesheet' href = 'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
+<link rel = 'stylesheet' href = '../../Styles/main.css'>
+<link rel = 'stylesheet' href = '../../Styles/Perl-Weekly-Challenge/main.css'>
+</head>
+
+<body><h1>Perl Weekly Challenge 150: Square-free Integer</h1><div class = "byline">
+by Abigail<br>
+<img src = "../../Images/jan_sluiters.jpg">
+</div>
+
+
+<h2><a href="https://theweeklychallenge.org/blog/perl-weekly-challenge-150/#TASK2">Challenge</a></h2>
+
+<blockquote>
+  <p>Write a script to generate all square-free integers &lt;= 500.</p>
+  
+  <blockquote>
+    <p>In mathematics, a square-free integer (or squarefree integer) is
+    an integer which is divisible by no perfect square other than 1.
+    That is, its prime factorization has exactly one factor for each
+    prime that appears in it. For example, <span class = 'latex-inline'>\(10 = 2 \cdot 5\)</span> is
+    square-free, but <span class = 'latex-inline'>\(18 = 2 \cdot 3 \cdot 3\)</span> is not, because 18 is
+    divisible by <span class = 'latex-inline'>\(9 = 3^2\)</span>.</p>
+  </blockquote>
+</blockquote>
+
+<h3>Example</h3>
+
+<pre><code>The smallest positive square-free integers are
+    1, 2, 3, 5, 6, 7, 10, 11, 13, 14, 15, 17, 19, 21, 22, 23, 26, 29, 30, ...
+</code></pre>
+
+<h2>Discussion</h2>
+
+<div class = "section">
+<p>This is sequence <a href="https://oeis.org/A005117">A005117</a> in
+<a href="https://oeis.org">The On-Line Encyclopedia of Integer Sequences</a>.
+We want the first 306 terms.</p>
+
+<p>We could take each of the numbers <span class = 'latex-inline'>\(1 \leq n \leq 500\)</span>, calculate the factors
+and check whether there are no duplicates. But that does more work
+than we need to do. Instead, we look at squares of all the primes
+<span class = 'latex-inline'>\(p, 1 &lt; p \leq \sqrt{500}\)</span>. If any of those divides a number <span class = 'latex-inline'>\(n\)</span>,
+<span class = 'latex-inline'>\(n\)</span> is not square-free. Else, it is.</p>
+
+<p>There are only 8 such primes, as <span class = 'latex-inline'>\(361 = 19^2 &lt; 500 &lt; 23^2 = 529\)</span>.</p>
+</div>
+
+<h2>Solutions</h2>
+
+<h3>Perl</h3>
+
+<div class = "section">
+<p>After setting <code>$,</code>, this is just a one-liner:</p>
+
+<pre><code>say grep {$a = $_; 8 == grep {$a % $_ ** 2} 2, 3, 5, 7, 11, 13, 17, 19} 1 .. 500
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-150/abigail/perl/ch-2.pl">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>Go</h3>
+
+<div class = "section">
+<p>Explicit loops in Go:</p>
+
+<pre><code>func main () {
+    primes := [8] int {2, 3, 5, 7, 11, 13, 17, 19}
+    for n := 1; n &lt;= 500; n ++ {
+        s := false
+        for _, p := range primes {
+            if (n % (p * p) == 0) {
+                s = true
+                break
+            }
+        }
+        if !s {
+            fmt . Printf ("%d ", n)
+        }
+    }
+    fmt . Printf ("\n")
+}
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-150/abigail/go/ch-2.go">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>Other languages</h3>
+
+<p>We also have similar implementations in:</p>
+
+<p><a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-150/abigail/awk/ch-2.awk">AWK</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-150/abigail/bash/ch-2.sh">Bash</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-150/abigail/bc/ch-2.bc">bc</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-150/abigail/c/ch-2.c">C</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-150/abigail/java/ch-2.java">Java</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-150/abigail/lua/ch-2.lua">Lua</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-150/abigail/node/ch-2.js">Node.js</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-150/abigail/pascal/ch-2.p">Pascal</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-150/abigail/python/ch-2.py">Python</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-150/abigail/r/ch-2.r">R</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-150/abigail/ruby/ch-2.rb">Ruby</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-150/abigail/scheme/ch-2.scm">Scheme</a>, and
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-150/abigail/tcl/ch-2.tcl">Tcl</a>.</p>
+
+<hr id = 'last-line'>
+<div class = 'trailer'>
+<p class = 'prev'><a class = "prev" href = "">&#x261C;</a></p>
+<p class = 'issue'>Please leave any comments as a
+  <a href = 'https://github.com/Abigail/Abigail.github.io/issues'
+     title = 'GitHub issue'>GitHub issue</a>.
+<p class = 'next'><a class = "next" href = "">&#x261E;</a></p>
+</div>
+
+</body>
+</html>

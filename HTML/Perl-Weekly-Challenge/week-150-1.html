@@ -1,0 +1,201 @@
+<html>
+<head>
+<title>Perl Weekly Challenge 150: Fibonacci Words</title>
+<script src = "https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script src = "../../JavaScript/jquery.js"></script>
+<script id = "MathJax-script" async src = "https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.js"></script>
+<script src = '../../JavaScript/navigation.js'></script>
+<link rel = 'preconnect' href = 'https://fonts.gstatic.com'>
+<link rel = 'stylesheet' href = 'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
+<link rel = 'stylesheet' href = '../../Styles/main.css'>
+<link rel = 'stylesheet' href = '../../Styles/Perl-Weekly-Challenge/main.css'>
+</head>
+
+<body><h1>Perl Weekly Challenge 150: Fibonacci Words</h1><div class = "byline">
+by Abigail<br>
+<img src = "../../Images/jan_sluiters.jpg">
+</div>
+
+
+<h2><a href="https://theweeklychallenge.org/blog/perl-weekly-challenge-150/#TASK1">Challenge</a></h2>
+
+<blockquote>
+  <p>You are given two strings having same number of digits, <code>$a</code> and <code>$b</code>.</p>
+  
+  <p>Write a script to generate <code>Fibonacci Words</code> by concatenation of the previous two strings. Finally print 51st digit of the first term having at least 51 digits.</p>
+</blockquote>
+
+<h3>Example:</h3>
+
+<pre><code>    Input: $a = '1234' $b = '5678'
+    Output: 7
+
+    Fibonacci Words:
+
+    '1234'
+    '5678'
+    '12345678'
+    '567812345678'
+    '12345678567812345678'
+    '56781234567812345678567812345678'
+    '1234567856781234567856781234567812345678567812345678'
+
+    The 51st digit in the first term having at least 51 digits '1234567856781234567856781234567812345678567812345678' is 7.
+</code></pre>
+
+<h2>Discussion</h2>
+
+<div class = "section">
+<p>I don't see how the given that the input strings having the same number
+of digits is going to buy us anything (except that having a lookup table
+becomes feasible). And the fact that the input strings only contain
+digits is useful for only one thing: it makes a bc solution possible.</p>
+</div>
+
+<h2>Solution</h2>
+
+<div class = "section">
+<p>This is fairly trivial. We'll just keep concatenating strings until
+we have reached the required length, then print the right character.</p>
+</div>
+
+<h3>Perl</h3>
+
+<div class = "section">
+<p>With the input in <code>$_</code>, we first split the input into two strings:</p>
+
+<pre><code>my ($fib_prev, $fib_last) = /[0-9]+/g;
+</code></pre>
+
+<p>Now we iterate:</p>
+
+<pre><code>my $LENGTH = 51;
+while (length ($fib_last) &lt; $LENGTH) {
+    ($fib_prev, $fib_last) = ($fib_last, $fib_prev . $fib_last);
+}
+</code></pre>
+
+<p>And we print the right character:</p>
+
+<pre><code>say substr $fib_last, $LENGTH - 1, 1;
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-150/abigail/perl/ch-1.pl">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>Bash</h3>
+
+<div class = "section">
+<p>In Bash, we cannot assign multiple variables at the same time, So
+we need an additional variable in the main loop.</p>
+
+<pre><code>LENGTH=51
+
+while read fib_prev fib_last
+do   while ((${#fib_last} &lt; LENGTH))
+     do  fib_tmp=$fib_last
+         fib_last=$fib_prev$fib_last
+         fib_prev=$fib_tmp
+     done
+     echo ${fib_last:$((LENGTH - 1)):1}
+done
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-150/abigail/bash/ch-1.sh">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>bc</h3>
+
+<div class = "section">
+<p>Bc doesn't do string operations (other than printing string literals).
+So, we have to work hard to "concatenate" strings consisting of numbers.
+We do this by repeatedly multiplying one of the strings by 10, until we
+have clear enough space for the other number to be added:</p>
+
+<pre><code>fib_prev = read ()
+if (fib_prev == 0) {
+    break
+}
+fib_last = read ()
+if (fib_last == 0) {
+    break
+}
+
+while (fib_last &lt; 10 ^ 51) {
+    fib_tmp = fib_last
+    t = fib_last
+    fib_last = fib_prev
+    while (t &gt; 0) {
+        fib_last = fib_last * 10
+        t = t / 10
+    }
+    fib_last = fib_last + fib_tmp
+    fib_prev = fib_tmp
+}
+
+while (fib_last &gt; 10 ^ 51) {
+    fib_last = fib_last / 10
+}
+
+fib_last % 10
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-150/abigail/bc/ch-1.bc">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>Scheme</h3>
+
+<div class = "section">
+<p>In Scheme, recursion is preferred over assignment. So, we define
+a recursive method to concatenate string until the required length,
+then print the right character:</p>
+
+<pre><code>(define (fib fib_prev fib_last)
+    (if (&gt;= (string-length fib_last) 51)
+        (format #t "~c\n" (string-ref fib_last 50))
+        (fib fib_last (string-concatenate (list fib_prev fib_last)))))
+</code></pre>
+
+<p>And a main program to read input, can call the method above:</p>
+
+<pre><code>(define (main)
+    (define line (read-line))
+    (if (not (eof-object? line))
+        (begin
+            (fib (list-ref (string-split line #\ ) 0)
+                 (list-ref (string-split line #\ ) 1))
+            (main))))
+
+(main)
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-150/abigail/scheme/ch-1.scm">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3>Other languages</h3>
+
+<p>We also have implementations in:</p>
+
+<p><a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-150/abigail/awk/ch-1.awk">AWK</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-150/abigail/c/ch-1.c">C</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-150/abigail/go/ch-1.go">Go</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-150/abigail/java/ch-1.java">Java</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-150/abigail/lua/ch-1.lua">Lua</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-150/abigail/node/ch-1.js">Node.js</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-150/abigail/pascal/ch-1.p">Pascal</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-150/abigail/python/ch-1.py">Python</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-150/abigail/r/ch-1.r">R</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-150/abigail/ruby/ch-1.rb">Ruby</a>, and
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-150/abigail/tcl/ch-1.tcl">Tcl</a>.</p>
+
+<hr id = 'last-line'>
+<div class = 'trailer'>
+<p class = 'prev'><a class = "prev" href = "">&#x261C;</a></p>
+<p class = 'issue'>Please leave any comments as a
+  <a href = 'https://github.com/Abigail/Abigail.github.io/issues'
+     title = 'GitHub issue'>GitHub issue</a>.
+<p class = 'next'><a class = "next" href = "">&#x261E;</a></p>
+</div>
+
+</body>
+</html>
