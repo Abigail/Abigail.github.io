@@ -167,7 +167,9 @@ class Sudoku {
     //
     // Given a set of clues in some form, normalize them
     //
-    set_clues (clues) {
+    set_clues (args = {}) {
+        let clues = args ["clues"]
+
         if (!clues) {
             return
         }
