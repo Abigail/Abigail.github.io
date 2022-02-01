@@ -209,6 +209,19 @@ class Sudoku {
         this . clues = this . normalize_set (clues)
     }
 
+    //
+    // Set a set of solutions
+    //
+    set_solution (args = {}) {
+        let clues = args ["solution"]
+
+        if (!solution) {
+            return
+        }
+
+        this . solution = this . normalize_set (clues)
+    }
+
 
     draw_clues (args = {}) {
         this . set_clues (args ["clues"])
