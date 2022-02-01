@@ -213,13 +213,13 @@ class Sudoku {
     // Set a set of solutions
     //
     set_solution (args = {}) {
-        let clues = args ["solution"]
+        let solution = args ["solution"]
 
         if (!solution) {
             return
         }
 
-        this . solution = this . normalize_set (clues)
+        this . solution = this . normalize_set (solution)
     }
 
 
@@ -255,6 +255,15 @@ class Sudoku {
         this . set_clues (args ["clues"])
         this . draw_set  ({set:    this . clues,
                            class: "clue"})
+    }
+
+    //
+    // Draw the solution
+    //
+    draw_solution (args = {}) {
+        this . set_solution (args ["solution"])
+        this . draw_set     ({set: this . solution,
+                              class: "solution"})
     }
 }
 

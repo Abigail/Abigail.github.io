@@ -31,3 +31,7 @@ text {
 text.clue {
     fill:                             black;
 }
+
+text.solution {
+    fill:                             #0000ff;
+}
