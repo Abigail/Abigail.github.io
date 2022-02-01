@@ -1,9 +1,7 @@
 let dir = "Talks/Sudoku-Variants"
 
 let pages = [
-    ["intro",    "Introduction"],
-    ["test1",    "Test"],
-    ["test2",    "Test"],
+    ["intro-01",    "Introduction"],
 ]
 
 pages . forEach (entry => {
