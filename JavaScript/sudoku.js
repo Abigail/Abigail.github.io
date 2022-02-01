@@ -223,24 +223,38 @@ class Sudoku {
     }
 
 
-    draw_clues (args = {}) {
-        this . set_clues (args ["clues"])
-        let clues     = this . clues
-        let rect_size = this . rect_size
-        if (!clues) {
+    //
+    // Draw a set of numbers
+    //
+    draw_set (args = {}) {
+        let set        = args ["set"]
+        let class_name = args ["class"]
+
+        if (!set) {
             return
         }
 
-        for (const id in clues) {
-            let val        = clues [id]
+        let rect_size = this . rect_size
+
+        for (const id in set) {
+            let val        = set [id]
             let [row, col] = Sudoku . id_to_coord (id)
             let plain      = this . sudoku
                                   . plain (val . toString ())
                                   . attr  ({x: (col)       * rect_size,
                                             y: (row + 0.2) * rect_size,
                                            "text-anchor": "middle"})
-                                  . addClass ("clue")
+                                  . addClass (class_name)
         }
+    }
+
+    //
+    // Draw the clues
+    //
+    draw_clues (args = {}) {
+        this . set_clues (args ["clues"])
+        this . draw_set  ({set:    this . clues,
+                           class: "clue"})
     }
 }
 
