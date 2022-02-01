@@ -24,6 +24,10 @@ rect {
     fill:                             white;
 }
 
+rect.highlight {
+    fill:                           #d0ffff;
+}
+
 text {
     font-size:                         130%;
 }
@@ -33,5 +37,5 @@ text.clue {
 }
 
 text.solution {
-    fill:                             #0000ff;
+    fill:                           #0000ff;
 }

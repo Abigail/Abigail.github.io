@@ -29,9 +29,54 @@ $(document) . ready (function () {
         unhide ()
     })
     add_todo (() => {unhide ()})
-    add_todo (() => {unhide ()})
-    add_todo (() => {unhide ()})
-    add_todo (() => {unhide ()})
 
-    add_todo (() => {sudoku . draw_solution ()})
+    //
+    // ... rows
+    //
+    add_todo (() => {
+        unhide ()
+        show_house ("R")
+    })
+
+    //
+    // ... columns
+    //
+    add_todo (() => {
+        unhide ()
+        show_house ("C")
+    })
+
+    //
+    // ... boxes
+    //
+    add_todo (() => {
+        unhide ()
+        show_house ("B")
+    })
+
+    add_todo (() => {
+        clear_houses ()
+        sudoku . draw_solution ()
+    })
 })
+
+
+//
+// Handle highligthing houses
+//
+let timeout_id
+let name = "highlight"
+
+function clear_houses () {
+    clearTimeout (timeout_id)
+    $("." + name) . removeClass (name)
+}
+
+function show_house (type) {
+    clear_houses ()
+    let house_name = type + (1 + Math . floor (Math . random () * 9))
+
+    $("." + house_name) . addClass (name)
+
+    timeout_id = setTimeout (show_house, 2000, type)
+}
