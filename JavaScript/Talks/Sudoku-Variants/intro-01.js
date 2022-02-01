@@ -21,6 +21,17 @@ $(document) . ready (function () {
                                        [2, 8, 7, 0, 0, 0, 6, 3, 0],
                                        [3, 4, 5, 2, 0, 6, 1, 0, 0]]})
 
-    add_todo (function () {sudoku . draw_clues    ()})
-    add_todo (function () {sudoku . draw_solution ()})
+    $("li") . addClass ("hidden")
+    unhide ()
+
+    add_todo (() => {
+        sudoku . draw_clues ()
+        unhide ()
+    })
+    add_todo (() => {unhide ()})
+    add_todo (() => {unhide ()})
+    add_todo (() => {unhide ()})
+    add_todo (() => {unhide ()})
+
+    add_todo (() => {sudoku . draw_solution ()})
 })
