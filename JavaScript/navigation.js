@@ -94,7 +94,7 @@ let pwc_pages = [
     ["week-147-1", "Truncatable Prime"],
     ["week-147-2", "Pentagon Numbers"],
     ["week-148-1", "Eban Numbers"],
-    ["week-148-2", "Cardano Triplets"]
+    ["week-148-2", "Cardano Triplets"],
     ["week-149-1", "Fibonacci Digit Sum"],
     ["week-149-2", "Largest Square"],
     ["week-150-1", "Fibonacci Words"],
