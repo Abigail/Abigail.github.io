@@ -72,11 +72,15 @@ function clear_houses () {
     $("." + name) . removeClass (name)
 }
 
-function show_house (type) {
+function show_house (type, previous_id = 0) {
     clear_houses ()
-    let house_name = type + (1 + Math . floor (Math . random () * 9))
+    let next_id = previous_id
+    while (next_id == previous_id) {
+        next_id = 1 + Math . floor (Math . random () * 9)
+    }
+    let house_name = type + next_id
 
     $("." + house_name) . addClass (name)
 
-    timeout_id = setTimeout (show_house, 2000, type)
+    timeout_id = setTimeout (show_house, 2000, type, next_id)
 }
