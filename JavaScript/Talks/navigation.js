@@ -82,6 +82,15 @@ function do_keypress (event) {
 }
 
 
+//
+// Unhide 1 (or more) elements 
+//
+function unhide (amount = 1) {
+    while (amount -- > 0) {
+        $(".hidden") . first () . removeClass ("hidden")
+    }
+}
+
 $(document) . ready (function () {
     let pagename = document . location . href
         pagename = pagename . substr (pagename . lastIndexOf ('/HTML/') + 6)

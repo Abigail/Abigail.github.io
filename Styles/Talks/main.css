@@ -15,3 +15,11 @@ h1:first-of-type {
     margin:     0px 0px 0px 0px;
     padding:    1vh 0px 0px 0px;
 }
+
+
+/*
+ * Elements to be displayed after hitting space bar
+ */
+.hidden {
+    opacity:                .05;
+}
