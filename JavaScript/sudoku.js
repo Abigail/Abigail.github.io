@@ -163,6 +163,38 @@ class Sudoku {
         return [... id . matchAll (/[0-9]+/g)] . map (x => + x)
     }
 
+    //
+    // Given a set with coordinates and values, normalize them into
+    // an object mapping "RxCy" to values.
+    //
+    normalize_set (set) {
+        let set_type = find_type (set);
+        let out  = {}
+
+        if (set_type === 'array') {
+            //
+            // For now, assume an array of number. '0' means no clue.
+            //
+            for (let x = 0; x < this . size; x ++) {
+                for (let y = 0; y < this . size; y ++) {
+                    let val = set [x] [y]
+                    if (val > 0) {
+                        let id   = Sudoku . coord_to_id (x + 1, y + 1);
+                        out [id] = val
+                    }
+                }
+            }
+        }
+
+        if (set_type === 'object') {
+            //
+            // Assume it's of the form {RxCy => val}, with val > 0.
+            //
+            out = sets
+        }
+
+        return out
+    }
 
     //
     // Given a set of clues in some form, normalize them
@@ -174,32 +206,7 @@ class Sudoku {
             return
         }
 
-        let clue_type = find_type (clues);
-        let out  = {}
-
-        if (clue_type === 'array') {
-            //
-            // For now, assume an array of number. '0' means no clue.
-            //
-            for (let x = 0; x < this . size; x ++) {
-                for (let y = 0; y < this . size; y ++) {
-                    let val = clues [x] [y]
-                    if (val > 0) {
-                        let id   = Sudoku . coord_to_id (x + 1, y + 1);
-                        out [id] = val
-                    }
-                }
-            }
-        }
-
-        if (clue_type === 'object') {
-            //
-            // Assume it's of the form {RxCy => val}, with val > 0.
-            //
-            out = clues
-        }
-
-        this . clues = out
+        this . clues = this . normalize_set (clues)
     }
 
 
