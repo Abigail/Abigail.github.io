@@ -33,6 +33,8 @@ function navigation (pagename, pages) {
         }
     }
 
+    let up = "../../"
+
     if (index > 0) {
         $("a.prev") . attr ("href", up + pages [index - 1] [0])
         $("a.prev") . attr ("title",     pages [index - 1] [1])
@@ -42,8 +44,8 @@ function navigation (pagename, pages) {
         $("p.prev") . css ("visibility", "hidden")
     }
 
-    let up = "../../../"
     if (index >= 0 && index < pages . length - 1) {
+        console . log ("next = " + up + pages [index + 1] [0])
         $("a.next") . attr ("href", up + pages [index + 1] [0])
         $("a.next") . attr ("title",     pages [index + 1] [1])
         urls ["n"] =  up + pages [index + 1] [0]
