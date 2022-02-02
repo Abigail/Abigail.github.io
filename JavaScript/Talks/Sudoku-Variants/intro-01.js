@@ -55,7 +55,7 @@ $(document) . ready (function () {
     })
 
     add_todo (() => {
-        sudoku . clear_houses ()
+        sudoku . clear_highlights ()
         sudoku . draw_solution ()
     })
 })
