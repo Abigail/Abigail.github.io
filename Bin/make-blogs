@@ -10,6 +10,7 @@ use experimental 'signatures';
 use experimental 'lexical_subs';
 
 use Text::Markdown qw [markdown];
+use Getopt::Long;
 
 my $POLYFILL_URL   = "https://polyfill.io/v3/polyfill.min.js?features=es6";
 my $MATHJAX_URL    = "https://cdn.jsdelivr.net/npm/mathjax@3/" .
@@ -780,11 +781,17 @@ sub init_link_group () {
 #
 # Main program
 #
+GetOptions  "sv"   =>  \my $sudoku_variants;
+
 die "$0 source-file ..." unless @ARGV;
 my @todo;
 foreach my $arg (@ARGV) {
     my ($type, $base);
-    if ($arg =~ /^[0-9]{3}-[0-9]$/) {
+    if ($sudoku_variants) {
+        $type = $TYPE_TALK;
+        $base = "Sudoku-Variants/$arg";
+    }
+    elsif ($arg =~ /^[0-9]{3}-[0-9]$/) {
         $type = $TYPE_PWC;
         $base = "week-$arg";
     }
@@ -813,6 +820,7 @@ foreach my $arg (@ARGV) {
 
         die "Don't know what to do with $arg" unless $type && $base;
     }
+    $base =~ s/\.md$//;
     push @todo => [$type, $$TYPE_INFO {$type} {$INFO_DIR}, $base];
 }
 
