@@ -299,5 +299,16 @@ class Sudoku {
         this . show_houses_timeout_id =
                setTimeout (() => {sudoku . show_houses (type, next_id)}, 2000)
     }
+
+    //
+    // Highlight a given house or cell (based on class names or id)
+    // Does *NOT* clear existing highlights.
+    //
+    show_house (selector) {
+        if (selector . substring (0, 1) != "#") {
+            selector = "." + selector
+        }
+        $(selector) . addClass (HL_CLASS)
+    }
 }
 
