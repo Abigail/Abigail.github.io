@@ -271,7 +271,7 @@ class Sudoku {
     //
     clear_houses () {
         clearTimeout (this . show_houses_timeout_id)
-        $("." + name) . removeClass ("highlight")
+        $("." + "highlight") . removeClass ("highlight")
     }
 
     //
