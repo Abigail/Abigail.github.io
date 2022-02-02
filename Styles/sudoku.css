@@ -39,3 +39,7 @@ text.clue {
 text.solution {
     fill:                           #0000ff;
 }
+
+text.row-number, text.col-number {
+    font-size:                          90%;
+}

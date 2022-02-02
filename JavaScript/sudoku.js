@@ -292,6 +292,40 @@ class Sudoku {
                               class: "solution"})
     }
 
+
+    //
+    // Draw the row names in the left margin
+    //
+    draw_row_names (args = {}) {
+        for (let row = 1; row <= this . size; row ++) {
+            this . place_text ({text: "R" + row . toString (),
+                                row: row,
+                                col: 0})
+                 . addClass ("row-number")
+        }
+    }
+
+    //
+    // Draw the column names in the top margin
+    //
+    draw_col_names (args = {}) {
+        for (let col = 1; col <= this . size; col ++) {
+            this . place_text ({text: "C" + col . toString (),
+                                col: col,
+                                row: 0})
+                 . addClass ("col-number")
+        }
+    }
+
+    //
+    // Draw both the row and column names in the margin
+    //
+    draw_row_col_names (args = {}) {
+        this . draw_row_names ()
+        this . draw_col_names ()
+    }
+
+
     //
     // Unhighlight any of the houses, and stop the loop
     //
