@@ -275,8 +275,8 @@ class Sudoku {
     //
     // Unhighlight any of the houses, and stop the loop
     //
-    clear_houses () {
-        clearTimeout (this . show_houses_timeout_id)
+    clear_highlights () {
+        clearTimeout (this . highlight_timeout_id)
         $("." + HL_CLASS) . removeClass (HL_CLASS)
     }
 
@@ -284,8 +284,13 @@ class Sudoku {
     // Highlight houses of a specific type, switching to a 
     // different house of the same type every 2 seconds
     //
-    show_houses (type, previous_id = 0) {
-        this . clear_houses ()
+    highlight_houses (args = {}) {
+        let type        = args ["type"]
+        let previous_id = args ["previous_id"] ||    0
+        let delay       = args ["delay"]       || 2000
+
+        this . clear_highlights ()
+
         let next_id = previous_id
         while (next_id == previous_id) {
             next_id = 1 + Math . floor (Math . random () * 9)
@@ -296,16 +301,23 @@ class Sudoku {
 
         let sudoku = this
 
-        this . show_houses_timeout_id =
-               setTimeout (() => {sudoku . show_houses (type, next_id)}, 2000)
+        this . highlight_timeout_id =
+               setTimeout (() => {sudoku . highlight_houses
+                    ({
+                        type:        type,
+                        previous_id: next_id
+                    })},
+                    delay)
     }
 
     //
-    // Highlight a given house or cell (based on class names or id)
+    // Highlight a given house or cell (based on a CSS selector)
     // Does *NOT* clear existing highlights.
     //
-    show_house (selector) {
-        if (selector . substring (0, 1) != "#") {
+    highlight_house (args = {}) {
+        let selector = args ["selector"]
+        let first = selector . substring (0, 1)
+        if (first != "#" && first != ".") {
             selector = "." + selector
         }
         $(selector) . addClass (HL_CLASS)

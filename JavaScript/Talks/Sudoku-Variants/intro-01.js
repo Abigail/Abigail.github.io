@@ -35,7 +35,7 @@ $(document) . ready (function () {
     //
     add_todo (() => {
         unhide ()
-        sudoku . show_houses ("R")
+        sudoku . highlight_houses ({type: "R"})
     })
 
     //
@@ -43,7 +43,7 @@ $(document) . ready (function () {
     //
     add_todo (() => {
         unhide ()
-        sudoku . show_houses ("C")
+        sudoku . highlight_houses ({type: "C"})
     })
 
     //
@@ -51,7 +51,7 @@ $(document) . ready (function () {
     //
     add_todo (() => {
         unhide ()
-        sudoku . show_houses ("B")
+        sudoku . highlight_houses ({type: "B"})
     })
 
     add_todo (() => {

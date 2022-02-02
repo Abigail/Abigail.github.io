@@ -10,27 +10,28 @@ $(document) . ready (function () {
     // Rows
     add_todo (() => {
         unhide ()
-        sudoku . show_house ("R3")
+        sudoku . highlight_house ({selector: ".R3"})
     })
 
     // Columns
     add_todo (() => {
         unhide ()
-        sudoku . clear_houses ()
-        sudoku . show_house ("C7")})
+        sudoku . clear_highlights ()
+        sudoku . highlight_house ({selector: ".C7"})
+    })
 
     // Boxes
     add_todo (() => {
         unhide ()
-        sudoku . clear_houses ()
-        sudoku . show_house ("B2")
+        sudoku . clear_highlights ()
+        sudoku . highlight_house ({selector: ".B2"})
     })
 
     // Cell
     add_todo (() => {
         unhide ()
-        sudoku . clear_houses ()
-        sudoku . show_house ("#R5C5")
+        sudoku . clear_highlights ()
+        sudoku . highlight_house ({selector: "#R5C5"})
     })
     
 })
