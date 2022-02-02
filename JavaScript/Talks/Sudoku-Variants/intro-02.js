@@ -35,7 +35,14 @@ $(document) . ready (function () {
         sudoku . clear_highlights ()
         sudoku . highlight_house ({selector: "#R5C5"})
     })
-    
+
+    add_todo (() => {
+        sudoku . draw_cell_number ({row: 5, col: 5})
+    })
+
+    add_todo (() => {
+        sudoku . draw_cell_numbers ()
+    })
 })
 
 

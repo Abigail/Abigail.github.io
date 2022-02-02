@@ -238,13 +238,14 @@ class Sudoku {
         let row   = args ["row"]
         let col   = args ["col"]
         let text  = args ["text"]
+        let dy    = args ["dy"] || 0.2
 
         let rect_size = this . rect_size
 
         let plain = this . sudoku
                          . plain (text)
-                         . attr  ({x: (col + 0.5) * rect_size,
-                                   y: (row + 0.7) * rect_size,
+                         . attr  ({x: (col + 0.5)      * rect_size,
+                                   y: (row + 0.5 + dy) * rect_size,
                                    "text-anchor": "middle"})
 
         return (plain)
@@ -323,6 +324,31 @@ class Sudoku {
     draw_row_col_names (args = {}) {
         this . draw_row_names ()
         this . draw_col_names ()
+    }
+
+    //
+    // Draw a cell number, based on a row and column
+    //
+    draw_cell_number (args = {}) {
+        let row = args ["row"]
+        let col = args ["col"]
+        let id  = Sudoku . coord_to_id (row, col)
+        this . place_text ({text: id,
+                            row: row,
+                            col: col,
+                            dy: 0.12})
+             . addClass ("cell-number")
+    }
+
+    //
+    // Draw all cell numbers
+    //
+    draw_cell_numbers (args = {}) {
+        for (let row = 1; row <= this . size; row ++) {
+            for (let col = 1; col <= this . size; col ++) {
+                this . draw_cell_number ({row: row, col: col})
+            }
+        }
     }
 
 

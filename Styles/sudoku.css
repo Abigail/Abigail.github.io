@@ -43,3 +43,6 @@ text.solution {
 text.row-number, text.col-number {
     font-size:                          90%;
 }
+
+text.cell-number {
+    font-size:                          70%;
