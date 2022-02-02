@@ -1,0 +1,58 @@
+/*
+ * CSS for the layout of slides with images.
+ *
+ * "outer_{right,middle,left}" will be the main div, using
+ * a CSS grid layout. There will always be 3 rows, of sizes
+ * 5vh, 84vh, and 5vh. This leaves 6vh free for the top bar.
+ *
+ * The top and bottom row of the grid will be empty, and
+ * are filled with "bogus" divs (handled in the templates).
+ *
+ * A square of size 84vh will be reserved for the main image,
+ * which could be on the left, middle, or right. This leaves
+ * one or two spaces to the sides of the image. Since the width
+ * of those spaces is flexible, their width is controlled with
+ * '1fr' -- if there is only one such space, it gets all the
+ * remaining space; if there are two, it's evenly divided.
+ *
+ * The .inner div is reserved for the main SVG image.
+ * The .infobox_{right,left} divs are the spaces to the right
+ * and left of the main image.
+ */
+
+
+div.svg_box_right, div.svg_box_left, div.svg_box_middle {
+    margin:                   0px 0px 0px 0px;
+    padding-left:                          5%;
+    padding-right:                         5%;
+    display:                             grid;
+    grid-template-rows:          5vh 84vh 5vh;
+}
+div.svg_box_right {
+    grid-template-columns:           1fr 84vh;
+}
+div.svg_box_left {
+    grid-template-columns:           84vh 1fr;
+}
+div.svg_box_middle {
+    grid-template-columns:       1fr 84vh 1fr;
+}
+
+
+
+/*
+ * Use a responsive font-size, and give it some padding between the
+ * text and the image.
+ */
+
+div.svg_box_info_right, div.svg_box_info_left {
+    font-size:                          4vh;
+}
+div.svg_box_info_right {
+    padding-left:                       1vw;
+}
+div.svg_box_info_left {
+    padding-right:                      1vw;
+}
+
+
