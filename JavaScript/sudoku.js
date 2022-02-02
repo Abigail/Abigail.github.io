@@ -265,5 +265,33 @@ class Sudoku {
         this . draw_set     ({set: this . solution,
                               class: "solution"})
     }
+
+    //
+    // Unhighlight any of the houses, and stop the loop
+    //
+    clear_houses () {
+        clearTimeout (this . show_houses_timeout_id)
+        $("." + name) . removeClass ("highlight")
+    }
+
+    //
+    // Highlight houses of a specific type, switching to a 
+    // different house of the same type every 2 seconds
+    //
+    show_houses (type, previous_id = 0) {
+        this . clear_houses ()
+        let next_id = previous_id
+        while (next_id == previous_id) {
+            next_id = 1 + Math . floor (Math . random () * 9)
+        }
+        let house_name = type + next_id
+
+        $("." + house_name) . addClass ("highlight")
+
+        let sudoku = this
+
+        this . show_houses_timeout_id =
+               setTimeout (() => {sudoku . show_houses (type, next_id)}, 2000)
+    }
 }
 

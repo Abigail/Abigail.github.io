@@ -35,7 +35,7 @@ $(document) . ready (function () {
     //
     add_todo (() => {
         unhide ()
-        show_house ("R")
+        sudoku . show_houses ("R")
     })
 
     //
@@ -43,7 +43,7 @@ $(document) . ready (function () {
     //
     add_todo (() => {
         unhide ()
-        show_house ("C")
+        sudoku . show_houses ("C")
     })
 
     //
@@ -51,36 +51,11 @@ $(document) . ready (function () {
     //
     add_todo (() => {
         unhide ()
-        show_house ("B")
+        sudoku . show_houses ("B")
     })
 
     add_todo (() => {
-        clear_houses ()
+        sudoku . clear_houses ()
         sudoku . draw_solution ()
     })
 })
-
-
-//
-// Handle highligthing houses
-//
-let timeout_id
-let name = "highlight"
-
-function clear_houses () {
-    clearTimeout (timeout_id)
-    $("." + name) . removeClass (name)
-}
-
-function show_house (type, previous_id = 0) {
-    clear_houses ()
-    let next_id = previous_id
-    while (next_id == previous_id) {
-        next_id = 1 + Math . floor (Math . random () * 9)
-    }
-    let house_name = type + next_id
-
-    $("." + house_name) . addClass (name)
-
-    timeout_id = setTimeout (show_house, 2000, type, next_id)
-}
