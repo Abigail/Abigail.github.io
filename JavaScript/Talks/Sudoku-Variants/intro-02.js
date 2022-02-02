@@ -10,6 +10,7 @@ $(document) . ready (function () {
     // Rows
     add_todo (() => {
         unhide ()
+        sudoku . draw_row_names ()
         sudoku . highlight_house ({selector: ".R3"})
     })
 
@@ -17,6 +18,7 @@ $(document) . ready (function () {
     add_todo (() => {
         unhide ()
         sudoku . clear_highlights ()
+        sudoku . draw_col_names ()
         sudoku . highlight_house ({selector: ".C7"})
     })
 
