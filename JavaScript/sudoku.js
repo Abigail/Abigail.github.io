@@ -43,7 +43,7 @@ class Sudoku {
         this . size      = args . size   || 9
         this . add_to    = args . add_to || 'div.svg-box'
         this . rect_size = 100
-        this . margin    =  50  // rect_size / 2
+        this . margin    = this . rect_size
         this . id        = "sudoku"
     }
 
@@ -60,8 +60,8 @@ class Sudoku {
         //
         let viewbox_min_x  =  0
         let viewbox_min_y  =  0
-        let viewbox_width  =  (width  +  1) * rect_size
-        let viewbox_height =  (height +  1) * rect_size
+        let viewbox_width  =  (width  +  2) * rect_size
+        let viewbox_height =  (height +  2) * rect_size
                 
         //
         // Create the (empty) SVG image, and place it in
@@ -96,13 +96,13 @@ class Sudoku {
             for (let col = 1; col <= size; col ++) {
                 let id_name     = Sudoku . coord_to_id (row, col)
                 let box = box_size * Math . floor ((row - 1) / box_size) +
-                                       Math . floor ((col - 1) / box_size) + 1
+                                     Math . floor ((col - 1) / box_size) + 1
                 let row_class = `R${row}`
                 let col_class = `C${col}`
                 let box_class = `B${box}`
                 let rect = sudoku . rect     (rect_size, rect_size)
-                                  . cx       (col * rect_size)
-                                  . cy       (row * rect_size)
+                                  . cx       ((col + 0.5) * rect_size)
+                                  . cy       ((row + 0.5) * rect_size)
                                   . id       (id_name)
                                   . addClass (row_class)
                                   . addClass (col_class)
@@ -228,6 +228,28 @@ class Sudoku {
         this . solution = this . normalize_set (solution)
     }
 
+    //
+    // Place a text on the grid, given row and column.
+    // Return the SVG object.
+    // If row == 0, or col == 0, or row == size + 1 or col == size + 1,
+    // the text is placed in the margin.
+    //
+    place_text (args = {}) {
+        let row   = args ["row"]
+        let col   = args ["col"]
+        let text  = args ["text"]
+
+        let rect_size = this . rect_size
+
+        let plain = this . sudoku
+                         . plain (text)
+                         . attr  ({x: (col + 0.5) * rect_size,
+                                   y: (row + 0.7) * rect_size,
+                                   "text-anchor": "middle"})
+
+        return (plain)
+    }
+
 
     //
     // Draw a set of numbers
@@ -245,12 +267,10 @@ class Sudoku {
         for (const id in set) {
             let val        = set [id]
             let [row, col] = Sudoku . id_to_coord (id)
-            let plain      = this . sudoku
-                                  . plain (val . toString ())
-                                  . attr  ({x: (col)       * rect_size,
-                                            y: (row + 0.2) * rect_size,
-                                           "text-anchor": "middle"})
-                                  . addClass (class_name)
+            this . place_text ({row: row,
+                                col: col,
+                                text: val . toString ()})
+                 . addClass (class_name)
         }
     }
 
