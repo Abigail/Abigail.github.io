@@ -230,6 +230,7 @@ sub header ($title, $directives) {
     return <<~ "--" =~ s/^\s*\n//gmr;
         <head>
         <title>$title</title>
+        <meta charset = "utf-8">
         <script src = "$POLYFILL_URL"></script>
         <script src = "$up/$JAVASCRIPT_DIR/jquery.js"></script>
         <script id = "MathJax-script" async src = "$MATHJAX_URL"></script>
