@@ -730,6 +730,17 @@ sub post_process ($text, $directives) {
             $post .= $svg;
         }
 
+        if ($svg_grid eq "none") {
+            #
+            # We keep the same grid, but we don't have an image.
+            # Content will be in the middle box
+            #
+            $pre  .= "<div class = 'svg_box_info_left'></div>\n";
+            $pre  .= "<div class = 'svg_box'>\n";
+            $post .= "</div>\n";
+            $post .= "<div class = 'svg_box_info_right'></div>\n";
+        }
+
         $post .= $empty;
         $post .= "</div>\n";
 

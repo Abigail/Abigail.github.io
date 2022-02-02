@@ -21,7 +21,8 @@
  */
 
 
-div.svg_box_right, div.svg_box_left, div.svg_box_middle {
+div.svg_box_right,  div.svg_box_left,
+div.svg_box_middle, div.svg_box_none {
     margin:                   0px 0px 0px 0px;
     padding-left:                          5%;
     padding-right:                         5%;
@@ -34,7 +35,7 @@ div.svg_box_right {
 div.svg_box_left {
     grid-template-columns:           84vh 1fr;
 }
-div.svg_box_middle {
+div.svg_box_middle, div.svg_box_none {
     grid-template-columns:       1fr 84vh 1fr;
 }
 
