@@ -26,7 +26,13 @@ function find_type (obj) {
                         : typeof obj
 }
 
+const HL_CLASS = "highlight"
+
 class Sudoku {
+    //
+    // Some constants to be used inside the class
+    //
+
     //
     // Construct a sudoku puzzle. We take the following options:
     //
@@ -271,7 +277,7 @@ class Sudoku {
     //
     clear_houses () {
         clearTimeout (this . show_houses_timeout_id)
-        $("." + "highlight") . removeClass ("highlight")
+        $("." + HL_CLASS) . removeClass (HL_CLASS)
     }
 
     //
@@ -286,7 +292,7 @@ class Sudoku {
         }
         let house_name = type + next_id
 
-        $("." + house_name) . addClass ("highlight")
+        $("." + house_name) . addClass (HL_CLASS)
 
         let sudoku = this
 
