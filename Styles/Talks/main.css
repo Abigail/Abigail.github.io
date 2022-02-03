@@ -3,6 +3,10 @@ body, html {
     font-size:              6vh;
 }
 
+td, th {
+    font-size:          6vh;
+}
+
 h1:first-of-type {
     font-family:        initial;
     font-size:              4vh;
