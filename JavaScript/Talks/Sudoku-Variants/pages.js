@@ -3,6 +3,7 @@ let dir = "Talks/Sudoku-Variants"
 let pages = [
     ["intro-01",    "Sudoku Introduction"],
     ["intro-02",    "Sudoku Naming"],
+    ["intro-03",    "Sudoku by Regexp"],
 ]
 
 pages . forEach (entry => {
