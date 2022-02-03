@@ -59,3 +59,12 @@ div.svg_box_info_left {
 }
 
 
+/*
+ * This aligns things inside the content div both horizontally and vertically
+ * We only do this for pages without an SVG image.
+ */
+div.svg_box_none div.content {
+    display:                           flex;
+    justify-content:                 center;
+    align-items:                     center;
+}
