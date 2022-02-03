@@ -1,0 +1,15 @@
+td {
+    padding-left:     1vh;
+    padding-right:    1vh;
+}
+
+code {
+    font-size:        6vh;
+}
+
+td.cell-0-4 {
+    padding-bottom:   4vh;
+}
+td.cell-1-4 {
+    padding-top:      2vh;
+}
