@@ -5,6 +5,7 @@ let pages = [
     ["intro-02",    "Sudoku Naming"],
     ["intro-04",    "Sudoku by Regexp"],
     ["intro-05",    "Regexp::Sudoku"],
+    ["intro-06",    "Regexp::Sudoku"],
 ]
 
 pages . forEach (entry => {
