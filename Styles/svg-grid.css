@@ -35,10 +35,12 @@ div.svg_box_right {
 div.svg_box_left {
     grid-template-columns:           84vh 1fr;
 }
-div.svg_box_middle, div.svg_box_none {
+div.svg_box_middle {
     grid-template-columns:       1fr 84vh 1fr;
 }
-
+div.svg_box_none {
+    grid-template-columns:       1fr  90% 1fr;
+}
 
 
 /*

@@ -693,7 +693,7 @@ sub post_process ($text, $directives) {
     if (my $svg_grid = $$directives {"svg-grid"}) {
         my ($pre, $post) = ("", "");
         my $class = "svg_box_$svg_grid";
-        my $width = $svg_grid eq "middle" ? 3 : 2;
+        my $width = $svg_grid eq "middle" || $svg_grid eq "none" ? 3 : 2;
         my $empty = "<div class = 'bogus'></div>\n" x $width;
         my $svg   = "<div class = 'svg-box'></div>\n";
 
@@ -706,7 +706,7 @@ sub post_process ($text, $directives) {
             # test to the right of it.
             #
             $pre  .= $svg;
-            $pre  .= "<div class = 'svg_box_info_right'>\n";
+            $pre  .= "<div class = 'svg_box_info_right content'>\n";
             $post .= "</div>\n";
         }
 
@@ -725,7 +725,7 @@ sub post_process ($text, $directives) {
             # We first (optionally) have some text to the left, then
             # an SVG image.
             #
-            $pre  .= "<div class = 'svg_box_info_left'>\n";
+            $pre  .= "<div class = 'svg_box_info_left content'>\n";
             $post .= "</div>\n";
             $post .= $svg;
         }
@@ -736,7 +736,7 @@ sub post_process ($text, $directives) {
             # Content will be in the middle box
             #
             $pre  .= "<div class = 'svg_box_info_left'></div>\n";
-            $pre  .= "<div class = 'svg_box'>\n";
+            $pre  .= "<div class = 'svg_box_info_middle content'>\n";
             $post .= "</div>\n";
             $post .= "<div class = 'svg_box_info_right'></div>\n";
         }
