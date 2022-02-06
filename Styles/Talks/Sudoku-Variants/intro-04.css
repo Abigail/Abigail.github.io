@@ -13,3 +13,8 @@ td.cell-0-4 {
 td.cell-1-4 {
     padding-top:      2vh;
 }
+
+td.cell-2-0, td.cell-3-0 {
+    padding-top:      5vh;
+    text-align:    center;
+}
