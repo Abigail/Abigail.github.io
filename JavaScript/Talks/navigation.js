@@ -8,8 +8,10 @@
 let todo = []
 let urls = {}
 
-function add_todo (f) {
-    todo . push (f)
+function add_todo (f, amount = 1) {
+    for (let i = 1; i <= amount; i ++) {
+        todo . push (f)
+    }
 }
 
 function handle_space () {
