@@ -3,7 +3,7 @@
 <!-- %% svg-grid: none -->
 
 ~~~~
-"string" =~ /regexp/;
+"subject" =~ /pattern/;
 
 say << "--"
 $+{R1C1} $+{R1C2} $+{R1C3} $+{R1C4} $+{R1C5} $+{R1C6} $+{R1C7} $+{R1C8} $+{R1C9}
