@@ -20,6 +20,9 @@ function handle_space () {
         todo . shift () ()
         return (1)
     }
+    if (unhide ()) {
+        return (1)
+    }
 
     return (0)
 }
@@ -88,9 +91,13 @@ function do_keypress (event) {
 // Unhide 1 (or more) elements 
 //
 function unhide (amount = 1) {
+    if ($(".hidden") . length == 0) {
+        return (0);
+    }
     while (amount -- > 0) {
         $(".hidden") . first () . removeClass ("hidden")
     }
+    return (1);
 }
 
 $(document) . ready (function () {
