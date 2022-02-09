@@ -7,6 +7,9 @@ let pages = [
     ["intro-05",         "Sudoku by Regexp"],
     ["intro-06",         "Regexp Limitations"],
     ["construction-01",  "Constructing a pattern"],
+    ["construction-02",  "Constructing a pattern"],
+    ["construction-03",  "Constructing a pattern: Cell is a clue"],
+    ["construction-04",  "Constructing a pattern: Cell is blank"],
 ]
 
 pages . forEach (entry => {
