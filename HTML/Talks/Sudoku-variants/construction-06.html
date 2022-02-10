@@ -1,0 +1,40 @@
+<html>
+<head>
+<title>Constructing a Pattern: Cells</title>
+<meta charset = "utf-8">
+<script src = "../../../JavaScript/jquery.js"></script>
+<script id = "MathJax-script" async src = "https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.js"></script>
+<script id = 'svg-script' src = 'https://cdn.jsdelivr.net/npm/@svgdotjs/svg.js@3.0/dist/svg.min.js'></script>
+<script src = '../../../JavaScript/Talks/Sudoku-Variants/construction-06.js'></script>
+<script src = '../../../JavaScript/sudoku.js'></script>
+<script src = '../../../JavaScript/Talks/navigation.js'></script>
+<script src = '../../../JavaScript/Talks/Sudoku-Variants/pages.js'></script>
+<link rel = 'preconnect' href = 'https://fonts.gstatic.com'>
+<link rel = 'stylesheet' href = 'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
+<link rel = 'stylesheet' href = '../../../Styles/main.css'>
+<link rel = 'stylesheet' href = '../../../Styles/Talks/main.css'>
+<link rel = 'stylesheet' href = '../../../Styles/Talks/Sudoku-Variants/main-board.css'>
+<link rel = 'stylesheet' href = '../../../Styles/svg-grid.css'>
+<link rel = 'stylesheet' href = '../../../Styles/Talks/Sudoku-Variants/construction-06.css'>
+<link rel = 'stylesheet' href = '../../../Styles/sudoku.css'>
+</head>
+
+<body><h1>Constructing a Pattern: Cells</h1><div class = 'svg_box_none'>
+<div class = 'bogus'></div>
+<div class = 'bogus'></div>
+<div class = 'bogus'></div>
+<div class = 'svg_box_info_left'></div>
+<div class = 'svg_box_info_middle content'>
+
+
+<p><code>"5;3;123456789;123456789;7;123456789;123456789;123456789;123456789;6;123456789;123456789;1;9;5;123456789;123456789;123456789;123456789;9;8;123456789;123456789;123456789;123456789;6;123456789;8;123456789;123456789;123456789;6;123456789;123456789;123456789;3;4;123456789;123456789;8;123456789;3;123456789;123456789;1;7;123456789;123456789;123456789;2;123456789;123456789;123456789;6;123456789;6;123456789;123456789;123456789;123456789;2;8;123456789;123456789;123456789;123456789;4;1;9;123456789;123456789;5;123456789;123456789;123456789;123456789;8;123456789;123456789;7;9;"=~/(?&lt;R1C1&gt;5);(?&lt;R1C2&gt;3);[1-9]*(?&lt;R1C3&gt;[1-9])[1-9]*;[1-9]*(?&lt;R1C4&gt;[1-9])[1-9]*;(?&lt;R1C5&gt;7);[1-9]*(?&lt;R1C6&gt;[1-9])[1-9]*;[1-9]*(?&lt;R1C7&gt;[1-9])[1-9]*;[1-9]*(?&lt;R1C8&gt;[1-9])[1-9]*;[1-9]*(?&lt;R1C9&gt;[1-9])[1-9]*;(?&lt;R2C1&gt;6);[1-9]*(?&lt;R2C2&gt;[1-9])[1-9]*;[1-9]*(?&lt;R2C3&gt;[1-9])[1-9]*;(?&lt;R2C4&gt;1);(?&lt;R2C5&gt;9);(?&lt;R2C6&gt;5);[1-9]*(?&lt;R2C7&gt;[1-9])[1-9]*;[1-9]*(?&lt;R2C8&gt;[1-9])[1-9]*;[1-9]*(?&lt;R2C9&gt;[1-9])[1-9]*;[1-9]*(?&lt;R3C1&gt;[1-9])[1-9]*;(?&lt;R3C2&gt;9);(?&lt;R3C3&gt;8);[1-9]*(?&lt;R3C4&gt;[1-9])[1-9]*;[1-9]*(?&lt;R3C5&gt;[1-9])[1-9]*;[1-9]*(?&lt;R3C6&gt;[1-9])[1-9]*;[1-9]*(?&lt;R3C7&gt;[1-9])[1-9]*;(?&lt;R3C8&gt;6);[1-9]*(?&lt;R3C9&gt;[1-9])[1-9]*;(?&lt;R4C1&gt;8);[1-9]*(?&lt;R4C2&gt;[1-9])[1-9]*;[1-9]*(?&lt;R4C3&gt;[1-9])[1-9]*;[1-9]*(?&lt;R4C4&gt;[1-9])[1-9]*;(?&lt;R4C5&gt;6);[1-9]*(?&lt;R4C6&gt;[1-9])[1-9]*;[1-9]*(?&lt;R4C7&gt;[1-9])[1-9]*;[1-9]*(?&lt;R4C8&gt;[1-9])[1-9]*;(?&lt;R4C9&gt;3);(?&lt;R5C1&gt;4);[1-9]*(?&lt;R5C2&gt;[1-9])[1-9]*;[1-9]*(?&lt;R5C3&gt;[1-9])[1-9]*;(?&lt;R5C4&gt;8);[1-9]*(?&lt;R5C5&gt;[1-9])[1-9]*;(?&lt;R5C6&gt;3);[1-9]*(?&lt;R5C7&gt;[1-9])[1-9]*;[1-9]*(?&lt;R5C8&gt;[1-9])[1-9]*;(?&lt;R5C9&gt;1);(?&lt;R6C1&gt;7);[1-9]*(?&lt;R6C2&gt;[1-9])[1-9]*;[1-9]*(?&lt;R6C3&gt;[1-9])[1-9]*;[1-9]*(?&lt;R6C4&gt;[1-9])[1-9]*;(?&lt;R6C5&gt;2);[1-9]*(?&lt;R6C6&gt;[1-9])[1-9]*;[1-9]*(?&lt;R6C7&gt;[1-9])[1-9]*;[1-9]*(?&lt;R6C8&gt;[1-9])[1-9]*;(?&lt;R6C9&gt;6);[1-9]*(?&lt;R7C1&gt;[1-9])[1-9]*;(?&lt;R7C2&gt;6);[1-9]*(?&lt;R7C3&gt;[1-9])[1-9]*;[1-9]*(?&lt;R7C4&gt;[1-9])[1-9]*;[1-9]*(?&lt;R7C5&gt;[1-9])[1-9]*;[1-9]*(?&lt;R7C6&gt;[1-9])[1-9]*;(?&lt;R7C7&gt;2);(?&lt;R7C8&gt;8);[1-9]*(?&lt;R7C9&gt;[1-9])[1-9]*;[1-9]*(?&lt;R8C1&gt;[1-9])[1-9]*;[1-9]*(?&lt;R8C2&gt;[1-9])[1-9]*;[1-9]*(?&lt;R8C3&gt;[1-9])[1-9]*;(?&lt;R8C4&gt;4);(?&lt;R8C5&gt;1);(?&lt;R8C6&gt;9);[1-9]*(?&lt;R8C7&gt;[1-9])[1-9]*;[1-9]*(?&lt;R8C8&gt;[1-9])[1-9]*;(?&lt;R8C9&gt;5);[1-9]*(?&lt;R9C1&gt;[1-9])[1-9]*;[1-9]*(?&lt;R9C2&gt;[1-9])[1-9]*;[1-9]*(?&lt;R9C3&gt;[1-9])[1-9]*;[1-9]*(?&lt;R9C4&gt;[1-9])[1-9]*;(?&lt;R9C5&gt;8);[1-9]*(?&lt;R9C6&gt;[1-9])[1-9]*;[1-9]*(?&lt;R9C7&gt;[1-9])[1-9]*;(?&lt;R9C8&gt;7);(?&lt;R9C9&gt;9);/</code></p>
+</div>
+<div class = 'svg_box_info_right'></div>
+<div class = 'bogus'></div>
+<div class = 'bogus'></div>
+<div class = 'bogus'></div>
+</div>
+
+
+</body>
+</html>
