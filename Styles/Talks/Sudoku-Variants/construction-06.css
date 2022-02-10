@@ -2,6 +2,13 @@ html {
     background:                         black;
 }
 
+.content {
+    font-size:                           30px;
+    text-align:                       justify;
+    text-justify:             inter-character;
+    visibility:                        hidden; 
+}
+
 code {
     word-break:                     break-all;
     color:                         lightgreen;
