@@ -22,7 +22,7 @@ $(document) . ready (function () {
     let text = element . html ()
         text = text . replace ('"', '"' + "<span class = 'subject'>")
         text = text . replace ('"=~/', '</span>"=~/<span class = "pattern">')
-        text = text . replace ("$/", "</span>/")
+        text = text . replace ("$/", "$</span>/")
     element . html (text)
     font_fiddle (".content")
     element . css ({visibility: "visible"})
