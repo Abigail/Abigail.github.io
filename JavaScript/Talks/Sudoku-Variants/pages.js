@@ -12,6 +12,7 @@ let pages = [
     ["construction-04",  "Constructing a pattern: Cell is blank"],
     ["construction-05",  "Constructing a pattern"],
     ["construction-06",  "Constructing a pattern: Cells"],
+    ["construction-07",  "Constructing a pattern: Cells"],
 ]
 
 pages . forEach (entry => {
