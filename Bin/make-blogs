@@ -669,6 +669,11 @@ sub post_process ($text, $directives) {
     $text =~ s {<(p|div)>\s*</\g{1}>} {}gi;
 
     #
+    # Set the class of an element
+    #
+    $text =~ s/!!(\w+)!!\s*<(\w+)/<$2 class = "$1"/g;
+
+    #
     # Create ref links not processed
     #
     $text = create_ref_links ($text);
