@@ -4,6 +4,6 @@
 
 * Assume the clue is `6` for cell `R4C5`.
 
-* Add `6;` to the subject.
+* Add !!subject!! `6;` to the subject.
 
-* Add `(?<R4C5>6);` to the pattern.
+* Add !!pattern!! `(?<R4C5>6);` to the pattern.

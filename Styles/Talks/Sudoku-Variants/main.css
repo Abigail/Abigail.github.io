@@ -1,7 +1,9 @@
-code .subject {
+code .subject, code.subject {
     color:                             yellow;
+    background:                         black;
 }
 
-code .pattern {
+code .pattern, code.pattern {
     color:                             orange;
+    background:                         black;
 }
