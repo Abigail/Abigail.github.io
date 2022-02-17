@@ -258,6 +258,7 @@ class Sudoku {
     draw_set (args = {}) {
         let set        = args ["set"]
         let class_name = args ["class"]
+        let delay      = args ["delay"] || 0
 
         if (!set) {
             return
@@ -265,13 +266,17 @@ class Sudoku {
 
         let rect_size = this . rect_size
 
+        let d = delay
         for (const id in set) {
             let val        = set [id]
             let [row, col] = Sudoku . id_to_coord (id)
-            this . place_text ({row: row,
-                                col: col,
-                                text: val . toString ()})
-                 . addClass (class_name)
+            setTimeout (() => {
+                this . place_text ({row: row,
+                                    col: col,
+                                    text: val . toString ()})
+                     . addClass (class_name)
+            }, d)
+            d += delay
         }
     }
 
