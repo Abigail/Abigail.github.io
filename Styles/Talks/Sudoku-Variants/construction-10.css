@@ -1,0 +1,37 @@
+html, td {
+    background:                         black;
+}
+
+
+/*
+ * Spacing between the subject and pattern
+ */
+td.skip {
+    height:                               5vh;
+}
+
+
+.subject, .pattern {
+    font-size:                          4.5vw;
+}
+
+
+.subject {
+    text-align:                       justify;
+    text-justify:             inter-character;
+    word-break:                     break-all;
+}
+
+.pattern {
+    visibility:                        hidden;
+}
+
+code {
+    color:                         lightgreen;
+    background:                         black;
+}
+
+
+span.focus {
+    color:                                red;
+}
