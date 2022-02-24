@@ -18,6 +18,8 @@ let pages = [
     ["construction-10",  "Constructing a pattern: DeBruijn Sequence"],
     ["construction-11",  "Constructing a pattern: Assembling the pieces"],
     ["construction-12",  "Constructing a pattern: Assembling the pieces"],
+    ["construction-13",  "Constructing a pattern: Example"],
+    ["construction-14",  "Constructing a pattern: Result"],
 ]
 
 pages . forEach (entry => {
