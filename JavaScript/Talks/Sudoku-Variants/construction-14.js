@@ -1,9 +1,8 @@
 $(document) . ready (function () {
     let element = $("code")
-    let text = element . html ()
-    let subject = text . replace (/\n=~\n.*/, "")
+    let text    = element . html ()
+    let subject = text . replace (/\n=~\n.*/,  "")
     let pattern = text . replace (/^.*\n=~\n/, "")
-    console . log (pattern)
     //  text = '"' + "<span class = 'subject'>" + text;
     //  text = text . replace ("\n=~\n", '</span>"' + "\n=~\n/" +
     //                                    "<span class = 'pattern'>")
@@ -13,8 +12,23 @@ $(document) . ready (function () {
                          "</span>" + '"' + " =~ " +
                     "/<span class = 'pattern'>" + pattern +
                     "</span>/")
-//  font_fiddle (".content")
+
+    add_todo (() => {scroll (element, subject, "subject")})
 })
+
+function scroll (element, content, class_name, offset = 0) {
+    element . css ("font-size", "5vw")
+    element . html ("<span class = '" + class_name + "'>" +
+                     content . substring (offset, offset + 100) + 
+                   "</span>")
+    setTimeout (() => {scroll, content . substring (offset, offset + 200)
+                       setTimeout (() => {scroll (element, content,
+                                                  class_name, 1 + offset)}, 100)
+                                                 }, 100)
+    return
+}
+
+
 
 // $(window) . resize (() => {
 //     font_fiddle (".content")
