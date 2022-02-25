@@ -29,6 +29,10 @@ let pages = [
     ["size-4-1",          "Variant: Size 4 x 4"],
     ["size-4-2",          "Variant: Size 4 x 4"],
     ["size-4-3",          "Variant: Size 4 x 4"],
+    ["size-6-1",          "Variant: Size 6 x 6"],
+    ["size-6-2",          "Variant: Size 6 x 6"],
+    ["size-12-1",         "Variant: Size 12 x 12"],
+    ["size-12-2",         "Variant: Size 12 x 12"],
 ]
 
 pages . forEach (entry => {
