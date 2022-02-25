@@ -27,3 +27,10 @@ h1:first-of-type {
 .hidden {
     opacity:                .05;
 }
+
+/*
+ * Colour elements which have the focus
+ */
+span.focus {
+    color:                  red;
+}
