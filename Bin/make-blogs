@@ -664,6 +664,15 @@ sub post_process ($text, $directives) {
     $text =~ s {^(?:<p>)?!/\w*</p>\h*$} {</p></div>}gm;
 
     #
+    # Put certain things into focus
+    #
+    if (my $focus = $$directives {focus}) {
+        foreach my $pattern (ref $focus ? @$focus : $focus) {
+            $text =~ s {$pattern} {<span class = 'focus'>${^MATCH}</span>}p;
+        }
+    }
+
+    #
     # Remove any empty paragraphs/divs
     #
     $text =~ s {<(p|div)>\s*</\g{1}>} {}gi;
