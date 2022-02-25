@@ -26,7 +26,22 @@ function find_type (obj) {
                         : typeof obj
 }
 
-const HL_CLASS = "highlight"
+const HL_CLASS   = "highlight"
+const NRC        = ["R2C2", "R2C3", "R2C4",    "R2C6", "R2C7", "R2C8",
+                    "R3C2", "R3C3", "R3C4",    "R3C6", "R3C7", "R3C8",
+                    "R4C2", "R4C3", "R4C4",    "R4C6", "R4C7", "R4C8",
+                    "R6C2", "R6C3", "R6C4",    "R6C6", "R6C7", "R6C8",
+                    "R7C2", "R7C3", "R7C4",    "R7C6", "R7C7", "R7C8",
+                    "R8C2", "R8C3", "R8C4",    "R8C6", "R8C7", "R8C8"]
+const ASTERISK   = ["R3C3", "R2C5", "R3C7",
+                    "R5C2", "R5C5", "R5C8",
+                    "R7C3", "R8C5", "R7C7"]
+const GIRANDOLA  = ["R1C1", "R2C5", "R1C9",
+                    "R5C2", "R5C5", "R5C8",
+                    "R9C1", "R8C5", "R9C9"]
+const CENTER_DOT = ["R2C2", "R2C5", "R2C8",
+                    "R5C2", "R5C5", "R5C8",
+                    "R8C2", "R8C5", "R8C8"]
 
 class Sudoku {
     //
@@ -40,11 +55,15 @@ class Sudoku {
     //   - add_to   Class or ID of HTML element to add the SVG image to.
     //
     constructor (args = {}) {
-        this . size      = args . size   || 9
-        this . add_to    = args . add_to || 'div.svg-box'
-        this . rect_size = 100
-        this . margin    = this . rect_size
-        this . id        = "sudoku"
+        this . size       = args . size   || 9
+        this . add_to     = args . add_to || 'div.svg-box'
+        this . rect_size  = 100
+        this . margin     = this . rect_size
+        this . id         = "sudoku"
+        this . nrc        = args . nrc
+        this . girandola  = args . girandola
+        this . asterisk   = args . asterisk
+        this . center_dot = args . center_dot
     }
 
     //
@@ -75,6 +94,24 @@ class Sudoku {
                             . attr    ({preserveAspectRatio: "xMaxYMin meet"})
 
         this . sudoku = sudoku
+    }
+
+    draw_houses (args = {}) {
+        let set = args ["set"]
+        if (!set) {
+            return
+        }
+        let rect_size  = this . rect_size
+        let house_size = rect_size * 0.7
+        let class_name = args ["class"] || "house"
+        set . forEach ((id) => {
+            let [row, col] =  Sudoku . id_to_coord (id)
+            let rect = this . sudoku . rect       (house_size, house_size)
+                                     . cx         ((col + 0.5) * rect_size)
+                                     . cy         ((row + 0.5) * rect_size)
+                                     . id         (id)
+                                     . addClass   (class_name)
+        })
     }
 
     //
@@ -152,6 +189,22 @@ class Sudoku {
                 line . addClass ("boundary")
             }
             c ++
+        }
+
+        //
+        // Add houses
+        //
+        if (this . nrc) {
+            this . draw_houses ({... args, set: NRC})
+        }
+        if (this . girandola) {
+            this . draw_houses ({... args, set: GIRANDOLA})
+        }
+        if (this . asterisk) {
+            this . draw_houses ({... args, set: ASTERISK})
+        }
+        if (this . center_dot) {
+            this . draw_houses ({... args, set: CENTER_DOT})
         }
 
         //
