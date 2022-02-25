@@ -50,7 +50,6 @@ function navigation (pagename, pages) {
     }
 
     if (index >= 0 && index < pages . length - 1) {
-        console . log ("next = " + up + pages [index + 1] [0])
         $("a.next") . attr ("href", up + pages [index + 1] [0])
         $("a.next") . attr ("title",     pages [index + 1] [1])
         urls ["n"] =  up + pages [index + 1] [0]
