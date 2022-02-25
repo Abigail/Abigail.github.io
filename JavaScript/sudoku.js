@@ -312,7 +312,8 @@ class Sudoku {
     draw_solution (args = {}) {
         this . set_solution (args ["solution"])
         this . draw_set     ({set: this . solution,
-                              class: "solution"})
+                              class: "solution",
+                              delay: args ["delay"]})
     }
 
 
