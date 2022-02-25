@@ -184,9 +184,25 @@ class Sudoku {
             //
             for (let x = 0; x < this . size; x ++) {
                 for (let y = 0; y < this . size; y ++) {
-                    let val = set [x] [y]
-                    if (val > 0) {
+                    let val = set [x] [y] . toString ()
+                    if (val != "0" && val != ".") {
                         let id   = Sudoku . coord_to_id (x + 1, y + 1);
+                        out [id] = val
+                    }
+                }
+            }
+        }
+
+        if (set_type === 'string') {
+            let rows = set . split ("\n")
+                           . filter (row => row . match (/\S/))
+            for (let r = 0; r < rows . length; r ++) {
+                let cols = rows [r] . split ("")
+                                    . filter (cell => cell . match (/\S/))
+                for (let c = 0; c < cols . length; c ++) {
+                    let val = cols [c] . toString ()
+                    if (val != "0" && val != ".") {
+                        let id = Sudoku . coord_to_id (r + 1, c + 1)
                         out [id] = val
                     }
                 }
@@ -195,9 +211,16 @@ class Sudoku {
 
         if (set_type === 'object') {
             //
-            // Assume it's of the form {RxCy => val}, with val > 0.
+            // Assume it's of the form {RxCy => val};
+            // filter out values which are 0 or ".", and make sure
+            // we all have strings.
             //
-            out = sets
+            for (id in set) {
+                let val = set [id] . toString ()
+                if (val != "0" && val != ".") {
+                    out [id] = val
+                }
+            }
         }
 
         return out
@@ -289,8 +312,8 @@ class Sudoku {
             let val        = set [id]
             let [row, col] = Sudoku . id_to_coord (id)
             setTimeout (() => {
-                this . place_text ({row: row,
-                                    col: col,
+                this . place_text ({row:  row,
+                                    col:  col,
                                     text: val . toString ()})
                      . addClass (class_name)
             }, d)
