@@ -330,8 +330,9 @@ class Sudoku {
     // Draw the clues
     //
     draw_clues (args = {}) {
-        this . set_clues (args ["clues"])
-        this . draw_set  ({set:    this . clues,
+        this . set_clues (args)
+        this . draw_set  ({... args,
+                           set:    this . clues,
                            class: "clue"})
     }
 
@@ -339,10 +340,10 @@ class Sudoku {
     // Draw the solution
     //
     draw_solution (args = {}) {
-        this . set_solution (args ["solution"])
-        this . draw_set     ({set: this . solution,
-                              class: "solution",
-                              delay: args ["delay"]})
+        this . set_solution (args)
+        this . draw_set     ({... args,
+                              set: this . solution,
+                              class: "solution"})
     }
 
 
