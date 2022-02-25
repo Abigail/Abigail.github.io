@@ -25,7 +25,7 @@ $(document) . ready (function () {
     unhide ()
 
     add_todo (() => {
-        sudoku . draw_clues ()
+        sudoku . draw_clues ({delay: 100})
         unhide ()
     })
     add_todo (() => {unhide ()})
@@ -56,6 +56,6 @@ $(document) . ready (function () {
 
     add_todo (() => {
         sudoku . clear_highlights ()
-        sudoku . draw_solution ()
+        sudoku . draw_solution ({delay: 100})
     })
 })
