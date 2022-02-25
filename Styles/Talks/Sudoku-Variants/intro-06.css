@@ -1,3 +1,7 @@
+body {
+    font-size:              3.5vw;
+}
+
 code.wavy {
     text-decoration: line-through wavy 2px rgba(0,0,0,0.75);
 }
