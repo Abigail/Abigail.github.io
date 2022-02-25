@@ -153,6 +153,11 @@ class Sudoku {
             }
             c ++
         }
+
+        //
+        // Draw the clues
+        //
+        this . draw_clues (args)
     }
 
 
