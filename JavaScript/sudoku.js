@@ -235,6 +235,14 @@ class Sudoku {
         }
 
         this . solution = this . normalize_set (solution)
+        //
+        // Remove any element which is a clue
+        //
+        for (const cell in this . solution) {
+            if (this . is_clue ({cell: cell})) {
+                delete this . solution [cell]
+            }
+        }
     }
 
     //
