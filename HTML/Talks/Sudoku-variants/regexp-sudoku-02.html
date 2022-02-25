@@ -15,9 +15,9 @@
 <link rel = 'stylesheet' href = '../../../Styles/Talks/main.css'>
 <link rel = 'stylesheet' href = '../../../Styles/Talks/Sudoku-Variants/main.css'>
 <link rel = 'stylesheet' href = '../../../Styles/Talks/Sudoku-Variants/main-board.css'>
+<link rel = 'stylesheet' href = '../../../Styles/sudoku.css'>
 <link rel = 'stylesheet' href = '../../../Styles/svg-grid.css'>
 <link rel = 'stylesheet' href = '../../../Styles/Talks/Sudoku-Variants/regexp-sudoku-02.css'>
-<link rel = 'stylesheet' href = '../../../Styles/sudoku.css'>
 </head>
 
 <body><h1>Regexp::Sudoku</h1><div class = 'svg_box_none'>
@@ -32,13 +32,6 @@
 my $pattern = $s -&gt; pattern;
 
 $string =~ /$pattern/;
-
-foreach my $r (1 .. 9) {
-    foreach my $c (1 .. 9) {
-        print $+ {"R$rC$c"}, " ";
-    }
-    print "\n";
-}
 </code></pre>
 </div>
 <div class = 'svg_box_info_right'></div>
