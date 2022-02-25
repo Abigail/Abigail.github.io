@@ -28,6 +28,12 @@ rect.highlight {
     fill:                           #d0ffff;
 }
 
+rect.house {
+    fill:                           #b0b0ff;
+    rx:                                20px;
+    ry:                                20px;
+}
+
 text {
     font-size:                         100%;
 }
