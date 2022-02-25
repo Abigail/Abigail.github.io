@@ -83,11 +83,12 @@ class Sudoku {
     draw (args = {}) {
         this . create_sudoku (args)
 
-        let sudoku    = this . sudoku
-        let rect_size = this . rect_size
-        let margin    = this . margin
-        let size      = this . size
-        let box_size  = Math . sqrt (size)
+        let sudoku     = this . sudoku
+        let rect_size  = this . rect_size
+        let margin     = this . margin
+        let size       = this . size
+        let box_width  = Math . ceil  (Math . sqrt (size))
+        let box_height = Math . floor (Math . sqrt (size))
 
         //
         // Create the squares
@@ -95,8 +96,8 @@ class Sudoku {
         for (let row = 1; row <= size; row ++) {
             for (let col = 1; col <= size; col ++) {
                 let id_name     = Sudoku . coord_to_id (row, col)
-                let box = box_size * Math . floor ((row - 1) / box_size) +
-                                     Math . floor ((col - 1) / box_size) + 1
+                let box = box_height * Math . floor ((row - 1) / box_height) +
+                                       Math . floor ((col - 1) / box_width) + 1
                 let row_class = `R${row}`
                 let col_class = `C${col}`
                 let box_class = `B${box}`
@@ -132,7 +133,7 @@ class Sudoku {
                 continue
             }
             let line = sudoku . line (x, y_min, x, y_max)
-            if (c % box_size == 0) {
+            if (c % box_width == 0) {
                 line . addClass ("boundary")
             }
             c ++
@@ -147,7 +148,7 @@ class Sudoku {
                 continue
             }
             let line = sudoku . line (x_min, y, x_max, y)
-            if (c % box_size == 0) {
+            if (c % box_height == 0) {
                 line . addClass ("boundary")
             }
             c ++
