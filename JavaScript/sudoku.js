@@ -216,6 +216,15 @@ class Sudoku {
     }
 
     //
+    // Return true if the given cell is a clue
+    //
+    is_clue (args = {}) {
+        let cell = args ["cell"];
+        return cell && cell in this . clues
+    }
+
+
+    //
     // Set a set of solutions
     //
     set_solution (args = {}) {
