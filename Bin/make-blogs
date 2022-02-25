@@ -166,6 +166,13 @@ sub header ($title, $directives) {
         my  @files = map {s!^/+!!r} map {("$_/main", "$_/main-*")} @dirs;
 
         #
+        # Ugly hack. Need to do this is in a more structured way
+        #
+        if ($base =~ /Sudoku/) {
+            push @files => "sudoku";
+        }
+
+        #
         # Add specific files depending on directives
         #
         if ($$directives {"svg-grid"}) {
@@ -174,13 +181,6 @@ sub header ($title, $directives) {
 
         (@files, "$dir/$base", "$dir/$base-*")
     };
-
-    #
-    # Ugly hack. Need to do this is in a more structured way
-    #
-    if ($base =~ /Sudoku/) {
-        push @files => "sudoku";
-    }
 
     my @style_files  = @files;
     my @script_files = @files;
