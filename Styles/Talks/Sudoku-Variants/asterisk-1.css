@@ -1,0 +1,10 @@
+div.asterisk {
+    font-size:   1000%;
+    margin-top:   15vh;
+    text-align: center;
+    width:        100%;
+}
+
+span.sign {
+    -moz-transform: rotate(-45deg);
+}
