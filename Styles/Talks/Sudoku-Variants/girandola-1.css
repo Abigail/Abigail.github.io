@@ -1,0 +1,8 @@
+div.image {
+    visibility: hidden;
+}
+
+p.credits {
+    font-size:     50%;
+    opacity:       50%;
+}

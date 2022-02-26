@@ -36,6 +36,9 @@ let pages = [
     ["nrc-1",             "Variant: NRC"],
     ["nrc-2",             "Variant: NRC"],
     ["nrc-3",             "Variant: NRC"],
+    ["girandola-1",       "Variant: Girandola"],
+    ["center-dot-01",     "Variant: Center Dot"],
+    ["asterisk-1",        "Variant: Asterisk"],
 ]
 
 pages . forEach (entry => {
