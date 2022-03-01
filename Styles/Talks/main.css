@@ -34,3 +34,7 @@ h1:first-of-type {
 span.focus {
     color:                  red;
 }
+
+pre, pre code {
+    font-size:              3vw;
+}
