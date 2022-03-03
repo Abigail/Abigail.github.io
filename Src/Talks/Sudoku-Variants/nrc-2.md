@@ -1,13 +1,12 @@
 # Variant: NRC
 
 <!-- %% svg-grid: none -->
-<!-- %% focus: houses =&gt; \$NRC -->
+<!-- %% focus: -&gt; set_nrc_houses -->
 
 ~~~~
-use Regexp::Sudoku::Constants qw [:All];
-my $s = Regexp::Sudoku:: -> new
-        -> init (houses => $NRC,
-                 clues  => <<~ '--')
+my $s = Regexp::Sudoku:: -> new -> init
+        -> set_nrc_houses
+        -> set_clues (<<~ '--')
            ...
            --
 ~~~~

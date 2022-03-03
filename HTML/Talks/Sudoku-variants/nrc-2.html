@@ -28,10 +28,9 @@
 <div class = 'svg_box_info_middle content'>
 
 
-<pre><code>use Regexp::Sudoku::Constants qw [:All];
-my $s = Regexp::Sudoku:: -&gt; new
-        -&gt; init (<span class = 'focus'>houses =&gt; $NRC</span>,
-                 clues  =&gt; &lt;&lt;~ '--')
+<pre><code>my $s = Regexp::Sudoku:: -&gt; new -&gt; init
+        <span class = 'focus'>-&gt; set_nrc_houses</span>
+        -&gt; set_clues (&lt;&lt;~ '--')
            ...
            --
 </code></pre>
