@@ -3,8 +3,8 @@
 <!-- %% svg-grid: none -->
 
 ~~~~
-my $s = Regexp::Sudoku:: -> new
-        -> init (clues => <<~ '--')
+my $s = Regexp::Sudoku:: -> new -> init
+        -> set_clues (<<~ '--')
             5 3 .  . 7 .  . . .
             6 . .  1 9 5  . . .
             . 9 8  . . .  . 6 .
