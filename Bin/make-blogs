@@ -202,6 +202,10 @@ sub header ($title, $directives) {
         my $d = $base =~ s!/.+!!r;
         @scripts2 = map {"$dir/$_"} @SCRIPTS;
         push @scripts2 => "$dir/$d/pages";
+
+        if ($$directives {hide}) {
+            push @scripts2 => "Talks/hide";
+        }
     }
     
     my $scripts = join "\n" =>
