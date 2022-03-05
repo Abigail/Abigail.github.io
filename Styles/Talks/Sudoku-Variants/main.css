@@ -1,9 +1,13 @@
+code, code.wavy {
+    color:                         lightgreen;
+    background:                         black;
+}
+
+
 code .subject, code.subject {
     color:                             yellow;
-    background:                         black;
 }
 
 code .pattern, code.pattern {
     color:                             orange;
-    background:                         black;
 }
