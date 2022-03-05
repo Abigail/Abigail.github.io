@@ -5,6 +5,7 @@
 <script src = "../../../JavaScript/jquery.js"></script>
 <script id = "MathJax-script" async src = "https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.js"></script>
 <script id = 'svg-script' src = 'https://cdn.jsdelivr.net/npm/@svgdotjs/svg.js@3.0/dist/svg.min.js'></script>
+<script src = '../../../JavaScript/Talks/main-font-fiddle.js'></script>
 <script src = '../../../JavaScript/sudoku.js'></script>
 <script src = '../../../JavaScript/Talks/navigation.js'></script>
 <script src = '../../../JavaScript/Talks/Sudoku-Variants/pages.js'></script>
@@ -14,9 +15,9 @@
 <link rel = 'stylesheet' href = '../../../Styles/Talks/main.css'>
 <link rel = 'stylesheet' href = '../../../Styles/Talks/Sudoku-Variants/main.css'>
 <link rel = 'stylesheet' href = '../../../Styles/Talks/Sudoku-Variants/main-board.css'>
+<link rel = 'stylesheet' href = '../../../Styles/sudoku.css'>
 <link rel = 'stylesheet' href = '../../../Styles/svg-grid.css'>
 <link rel = 'stylesheet' href = '../../../Styles/Talks/Sudoku-Variants/intro-05.css'>
-<link rel = 'stylesheet' href = '../../../Styles/sudoku.css'>
 </head>
 
 <body><h1>Sudoku by Regexp</h1><div class = 'svg_box_none'>
@@ -27,7 +28,7 @@
 <div class = 'svg_box_info_middle content'>
 
 
-<pre><code>"subject" =~ /pattern/;
+<pre><code>"<span class = 'subject'>subject</span>" =~ /<span class = 'pattern'>pattern</span>/;
 
 say &lt;&lt; "--"
 $+{R1C1} $+{R1C2} $+{R1C3} $+{R1C4} $+{R1C5} $+{R1C6} $+{R1C7} $+{R1C8} $+{R1C9}

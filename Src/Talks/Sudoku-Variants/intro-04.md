@@ -1,6 +1,8 @@
 # Solve by Regexp
 
 <!-- %% svg-grid: none -->
+<!-- %%% class: subject subject -->
+<!-- %%% class: pattern pattern -->
 
 |====
 {rs = 2} Sudoku &
