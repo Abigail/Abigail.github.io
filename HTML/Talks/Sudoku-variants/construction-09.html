@@ -16,8 +16,8 @@
 <link rel = 'stylesheet' href = '../../../Styles/Talks/main.css'>
 <link rel = 'stylesheet' href = '../../../Styles/Talks/Sudoku-Variants/main.css'>
 <link rel = 'stylesheet' href = '../../../Styles/Talks/Sudoku-Variants/main-board.css'>
-<link rel = 'stylesheet' href = '../../../Styles/svg-grid.css'>
 <link rel = 'stylesheet' href = '../../../Styles/sudoku.css'>
+<link rel = 'stylesheet' href = '../../../Styles/svg-grid.css'>
 </head>
 
 <body><h1>Rephrase constraints</h1><div class = 'svg_box_left'>
@@ -42,6 +42,11 @@
 <ul>
 <li><p>Every cell needs to be different from 20 other cells.</p></li>
 <li><p>810 pairs of cells which differ.</p></li>
+<li><p>We make a statement for each such pair.</p>
+
+<ul>
+<li>We can exclude pairs where each cell is a clue.</li>
+</ul></li>
 </ul>
 </div>
 <div class = 'bogus'></div>

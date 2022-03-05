@@ -1,4 +1,4 @@
-# Constructing a Pattern: Cells
+# Statements: Cells
 
 <!-- %% svg-grid: none -->
 

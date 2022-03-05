@@ -1,3 +1,3 @@
-# Constructing a Pattern
+# Statements: Cells
 
 <!-- %% svg-grid: middle -->

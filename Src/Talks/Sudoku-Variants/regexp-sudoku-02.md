@@ -1,6 +1,8 @@
 # Regexp::Sudoku
 
 <!-- %% svg-grid: none -->
+<!-- %%% class: subject \$subject -->
+<!-- %%% class: pattern \$pattern -->
 
 ~~~~
 my $subject = $s -> subject;

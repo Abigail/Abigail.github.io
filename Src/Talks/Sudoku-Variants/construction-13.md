@@ -1,4 +1,4 @@
-# Sudoku
+# Example
 
 <!-- %% svg-grid: middle -->
 
