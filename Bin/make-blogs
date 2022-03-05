@@ -664,11 +664,13 @@ sub post_process ($text, $directives) {
     $text =~ s {^(?:<p>)?!/\w*</p>\h*$} {</p></div>}gm;
 
     #
-    # Put certain things into focus
+    # A way to post process something to wrap it inside a span.
     #
-    if (my $focus = $$directives {focus}) {
-        foreach my $pattern (ref $focus ? @$focus : $focus) {
-            $text =~ s {$pattern} {<span class = 'focus'>${^MATCH}</span>}p;
+    if (my $class = $$directives {class}) {
+        foreach my $entry (ref $class ? @$class : $class) {
+            my ($name, $pattern) = split ' ' => $entry, 2;
+            $pattern =~ s/ +/\\s+/g;
+            $text =~ s {$pattern} {<span class = '$name'>${^MATCH}</span>}gp;
         }
     }
 
