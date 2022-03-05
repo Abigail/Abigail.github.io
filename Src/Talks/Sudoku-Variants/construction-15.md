@@ -1,4 +1,4 @@
-# Sudoku
+# Statistics
 
 <!-- %% svg-grid: none -->
 

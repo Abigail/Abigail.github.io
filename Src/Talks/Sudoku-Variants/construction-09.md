@@ -13,3 +13,6 @@
 * Every cell needs to be different from 20 other cells.
 
 * 810 pairs of cells which differ.
+
+* We make a statement for each such pair.
+    * We can exclude pairs where each cell is a clue.
