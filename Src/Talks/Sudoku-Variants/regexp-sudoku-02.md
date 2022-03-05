@@ -3,8 +3,8 @@
 <!-- %% svg-grid: none -->
 
 ~~~~
-my $string  = $s -> string;
+my $subject = $s -> subject;
 my $pattern = $s -> pattern;
 
-$string =~ /$pattern/;
+$subject =~ /$pattern/;
 ~~~~

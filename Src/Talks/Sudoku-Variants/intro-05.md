@@ -1,6 +1,8 @@
 # Sudoku by Regexp
 
 <!-- %% svg-grid: none -->
+<!-- %%% class: subject subject -->
+<!-- %%% class: pattern pattern -->
 
 ~~~~
 "subject" =~ /pattern/;
