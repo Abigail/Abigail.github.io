@@ -26,22 +26,23 @@ function find_type (obj) {
                         : typeof obj
 }
 
-const HL_CLASS   = "highlight"
-const NRC        = ["R2C2", "R2C3", "R2C4",    "R2C6", "R2C7", "R2C8",
-                    "R3C2", "R3C3", "R3C4",    "R3C6", "R3C7", "R3C8",
-                    "R4C2", "R4C3", "R4C4",    "R4C6", "R4C7", "R4C8",
-                    "R6C2", "R6C3", "R6C4",    "R6C6", "R6C7", "R6C8",
-                    "R7C2", "R7C3", "R7C4",    "R7C6", "R7C7", "R7C8",
-                    "R8C2", "R8C3", "R8C4",    "R8C6", "R8C7", "R8C8"]
-const ASTERISK   = ["R3C3", "R2C5", "R3C7",
-                    "R5C2", "R5C5", "R5C8",
-                    "R7C3", "R8C5", "R7C7"]
-const GIRANDOLA  = ["R1C1", "R2C5", "R1C9",
-                    "R5C2", "R5C5", "R5C8",
-                    "R9C1", "R8C5", "R9C9"]
-const CENTER_DOT = ["R2C2", "R2C5", "R2C8",
-                    "R5C2", "R5C5", "R5C8",
-                    "R8C2", "R8C5", "R8C8"]
+const HL_CLASS     = "highlight"
+const RENBAN_CLASS = "renban"
+const NRC          = ["R2C2", "R2C3", "R2C4",    "R2C6", "R2C7", "R2C8",
+                      "R3C2", "R3C3", "R3C4",    "R3C6", "R3C7", "R3C8",
+                      "R4C2", "R4C3", "R4C4",    "R4C6", "R4C7", "R4C8",
+                      "R6C2", "R6C3", "R6C4",    "R6C6", "R6C7", "R6C8",
+                      "R7C2", "R7C3", "R7C4",    "R7C6", "R7C7", "R7C8",
+                      "R8C2", "R8C3", "R8C4",    "R8C6", "R8C7", "R8C8"]
+const ASTERISK     = ["R3C3", "R2C5", "R3C7",
+                      "R5C2", "R5C5", "R5C8",
+                      "R7C3", "R8C5", "R7C7"]
+const GIRANDOLA    = ["R1C1", "R2C5", "R1C9",
+                      "R5C2", "R5C5", "R5C8",
+                      "R9C1", "R8C5", "R9C9"]
+const CENTER_DOT   = ["R2C2", "R2C5", "R2C8",
+                      "R5C2", "R5C5", "R5C8",
+                      "R8C2", "R8C5", "R8C8"]
 
 class Sudoku {
     //
@@ -211,6 +212,11 @@ class Sudoku {
         // Draw the clues
         //
         this . draw_clues (args)
+
+        //
+        // Draw renban lines (noop if no renban lines have been set)
+        //
+        this . draw_renban (args)
     }
 
 
@@ -507,6 +513,48 @@ class Sudoku {
             selector = "." + selector
         }
         $(selector) . addClass (HL_CLASS)
+    }
+
+    //
+    // Set a renban line
+    //
+    set_renban (args = {}) {
+        if (args ["renban"]) {
+            this . renbans ||= []
+            this . renbans . push (args ["renban"])
+        }
+    }
+
+
+    //
+    // Draw a polyline
+    //
+    draw_polyline (args = {}) {
+        let rect_size = this . rect_size
+        let coords = args ["polyline"] . map ((cell)  => {
+            let [r, c] =  Sudoku . id_to_coord (cell)
+            r = (r + 0.5) * rect_size
+            c = (c + 0.5) * rect_size
+            return [c, r]
+        })
+        let polyline = this . sudoku . polyline (coords)
+        if (args ["class"]) {
+            polyline . addClass (args ["class"])
+        }
+        return this
+    }
+
+    //
+    // Draw renban lines
+    //
+    draw_renban (args = {}) {
+        if (this . renbans) {
+            this . renbans . forEach ((renban) => {
+                this . draw_polyline ({polyline: renban,
+                                       class:    RENBAN_CLASS})
+            })
+        }
+        return this
     }
 }
 
