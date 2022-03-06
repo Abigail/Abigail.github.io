@@ -52,3 +52,16 @@ text.row-number, text.col-number {
 
 text.cell-number {
     font-size:                          70%;
+}
+
+
+polyline {
+    stroke-width:                      15px;
+    stroke-linecap:                   round;
+    stroke-linejoin:                  round;
+    fill:                              none;
+}
+
+polyline.renban {
+    stroke:                         magenta;
+}
