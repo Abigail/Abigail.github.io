@@ -543,7 +543,9 @@ class Sudoku {
     //
     set_renban (args = {}) {
         if (args ["renban"]) {
-            this . renbans ||= []
+            if (!this . renbans) {
+                this . renbans = []
+            }
             this . renbans . push (args ["renban"])
         }
         return this
