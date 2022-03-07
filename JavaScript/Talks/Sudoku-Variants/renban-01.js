@@ -1,5 +1,5 @@
 $(document) . ready (function () {
-    new Sudoku ({size: 9})
+    let sudoku = new Sudoku ({size: 9})
       . set_renban   ({renban:  ["R1C1", "R9C9"]})
       . set_renban   ({renban:  ["R1C4", "R6C9"]})
       . set_renban   ({renban:  ["R1C7", "R3C9"]})
@@ -27,5 +27,8 @@ $(document) . ready (function () {
                                   8 9 3  5 7 1  4 2 6
                                   5 6 2  4 3 9  8 7 1
                                   4 1 7  8 2 6  3 5 9`})
-      . draw ({delay: 75})
+      . draw ({delay: 50})
+
+      add_todo (() => unhide ())
+      add_todo (() => sudoku . draw_solution ({delay: 50}))
 })
