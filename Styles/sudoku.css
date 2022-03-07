@@ -64,4 +64,5 @@ polyline {
 
 polyline.renban {
     stroke:                         magenta;
+    stroke-opacity:                     50%;
 }
