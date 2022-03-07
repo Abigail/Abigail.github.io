@@ -65,6 +65,8 @@ class Sudoku {
         this . girandola  = args . girandola
         this . asterisk   = args . asterisk
         this . center_dot = args . center_dot
+
+        return this
     }
 
     //
@@ -95,6 +97,8 @@ class Sudoku {
                             . attr    ({preserveAspectRatio: "xMaxYMin meet"})
 
         this . sudoku = sudoku
+
+        return this
     }
 
     draw_houses (args = {}) {
@@ -113,6 +117,8 @@ class Sudoku {
                                      . id         (id)
                                      . addClass   (class_name)
         })
+
+        return this
     }
 
     //
@@ -217,6 +223,8 @@ class Sudoku {
         // Draw renban lines (noop if no renban lines have been set)
         //
         this . draw_renban (args)
+
+        return this
     }
 
 
@@ -301,6 +309,8 @@ class Sudoku {
         }
 
         this . clues = this . normalize_set (clues)
+
+        return this
     }
 
     //
@@ -319,7 +329,7 @@ class Sudoku {
         let solution = args ["solution"]
 
         if (!solution) {
-            return
+            return this
         }
 
         this . solution = this . normalize_set (solution)
@@ -331,6 +341,8 @@ class Sudoku {
                 delete this . solution [cell]
             }
         }
+
+        return this
     }
 
     //
@@ -366,7 +378,7 @@ class Sudoku {
         let delay      = args ["delay"] || 0
 
         if (!set) {
-            return
+            return this
         }
 
         let rect_size = this . rect_size
@@ -383,6 +395,8 @@ class Sudoku {
             }, d)
             d += delay
         }
+
+        return this
     }
 
     //
@@ -393,6 +407,7 @@ class Sudoku {
         this . draw_set  ({... args,
                            set:    this . clues,
                            class: "clue"})
+        return this
     }
 
     //
@@ -403,6 +418,7 @@ class Sudoku {
         this . draw_set     ({... args,
                               set: this . solution,
                               class: "solution"})
+        return this
     }
 
 
@@ -416,6 +432,7 @@ class Sudoku {
                                 col: 0})
                  . addClass ("row-number")
         }
+        return this
     }
 
     //
@@ -428,6 +445,7 @@ class Sudoku {
                                 row: 0})
                  . addClass ("col-number")
         }
+        return this
     }
 
     //
@@ -436,6 +454,7 @@ class Sudoku {
     draw_row_col_names (args = {}) {
         this . draw_row_names ()
         this . draw_col_names ()
+        return this
     }
 
     //
@@ -461,6 +480,7 @@ class Sudoku {
                 this . draw_cell_number ({row: row, col: col})
             }
         }
+        return this
     }
 
 
@@ -470,6 +490,7 @@ class Sudoku {
     clear_highlights () {
         clearTimeout (this . highlight_timeout_id)
         $("." + HL_CLASS) . removeClass (HL_CLASS)
+        return this
     }
 
     //
@@ -500,6 +521,7 @@ class Sudoku {
                         previous_id: next_id
                     })},
                     delay)
+        return this
     }
 
     //
@@ -513,6 +535,7 @@ class Sudoku {
             selector = "." + selector
         }
         $(selector) . addClass (HL_CLASS)
+        return this
     }
 
     //
@@ -523,6 +546,7 @@ class Sudoku {
             this . renbans ||= []
             this . renbans . push (args ["renban"])
         }
+        return this
     }
 
 
