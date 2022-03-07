@@ -40,6 +40,7 @@ let pages = [
     ["center-dot-01",     "Variant: Center Dot"],
     ["asterisk-1",        "Variant: Asterisk"],
     ["renban-01",         "Variant: Renban"],
+    ["renban-03",         "Variant: Renban"],
 ]
 
 pages . forEach (entry => {
