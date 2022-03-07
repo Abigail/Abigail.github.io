@@ -1,0 +1,12 @@
+html {
+    background:               black;
+}
+
+code {
+    white-space:                pre; 
+    font-size:                3.5vw;
+}
+
+.pattern {
+    visibility:              hidden;
+}
