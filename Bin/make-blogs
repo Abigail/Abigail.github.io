@@ -255,6 +255,16 @@ sub header ($title, $directives) {
              if grep {$_ eq "LCD"} @{$$directives {font} || []};
     my $fonts = join "\n" => @fonts;
 
+
+    #
+    # Handle math jax
+    #
+    my $mathjax = "";
+    if (!$is_talk || $$directives {mathjax}) {
+        $mathjax = "<script id  = 'MathJax-script' async " . 
+                           "src = '$MATHJAX_URL'></script>";
+    }
+
     return <<~ "--" =~ s/^\s*\n//gmr;
         <head>
         <title>$title</title>
@@ -262,7 +272,7 @@ sub header ($title, $directives) {
         $fonts
         $styles
         <script src = "$up/$JAVASCRIPT_DIR/jquery.js"></script>
-        <script id = "MathJax-script" async src = "$MATHJAX_URL"></script>
+        $mathjax
         $chart_js
         $svg_js
         $scripts

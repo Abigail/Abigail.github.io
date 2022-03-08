@@ -1,6 +1,7 @@
 # Regexp limitations
 
 <!-- %% svg-grid: none -->
+<!-- %% mathjax        -->
 
 * No execution of code: `(?{code})`, `(??{code})`
 * No look around: `(?= )`, `(?! )`, `(?<= )`, `(?<! )`
