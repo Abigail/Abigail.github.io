@@ -82,6 +82,12 @@ my @FONTS          = map {s/ /+/r} ("Lobster Two",
                                     'Sorts Mill Goudy:ital@1',);
 my $FONTS          = join "&" => map {"family=$_"} @FONTS;
 my $FONT_URL       = "https://fonts.googleapis.com/css2?$FONTS&display=swap";
+
+my @TALK_FONTS     = map {s/ /+/r} ("Source Code Pro",);
+my $TALK_FONTS     = join "&" => map {"family=$_"} @TALK_FONTS;
+my $TALK_FONT_URL  = "https://fonts.googleapis.com/css2?$TALK_FONTS" .
+                     "&display=swap";
+
 my $LCD_FONT_URL   = "https://fontlibrary.org//face/segment7";
 
 my $PERLFUNC_URL   = "https://perldoc.perl.org/perlfunc";
@@ -148,11 +154,12 @@ sub header ($title, $directives) {
     #
     # Return the header of the HTML page
     #
-    my $dir  = $$directives {dir};
-    my $base = $$directives {base};
-    my $type = $$directives {type};
+    my $dir     = $$directives {dir};
+    my $base    = $$directives {base};
+    my $type    = $$directives {type};
 
-    my $up   = $$TYPE_INFO {$type} {$INFO_UP};
+    my $up      = $$TYPE_INFO {$type} {$INFO_UP};
+    my $is_talk = $$TYPE_INFO {$type} {$INFO_IS_TALK};
 
     #
     # Create a list of files (without extension) to check for
@@ -228,8 +235,14 @@ sub header ($title, $directives) {
                      if $$directives {"svg-grid"} &&
                         $$directives {"svg-grid"} ne "none";
 
-    my @fonts = ("<link rel = 'preconnect' href = 'https://fonts.gstatic.com'>",
-                 "<link rel = 'stylesheet' href = '$FONT_URL'>");
+    my @fonts = ("<link rel  = 'preconnect' " .
+                       "href = 'https://fonts.gstatic.com'>");
+    if ($is_talk) {
+        push @fonts => "<link rel = 'stylesheet' href = '$TALK_FONT_URL'>";
+    }
+    else {
+        push @fonts => "<link rel = 'stylesheet' href =      '$FONT_URL'>";
+    }
     push @fonts => "<link rel = 'stylesheet' href = '$LCD_FONT_URL' " .
                        "media = 'screen' type = 'text/css'> "
              if grep {$_ eq "LCD"} @{$$directives {font} || []};
