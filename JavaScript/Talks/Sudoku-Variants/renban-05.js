@@ -31,6 +31,5 @@ $(document) . ready (function () {
                                   1 8 5  2 7 9  4 3 6` })
       . draw ({delay: 50})
 
-      add_todo (() => unhide ())
       add_todo (() => sudoku . draw_solution ({delay: 50}))
 })
