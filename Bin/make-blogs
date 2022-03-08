@@ -228,12 +228,19 @@ sub header ($title, $directives) {
        $chart_js = "<script id = 'chart-script' async src = '$CHART_URL'>" .
                   "</script>" if $$directives {has_canvas};
 
+    #
+    # Handle fetching svg.js
+    #
     my $svg_js = "";
- #     $svg_js = "<script id = 'svg-script' src = '$SVG_URL'>" .
- #              "</script>\n" if $$directives {"svg-grid"};
+    if ($is_talk) {
        $svg_js = "<script src = '$up/$JAVASCRIPT_DIR/svg.js'></script>"
                      if $$directives {"svg-grid"} &&
                         $$directives {"svg-grid"} ne "none";
+    }
+    else {
+       $svg_js = "<script id = 'svg-script' src = '$SVG_URL'>" .
+                "</script>\n" if $$directives {"svg-grid"};
+    }
 
     my @fonts = ("<link rel  = 'preconnect' " .
                        "href = 'https://fonts.gstatic.com'>");
