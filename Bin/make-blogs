@@ -222,8 +222,11 @@ sub header ($title, $directives) {
                   "</script>" if $$directives {has_canvas};
 
     my $svg_js = "";
-       $svg_js = "<script id = 'svg-script' src = '$SVG_URL'>" .
-                "</script>\n" if $$directives {"svg-grid"};
+ #     $svg_js = "<script id = 'svg-script' src = '$SVG_URL'>" .
+ #              "</script>\n" if $$directives {"svg-grid"};
+       $svg_js = "<script src = '$up/$JAVASCRIPT_DIR/svg.js'></script>"
+                     if $$directives {"svg-grid"} &&
+                        $$directives {"svg-grid"} ne "none";
 
     my @fonts = ("<link rel = 'preconnect' href = 'https://fonts.gstatic.com'>",
                  "<link rel = 'stylesheet' href = '$FONT_URL'>");
