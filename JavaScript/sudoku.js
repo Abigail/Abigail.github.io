@@ -28,6 +28,8 @@ function find_type (obj) {
 
 const HL_CLASS     = "highlight"
 const RENBAN_CLASS = "renban"
+const ODD_CLASS    = "odd_clue"
+const EVEN_CLASS   = "even_clue"
 const NRC          = ["R2C2", "R2C3", "R2C4",    "R2C6", "R2C7", "R2C8",
                       "R3C2", "R3C3", "R3C4",    "R3C6", "R3C7", "R3C8",
                       "R4C2", "R4C3", "R4C4",    "R4C6", "R4C7", "R4C8",
@@ -100,6 +102,48 @@ class Sudoku {
 
         return this
     }
+
+
+    //
+    // Mark a set of cells. For now, we're handling:
+    //    * Extra houses (NRC, Girandola, Center Dot, Asterisk;
+    //    * Even cells;
+    //    * Odd cells;
+    //
+    draw_cell_markings (args = {}) {
+        let set = args ["set"]
+        if (!set) {
+            return this
+        }
+        let rect_size  = this . rect_size
+        let mark_size  = rect_size * 0.7
+        let class_name = args ["class"]     || "house"
+        let type       = args ["type"]      || "rect";
+        let delay      = args ["odd_delay"] || args ["delay"] || 0
+
+        let d = delay;
+        set . forEach ((id) => {
+            let [row, col] =  Sudoku . id_to_coord (id)
+
+            setTimeout (() => {
+                let  widget
+                if (type == "rect") {
+                    widget = this . sudoku . rect       (mark_size, mark_size)
+                }
+                if (type == "circle") {
+                    widget = this . sudoku . circle     (mark_size)
+                }
+                widget . cx       ((col + 0.5) * rect_size)
+                       . cy       ((row + 0.5) * rect_size)
+                       . addClass (class_name)
+                       . id       (id)
+            }, d)
+            d += delay
+        })
+
+        return this
+    }
+
 
     draw_houses (args = {}) {
         let set = args ["set"]
@@ -215,6 +259,12 @@ class Sudoku {
         }
 
         //
+        // Draw even and odd clues
+        //
+        this . draw_odds  (args)
+        this . draw_evens (args)
+
+        //
         // Draw the clues
         //
         this . draw_clues (args)
@@ -308,7 +358,17 @@ class Sudoku {
             return
         }
 
-        this . clues = this . normalize_set (clues)
+        let set = this . normalize_set (clues)
+        this . odds  = []
+        this . evens = []
+        this . clues = {}
+
+        for (const cell in set) {
+            let value = set [cell]
+            if      (value == "e") {this . evens . push (cell)}
+            else if (value == "o") {this . odds  . push (cell)}
+            else                   {this . clues [cell] = value}
+        }
 
         return this
     }
@@ -366,6 +426,32 @@ class Sudoku {
                                    "text-anchor": "middle"})
 
         return (plain)
+    }
+
+    //
+    // Draw the places where an odd number has to be placed
+    //
+    draw_odds (args = {}) {
+        return this . draw_cell_markings ({... args,
+                                           set:   this . odds,
+                                           class: args ["odd_class"] ||
+                                                         ODD_CLASS,
+                                           delay: args ["odd_delay"] ||
+                                                  args ["delay"]     || 0,
+                                           type: "circle"})
+    }
+
+    //
+    // Draw the places where an even number has to be placed
+    //
+    draw_evens (args = {}) {
+        return this . draw_cell_markings ({... args,
+                                           set:   this . evens,
+                                           class: args ["even_class"] ||
+                                                         EVEN_CLASS,
+                                           delay: args ["even_delay"] ||
+                                                  args ["delay"]      || 0,
+                                           type: "rect"})
     }
 
 
