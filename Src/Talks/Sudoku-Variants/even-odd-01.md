@@ -1,5 +1,8 @@
 # Variant: Even/Odd
 
 <!-- %% svg-grid: left -->
-<!-- %% hide           -->
 
+
+* Gray circles require an odd value.
+
+* Gray squares require an even value.
