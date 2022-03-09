@@ -44,6 +44,7 @@ let pages = [
     ["renban-04",         "Variant: Renban"],
     ["renban-05",         "Variant: Renban"],
     ["renban-06",         "Variant: Renban"],
+    ["even-odd-01",       "Variant: Even/Odd"],
 ]
 
 pages . forEach (entry => {
