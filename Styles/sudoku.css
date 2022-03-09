@@ -30,6 +30,9 @@ rect.highlight {
 
 rect.house {
     fill:                           #b0b0ff;
+}
+
+rect.even_clue, rect.house {
     rx:                                20px;
     ry:                                20px;
 }
@@ -65,4 +68,10 @@ polyline {
 polyline.renban {
     stroke:                         magenta;
     stroke-opacity:                     50%;
+}
+
+
+circle.odd_clue, rect.even_clue {
+    fill:                              gray;
+    opacity:                            50%;
 }
