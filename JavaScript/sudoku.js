@@ -26,6 +26,14 @@ function find_type (obj) {
                         : typeof obj
 }
 
+function shuffle (array) {
+    for (let i = array . length - 1; i; i --) {
+        let r = Math . floor (Math . random () * i);
+        [array [i], array [r]] = [array [r], array [i]]
+    }
+    return array
+}
+
 const HL_CLASS     = "highlight"
 const RENBAN_CLASS = "renban"
 const ODD_CLASS    = "odd_clue"
@@ -470,7 +478,11 @@ class Sudoku {
         let rect_size = this . rect_size
 
         let d = delay
-        for (const id in set) {
+        let cells = Object . keys (set)
+        if (args ["shuffle"]) {
+            shuffle (cells)
+        }
+        cells . forEach ((id) => {
             let val        = set [id]
             let [row, col] = Sudoku . id_to_coord (id)
             setTimeout (() => {
@@ -480,7 +492,7 @@ class Sudoku {
                      . addClass (class_name)
             }, d)
             d += delay
-        }
+        })
 
         return this
     }
@@ -501,7 +513,8 @@ class Sudoku {
     //
     draw_solution (args = {}) {
         this . set_solution (args)
-        this . draw_set     ({... args,
+        this . draw_set     ({shuffle: 1,
+                              ... args,
                               set: this . solution,
                               class: "solution"})
         return this
