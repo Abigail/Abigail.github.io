@@ -31,10 +31,10 @@ $(document) . ready (function () {
                                   7 4 1  8 9 6  2 3 5
                                   5 9 6  7 2 3  1 8 4
                                   2 3 8  4 1 5  9 6 7`})
-      . draw ({delay: 50})
+      . draw ()
 
       add_todo (() => unhide (), 1)
       add_todo (() => {$("div.image") . css ({visibility: "visible"})})
       add_todo (() => unhide (), 1)
-      add_todo (() => sudoku . draw_solution ({delay: 50}))
+      add_todo (() => sudoku . draw_solution ({delay: 20}))
 })
