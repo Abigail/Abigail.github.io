@@ -69,15 +69,16 @@ class Sudoku {
     //   - add_to   Class or ID of HTML element to add the SVG image to.
     //
     constructor (args = {}) {
-        this . size       = args . size   || 9
-        this . add_to     = args . add_to || 'div.svg-box'
-        this . rect_size  = 100
-        this . margin     = this . rect_size
-        this . id         = "sudoku"
-        this . nrc        = args . nrc
-        this . girandola  = args . girandola
-        this . asterisk   = args . asterisk
-        this . center_dot = args . center_dot
+        this . size        = args . size   || 9
+        this . add_to      = args . add_to || 'div.svg-box'
+        this . rect_size   = 100
+        this . margin      = this . rect_size
+        this . id          = "sudoku"
+        this . nrc         = args . nrc
+        this . girandola   = args . girandola
+        this . asterisk    = args . asterisk
+        this . center_dot  = args . center_dot
+        this . no_boundary = args . no_boundary || 0
 
         return this
     }
@@ -232,7 +233,7 @@ class Sudoku {
                 continue
             }
             let line = sudoku . line (x, y_min, x, y_max)
-            if (c % box_width == 0) {
+            if (c % box_width == 0 && !this . no_boundary) {
                 line . addClass ("boundary")
             }
             c ++
@@ -247,7 +248,7 @@ class Sudoku {
                 continue
             }
             let line = sudoku . line (x_min, y, x_max, y)
-            if (c % box_height == 0) {
+            if (c % box_height == 0 && !this . no_boundary) {
                 line . addClass ("boundary")
             }
             c ++
