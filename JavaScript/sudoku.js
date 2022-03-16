@@ -34,25 +34,28 @@ function shuffle (array) {
     return array
 }
 
-const HL_CLASS     = "highlight"
-const RENBAN_CLASS = "renban"
-const ODD_CLASS    = "odd_clue"
-const EVEN_CLASS   = "even_clue"
-const NRC          = ["R2C2", "R2C3", "R2C4",    "R2C6", "R2C7", "R2C8",
-                      "R3C2", "R3C3", "R3C4",    "R3C6", "R3C7", "R3C8",
-                      "R4C2", "R4C3", "R4C4",    "R4C6", "R4C7", "R4C8",
-                      "R6C2", "R6C3", "R6C4",    "R6C6", "R6C7", "R6C8",
-                      "R7C2", "R7C3", "R7C4",    "R7C6", "R7C7", "R7C8",
-                      "R8C2", "R8C3", "R8C4",    "R8C6", "R8C7", "R8C8"]
-const ASTERISK     = ["R3C3", "R2C5", "R3C7",
-                      "R5C2", "R5C5", "R5C8",
-                      "R7C3", "R8C5", "R7C7"]
-const GIRANDOLA    = ["R1C1", "R2C5", "R1C9",
-                      "R5C2", "R5C5", "R5C8",
-                      "R9C1", "R8C5", "R9C9"]
-const CENTER_DOT   = ["R2C2", "R2C5", "R2C8",
-                      "R5C2", "R5C5", "R5C8",
-                      "R8C2", "R8C5", "R8C8"]
+const HL_CLASS         = "highlight"
+const RENBAN_CLASS     = "renban"
+const ODD_CLASS        = "odd_clue"
+const EVEN_CLASS       = "even_clue"
+const BATTENBURG_CLASS = "battenburg"
+const NRC              = ["R2C2", "R2C3", "R2C4",    "R2C6", "R2C7", "R2C8",
+                          "R3C2", "R3C3", "R3C4",    "R3C6", "R3C7", "R3C8",
+                          "R4C2", "R4C3", "R4C4",    "R4C6", "R4C7", "R4C8",
+                          "R6C2", "R6C3", "R6C4",    "R6C6", "R6C7", "R6C8",
+                          "R7C2", "R7C3", "R7C4",    "R7C6", "R7C7", "R7C8",
+                          "R8C2", "R8C3", "R8C4",    "R8C6", "R8C7", "R8C8"]
+const ASTERISK         = ["R3C3", "R2C5", "R3C7",
+                          "R5C2", "R5C5", "R5C8",
+                          "R7C3", "R8C5", "R7C7"]
+const GIRANDOLA        = ["R1C1", "R2C5", "R1C9",
+                          "R5C2", "R5C5", "R5C8",
+                          "R9C1", "R8C5", "R9C9"]
+const CENTER_DOT       = ["R2C2", "R2C5", "R2C8",
+                          "R5C2", "R5C5", "R5C8",
+                          "R8C2", "R8C5", "R8C8"]
+
+const BATTENBURG_SIZE  = 0.5    // Relative to the size of square.
 
 class Sudoku {
     //
@@ -281,6 +284,11 @@ class Sudoku {
         // Draw renban lines (noop if no renban lines have been set)
         //
         this . draw_renban (args)
+
+        //
+        // Draw Battenburgs, if any
+        //
+        this . draw_battenburgs (args)
 
         return this
     }
@@ -677,6 +685,119 @@ class Sudoku {
             this . renbans . forEach ((renban) => {
                 this . draw_polyline ({polyline: renban,
                                        class:    RENBAN_CLASS})
+            })
+        }
+        return this
+    }
+
+
+    //
+    // Set one or more Battenburg constraints. Each constraint is given
+    // by its upper left cell.
+    //
+    set_battenburgs (args = {}) {
+        if (args ["battenburgs"]) {
+            if (!this . battenburgs) {
+                this . battenburgs = []
+            }
+            args ["battenburgs"] . forEach ((cell) => {
+                this . battenburgs . push (cell)
+            })
+        }
+        return this
+    }
+
+
+    //
+    // Set one or more anti-Battenburg constraints. Each constraint is given
+    // by its upper left cell.
+    //
+    set_anti_battenburgs (args = {}) {
+        if (args ["anti_battenburgs"]) {
+            if (!this . anti_battenburgs) {
+                this . anti_battenburgs = []
+            }
+            args ["anti_battenburgs"] . forEach ((cell) => {
+                this . anti_battenburgs . push (cell)
+            })
+        }
+        return this
+    }
+
+
+    //
+    // Draw a single Battenburg marking
+    //
+    draw_battenburg (args = {}) {
+        let b_size      = BATTENBURG_SIZE
+        let cell        = args ["cell"]
+        let rect_size   = this . rect_size
+        let [r, c]      = Sudoku . id_to_coord (cell)
+        let class_name  = BATTENBURG_CLASS
+        let class_name1 = BATTENBURG_CLASS + "-1"
+        let class_name2 = BATTENBURG_CLASS + "-2"
+        let rect1 = this . sudoku . rect     (b_size / 2 * rect_size,
+                                              b_size / 2 * rect_size)
+                                  . cx       ((c + 1 - b_size / 4) * rect_size)
+                                  . cy       ((r + 1 - b_size / 4) * rect_size)
+                                  . addClass (class_name)
+                                  . addClass (class_name1)
+        let rect2 = this . sudoku . rect     (b_size / 2 * rect_size,
+                                              b_size / 2 * rect_size)
+                                  . cx       ((c + 1 + b_size / 4) * rect_size)
+                                  . cy       ((r + 1 + b_size / 4) * rect_size)
+                                  . addClass (class_name)
+                                  . addClass (class_name1)
+        let rect3 = this . sudoku . rect     (b_size / 2 * rect_size,
+                                              b_size / 2 * rect_size)
+                                  . cx       ((c + 1 + b_size / 4) * rect_size)
+                                  . cy       ((r + 1 - b_size / 4) * rect_size)
+                                  . addClass (class_name)
+                                  . addClass (class_name2)
+        let rect4 = this . sudoku . rect     (b_size / 2 * rect_size,
+                                              b_size / 2 * rect_size)
+                                  . cx       ((c + 1 - b_size / 4) * rect_size)
+                                  . cy       ((r + 1 + b_size / 4) * rect_size)
+                                  . addClass (class_name)
+                                  . addClass (class_name2)
+
+        return this
+    }
+
+    //
+    // Draw a single anti-Battenburg marking
+    //
+    draw_anti_battenburg (args = {}) {
+        let b_size           = BATTENBURG_SIZE
+        let cell             = args ["cell"]
+        let rect_size        = this . rect_size
+        let [r, c]           = Sudoku . id_to_coord (cell)
+        let class_name       = BATTENBURG_CLASS
+        let anti_class_name  = "anti-" + BATTENBURG_CLASS
+
+        let rect = this . sudoku . rect     (b_size  * rect_size,
+                                             b_size  * rect_size)
+                                 . cx       ((c + 1) * rect_size)
+                                 . cy       ((r + 1) * rect_size)
+                                 . addClass (class_name)
+                                 . addClass (anti_class_name)
+
+        return this
+    }
+
+
+    //
+    // Draw all Battenburg constraints, including the anti-Battenburgs.
+    //
+    draw_battenburgs (args = {}) {
+        if (this . battenburgs) {
+            this . battenburgs . forEach ((cell) => {
+                this . draw_battenburg ({cell: cell})
+            })
+        }
+        if (this . anti_battenburgs) {
+            this . anti_battenburgs . forEach ((cell) => {
+                this . draw_anti_battenburg ({cell: cell})
             })
         }
         return this
