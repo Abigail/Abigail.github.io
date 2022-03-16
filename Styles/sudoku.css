@@ -75,3 +75,21 @@ circle.odd_clue, rect.even_clue {
     fill:                              gray;
     opacity:                            50%;
 }
+
+
+rect.battenburg {
+    stroke:                           black;
+    stroke-width:                       2px;
+}
+
+rect.battenburg-1 {
+    fill:                              blue;
+}
+
+rect.battenburg-2 {
+    fill:                            yellow;
+}
+
+rect.anti-battenburg {
+    fill:                              white;
+}
