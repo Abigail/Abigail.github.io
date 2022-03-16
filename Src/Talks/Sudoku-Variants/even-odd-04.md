@@ -4,6 +4,6 @@
 
 * Subject: 58,930 characters
 * Pattern: 24,801 characters
-* 869 statements
-* 1576 backreferences
+* Number of statements: 869
+* Number of backreferences: 1,576
 * Run time: 3.56 seconds
