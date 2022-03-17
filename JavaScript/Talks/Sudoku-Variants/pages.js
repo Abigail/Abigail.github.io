@@ -54,6 +54,8 @@ let pages = [
     ["battenburg-05",     "Variant: Battenburg"],
     ["battenburg-06",     "Variant: Battenburg"],
     ["battenburg-07",     "Variant: Battenburg"],
+    ["battenburg-08",     "Variant: Battenburg"],
+    ["battenburg-09",     "Variant: Battenburg (Statistics)"],
 ]
 
 pages . forEach (entry => {
