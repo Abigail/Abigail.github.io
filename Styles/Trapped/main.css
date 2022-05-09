@@ -1,0 +1,19 @@
+div.trapped {
+    height:                90vh;
+    display:               grid;
+    grid-template-columns: 90vh 1fr;
+}
+
+div.board {
+
+}
+
+div.info {
+
+}
+
+
+circle.small-dot {
+    fill:                  gray;
+}
+
