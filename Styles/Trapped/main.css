@@ -38,3 +38,20 @@ button.run {
 span.trapped {
     margin-left:            2em;
 }
+
+
+input.stop {
+    width:                  8em;
+}
+
+button.speed {
+    width:                  3em;
+}
+
+td.plus {
+    text-align:            right;
+}
+
+table.info_table {
+    margin-left:            1em;
+}
