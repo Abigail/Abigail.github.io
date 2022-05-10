@@ -45,15 +45,28 @@ function set_up (element) {
 //
 function set_up_info (piece_name) {
     let info = $("div#" + info_id (piece_name))
-    let info_table =
-        `<table class = 'info_table'>` +
-            `<tr><td>Step</td><td id = 'steps-${piece_name}'></td></tr>`       +
-            `<tr><td>Max</td><td id = 'max-${piece_name}'></td></tr>`          +
-            `<tr><td>Bounding box</td><td id = 'box-${piece_name}'></td></tr>` +
-        `</table><p>`
-    info . html (info_table +
-                 `<button type = 'button' id = '${button_id (piece_name)}' ` +
-                 `onclick = 'toggle ("${piece_name}")'>Run</button><br>`)
+    let button = `<button type = 'button' id = '${button_id (piece_name)}' ` +
+                 `class = 'run' `                                            +
+                 `onclick = 'toggle ("${piece_name}")'>Run</button><br>`
+
+    let info_table = `
+        <table class = 'info_table'>
+             <tr><td>Step</td>
+                 <td colspan = 2 id = 'steps-${piece_name}'></td></tr>
+             <tr><td>Max</td>
+                 <td colspan = 2 id = 'max-${piece_name}'></td></tr>
+             <tr><td>Bounding box</td>
+                 <td colspan = 2 id = 'box-${piece_name}'></td></tr>
+             <tr><td>Speed</td>
+                 <td><button type = 'button' class = 'speed' 
+                      onclick = 'speed ("-", "${piece_name}")'>-</button></td>
+                 <td><button type = 'button' class = 'speed' 
+                      onclick = 'speed ("+", "${piece_name}")'>+</button></td>
+            </tr>
+             <tr><td colspan = 3>${button}</td></tr>
+         </table><p>
+    `
+    info . html (info_table)
 }
 
 //
@@ -85,6 +98,17 @@ function toggle (piece_name) {
 }
 
 
+//
+// Increment or decrement the speed of the animation.
+// Has not effect when the animation has not started
+//
+function speed (what, piece_name) {
+    let info = window [piece_name]
+    if (info . trapped) {
+        info . trapped . set_speed (what)
+    }
+}
+
 class Trapped {
     //
     // Construct a board to display the movement of a chess piece
@@ -103,6 +127,7 @@ class Trapped {
         this . max_value   = 0
 
         this . steps       = 0
+        this . speed       = 750   // Time between moves is speed / size
 
         this . piece       = new Knight
 
@@ -288,13 +313,21 @@ class Trapped {
             this . place ({value: best})
             this . steps = this . steps + 1
             if (this . steps < 6000 && info . running) {
-                setTimeout (() => {this . move ()}, 750 / this . size)
+                setTimeout (() => {this . move ()}, this . speed / this . size)
             }
         }
 
         this . update_info ()
 
         return this
+    }
+
+    //
+    // Increment or decrement the speed of the animation
+    //
+    set_speed (what) {
+        if (what == '-') {this . speed *= 1.1}
+        if (what == '+') {this . speed /= 1.1}
     }
 }
 
