@@ -278,12 +278,16 @@ class Trapped {
                      . cx       (col)
                      . cy       (row)
                      . addClass ("unvisited-dot")
-                     . id       (`dot-${row}-${col}`)
+                     . addClass (`dot-${row}-${col}`)
     }
 
+    //
+    // Turn a dot into a visited dot
+    //
     visit_dot (row, col) {
-        $(`#dot-${row}-${col}`) . removeClass ("unvisited-dot")
-        $(`#dot-${row}-${col}`) .    addClass (  "visited-dot")
+        let svg_id = this . id
+        $(`#${svg_id} .dot-${row}-${col}`) . removeClass ("unvisited-dot")
+        $(`#${svg_id} .dot-${row}-${col}`) .    addClass (  "visited-dot")
     }
 
     //
