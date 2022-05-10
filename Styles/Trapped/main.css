@@ -23,7 +23,7 @@ circle.visited-dot {
 
 line {
     stroke-width:  0.05px;
-    stroke: green;
+  # stroke: green;
 }
 
 
