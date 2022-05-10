@@ -53,10 +53,18 @@ function set_up_info (piece_name) {
         <table class = 'info_table'>
              <tr><td>Step</td>
                  <td colspan = 2 id = 'steps-${piece_name}'></td></tr>
-             <tr><td>Max</td>
+             <tr><td>Max value</td>
                  <td colspan = 2 id = 'max-${piece_name}'></td></tr>
              <tr><td>Bounding box</td>
                  <td colspan = 2 id = 'box-${piece_name}'></td></tr>
+             <tr><td>Colour scheme</td>
+                 <td colspan = 2>
+                    <select id = 'colour-${piece_name}'>
+                        <option value = 'none'>None</option>
+                        <option value = 'mono' selected>Monochrome</option>
+                        <option value = 'rainbow'>Directional</option>
+                   </select></td>
+                 </td>
              <tr><td>Speed</td>
                  <td><button type = 'button' class = 'speed' 
                       onclick = 'speed ("-", "${piece_name}")'>-</button></td>
@@ -77,6 +85,8 @@ function toggle (piece_name) {
     let info   = window [piece_name] 
     let button = $(`#${button_id (piece_name)}`)
 
+    console . log ($(`#colour-${piece_name}`) . val ())
+
     if (info . running) {
         info . running = false
         $(button) . html ("Run")
@@ -86,10 +96,14 @@ function toggle (piece_name) {
         $(`div#${board_id}`) . empty ()
         info . running = true
 
-        let trapped = new Spiral ({piece_name: piece_name})
-            trapped . create_board ()
-                    . place ()
-                    . move  ()
+        let trapped = new Spiral ({
+            piece_name: piece_name,
+            colour_scheme: $(`#colour-${piece_name}`) . val ()
+        })
+
+        trapped . create_board ()
+                . place ()
+                . move  ()
 
         $(button) . html ("Stop")
 
@@ -114,22 +128,24 @@ class Trapped {
     // Construct a board to display the movement of a chess piece
     //
     constructor (args = {}) {
-        this . piece_name  = args . piece_name
-        this . add_to      = "div#" + board_id (this . piece_name)
-        this . id          =          svg_id   (this . piece_name)
-        this . size        =  5    // For an 11 x 11 grid
+        this . piece_name    = args . piece_name
+        this . colour_scheme = args . colour_scheme
 
-        this . visited     = {}    // Values piece has been
-        this . min_row     = 0     // Bounding box where pieces has been
-        this . min_col     = 0
-        this . max_row     = 0
-        this . max_col     = 0
-        this . max_value   = 0
+        this . add_to        = "div#" + board_id (this . piece_name)
+        this . id            =          svg_id   (this . piece_name)
+        this . size          =  5    // For an 11 x 11 grid
 
-        this . steps       = 0
-        this . speed       = 750   // Time between moves is speed / size
+        this . visited       = {}    // Values piece has been
+        this . min_row       = 0     // Bounding box where pieces has been
+        this . min_col       = 0
+        this . max_row       = 0
+        this . max_col       = 0
+        this . max_value     = 0
 
-        this . piece       = new Knight
+        this . steps         = 0
+        this . speed         = 750   // Time between moves is speed / size
+
+        this . piece         = new Knight
 
         return this
     }
@@ -287,9 +303,82 @@ class Trapped {
     }
 
     //
+    // Create a line (if any) between the previous and next positions
+    //
+    new_line (row, col, new_row, new_col) {
+        if (this . colour_scheme == "none") {
+            return
+        }
+        let line = this . board . line (col, row, new_col, new_row)
+        if (this . colour_scheme == "mono") {
+            line . stroke ({color: "green"})
+            return
+        }
+        if (this . colour_scheme == "rainbow") {
+            //
+            // Find the angle (0 - 360) the line makes
+            //
+            let angle = 180 +
+                        180 * Math . atan2 (new_row - row, new_col - col) /
+                              Math . PI
+            if (angle >= 360) {
+                angle = 0
+            }
+
+            console . log (`${new_row - row}, ${new_col - col} -> ${angle}`)
+
+            //
+            // Just a test for now
+            //
+            let red    =  0
+            let green  =  0
+            let blue   =  0
+            if (  0 <= angle && angle <  60) {  // Green increasing
+                red   = 255
+                green = 255 *      (angle -   0) / 60
+                blue  =   0
+            }
+            if ( 60 <= angle && angle < 120) {  //   Red decreasing
+                red   = 255 * (1 - (angle -  60) / 60)
+                green = 255
+                blue  =   0
+            }
+            if (120 <= angle && angle < 180) {  // Blue increasing
+                red   =   0
+                green = 255
+                blue  = 255 *      (angle - 120) / 60
+            }
+            if (180 <= angle && angle < 240) {  // Green decreasing
+                red   =   0
+                green = 255 * (1 - (angle - 180) / 60)
+                blue  = 255
+            }
+            if (240 <= angle && angle < 300) {  //   Red increasing
+                red   = 255 *      (angle - 240) / 60
+                green =   0
+                blue  = 255
+            }
+            if (300 <= angle && angle < 360) {  //  Blue decreasing
+                red   = 255
+                green =   0
+                blue  = 255 * (1 - (angle - 300) / 60)
+            }
+
+            red   = Math . floor (red)
+            green = Math . floor (green)
+            blue  = Math . floor (blue)
+
+            let colour = `rgb(${red},${green},${blue})`
+            console.log (colour)
+            line . stroke ({color: colour})
+        }
+    }
+
+    //
     // Move a piece, and kick off the next move (if any)
     //
     move () {
+        console . log (this . colour_scheme)
         let moves      = this . piece . moves ()
         let [row, col] = this . to_coordinates (this . current)
         let best       = 0
@@ -309,7 +398,13 @@ class Trapped {
 
         if (best > 0) {
             let [new_row, new_col] = this . to_coordinates (best)
-            this . board . line (col, row, new_col, new_row)
+            this . new_line (row, col, new_row, new_col)
+    //      if (this . colour_scheme != "none") {
+    //          let line = this . board . line (col, row, new_col, new_row)
+    //          if (this . colour_scheme == "rainbow") {
+    //              line . stroke ({color: "red"})
+    //          }
+    //      }
             this . place ({value: best})
             this . steps = this . steps + 1
             if (this . steps < 6000 && info . running) {
