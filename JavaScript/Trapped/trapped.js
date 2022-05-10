@@ -171,6 +171,9 @@ function stop (piece_name) {
     }
 }
 
+function uc_first (str) {
+    return str . charAt (0) . toUpperCase () + str . slice (1)
+}
 
 
 class Trapped {
@@ -199,7 +202,11 @@ class Trapped {
         this . stop_value    = 0
         this . stop_box      = 0
 
-        this . piece         = new Knight
+        //
+        // Get the piece from the piece_name
+        //
+        let class_name       = uc_first (this . piece_name)
+        this . piece         = eval (`new ${class_name} ()`)
 
         this . state         = START
 
