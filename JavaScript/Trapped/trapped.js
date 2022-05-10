@@ -73,24 +73,27 @@ function set_up_info (piece_name) {
                    </select></td>
                  </td>
              <tr><td>Speed</td>
-                 <td><button type = 'button' class = 'speed' 
+                 <td class = 'minus'><button type = 'button' class = 'speed' 
                       onclick = 'speed ("-", "${piece_name}")'>-</button></td>
-                 <td><button type = 'button' class = 'speed' 
+                 <td class = 'plus'><button type = 'button' class = 'speed' 
                       onclick = 'speed ("+", "${piece_name}")'>+</button></td>
             </tr>
              <tr><td>Stop on step</td>
                  <td colspan = 2><input type = 'text'
                                         id = 'stop-step-${piece_name}'
+                                        class = 'stop'
                                         onchange = 'stop ("${piece_name}")'</td>
             </tr>
              <tr><td>Stop on value</td>
                  <td colspan = 2><input type = 'text'
                                         id = 'stop-value-${piece_name}'
+                                        class = 'stop'
                                         onchange = 'stop ("${piece_name}")'</td>
             </tr>
              <tr><td>Stop on box size</td>
                  <td colspan = 2><input type = 'text'
                                         id = 'stop-box-${piece_name}'
+                                        class = 'stop'
                                         onchange = 'stop ("${piece_name}")'</td>
             </tr>
              <tr><td colspan = 3>${button1}</td></tr>
