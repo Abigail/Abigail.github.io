@@ -13,7 +13,15 @@ div.info {
 }
 
 
-circle.small-dot {
+circle.unvisited-dot {
     fill:                  gray;
 }
+circle.visited-dot {
+    r:                     0.2px;
+    fill:                  black;
+}
 
+line {
+    stroke-width:  0.05px;
+    stroke: green;
+}
