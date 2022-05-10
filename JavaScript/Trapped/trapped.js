@@ -512,6 +512,39 @@ class Trapped {
                     }
                 }
             }
+            if (move . type == "slide") {
+                //
+                // We now have multiple options for a single "move".
+                // Starting at 'step' size of 1, we find the best
+                // sub value until one of the following things happen:
+                //   - We find a position which is occupied
+                //   - The value increases
+                //
+                let sub_best = 0
+                let prev_val = 0
+                let step     = 0
+                while (true) {
+                    step ++
+                    let new_row = row + step * move . dr
+                    let new_col = col + step * move . dc
+                    let value   = this . to_value (new_row, new_col)
+                    if (value in  this . visited) {
+                        break
+                    }
+                    if (prev_val && value > prev_val) {
+                        break
+                    }
+                    if (sub_best == 0 || value < sub_best) {
+                        sub_best = value
+                    }
+                    prev_val = value
+                }
+                if (best == 0 || sub_best < best) {
+                    if (sub_best > 0) {
+                        best = sub_best
+                    }
+                }
+            }
         })
 
         if (best > 0) {
@@ -667,5 +700,18 @@ class King extends Piece {
                 {type: "step", dr: -1, dc:  0},
                 {type: "step", dr:  0, dc:  1},
                 {type: "step", dr:  0, dc: -1},]
+    }
+}
+
+
+class Bishop extends Piece {
+    //
+    // Return a list of moves
+    //
+    moves () {
+        return [{type: "slide", dr:  1, dc:  1},
+                {type: "slide", dr: -1, dc:  1},
+                {type: "slide", dr:  1, dc: -1},
+                {type: "slide", dr: -1, dc: -1},]
     }
 }
