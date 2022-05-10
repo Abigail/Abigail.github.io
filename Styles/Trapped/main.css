@@ -25,3 +25,9 @@ line {
     stroke-width:  0.05px;
     stroke: green;
 }
+
+
+button.run {
+    margin-top:  1em;
+    width: 100%;
+}
