@@ -71,6 +71,21 @@ function set_up_info (piece_name) {
                  <td><button type = 'button' class = 'speed' 
                       onclick = 'speed ("+", "${piece_name}")'>+</button></td>
             </tr>
+             <tr><td>Stop on step</td>
+                 <td colspan = 2><input type = 'text'
+                                        id = 'stop-step-${piece_name}'
+                                        onchange = 'stop ("${piece_name}")'</td>
+            </tr>
+             <tr><td>Stop on value</td>
+                 <td colspan = 2><input type = 'text'
+                                        id = 'stop-value-${piece_name}'
+                                        onchange = 'stop ("${piece_name}")'</td>
+            </tr>
+             <tr><td>Stop on box size</td>
+                 <td colspan = 2><input type = 'text'
+                                        id = 'stop-box-${piece_name}'
+                                        onchange = 'stop ("${piece_name}")'</td>
+            </tr>
              <tr><td colspan = 3>${button}</td></tr>
          </table><p>
     `
@@ -85,8 +100,6 @@ function toggle (piece_name) {
     let info   = window [piece_name] 
     let button = $(`#${button_id (piece_name)}`)
 
-    console . log ($(`#colour-${piece_name}`) . val ())
-
     if (info . running) {
         info . running = false
         $(button) . html ("Run")
@@ -100,14 +113,16 @@ function toggle (piece_name) {
             piece_name: piece_name,
             colour_scheme: $(`#colour-${piece_name}`) . val ()
         })
+        info . trapped = trapped
 
         trapped . create_board ()
                 . place ()
                 . move  ()
 
+        stop (piece_name)
+
         $(button) . html ("Stop")
 
-        info . trapped = trapped
     }
 }
 
@@ -122,6 +137,22 @@ function speed (what, piece_name) {
         info . trapped . set_speed (what)
     }
 }
+
+//
+// Called when changing a stopping criterium
+//
+function stop (piece_name) {
+    let info = window [piece_name]
+    if (info . trapped) {
+        info . trapped . set_stop ({
+            step:  $(`#stop-step-${piece_name}`)  . val (),
+            value: $(`#stop-value-${piece_name}`) . val (),
+            box:   $(`#stop-box-${piece_name}`)   . val ()
+        })
+    }
+}
+
+
 
 class Trapped {
     //
@@ -145,9 +176,28 @@ class Trapped {
         this . steps         = 0
         this . speed         = 750   // Time between moves is speed / size
 
+        this . stop_step     = 0
+        this . stop_value    = 0
+        this . stop_box      = 0
+
         this . piece         = new Knight
 
         return this
+    }
+
+    //
+    // Set stopping criteria
+    //
+    set_stop (args = {}) {
+        if (args . step && !isNaN (args . step)) {
+            this . stop_step = + args . step
+        }
+        if (args . value && !isNaN (args . value)) {
+            this . stop_value = + args . value
+        }
+        if (args . box && !isNaN (args . box)) {
+            this . stop_box = + args . box
+        }
     }
 
     create_board (args = {}) {
@@ -325,8 +375,6 @@ class Trapped {
                 angle = 0
             }
 
-            console . log (`${new_row - row}, ${new_col - col} -> ${angle}`)
-
             //
             // Just a test for now
             //
@@ -369,16 +417,37 @@ class Trapped {
             blue  = Math . floor (blue)
 
             let colour = `rgb(${red},${green},${blue})`
-            console.log (colour)
             line . stroke ({color: colour})
         }
     }
 
     //
+    // Return true if we may continue
+    //
+    may_continue () {
+        let info = window [this . piece_name]
+        if (!info . running) {return false}
+        if (this . stop_step &&
+            this . stop_step < this . steps) {return false}
+        if (this . stop_value &&
+            this . stop_value < this . max_value) {return false}
+        if (this . stop_box) {
+            if (this . stop_box < this . max_row - this . min_row + 1) {
+                return false
+            }
+            if (this . stop_box < this . max_col - this . min_col + 1) {
+                return false
+            }
+        }
+        return true
+    }
+
+
+
+    //
     // Move a piece, and kick off the next move (if any)
     //
     move () {
-        console . log (this . colour_scheme)
         let moves      = this . piece . moves ()
         let [row, col] = this . to_coordinates (this . current)
         let best       = 0
@@ -399,15 +468,9 @@ class Trapped {
         if (best > 0) {
             let [new_row, new_col] = this . to_coordinates (best)
             this . new_line (row, col, new_row, new_col)
-    //      if (this . colour_scheme != "none") {
-    //          let line = this . board . line (col, row, new_col, new_row)
-    //          if (this . colour_scheme == "rainbow") {
-    //              line . stroke ({color: "red"})
-    //          }
-    //      }
             this . place ({value: best})
             this . steps = this . steps + 1
-            if (this . steps < 6000 && info . running) {
+            if (this . may_continue ()) {
                 setTimeout (() => {this . move ()}, this . speed / this . size)
             }
         }
