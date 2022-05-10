@@ -22,12 +22,14 @@ circle.visited-dot {
 }
 
 line {
-    stroke-width:  0.05px;
-  # stroke: green;
+    stroke-width:          0.05px;
 }
 
 
+button.start {
+    margin-top:            1em;
+}
+
 button.run {
-    margin-top:  1em;
-    width: 100%;
+    width:                 100%;
 }
