@@ -10,10 +10,11 @@ $(window) . on ("load", () => {
 //
 // States a board can be in
 //
-const START   = 0
-const RUNNING = 1
-const PAUSED  = 2
-const TRAPPED = 3
+const START   =   0
+const RUNNING =   1
+const PAUSED  =   2
+const TRAPPED =   3
+const DEAD    = 999
 
 //
 // Helper functions to find ids of various elements based on
@@ -44,10 +45,16 @@ function set_up (element) {
 // Populate the right div with some form elements.
 //
 function set_up_info (piece_name) {
-    let info = $("div#" + info_id (piece_name))
-    let button = `<button type = 'button' id = '${button_id (piece_name)}' ` +
-                 `class = 'run' `                                            +
-                 `onclick = 'toggle ("${piece_name}")'>Run</button><br>`
+    let info    = $("div#" + info_id (piece_name))
+    let id1     = `button-start-${piece_name}`
+    let id2     = `button-pause-${piece_name}`
+    let button1 = `<button type = 'button' id = '${id1}' ` +
+                  `class = 'run start' `                   +
+                  `onclick = 'toggle ("${piece_name}", 1)'>Start</button><br>`
+    let button2 = `<button type = 'button' id = '${id2}' ` +
+                  `class = 'run pause' `                   +
+                  `disabled = 'disabled' `                 +
+                  `onclick = 'toggle ("${piece_name}", 2)'>Pause</button><br>`
 
     let info_table = `
         <table class = 'info_table'>
@@ -86,7 +93,8 @@ function set_up_info (piece_name) {
                                         id = 'stop-box-${piece_name}'
                                         onchange = 'stop ("${piece_name}")'</td>
             </tr>
-             <tr><td colspan = 3>${button}</td></tr>
+             <tr><td colspan = 3>${button1}</td></tr>
+             <tr><td colspan = 3>${button2}</td></tr>
          </table><p>
     `
     info . html (info_table)
@@ -96,18 +104,19 @@ function set_up_info (piece_name) {
 // Create the SVG image when the "Run" button is clicked, and start
 // moving the piece
 //
-function toggle (piece_name) {
+function toggle (piece_name, type) {
     let info   = window [piece_name] 
-    let button = $(`#${button_id (piece_name)}`)
 
-    if (info . running) {
-        info . running = false
-        $(button) . html ("Run")
-    }
-    else {
+    if (type == 1) {
+        //
+        // Kill any existing animation
+        //
+        if (info . trapped) {
+            info . trapped . set_dead ()
+        }
+
         let board_id  = "board-"  + piece_name
-        $(`div#${board_id}`) . empty ()
-        info . running = true
+        $(`div#${board_id}`) . empty () // Gets rid of any existing SVG
 
         let trapped = new Spiral ({
             piece_name: piece_name,
@@ -116,13 +125,23 @@ function toggle (piece_name) {
         info . trapped = trapped
 
         trapped . create_board ()
-                . place ()
-                . move  ()
+                . place        ()
+                . set_running  ()
 
         stop (piece_name)
 
-        $(button) . html ("Stop")
+        return
+    }
 
+    let trapped = info . trapped
+
+    if (trapped . state == RUNNING) {
+        trapped . set_paused ()
+    }
+    else {
+        if (trapped . state == PAUSED) {
+            trapped . set_running ()
+        }
     }
 }
 
@@ -182,6 +201,8 @@ class Trapped {
 
         this . piece         = new Knight
 
+        this . state         = START
+
         return this
     }
 
@@ -189,6 +210,10 @@ class Trapped {
     // Set stopping criteria
     //
     set_stop (args = {}) {
+        this . stop_step  = 0
+        this . stop_value = 0
+        this . stop_box   = 0
+
         if (args . step && !isNaN (args . step)) {
             this . stop_step = + args . step
         }
@@ -426,20 +451,26 @@ class Trapped {
     //
     may_continue () {
         let info = window [this . piece_name]
-        if (!info . running) {return false}
+        if (this . state != RUNNING) {return false}
+
+        let out = true
+
         if (this . stop_step &&
-            this . stop_step < this . steps) {return false}
+            this . stop_step < this . steps) {out = false}
         if (this . stop_value &&
-            this . stop_value < this . max_value) {return false}
+            this . stop_value < this . max_value) {out = false}
         if (this . stop_box) {
             if (this . stop_box < this . max_row - this . min_row + 1) {
-                return false
+                out = false
             }
             if (this . stop_box < this . max_col - this . min_col + 1) {
-                return false
+                out = false
             }
         }
-        return true
+        if (!out) {
+            this . set_paused ()
+        }
+        return out
     }
 
 
@@ -448,6 +479,9 @@ class Trapped {
     // Move a piece, and kick off the next move (if any)
     //
     move () {
+        if (this . state == DEAD) {
+            return
+        }
         let moves      = this . piece . moves ()
         let [row, col] = this . to_coordinates (this . current)
         let best       = 0
@@ -474,6 +508,9 @@ class Trapped {
                 setTimeout (() => {this . move ()}, this . speed / this . size)
             }
         }
+        else {
+            this . set_trapped ()
+        }
 
         this . update_info ()
 
@@ -487,6 +524,46 @@ class Trapped {
         if (what == '-') {this . speed *= 1.1}
         if (what == '+') {this . speed /= 1.1}
     }
+
+    //
+    // Toggle states
+    //
+    set_state (state) {
+        let piece_name = this . piece_name
+        let button1    = $(`#button-start-${piece_name}`)
+        let button2    = $(`#button-pause-${piece_name}`)
+
+        this . state   = state
+
+        if (state == RUNNING) {
+            button1 . html ("Restart")
+            button2 . html ("Pause")
+            button2 . prop ("disabled", false)
+            this    . move ()
+        }
+
+        if (state == PAUSED) {
+            button2 . html ("Continue")
+            button2 . prop ("disabled", false)
+        }
+
+        if (state == TRAPPED) {
+            button2 . prop ("disabled", true)
+        }
+
+        if (state == START) {
+            button1 . html ("Start")
+            button2 . html ("Pause")
+            button2 . prop ("disabled", true)
+        }
+    }
+
+    set_running () {if (this . state == START)   {this . set_state (RUNNING)}
+                    if (this . state == PAUSED)  {this . set_state (RUNNING)}}
+    set_paused  () {if (this . state == RUNNING) {this . set_state (PAUSED)}}
+    set_trapped () {if (this . state == RUNNING) {this . set_state (TRAPPED)}}
+    set_dead    ()                               {this . set_state (DEAD)}
+
 }
 
 
