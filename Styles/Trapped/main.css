@@ -33,3 +33,8 @@ button.start {
 button.run {
     width:                 100%;
 }
+
+
+span.trapped {
+    margin-left:            2em;
+}
