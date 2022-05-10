@@ -8,6 +8,14 @@ $(window) . on ("load", () => {
 })
 
 //
+// States a board can be in
+//
+const START   = 0
+const RUNNING = 1
+const PAUSED  = 2
+const TRAPPED = 3
+
+//
 // Helper functions to find ids of various elements based on
 // the name of the chess piece
 //
@@ -27,6 +35,7 @@ function set_up (element) {
         `<div class = 'info'  id = '${info_id  (piece_name)}' ></div>`
     )
 
+    window [piece_name] = {}
     set_up_info (piece_name)
 
 }
@@ -44,21 +53,35 @@ function set_up_info (piece_name) {
         `</table><p>`
     info . html (info_table +
                  `<button type = 'button' id = '${button_id (piece_name)}' ` +
-                 `onclick = 'run ("${piece_name}")'>Run</button><br>`)
+                 `onclick = 'toggle ("${piece_name}")'>Run</button><br>`)
 }
 
 //
 // Create the SVG image when the "Run" button is clicked, and start
 // moving the piece
 //
-function run (piece_name) {
-    let board_id  = "board-"  + piece_name
-    $(`div#${board_id}`) . empty ()
+function toggle (piece_name) {
+    let info   = window [piece_name] 
+    let button = $(`#${button_id (piece_name)}`)
 
-    let trapped = new Spiral ({piece_name: piece_name})
-        trapped . create_board ()
-                . place ()
-                . move  ()
+    if (info . running) {
+        info . running = false
+        $(button) . html ("Run")
+    }
+    else {
+        let board_id  = "board-"  + piece_name
+        $(`div#${board_id}`) . empty ()
+        info . running = true
+
+        let trapped = new Spiral ({piece_name: piece_name})
+            trapped . create_board ()
+                    . place ()
+                    . move  ()
+
+        $(button) . html ("Stop")
+
+        info . trapped = trapped
+    }
 }
 
 
@@ -245,6 +268,7 @@ class Trapped {
         let moves      = this . piece . moves ()
         let [row, col] = this . to_coordinates (this . current)
         let best       = 0
+        let info       = window [this . piece_name]
         moves . forEach ((move) => {
             if (move . type == "step") {
                 let new_row = row + move . dr
@@ -263,7 +287,7 @@ class Trapped {
             this . board . line (col, row, new_col, new_row)
             this . place ({value: best})
             this . steps = this . steps + 1
-            if (this . steps < 6000) {
+            if (this . steps < 6000 && info . running) {
                 setTimeout (() => {this . move ()}, 750 / this . size)
             }
         }
