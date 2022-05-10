@@ -343,7 +343,11 @@ class Trapped {
     //
     update_info () {
         let piece_name = this . piece_name
-        $(`#steps-${piece_name}`) . html (this . steps)
+        let step_val   = this . steps
+        if (this . state == TRAPPED) {
+            step_val += "<span class = 'trapped'>Trapped!</span>"
+        }
+        $(`#steps-${piece_name}`) . html (step_val)
         $(`#max-${piece_name}`)   . html (this . max_value)
         $(`#box-${piece_name}`)   . html (
             `${this . max_row - this . min_row + 1} x ` +
