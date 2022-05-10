@@ -500,7 +500,7 @@ class Trapped {
         if (this . state == DEAD) {
             return
         }
-        let moves      = this . piece . moves ()
+        let moves      = this . piece . moves ({step: this . steps + 1})
         let [row, col] = this . to_coordinates (this . current)
         let best       = 0
         let info       = window [this . piece_name]
@@ -669,52 +669,3 @@ class Spiral extends Trapped {
 }
 
 
-
-//
-// Chess pieces go here
-//
-class Piece {
-}
-
-
-class Knight extends Piece {
-    //
-    // Return a list of moves
-    //
-    moves () {
-        return [{type: "step", dr:  2, dc:  1},
-                {type: "step", dr:  2, dc: -1},
-                {type: "step", dr: -2, dc:  1},
-                {type: "step", dr: -2, dc: -1},
-                {type: "step", dr:  1, dc:  2},
-                {type: "step", dr:  1, dc: -2},
-                {type: "step", dr: -1, dc:  2},
-                {type: "step", dr: -1, dc: -2},]
-    }
-}
-
-
-class King extends Piece {
-    //
-    // Return a list of moves
-    //
-    moves () {
-        return [{type: "step", dr:  1, dc:  0},
-                {type: "step", dr: -1, dc:  0},
-                {type: "step", dr:  0, dc:  1},
-                {type: "step", dr:  0, dc: -1},]
-    }
-}
-
-
-class Bishop extends Piece {
-    //
-    // Return a list of moves
-    //
-    moves () {
-        return [{type: "slide", dr:  1, dc:  1},
-                {type: "slide", dr: -1, dc:  1},
-                {type: "slide", dr:  1, dc: -1},
-                {type: "slide", dr: -1, dc: -1},]
-    }
-}
