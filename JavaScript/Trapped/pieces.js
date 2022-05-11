@@ -65,30 +65,71 @@ class Piece {
     }
 }
 
-
+//
+// Chess pieces
+//
 class Knight extends Piece {
     constructor (args = {}) {
-        args . move_list = fold ({move: step (1, 2)})
         super (args)
+        this . move_list = fold ({move: step (1, 2)})
+        this . full_name = "&#x2658; Knight"
     }
 }
 
 
 class King extends Piece {
     constructor (args = {}) {
-        args . move_list = fold ({move: step (1, 0)})
         super (args)
+        this . move_list = fold ({move: step (1, 0)})
+        this . full_name = "&#x2654; King"
+    }
+}
+
+
+class Queen extends Piece {
+    constructor (args = {}) {
+        super (args)
+        this . move_list = [... fold ({move: slide (1, 1)}),
+                            ... fold ({move: slide (1, 0)})]
+        this . full_name = "&#x2655; Queen"
+    }
+}
+
+
+class Rook extends Piece {
+    constructor (args = {}) {
+        super (args)
+        this . move_list = fold ({move: slide (1, 0)})
+        this . full_name = "&#x2656; Rook"
     }
 }
 
 
 class Bishop extends Piece {
     constructor (args = {}) {
-        args . move_list = fold ({move: slide (1, 1)})
         super (args)
+        this . move_list = fold ({move: slide (1, 1)})
+        this . full_name = "&#x2657; Bishop"
     }
 }
 
+
+class Pawn extends Piece {
+    constructor (args = {}) {
+        super (args)
+        this . full_name = "&#x2658; Pawn"
+    }
+    moves (args = {}) {
+        if (args . step == 1) {
+            return [step (-1, 0), step (-2, 0)]
+        }
+        return [step (-1, 0)]
+    }
+}
+
+//
+// Pieces from Hunter-Falcon chess
+//
 class Hunter extends Piece {
     moves (args = {}) {
         return [slide (-1, 0), slide (1, -1), slide (1, 1)]
