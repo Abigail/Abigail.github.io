@@ -80,7 +80,8 @@ class Knight extends Piece {
 class King extends Piece {
     constructor (args = {}) {
         super (args)
-        this . move_list = fold ({move: step (1, 0)})
+        this . move_list = [... fold ({move: step (1, 0)}),
+                            ... fold ({move: step (1, 1)})]
         this . full_name = "&#x2654; King"
     }
 }
@@ -124,6 +125,52 @@ class Pawn extends Piece {
             return [step (-1, 0), step (-2, 0)]
         }
         return [step (-1, 0)]
+    }
+}
+
+//
+// Knighted pieces
+//
+class Archbishop extends Piece {
+    constructor (args = {}) {
+        super (args)
+        this . move_list = [... fold ({move: slide (1, 1)}),
+                            ... fold ({move: step  (1, 2)})]
+    }
+}
+class Chancellor extends Piece {
+    constructor (args = {}) {
+        super (args)
+        this . move_list = [... fold ({move: slide (1, 0)}),
+                            ... fold ({move: step  (1, 2)})]
+    }
+}
+class Amazon extends Piece {
+    constructor (args = {}) {
+        super (args)
+        this . move_list = [... fold ({move: slide (1, 0)}),
+                            ... fold ({move: slide (1, 1)}),
+                            ... fold ({move: step  (1, 2)})]
+    }
+}
+
+//
+// Crowned pieces
+//
+class Dragon_king extends Piece {
+    constructor (args = {}) {
+        super (args)
+        this . move_list = [... fold ({move: slide (1, 0)}),
+                            ... fold ({move: step  (1, 0)}),
+                            ... fold ({move: step  (1, 1)})]
+    }
+}
+class Dragon_horse extends Piece {
+    constructor (args = {}) {
+        super (args)
+        this . move_list = [... fold ({move: slide (1, 1)}),
+                            ... fold ({move: step  (1, 0)}),
+                            ... fold ({move: step  (1, 1)})]
     }
 }
 
