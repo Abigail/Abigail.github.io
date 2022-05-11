@@ -20,55 +20,65 @@ const DEAD    = 999
 // Helper functions to find ids of various elements based on
 // the name of the chess piece
 //
-function make_id   (type, piece_name) {return `${type}-${piece_name}`}
-function board_id  (piece_name)       {return make_id ("board",  piece_name)}
-function info_id   (piece_name)       {return make_id ("info",   piece_name)}
-function button_id (piece_name)       {return make_id ("button", piece_name)}
-function svg_id    (piece_name)       {return make_id ("svg",    piece_name)}
+function make_id   (type, name) {return `${type}-${name}`}
+function board_id  (name)       {return make_id ("board",  name)}
+function info_id   (name)       {return make_id ("info",   name)}
+function button_id (name)       {return make_id ("button", name)}
+function svg_id    (name)       {return make_id ("svg",    name)}
 
 //
 // Create the two responsive divs inside any "trapped" divs.
 //
 function set_up (element) {
-    let piece_name  = $(element) . data ("pieceName")
+    let name        = $(element) . data ("name")
+    let piece_names = $(element) . data ("pieceNames") . split (/,\s*/)
     $(element) . html (
-        `<div class = 'board' id = '${board_id (piece_name)}'></div>` +
-        `<div class = 'info'  id = '${info_id  (piece_name)}' ></div>`
+        `<div class = 'board' id = '${board_id (name)}'></div>` +
+        `<div class = 'info'  id = '${info_id  (name)}' ></div>`
     )
 
-    window [piece_name] = {}
-    set_up_info (piece_name)
+    window [name] = {}
+    set_up_info (name, piece_names)
 
 }
 
 //
 // Populate the right div with some form elements.
 //
-function set_up_info (piece_name) {
-    let info    = $("div#" + info_id (piece_name))
-    let id1     = `button-start-${piece_name}`
-    let id2     = `button-pause-${piece_name}`
+function set_up_info (name, piece_names) {
+    let info    = $("div#" + info_id (name))
+    let id1     = `button-start-${name}`
+    let id2     = `button-pause-${name}`
     let button1 = `<button type = 'button' id = '${id1}' ` +
                   `class = 'run start' `                   +
-                  `onclick = 'toggle ("${piece_name}", 1)'>Start</button><br>`
+                  `onclick = 'toggle ("${name}", 1)'>Start</button><br>`
     let button2 = `<button type = 'button' id = '${id2}' ` +
                   `class = 'run pause' `                   +
                   `disabled = 'disabled' `                 +
-                  `onclick = 'toggle ("${piece_name}", 2)'>Pause</button><br>`
+                  `onclick = 'toggle ("${name}", 2)'>Pause</button><br>`
+
+    let piece_select = `<select id = 'piece-${name}'>`
+    piece_names . forEach ((name) => {
+        piece_select += `<option value = '${name}'>${title_case (name)}</option>`
+    })
+        piece_select += "</select>"
 
     let info_table = `
         <table class = 'info_table'>
+             <tr><th colspan = 3 id = 'title-${name}' class = 'title'></th></tr>
              <tr><td>Step</td>
-                 <td colspan = 2 id = 'steps-${piece_name}'></td></tr>
+                 <td colspan = 2 id = 'steps-${name}'></td></tr>
              <tr><td>Max value</td>
-                 <td colspan = 2 id = 'max-${piece_name}'></td></tr>
+                 <td colspan = 2 id = 'max-${name}'></td></tr>
              <tr><td>Bounding box</td>
-                 <td colspan = 2 id = 'box-${piece_name}'></td></tr>
+                 <td colspan = 2 id = 'box-${name}'></td></tr>
              <tr><td>Density</td>
-                 <td colspan = 2 id = 'density-${piece_name}'></td></tr>
+                 <td colspan = 2 id = 'density-${name}'></td></tr>
+             <tr><td>Piece</td>
+                 <td colspan = 2>${piece_select}</td></tr>
              <tr><td>Colour scheme</td>
                  <td colspan = 2>
-                    <select id = 'colour-${piece_name}'>
+                    <select id = 'colour-${name}'>
                         <option value = 'none'>None</option>
                         <option value = 'mono' selected>Monochrome</option>
                         <option value = 'rainbow'>Directional</option>
@@ -76,27 +86,27 @@ function set_up_info (piece_name) {
                  </td>
              <tr><td>Speed</td>
                  <td class = 'minus'><button type = 'button' class = 'speed' 
-                      onclick = 'speed ("-", "${piece_name}")'>-</button></td>
+                      onclick = 'speed ("-", "${name}")'>-</button></td>
                  <td class = 'plus'><button type = 'button' class = 'speed' 
-                      onclick = 'speed ("+", "${piece_name}")'>+</button></td>
+                      onclick = 'speed ("+", "${name}")'>+</button></td>
             </tr>
              <tr><td>Stop on step</td>
                  <td colspan = 2><input type = 'text'
-                                        id = 'stop-step-${piece_name}'
+                                        id = 'stop-step-${name}'
                                         class = 'stop'
-                                        onchange = 'stop ("${piece_name}")'</td>
+                                        onchange = 'stop ("${name}")'</td>
             </tr>
              <tr><td>Stop on value</td>
                  <td colspan = 2><input type = 'text'
-                                        id = 'stop-value-${piece_name}'
+                                        id = 'stop-value-${name}'
                                         class = 'stop'
-                                        onchange = 'stop ("${piece_name}")'</td>
+                                        onchange = 'stop ("${name}")'</td>
             </tr>
              <tr><td>Stop on box size</td>
                  <td colspan = 2><input type = 'text'
-                                        id = 'stop-box-${piece_name}'
+                                        id = 'stop-box-${name}'
                                         class = 'stop'
-                                        onchange = 'stop ("${piece_name}")'</td>
+                                        onchange = 'stop ("${name}")'</td>
             </tr>
              <tr><td colspan = 3>${button1}</td></tr>
              <tr><td colspan = 3>${button2}</td></tr>
@@ -109,8 +119,8 @@ function set_up_info (piece_name) {
 // Create the SVG image when the "Run" button is clicked, and start
 // moving the piece
 //
-function toggle (piece_name, type) {
-    let info   = window [piece_name] 
+function toggle (name, type) {
+    let info   = window [name] 
 
     if (type == 1) {
         //
@@ -120,12 +130,13 @@ function toggle (piece_name, type) {
             info . trapped . set_dead ()
         }
 
-        let board_id  = "board-"  + piece_name
+        let board_id  = "board-"  + name
         $(`div#${board_id}`) . empty () // Gets rid of any existing SVG
 
         let trapped = new Spiral ({
-            piece_name: piece_name,
-            colour_scheme: $(`#colour-${piece_name}`) . val ()
+            name: name,
+            piece_name:    $(`#piece-${name}`)  . val (),
+            colour_scheme: $(`#colour-${name}`) . val ()
         })
         info . trapped = trapped
 
@@ -133,7 +144,7 @@ function toggle (piece_name, type) {
                 . place        ()
                 . set_running  ()
 
-        stop (piece_name)
+        stop (name)
 
         return
     }
@@ -153,10 +164,10 @@ function toggle (piece_name, type) {
 
 //
 // Increment or decrement the speed of the animation.
-// Has not effect when the animation has not started
+// Has no effect when the animation has not started
 //
-function speed (what, piece_name) {
-    let info = window [piece_name]
+function speed (what, name) {
+    let info = window [name]
     if (info . trapped) {
         info . trapped . set_speed (what)
     }
@@ -165,19 +176,32 @@ function speed (what, piece_name) {
 //
 // Called when changing a stopping criterium
 //
-function stop (piece_name) {
-    let info = window [piece_name]
+function stop (name) {
+    let info = window [name]
     if (info . trapped) {
         info . trapped . set_stop ({
-            step:  $(`#stop-step-${piece_name}`)  . val (),
-            value: $(`#stop-value-${piece_name}`) . val (),
-            box:   $(`#stop-box-${piece_name}`)   . val ()
+            step:  $(`#stop-step-${name}`)  . val (),
+            value: $(`#stop-value-${name}`) . val (),
+            box:   $(`#stop-box-${name}`)   . val ()
         })
     }
 }
 
+//
+// Upper case the first letter of a string
+//
 function uc_first (str) {
     return str . charAt (0) . toUpperCase () + str . slice (1)
+}
+
+//
+// Replace each underscore with a space, and upper case each letter
+// of each word in the string
+//
+function title_case (str) {
+    return str . split (/[_\s]+/)
+               . map ((word) => uc_first (word))
+               . join (' ')
 }
 
 
@@ -186,11 +210,12 @@ class Trapped {
     // Construct a board to display the movement of a chess piece
     //
     constructor (args = {}) {
+        this . name          = args . name
         this . piece_name    = args . piece_name
         this . colour_scheme = args . colour_scheme
 
-        this . add_to        = "div#" + board_id (this . piece_name)
-        this . id            =          svg_id   (this . piece_name)
+        this . add_to        = "div#" + board_id (this . name)
+        this . id            =          svg_id   (this . name)
         this . size          =  5    // For an 11 x 11 grid
 
         this . visited       = {}    // Values piece has been
@@ -256,7 +281,17 @@ class Trapped {
 
          this . make_dots ()
 
+         this . set_title ()
+
          return this
+    }
+
+    //
+    // Set the title (name of piece) in the title field
+    //
+    set_title () {
+        let piece_name = this . piece_name
+        $(`#title-${this . name}`) . html (title_case (piece_name))
     }
 
     //
@@ -358,14 +393,14 @@ class Trapped {
     // Update the info fields
     //
     update_info () {
-        let piece_name = this . piece_name
-        let step_val   = this . steps
+        let name      = this . name
+        let step_val  = this . steps
         if (this . state == TRAPPED) {
             step_val += "<span class = 'trapped'>Trapped!</span>"
         }
-        $(`#steps-${piece_name}`) . html (step_val)
-        $(`#max-${piece_name}`)   . html (this . max_value)
-        $(`#box-${piece_name}`)   . html (
+        $(`#steps-${name}`) . html (step_val)
+        $(`#max-${name}`)   . html (this . max_value)
+        $(`#box-${name}`)   . html (
             `${this . max_row - this . min_row + 1} x ` +
             `${this . max_col - this . min_col + 1}`
         )
@@ -373,7 +408,7 @@ class Trapped {
         let area = (this . max_row - this . min_row + 1) *
                    (this . max_col - this . min_col + 1)
 
-        $(`#density-${piece_name}`) . html (
+        $(`#density-${name}`) . html (
             `${(100 * this . steps / area) . toFixed (2)} %`
         )
     }
@@ -477,7 +512,7 @@ class Trapped {
     // Return true if we may continue
     //
     may_continue () {
-        let info = window [this . piece_name]
+        let info = window [this . name]
         if (this . state != RUNNING) {return false}
 
         let out = true
@@ -512,7 +547,7 @@ class Trapped {
         let moves      = this . piece . moves ({step: this . steps + 1})
         let [row, col] = this . to_coordinates (this . current)
         let best       = 0
-        let info       = window [this . piece_name]
+        let info       = window [this . name]
         moves . forEach ((move) => {
             if (move . type == "step") {
                 let new_row = row + move . dr
@@ -589,9 +624,9 @@ class Trapped {
     // Toggle states
     //
     set_state (state) {
-        let piece_name = this . piece_name
-        let button1    = $(`#button-start-${piece_name}`)
-        let button2    = $(`#button-pause-${piece_name}`)
+        let name = this . name
+        let button1    = $(`#button-start-${name}`)
+        let button2    = $(`#button-pause-${name}`)
 
         this . state   = state
 
