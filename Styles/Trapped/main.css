@@ -22,6 +22,11 @@ circle.visited-dot {
     r:                     0.2px;
     fill:                  black;
 }
+circle.current-dot {
+    r:                     0.3px;
+    fill:                  red;
+}
+
 
 line {
     stroke-width:          0.05px;

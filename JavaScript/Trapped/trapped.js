@@ -322,12 +322,14 @@ class Trapped {
     }
 
     //
-    // Turn a dot into a visited dot
+    // Turn a dot into the current one. Any current dots become a visited one
     //
     visit_dot (row, col) {
         let svg_id = this . id
+        $(`#${svg_id} .current-dot`)       .    addClass (  "visited-dot")
+        $(`#${svg_id} .current-dot`)       . removeClass (  "current-dot")
         $(`#${svg_id} .dot-${row}-${col}`) . removeClass ("unvisited-dot")
-        $(`#${svg_id} .dot-${row}-${col}`) .    addClass (  "visited-dot")
+        $(`#${svg_id} .dot-${row}-${col}`) .    addClass (  "current-dot")
     }
 
     //
