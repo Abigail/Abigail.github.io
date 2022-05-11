@@ -291,7 +291,10 @@ class Trapped {
     //
     set_title () {
         let piece_name = this . piece_name
-        $(`#title-${this . name}`) . html (title_case (piece_name))
+
+        let title = this . piece . full_name || title_case (piece_name)
+
+        $(`#title-${this . name}`) . html (title)
     }
 
     //
