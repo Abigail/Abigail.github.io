@@ -17,6 +17,53 @@ function slide (dr, dc, args = {}) {
 }
 
 //
+// Take a string in Betza notation, return a move list
+//
+// For now, we just handle the capital letters.
+//
+function betza_atom (betza) {
+    let out = [];
+
+    if (betza . match (/A/)) {out . push (... fold ({move: step (2, 2)}))} else
+    if (betza . match (/C/)) {out . push (... fold ({move: step (3, 1)}))} else
+    if (betza . match (/D/)) {out . push (... fold ({move: step (2, 0)}))} else
+    if (betza . match (/F/)) {out . push (... fold ({move: step (1, 1)}))} else
+    if (betza . match (/G/)) {out . push (... fold ({move: step (3, 3)}))} else
+    if (betza . match (/H/)) {out . push (... fold ({move: step (3, 0)}))} else
+    if (betza . match (/N/)) {out . push (... fold ({move: step (2, 1)}))} else
+    if (betza . match (/W/)) {out . push (... fold ({move: step (1, 0)}))} else
+    if (betza . match (/Z/)) {out . push (... fold ({move: step (3, 2)}))}
+
+    //
+    // If the letter is doubled, turn the step into a slide
+    //
+    if (betza . match (/([ACDFGHNWZ])\1/)) {
+        out . forEach ((move) => {move . type = "slide"})
+    }
+
+    console . log (out)
+
+    return out
+}
+
+
+function betza (betza) {
+    let moves = []
+
+    betza . replaceAll ('B', 'FF')   // Bishop = Sliding Ferz
+          . replaceAll ('J', 'Z')    // Old symbol for Zebra
+          . replaceAll ('K', 'FW')   // King   = Ferz + Wazir
+          . replaceAll ('L', 'C')    // Old symbol for Camel
+          . replaceAll ('Q', 'FFWW') // Queen  = Sliding Ferz + Sliding Wazir
+          . replaceAll ('R', 'WW')   // Rook   = Sliding Wazir
+
+          . match (/([ACDFGHNWZ])\1?[0-9]*/g)
+          . forEach  ((atom) => moves . push (... betza_atom (atom)))
+
+    return moves
+}
+
+//
 // Reflect a move in all directions (8 or 4)
 //
 function fold (args = {}) {
@@ -71,7 +118,7 @@ class Piece {
 class Knight extends Piece {
     constructor (args = {}) {
         super (args)
-        this . move_list = fold ({move: step (1, 2)})
+        this . move_list = betza ("N")
         this . full_name = "&#x2658; Knight"
     }
 }
@@ -80,8 +127,7 @@ class Knight extends Piece {
 class King extends Piece {
     constructor (args = {}) {
         super (args)
-        this . move_list = [... fold ({move: step (1, 0)}),
-                            ... fold ({move: step (1, 1)})]
+        this . move_list = betza ("K")
         this . full_name = "&#x2654; King"
     }
 }
@@ -90,8 +136,7 @@ class King extends Piece {
 class Queen extends Piece {
     constructor (args = {}) {
         super (args)
-        this . move_list = [... fold ({move: slide (1, 1)}),
-                            ... fold ({move: slide (1, 0)})]
+        this . move_list = betza ("Q")
         this . full_name = "&#x2655; Queen"
     }
 }
@@ -100,7 +145,7 @@ class Queen extends Piece {
 class Rook extends Piece {
     constructor (args = {}) {
         super (args)
-        this . move_list = fold ({move: slide (1, 0)})
+        this . move_list = betza ("R")
         this . full_name = "&#x2656; Rook"
     }
 }
@@ -109,7 +154,7 @@ class Rook extends Piece {
 class Bishop extends Piece {
     constructor (args = {}) {
         super (args)
-        this . move_list = fold ({move: slide (1, 1)})
+        this . move_list = betza ("B")
         this . full_name = "&#x2657; Bishop"
     }
 }
@@ -134,23 +179,19 @@ class Pawn extends Piece {
 class Archbishop extends Piece {
     constructor (args = {}) {
         super (args)
-        this . move_list = [... fold ({move: slide (1, 1)}),
-                            ... fold ({move: step  (1, 2)})]
+        this . move_list = betza ("BN")
     }
 }
 class Chancellor extends Piece {
     constructor (args = {}) {
         super (args)
-        this . move_list = [... fold ({move: slide (1, 0)}),
-                            ... fold ({move: step  (1, 2)})]
+        this . move_list = betza ("RN")
     }
 }
 class Amazon extends Piece {
     constructor (args = {}) {
         super (args)
-        this . move_list = [... fold ({move: slide (1, 0)}),
-                            ... fold ({move: slide (1, 1)}),
-                            ... fold ({move: step  (1, 2)})]
+        this . move_list = betza ("QN")
     }
 }
 
@@ -160,17 +201,13 @@ class Amazon extends Piece {
 class Dragon_king extends Piece {
     constructor (args = {}) {
         super (args)
-        this . move_list = [... fold ({move: slide (1, 0)}),
-                            ... fold ({move: step  (1, 0)}),
-                            ... fold ({move: step  (1, 1)})]
+        this . move_list = betza ("RK")
     }
 }
 class Dragon_horse extends Piece {
     constructor (args = {}) {
         super (args)
-        this . move_list = [... fold ({move: slide (1, 1)}),
-                            ... fold ({move: step  (1, 0)}),
-                            ... fold ({move: step  (1, 1)})]
+        this . move_list = betza ("BK")
     }
 }
 
