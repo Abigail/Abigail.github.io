@@ -118,7 +118,7 @@ class Bishop extends Piece {
 class Pawn extends Piece {
     constructor (args = {}) {
         super (args)
-        this . full_name = "&#x2658; Pawn"
+        this . full_name = "&#x2659; Pawn"
     }
     moves (args = {}) {
         if (args . step == 1) {
