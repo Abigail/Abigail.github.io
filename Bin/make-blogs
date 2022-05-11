@@ -27,16 +27,19 @@ my $DIR_PWC        = "Perl-Weekly-Challenge";
 my $DIR_FC         = "Feature-Compare";
 my $DIR_ADVENT     = "AdventOfCode";
 my $DIR_TALK       = "Talks";
+my $DIR_TRAPPED    = "Trapped";
 
 my $TYPE_PWC       = 1;
 my $TYPE_FC        = $TYPE_PWC    + 1;
 my $TYPE_ADVENT    = $TYPE_FC     + 1;
 my $TYPE_TALK      = $TYPE_ADVENT + 1;
+my $TYPE_TRAPPED   = $TYPE_TALK   + 1;
 
 my $INFO_DIR       = 0;
 my $INFO_NAV       = 1;
 my $INFO_UP        = 2;
 my $INFO_IS_TALK   = 3;
+my $INFO_JS        = 4;
 
 my $TYPE_INFO = {
     $TYPE_PWC      =>  {
@@ -60,14 +63,12 @@ my $TYPE_INFO = {
         $INFO_UP       =>  "../../..",
         $INFO_IS_TALK  =>  1,
     },
-};
-
-
-my $TYPE2UP        = {
-    $TYPE_PWC       =>  "../..",
-    $TYPE_FC        =>  "../..",
-    $TYPE_ADVENT    =>  "../../..",
-    $TYPE_TALK      =>  "../../..",
+    $TYPE_TRAPPED  =>  {
+        $INFO_DIR      =>  $DIR_TRAPPED,
+        $INFO_NAV      =>  "nav_trapped",
+        $INFO_UP       =>  "../..",
+        $INFO_JS       =>  ["trapped", "pieces"],
+    },
 };
 
 
@@ -214,6 +215,13 @@ sub header ($title, $directives) {
             push @scripts2 => "Talks/hide";
         }
     }
+
+    my @typed_scripts;
+    if ($$TYPE_INFO {$type} {$INFO_JS}) {
+        my $dir = $$TYPE_INFO {$type} {$INFO_DIR};
+        push @typed_scripts =>
+              map {"$dir/$_"} @{$$TYPE_INFO {$type} {$INFO_JS}}
+    }
     
     my $scripts = join "\n" =>
         map  {"<script src = '$up/$_'></script>"}
@@ -221,6 +229,7 @@ sub header ($title, $directives) {
         grep {-f}
         map  {"$JAVASCRIPT_DIR/$_.js"}
                @scripts2,
+               @typed_scripts,
                $$TYPE_INFO {$type} {$INFO_NAV},
                split /,\s*/ => ($$directives {script} // "");
 
@@ -239,7 +248,8 @@ sub header ($title, $directives) {
     }
     else {
        $svg_js = "<script id = 'svg-script' src = '$SVG_URL'>" .
-                "</script>\n" if $$directives {"svg-grid"};
+                "</script>\n" if $$directives {"svg-grid"} ||
+                                 $type == $TYPE_TRAPPED;
     }
 
     my @fonts = ("<link rel  = 'preconnect' " .
@@ -857,7 +867,9 @@ sub init_link_group () {
 #
 # Main program
 #
-GetOptions  "sv"   =>  \my $sudoku_variants;
+GetOptions  "sv"   =>  \my $sudoku_variants,
+            "tr"   =>  \my $trapped,
+;
 
 die "$0 source-file ..." unless @ARGV;
 my @todo;
@@ -866,6 +878,10 @@ foreach my $arg (@ARGV) {
     if ($sudoku_variants) {
         $type = $TYPE_TALK;
         $base = "Sudoku-Variants/$arg";
+    }
+    elsif ($trapped) {
+        $type = $TYPE_TRAPPED;
+        $base = $arg;
     }
     elsif ($arg =~ /^[0-9]{3}-[0-9]$/) {
         $type = $TYPE_PWC;
