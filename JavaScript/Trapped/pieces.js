@@ -88,3 +88,15 @@ class Bishop extends Piece {
         super (args)
     }
 }
+
+class Hunter extends Piece {
+    moves (args = {}) {
+        return [slide (-1, 0), slide (1, -1), slide (1, 1)]
+    }
+}
+
+class Falcon extends Piece {
+    moves (args = {}) {
+        return [slide (1, 0), slide (-1, -1), slide (-1, 1)]
+    }
+}
