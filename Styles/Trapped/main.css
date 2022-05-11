@@ -2,9 +2,11 @@ div.trapped {
     height:                90vh;
     display:               grid;
     grid-template-columns: 90vh 1fr;
+    border:                solid black 2px;
 }
 
 div.board {
+    border-right:          solid black 2px;
 
 }
 
@@ -54,4 +56,9 @@ td.plus {
 
 table.info_table {
     margin-left:            1em;
+}
+
+th.title {
+    height:                 2em;
+    font-size:             140%;
 }
