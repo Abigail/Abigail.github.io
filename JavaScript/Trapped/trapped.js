@@ -64,6 +64,8 @@ function set_up_info (piece_name) {
                  <td colspan = 2 id = 'max-${piece_name}'></td></tr>
              <tr><td>Bounding box</td>
                  <td colspan = 2 id = 'box-${piece_name}'></td></tr>
+             <tr><td>Density</td>
+                 <td colspan = 2 id = 'density-${piece_name}'></td></tr>
              <tr><td>Colour scheme</td>
                  <td colspan = 2>
                     <select id = 'colour-${piece_name}'>
@@ -366,6 +368,13 @@ class Trapped {
         $(`#box-${piece_name}`)   . html (
             `${this . max_row - this . min_row + 1} x ` +
             `${this . max_col - this . min_col + 1}`
+        )
+
+        let area = (this . max_row - this . min_row + 1) *
+                   (this . max_col - this . min_col + 1)
+
+        $(`#density-${piece_name}`) . html (
+            `${(100 * this . steps / area) . toFixed (2)} %`
         )
     }
 
