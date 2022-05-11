@@ -26,6 +26,10 @@ circle.current-dot {
     r:                     0.3px;
     fill:                  red;
 }
+circle.dot-0-0 {
+    r:                     0.3px;
+    fill:                  blue;
+}
 
 
 line {
