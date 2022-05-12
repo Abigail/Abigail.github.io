@@ -40,25 +40,59 @@ function set_up (element) {
 
     window [name] = {}
     window [name] . piece = piece
-    set_up_info (name, piece)
 
+    set_up_info (name, piece)
+    init_trapped ({piece: piece, name: name})
+
+}
+
+//
+// Create an animation, but do not start it yet
+//
+function init_trapped (args = {}) {
+    let name  = args . name
+    let info  = window [name]
+
+    let piece = args . piece || info . piece
+
+    if (info . trapped) {
+        info . trapped . set_dead ()    // Make sure we do not continue
+
+        let board_id  = "board-"  + name
+        $(`div#${board_id}`) . empty () // Gets rid of any existing SVG
+    }
+
+    let trapped = new Spiral ({
+        name:          name,
+        piece:         piece,
+        colour_scheme: $(`#colour-${name}`) . val ()
+    })
+
+    trapped . create_board ()
+            . place        ()
+            . set_start    ()
+
+    window [name] . trapped = trapped
+
+    stop (name)
 }
 
 //
 // Populate the right div with some form elements.
 //
 function set_up_info (name, piece) {
-    let info    = $("div#" + info_id (name))
+    let div     = $("div#" + info_id (name))
+    let info    = window [name]
     let id1     = `button-start-${name}`
     let id2     = `button-pause-${name}`
     let button1 = `<button type = 'button' id = '${id1}' `    +
                   `class = 'run start' `                      +
-                  `onclick = 'toggle ("${name}", 1)'>`        +
+                  `onclick = 'start ("${name}")'>`            +
                   `Start</button><br>`
     let button2 = `<button type = 'button' id = '${id2}' `    +
                   `class = 'run pause' `                      +
                   `disabled = 'disabled' `                    +
-                  `onclick = 'toggle ("${name}", 2)'>`        +
+                  `onclick = 'pause ("${name}")'>`            +
                   `Pause</button><br>`
 
     let info_table = `
@@ -113,52 +147,42 @@ function set_up_info (name, piece) {
          </table><p>
     `
 
-    info . html (info_table)
+    div . html (info_table)
+}
+
+
+//
+// pause/unpause ()
+//
+function pause (name) {
+    let info = window [name]
+    if (!info . trapped) {
+        return
+    }
+    let trapped = info . trapped
+    if (trapped . state == RUNNING) {
+        trapped . set_paused ()
+        return
+    }
+    if (trapped . state == PAUSED) {
+        trapped . set_running ()
+        return
+    }
 }
 
 //
-// Create the SVG image when the "Run" button is clicked, and start
-// moving the piece
+// Start/Reset animation
 //
-function toggle (name, type) {
-    let info   = window [name] 
-
-    if (type == 1) {
-        //
-        // Kill any existing animation
-        //
-        if (info . trapped) {
-            info . trapped . set_dead ()
-        }
-
-        let board_id  = "board-"  + name
-        $(`div#${board_id}`) . empty () // Gets rid of any existing SVG
-
-        let trapped = new Spiral ({
-            name:       name,
-            piece:      info . piece,
-            colour_scheme: $(`#colour-${name}`) . val ()
-        })
-        info . trapped = trapped
-
-        trapped . create_board ()
-                . place        ()
-                . set_running  ()
-
-        stop (name)
-
-        return
-    }
+function start (name) {
+    let info    = window [name] 
 
     let trapped = info . trapped
 
-    if (trapped . state == RUNNING) {
-        trapped . set_paused ()
+    if (trapped . state == START) {
+        trapped . set_running ()
     }
     else {
-        if (trapped . state == PAUSED) {
-            trapped . set_running ()
-        }
+        init_trapped ({name: name})
     }
 }
 
@@ -413,6 +437,17 @@ class Trapped {
     }
 
     //
+    // Clear the info fields
+    //
+    clear_info () {
+        let name = this . name
+        $(`#steps-${name}`)   . html ("")
+        $(`#max-${name}`)     . html ("")
+        $(`#box-${name}`)     . html ("")
+        $(`#density-${name}`) . html ("")
+    }
+
+    //
     // Place the piece on the given value (defaults to 1)
     //
     place (args = {}) {
@@ -639,31 +674,32 @@ class Trapped {
     //
     set_state (state) {
         let name = this . name
-        let button1    = $(`#button-start-${name}`)
-        let button2    = $(`#button-pause-${name}`)
+        let button_start = $(`#button-start-${name}`)
+        let button_pause = $(`#button-pause-${name}`)
 
         this . state   = state
 
         if (state == RUNNING) {
-            button1 . html ("Restart")
-            button2 . html ("Pause")
-            button2 . prop ("disabled", false)
+            button_start . html ("Reset")
+            button_pause . html ("Pause")
+            button_pause . prop ("disabled", false)
             this    . move ()
         }
 
         if (state == PAUSED) {
-            button2 . html ("Continue")
-            button2 . prop ("disabled", false)
+            button_pause . html ("Continue")
+            button_pause . prop ("disabled", false)
         }
 
         if (state == TRAPPED) {
-            button2 . prop ("disabled", true)
+            button_pause . prop ("disabled", true)
         }
 
         if (state == START) {
-            button1 . html ("Start")
-            button2 . html ("Pause")
-            button2 . prop ("disabled", true)
+            button_start . html ("Start")
+            button_pause . html ("Pause")
+            button_pause . prop ("disabled", true)
+            this . clear_info ()
         }
     }
 
@@ -671,6 +707,7 @@ class Trapped {
                     if (this . state == PAUSED)  {this . set_state (RUNNING)}}
     set_paused  () {if (this . state == RUNNING) {this . set_state (PAUSED)}}
     set_trapped () {if (this . state == RUNNING) {this . set_state (TRAPPED)}}
+    set_start   ()                               {this . set_state (START)}
     set_dead    ()                               {this . set_state (DEAD)}
 
 }
