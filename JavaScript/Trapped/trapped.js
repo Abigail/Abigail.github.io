@@ -674,8 +674,9 @@ class Trapped {
     //
     set_state (state) {
         let name = this . name
-        let button_start = $(`#button-start-${name}`)
-        let button_pause = $(`#button-pause-${name}`)
+        let button_start  = $(`#button-start-${name}`)
+        let button_pause  = $(`#button-pause-${name}`)
+        let colour_select = $(`#colour-${name}`)
 
         this . state   = state
 
@@ -696,10 +697,14 @@ class Trapped {
         }
 
         if (state == START) {
-            button_start . html ("Start")
-            button_pause . html ("Pause")
-            button_pause . prop ("disabled", true)
+            button_start  . html ("Start")
+            button_pause  . html ("Pause")
+            button_pause  . prop ("disabled", true)
+            colour_select . prop ("disabled", false)
             this . clear_info ()
+        }
+        else {
+            colour_select . prop ("disabled", true)
         }
     }
 
