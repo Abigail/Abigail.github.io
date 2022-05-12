@@ -5,12 +5,13 @@
 let dir   = "Trapped";
 
 let pages = [
-    ["king",   "King"],
-    ["queen",  "Queen"],
-    ["rook",   "Rook"],
-    ["knight", "Knight"],
-    ["bishop", "Bishop"],
-    ["pawn",   "Pawn"],
+    ["king",       "King"],
+    ["queen",      "Queen"],
+    ["rook",       "Rook"],
+    ["knight",     "Knight"],
+    ["bishop",     "Bishop"],
+    ["pawn",       "Pawn"],
+    ["archbishop", "Archbishop"],
 ]
 
 pages . forEach (entry => {
