@@ -179,6 +179,7 @@ function start (name) {
     let trapped = info . trapped
 
     if (trapped . state == START) {
+        trapped . colour_scheme = $(`#colour-${name}`) . val ()
         trapped . set_running ()
     }
     else {
