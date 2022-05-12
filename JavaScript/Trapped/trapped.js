@@ -63,18 +63,18 @@ function set_up_info (name, piece) {
 
     let info_table = `
         <table class = 'info_table'>
-             <tr><th colspan = 3 id = 'title-${name}' class = 'title'>
+             <tr><th colspan = 4 id = 'title-${name}' class = 'title'>
                  ${piece . full_name ()}</th></tr>
              <tr><td>Step</td>
-                 <td colspan = 2 id = 'steps-${name}'></td></tr>
+                 <td colspan = 3 id = 'steps-${name}'></td></tr>
              <tr><td>Max value</td>
-                 <td colspan = 2 id = 'max-${name}'></td></tr>
+                 <td colspan = 3 id = 'max-${name}'></td></tr>
              <tr><td>Bounding box</td>
-                 <td colspan = 2 id = 'box-${name}'></td></tr>
+                 <td colspan = 3 id = 'box-${name}'></td></tr>
              <tr><td>Density</td>
-                 <td colspan = 2 id = 'density-${name}'></td></tr>
+                 <td colspan = 3 id = 'density-${name}'></td></tr>
              <tr><td>Colour scheme</td>
-                 <td colspan = 2>
+                 <td colspan = 3>
                     <select id = 'colour-${name}'>
                         <option value = 'none'>None</option>
                         <option value = 'mono' selected>Monochrome</option>
@@ -85,28 +85,31 @@ function set_up_info (name, piece) {
                  <td class = 'minus'><button type = 'button' class = 'speed' 
                       onclick = 'speed ("-", "${name}")'>-</button></td>
                  <td class = 'plus'><button type = 'button' class = 'speed' 
-                      onclick = 'speed ("+", "${name}")'>+</button></td>
+                      onclick = 'speed ("+", "${name}")'>+</button>
+                 <td class = 'max'><button type = 'button' class = 'speed' 
+                      onclick = 'speed ("M", "${name}")'>Max</button>
+                      </td>
             </tr>
              <tr><td>Stop on step</td>
-                 <td colspan = 2><input type = 'text'
+                 <td colspan = 3><input type = 'text'
                                         id = 'stop-step-${name}'
                                         class = 'stop'
                                         onchange = 'stop ("${name}")'</td>
             </tr>
              <tr><td>Stop on value</td>
-                 <td colspan = 2><input type = 'text'
+                 <td colspan = 3><input type = 'text'
                                         id = 'stop-value-${name}'
                                         class = 'stop'
                                         onchange = 'stop ("${name}")'</td>
             </tr>
              <tr><td>Stop on box size</td>
-                 <td colspan = 2><input type = 'text'
+                 <td colspan = 3><input type = 'text'
                                         id = 'stop-box-${name}'
                                         class = 'stop'
                                         onchange = 'stop ("${name}")'</td>
             </tr>
-             <tr><td colspan = 3>${button1}</td></tr>
-             <tr><td colspan = 3>${button2}</td></tr>
+             <tr><td colspan = 4>${button1}</td></tr>
+             <tr><td colspan = 4>${button2}</td></tr>
          </table><p>
     `
 
@@ -225,6 +228,7 @@ class Trapped {
 
         this . steps         = 0
         this . speed         = 750   // Time between moves is speed / size
+        this . max_speed     = false
 
         this . stop_step     = 0
         this . stop_value    = 0
@@ -595,7 +599,21 @@ class Trapped {
             this . place ({value: best})
             this . steps = this . steps + 1
             if (this . may_continue ()) {
-                setTimeout (() => {this . move ()}, this . speed / this . size)
+                if (this . max_speed) {
+                    //
+                    // Give animation a change to display progress
+                    //
+                    if (Math . random () < 1 / 1000) {
+                        setTimeout (() => {this . move ()}, 1)
+                    }
+                    else {
+                        this . move ()
+                    }
+                }
+                else {
+                    setTimeout (() => {this . move ()},
+                                       this . speed / this . size)
+                }
             }
         }
         else {
@@ -611,8 +629,9 @@ class Trapped {
     // Increment or decrement the speed of the animation
     //
     set_speed (what) {
-        if (what == '-') {this . speed *= 1.1}
-        if (what == '+') {this . speed /= 1.1}
+        if (what == '-') {this . speed    *= 1.1}
+        if (what == '+') {this . speed    /= 1.1}
+        if (what == 'M') {this . max_speed = true}
     }
 
     //
