@@ -41,8 +41,6 @@ function betza_atom (betza) {
         out . forEach ((move) => {move . type = "slide"})
     }
 
-    console . log (out)
-
     return out
 }
 
@@ -137,13 +135,11 @@ let pieces = {
 
 class Piece {
     constructor (args = {}) {
-        console . log (args)
         this . piece_name = args . piece_name
         let piece_info = pieces [this . piece_name]
         for (const prop in piece_info) {
             this [prop] = piece_info [prop]
         }
-        console . log (this)
     }
     moves (args = {}) {
         if (!this . move_list && this . betza) {
