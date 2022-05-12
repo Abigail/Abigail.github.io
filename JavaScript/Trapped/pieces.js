@@ -41,8 +41,6 @@ function betza_atom (betza) {
         out . forEach ((move) => {move . type = "slide"})
     }
 
-    console . log (out)
-
     return out
 }
 
@@ -100,128 +98,72 @@ function fold (args = {}) {
     return out
 }
 
+
+let pieces = {
+    //
+    // Chess pieces
+    //
+    "king":          {betza:  "K", prefix: "&#x2654;"},
+    "queen":         {betza:  "Q", prefix: "&#x2655;"},
+    "rook":          {betza:  "R", prefix: "&#x2656;"},
+    "bishop":        {betza:  "B", prefix: "&#x2657;"},
+    "knight":        {betza:  "N", prefix: "&#x2658;"},
+    "pawn":          {betza: "fW", prefix: "&#x2659;"},
+    //
+    // Compound pieces
+    //    Knighted pieces
+    //
+    "archbishop":    {betza: "BN"},
+    "chancellor":    {betza: "RN"},
+    "amazon":        {betza: "QN"},
+    //
+    //    Crowned pieces
+    //
+    "dragon_king":   {betza: "RK"},
+    "dragon_horse":  {betza: "BK"},
+    //
+    // Shogi
+    //
+    "king_general":  {betza:  "K", prefix: "&#x738b;&#x5c07;"},
+
+    //
+    // Hunter-Falcon chess
+    //
+    "hunter":        {betza: "fWbF"},
+    "falcon":        {betza: "fFbW"},
+}
+
 class Piece {
     constructor (args = {}) {
-        this . move_list = []
-        if (args . move_list) {
-            this . move_list = args . move_list
+        this . piece_name = args . piece_name
+        let piece_info = pieces [this . piece_name]
+        for (const prop in piece_info) {
+            this [prop] = piece_info [prop]
         }
     }
     moves (args = {}) {
+        if (!this . move_list && this . betza) {
+            this . move_list = betza (this . betza)
+        }
         return this . move_list
     }
-}
 
-//
-// Chess pieces
-//
-class Knight extends Piece {
-    constructor (args = {}) {
-        super (args)
-        this . move_list = betza ("N")
-        this . full_name = "&#x2658; Knight"
-    }
-}
-
-
-class King extends Piece {
-    constructor (args = {}) {
-        super (args)
-        this . move_list = betza ("K")
-        this . full_name = "&#x2654; King"
-    }
-}
-
-
-class Queen extends Piece {
-    constructor (args = {}) {
-        super (args)
-        this . move_list = betza ("Q")
-        this . full_name = "&#x2655; Queen"
-    }
-}
-
-
-class Rook extends Piece {
-    constructor (args = {}) {
-        super (args)
-        this . move_list = betza ("R")
-        this . full_name = "&#x2656; Rook"
-    }
-}
-
-
-class Bishop extends Piece {
-    constructor (args = {}) {
-        super (args)
-        this . move_list = betza ("B")
-        this . full_name = "&#x2657; Bishop"
-    }
-}
-
-
-class Pawn extends Piece {
-    constructor (args = {}) {
-        super (args)
-        this . full_name = "&#x2659; Pawn"
-    }
-    moves (args = {}) {
-        if (args . step == 1) {
-            return [step (-1, 0), step (-2, 0)]
+    name (args = {}) {
+        if (!this . _name) {
+            this . _name = title_case (this . piece_name)
         }
-        return [step (-1, 0)]
+        return this . _name
+    }
+
+    full_name (args = {}) {
+        if (!this . _full_name) {
+            this . _full_name = ""
+            if (this . prefix) {
+                this . _full_name += this . prefix + " "
+            }
+            this . _full_name += this . name ()
+        }
+        return this . _full_name
     }
 }
 
-//
-// Knighted pieces
-//
-class Archbishop extends Piece {
-    constructor (args = {}) {
-        super (args)
-        this . move_list = betza ("BN")
-    }
-}
-class Chancellor extends Piece {
-    constructor (args = {}) {
-        super (args)
-        this . move_list = betza ("RN")
-    }
-}
-class Amazon extends Piece {
-    constructor (args = {}) {
-        super (args)
-        this . move_list = betza ("QN")
-    }
-}
-
-//
-// Crowned pieces
-//
-class Dragon_king extends Piece {
-    constructor (args = {}) {
-        super (args)
-        this . move_list = betza ("RK")
-    }
-}
-class Dragon_horse extends Piece {
-    constructor (args = {}) {
-        super (args)
-        this . move_list = betza ("BK")
-    }
-}
-
-//
-// Pieces from Hunter-Falcon chess
-//
-class Hunter extends Piece {
-    moves (args = {}) {
-        return [slide (-1, 0), slide (1, -1), slide (1, 1)]
-    }
-}
-
-class Falcon extends Piece {
-    moves (args = {}) {
-        return [slide (1, 0), slide (-1, -1), slide (-1, 1)]
-    }
-}

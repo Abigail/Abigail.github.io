@@ -65,7 +65,7 @@ my $TYPE_INFO = {
     },
     $TYPE_TRAPPED  =>  {
         $INFO_DIR      =>  $DIR_TRAPPED,
-        $INFO_NAV      =>  "nav_trapped",
+        $INFO_NAV      =>  "Trapped/pages",
         $INFO_UP       =>  "../..",
         $INFO_JS       =>  ["trapped", "pieces"],
     },
@@ -214,6 +214,9 @@ sub header ($title, $directives) {
         if ($$directives {hide}) {
             push @scripts2 => "Talks/hide";
         }
+    }
+    else {
+        push @scripts2 => qw [navigation]
     }
 
     my @typed_scripts;

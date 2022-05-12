@@ -30,54 +30,85 @@ function svg_id    (name)       {return make_id ("svg",    name)}
 // Create the two responsive divs inside any "trapped" divs.
 //
 function set_up (element) {
-    let name        = $(element) . data ("name")
-    let piece_names = $(element) . data ("pieceNames") . split (/,\s*/)
+    let name  = $(element) . data ("piece")
+    let piece = new Piece ({piece_name: name})
+
     $(element) . html (
         `<div class = 'board' id = '${board_id (name)}'></div>` +
         `<div class = 'info'  id = '${info_id  (name)}' ></div>`
     )
 
     window [name] = {}
-    set_up_info (name, piece_names)
+    window [name] . piece = piece
 
+    set_up_info (name, piece)
+    init_trapped ({piece: piece, name: name})
+
+}
+
+//
+// Create an animation, but do not start it yet
+//
+function init_trapped (args = {}) {
+    let name  = args . name
+    let info  = window [name]
+
+    let piece = args . piece || info . piece
+
+    if (info . trapped) {
+        info . trapped . set_dead ()    // Make sure we do not continue
+
+        let board_id  = "board-"  + name
+        $(`div#${board_id}`) . empty () // Gets rid of any existing SVG
+    }
+
+    let trapped = new Spiral ({
+        name:          name,
+        piece:         piece,
+        colour_scheme: $(`#colour-${name}`) . val ()
+    })
+
+    trapped . create_board ()
+            . place        ()
+            . set_start    ()
+
+    window [name] . trapped = trapped
+
+    stop (name)
 }
 
 //
 // Populate the right div with some form elements.
 //
-function set_up_info (name, piece_names) {
-    let info    = $("div#" + info_id (name))
+function set_up_info (name, piece) {
+    let div     = $("div#" + info_id (name))
+    let info    = window [name]
     let id1     = `button-start-${name}`
     let id2     = `button-pause-${name}`
-    let button1 = `<button type = 'button' id = '${id1}' ` +
-                  `class = 'run start' `                   +
-                  `onclick = 'toggle ("${name}", 1)'>Start</button><br>`
-    let button2 = `<button type = 'button' id = '${id2}' ` +
-                  `class = 'run pause' `                   +
-                  `disabled = 'disabled' `                 +
-                  `onclick = 'toggle ("${name}", 2)'>Pause</button><br>`
-
-    let piece_select = `<select id = 'piece-${name}'>`
-    piece_names . forEach ((name) => {
-        piece_select += `<option value = '${name}'>${title_case (name)}</option>`
-    })
-        piece_select += "</select>"
+    let button1 = `<button type = 'button' id = '${id1}' `    +
+                  `class = 'run start' `                      +
+                  `onclick = 'start ("${name}")'>`            +
+                  `Start</button><br>`
+    let button2 = `<button type = 'button' id = '${id2}' `    +
+                  `class = 'run pause' `                      +
+                  `disabled = 'disabled' `                    +
+                  `onclick = 'pause ("${name}")'>`            +
+                  `Pause</button><br>`
 
     let info_table = `
         <table class = 'info_table'>
-             <tr><th colspan = 3 id = 'title-${name}' class = 'title'></th></tr>
+             <tr><th colspan = 4 id = 'title-${name}' class = 'title'>
+                 ${piece . full_name ()}</th></tr>
              <tr><td>Step</td>
-                 <td colspan = 2 id = 'steps-${name}'></td></tr>
+                 <td colspan = 3 id = 'steps-${name}'></td></tr>
              <tr><td>Max value</td>
-                 <td colspan = 2 id = 'max-${name}'></td></tr>
+                 <td colspan = 3 id = 'max-${name}'></td></tr>
              <tr><td>Bounding box</td>
-                 <td colspan = 2 id = 'box-${name}'></td></tr>
+                 <td colspan = 3 id = 'box-${name}'></td></tr>
              <tr><td>Density</td>
-                 <td colspan = 2 id = 'density-${name}'></td></tr>
-             <tr><td>Piece</td>
-                 <td colspan = 2>${piece_select}</td></tr>
+                 <td colspan = 3 id = 'density-${name}'></td></tr>
              <tr><td>Colour scheme</td>
-                 <td colspan = 2>
+                 <td colspan = 3>
                     <select id = 'colour-${name}'>
                         <option value = 'none'>None</option>
                         <option value = 'mono' selected>Monochrome</option>
@@ -88,76 +119,71 @@ function set_up_info (name, piece_names) {
                  <td class = 'minus'><button type = 'button' class = 'speed' 
                       onclick = 'speed ("-", "${name}")'>-</button></td>
                  <td class = 'plus'><button type = 'button' class = 'speed' 
-                      onclick = 'speed ("+", "${name}")'>+</button></td>
+                      onclick = 'speed ("+", "${name}")'>+</button>
+                 <td class = 'max'><button type = 'button' class = 'speed' 
+                      onclick = 'speed ("M", "${name}")'>Max</button>
+                      </td>
             </tr>
              <tr><td>Stop on step</td>
-                 <td colspan = 2><input type = 'text'
+                 <td colspan = 3><input type = 'text'
                                         id = 'stop-step-${name}'
                                         class = 'stop'
                                         onchange = 'stop ("${name}")'</td>
             </tr>
              <tr><td>Stop on value</td>
-                 <td colspan = 2><input type = 'text'
+                 <td colspan = 3><input type = 'text'
                                         id = 'stop-value-${name}'
                                         class = 'stop'
                                         onchange = 'stop ("${name}")'</td>
             </tr>
              <tr><td>Stop on box size</td>
-                 <td colspan = 2><input type = 'text'
+                 <td colspan = 3><input type = 'text'
                                         id = 'stop-box-${name}'
                                         class = 'stop'
                                         onchange = 'stop ("${name}")'</td>
             </tr>
-             <tr><td colspan = 3>${button1}</td></tr>
-             <tr><td colspan = 3>${button2}</td></tr>
+             <tr><td colspan = 4>${button1}</td></tr>
+             <tr><td colspan = 4>${button2}</td></tr>
          </table><p>
     `
-    info . html (info_table)
+
+    div . html (info_table)
+}
+
+
+//
+// pause/unpause ()
+//
+function pause (name) {
+    let info = window [name]
+    if (!info . trapped) {
+        return
+    }
+    let trapped = info . trapped
+    if (trapped . state == RUNNING) {
+        trapped . set_paused ()
+        return
+    }
+    if (trapped . state == PAUSED) {
+        trapped . set_running ()
+        return
+    }
 }
 
 //
-// Create the SVG image when the "Run" button is clicked, and start
-// moving the piece
+// Start/Reset animation
 //
-function toggle (name, type) {
-    let info   = window [name] 
-
-    if (type == 1) {
-        //
-        // Kill any existing animation
-        //
-        if (info . trapped) {
-            info . trapped . set_dead ()
-        }
-
-        let board_id  = "board-"  + name
-        $(`div#${board_id}`) . empty () // Gets rid of any existing SVG
-
-        let trapped = new Spiral ({
-            name: name,
-            piece_name:    $(`#piece-${name}`)  . val (),
-            colour_scheme: $(`#colour-${name}`) . val ()
-        })
-        info . trapped = trapped
-
-        trapped . create_board ()
-                . place        ()
-                . set_running  ()
-
-        stop (name)
-
-        return
-    }
+function start (name) {
+    let info    = window [name] 
 
     let trapped = info . trapped
 
-    if (trapped . state == RUNNING) {
-        trapped . set_paused ()
+    if (trapped . state == START) {
+        trapped . colour_scheme = $(`#colour-${name}`) . val ()
+        trapped . set_running ()
     }
     else {
-        if (trapped . state == PAUSED) {
-            trapped . set_running ()
-        }
+        init_trapped ({name: name})
     }
 }
 
@@ -211,8 +237,8 @@ class Trapped {
     //
     constructor (args = {}) {
         this . name          = args . name
-        this . piece_name    = args . piece_name
         this . colour_scheme = args . colour_scheme
+        this . piece         = args . piece
 
         this . add_to        = "div#" + board_id (this . name)
         this . id            =          svg_id   (this . name)
@@ -227,16 +253,11 @@ class Trapped {
 
         this . steps         = 0
         this . speed         = 750   // Time between moves is speed / size
+        this . max_speed     = false
 
         this . stop_step     = 0
         this . stop_value    = 0
         this . stop_box      = 0
-
-        //
-        // Get the piece from the piece_name
-        //
-        let class_name       = uc_first (this . piece_name)
-        this . piece         = eval (`new ${class_name} ()`)
 
         this . state         = START
 
@@ -290,9 +311,7 @@ class Trapped {
     // Set the title (name of piece) in the title field
     //
     set_title () {
-        let piece_name = this . piece_name
-
-        let title = this . piece . full_name || title_case (piece_name)
+        let title = this . piece . full_name ()
 
         $(`#title-${this . name}`) . html (title)
     }
@@ -416,6 +435,17 @@ class Trapped {
         $(`#density-${name}`) . html (
             `${(100 * this . steps / area) . toFixed (2)} %`
         )
+    }
+
+    //
+    // Clear the info fields
+    //
+    clear_info () {
+        let name = this . name
+        $(`#steps-${name}`)   . html ("")
+        $(`#max-${name}`)     . html ("")
+        $(`#box-${name}`)     . html ("")
+        $(`#density-${name}`) . html ("")
     }
 
     //
@@ -605,7 +635,21 @@ class Trapped {
             this . place ({value: best})
             this . steps = this . steps + 1
             if (this . may_continue ()) {
-                setTimeout (() => {this . move ()}, this . speed / this . size)
+                if (this . max_speed) {
+                    //
+                    // Give animation a change to display progress
+                    //
+                    if (Math . random () < 1 / 1000) {
+                        setTimeout (() => {this . move ()}, 1)
+                    }
+                    else {
+                        this . move ()
+                    }
+                }
+                else {
+                    setTimeout (() => {this . move ()},
+                                       this . speed / this . size)
+                }
             }
         }
         else {
@@ -621,8 +665,9 @@ class Trapped {
     // Increment or decrement the speed of the animation
     //
     set_speed (what) {
-        if (what == '-') {this . speed *= 1.1}
-        if (what == '+') {this . speed /= 1.1}
+        if (what == '-') {this . speed    *= 1.1}
+        if (what == '+') {this . speed    /= 1.1}
+        if (what == 'M') {this . max_speed = true}
     }
 
     //
@@ -630,31 +675,37 @@ class Trapped {
     //
     set_state (state) {
         let name = this . name
-        let button1    = $(`#button-start-${name}`)
-        let button2    = $(`#button-pause-${name}`)
+        let button_start  = $(`#button-start-${name}`)
+        let button_pause  = $(`#button-pause-${name}`)
+        let colour_select = $(`#colour-${name}`)
 
         this . state   = state
 
         if (state == RUNNING) {
-            button1 . html ("Restart")
-            button2 . html ("Pause")
-            button2 . prop ("disabled", false)
+            button_start . html ("Reset")
+            button_pause . html ("Pause")
+            button_pause . prop ("disabled", false)
             this    . move ()
         }
 
         if (state == PAUSED) {
-            button2 . html ("Continue")
-            button2 . prop ("disabled", false)
+            button_pause . html ("Continue")
+            button_pause . prop ("disabled", false)
         }
 
         if (state == TRAPPED) {
-            button2 . prop ("disabled", true)
+            button_pause . prop ("disabled", true)
         }
 
         if (state == START) {
-            button1 . html ("Start")
-            button2 . html ("Pause")
-            button2 . prop ("disabled", true)
+            button_start  . html ("Start")
+            button_pause  . html ("Pause")
+            button_pause  . prop ("disabled", true)
+            colour_select . prop ("disabled", false)
+            this . clear_info ()
+        }
+        else {
+            colour_select . prop ("disabled", true)
         }
     }
 
@@ -662,6 +713,7 @@ class Trapped {
                     if (this . state == PAUSED)  {this . set_state (RUNNING)}}
     set_paused  () {if (this . state == RUNNING) {this . set_state (PAUSED)}}
     set_trapped () {if (this . state == RUNNING) {this . set_state (TRAPPED)}}
+    set_start   ()                               {this . set_state (START)}
     set_dead    ()                               {this . set_state (DEAD)}
 
 }
