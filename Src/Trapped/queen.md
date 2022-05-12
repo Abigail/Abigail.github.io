@@ -8,7 +8,5 @@ That means, it can move like a [Wazir](wazir.html), and a Wazir
 can follow the spiral. Hence, the Queen will fill the entire board,
 and not get trapped.
 
-<div class      = "trapped"
-     data-piece = "queen"> 
-</div>  
+<div class = "trapped" data-piece = "queen"></div>  
 

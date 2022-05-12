@@ -20,7 +20,5 @@ three quarters.
 If we take the limit, we see that the Bishop will visit
 \(\frac{7}{32} = 21.875 \%\) of the squares.
 
-<div class      = "trapped"
-     data-piece = "bishop">
-</div>  
+<div class = "trapped" data-piece = "bishop"></div>  
 
