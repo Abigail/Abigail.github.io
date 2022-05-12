@@ -198,7 +198,11 @@ function navigation (type, pagename, pages) {
 //
 function make_index (type, pages) {
     let up = type == "ADV" ? "../.." : ".."
-    pages . reverse () . forEach (entry => {
+    let list = pages
+    if (type != "Trapped") {
+        list = list . reverse ()
+    }
+    list . forEach (entry => {
         $("#index") . append ("<li><a href = '" + up + "/" + entry [0] + "'>" +
                                entry [1] + "</a></li>\n")
     })
