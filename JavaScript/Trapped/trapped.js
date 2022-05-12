@@ -30,38 +30,34 @@ function svg_id    (name)       {return make_id ("svg",    name)}
 // Create the two responsive divs inside any "trapped" divs.
 //
 function set_up (element) {
-    let name        = $(element) . data ("name")
-    let piece_names = $(element) . data ("pieceNames") . split (/,\s*/)
+    let name = $(element) . data ("piece")
+
     $(element) . html (
         `<div class = 'board' id = '${board_id (name)}'></div>` +
         `<div class = 'info'  id = '${info_id  (name)}' ></div>`
     )
 
     window [name] = {}
-    set_up_info (name, piece_names)
+    set_up_info (name)
 
 }
 
 //
 // Populate the right div with some form elements.
 //
-function set_up_info (name, piece_names) {
+function set_up_info (name) {
     let info    = $("div#" + info_id (name))
     let id1     = `button-start-${name}`
     let id2     = `button-pause-${name}`
-    let button1 = `<button type = 'button' id = '${id1}' ` +
-                  `class = 'run start' `                   +
-                  `onclick = 'toggle ("${name}", 1)'>Start</button><br>`
-    let button2 = `<button type = 'button' id = '${id2}' ` +
-                  `class = 'run pause' `                   +
-                  `disabled = 'disabled' `                 +
-                  `onclick = 'toggle ("${name}", 2)'>Pause</button><br>`
-
-    let piece_select = `<select id = 'piece-${name}'>`
-    piece_names . forEach ((name) => {
-        piece_select += `<option value = '${name}'>${title_case (name)}</option>`
-    })
-        piece_select += "</select>"
+    let button1 = `<button type = 'button' id = '${id1}' `    +
+                  `class = 'run start' `                      +
+                  `onclick = 'toggle ("${name}", 1)'>`        +
+                  `Start</button><br>`
+    let button2 = `<button type = 'button' id = '${id2}' `    +
+                  `class = 'run pause' `                      +
+                  `disabled = 'disabled' `                    +
+                  `onclick = 'toggle ("${name}", 2)'>`        +
+                  `Pause</button><br>`
 
     let info_table = `
         <table class = 'info_table'>
@@ -74,8 +70,6 @@ function set_up_info (name, piece_names) {
                  <td colspan = 2 id = 'box-${name}'></td></tr>
              <tr><td>Density</td>
                  <td colspan = 2 id = 'density-${name}'></td></tr>
-             <tr><td>Piece</td>
-                 <td colspan = 2>${piece_select}</td></tr>
              <tr><td>Colour scheme</td>
                  <td colspan = 2>
                     <select id = 'colour-${name}'>
@@ -112,6 +106,7 @@ function set_up_info (name, piece_names) {
              <tr><td colspan = 3>${button2}</td></tr>
          </table><p>
     `
+
     info . html (info_table)
 }
 
@@ -134,8 +129,8 @@ function toggle (name, type) {
         $(`div#${board_id}`) . empty () // Gets rid of any existing SVG
 
         let trapped = new Spiral ({
-            name: name,
-            piece_name:    $(`#piece-${name}`)  . val (),
+            name:       name,
+            piece_name: name,
             colour_scheme: $(`#colour-${name}`) . val ()
         })
         info . trapped = trapped
