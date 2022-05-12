@@ -137,14 +137,13 @@ let pieces = {
 
 class Piece {
     constructor (args = {}) {
+        console . log (args)
         this . piece_name = args . piece_name
         let piece_info = pieces [this . piece_name]
         for (const prop in piece_info) {
             this [prop] = piece_info [prop]
         }
-        if (!this . name) {
-            this . name = title_case (this . piece_name)
-        }
+        console . log (this)
     }
     moves (args = {}) {
         if (!this . move_list && this . betza) {
@@ -152,17 +151,23 @@ class Piece {
         }
         return this . move_list
     }
+
     name (args = {}) {
-        return this . name
-    }
-    full_name (args = {}) {
-        if (!this . full_name) {
-            this . full_name = ""
-            if (this . prefix) {
-                    this . full_name += this . prefix + " "
-            }
-            this . full_name += this . name
+        if (!this . _name) {
+            this . _name = title_case (this . piece_name)
         }
+        return this . _name
+    }
+
+    full_name (args = {}) {
+        if (!this . _full_name) {
+            this . _full_name = ""
+            if (this . prefix) {
+                this . _full_name += this . prefix + " "
+            }
+            this . _full_name += this . name ()
+        }
+        return this . _full_name
     }
 }
 
