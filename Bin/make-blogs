@@ -701,6 +701,18 @@ sub by_line ($directives) {
     --
 }
 
+#
+# Create an id from the content of a header
+#
+sub idify ($str) {
+    lc $str =~ s/&#x([0-9a-f]+);/chr hex $1/egri
+            =~ s/&#(0-9]+);/chr $1/egri
+            =~ s/\P{Word}+/_/gr
+            =~ s/__+/_/gr
+            =~ s/^_+//r
+            =~ s/_+$//r
+}
+
 sub post_process ($text, $directives) {
     #
     # Add a line after the first <h1>
@@ -812,6 +824,12 @@ sub post_process ($text, $directives) {
         $text =~ s!</h1>\K!$pre!i;
         $text .= $post;
     }
+
+    #
+    # Add ids to headers
+    #
+    $text =~ s!(<h[2-6][^>]*)>([^<]*)(</h[2-6]>)!
+               $1 . " id = '" . idify ($2) . "'>" . $2 . $3!eg;
 
     $text;
 }
