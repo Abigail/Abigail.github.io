@@ -235,8 +235,7 @@ class Trapped {
         //
         // Get the piece from the piece_name
         //
-        let class_name       = uc_first (this . piece_name)
-        this . piece         = eval (`new ${class_name} ()`)
+        this . piece         = new Piece ({piece_name: this . piece_name})
 
         this . state         = START
 
@@ -292,7 +291,7 @@ class Trapped {
     set_title () {
         let piece_name = this . piece_name
 
-        let title = this . piece . full_name || title_case (piece_name)
+        let title = this . piece . full_name () || title_case (piece_name)
 
         $(`#title-${this . name}`) . html (title)
     }
