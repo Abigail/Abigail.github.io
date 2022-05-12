@@ -6,7 +6,5 @@ this means that it can, just like the [King](king.html),
 follow the spiral one square
 at a time. It will trace exactly the same path as the King does.
 
-<div class      = "trapped"
-     data-piece = "rook"> 
-</div>  
+<div class = "trapped" data-piece = "rook"></div>  
 

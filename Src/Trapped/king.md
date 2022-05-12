@@ -6,7 +6,5 @@ the King can always step to the unvisited square with the lowest value:
 the King simply follows the spiral. Hence, it never gets trapped, and
 eventually, will visit all squares.
 
-<div class      = "trapped"
-     data-piece = "king">
-</div>  
+<div class = "trapped" data-piece = "king"></div>  
 
