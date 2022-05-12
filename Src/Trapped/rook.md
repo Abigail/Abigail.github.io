@@ -5,6 +5,3 @@ directions, as long as it does not slide over an occupied square. But
 this means that it can, just like the [King](king.html),
 follow the spiral one square
 at a time. It will trace exactly the same path as the King does.
-
-<div class = "trapped" data-piece = "rook"></div>  
-

@@ -10,6 +10,3 @@ be blocked.
 Of the traditional Chess pieces, this is the only piece which gets
 trapped. Circling the starting point in an irregular way in the
 opposite direction as the spiral, the Knight gets trapped after 2015 steps.
-
-<div class = "trapped" data-piece = "knight"></div>  
-

@@ -717,6 +717,9 @@ sub idify ($str) {
 }
 
 sub post_process ($text, $directives) {
+    my $type = $$directives {type};
+    my $base = $$directives {base};
+
     #
     # Add a line after the first <h1>
     #
@@ -833,6 +836,17 @@ sub post_process ($text, $directives) {
     #
     $text =~ s!(<h[2-6][^>]*)>([^<]*)(</h[2-6]>)!
                $1 . " id = '" . idify ($2) . "'>" . $2 . $3!eg;
+
+    #
+    # If we're making a trapped page, add the relevant <div> to
+    # the page, if not already present.
+    #
+    if ($type == $TYPE_TRAPPED  &&
+        $base ne "index"        &&
+        $text !~ /<div[^>]*class\s*=\s*(["'])trapped\1/) {
+        $text .= sprintf "\n<div class = '%s' data-piece = '%s'></div>\n" =>
+                         "trapped", $base;
+    }
 
     $text;
 }
