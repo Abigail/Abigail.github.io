@@ -30,7 +30,8 @@ function svg_id    (name)       {return make_id ("svg",    name)}
 // Create the two responsive divs inside any "trapped" divs.
 //
 function set_up (element) {
-    let name = $(element) . data ("piece")
+    let name  = $(element) . data ("piece")
+    let piece = new Piece ({piece_name: name})
 
     $(element) . html (
         `<div class = 'board' id = '${board_id (name)}'></div>` +
@@ -38,14 +39,15 @@ function set_up (element) {
     )
 
     window [name] = {}
-    set_up_info (name)
+    window [name] . piece = piece
+    set_up_info (name, piece)
 
 }
 
 //
 // Populate the right div with some form elements.
 //
-function set_up_info (name) {
+function set_up_info (name, piece) {
     let info    = $("div#" + info_id (name))
     let id1     = `button-start-${name}`
     let id2     = `button-pause-${name}`
@@ -61,7 +63,8 @@ function set_up_info (name) {
 
     let info_table = `
         <table class = 'info_table'>
-             <tr><th colspan = 3 id = 'title-${name}' class = 'title'></th></tr>
+             <tr><th colspan = 3 id = 'title-${name}' class = 'title'>
+                 ${piece . full_name ()}</th></tr>
              <tr><td>Step</td>
                  <td colspan = 2 id = 'steps-${name}'></td></tr>
              <tr><td>Max value</td>
@@ -130,7 +133,7 @@ function toggle (name, type) {
 
         let trapped = new Spiral ({
             name:       name,
-            piece_name: name,
+            piece:      info . piece,
             colour_scheme: $(`#colour-${name}`) . val ()
         })
         info . trapped = trapped
@@ -206,8 +209,8 @@ class Trapped {
     //
     constructor (args = {}) {
         this . name          = args . name
-        this . piece_name    = args . piece_name
         this . colour_scheme = args . colour_scheme
+        this . piece         = args . piece
 
         this . add_to        = "div#" + board_id (this . name)
         this . id            =          svg_id   (this . name)
@@ -226,11 +229,6 @@ class Trapped {
         this . stop_step     = 0
         this . stop_value    = 0
         this . stop_box      = 0
-
-        //
-        // Get the piece from the piece_name
-        //
-        this . piece         = new Piece ({piece_name: this . piece_name})
 
         this . state         = START
 
@@ -284,9 +282,7 @@ class Trapped {
     // Set the title (name of piece) in the title field
     //
     set_title () {
-        let piece_name = this . piece_name
-
-        let title = this . piece . full_name () || title_case (piece_name)
+        let title = this . piece . full_name ()
 
         $(`#title-${this . name}`) . html (title)
     }
