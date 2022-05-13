@@ -30,8 +30,9 @@ function svg_id    (name)       {return make_id ("svg",    name)}
 // Create the two responsive divs inside any "trapped" divs.
 //
 function set_up (element) {
-    let name  = $(element) . data ("piece")
-    let piece = new Piece ({piece_name: name})
+    let url_params = new URLSearchParams (window.location.search)
+    let name       = url_params . get ('piece') || $(element) . data ("piece")
+    let piece      = new Piece ({piece_name: name})
 
     $(element) . html (
         `<div class = 'board' id = '${board_id (name)}'></div>` +
@@ -43,7 +44,6 @@ function set_up (element) {
 
     set_up_info (name, piece)
     init_trapped ({piece: piece, name: name})
-
 }
 
 //
