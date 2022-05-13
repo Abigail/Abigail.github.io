@@ -1,6 +1,6 @@
 <html>
 <head>
-<title>Trapped Chess Pieces: Index</title>
+<title>Trapped Chess Pieces</title>
 <meta charset = "utf-8">
 <link rel  = 'preconnect' href = 'https://fonts.gstatic.com'>
 <link rel = 'stylesheet' href =      'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
@@ -15,13 +15,98 @@
 <script src = '../../JavaScript/Trapped/pages.js'></script>
 </head>
 
-<body><h1>Trapped Chess Pieces: Index</h1><div class = "byline">
+<body><h1>Trapped Chess Pieces</h1><div class = "byline">
 by Abigail<br>
 <img src = "../../Images/jan_sluiters.jpg">
 </div>
 
 
-<ul id = 'index'></ul>
+<h2 id = 'introduction'>Introduction</h2>
+
+<h2 id = 'spiral'>Spiral</h2>
+
+<h3 id = 'list_of_pieces'>List of pieces</h3>
+
+<div class = "section">
+<p>Below we list the pieces we have examined to see how they are moving
+on the chess board using the rules explained above. They are grouped
+from the game(s) they come from. Pieces can be listed multiple times.</p>
+
+<p>Each piece is classified to be one of:</p>
+
+<dl>
+<dt>(T/<code>NNNN</code>)</dt>
+<dd>This indicates the piece gets trapped after <code>NNNN</code> steps. We will
+    mark those pieces in <strong><em>bold italics</em></strong>.</dd>
+<dt>(F/<code>XX.XX%</code>)</dt>
+<dd>This is a piece which won't get trapped, and which will eventually
+    fill <code>XX.XX%</code> of the board, in a regular fashion.</dd>
+<dt>(F*/<code>XX.XX%</code>)</dt>
+<dd>As above, this is a piece which won't get trapped, and which will
+    fill <code>XX.XX%</code> of the board, but the way it does is somewhat
+    interesting. We will mark those pieces in <em>italics</em>.</dd>
+<dt>(E)</dt>
+<dd>This is a piece which escapes to infinity without filling a significant
+    percentage of the board.</dd>
+</dl>
+</div>
+
+<h4 id = 'trapped_pieces'>Trapped Pieces</h4>
+
+<div class = "section">
+<p>Since the trapped pieces are the most interesting, they deserve to be
+listed in their own category, in order of the number of steps it takes
+before the piece gets trapped:
+<a href="knight.html"><strong><em>Knight</em></strong></a> (T/2015),
+<a href="camel.html"><strong><em>Camel</em></strong></a> (T/3722),
+<a href="zebra.html"><strong><em>Zebra</em></strong></a> (T/4633), and
+<a href="archbishop.html"><strong><em>Archbishop</em></strong></a> (T/6386).</p>
+</div>
+
+<h4 id = 'chess'>Chess</h4>
+
+<div class = "section">
+<p><a href="https://en.wikipedia.org/wiki/Chess">Chess</a> has six pieces:
+<a href="king.html">King</a> (F/100%),
+<a href="queen.html">Queen</a> (F/100%),
+<a href="rook.html">Rook</a> (F/100%),
+<a href="bishop.html"><em>Bishop</em></a> (F*/31.25%),
+<a href="knight.html"><strong><em>Knight</em></strong></a> (T/2015), and
+<a href="pawn.html">Pawn</a> (E).</p>
+</div>
+
+<h4 id = 'basic_leapers'>Basic Leapers</h4>
+
+<div class = "section">
+<p>The basic leapers are chess pieces which can leap (that is, they cannot
+be blocked by another piece) up to three squares away (in either direction).
+The moves of most other pieces can be described as a combination of
+moves of the basic leapers.</p>
+
+<p>We recognize the following basic leapers:
+<a href="wazir.html">Wazir</a> (F/100%),
+<a href="ferz.html">Ferz</a> (F/50%),
+<a href="dabbaba.html">Dabbaba</a> (F/25%),
+<a href="knight.html"><strong><em>Knight</em></strong></a> (T/2015),
+<a href="alfil.html">Alfil</a> (F/11.1%),
+<a href="threeleaper.html">Threeleaper</a> (F/11.1%),
+<a href="camel.html"><strong><em>Camel</em></strong></a> (T/3722),
+<a href="zebra.html"><strong><em>Zebra</em></strong></a> (T/4633), and
+<a href="tripper.html">Tripper</a> (F/6.25%).</p>
+</div>
+
+<h4 id = 'knighted_pieces'>Knighted Pieces</h4>
+
+<p>A Knighted piece is a <em>compound</em> piece which combines the movement 
+of one or more pieces with the movement of a <a href="knight.html">Knight</a>.</p>
+
+<p>We have the following Knighted pieces:
+<a href="archbishop.html"><strong><em>Archbishop</em></strong></a> =
+<a href="bishop.html">Bishop</a> + <a href="knight.html">Knight</a> (T/6386),
+Chancellor =
+<a href="rook.html">Rook</a> + <a href="knight.html">Knight</a> (F/100%), and
+Amazon =
+<a href="queen.html">Queen</a> + <a href="knight.html">Knight</a> (F/100%),</p>
 
 <hr id = 'last-line'>
 <div class = 'trailer'>
