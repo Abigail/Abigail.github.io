@@ -6,14 +6,14 @@
 // Return a move representing a step
 //
 function step (dr, dc, args = {}) {
-    return {type: "step", dr: dr, dc: dc}
+    return {dr: dr, dc: dc, max: 1}
 }
 
 //
 // Return a move representing a slide
 //
 function slide (dr, dc, args = {}) {
-    return {type: "slide", dr: dr, dc: dc}
+    return {dr: dr, dc: dc, max: 0}
 }
 
 //
@@ -38,7 +38,7 @@ function betza_atom (betza) {
     // If the letter is doubled, turn the step into a slide
     //
     if (betza . match (/([ACDFGHNWZ])\1/)) {
-        out . forEach ((move) => {move . type = "slide"})
+        out . forEach ((move) => {move . max = 0})
     }
 
     return out

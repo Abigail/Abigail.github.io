@@ -584,48 +584,53 @@ class Trapped {
         let best       = 0
         let info       = window [this . name]
         moves . forEach ((move) => {
-            if (move . type == "step") {
-                let new_row = row + move . dr
-                let new_col = col + move . dc
-                let target  = this . to_value (new_row, new_col)
-                if (!(target in this . visited)) {
-                    if (best == 0 || target < best) {
-                        best = target
-                    }
+            let dr  = move . dr
+            let dc  = move . dc
+            let max = move . max || 0
+            let min = move . min || 1
+
+            let move_best = 0    // Best value within this move
+            let prev_val  = 0    // Previous value within this move
+
+            //
+            // "Slide" along this move. (A step (or leap) is just
+            // a slide with a max of 1. We stop the slide under
+            // if at least one of the conditions is true:
+            //
+            //    - We exceed the max step size (max reach)
+            //    - We reach a visited square (move is blocked)
+            //    - The value of square is higher than the value
+            //      of the previous square (too far away from center;
+            //      we cannot improve)
+            //
+            for (let step = min; max == 0 || step <= max; step ++) {
+                let new_row = row + step * move . dr
+                let new_col = col + step * move . dc
+                let value   = this . to_value (new_row, new_col)
+
+                if (value in this . visited) {
+                    break    // Square is occupied
                 }
+
+                if (prev_val && value > prev_val) {
+                    break    // Values start increasing, we cannot do better
+                }
+
+                if (move_best == 0 || value < move_best) {
+                    move_best = value  // Found a better square
+                }
+                
+                prev_val = value
             }
-            if (move . type == "slide") {
-                //
-                // We now have multiple options for a single "move".
-                // Starting at 'step' size of 1, we find the best
-                // sub value until one of the following things happen:
-                //   - We find a position which is occupied
-                //   - The value increases
-                //
-                let sub_best = 0
-                let prev_val = 0
-                let step     = 0
-                while (true) {
-                    step ++
-                    let new_row = row + step * move . dr
-                    let new_col = col + step * move . dc
-                    let value   = this . to_value (new_row, new_col)
-                    if (value in  this . visited) {
-                        break
-                    }
-                    if (prev_val && value > prev_val) {
-                        break
-                    }
-                    if (sub_best == 0 || value < sub_best) {
-                        sub_best = value
-                    }
-                    prev_val = value
-                }
-                if (best == 0 || sub_best < best) {
-                    if (sub_best > 0) {
-                        best = sub_best
-                    }
-                }
+
+            //
+            // Improve the best score if:
+            //     - We found a possible square (move_best > 0)
+            //     - We improved on the best score (move_best < best)
+            //         + Or we did not have a best score yet (best == 0)
+            //
+            if (move_best && (best == 0 || move_best < best)) {
+                best = move_best
             }
         })
 
