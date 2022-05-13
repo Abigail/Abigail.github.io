@@ -29,7 +29,15 @@ let leaper_class   = "[ACDFGHNWZ]"
 let modifier_class = "[fbrlvs]"
 
 //
+// Helper function
+//
+function abs (x) {return Math . abs (x)}
+
+//
 // Take the action of a single leaper, and turn this into a move list
+//
+// We will make use of the fact that set of letters used for the modifiers
+// and the set of letters used for the leapers are disjoint.
 //
 function betza_leaper (betza) {
     let out = [];
@@ -49,6 +57,24 @@ function betza_leaper (betza) {
     //
     if (betza . match (new RegExp (`(${leaper_class})\\1`))) {
         out . forEach ((move) => {move . max = 0})
+    }
+
+    //
+    // Filter moves:
+    //
+    //    'f':   forward, dr < 0
+    //    'ff':  really forward, dr < 0 && abs (dr) > abs (dc)
+    //    'b':   backward, dr > 0
+    //    'bb':  really backward, dr > 0 && abs (dr) > abs (dc)
+    //
+    // This really needs work, as this is not just filtering.
+    // But for now, this will do.
+    //
+    if (betza . match (/f/)) {out = out . filter (move => move . dr < 0)}
+    if (betza . match (/b/)) {out = out . filter (move => move . dr > 0)}
+
+    if (betza . match (/ff|bb/)) {
+         out = out . filter (move => abs (move . dr) > abs (move . dc))
     }
 
     return out
