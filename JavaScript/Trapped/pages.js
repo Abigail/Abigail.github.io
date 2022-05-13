@@ -25,6 +25,12 @@ let pages = [
     ["camel",             "Camel"],
     ["zebra",             "Zebra"],
     ["tripper",           "Tripper"],
+    ["fourleaper",        "Fourleaper"],
+    ["giraffe",           "Giraffe"],
+    ["stag",              "Stag"],
+    ["antelope",          "Antelope"],
+    ["commuter",          "Commuter"],
+    
     //
     // Compound Pieces
     //
