@@ -16,12 +16,22 @@ function slide (dr, dc, args = {}) {
     return {dr: dr, dc: dc, max: 0}
 }
 
+////////////////////////////////////////////////////////////////////////////////
 //
 // Take a string in Betza notation, return a move list
 //
-// For now, we just handle the capital letters.
+////////////////////////////////////////////////////////////////////////////////
+
 //
-function betza_atom (betza) {
+// Some subpatterns
+//
+let leaper_class   = "[ACDFGHNWZ]"
+let modifier_class = "[fbrlvs]"
+
+//
+// Take the action of a single leaper, and turn this into a move list
+//
+function betza_leaper (betza) {
     let out = [];
 
     if (betza . match (/A/)) {out . push (... fold ({move: step (2, 2)}))} else
@@ -37,7 +47,7 @@ function betza_atom (betza) {
     //
     // If the letter is doubled, turn the step into a slide
     //
-    if (betza . match (/([ACDFGHNWZ])\1/)) {
+    if (betza . match (new RegExp (`(${leaper_class})\\1`))) {
         out . forEach ((move) => {move . max = 0})
     }
 
@@ -55,8 +65,9 @@ function betza (betza) {
           . replaceAll ('Q', 'FFWW') // Queen  = Sliding Ferz + Sliding Wazir
           . replaceAll ('R', 'WW')   // Rook   = Sliding Wazir
 
-          . match (/([ACDFGHNWZ])\1?[0-9]*/g)
-          . forEach  ((atom) => moves . push (... betza_atom (atom)))
+          . match (new RegExp (`${modifier_class}*` +
+                              `(${leaper_class})(?:\\1|[0-9]+)?`, 'g'))
+          . forEach  ((leaper) => moves . push (... betza_leaper (leaper)))
 
     return moves
 }
