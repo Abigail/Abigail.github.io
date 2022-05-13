@@ -186,8 +186,8 @@ let pieces = {
     //
     // Hunter-Falcon chess
     //
-    "hunter":        {betza: "fWbF"},
-    "falcon":        {betza: "fFbW"},
+    "hunter":           {betza: "fRbB"},
+    "falcon":           {betza: "fBbR"},
 }
 
 class Piece {

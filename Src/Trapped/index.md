@@ -33,10 +33,12 @@ Each piece is classified to be one of:
 Since the trapped pieces are the most interesting, they deserve to be
 listed in their own category, in order of the number of steps it takes
 before the piece gets trapped:
-[***Knight***](knight.html) (T/2015),
-[***Camel***](camel.html) (T/3722),
-[***Zebra***](zebra.html) (T/4633), and
-[***Archbishop***](archbishop.html) (T/6386).
+
+* [***Hunter***](hunter.html) (T/146),
+* [***Knight***](knight.html) (T/2015),
+* [***Camel***](camel.html) (T/3722),
+* [***Zebra***](zebra.html) (T/4633), and
+* [***Archbishop***](archbishop.html) (T/6386).
 
 #### Interesting Filling Pieces
 
@@ -45,8 +47,9 @@ of the squares. And most of them do so in a boring fashion.
 
 A few pieces fill the board in a more interesting way:
 
-* [*Bishop*](bishop.html) (F*/31.25%), and
-* [*Silver General/&#x9280;&#x5c07;*](silver_general.html), (F*/100%)
+* [*Bishop*](bishop.html) (F*/31.25%),
+* [*Silver General/&#x9280;&#x5c07;*](silver_general.html), (F*/100%), and
+* [*Falcon*](falcon.html) (F*/25%).
 
 #### Chess
 
@@ -122,3 +125,14 @@ We have the following pieces in Shogi:
 * [Foot Soldier/&#x6b69;&#x5175;](pawn.html?piece=foot_soldier) (Pawn) (E), and
 * [Reaches Gold/&#x3068;&#x91d1;](gold_general.html?piece=promoted_pawn)
   (Promoted Pawn) (F/100%).
+
+
+#### Falcon-Hunter Chess
+
+[Falcon-Hunter Chess](#wiki:Falcon-hunter_chess) is a chess variant
+invented by Karl Schultz in 1943.
+
+It introduces two new pieces:
+
+* [***Hunter***](hunter.html) (T/146), and
+* [*Falcon*](falcon.html) (F*/25%).
