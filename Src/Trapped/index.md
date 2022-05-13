@@ -100,20 +100,25 @@ pieces mentioned above.
 
 We have the following pieces in Shogi:
 
-* [King General/&#x738b;&#x5c07; and
-   Jeweled General/&#x7389;&#x5c07;](king.html) (King) (F/100%),
-* [Flying Chariot/&#x98db;&#x8eca;](rook.html) (Rook) (F/100%)
+* [King General/&#x738b;&#x5c07;](king.html?piece=king_general) and
+  [Jeweled General/&#x7389;&#x5c07;](king.html?piece=jeweled_general)
+  (King) (F/100%),
+* [Flying Chariot/&#x98db;&#x8eca;](rook.html?piece=flying_chariot)
+  (Rook) (F/100%)
 * Dragon King/&#x9f8d;&#x738b; (Promoted Rook), (F/100%)
-* [*Angle Mover/&#x89d2;&#x884c;*](bishop.html) (Bishop) (F/31.25%),
+* [*Angle Mover/&#x89d2;&#x884c;*](bishop.html?piece=angle_mover.html)
+  (Bishop) (F/31.25%),
 * Dragon Horse/&#x9f8d;&#x99ac;, (Promoted Bishop) (F/100%)
 * [Gold General/&#x91d1;&#x5c07;](gold_general.html) (F/100%),
 * [*Silver General/&#x9280;&#x5c07;*](silver_general.html), (F*/100%)
-* [Promoted Silver/&#x6210;&#x9280;](gold_general.html) (F/100%),
+* [Promoted Silver/&#x6210;&#x9280;](gold_general.html?piece=promoted_silver)
+  (F/100%),
 * Katsure Horse/&#x6842;&#x99ac; (Knight), (E)
-* [Promoted Katsura/&#x6210;&#x6842;](gold_general.html)
+* [Promoted Katsura/&#x6210;&#x6842;](gold_general.html?piece=promoted_katsura)
   (Promoted Knight) (F/100%),
 * Incense Chariot/&#x9999;&#x8eca; (Lance) (E),
-* [Promote Incense/&#x6210;&#x9999;](gold_general.html)
+* [Promoted Incense/&#x6210;&#x9999;](gold_general.html?piece=promoted_incense)
   (Promoted Lance) (F/100%),
-* [Foot Soldier/&#x6b69;&#x5175;](pawn.html) (Pawn) (E), and
-* [Reaches Gold/&#x3068;&#x91d1;](gold_general.html) (Promoted Pawn) (F/100%).
+* [Foot Soldier/&#x6b69;&#x5175;](pawn.html?piece=foot_soldier) (Pawn) (E), and
+* [Reaches Gold/&#x3068;&#x91d1;](gold_general.html?piece=promoted_pawn)
+  (Promoted Pawn) (F/100%).
