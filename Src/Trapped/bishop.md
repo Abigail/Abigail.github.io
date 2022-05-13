@@ -18,4 +18,4 @@ the bottom right hand side has more visited squares than the other
 three quarters.
 
 If we take the limit, we see that the Bishop will visit
-\(\frac{7}{32} = 21.875 \%\) of the squares.
+\(\frac{5}{16} = 31.25 \%\) of the squares on the board.
