@@ -18,7 +18,7 @@ Each piece is classified to be one of:
     mark those pieces in ***bold italics***.</dd>
 <dt>(F/`XX.XX%`)</dt>
 <dd>This is a piece which won't get trapped, and which will eventually
-    fill `XX.XX%` of the board, in a regular fashion.</dd>
+    fill `XX.XX%` of the board, in a regular fashion, where `XX.XX% > 0`</dd>
 <dt>(F*/`XX.XX%`)</dt>
 <dd>As above, this is a piece which won't get trapped, and which will
     fill `XX.XX%` of the board, but the way it does is somewhat
