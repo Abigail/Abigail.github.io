@@ -5,21 +5,21 @@
 let dir   = "Trapped";
 
 let pages = [
-    ["king",         "King"],
-    ["queen",        "Queen"],
-    ["rook",         "Rook"],
-    ["knight",       "Knight"],
-    ["bishop",       "Bishop"],
-    ["pawn",         "Pawn"],
-    ["wazir",        "Wazir"],
-    ["ferz",         "Ferz"],
-    ["dabbada",      "Dabbada"],
-    ["alfil",        "Alfil"],
-    ["threeleaper",  "Threeleaper"],
-    ["camel",        "Camel"],
-    ["zebra",        "Zebra"],
-    ["tripper",      "Tripper"],
-    ["archbishop",   "Archbishop"],
+    ["king",         "King (F/100%)"],
+    ["queen",        "Queen (F/100%)"],
+    ["rook",         "Rook (F/100%)"],
+    ["bishop",       "Bishop (F */31.25%)"],
+    ["knight",       "Knight (T/2015)"],
+    ["pawn",         "Pawn (E)"],
+    ["wazir",        "Wazir (F/100%)"],
+    ["ferz",         "Ferz (F/50%)"],
+    ["dabbaba",      "Dabbaba (F/25%)"],
+    ["alfil",        "Alfil (F/11.1%)"],
+    ["threeleaper",  "Threeleaper (F/11.1%)"],
+    ["camel",        "Camel (T/3722)"],
+    ["zebra",        "Zebra (T/4633)"],
+    ["tripper",      "Tripper (F/6.25%)"],
+    ["archbishop",   "Archbishop (T/6386)"],
 ]
 
 pages . forEach (entry => {
