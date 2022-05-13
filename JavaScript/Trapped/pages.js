@@ -5,21 +5,45 @@
 let dir   = "Trapped";
 
 let pages = [
-    ["king",         "King (F/100%)"],
-    ["queen",        "Queen (F/100%)"],
-    ["rook",         "Rook (F/100%)"],
-    ["bishop",       "Bishop (F */31.25%)"],
-    ["knight",       "Knight (T/2015)"],
-    ["pawn",         "Pawn (E)"],
-    ["wazir",        "Wazir (F/100%)"],
-    ["ferz",         "Ferz (F/50%)"],
-    ["dabbaba",      "Dabbaba (F/25%)"],
-    ["alfil",        "Alfil (F/11.1%)"],
-    ["threeleaper",  "Threeleaper (F/11.1%)"],
-    ["camel",        "Camel (T/3722)"],
-    ["zebra",        "Zebra (T/4633)"],
-    ["tripper",      "Tripper (F/6.25%)"],
-    ["archbishop",   "Archbishop (T/6386)"],
+    //
+    // Regular Chess
+    //
+    ["king",              "King"],
+    ["queen",             "Queen"],
+    ["rook",              "Rook"],
+    ["bishop",            "Bishop"],
+    ["knight",            "Knight"],
+    ["pawn",              "Pawn"],
+    //
+    // Basic Leapers
+    //
+    ["wazir",             "Wazir"],
+    ["ferz",              "Ferz"],
+    ["dabbaba",           "Dabbaba"],
+    ["alfil",             "Alfil"],
+    ["threeleaper",       "Threeleaper"],
+    ["camel",             "Camel"],
+    ["zebra",             "Zebra"],
+    ["tripper",           "Tripper"],
+    //
+    // Compound Pieces
+    //
+    ["archbishop",        "Archbishop"],
+    //
+    // Shogi
+    //
+    ["dragon_king",       "Dragon King"],
+    ["dragon_horse",      "Dragon Horse"],
+    ["gold_general",      "Gold General"],
+    ["silver_general",    "Silver General"],
+    ["katsura_horse",     "Katsura Horse"],
+    ["incense_chariot",   "Incense Chariot"],
+
+    //
+    // Hunter-Falcon chess
+    //
+    ["hunter",            "Hunter"],
+    ["falcon",            "Falcon"],
 ]
 
 pages . forEach (entry => {
