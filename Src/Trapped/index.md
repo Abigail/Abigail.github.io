@@ -38,6 +38,16 @@ before the piece gets trapped:
 [***Zebra***](zebra.html) (T/4633), and
 [***Archbishop***](archbishop.html) (T/6386).
 
+#### Interesting Filling Pieces
+
+Most pieces will not get trapped, and visit a non-zero percentage
+of the squares. And most of them do so in a boring fashion.
+
+A few pieces fill the board in a more interesting way:
+
+* [*Bishop*](bishop.html) (F*/31.25%), and
+* [*Silver General/&#x9280;&#x5c07;*](silver_general.html), (F*/100%)
+
 #### Chess
 
 [Chess](#wiki) has six pieces:
