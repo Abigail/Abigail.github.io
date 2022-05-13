@@ -154,11 +154,6 @@ let pieces = {
     "chancellor":    {betza: "RN"},
     "amazon":        {betza: "QN"},
     //
-    //    Crowned pieces
-    //
-    "dragon_king":   {betza: "RK"},
-    "dragon_horse":  {betza: "BK"},
-    //
     // Basic leapers
     //
     "wazir":         {betza: "W"},
@@ -172,9 +167,21 @@ let pieces = {
     //
     // Shogi
     //
-    "king_general":  {betza:  "K",   prefix: "&#x738b;&#x5c07;"},
-    "gold_general":  {betza:  "WfF", prefix: "&#x91d1;&#x5c07;"},
-    "silver_general":{betza:  "FfW", prefix: "&#x9280;&#x5c07;"},
+    "king_general":     {betza:  "K",   prefix: "&#x738b;&#x5c07;"},
+    "jeweled_general":  {betza:  "K",   prefix: "&#x7389;&#x5c07;"},
+    "flying_chariot":   {betza:  "R",   prefix: "&#x98db;&#x8eca;"},
+    "dragon_king":      {betza:  "KR",  prefix: "&#x9f8d;&#x738b;"},
+    "angle_mover":      {betza:  "B",   prefix: "&#x89d2;&#x884c;"},
+    "dragon_horse":     {betza:  "KB",  prefix: "&#x9f8d;&#x99ac;"},
+    "gold_general":     {betza:  "WfF", prefix: "&#x91d1;&#x5c07;"},
+    "silver_general":   {betza:  "FfW", prefix: "&#x9280;&#x5c07;"},
+    "promoted_silver":  {betza:  "WfF", prefix: "&#x6210;&#x9280;"},
+    "katsura_horse":    {betza:  "ffN", prefix: "&#x6842;&#x99ac;"},
+    "promoted_katsura": {betza:  "WfF", prefix: "&#x6210;&#x6842;"},
+    "incense_chariot":  {betza:  "fR",  prefix: "&#x9999;&#x8eca;"},
+    "promoted_incense": {betza:  "WfF", prefix: "&#x6210;&#x9999;"},
+    "foot_soldier":     {betza:  "fW",  prefix: "&#x6b69;&#x5175;"},
+    "reaches_gold":     {betza:  "WtF", prefix: "&#x3068;&#x91d1;"},
 
     //
     // Hunter-Falcon chess
