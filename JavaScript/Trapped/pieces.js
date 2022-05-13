@@ -122,6 +122,17 @@ let pieces = {
     "dragon_king":   {betza: "RK"},
     "dragon_horse":  {betza: "BK"},
     //
+    // Basic leapers
+    //
+    "wazir":         {betza: "W"},
+    "ferz":          {betza: "F"},
+    "dabbada":       {betza: "D"},
+    "alfil":         {betza: "A"},
+    "threeleaper":   {betza: "H"},
+    "camel":         {betza: "C", prefix: "&#x1F42B;"},
+    "zebra":         {betza: "Z", prefix: "&#x1F993;"},
+    "tripper":       {betza: "G"},
+    //
     // Shogi
     //
     "king_general":  {betza:  "K", prefix: "&#x738b;&#x5c07;"},
