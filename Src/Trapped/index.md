@@ -35,10 +35,13 @@ listed in their own category, in order of the number of steps it takes
 before the piece gets trapped:
 
 * [***Hunter***](hunter.html) (T/146),
+* [***Antelope***](antelope.html) (T/1887),
 * [***Knight***](knight.html) (T/2015),
+* [***Stag***](stag.html) (T/2015),
 * [***Camel***](camel.html) (T/3722),
-* [***Zebra***](zebra.html) (T/4633), and
-* [***Archbishop***](archbishop.html) (T/6386).
+* [***Zebra***](zebra.html) (T/4633),
+* [***Archbishop***](archbishop.html) (T/6386), and
+* [***Giraffe***](giraffe.html) (T/13102).
 
 #### Interesting Filling Pieces
 
@@ -64,20 +67,26 @@ A few pieces fill the board in a more interesting way:
 #### Basic Leapers
 
 The basic leapers are chess pieces which can leap (that is, they cannot
-be blocked by another piece) up to three squares away (in either direction).
+be blocked by another piece) up to four squares away (in either direction).
 The moves of most other pieces can be described as a combination of
 moves of the basic leapers.
 
 We recognize the following basic leapers:
-[Wazir](wazir.html) (F/100%),
-[Ferz](ferz.html) (F/50%),
-[Dabbaba](dabbaba.html) (F/25%),
-[***Knight***](knight.html) (T/2015),
-[Alfil](alfil.html) (F/11.1%),
-[Threeleaper](threeleaper.html) (F/11.1%),
-[***Camel***](camel.html) (T/3722),
-[***Zebra***](zebra.html) (T/4633), and
-[Tripper](tripper.html) (F/6.25%).
+
+* [Wazir](wazir.html) (F/100%),
+* [Ferz](ferz.html) (F/50%),
+* [Dabbaba](dabbaba.html) (F/25%),
+* [***Knight***](knight.html) (T/2015),
+* [Alfil](alfil.html) (F/12.5%),
+* [Threeleaper](threeleaper.html) (F/11.1%),
+* [***Camel***](camel.html) (T/3722),
+* [***Zebra***](zebra.html) (T/4633),
+* [Tripper](tripper.html) (F/5.56%),
+* [Fourleaper](fourleaper.html) (F/6.25%),
+* [***Giraffe***](giraffe.html) (T/13102),
+* [***Stag***](stag.html) (T/2015),
+* [***Antelope***](antelope.html) (T/1887), and
+* [Commuter](commuter.html) (F/3.125%).
 
 #### Knighted Pieces
 

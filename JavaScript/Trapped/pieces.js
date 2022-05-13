@@ -26,6 +26,8 @@ function slide (dr, dc, args = {}) {
 // Some subpatterns
 //
 let leaper_class   = "[ACDFGHNWZ]"
+let leaper_desc    = "[(][0-9]+,[0-9]+[)]"
+let leaper_pat     = `(?:(${leaper_class})|${leaper_desc})`
 let modifier_class = "[fbrlvs]"
 
 //
@@ -50,13 +52,23 @@ function betza_leaper (betza) {
     if (betza . match (/H/)) {out . push (... fold ({move: step (3, 0)}))} else
     if (betza . match (/N/)) {out . push (... fold ({move: step (2, 1)}))} else
     if (betza . match (/W/)) {out . push (... fold ({move: step (1, 0)}))} else
-    if (betza . match (/Z/)) {out . push (... fold ({move: step (3, 2)}))}
+    if (betza . match (/Z/)) {out . push (... fold ({move: step (3, 2)}))} else
+    if (match = betza . match (/[(]([0-9]+),([0-9]+)[)]/)) {
+        out . push (... fold ({move: step (+match [1], +match [2])}))
+    }
 
     //
     // If the letter is doubled, turn the step into a slide
     //
     if (betza . match (new RegExp (`(${leaper_class})\\1`))) {
         out . forEach ((move) => {move . max = 0})
+    }
+
+    //
+    // If we have a trailing number, repeat the step up to that often
+    //
+    if (amount = betza . match (/([0-9]+)$/)) {
+        out . forEach ((move) => {move . max = + amount [1]})
     }
 
     //
@@ -92,11 +104,13 @@ function betza (betza) {
           . replaceAll ('R', 'WW')   // Rook   = Sliding Wazir
 
           . match (new RegExp (`${modifier_class}*` +
-                              `(${leaper_class})(?:\\1|[0-9]+)?`, 'g'))
+                              `(${leaper_pat})(?:\\1|[0-9]+)?`, 'g'))
           . forEach  ((leaper) => moves . push (... betza_leaper (leaper)))
 
     return moves
 }
+
+console . log (betza ("fW3"))
 
 //
 // Reflect a move in all directions (8 or 4)
@@ -164,6 +178,11 @@ let pieces = {
     "camel":         {betza: "C", prefix: "&#x1F42B;"},
     "zebra":         {betza: "Z", prefix: "&#x1F993;"},
     "tripper":       {betza: "G"},
+    "fourleaper":    {betza: "(0,4)"},
+    "giraffe":       {betza: "(1,4)"},
+    "stag":          {betza: "(2,4)"},
+    "antelope":      {betza: "(3,4)"},
+    "commuter":      {betza: "(4,4)"},
     //
     // Shogi
     //
