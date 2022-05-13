@@ -172,7 +172,9 @@ let pieces = {
     //
     // Shogi
     //
-    "king_general":  {betza:  "K", prefix: "&#x738b;&#x5c07;"},
+    "king_general":  {betza:  "K",   prefix: "&#x738b;&#x5c07;"},
+    "gold_general":  {betza:  "WfF", prefix: "&#x91d1;&#x5c07;"},
+    "silver_general":{betza:  "FfW", prefix: "&#x9280;&#x5c07;"},
 
     //
     // Hunter-Falcon chess
