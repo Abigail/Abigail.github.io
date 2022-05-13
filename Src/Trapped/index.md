@@ -108,15 +108,15 @@ We have the following pieces in Shogi:
 * [Dragon King/&#x9f8d;&#x738b;](dragon_king.html) (Promoted Rook), (F/100%)
 * [*Angle Mover/&#x89d2;&#x884c;*](bishop.html?piece=angle_mover)
   (Bishop) (F/31.25%),
-* Dragon Horse/&#x9f8d;&#x99ac;, (Promoted Bishop) (F/100%)
+* [Dragon Horse/&#x9f8d;&#x99ac;](dragon_horse.html), (Promoted Bishop) (F/100%)
 * [Gold General/&#x91d1;&#x5c07;](gold_general.html) (F/100%),
 * [*Silver General/&#x9280;&#x5c07;*](silver_general.html), (F*/100%)
 * [Promoted Silver/&#x6210;&#x9280;](gold_general.html?piece=promoted_silver)
   (F/100%),
-* Katsure Horse/&#x6842;&#x99ac; (Knight), (E)
+* [Katsura Horse/&#x6842;&#x99ac;](katsura_horse.html) (Knight) (E),
 * [Promoted Katsura/&#x6210;&#x6842;](gold_general.html?piece=promoted_katsura)
   (Promoted Knight) (F/100%),
-* Incense Chariot/&#x9999;&#x8eca; (Lance) (E),
+* [Incense Chariot/&#x9999;&#x8eca;](incense_chariot.html) (Lance) (E),
 * [Promoted Incense/&#x6210;&#x9999;](gold_general.html?piece=promoted_incense)
   (Promoted Lance) (F/100%),
 * [Foot Soldier/&#x6b69;&#x5175;](pawn.html?piece=foot_soldier) (Pawn) (E), and
