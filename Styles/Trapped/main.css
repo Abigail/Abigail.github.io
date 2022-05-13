@@ -15,6 +15,16 @@ div.info {
 }
 
 
+a:link {
+    color:                 #0066CC;
+}
+a:visited {
+    color:                 blue;
+}
+a.prev, a.next {
+    color:                 black;
+}
+
 circle.unvisited-dot {
     fill:                  gray;
 }
