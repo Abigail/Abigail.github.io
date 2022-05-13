@@ -106,7 +106,7 @@ We have the following pieces in Shogi:
 * [Flying Chariot/&#x98db;&#x8eca;](rook.html?piece=flying_chariot)
   (Rook) (F/100%)
 * [Dragon King/&#x9f8d;&#x738b;](dragon_king.html) (Promoted Rook), (F/100%)
-* [*Angle Mover/&#x89d2;&#x884c;*](bishop.html?piece=angle_mover.html)
+* [*Angle Mover/&#x89d2;&#x884c;*](bishop.html?piece=angle_mover)
   (Bishop) (F/31.25%),
 * Dragon Horse/&#x9f8d;&#x99ac;, (Promoted Bishop) (F/100%)
 * [Gold General/&#x91d1;&#x5c07;](gold_general.html) (F/100%),
