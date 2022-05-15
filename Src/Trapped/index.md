@@ -57,12 +57,13 @@ A few pieces fill the board in a more interesting way:
 #### Chess
 
 [Chess](#wiki) has six pieces:
-[King](king.html) (F/100%),
-[Queen](queen.html) (F/100%),
-[Rook](rook.html) (F/100%),
-[*Bishop*](bishop.html) (F*/31.25%),
-[***Knight***](knight.html) (T/2015), and
-[Pawn](pawn.html) (E).
+
+* [King](king.html) (F/100%),
+* [Queen](queen.html) (F/100%),
+* [Rook](rook.html) (F/100%),
+* [*Bishop*](bishop.html) (F*/31.25%),
+* [***Knight***](knight.html) (T/2015), and
+* [Pawn](pawn.html) (E).
 
 #### Basic Leapers
 
@@ -94,12 +95,13 @@ A Knighted piece is a *compound* piece which combines the movement
 of one or more pieces with the movement of a [Knight](knight.html).
 
 We have the following Knighted pieces:
-[***Archbishop***](archbishop.html) =
-[Bishop](bishop.html) + [Knight](knight.html) (T/6386),
-Chancellor =
-[Rook](rook.html) + [Knight](knight.html) (F/100%), and
-Amazon =
-[Queen](queen.html) + [Knight](knight.html) (F/100%),
+
+* [***Archbishop***](archbishop.html) =
+  [Bishop](bishop.html) + [Knight](knight.html) (T/6386),
+* Chancellor =
+  [Rook](rook.html) + [Knight](knight.html) (F/100%), and
+* Amazon =
+  [Queen](queen.html) + [Knight](knight.html) (F/100%),
 
 #### Shogi
 
