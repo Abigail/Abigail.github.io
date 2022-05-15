@@ -59,8 +59,9 @@ function set_up (element) {
 // Create an animation, but do not start it yet
 //
 function init_trapped (args = {}) {
-    let name  = args . name
-    let info  = window [name]
+    let name   = args . name
+    let spiral = args . spiral || "spiral"
+    let info   = window [name]
 
     let piece = args . piece || info . piece
 
@@ -71,11 +72,16 @@ function init_trapped (args = {}) {
         $(`div#${board_id}`) . empty () // Gets rid of any existing SVG
     }
 
-    let trapped = new Wedge ({
+    let constructor_args = {
         name:          name,
         piece:         piece,
         colour_scheme: $(`#colour-${name}`) . val ()
-    })
+    }
+
+    let trapped
+
+    if (spiral == "spiral") {trapped = new Spiral (constructor_args)} else
+    if (spiral == "wedge")  {trapped = new Wedge  (constructor_args)}
 
     trapped . create_board ()
             . place        ()
@@ -116,6 +122,21 @@ function set_up_info (name, piece) {
                  <td colspan = 3 id = 'box-${name}'></td></tr>
              <tr><td>Density</td>
                  <td colspan = 3 id = 'density-${name}'></td></tr>
+             <tr><td rowspan = 2>Spiral type</td>
+                 <td colspan = 3>
+                 <input type = "radio" name = "spiral" value = "spiral"
+                        class = "spiral-${name}
+                        id  = "input_spiral-${name}" checked = "checked"
+                        onchange = "init_trapped ({spiral: 'spiral',
+                                                   name:   '${name}'})">
+                 <label for = "input_spiral-${name}">Spiral</label></td></tr>
+             <tr><td colspan = 3>
+                 <input type = "radio" name = "spiral" value = "wedge"
+                        class = "spiral-${name}
+                        id  = "input_wedge-${name}"
+                        onchange = "init_trapped ({spiral: 'wedge',
+                                                   name:   '${name}'})">
+                 <label for = "input_wedge-${name}">Wedge</label></td></tr>
              <tr><td>Colour scheme</td>
                  <td colspan = 3>
                     <select id = 'colour-${name}'>
@@ -696,23 +717,24 @@ class Trapped {
         let button_start  = $(`#button-start-${name}`)
         let button_pause  = $(`#button-pause-${name}`)
         let colour_select = $(`#colour-${name}`)
+        let spiral_select = $(`.spiral-${name}`)
 
         this . state   = state
 
         if (state == RUNNING) {
-            button_start . html ("Reset")
-            button_pause . html ("Pause")
-            button_pause . prop ("disabled", false)
+            button_start  . html ("Reset")
+            button_pause  . html ("Pause")
+            button_pause  . prop ("disabled", false)
             this    . move ()
         }
 
         if (state == PAUSED) {
-            button_pause . html ("Continue")
-            button_pause . prop ("disabled", false)
+            button_pause  . html ("Continue")
+            button_pause  . prop ("disabled", false)
         }
 
         if (state == TRAPPED) {
-            button_pause . prop ("disabled", true)
+            button_pause  . prop ("disabled", true)
         }
 
         if (state == START) {
@@ -720,10 +742,12 @@ class Trapped {
             button_pause  . html ("Pause")
             button_pause  . prop ("disabled", true)
             colour_select . prop ("disabled", false)
+            spiral_select . prop ("disabled", false)
             this . clear_info ()
         }
         else {
             colour_select . prop ("disabled", true)
+            spiral_select . prop ("disabled", true)
         }
     }
 
@@ -796,26 +820,6 @@ class Wedge extends Trapped {
     //  -1:         2  3  4
     //   0:            1
     //
-    // sqrt:
-    //  -3:   3  3  3  3  3  3  3
-    //  -2:      2  2  2  2  2
-    //  -1:         1  1  1
-    //   0:            0
-    //
-    // sq:
-    //  -3:  16 16 16 16 16 16 16
-    //  -2:      9  9  9  9  9
-    //  -1:         4  4  4
-    //   0:            1
-    //
-    // diff
-    //  -3:   6  5  4  3  2  1  0
-    //  -2:      0  1  2  3  4
-    //  -1:         2  1  0
-    //   0:            0
-    //
-    //       -3 -2 -1  0  1  2  3
-    //
     to_value (row, col) {
         if (row > 0)                             {return 0}
         if (Math . abs (col) > Math . abs (row)) {return 0}
@@ -828,8 +832,6 @@ class Wedge extends Trapped {
             // Even row, with numbers going right to left
             value += row + col
         }
-
-    //  console . log (`to_value ([${row}, ${col}]): ${value} (max = ${max})`)
 
         return value
     }
@@ -844,8 +846,6 @@ class Wedge extends Trapped {
         row      = - sqrt
         if (sq % 2 == 0) {col = sqrt - diff}
         else             {col = diff - sqrt}
-
-    //  console . log (`to_coordinates (${value}): [${row}, ${col}]`)
 
         return [row, col]
     }
