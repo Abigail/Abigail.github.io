@@ -44,6 +44,15 @@ function set_up (element) {
 
     set_up_info (name, piece)
     init_trapped ({piece: piece, name: name})
+
+    //
+    // Testing....
+    //
+    let w = new Wedge
+    for (let value = 1; value <= 16; value ++) {
+        let [row, col] = w . to_coordinates (value)
+        let  v         = w . to_value (row, col)
+    }
 }
 
 //
@@ -62,7 +71,7 @@ function init_trapped (args = {}) {
         $(`div#${board_id}`) . empty () // Gets rid of any existing SVG
     }
 
-    let trapped = new Spiral ({
+    let trapped = new Wedge ({
         name:          name,
         piece:         piece,
         colour_scheme: $(`#colour-${name}`) . val ()
@@ -608,6 +617,10 @@ class Trapped {
                 let new_col = col + step * move . dc
                 let value   = this . to_value (new_row, new_col)
 
+                if (value <= 0) {
+                    break    // Out of bounds (only on some "spirals")
+                }
+
                 if (value in this . visited) {
                     break    // Square is occupied
                 }
@@ -774,4 +787,67 @@ class Spiral extends Trapped {
     }
 }
 
+
+class Wedge extends Trapped {
+    //       -3 -2 -1  0  1  2  3
+    //
+    //  -3:  10 11 12 13 14 15 16
+    //  -2:      9  8  7  6  5
+    //  -1:         2  3  4
+    //   0:            1
+    //
+    // sqrt:
+    //  -3:   3  3  3  3  3  3  3
+    //  -2:      2  2  2  2  2
+    //  -1:         1  1  1
+    //   0:            0
+    //
+    // sq:
+    //  -3:  16 16 16 16 16 16 16
+    //  -2:      9  9  9  9  9
+    //  -1:         4  4  4
+    //   0:            1
+    //
+    // diff
+    //  -3:   6  5  4  3  2  1  0
+    //  -2:      0  1  2  3  4
+    //  -1:         2  1  0
+    //   0:            0
+    //
+    //       -3 -2 -1  0  1  2  3
+    //
+    to_value (row, col) {
+        if (row > 0)                             {return 0}
+        if (Math . abs (col) > Math . abs (row)) {return 0}
+        let value = (row - 1) ** 2   // Max value in row
+        if (value % 2 == 1) {
+            //  Odd row, with numbers going left to right
+            value += row - col
+        }
+        else {
+            // Even row, with numbers going right to left
+            value += row + col
+        }
+
+    //  console . log (`to_value ([${row}, ${col}]): ${value} (max = ${max})`)
+
+        return value
+    }
+
+    to_coordinates (value) {
+        let row = 0
+        let col = 0
+
+        let sqrt = Math . floor (Math . sqrt (value - 1))
+        let sq   = (1 + sqrt) ** 2
+        let diff = sq - value
+        row      = - sqrt
+        if (sq % 2 == 0) {col = sqrt - diff}
+        else             {col = diff - sqrt}
+
+    //  console . log (`to_coordinates (${value}): [${row}, ${col}]`)
+
+        return [row, col]
+    }
+}
 
