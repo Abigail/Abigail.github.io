@@ -110,7 +110,6 @@ function betza (betza) {
     return moves
 }
 
-console . log (betza ("fW3"))
 
 //
 // Reflect a move in all directions (8 or 4)
