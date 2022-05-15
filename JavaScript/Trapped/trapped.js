@@ -366,11 +366,13 @@ class Trapped {
     // Make a tiny dot give some coordinates
     //
     make_dot (row, col) {
-        this . board . circle   (0.1)
-                     . cx       (col)
-                     . cy       (row)
-                     . addClass ("unvisited-dot")
-                     . addClass (`dot-${row}-${col}`)
+        if (this . in_range (row, col)) {
+            this . board . circle   (0.1)
+                         . cx       (col)
+                         . cy       (- row)
+                         . addClass ("unvisited-dot")
+                         . addClass (`dot-${- row}-${col}`)
+        }
     }
 
     //
@@ -809,6 +811,13 @@ class Spiral extends Trapped {
 
         return [row, col];
     }
+
+    //
+    // The Spiral covers the entire plane, so we're always in range
+    //
+    in_range (row, col) {
+        return true
+    }
 }
 
 
@@ -848,6 +857,10 @@ class Wedge extends Trapped {
         else             {col = diff - sqrt}
 
         return [row, col]
+    }
+
+    in_range (row, col) {
+        return row >= 0 && Math . abs (col) <= Math . abs (row)
     }
 }
 
