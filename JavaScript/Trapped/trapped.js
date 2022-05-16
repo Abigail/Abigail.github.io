@@ -262,6 +262,79 @@ function title_case (str) {
 }
 
 
+//
+// Map an angle to a colour
+//
+function rainbow (angle) {
+    let red    =  0
+    let green  =  0
+    let blue   =  0
+    if (  0 <= angle && angle < 120) {  // red -> green
+        red   = 255 * (1 - (angle -   0) / 120)
+        green = 255 *      (angle -   0) / 120
+        blue  =   0
+    }
+    if (120 <= angle && angle < 240) {  // green -> blue
+        red   =   0
+        green = 255 * (1 - (angle - 120) / 120)
+        blue  = 255 *      (angle - 120) / 120
+    }
+    if (240 <= angle && angle < 360) {  // blue -> red
+        red   = 255 *      (angle - 240) / 120
+        green =   0
+        blue  = 255 * (1 - (angle - 240) / 120)
+    }
+
+    red   = Math . floor (red)
+    green = Math . floor (green)
+    blue  = Math . floor (blue)
+
+    return [red, green, blue]
+}
+
+function rainbow1 (angle, zero = 0) {
+    let red    =  0
+    let green  =  0
+    let blue   =  0
+    if (  0 <= angle && angle <  60) {  // Green increasing
+        red   = 255
+        green = 255 *      (angle -   0) / 60
+        blue  = zero
+    }
+    if ( 60 <= angle && angle < 120) {  //   Red decreasing
+        red   = 255 * (1 - (angle -  60) / 60)
+        green = 255
+        blue  = zero
+    }
+    if (120 <= angle && angle < 180) {  // Blue increasing
+        red   = zero
+        green = 255
+        blue  = 255 *      (angle - 120) / 60
+    }
+    if (180 <= angle && angle < 240) {  // Green decreasing
+        red   = zero
+        green = 255 * (1 - (angle - 180) / 60)
+        blue  = 255
+    }
+    if (240 <= angle && angle < 300) {  //   Red increasing
+        red   = 255 *      (angle - 240) / 60
+        green = zero
+        blue  = 255
+    }
+    if (300 <= angle && angle < 360) {  //  Blue decreasing
+        red   = 255
+        green = zero
+        blue  = 255 * (1 - (angle - 300) / 60)
+    }
+
+    red   = Math . floor (red)
+    green = Math . floor (green)
+    blue  = Math . floor (blue)
+
+    return [red, green, blue]
+}
+
+
 class Trapped {
     //
     // Construct a board to display the movement of a chess piece
@@ -572,46 +645,7 @@ class Trapped {
                 angle -= 360
             }
 
-            //
-            // Just a test for now
-            //
-            let red    =  0
-            let green  =  0
-            let blue   =  0
-            if (  0 <= angle && angle <  60) {  // Green increasing
-                red   = 255
-                green = 255 *      (angle -   0) / 60
-                blue  =   0
-            }
-            if ( 60 <= angle && angle < 120) {  //   Red decreasing
-                red   = 255 * (1 - (angle -  60) / 60)
-                green = 255
-                blue  =   0
-            }
-            if (120 <= angle && angle < 180) {  // Blue increasing
-                red   =   0
-                green = 255
-                blue  = 255 *      (angle - 120) / 60
-            }
-            if (180 <= angle && angle < 240) {  // Green decreasing
-                red   =   0
-                green = 255 * (1 - (angle - 180) / 60)
-                blue  = 255
-            }
-            if (240 <= angle && angle < 300) {  //   Red increasing
-                red   = 255 *      (angle - 240) / 60
-                green =   0
-                blue  = 255
-            }
-            if (300 <= angle && angle < 360) {  //  Blue decreasing
-                red   = 255
-                green =   0
-                blue  = 255 * (1 - (angle - 300) / 60)
-            }
-
-            red   = Math . floor (red)
-            green = Math . floor (green)
-            blue  = Math . floor (blue)
+            let [red, green, blue] = rainbow1 (angle)
 
             let colour = `rgb(${red},${green},${blue})`
             line . stroke ({color: colour})
