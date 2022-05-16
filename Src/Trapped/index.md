@@ -16,6 +16,9 @@ Each piece is classified to be one of:
 <dt>(T/`NNNN`)</dt>
 <dd>This indicates the piece gets trapped after `NNNN` steps. We will
     mark those pieces in ***bold italics***.</dd>
+<dt>?</dt>
+<dd>A piece which doesn't get trapped for at least 20,000 steps, but
+    for which it isn't clear it will get trapped or not.
 <dt>(F/`XX.XX%`)</dt>
 <dd>This is a piece which won't get trapped, and which will eventually
     fill `XX.XX%` of the board, in a regular fashion, where `XX.XX% > 0`</dd>
