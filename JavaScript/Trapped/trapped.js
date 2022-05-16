@@ -563,11 +563,13 @@ class Trapped {
             //
             // Find the angle (0 - 360) the line makes
             //
-            let angle = 180 +
-                        180 * Math . atan2 (new_row - row, new_col - col) /
+            let angle = 180 * Math . atan2 (new_row - row, new_col - col) /
                               Math . PI
-            if (angle >= 360) {
-                angle = 0
+            while (angle <  360) {
+                angle += 360
+            }
+            while (angle >= 360) {
+                angle -= 360
             }
 
             //
