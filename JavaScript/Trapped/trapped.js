@@ -275,11 +275,17 @@ class Trapped {
         this . size          =  5    // For an 11 x 11 grid
 
         this . visited       = {}    // Values piece has been
-        this . min_row       = 0     // Bounding box where pieces has been
-        this . min_col       = 0
-        this . max_row       = 0
-        this . max_col       = 0
-        this . max_value     = 0
+        this . max_value     = 0     // Max value reached
+
+        this . min_row       = 0     // )
+        this . min_col       = 0     // ) Bounding box where pieces has been
+        this . max_row       = 0     // )
+        this . max_col       = 0     // )
+
+        this . vb_min_row    = 0     // )
+        this . vb_min_col    = 0     // ) Min/Max row/col in current viewbox
+        this . vb_max_row    = 0     // )
+        this . vb_max_col    = 0     // )
 
         this . steps         = 0
         this . speed         = 750   // Time between moves is speed / size
@@ -314,11 +320,14 @@ class Trapped {
     }
 
     create_board (args = {}) {
+
+        this . set_viewbox_row_col ()
+
         let size          = this . size
-        let viewbox_min_x = - (size + .5)
-        let viewbox_min_y = - (size + .5)
-        let viewbox_max_x =   (size + .5)
-        let viewbox_max_y =   (size + .5)
+        let viewbox_min_x = this . vb_min_col - .5
+        let viewbox_min_y = this . vb_min_row - .5
+        let viewbox_max_x = this . vb_max_col + .5
+        let viewbox_max_y = this . vb_max_row + .5
 
         let board = SVG () . addTo   (this . add_to)
                            . id      (this . id)
@@ -350,11 +359,10 @@ class Trapped {
     // Set the viewport given the current size
     //
     set_viewport () {
-        let size          = this . size
-        let viewbox_min_x = - (size + .5)
-        let viewbox_min_y = - (size + .5)
-        let viewbox_max_x =   (size + .5)
-        let viewbox_max_y =   (size + .5)
+        let viewbox_min_x = this . vb_min_col - .5
+        let viewbox_min_y = this . vb_min_row - .5
+        let viewbox_max_x = this . vb_max_col + .5
+        let viewbox_max_y = this . vb_max_row + .5
         this . board . viewbox (viewbox_min_x, viewbox_min_y,
                                 viewbox_max_x - viewbox_min_x,
                                 viewbox_max_y - viewbox_min_y)
@@ -369,9 +377,9 @@ class Trapped {
         if (this . in_range (row, col)) {
             this . board . circle   (0.1)
                          . cx       (col)
-                         . cy       (- row)
+                         . cy       (row)
                          . addClass ("unvisited-dot")
-                         . addClass (`dot-${- row}-${col}`)
+                         . addClass (`dot-${row}-${col}`)
         }
     }
 
@@ -391,8 +399,12 @@ class Trapped {
     //
     make_dots (args = {}) {
         let board = this . board
-        for (let row = - this . size; row <= this . size; row ++) {
-            for (let col = - this . size; col <= this . size; col ++) {
+        for (let row  = this . vb_min_row;
+                 row <= this . vb_max_row;
+                 row ++) {
+            for (let col  = this . vb_min_col;
+                     col <= this . vb_max_col;
+                     col ++) {
                 this . make_dot (row, col)
             }
         }
@@ -403,14 +415,37 @@ class Trapped {
     //
     scale (args = {}) {
         let delta = args . delta || 1
+
+        //
+        // Save the old values of the viewbox boundaries
+        //
+        let old_vb_min_row = this . vb_min_row
+        let old_vb_max_row = this . vb_max_row
+        let old_vb_min_col = this . vb_min_col
+        let old_vb_max_col = this . vb_max_col
+
+        //
+        // Calculate new viewbox boundary
+        //
+        this . zoom (args)
+
+
+        //
+        // Get the new values of the viewbox boundaries
+        //
+        let new_vb_min_row = this . vb_min_row
+        let new_vb_max_row = this . vb_max_row
+        let new_vb_min_col = this . vb_min_col
+        let new_vb_max_col = this . vb_max_col
+
         let size  = this . size + delta
         let board = this . board;
 
         //
         // Top rows
         //
-        for (let row = - size; row < - size + delta; row ++) {
-            for (let col = - size; col <= size; col ++) {
+        for (let row = new_vb_min_row; row < old_vb_min_row; row ++) {
+            for (let col = new_vb_min_col; col <= new_vb_max_col; col ++) {
                 this . make_dot (row, col)
             }
         }
@@ -418,8 +453,8 @@ class Trapped {
         //
         // Bottom rows
         //
-        for (let row = size; row > size - delta; row --) {
-            for (let col = - size; col <= size; col ++) {
+        for (let row = old_vb_max_row + 1; row <= new_vb_max_row; row ++) {
+            for (let col = new_vb_min_col; col <= new_vb_max_col; col ++) {
                 this . make_dot (row, col)
             }
         }
@@ -427,8 +462,8 @@ class Trapped {
         //
         // Left columns
         //
-        for (let row = - size + delta; row <= size - delta; row ++) {
-            for (let col = - size; col < - size + delta; col ++) {
+        for (let row = old_vb_min_row; row <= old_vb_max_row; row ++) {
+            for (let col = new_vb_min_col; col < old_vb_min_col; col ++) {
                 this . make_dot (row, col)
             }
         }
@@ -436,11 +471,12 @@ class Trapped {
         //
         // Right columns
         //
-        for (let row = - size + delta; row <= size - delta; row ++) {
-            for (let col = size; col > size - delta; col --) {
+        for (let row = old_vb_min_row; row <= old_vb_max_row; row ++) {
+            for (let col = old_vb_max_col + 1; col <= new_vb_max_col; col ++) {
                 this . make_dot (row, col)
             }
         }
+
         this . size = size
         this . set_viewport ()
     }
@@ -486,8 +522,12 @@ class Trapped {
     place (args = {}) {
         let value      = args . value || 1
         let [row, col] = this . to_coordinates (value)
-        while (Math . abs (row) > this . size ||
-               Math . abs (col) > this . size) {
+        //
+        // If we want to visit a square which is outside
+        // of the viewing box, adjust the viewbox box.
+        //
+        while (row < this . vb_min_row || row > this . vb_max_row ||
+               col < this . vb_min_col || col > this . vb_max_col) {
             this . scale ()
         }
         this . visit_dot (row, col)
@@ -818,6 +858,26 @@ class Spiral extends Trapped {
     in_range (row, col) {
         return true
     }
+
+    //
+    // set_viewbox_row_col
+    //
+    set_viewbox_row_col () {
+        let size = this . size;
+        this . vb_min_row = - size;
+        this . vb_max_row =   size;
+        this . vb_min_col = - size;
+        this . vb_max_col =   size;
+    }
+
+
+    zoom (args = {}) {
+        let delta = args . delta || 1
+        this . vb_min_row -= delta
+        this . vb_max_row += delta
+        this . vb_min_col -= delta
+        this . vb_max_col += delta
+    }
 }
 
 
@@ -860,7 +920,24 @@ class Wedge extends Trapped {
     }
 
     in_range (row, col) {
-        return row >= 0 && Math . abs (col) <= Math . abs (row)
+        return row <= 0 && Math . abs (col) <= Math . abs (row)
+    }
+
+
+    set_viewbox_row_col () {
+        let size = this . size;
+        this . vb_min_row = - (2 * size);
+        this . vb_max_row =           0;
+        this . vb_min_col = -      size;
+        this . vb_max_col =        size;
+    }
+
+
+    zoom (args = {}) {
+        let delta = args . delta || 1
+        this . vb_min_row -= 2 * delta
+        this . vb_min_col -=     delta
+        this . vb_max_col +=     delta
     }
 }
 
