@@ -60,8 +60,8 @@ function set_up (element) {
 //
 function init_trapped (args = {}) {
     let name   = args . name
-    let spiral = args . spiral || "spiral"
     let info   = window [name]
+    let spiral = args . spiral || info . spiral || "spiral"
 
     let piece = args . piece || info . piece
 
@@ -88,6 +88,7 @@ function init_trapped (args = {}) {
             . set_start    ()
 
     window [name] . trapped = trapped
+    window [name] . spiral  = spiral
 
     stop (name)
 }
