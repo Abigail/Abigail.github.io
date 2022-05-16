@@ -169,19 +169,30 @@ let pieces = {
     //
     // Basic leapers
     //
-    "wazir":         {betza: "W"},
-    "ferz":          {betza: "F"},
-    "dabbaba":       {betza: "D"},
-    "alfil":         {betza: "A"},
-    "threeleaper":   {betza: "H"},
-    "camel":         {betza: "C", prefix: "&#x1F42B;"},
-    "zebra":         {betza: "Z", prefix: "&#x1F993;"},
-    "tripper":       {betza: "G"},
-    "fourleaper":    {betza: "(0,4)"},
-    "giraffe":       {betza: "(1,4)"},
-    "stag":          {betza: "(2,4)"},
-    "antelope":      {betza: "(3,4)"},
-    "commuter":      {betza: "(4,4)"},
+    "wazir":         {betza: "W"},                            // (1, 0)
+    "ferz":          {betza: "F"},                            // (1, 1)
+    "dabbaba":       {betza: "D"},                            // (2, 0)
+    "alfil":         {betza: "A"},                            // (2, 2)
+    "threeleaper":   {betza: "H"},                            // (3, 0)
+    "camel":         {betza: "C", prefix: "&#x1F42B;"},       // (3, 1)
+    "zebra":         {betza: "Z", prefix: "&#x1F993;"},       // (3, 2)
+    "tripper":       {betza: "G"},                            // (3, 3)
+    "fourleaper":    {betza: "(0,4)"},                        // (4, 0)
+    "giraffe":       {betza: "(1,4)"},                        // (4, 1)
+    "stag":          {betza: "(2,4)"},                        // (4, 2)
+    "antelope":      {betza: "(3,4)"},                        // (4, 3)
+    "commuter":      {betza: "(4,4)"},                        // (4, 3)
+    "flamingo":      {betza: "(1,6)"},                        // (6, 1)
+    //
+    // Combined leapers (https://www.theproblemist.org/dloads/Glossary.pdf)
+    //
+    "squirrel":         {betza:  "DNA"},
+    "gnu":              {betza:  "NC"},
+    "bison":            {betza:  "CZ"},
+    "okapi":            {betza:  "NZ"},
+    "zebu":             {betza:  "C(1,4)"},
+    "root_25_leaper":   {betza:  "(3,4)(5,0)"},
+    "root_50_leaper":   {betza:  "(5,5)(7,1)"},
     //
     // Shogi
     //
