@@ -6,6 +6,7 @@
 <link rel = 'stylesheet' href =      'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
 <link rel = 'stylesheet' href = '../../Styles/main.css'>
 <link rel = 'stylesheet' href = '../../Styles/Trapped/main.css'>
+<link rel = 'stylesheet' href = '../../Styles/Trapped/index.css'>
 <script src = "../../JavaScript/jquery.js"></script>
 <script id  = 'MathJax-script' async src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.js'></script>
 <script id = 'svg-script' src = 'https://cdn.jsdelivr.net/npm/@svgdotjs/svg.js@3.0/dist/svg.min.js'></script>
@@ -86,49 +87,122 @@ of the squares. And most of them do so in a boring fashion.</p>
 <li><a href="silver_general.html"><em>Silver General/&#x9280;&#x5c07;</em></a>, (F*/100%), and</li>
 <li><a href="falcon.html"><em>Falcon</em></a> (F*/25%).</li>
 </ul>
-</div>
 
-<h4 id = 'chess'>Chess</h4>
-
-<div class = "section">
-<p><a href="https://en.wikipedia.org/wiki/Chess">Chess</a> has six pieces:</p>
-
-<ul>
-<li><a href="king.html">King</a> (F/100%),</li>
-<li><a href="queen.html">Queen</a> (F/100%),</li>
-<li><a href="rook.html">Rook</a> (F/100%),</li>
-<li><a href="bishop.html"><em>Bishop</em></a> (F*/31.25%),</li>
-<li><a href="knight.html"><strong><em>Knight</em></strong></a> (T/2015), and</li>
-<li><a href="pawn.html">Pawn</a> (E).</li>
-</ul>
-</div>
-
-<h4 id = 'basic_leapers'>Basic Leapers</h4>
-
-<div class = "section">
-<p>The basic leapers are chess pieces which can leap (that is, they cannot
-be blocked by another piece) up to four squares away (in either direction).
-The moves of most other pieces can be described as a combination of
-moves of the basic leapers.</p>
-
-<p>We recognize the following basic leapers:</p>
-
-<ul>
-<li><a href="wazir.html">Wazir</a> (F/100%),</li>
-<li><a href="ferz.html">Ferz</a> (F/50%),</li>
-<li><a href="dabbaba.html">Dabbaba</a> (F/25%),</li>
-<li><a href="knight.html"><strong><em>Knight</em></strong></a> (T/2015),</li>
-<li><a href="alfil.html">Alfil</a> (F/12.5%),</li>
-<li><a href="threeleaper.html">Threeleaper</a> (F/11.1%),</li>
-<li><a href="camel.html"><strong><em>Camel</em></strong></a> (T/3722),</li>
-<li><a href="zebra.html"><strong><em>Zebra</em></strong></a> (T/4633),</li>
-<li><a href="tripper.html">Tripper</a> (F/5.56%),</li>
-<li><a href="fourleaper.html">Fourleaper</a> (F/6.25%),</li>
-<li><a href="giraffe.html"><strong><em>Giraffe</em></strong></a> (T/13102),</li>
-<li><a href="stag.html"><strong><em>Stag</em></strong></a> (T/2015),</li>
-<li><a href="antelope.html"><strong><em>Antelope</em></strong></a> (T/1887), and</li>
-<li><a href="commuter.html">Commuter</a> (F/3.125%).</li>
-</ul>
+<table>
+  <tr class = 'row-0' markdown = '1'>
+    <th class = 'cell-0-0 col-0 ' markdown = '1'>Piece</td>
+    <th class = 'cell-0-1 col-1 ' markdown = '1'>From</td>
+    <th class = 'cell-0-2 col-2 ' markdown = '1'>Spiral</td>
+    <th class = 'cell-0-3 col-3 ' markdown = '1'>Wedge</td>
+  </tr>
+  <tr class = 'row-1' markdown = '1'>
+    <td class = 'cell-1-0 col-0 ' markdown = '1'><a href="king.html">King</a></td>
+    <td class = 'cell-1-1 col-1 ' markdown = '1' rowspan = '6'>Chess</td>
+    <td class = 'cell-1-2 col-2 ' markdown = '1'>F/100%</td>
+    <td class = 'cell-1-3 col-3 ' markdown = '1'>F/100%</td>
+  </tr>
+  <tr class = 'row-2' markdown = '1'>
+    <td class = 'cell-2-0 col-0 ' markdown = '1'><a href="queen.html">Queen</a></td>
+    <td class = 'cell-2-2 col-2 ' markdown = '1'>F/100%</td>
+    <td class = 'cell-2-3 col-3 ' markdown = '1'>F/100%</td>
+  </tr>
+  <tr class = 'row-3' markdown = '1'>
+    <td class = 'cell-3-0 col-0 ' markdown = '1'><a href="rook.html">Rook</a></td>
+    <td class = 'cell-3-2 col-2 ' markdown = '1'>F/100%</td>
+    <td class = 'cell-3-3 col-3 ' markdown = '1'>T/6</td>
+  </tr>
+  <tr class = 'row-4' markdown = '1'>
+    <td class = 'cell-4-0 col-0 ' markdown = '1'><a href="bishop.html">Bishop</a></td>
+    <td class = 'cell-4-2 col-2 ' markdown = '1'>F*/31.25%</td>
+    <td class = 'cell-4-3 col-3 ' markdown = '1'>E</td>
+  </tr>
+  <tr class = 'row-5' markdown = '1'>
+    <td class = 'cell-5-0 col-0 ' markdown = '1'><a href="knight.html">Knight</a></td>
+    <td class = 'cell-5-2 col-2 ' markdown = '1'>T/2015</td>
+    <td class = 'cell-5-3 col-3 ' markdown = '1'>T/50</td>
+  </tr>
+  <tr class = 'row-6' markdown = '1'>
+    <td class = 'cell-6-0 col-0 ' markdown = '1'><a href="pawn.html">Pawn</a></td>
+    <td class = 'cell-6-2 col-2 ' markdown = '1'>E</td>
+    <td class = 'cell-6-3 col-3 ' markdown = '1'>E</td>
+  </tr>
+  <tr class = 'row-7' markdown = '1'>
+    <td class = 'cell-7-0 col-0 ' markdown = '1'><a href="wazir.html">Wazir</a></td>
+    <td class = 'cell-7-1 col-1 ' markdown = '1' rowspan = '15'>Basic Leapers</td>
+    <td class = 'cell-7-2 col-2 ' markdown = '1'>F/100%</td>
+    <td class = 'cell-7-3 col-3 ' markdown = '1'>T/6</td>
+  </tr>
+  <tr class = 'row-8' markdown = '1'>
+    <td class = 'cell-8-0 col-0 ' markdown = '1'><a href="ferz.html">Ferz</a></td>
+    <td class = 'cell-8-2 col-2 ' markdown = '1'>F/50%</td>
+    <td class = 'cell-8-3 col-3 ' markdown = '1'>E</td>
+  </tr>
+  <tr class = 'row-9' markdown = '1'>
+    <td class = 'cell-9-0 col-0 ' markdown = '1'><a href="dabbaba.html">Dabbaba</a></td>
+    <td class = 'cell-9-2 col-2 ' markdown = '1'>F/25%</td>
+    <td class = 'cell-9-3 col-3 ' markdown = '1'>E</td>
+  </tr>
+  <tr class = 'row-10' markdown = '1'>
+    <td class = 'cell-10-0 col-0 ' markdown = '1'><a href="knight.html">Knight</a></td>
+    <td class = 'cell-10-2 col-2 ' markdown = '1'>T/2015</td>
+    <td class = 'cell-10-3 col-3 ' markdown = '1'>T/50</td>
+  </tr>
+  <tr class = 'row-11' markdown = '1'>
+    <td class = 'cell-11-0 col-0 ' markdown = '1'><a href="alfil.html">Alfil</a></td>
+    <td class = 'cell-11-2 col-2 ' markdown = '1'>F/12.5%</td>
+    <td class = 'cell-11-3 col-3 ' markdown = '1'>E</td>
+  </tr>
+  <tr class = 'row-12' markdown = '1'>
+    <td class = 'cell-12-0 col-0 ' markdown = '1'><a href="threeleaper.html">Threeleaper</a></td>
+    <td class = 'cell-12-2 col-2 ' markdown = '1'>F/11.1%</td>
+    <td class = 'cell-12-3 col-3 ' markdown = '1'>T/6</td>
+  </tr>
+  <tr class = 'row-13' markdown = '1'>
+    <td class = 'cell-13-0 col-0 ' markdown = '1'><a href="camel.html">Camel</a></td>
+    <td class = 'cell-13-2 col-2 ' markdown = '1'>T/3722</td>
+    <td class = 'cell-13-3 col-3 ' markdown = '1'>T/342</td>
+  </tr>
+  <tr class = 'row-14' markdown = '1'>
+    <td class = 'cell-14-0 col-0 ' markdown = '1'><a href="zebra.html">Zebra</a></td>
+    <td class = 'cell-14-2 col-2 ' markdown = '1'>T/4633</td>
+    <td class = 'cell-14-3 col-3 ' markdown = '1'>T/80</td>
+  </tr>
+  <tr class = 'row-15' markdown = '1'>
+    <td class = 'cell-15-0 col-0 ' markdown = '1'><a href="tripper.html">Tripper</a></td>
+    <td class = 'cell-15-2 col-2 ' markdown = '1'>F/5.56%</td>
+    <td class = 'cell-15-3 col-3 ' markdown = '1'>E</td>
+  </tr>
+  <tr class = 'row-16' markdown = '1'>
+    <td class = 'cell-16-0 col-0 ' markdown = '1'><a href="fourleaper.html">Fourleaper</a></td>
+    <td class = 'cell-16-2 col-2 ' markdown = '1'>F/6.25%</td>
+    <td class = 'cell-16-3 col-3 ' markdown = '1'>E</td>
+  </tr>
+  <tr class = 'row-17' markdown = '1'>
+    <td class = 'cell-17-0 col-0 ' markdown = '1'><a href="giraffe.html">Giraffe</a></td>
+    <td class = 'cell-17-2 col-2 ' markdown = '1'>T/13102</td>
+    <td class = 'cell-17-3 col-3 ' markdown = '1'>T/114</td>
+  </tr>
+  <tr class = 'row-18' markdown = '1'>
+    <td class = 'cell-18-0 col-0 ' markdown = '1'><a href="stag.html">Stag</a></td>
+    <td class = 'cell-18-2 col-2 ' markdown = '1'>T/2015</td>
+    <td class = 'cell-18-3 col-3 ' markdown = '1'>E*</td>
+  </tr>
+  <tr class = 'row-19' markdown = '1'>
+    <td class = 'cell-19-0 col-0 ' markdown = '1'><a href="antelope.html">Antelope</a></td>
+    <td class = 'cell-19-2 col-2 ' markdown = '1'>T/1887</td>
+    <td class = 'cell-19-3 col-3 ' markdown = '1'>T/128</td>
+  </tr>
+  <tr class = 'row-20' markdown = '1'>
+    <td class = 'cell-20-0 col-0 ' markdown = '1'><a href="commuter.html">Commuter</a></td>
+    <td class = 'cell-20-2 col-2 ' markdown = '1'>F/3.125%</td>
+    <td class = 'cell-20-3 col-3 ' markdown = '1'>E</td>
+  </tr>
+  <tr class = 'row-21' markdown = '1'>
+    <td class = 'cell-21-0 col-0 ' markdown = '1'><a href="flamingo.html">Flamingo</a></td>
+    <td class = 'cell-21-2 col-2 ' markdown = '1'>?</td>
+    <td class = 'cell-21-3 col-3 ' markdown = '1'>T/90</td>
+  </tr>
+</table>
 </div>
 
 <h4 id = 'knighted_pieces'>Knighted Pieces</h4>

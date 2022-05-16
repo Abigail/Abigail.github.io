@@ -57,40 +57,38 @@ A few pieces fill the board in a more interesting way:
 * [*Silver General/&#x9280;&#x5c07;*](silver_general.html), (F*/100%), and
 * [*Falcon*](falcon.html) (F*/25%).
 
-#### Chess
+|====
+{th = 1} Piece  &
+{th = 1} From   &
+{th = 1} Spiral &
+{th = 1} Wedge  \\
+[King](king.html)                  & {rs = 6} Chess
+                                   & F/100%    & F/100%   \\
+[Queen](queen.html)                & F/100%    & F/100%   \\
+[Rook](rook.html)                  & F/100%    & T/6      \\
+[Bishop](bishop.html)              & F*/31.25% & E        \\
+[Knight](knight.html)              & T/2015    & T/50     \\
+[Pawn](pawn.html)                  & E         & E        \\
 
-[Chess](#wiki) has six pieces:
+[Wazir](wazir.html)                & {rs = 15} Basic Leapers
+                                   & F/100%    & T/6      \\
+[Ferz](ferz.html)                  & F/50%     & E        \\
+[Dabbaba](dabbaba.html)            & F/25%     & E        \\
+[Knight](knight.html)              & T/2015    & T/50     \\
+[Alfil](alfil.html)                & F/12.5%   & E        \\
+[Threeleaper](threeleaper.html)    & F/11.1%   & T/6      \\
+[Camel](camel.html)                & T/3722    & T/342    \\
+[Zebra](zebra.html)                & T/4633    & T/80     \\
+[Tripper](tripper.html)            & F/5.56%   & E        \\
+[Fourleaper](fourleaper.html)      & F/6.25%   & E        \\
+[Giraffe](giraffe.html)            & T/13102   & T/114    \\
+[Stag](stag.html)                  & T/2015    & E*       \\
+[Antelope](antelope.html)          & T/1887    & T/128    \\
+[Commuter](commuter.html)          & F/3.125%  & E        \\
+[Flamingo](flamingo.html)          & ?         & T/90     \\
 
-* [King](king.html) (F/100%),
-* [Queen](queen.html) (F/100%),
-* [Rook](rook.html) (F/100%),
-* [*Bishop*](bishop.html) (F*/31.25%),
-* [***Knight***](knight.html) (T/2015), and
-* [Pawn](pawn.html) (E).
+====|
 
-#### Basic Leapers
-
-The basic leapers are chess pieces which can leap (that is, they cannot
-be blocked by another piece) up to four squares away (in either direction).
-The moves of most other pieces can be described as a combination of
-moves of the basic leapers.
-
-We recognize the following basic leapers:
-
-* [Wazir](wazir.html) (F/100%),
-* [Ferz](ferz.html) (F/50%),
-* [Dabbaba](dabbaba.html) (F/25%),
-* [***Knight***](knight.html) (T/2015),
-* [Alfil](alfil.html) (F/12.5%),
-* [Threeleaper](threeleaper.html) (F/11.1%),
-* [***Camel***](camel.html) (T/3722),
-* [***Zebra***](zebra.html) (T/4633),
-* [Tripper](tripper.html) (F/5.56%),
-* [Fourleaper](fourleaper.html) (F/6.25%),
-* [***Giraffe***](giraffe.html) (T/13102),
-* [***Stag***](stag.html) (T/2015),
-* [***Antelope***](antelope.html) (T/1887), and
-* [Commuter](commuter.html) (F/3.125%).
 
 #### Knighted Pieces
 
