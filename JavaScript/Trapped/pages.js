@@ -30,11 +30,24 @@ let pages = [
     ["stag",              "Stag"],
     ["antelope",          "Antelope"],
     ["commuter",          "Commuter"],
+    ["flamingo",          "Flamingo"],
+
+    //
+    // Combined leapers
+    //
+    ["squirrel",          "Squirrel"],
+    ["gnu",               "Gnu"],
+    ["bison",             "Bison"],
+    ["okapi",             "Okapi"],
+    ["zebu",              "Zebu"],
+    ["root_25_leaper",    "Root 25 Leaper"],
+    ["root_50_leaper",    "Root 50 Leaper"],
     
     //
     // Compound Pieces
     //
     ["archbishop",        "Archbishop"],
+
     //
     // Shogi
     //
