@@ -48,6 +48,12 @@ let pages = [
     //
     ["archbishop",        "Archbishop"],
 
+    // 
+    // Pawned pieces
+    //
+    ["dragon",            "Dragon"],
+    ["gryphon",           "Gryphon"],
+
     //
     // Shogi
     //
