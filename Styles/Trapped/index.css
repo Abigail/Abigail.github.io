@@ -7,3 +7,42 @@ td, th {
     padding-left:          0.5em;
     padding-right:         0.5em;
 }
+
+dt {
+    width: 10vw;
+}
+
+td.trapped, dt.trapped {
+    background:            #F5C9ED;
+} 
+
+td.interesting-fill, dt.interesting-fill {
+    background:            #C8E8E6;
+} 
+
+td.interesting-escape, dt.interesting-escape {
+    background:            #E0F5CB;
+} 
+
+/*
+ * Colors from https://www.schemecolor.com/forest-color.php
+ */
+td.boring, dt.boring {
+    background:            #A29574;   /* Artichoke     */
+}
+
+td.fill, dt.fill {
+    background:            #DED29E;   /* Desert Sand   */
+}
+
+td.escape, dt.escape {
+    background:            #B7C68B;   /* Sage          */
+}
+
+
+/*
+ * Color from https://www.schemecolor.com/eid-pastels.php
+ */
+td.unknown, dt.unknown {
+    background:            #EDAA98;   /* Pastel Pink   */
+}
