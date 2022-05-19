@@ -193,6 +193,7 @@ let pieces = {
     //
     "squirrel":         {betza:  "DNA"},
     "gnu":              {betza:  "NC"},
+    "caliph":           {betza:  "WA"},
     "bison":            {betza:  "CZ"},
     "okapi":            {betza:  "NZ"},
     "zebu":             {betza:  "C(1,4)"},

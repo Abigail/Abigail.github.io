@@ -63,11 +63,13 @@ Each piece is classified to be one of:
 [Flamingo](flamingo.html)          & ?         & T/90     \\
 
 [King](king.html) = [Wazir](wazir.html) + [Ferz](ferz.html)
-                                   & {rs = 8} Combined Leapers
+                                   & {rs = 9} Combined Leapers
                                    & F/100%    & F/100%   \\
 [Squirrel](squirrel.html) = [Dabbaba](dabbaba.html) + [Knight](knight.html) +
                             [Alfil](alfil.html) 
                                    & ?         & F*/100%  \\
+[Caliph](caliph.html) = [Wazir](wazir.html) + [Alfil](alfil.html)
+                                   & F/100%    & F*/100%  \\
 [Gnu](gnu.html) = [Knight](knight.html) + [Camel](camel.html)
                                    & ?         & ?        \\
 [Bison](bison.html) = [Camel](camel.html) + [Zebra](zebra.html)
