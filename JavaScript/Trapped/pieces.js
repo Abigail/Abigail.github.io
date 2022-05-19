@@ -163,9 +163,14 @@ let pieces = {
     // Compound pieces
     //    Knighted pieces
     //
-    "archbishop":    {betza: "BN"},
-    "chancellor":    {betza: "RN"},
+    "archbishop":    {betza: "BN"},  "princess": {betza: "BN"},
+    "chancellor":    {betza: "RN"},  "empress":  {betza: "BN"},
     "amazon":        {betza: "QN"},
+    //
+    //     Pawned pieces
+    //
+    "dragon":           {betza:  "NfW"},
+    "gryphon":          {betza:  "BfW"},
     //
     // Basic leapers
     //
@@ -193,11 +198,6 @@ let pieces = {
     "zebu":             {betza:  "C(1,4)"},
     "root_25_leaper":   {betza:  "(3,4)(5,0)"},
     "root_50_leaper":   {betza:  "(5,5)(7,1)"},
-    //
-    // Pawned pieces
-    //
-    "dragon":           {betza:  "NfW"},
-    "gryphon":          {betza:  "BfW"},
     //
     // Shogi
     //
