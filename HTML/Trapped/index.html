@@ -26,9 +26,10 @@ by Abigail<br>
 
 <h2 id = 'spiral'>Spiral</h2>
 
+<h2 id = 'wedge'>Wedge</h2>
+
 <h3 id = 'list_of_pieces'>List of pieces</h3>
 
-<div class = "section">
 <p>Below we list the pieces we have examined to see how they are moving
 on the chess board using the rules explained above. They are grouped
 from the game(s) they come from. Pieces can be listed multiple times.</p>
@@ -36,57 +37,22 @@ from the game(s) they come from. Pieces can be listed multiple times.</p>
 <p>Each piece is classified to be one of:</p>
 
 <dl>
-<dt>(T/<code>NNNN</code>)</dt>
-<dd>This indicates the piece gets trapped after <code>NNNN</code> steps. We will
-    mark those pieces in <strong><em>bold italics</em></strong>.</dd>
+<dt>T/<code>NNNN</code></dt>
+<dd>This indicates the piece gets trapped after <code>NNNN</code> steps.
 <dt>?</dt>
 <dd>A piece which doesn't get trapped for at least 20,000 steps, but
     for which it isn't clear it will get trapped or not.
-<dt>(F/<code>XX.XX%</code>)</dt>
+<dt>F/<code>XX.XX%</code></dt>
 <dd>This is a piece which won't get trapped, and which will eventually
     fill <code>XX.XX%</code> of the board, in a regular fashion, where <code>XX.XX% &gt; 0</code></dd>
-<dt>(F*/<code>XX.XX%</code>)</dt>
+<dt>F*/<code>XX.XX%</code></dt>
 <dd>As above, this is a piece which won't get trapped, and which will
     fill <code>XX.XX%</code> of the board, but the way it does is somewhat
-    interesting. We will mark those pieces in <em>italics</em>.</dd>
-<dt>(E)</dt>
+    interesting.
+<dt>E</dt>
 <dd>This is a piece which escapes to infinity without filling a significant
     percentage of the board.</dd>
 </dl>
-</div>
-
-<h4 id = 'trapped_pieces'>Trapped Pieces</h4>
-
-<div class = "section">
-<p>Since the trapped pieces are the most interesting, they deserve to be
-listed in their own category, in order of the number of steps it takes
-before the piece gets trapped:</p>
-
-<ul>
-<li><a href="hunter.html"><strong><em>Hunter</em></strong></a> (T/146),</li>
-<li><a href="antelope.html"><strong><em>Antelope</em></strong></a> (T/1887),</li>
-<li><a href="knight.html"><strong><em>Knight</em></strong></a> (T/2015),</li>
-<li><a href="stag.html"><strong><em>Stag</em></strong></a> (T/2015),</li>
-<li><a href="camel.html"><strong><em>Camel</em></strong></a> (T/3722),</li>
-<li><a href="zebra.html"><strong><em>Zebra</em></strong></a> (T/4633),</li>
-<li><a href="archbishop.html"><strong><em>Archbishop</em></strong></a> (T/6386), and</li>
-<li><a href="giraffe.html"><strong><em>Giraffe</em></strong></a> (T/13102).</li>
-</ul>
-</div>
-
-<h4 id = 'interesting_filling_pieces'>Interesting Filling Pieces</h4>
-
-<div class = "section">
-<p>Most pieces will not get trapped, and visit a non-zero percentage
-of the squares. And most of them do so in a boring fashion.</p>
-
-<p>A few pieces fill the board in a more interesting way:</p>
-
-<ul>
-<li><a href="bishop.html"><em>Bishop</em></a> (F*/31.25%),</li>
-<li><a href="silver_general.html"><em>Silver General/&#x9280;&#x5c07;</em></a>, (F*/100%), and</li>
-<li><a href="falcon.html"><em>Falcon</em></a> (F*/25%).</li>
-</ul>
 
 <table>
   <tr class = 'row-0' markdown = '1'>
@@ -202,76 +168,183 @@ of the squares. And most of them do so in a boring fashion.</p>
     <td class = 'cell-21-2 col-2 ' markdown = '1'>?</td>
     <td class = 'cell-21-3 col-3 ' markdown = '1'>T/90</td>
   </tr>
+  <tr class = 'row-22' markdown = '1'>
+    <td class = 'cell-22-0 col-0 ' markdown = '1'><a href="king.html">King</a> = <a href="wazir.html">Wazir</a> + <a href="ferz.html">Ferz</a></td>
+    <td class = 'cell-22-1 col-1 ' markdown = '1' rowspan = '8'>Combined Leapers</td>
+    <td class = 'cell-22-2 col-2 ' markdown = '1'>F/100%</td>
+    <td class = 'cell-22-3 col-3 ' markdown = '1'>F/100%</td>
+  </tr>
+  <tr class = 'row-23' markdown = '1'>
+    <td class = 'cell-23-0 col-0 ' markdown = '1'><a href="squirrel.html">Squirrel</a> = <a href="dabbaba.html">Dabbaba</a> + <a href="knight.html">Knight</a> +
+                            <a href="alfil.html">Alfil</a></td>
+    <td class = 'cell-23-2 col-2 ' markdown = '1'>?</td>
+    <td class = 'cell-23-3 col-3 ' markdown = '1'>F*/100%</td>
+  </tr>
+  <tr class = 'row-24' markdown = '1'>
+    <td class = 'cell-24-0 col-0 ' markdown = '1'><a href="gnu.html">Gnu</a> = <a href="knight.html">Knight</a> + <a href="camel.html">Camel</a></td>
+    <td class = 'cell-24-2 col-2 ' markdown = '1'>?</td>
+    <td class = 'cell-24-3 col-3 ' markdown = '1'>?</td>
+  </tr>
+  <tr class = 'row-25' markdown = '1'>
+    <td class = 'cell-25-0 col-0 ' markdown = '1'><a href="bison.html">Bison</a> = <a href="camel.html">Camel</a> + <a href="zebra.html">Zebra</a></td>
+    <td class = 'cell-25-2 col-2 ' markdown = '1'>?</td>
+    <td class = 'cell-25-3 col-3 ' markdown = '1'>?</td>
+  </tr>
+  <tr class = 'row-26' markdown = '1'>
+    <td class = 'cell-26-0 col-0 ' markdown = '1'><a href="okapi.html">Okapi</a> = <a href="knight.html">Knight</a> + <a href="zebra.html">Zebra</a></td>
+    <td class = 'cell-26-2 col-2 ' markdown = '1'>?</td>
+    <td class = 'cell-26-3 col-3 ' markdown = '1'>?</td>
+  </tr>
+  <tr class = 'row-27' markdown = '1'>
+    <td class = 'cell-27-0 col-0 ' markdown = '1'><a href="zebu.html">Zebu</a> = <a href="camel.html">Camel</a> + <a href="giraffe.html">Giraffe</a></td>
+    <td class = 'cell-27-2 col-2 ' markdown = '1'>?</td>
+    <td class = 'cell-27-3 col-3 ' markdown = '1'>?</td>
+  </tr>
+  <tr class = 'row-28' markdown = '1'>
+    <td class = 'cell-28-0 col-0 ' markdown = '1'><a href="root_25_leaper.html">Root 25 Leaper</a> = <a href="antelope.html">Antelope</a> +
+                                        (5,0)-leaper</td>
+    <td class = 'cell-28-2 col-2 ' markdown = '1'>?</td>
+    <td class = 'cell-28-3 col-3 ' markdown = '1'>?</td>
+  </tr>
+  <tr class = 'row-29' markdown = '1'>
+    <td class = 'cell-29-0 col-0 ' markdown = '1'><a href="root_50_leaper.html">Root 50 Leaper</a> = (5,5)-leaper + (7,1)-leaper</td>
+    <td class = 'cell-29-2 col-2 ' markdown = '1'>?</td>
+    <td class = 'cell-29-3 col-3 ' markdown = '1'>?</td>
+  </tr>
+  <tr class = 'row-30' markdown = '1'>
+    <td class = 'cell-30-0 col-0 ' markdown = '1'><a href="dragon.html">Dragon</a> = <a href="pawn.html">Pawn</a> + <a href="knight.html">Knight</a></td>
+    <td class = 'cell-30-1 col-1 ' markdown = '1' rowspan = '6'>Knighted Pieces</td>
+    <td class = 'cell-30-2 col-2 ' markdown = '1'>?</td>
+    <td class = 'cell-30-3 col-3 ' markdown = '1'>T/42</td>
+  </tr>
+  <tr class = 'row-31' markdown = '1'>
+    <td class = 'cell-31-0 col-0 ' markdown = '1'><a href="archbishop.html">Archbishop</a>/<a href="archbishop.html?piece=princess">Princess</a>
+                             = <a href="bishop.html">Bishop</a> + <a href="knight.html">Knight</a></td>
+    <td class = 'cell-31-2 col-2 ' markdown = '1'>T/6386</td>
+    <td class = 'cell-31-3 col-3 ' markdown = '1'>F/100%</td>
+  </tr>
+  <tr class = 'row-32' markdown = '1'>
+    <td class = 'cell-32-0 col-0 ' markdown = '1'><a href="chancellor.html">Chancellor</a>/<a href="chancellor.html?piece=empress">Empress</a>
+                             = <a href="rook.html">Rook</a> + <a href="knight.html">Knight</a></td>
+    <td class = 'cell-32-2 col-2 ' markdown = '1'>F/100%</td>
+    <td class = 'cell-32-3 col-3 ' markdown = '1'>F/100%</td>
+  </tr>
+  <tr class = 'row-33' markdown = '1'>
+    <td class = 'cell-33-0 col-0 ' markdown = '1'><a href="amazon.html">Amazon</a> =  <a href="queen.html">Queen</a> + <a href="knight.html">Knight</a></td>
+    <td class = 'cell-33-2 col-2 ' markdown = '1'>F/100%</td>
+    <td class = 'cell-33-3 col-3 ' markdown = '1'>F/100%</td>
+  </tr>
+  <tr class = 'row-34' markdown = '1'>
+    <td class = 'cell-34-0 col-0 ' markdown = '1'><a href="gnu.html">Gnu</a> = <a href="camel.html">Camel</a> + <a href="knight.html">Knight</a></td>
+    <td class = 'cell-34-2 col-2 ' markdown = '1'>?</td>
+    <td class = 'cell-34-3 col-3 ' markdown = '1'>?</td>
+  </tr>
+  <tr class = 'row-35' markdown = '1'>
+    <td class = 'cell-35-0 col-0 ' markdown = '1'><a href="okapi.html">Okapi</a> = <a href="zebra.html">Zebra</a> + <a href="knight.html">Knight</a></td>
+    <td class = 'cell-35-2 col-2 ' markdown = '1'>?</td>
+    <td class = 'cell-35-3 col-3 ' markdown = '1'>?</td>
+  </tr>
+  <tr class = 'row-36' markdown = '1'>
+    <td class = 'cell-36-0 col-0 ' markdown = '1'><a href="dragon.html">Dragon</a> = <a href="knight.html">Knight</a> + <a href="pawn.html">Pawn</a></td>
+    <td class = 'cell-36-1 col-1 ' markdown = '1' rowspan = '2'>Pawned Pieces</td>
+    <td class = 'cell-36-2 col-2 ' markdown = '1'>?</td>
+    <td class = 'cell-36-3 col-3 ' markdown = '1'>T/42</td>
+  </tr>
+  <tr class = 'row-37' markdown = '1'>
+    <td class = 'cell-37-0 col-0 ' markdown = '1'><a href="gryphon.html">Gryphon</a> = <a href="bishop.html">Bishop</a> + <a href="pawn.html">Pawn</a></td>
+    <td class = 'cell-37-2 col-2 ' markdown = '1'>T/67</td>
+    <td class = 'cell-37-3 col-3 ' markdown = '1'>E</td>
+  </tr>
+  <tr class = 'row-38' markdown = '1'>
+    <td class = 'cell-38-0 col-0 ' markdown = '1'><a href="king.html?piece=king_general">King General/&#x738b;&#x5c07;</a></td>
+    <td class = 'cell-38-1 col-1 ' markdown = '1' rowspan = '15'><a href="https://en.wikipedia.org/wiki/Shogi">Shogi (&#x5c06;&#x68cb;)</a></td>
+    <td class = 'cell-38-2 col-2 ' markdown = '1' rowspan = '2'>F/100%</td>
+    <td class = 'cell-38-3 col-3 ' markdown = '1' rowspan = '2'>F/100%</td>
+  </tr>
+  <tr class = 'row-39' markdown = '1'>
+    <td class = 'cell-39-0 col-0 ' markdown = '1'><a href="king.html?piece=jeweled_general">Jeweled General/&#x7389;&#x5c07;</a></td>
+  </tr>
+  <tr class = 'row-40' markdown = '1'>
+    <td class = 'cell-40-0 col-0 ' markdown = '1'><a href="rook.html?piece=flying_chariot">Flying Chariot/&#x98db;&#x8eca;</a> (Rook)</td>
+    <td class = 'cell-40-2 col-2 ' markdown = '1'>F/100%</td>
+    <td class = 'cell-40-3 col-3 ' markdown = '1'>T/6</td>
+  </tr>
+  <tr class = 'row-41' markdown = '1'>
+    <td class = 'cell-41-0 col-0 ' markdown = '1'><a href="dragon_king.html">Dragon King/&#x9f8d;&#x738b;</a> (Promoted Rook)</td>
+    <td class = 'cell-41-2 col-2 ' markdown = '1'>F/100%</td>
+    <td class = 'cell-41-3 col-3 ' markdown = '1'>F/100%</td>
+  </tr>
+  <tr class = 'row-42' markdown = '1'>
+    <td class = 'cell-42-0 col-0 ' markdown = '1'><a href="bishop.html?piece=angle_mover">Angle Mover/&#x89d2;&#x884c;</a> (Bishop)</td>
+    <td class = 'cell-42-2 col-2 ' markdown = '1'>F*/31.25%</td>
+    <td class = 'cell-42-3 col-3 ' markdown = '1'>E</td>
+  </tr>
+  <tr class = 'row-43' markdown = '1'>
+    <td class = 'cell-43-0 col-0 ' markdown = '1'><a href="dragon_horse.html">Dragon Horse/&#x9f8d;&#x99ac;</a>, (Promoted Bishop)</td>
+    <td class = 'cell-43-2 col-2 ' markdown = '1'>F/100%</td>
+    <td class = 'cell-43-3 col-3 ' markdown = '1'>F/100%</td>
+  </tr>
+  <tr class = 'row-44' markdown = '1'>
+    <td class = 'cell-44-0 col-0 ' markdown = '1'><a href="gold_general.html">Gold General/&#x91d1;&#x5c07;</a></td>
+    <td class = 'cell-44-2 col-2 ' markdown = '1'>F/100%</td>
+    <td class = 'cell-44-3 col-3 ' markdown = '1'>F/100%</td>
+  </tr>
+  <tr class = 'row-45' markdown = '1'>
+    <td class = 'cell-45-0 col-0 ' markdown = '1'><a href="silver_general.html">Silver General/&#x9280;&#x5c07;</a></td>
+    <td class = 'cell-45-2 col-2 ' markdown = '1'>F*/100%</td>
+    <td class = 'cell-45-3 col-3 ' markdown = '1'>E</td>
+  </tr>
+  <tr class = 'row-46' markdown = '1'>
+    <td class = 'cell-46-0 col-0 ' markdown = '1'><a href="gold_general.html?piece=promoted_silver">Promoted Silver/&#x6210;&#x9280;</a></td>
+    <td class = 'cell-46-2 col-2 ' markdown = '1'>F/100%</td>
+    <td class = 'cell-46-3 col-3 ' markdown = '1'>F/100%</td>
+  </tr>
+  <tr class = 'row-47' markdown = '1'>
+    <td class = 'cell-47-0 col-0 ' markdown = '1'><a href="katsura_horse.html">Katsura Horse/&#x6842;&#x99ac;</a> (Knight)</td>
+    <td class = 'cell-47-2 col-2 ' markdown = '1'>E</td>
+    <td class = 'cell-47-3 col-3 ' markdown = '1'>E</td>
+  </tr>
+  <tr class = 'row-48' markdown = '1'>
+    <td class = 'cell-48-0 col-0 ' markdown = '1'><a href="gold_general.html?piece=promoted_katsura">Promoted Katsura/&#x6210;&#x6842;</a>
+  (Promoted Knight)</td>
+    <td class = 'cell-48-2 col-2 ' markdown = '1'>F/100%</td>
+    <td class = 'cell-48-3 col-3 ' markdown = '1'>F/100%</td>
+  </tr>
+  <tr class = 'row-49' markdown = '1'>
+    <td class = 'cell-49-0 col-0 ' markdown = '1'><a href="incense_chariot.html">Incense Chariot/&#x9999;&#x8eca;</a> (Lance)</td>
+    <td class = 'cell-49-2 col-2 ' markdown = '1'>E</td>
+    <td class = 'cell-49-3 col-3 ' markdown = '1'>E</td>
+  </tr>
+  <tr class = 'row-50' markdown = '1'>
+    <td class = 'cell-50-0 col-0 ' markdown = '1'><a href="gold_general.html?piece=promoted_incense">Promoted Incense/&#x6210;&#x9999;</a>
+  (Promoted Lance)</td>
+    <td class = 'cell-50-2 col-2 ' markdown = '1'>F/100%</td>
+    <td class = 'cell-50-3 col-3 ' markdown = '1'>F/100%</td>
+  </tr>
+  <tr class = 'row-51' markdown = '1'>
+    <td class = 'cell-51-0 col-0 ' markdown = '1'><a href="pawn.html?piece=foot_soldier">Foot Soldier/&#x6b69;&#x5175;</a> (Pawn)</td>
+    <td class = 'cell-51-2 col-2 ' markdown = '1'>E</td>
+    <td class = 'cell-51-3 col-3 ' markdown = '1'>E</td>
+  </tr>
+  <tr class = 'row-52' markdown = '1'>
+    <td class = 'cell-52-0 col-0 ' markdown = '1'><a href="gold_general.html?piece=reaches_gold">Reaches Gold/&#x3068;&#x91d1;</a>
+  (Promoted Pawn)</td>
+    <td class = 'cell-52-2 col-2 ' markdown = '1'>F/100%</td>
+    <td class = 'cell-52-3 col-3 ' markdown = '1'>F/100%</td>
+  </tr>
+  <tr class = 'row-53' markdown = '1'>
+    <td class = 'cell-53-0 col-0 ' markdown = '1'><a href="hunter.html">Hunter</a></td>
+    <td class = 'cell-53-1 col-1 ' markdown = '1' rowspan = '2'><a href="https://en.wikipedia.org/wiki/Falcon-hunter_chess">Falcon-Hunter
+                                               Chess</a></td>
+    <td class = 'cell-53-2 col-2 ' markdown = '1'>T/146</td>
+    <td class = 'cell-53-3 col-3 ' markdown = '1'>E</td>
+  </tr>
+  <tr class = 'row-54' markdown = '1'>
+    <td class = 'cell-54-0 col-0 ' markdown = '1'><a href="falcon.html">Falcon</a></td>
+    <td class = 'cell-54-2 col-2 ' markdown = '1'>F*/25%</td>
+    <td class = 'cell-54-3 col-3 ' markdown = '1'>E</td>
+  </tr>
 </table>
-</div>
-
-<h4 id = 'knighted_pieces'>Knighted Pieces</h4>
-
-<div class = "section">
-<p>A Knighted piece is a <em>compound</em> piece which combines the movement 
-of one or more pieces with the movement of a <a href="knight.html">Knight</a>.</p>
-
-<p>We have the following Knighted pieces:</p>
-
-<ul>
-<li><a href="archbishop.html"><strong><em>Archbishop</em></strong></a> =
-<a href="bishop.html">Bishop</a> + <a href="knight.html">Knight</a> (T/6386),</li>
-<li>Chancellor =
-<a href="rook.html">Rook</a> + <a href="knight.html">Knight</a> (F/100%), and</li>
-<li>Amazon =
-<a href="queen.html">Queen</a> + <a href="knight.html">Knight</a> (F/100%),</li>
-</ul>
-</div>
-
-<h4 id = 'shogi'>Shogi</h4>
-
-<div class = "section">
-<p>While <a href="https://en.wikipedia.org/wiki/Shogi">Shogi (&#x5c06;&#x68cb;)</a> at first sight looks
-very different from Chess or any of its variants, it still
-is a form of Chess (sometimes called Japanese Chess), and
-we can investigate how their pieces moves. In fact, some of
-its pieces move the same as in Chess, or as one of the other
-pieces mentioned above.</p>
-
-<p>We have the following pieces in Shogi:</p>
-
-<ul>
-<li><a href="king.html?piece=king_general">King General/&#x738b;&#x5c07;</a> and
-<a href="king.html?piece=jeweled_general">Jeweled General/&#x7389;&#x5c07;</a>
-(King) (F/100%),</li>
-<li><a href="rook.html?piece=flying_chariot">Flying Chariot/&#x98db;&#x8eca;</a>
-(Rook) (F/100%)</li>
-<li><a href="dragon_king.html">Dragon King/&#x9f8d;&#x738b;</a> (Promoted Rook), (F/100%)</li>
-<li><a href="bishop.html?piece=angle_mover"><em>Angle Mover/&#x89d2;&#x884c;</em></a>
-(Bishop) (F/31.25%),</li>
-<li><a href="dragon_horse.html">Dragon Horse/&#x9f8d;&#x99ac;</a>, (Promoted Bishop) (F/100%)</li>
-<li><a href="gold_general.html">Gold General/&#x91d1;&#x5c07;</a> (F/100%),</li>
-<li><a href="silver_general.html"><em>Silver General/&#x9280;&#x5c07;</em></a>, (F*/100%)</li>
-<li><a href="gold_general.html?piece=promoted_silver">Promoted Silver/&#x6210;&#x9280;</a>
-(F/100%),</li>
-<li><a href="katsura_horse.html">Katsura Horse/&#x6842;&#x99ac;</a> (Knight) (E),</li>
-<li><a href="gold_general.html?piece=promoted_katsura">Promoted Katsura/&#x6210;&#x6842;</a>
-(Promoted Knight) (F/100%),</li>
-<li><a href="incense_chariot.html">Incense Chariot/&#x9999;&#x8eca;</a> (Lance) (E),</li>
-<li><a href="gold_general.html?piece=promoted_incense">Promoted Incense/&#x6210;&#x9999;</a>
-(Promoted Lance) (F/100%),</li>
-<li><a href="pawn.html?piece=foot_soldier">Foot Soldier/&#x6b69;&#x5175;</a> (Pawn) (E), and</li>
-<li><a href="gold_general.html?piece=promoted_pawn">Reaches Gold/&#x3068;&#x91d1;</a>
-(Promoted Pawn) (F/100%).</li>
-</ul>
-</div>
-
-<h4 id = 'falcon_hunter_chess'>Falcon-Hunter Chess</h4>
-
-<p><a href="https://en.wikipedia.org/wiki/Falcon-hunter_chess">Falcon-Hunter Chess</a> is a chess variant
-invented by Karl Schultz in 1943.</p>
-
-<p>It introduces two new pieces:</p>
-
-<ul>
-<li><a href="hunter.html"><strong><em>Hunter</em></strong></a> (T/146), and</li>
-<li><a href="falcon.html"><em>Falcon</em></a> (F*/25%).</li>
-</ul>
 
 <hr id = 'last-line'>
 <div class = 'trailer'>

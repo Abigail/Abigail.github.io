@@ -44,9 +44,11 @@ let pages = [
     ["root_50_leaper",    "Root 50 Leaper"],
     
     //
-    // Compound Pieces
+    // Knighted Pieces
     //
     ["archbishop",        "Archbishop"],
+    ["chancellor",        "Chancellor"],
+    ["amazon",            "Amazon"],
 
     // 
     // Pawned pieces
