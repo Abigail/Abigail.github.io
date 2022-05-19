@@ -192,6 +192,7 @@ let pieces = {
     // Combined leapers (https://www.theproblemist.org/dloads/Glossary.pdf)
     //
     "squirrel":         {betza:  "DNA"},
+    "hawk":             {betza:  "ADGH"},
     "gnu":              {betza:  "NC"},
     "caliph":           {betza:  "WA"},
     "bison":            {betza:  "CZ"},
