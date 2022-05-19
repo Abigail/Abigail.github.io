@@ -10,6 +10,7 @@
 <script src = "../../JavaScript/jquery.js"></script>
 <script id  = 'MathJax-script' async src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.js'></script>
 <script id = 'svg-script' src = 'https://cdn.jsdelivr.net/npm/@svgdotjs/svg.js@3.0/dist/svg.min.js'></script>
+<script src = '../../JavaScript/Trapped/index-table.js'></script>
 <script src = '../../JavaScript/navigation.js'></script>
 <script src = '../../JavaScript/Trapped/trapped.js'></script>
 <script src = '../../JavaScript/Trapped/pieces.js'></script>
@@ -37,21 +38,33 @@ from the game(s) they come from. Pieces can be listed multiple times.</p>
 <p>Each piece is classified to be one of:</p>
 
 <dl>
-<dt>T/<code>NNNN</code></dt>
-<dd>This indicates the piece gets trapped after <code>NNNN</code> steps.
-<dt>?</dt>
+<dt class = 'trapped'>T/NNNN</dt>
+<dd>This indicates the piece gets trapped after NNNN steps.
+<dt class = 'unknown'>?</dt>
 <dd>A piece which doesn't get trapped for at least 20,000 steps, but
     for which it isn't clear it will get trapped or not.
-<dt>F/<code>XX.XX%</code></dt>
+<dt class = 'boring'>W, GG</dt>
+<dd>A piece which can move at least as the <a href="wazir.html">Wazir</a> (on the Spiral)
+    or the <a href="gold_general.html">Gold General</a> (on the Wedge). The Gold
+    General moves as either the <a href="wazir.html">Wazir</a> or the forward
+    <a href="ferz.html">Ferz</a>. (The piece may have additional movement possibilities).
+    This results in a very
+    boring movement, where the piece visits each square of the
+    board, in the order of the values.
+<dt class = 'fill'>F/XX.XX%</dt>
 <dd>This is a piece which won't get trapped, and which will eventually
-    fill <code>XX.XX%</code> of the board, in a regular fashion, where <code>XX.XX% &gt; 0</code></dd>
-<dt>F*/<code>XX.XX%</code></dt>
+    fill XX.XX% of the board, in a regular fashion, where XX.XX% > 0</dd>
+<dt class = 'interesting-fill'>F*/XX.XX%</dt>
 <dd>As above, this is a piece which won't get trapped, and which will
-    fill <code>XX.XX%</code> of the board, but the way it does is somewhat
+    fill XX.XX% of the board, but the way it does is somewhat
     interesting.
-<dt>E</dt>
+<dt class = 'escape'>E</dt>
 <dd>This is a piece which escapes to infinity without filling a significant
     percentage of the board.</dd>
+<dt class = 'interesting-escape'>E*</dt>
+<dd>This is a piece which escapes to infinity without filling a significant
+    percentage of the board, but does it in way which is interesting
+    or unique.</dd>
 </dl>
 
 <table>
@@ -64,17 +77,17 @@ from the game(s) they come from. Pieces can be listed multiple times.</p>
   <tr class = 'row-1' markdown = '1'>
     <td class = 'cell-1-0 col-0 ' markdown = '1'><a href="king.html">King</a></td>
     <td class = 'cell-1-1 col-1 ' markdown = '1' rowspan = '6'>Chess</td>
-    <td class = 'cell-1-2 col-2 ' markdown = '1'>F/100%</td>
-    <td class = 'cell-1-3 col-3 ' markdown = '1'>F/100%</td>
+    <td class = 'cell-1-2 col-2 ' markdown = '1'>W</td>
+    <td class = 'cell-1-3 col-3 ' markdown = '1'>GG</td>
   </tr>
   <tr class = 'row-2' markdown = '1'>
     <td class = 'cell-2-0 col-0 ' markdown = '1'><a href="queen.html">Queen</a></td>
-    <td class = 'cell-2-2 col-2 ' markdown = '1'>F/100%</td>
-    <td class = 'cell-2-3 col-3 ' markdown = '1'>F/100%</td>
+    <td class = 'cell-2-2 col-2 ' markdown = '1'>W</td>
+    <td class = 'cell-2-3 col-3 ' markdown = '1'>GG</td>
   </tr>
   <tr class = 'row-3' markdown = '1'>
     <td class = 'cell-3-0 col-0 ' markdown = '1'><a href="rook.html">Rook</a></td>
-    <td class = 'cell-3-2 col-2 ' markdown = '1'>F/100%</td>
+    <td class = 'cell-3-2 col-2 ' markdown = '1'>W</td>
     <td class = 'cell-3-3 col-3 ' markdown = '1'>T/6</td>
   </tr>
   <tr class = 'row-4' markdown = '1'>
@@ -95,7 +108,7 @@ from the game(s) they come from. Pieces can be listed multiple times.</p>
   <tr class = 'row-7' markdown = '1'>
     <td class = 'cell-7-0 col-0 ' markdown = '1'><a href="wazir.html">Wazir</a></td>
     <td class = 'cell-7-1 col-1 ' markdown = '1' rowspan = '15'>Basic Leapers</td>
-    <td class = 'cell-7-2 col-2 ' markdown = '1'>F/100%</td>
+    <td class = 'cell-7-2 col-2 ' markdown = '1'>W</td>
     <td class = 'cell-7-3 col-3 ' markdown = '1'>T/6</td>
   </tr>
   <tr class = 'row-8' markdown = '1'>
@@ -171,8 +184,8 @@ from the game(s) they come from. Pieces can be listed multiple times.</p>
   <tr class = 'row-22' markdown = '1'>
     <td class = 'cell-22-0 col-0 ' markdown = '1'><a href="king.html">King</a> = <a href="wazir.html">Wazir</a> + <a href="ferz.html">Ferz</a></td>
     <td class = 'cell-22-1 col-1 ' markdown = '1' rowspan = '10'>Combined Leapers</td>
-    <td class = 'cell-22-2 col-2 ' markdown = '1'>F/100%</td>
-    <td class = 'cell-22-3 col-3 ' markdown = '1'>F/100%</td>
+    <td class = 'cell-22-2 col-2 ' markdown = '1'>W</td>
+    <td class = 'cell-22-3 col-3 ' markdown = '1'>GG</td>
   </tr>
   <tr class = 'row-23' markdown = '1'>
     <td class = 'cell-23-0 col-0 ' markdown = '1'><a href="squirrel.html">Squirrel</a> = <a href="dabbaba.html">Dabbaba</a> + <a href="knight.html">Knight</a> +
@@ -182,7 +195,7 @@ from the game(s) they come from. Pieces can be listed multiple times.</p>
   </tr>
   <tr class = 'row-24' markdown = '1'>
     <td class = 'cell-24-0 col-0 ' markdown = '1'><a href="caliph.html">Caliph</a> = <a href="wazir.html">Wazir</a> + <a href="alfil.html">Alfil</a></td>
-    <td class = 'cell-24-2 col-2 ' markdown = '1'>F/100%</td>
+    <td class = 'cell-24-2 col-2 ' markdown = '1'>W</td>
     <td class = 'cell-24-3 col-3 ' markdown = '1'>F*/100%</td>
   </tr>
   <tr class = 'row-25' markdown = '1'>
@@ -237,13 +250,13 @@ from the game(s) they come from. Pieces can be listed multiple times.</p>
   <tr class = 'row-34' markdown = '1'>
     <td class = 'cell-34-0 col-0 ' markdown = '1'><a href="chancellor.html">Chancellor</a>/<a href="chancellor.html?piece=empress">Empress</a>
                              = <a href="rook.html">Rook</a> + <a href="knight.html">Knight</a></td>
-    <td class = 'cell-34-2 col-2 ' markdown = '1'>F/100%</td>
+    <td class = 'cell-34-2 col-2 ' markdown = '1'>W</td>
     <td class = 'cell-34-3 col-3 ' markdown = '1'>F/100%</td>
   </tr>
   <tr class = 'row-35' markdown = '1'>
     <td class = 'cell-35-0 col-0 ' markdown = '1'><a href="amazon.html">Amazon</a> =  <a href="queen.html">Queen</a> + <a href="knight.html">Knight</a></td>
-    <td class = 'cell-35-2 col-2 ' markdown = '1'>F/100%</td>
-    <td class = 'cell-35-3 col-3 ' markdown = '1'>F/100%</td>
+    <td class = 'cell-35-2 col-2 ' markdown = '1'>W</td>
+    <td class = 'cell-35-3 col-3 ' markdown = '1'>GG</td>
   </tr>
   <tr class = 'row-36' markdown = '1'>
     <td class = 'cell-36-0 col-0 ' markdown = '1'><a href="gnu.html">Gnu</a> = <a href="camel.html">Camel</a> + <a href="knight.html">Knight</a></td>
@@ -269,21 +282,21 @@ from the game(s) they come from. Pieces can be listed multiple times.</p>
   <tr class = 'row-40' markdown = '1'>
     <td class = 'cell-40-0 col-0 ' markdown = '1'><a href="king.html?piece=king_general">King General/&#x738b;&#x5c07;</a></td>
     <td class = 'cell-40-1 col-1 ' markdown = '1' rowspan = '15'><a href="https://en.wikipedia.org/wiki/Shogi">Shogi (&#x5c06;&#x68cb;)</a></td>
-    <td class = 'cell-40-2 col-2 ' markdown = '1' rowspan = '2'>F/100%</td>
-    <td class = 'cell-40-3 col-3 ' markdown = '1' rowspan = '2'>F/100%</td>
+    <td class = 'cell-40-2 col-2 ' markdown = '1' rowspan = '2'>W</td>
+    <td class = 'cell-40-3 col-3 ' markdown = '1' rowspan = '2'>GG</td>
   </tr>
   <tr class = 'row-41' markdown = '1'>
     <td class = 'cell-41-0 col-0 ' markdown = '1'><a href="king.html?piece=jeweled_general">Jeweled General/&#x7389;&#x5c07;</a></td>
   </tr>
   <tr class = 'row-42' markdown = '1'>
     <td class = 'cell-42-0 col-0 ' markdown = '1'><a href="rook.html?piece=flying_chariot">Flying Chariot/&#x98db;&#x8eca;</a> (Rook)</td>
-    <td class = 'cell-42-2 col-2 ' markdown = '1'>F/100%</td>
+    <td class = 'cell-42-2 col-2 ' markdown = '1'>W</td>
     <td class = 'cell-42-3 col-3 ' markdown = '1'>T/6</td>
   </tr>
   <tr class = 'row-43' markdown = '1'>
     <td class = 'cell-43-0 col-0 ' markdown = '1'><a href="dragon_king.html">Dragon King/&#x9f8d;&#x738b;</a> (Promoted Rook)</td>
-    <td class = 'cell-43-2 col-2 ' markdown = '1'>F/100%</td>
-    <td class = 'cell-43-3 col-3 ' markdown = '1'>F/100%</td>
+    <td class = 'cell-43-2 col-2 ' markdown = '1'>W</td>
+    <td class = 'cell-43-3 col-3 ' markdown = '1'>GG</td>
   </tr>
   <tr class = 'row-44' markdown = '1'>
     <td class = 'cell-44-0 col-0 ' markdown = '1'><a href="bishop.html?piece=angle_mover">Angle Mover/&#x89d2;&#x884c;</a> (Bishop)</td>
@@ -292,13 +305,13 @@ from the game(s) they come from. Pieces can be listed multiple times.</p>
   </tr>
   <tr class = 'row-45' markdown = '1'>
     <td class = 'cell-45-0 col-0 ' markdown = '1'><a href="dragon_horse.html">Dragon Horse/&#x9f8d;&#x99ac;</a>, (Promoted Bishop)</td>
-    <td class = 'cell-45-2 col-2 ' markdown = '1'>F/100%</td>
-    <td class = 'cell-45-3 col-3 ' markdown = '1'>F/100%</td>
+    <td class = 'cell-45-2 col-2 ' markdown = '1'>W</td>
+    <td class = 'cell-45-3 col-3 ' markdown = '1'>GG</td>
   </tr>
   <tr class = 'row-46' markdown = '1'>
     <td class = 'cell-46-0 col-0 ' markdown = '1'><a href="gold_general.html">Gold General/&#x91d1;&#x5c07;</a></td>
-    <td class = 'cell-46-2 col-2 ' markdown = '1'>F/100%</td>
-    <td class = 'cell-46-3 col-3 ' markdown = '1'>F/100%</td>
+    <td class = 'cell-46-2 col-2 ' markdown = '1'>W</td>
+    <td class = 'cell-46-3 col-3 ' markdown = '1'>GG</td>
   </tr>
   <tr class = 'row-47' markdown = '1'>
     <td class = 'cell-47-0 col-0 ' markdown = '1'><a href="silver_general.html">Silver General/&#x9280;&#x5c07;</a></td>
@@ -307,8 +320,8 @@ from the game(s) they come from. Pieces can be listed multiple times.</p>
   </tr>
   <tr class = 'row-48' markdown = '1'>
     <td class = 'cell-48-0 col-0 ' markdown = '1'><a href="gold_general.html?piece=promoted_silver">Promoted Silver/&#x6210;&#x9280;</a></td>
-    <td class = 'cell-48-2 col-2 ' markdown = '1'>F/100%</td>
-    <td class = 'cell-48-3 col-3 ' markdown = '1'>F/100%</td>
+    <td class = 'cell-48-2 col-2 ' markdown = '1'>W</td>
+    <td class = 'cell-48-3 col-3 ' markdown = '1'>GG</td>
   </tr>
   <tr class = 'row-49' markdown = '1'>
     <td class = 'cell-49-0 col-0 ' markdown = '1'><a href="katsura_horse.html">Katsura Horse/&#x6842;&#x99ac;</a> (Knight)</td>
@@ -318,8 +331,8 @@ from the game(s) they come from. Pieces can be listed multiple times.</p>
   <tr class = 'row-50' markdown = '1'>
     <td class = 'cell-50-0 col-0 ' markdown = '1'><a href="gold_general.html?piece=promoted_katsura">Promoted Katsura/&#x6210;&#x6842;</a>
   (Promoted Knight)</td>
-    <td class = 'cell-50-2 col-2 ' markdown = '1'>F/100%</td>
-    <td class = 'cell-50-3 col-3 ' markdown = '1'>F/100%</td>
+    <td class = 'cell-50-2 col-2 ' markdown = '1'>W</td>
+    <td class = 'cell-50-3 col-3 ' markdown = '1'>GG</td>
   </tr>
   <tr class = 'row-51' markdown = '1'>
     <td class = 'cell-51-0 col-0 ' markdown = '1'><a href="incense_chariot.html">Incense Chariot/&#x9999;&#x8eca;</a> (Lance)</td>
@@ -329,8 +342,8 @@ from the game(s) they come from. Pieces can be listed multiple times.</p>
   <tr class = 'row-52' markdown = '1'>
     <td class = 'cell-52-0 col-0 ' markdown = '1'><a href="gold_general.html?piece=promoted_incense">Promoted Incense/&#x6210;&#x9999;</a>
   (Promoted Lance)</td>
-    <td class = 'cell-52-2 col-2 ' markdown = '1'>F/100%</td>
-    <td class = 'cell-52-3 col-3 ' markdown = '1'>F/100%</td>
+    <td class = 'cell-52-2 col-2 ' markdown = '1'>W</td>
+    <td class = 'cell-52-3 col-3 ' markdown = '1'>GG</td>
   </tr>
   <tr class = 'row-53' markdown = '1'>
     <td class = 'cell-53-0 col-0 ' markdown = '1'><a href="pawn.html?piece=foot_soldier">Foot Soldier/&#x6b69;&#x5175;</a> (Pawn)</td>
@@ -340,8 +353,8 @@ from the game(s) they come from. Pieces can be listed multiple times.</p>
   <tr class = 'row-54' markdown = '1'>
     <td class = 'cell-54-0 col-0 ' markdown = '1'><a href="gold_general.html?piece=reaches_gold">Reaches Gold/&#x3068;&#x91d1;</a>
   (Promoted Pawn)</td>
-    <td class = 'cell-54-2 col-2 ' markdown = '1'>F/100%</td>
-    <td class = 'cell-54-3 col-3 ' markdown = '1'>F/100%</td>
+    <td class = 'cell-54-2 col-2 ' markdown = '1'>W</td>
+    <td class = 'cell-54-3 col-3 ' markdown = '1'>GG</td>
   </tr>
   <tr class = 'row-55' markdown = '1'>
     <td class = 'cell-55-0 col-0 ' markdown = '1'><a href="hunter.html">Hunter</a></td>
