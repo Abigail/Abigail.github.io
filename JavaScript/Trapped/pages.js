@@ -36,6 +36,10 @@ let pages = [
     // Combined leapers
     //
     ["squirrel",          "Squirrel"],
+    ["caliph",            "Caliph"],
+    ["hawk",              "Hawk"],
+    ["champion",          "Champion"],
+    ["wizard",            "Wizard"],
     ["gnu",               "Gnu"],
     ["bison",             "Bison"],
     ["okapi",             "Okapi"],
