@@ -4,8 +4,19 @@ The Wazir is one of the basic leapers. It's a very old piece, appearing
 in very early chess variants. It may step one square in each of the
 four orthogonal directions.
 
-As such, it can always follow the spiral. It will not get trapped,
-and it will eventually visit every square on the board. This is
-true for *any* piece whose possible moves are a superset of the
-moves of a Wazir. This includes the [King](king.html), 
-[Queen](queen.html) and [Rook](rook.html) from traditional chess.
+In the Shogi variant [D&#x14d;butsu sh&#x14d;gi](#wiki:Dobutsu_shogi),
+the *Giraffe* moves in the same way as the Wazir.
+
+#### Spiral
+
+Because the Wazir can always make a step in each of the four orthogonal
+directions, it can follow the Spiral, visiting all the squares in order.
+As such, if will fill the entire board in a boring pattern.
+
+It also means that any piece which can move as the Wazir (even when
+it has more moves available, like the Chess [King](king.html)), will
+follow the Spiral and fill the entire board.
+
+#### Wedge
+
+On the Wedge, the Wazir gets trapped after no more than 6 steps!

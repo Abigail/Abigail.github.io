@@ -11,6 +11,9 @@ is not *royal*. (Royal pieces are pieces which need lead to a loss
 of the game when they are captured). Royalness however, does not
 matter in our investigation. A *Prince* is another name for a *Mann*.
 
+In the Shogi variant [D&#x14d;butsu sh&#x14d;gi](#wiki:Dobutsu_shogi),
+the King is known as the *Lion*.
+
 #### Spiral
 
 The King can move as the [Wazir](wazir.html), and the [Wazir](wazir.html)
