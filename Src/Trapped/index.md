@@ -120,6 +120,14 @@ Each piece is classified to be one of:
 [Okapi](okapi.html) = [Zebra](zebra.html) + [Knight](knight.html)
                                    & ?         & ?        \\
 
+
+[Dragon King](dragon_king.html) = [Rook](rook.html) + [King](king.html)
+                                   & {rs = 2} Crowned Pieces
+                                   & W         & GG       \\
+[Dragon Horse](dragon_horse.html) = [Bishop](bishop.html) + [King](king.html)
+                                   & W         & GG       \\
+
+
 [Dragon](dragon.html) = [Knight](knight.html) + [Pawn](pawn.html)
                                    & {rs = 2} Pawned Pieces
                                    & ?         & T/42     \\
