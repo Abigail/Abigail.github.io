@@ -75,7 +75,7 @@ Each piece is classified to be one of:
 [Flamingo](flamingo.html)          & ?         & T/90     \\
 
 [King](king.html) = [Wazir](wazir.html) + [Ferz](ferz.html)
-                                   & {rs = 10} Combined Leapers
+                                   & {rs = 12} Combined Leapers
                                    & W         & GG       \\
 [Squirrel](squirrel.html) = [Dabbaba](dabbaba.html) + [Knight](knight.html) +
                             [Alfil](alfil.html) 
@@ -85,6 +85,11 @@ Each piece is classified to be one of:
 [Hawk](hawk.html) = [Alfil](alfil.html) + [Dabbaba](dabbaba.html) +
                     [Threeleaper](threeleaper.html) + [Tripper](tripper.html)
                                    & F*/100%   & F*/100%  \\
+[Champion](champion.html) = [Wazir](wazir.html) + [Dabbaba](dabbaba.html) +
+                            [Alfil](alfil.html)
+                                   & W         & F/100%   \\
+[Wizard](wizard.html) = [Ferz](ferz.html) + [Camel](camel.html)
+                                   & ?         & F*/50%   \\
 [Gnu](gnu.html) = [Knight](knight.html) + [Camel](camel.html)
                                    & ?         & ?        \\
 [Bison](bison.html) = [Camel](camel.html) + [Zebra](zebra.html)
@@ -157,6 +162,9 @@ Each piece is classified to be one of:
                                                Chess](#wiki:Falcon-hunter_chess)
                                    & T/146     & E        \\
 [Falcon](falcon.html)              & F*/25%    & E        \\
+[Champion](champion.html)          & {rs = 2} [Omega Chess](#wiki) 
+                                   & W         & F/100%   \\
+[Wizard](wizard.html)              & ?         & F*/50%   \\
 
 ====|
 

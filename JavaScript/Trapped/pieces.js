@@ -193,6 +193,8 @@ let pieces = {
     //
     "squirrel":         {betza:  "DNA"},
     "hawk":             {betza:  "ADGH"},
+    "champion":         {betza:  "WAD"},
+    "wizard":           {betza:  "FC"},
     "gnu":              {betza:  "NC"},
     "caliph":           {betza:  "WA"},
     "bison":            {betza:  "CZ"},
