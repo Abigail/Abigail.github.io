@@ -104,8 +104,10 @@ Each piece is classified to be one of:
 [Root 50 Leaper](root_50_leaper.html) = (5,5)-leaper + (7,1)-leaper
                                    & ?         & ?        \\
 
-[Knightrider](knightrider.html)    & {rs = 1} Riders
-                                   & T/509 & T/60         \\
+[Wazirrider](rook.html) ([Rook](rook.html))
+                                   & {rs = 2} Riders
+                                   & W         & T/6      \\
+[Knightrider](knightrider.html)    & T/509 & T/60         \\
 
 [Dragon](dragon.html) = [Pawn](pawn.html) + [Knight](knight.html)
                                    & {rs = 6} Knighted Pieces
