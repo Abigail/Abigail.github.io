@@ -203,6 +203,10 @@ let pieces = {
     "root_25_leaper":   {betza:  "(3,4)(5,0)"},
     "root_50_leaper":   {betza:  "(5,5)(7,1)"},
     //
+    // Riders
+    //
+    "knightrider":      {betza:  "NN"},
+    //
     // Shogi
     //
     "king_general":     {betza:  "K",   prefix: "&#x738b;&#x5c07;"},

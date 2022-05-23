@@ -46,6 +46,11 @@ let pages = [
     ["zebu",              "Zebu"],
     ["root_25_leaper",    "Root 25 Leaper"],
     ["root_50_leaper",    "Root 50 Leaper"],
+
+    //
+    // Riders
+    //
+    ["knightrider",       "Knightrider"],
     
     //
     // Knighted Pieces
