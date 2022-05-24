@@ -105,11 +105,13 @@ Each piece is classified to be one of:
                                    & ?         & ?        \\
 
 [Wazirrider](rook.html) ([Rook](rook.html))
-                                   & {rs = 2} Riders
+                                   & {rs = 5} Riders
                                    & W         & T/6      \\
 [Ferzrider](bishop.html) ([Bishop](bishop.html) 
                                    & F*/31.25% & E        \\
-[Knightrider](knightrider.html)    & T/509 & T/60         \\
+[Dabbabarider](dabbabarider.html)  & F/25%     & E        \\
+[Knightrider](knightrider.html)    & T/509     & T/60     \\
+[Alfilrider](alfilrider.html)      & F/7.8125% & E        \\
 
 [Dragon](dragon.html) = [Pawn](pawn.html) + [Knight](knight.html)
                                    & {rs = 6} Knighted Pieces
