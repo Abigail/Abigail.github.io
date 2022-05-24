@@ -21,29 +21,37 @@ by Abigail<br>
 </div>
 
 
-<p>Other than the <a href="knight.html">Knight</a>, of the traditional Chess pieces,
-the Bishop (&#x2657;)
-is the only one which is mildly interesting. The Bishop is a 
-(1, 1)-slider. This means the Bishop can move an unlimited number
-of squares in any diagonal direction &mdash; but it cannot slide over
-an occupied square. Because of its diagonal movement, a Bishop can
-only cover half of a chess board: the square it starts a move from
-has the same colour as the square is lands on. It's a <em>colour bound</em>
-piece.</p>
+<p>The Bishop (&#x2657;) can slide an unlimited number of squares in
+each of the four diagonal directions, as long as the squares it
+slides over are not occupied. <a href="https://en.wikipedia.org/wiki/Shogi">Shogi (&#x5c06;&#x68cb;)</a>
+has the Angle Mover (&#x89d2;&#x884c;) which moves in the same
+way (which is way the piece is also called a Bishop).</p>
 
-<p>In <a href="https://en.wikipedia.org/wiki/Shogi">Shogi (&#x5c06;&#x68cb;)</a>, the 
-Angle Mover (&#x89d2;&#x884c;) moves in the same way (hence, the
-Angle Mover is often called Bishop).</p>
+<p>Due to its diagonal movement, the Bishop is <em>colour bound</em>: if it
+starts a move on a dark square, it ends the move on a dark square.
+And if it starts on a light square, it ends on a light square. As such,
+the Bishop can only reach half the squares of the board.</p>
 
-<p>If we look at the squares the Bishop moves over under our rules,
-it will circle around the starting position in the opposite direction
-of the spiral, in a very regular fashion. But while the possible
-moves of a Bishop are symmetric, the resulting visited squares aren't:
-the bottom right hand side has more visited squares than the other
-three quarters.</p>
+<p>The Bishop is a <a href="ferz.html">Ferz</a>rider, that is, it moves in the
+same directions as the <a href="ferz.html">Ferz</a>, without a limit on
+the number of squares it moves over (as long as the squares it
+moves over are unoccupied).</p>
+
+<h4 id = 'spiral'>Spiral</h4>
+
+<div class = "section">
+<p>On the Spiral, the Bishop moves in a regular pattern. However, 
+despite the possible moves of the Bishop being four fold symmetric,
+the resulting pattern isn't, making the Bishop slightly interesting.</p>
 
 <p>If we take the limit, we see that the Bishop will visit
 <span class = 'latex-inline'>\(\frac{5}{16} = 31.25 \%\)</span> of the squares on the board.</p>
+</div>
+
+<h4 id = 'wedge'>Wedge</h4>
+
+<p>On the Wedge, the Bishop quickly escapes to infinity, moving in
+a stepwise pattern.</p>
 
 <div class = 'trapped' data-piece = 'bishop'></div>
 
