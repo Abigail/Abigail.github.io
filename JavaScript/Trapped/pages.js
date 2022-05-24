@@ -53,6 +53,10 @@ let pages = [
     ["dabbabarider",      "Dabbabarider"],
     ["knightrider",       "Knightrider"],
     ["alfilrider",        "Alfilrider"],
+    ["threeleaperrider",  "Threeleaperrider"],
+    ["camelrider",        "Camelrider"],
+    ["zebrarider",        "Zebrarider"],
+    ["tripperrider",      "Tripperrider"],
     
     //
     // Knighted Pieces
