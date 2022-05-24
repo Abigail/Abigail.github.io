@@ -206,6 +206,12 @@ let pieces = {
     // Riders
     //
     "knightrider":      {betza:  "NN"},
+    "dabbabarider":     {betza:  "DD"},
+    "alfilrider":       {betza:  "AA"},
+    "threeleaperrider": {betza:  "HH"},
+    "camelrider":       {betza:  "CC"},
+    "zebrarider":       {betza:  "ZZ"},
+    "tripperrider":     {betza:  "GG"},
     //
     // Shogi
     //

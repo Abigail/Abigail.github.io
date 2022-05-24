@@ -1,0 +1,56 @@
+<html>
+<head>
+<title>Alfilrider</title>
+<meta charset = "utf-8">
+<link rel  = 'preconnect' href = 'https://fonts.gstatic.com'>
+<link rel = 'stylesheet' href =      'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
+<link rel = 'stylesheet' href = '../../Styles/main.css'>
+<link rel = 'stylesheet' href = '../../Styles/Trapped/main.css'>
+<script src = "../../JavaScript/jquery.js"></script>
+<script id  = 'MathJax-script' async src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.js'></script>
+<script id = 'svg-script' src = 'https://cdn.jsdelivr.net/npm/@svgdotjs/svg.js@3.0/dist/svg.min.js'></script>
+<script src = '../../JavaScript/navigation.js'></script>
+<script src = '../../JavaScript/Trapped/trapped.js'></script>
+<script src = '../../JavaScript/Trapped/pieces.js'></script>
+<script src = '../../JavaScript/Trapped/pages.js'></script>
+</head>
+
+<body><h1>Alfilrider</h1><div class = "byline">
+by Abigail<br>
+<img src = "../../Images/jan_sluiters.jpg">
+</div>
+
+
+<p>The Alfilrider moves like a <a href="bishop.html">Bishop</a>, except that
+it skips every other square. This means, on each move, it can
+move an unlimited, <em>even</em> number of squares in each of the four
+diagonal directions, under the condition each each second square
+is empty (it can jump over occupied squares which are an odd
+number of squares away from the starting position).</p>
+
+<h4 id = 'spiral'>Spiral</h4>
+
+<div class = "section">
+<p>On the Spiral, the Alfilrider moves in a similar way as the
+<a href="bishop.html">Bishop</a> does, but its path "blown up" by a factor
+of two. As such, it will visit <span class = 'latex-inline'>\(\frac{5}{64} = 7.8125 \%\)</span>
+of the squares on the board.</p>
+</div>
+
+<h4 id = 'wedge'>Wedge</h4>
+
+<p>On the Wedge, the Alfilrider escapes to infinity in a straight line.</p>
+
+<div class = 'trapped' data-piece = 'alfilrider'></div>
+
+<hr id = 'last-line'>
+<div class = 'trailer'>
+<p class = 'prev'><a class = "prev" href = "">&#x261C;</a></p>
+<p class = 'issue'>Please leave any comments as a
+  <a href = 'https://github.com/Abigail/Abigail.github.io/issues'
+     title = 'GitHub issue'>GitHub issue</a>.
+<p class = 'next'><a class = "next" href = "">&#x261E;</a></p>
+</div>
+
+</body>
+</html>

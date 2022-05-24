@@ -50,7 +50,9 @@ let pages = [
     //
     // Riders
     //
+    ["dabbabarider",      "Dabbabarider"],
     ["knightrider",       "Knightrider"],
+    ["alfilrider",        "Alfilrider"],
     
     //
     // Knighted Pieces
