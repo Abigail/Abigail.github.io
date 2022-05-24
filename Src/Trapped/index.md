@@ -107,6 +107,8 @@ Each piece is classified to be one of:
 [Wazirrider](rook.html) ([Rook](rook.html))
                                    & {rs = 2} Riders
                                    & W         & T/6      \\
+[Ferzrider](bishop.html) ([Bishop](bishop.html) 
+                                   & F*/31.25% & E        \\
 [Knightrider](knightrider.html)    & T/509 & T/60         \\
 
 [Dragon](dragon.html) = [Pawn](pawn.html) + [Knight](knight.html)
