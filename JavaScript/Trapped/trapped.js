@@ -123,7 +123,7 @@ function set_up_info (name, piece) {
         radio_spiral +=
             `<td colspan = 3>
                  <input type     = "radio" name = "spiral" value = "${type}"
-                        class    = "${type}-${name}
+                        class    = "spiral-${name}"
                         id       = "input_${type}-${name}" ${checked}
                         onchange = "init_trapped ({spiral: '${type}',
                                                    name:   '${name}'})">
