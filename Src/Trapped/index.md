@@ -94,7 +94,7 @@ Each piece is classified to be one of:
 [Alfil](alfil.html)                & F/12.5%   & E        \\
 [Threeleaper](threeleaper.html)    & F/11.1%   & T/6      \\
 [Camel](camel.html)                & T/3722    & T/342 & T/2401    \\
-[Zebra](zebra.html)                & T/4633    & T/80     \\
+[Zebra](zebra.html)                & T/4633    & T/80  & T/286     \\
 [Tripper](tripper.html)            & F/5.56%   & E        \\
 [Fourleaper](fourleaper.html)      & F/6.25%   & E        \\
 [Giraffe](giraffe.html)            & T/13102   & T/114    \\
@@ -157,12 +157,12 @@ Each piece is classified to be one of:
         & T/22
         \\
 [Alfilrider](alfilrider.html)
-        & F/7.8125%
+        & F*/7.8125%
         & E
         & E
         \\
 [Threeleaperrider](threeleaperrider.html)
-        & F/\(11.\overline{1}\%\)
+        & F/11.1&#x0305;%
         & T/6
         & E
         \\
@@ -174,12 +174,12 @@ Each piece is classified to be one of:
 [Zebrarider](zebrarider.html)
         & T/266
         & T/72
-        &
+        & T/57
         \\
 [Tripperrider](tripperrider.html)
-        & F*/1.953125% 
+        & F*/3.472&#x0305;%
         & E
-        &
+        & E
         \\
 
 
