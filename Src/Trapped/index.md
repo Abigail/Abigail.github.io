@@ -21,13 +21,17 @@ Each piece is classified to be one of:
 <dd>A piece which doesn't get trapped for at least 20,000 steps, but
     for which it isn't clear it will get trapped or not.
 <dt class = 'boring'>W, GG</dt>
-<dd>A piece which can move at least as the [Wazir](wazir.html) (on the Spiral)
-    or the [Gold General](gold_general.html) (on the Wedge). The Gold
-    General moves as either the [Wazir](wazir.html) or the forward
-    [Ferz](ferz.html). (The piece may have additional movement possibilities).
-    This results in a very
-    boring movement, where the piece visits each square of the
-    board, in the order of the values.
+<dd>This indicates the piece has the necessary movement options to follow
+    all the squares in the same order as the values placed on the square.
+    This results in a very boring pattern. <br>
+    For the Spiral, this happens if the piece can move as the
+    [Wazir](wazir.html) (being able to step one square in an orthogonal
+    direction). For the Folded Wedge, this happens if the piece can
+    move as the [Gold General](gold_general.html) (being able to step one
+    square in an orthogonal direction, or one square diagonally forward).<br>
+    The piece may have additional move options available, but they will
+    not be used.<br>
+    There is no equivalence for the Flat Spiral.
 <dt class = 'fill'>F/XX.XX%</dt>
 <dd>This is a piece which won't get trapped, and which will eventually
     fill XX.XX% of the board, in a regular fashion, where XX.XX% > 0</dd>
@@ -45,17 +49,42 @@ Each piece is classified to be one of:
 </dl>
 
 |====
-{th = 1} Piece  &
-{th = 1} From   &
-{th = 1} Spiral &
-{th = 1} Wedge  \\
-[King](king.html)                  & {rs = 6} Chess
-                                   & W         & GG       \\
-[Queen](queen.html)                & W         & GG       \\
-[Rook](rook.html)                  & W         & T/6      \\
-[Bishop](bishop.html)              & F*/31.25% & E        \\
-[Knight](knight.html)              & T/2015    & T/50     \\
-[Pawn](pawn.html)                  & E         & E        \\
+{th = 1; rs = 2} Piece  &
+{th = 1; rs = 2} From   &
+{th = 1; rs = 2} Spiral &
+{th = 1; cs = 2} Wedge  \\
+{th = 1} Folded & {th = 1} Flat \\
+[King](king.html)
+        & {rs = 6} Chess
+        & W
+        & GG
+        & F/100%
+        \\
+[Queen](queen.html)
+        & W
+        & GG
+        & F*/100%
+        \\
+[Rook](rook.html)
+        & W
+        & T/6
+        & E
+        \\
+[Bishop](bishop.html)
+        & F*/31.25%
+        & E
+        & E
+        \\
+[Knight](knight.html)
+        & T/2015
+        & T/50
+        & E*
+        \\
+[Pawn](pawn.html)
+        & E
+        & E
+        & E
+        \\
 
 [Wazir](wazir.html)                & {rs = 15} Basic Leapers
                                    & W         & T/6      \\
@@ -104,19 +133,56 @@ Each piece is classified to be one of:
 [Root 50 Leaper](root_50_leaper.html) = (5,5)-leaper + (7,1)-leaper
                                    & ?         & ?        \\
 
+
+
 [Wazirrider](rook.html) ([Rook](rook.html))
-                                   & {rs = 9} Riders
-                                   & W                   & T/6      \\
+        & {rs = 9} Riders
+        & W
+        & T/6
+        & E
+        \\
 [Ferzrider](bishop.html) ([Bishop](bishop.html))
-                                   & F*/31.25%           & E        \\
-[Dabbabarider](dabbabarider.html)  & F/25%               & E        \\
-[Knightrider](knightrider.html)    & T/509               & T/60     \\
-[Alfilrider](alfilrider.html)      & F*/7.8125%          & E        \\
+        & F*/31.25%
+        & E
+        & E
+        \\
+[Dabbabarider](dabbabarider.html)
+        & F/25%
+        & E
+        &
+        \\
+[Knightrider](knightrider.html)
+        & T/509
+        & T/60
+        & T/22
+        \\
+[Alfilrider](alfilrider.html)
+        & F/7.8125%
+        & E
+        &
+        \\
 [Threeleaperrider](threeleaperrider.html)
-                                   & F/11.1%             & T/6      \\
-[Camelrider](camelrider.html)      & T/1697              & T/90     \\
-[Zebrarider](zebrarider.html)      & T/266               & T/72     \\
-[Tripperrider](tripperrider.html)  & F*/1.953125%        & E        \\
+        & F/11.1%
+        & T/6
+        &
+        \\
+[Camelrider](camelrider.html)
+        & T/1697
+        & T/90
+        & 
+        \\
+[Zebrarider](zebrarider.html)
+        & T/266
+        & T/72
+        &
+        \\
+[Tripperrider](tripperrider.html)
+        & F*/1.953125% 
+        & E
+        &
+        \\
+
+
 
 [Dragon](dragon.html) = [Pawn](pawn.html) + [Knight](knight.html)
                                    & {rs = 6} Knighted Pieces

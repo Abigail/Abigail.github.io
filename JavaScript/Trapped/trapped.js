@@ -44,15 +44,6 @@ function set_up (element) {
 
     set_up_info (name, piece)
     init_trapped ({piece: piece, name: name})
-
-    //
-    // Testing....
-    //
-    let w = new Wedge
-    for (let value = 1; value <= 16; value ++) {
-        let [row, col] = w . to_coordinates (value)
-        let  v         = w . to_value (row, col)
-    }
 }
 
 //
@@ -72,7 +63,7 @@ function init_trapped (args = {}) {
         $(`div#${board_id}`) . empty () // Gets rid of any existing SVG
     }
 
-    let constructor_args = {
+    let c_args = {
         name:          name,
         piece:         piece,
         colour_scheme: $(`#colour-${name}`) . val ()
@@ -80,8 +71,9 @@ function init_trapped (args = {}) {
 
     let trapped
 
-    if (spiral == "spiral") {trapped = new Spiral (constructor_args)} else
-    if (spiral == "wedge")  {trapped = new Wedge  (constructor_args)}
+    if (spiral == "spiral")       {trapped = new Spiral       (c_args)} else
+    if (spiral == "wedge_flat")   {trapped = new Wedge_Flat   (c_args)} else
+    if (spiral == "wedge_folded") {trapped = new Wedge_Folded (c_args)}
 
     trapped . create_board ()
             . place        ()
@@ -96,6 +88,11 @@ function init_trapped (args = {}) {
 //
 // Populate the right div with some form elements.
 //
+let radio_info = {
+    spiral:       {name: "Spiral"},
+    wedge_folded: {name: "Wedge (Folded)"},
+    wedge_flat:   {name: "Wedge (Flat)"},
+}
 function set_up_info (name, piece) {
     let div     = $("div#" + info_id (name))
     let info    = window [name]
@@ -111,6 +108,30 @@ function set_up_info (name, piece) {
                   `onclick = 'pause ("${name}")'>`            +
                   `Pause</button><br>`
 
+    let radio_spiral = ""
+    let spiral_types = ["spiral", "wedge_folded", "wedge_flat"]
+
+    spiral_types . forEach ((type, index) => {
+        let spiral_name = radio_info [type] ["name"]
+        let checked     = ""
+        if (index == 0) {
+            checked = "checked = 'checked'"
+        }
+        else {
+            radio_spiral += "<tr>"
+        }
+        radio_spiral +=
+            `<td colspan = 3>
+                 <input type     = "radio" name = "spiral" value = "${type}"
+                        class    = "${type}-${name}
+                        id       = "input_${type}-${name}" ${checked}
+                        onchange = "init_trapped ({spiral: '${type}',
+                                                   name:   '${name}'})">
+                 <label for = "input_${type}-${name}">${spiral_name}</label>
+             </td></tr>`
+    })
+
+
     let info_table = `
         <table class = 'info_table'>
              <tr><th colspan = 4 id = 'title-${name}' class = 'title'>
@@ -123,21 +144,9 @@ function set_up_info (name, piece) {
                  <td colspan = 3 id = 'box-${name}'></td></tr>
              <tr><td>Density</td>
                  <td colspan = 3 id = 'density-${name}'></td></tr>
-             <tr><td rowspan = 2>Spiral type</td>
-                 <td colspan = 3>
-                 <input type = "radio" name = "spiral" value = "spiral"
-                        class = "spiral-${name}
-                        id  = "input_spiral-${name}" checked = "checked"
-                        onchange = "init_trapped ({spiral: 'spiral',
-                                                   name:   '${name}'})">
-                 <label for = "input_spiral-${name}">Spiral</label></td></tr>
-             <tr><td colspan = 3>
-                 <input type = "radio" name = "spiral" value = "wedge"
-                        class = "spiral-${name}
-                        id  = "input_wedge-${name}"
-                        onchange = "init_trapped ({spiral: 'wedge',
-                                                   name:   '${name}'})">
-                 <label for = "input_wedge-${name}">Wedge</label></td></tr>
+             <tr><td rowspan = 3>Spiral type</td>
+                 ${radio_spiral}
+
              <tr><td>Colour scheme</td>
                  <td colspan = 3>
                     <select id = 'colour-${name}'>
@@ -918,7 +927,7 @@ class Spiral extends Trapped {
 }
 
 
-class Wedge extends Trapped {
+class Wedge_Folded extends Trapped {
     //       -3 -2 -1  0  1  2  3
     //
     //  -3:  10 11 12 13 14 15 16
@@ -975,6 +984,35 @@ class Wedge extends Trapped {
         this . vb_min_row -= 2 * delta
         this . vb_min_col -=     delta
         this . vb_max_col +=     delta
+    }
+}
+
+class Wedge_Flat extends Wedge_Folded {
+    //       -3 -2 -1  0  1  2  3
+    //
+    //  -3:  10 11 12 13 14 15 16
+    //  -2:      5  6  7  8  9
+    //  -1:         2  3  4
+    //   0:            1
+    //
+    to_value (row, col) {
+        if (row > 0)                             {return 0}
+        if (Math . abs (col) > Math . abs (row)) {return 0}
+        let value = (row - 1) ** 2 + row - col
+
+        return value
+    }
+
+    to_coordinates (value) {
+        let row = 0
+        let col = 0
+
+        let sqrt = Math . floor (Math . sqrt (value - 1))
+        let sq   = (1 + sqrt) ** 2
+        row      =            - sqrt
+        col      = sq - value - sqrt
+
+        return [row, col]
     }
 }
 

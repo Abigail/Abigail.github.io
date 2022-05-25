@@ -10,12 +10,19 @@ be blocked.
 See also the [Knightrider](knightrider.html), a piece which moves
 one or more squares in the same direction as the Knight.
 
-#### Spiral
+### Spiral
 
 Of the traditional Chess pieces, this is the only piece which gets
-trapped. Circling the starting point in an irregular way in the
+trapped on the Spiral. Circling the starting point in an irregular way in the
 opposite direction as the spiral, the Knight gets trapped after 2015 steps.
 
-#### Wedge
+### Wedge
 
-On the Wedge, the Knight gets trapped quickly, after 50 steps. 
+#### Folded
+
+On the Folded Wedge, the Knight gets trapped quickly, after 50 steps. 
+
+#### Flat
+
+On the Flat Wedge, the Knight bounces around for the first 30 steps,
+then, making triangular shaped turns, escapes to infinity.

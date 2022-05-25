@@ -16,7 +16,7 @@ same directions as the [Ferz](ferz.html), without a limit on
 the number of squares it moves over (as long as the squares it
 moves over are unoccupied).
 
-#### Spiral
+### Spiral
 
 On the Spiral, the Bishop moves in a regular pattern. However, 
 despite the possible moves of the Bishop being four fold symmetric,
@@ -25,7 +25,14 @@ the resulting pattern isn't, making the Bishop slightly interesting.
 If we take the limit, we see that the Bishop will visit
 \(\frac{5}{16} = 31.25 \%\) of the squares on the board.
 
-#### Wedge
+### Wedge
 
-On the Wedge, the Bishop quickly escapes to infinity, moving in
+#### Folded
+
+On the Folded Wedge, the Bishop quickly escapes to infinity, moving in
 a stepwise pattern.
+
+#### Flat
+
+On the Flat Wedge, the Bishop escapes as well, keep to the right
+edge of the Wedge.
