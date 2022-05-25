@@ -14,16 +14,23 @@ matter in our investigation. A *Prince* is another name for a *Mann*.
 In the Shogi variant [D&#x14d;butsu sh&#x14d;gi](#wiki:Dobutsu_shogi),
 the King is known as the *Lion*.
 
-#### Spiral
+### Spiral
 
 The King can move as the [Wazir](wazir.html), and the [Wazir](wazir.html)
 will follow the Spiral. Hence, the King will visit all the squares on
 the board.
 
-#### Wedge
+### Wedge
+
+#### Folded
 
 The King can move as the [Gold General](gold_general.html),
 and the [Gold General](gold_general.html)
-will follow the Wedge. Hence, the King will visit all the squares on
+will follow the Folded Wedge. Hence, the King will visit all the squares on
 the board.
 
+#### Flat
+
+On the Flat Wedge, fills the board row by row, alternating going
+with and against the numbers, with a small twist just before reaching
+the left hand side of the Wedge.

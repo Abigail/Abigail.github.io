@@ -55,7 +55,9 @@ Each piece is classified to be one of:
 {th = 1; cs = 2} Wedge  \\
 {th = 1} Folded & {th = 1} Flat \\
 [King](king.html)                  & {rs = 6} Chess
-                                   & W         & GG       \\
+                                   & W
+                                   & GG
+                                   & F/100%               \\
 [Queen](queen.html)                & W         & GG       \\
 [Rook](rook.html)                  & W         & T/6      \\
 [Bishop](bishop.html)              & F*/31.25% & E        \\
