@@ -1,5 +1,5 @@
 $(document) . ready (() => {
-    $("td.col-2,td.col-3") . each ((i, e) => {
+    $("td.col-2,td.col-3,td.col-4") . each ((i, e) => {
         if ($(e) . text () . match (/^\s*T\//)) {
             $(e) . addClass ("trapped")
         } else
