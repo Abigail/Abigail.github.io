@@ -154,7 +154,7 @@ Each piece is classified to be one of:
 [Knightrider](knightrider.html)
         & T/509
         & T/60
-        &
+        & T/22
         \\
 [Alfilrider](alfilrider.html)
         & F/7.8125%
