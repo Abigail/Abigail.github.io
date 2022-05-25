@@ -45,10 +45,11 @@ Each piece is classified to be one of:
 </dl>
 
 |====
-{th = 1} Piece  &
-{th = 1} From   &
-{th = 1} Spiral &
-{th = 1} Wedge  \\
+{th = 1; rs = 2} Piece  &
+{th = 1; rs = 2} From   &
+{th = 1; rs = 2} Spiral &
+{th = 1; cs = 2} Wedge  \\
+{th = 1} (Folded) & {th = 1} (Flat) \\
 [King](king.html)                  & {rs = 6} Chess
                                    & W         & GG       \\
 [Queen](queen.html)                & W         & GG       \\
