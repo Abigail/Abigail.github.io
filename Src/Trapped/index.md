@@ -21,13 +21,17 @@ Each piece is classified to be one of:
 <dd>A piece which doesn't get trapped for at least 20,000 steps, but
     for which it isn't clear it will get trapped or not.
 <dt class = 'boring'>W, GG</dt>
-<dd>A piece which can move at least as the [Wazir](wazir.html) (on the Spiral)
-    or the [Gold General](gold_general.html) (on the Wedge). The Gold
-    General moves as either the [Wazir](wazir.html) or the forward
-    [Ferz](ferz.html). (The piece may have additional movement possibilities).
-    This results in a very
-    boring movement, where the piece visits each square of the
-    board, in the order of the values.
+<dd>This indicates the piece has the necessary movement options to follow
+    all the squares in the same order as the values placed on the square.
+    This results in a very boring pattern. <br>
+    For the Spiral, this happens if the piece can move as the
+    [Wazir](wazir.html) (being able to step one square in an orthogonal
+    direction). For the Folded Wedge, this happens if the piece can
+    move as the [Gold General](gold_general.html) (being able to step one
+    square in an orthogonal direction, or one square diagonally forward).<br>
+    The piece may have additional move options available, but they will
+    not be used.<br>
+    There is no equivalence for the Flat Spiral.
 <dt class = 'fill'>F/XX.XX%</dt>
 <dd>This is a piece which won't get trapped, and which will eventually
     fill XX.XX% of the board, in a regular fashion, where XX.XX% > 0</dd>
@@ -49,7 +53,7 @@ Each piece is classified to be one of:
 {th = 1; rs = 2} From   &
 {th = 1; rs = 2} Spiral &
 {th = 1; cs = 2} Wedge  \\
-{th = 1} (Folded) & {th = 1} (Flat) \\
+{th = 1} Folded & {th = 1} Flat \\
 [King](king.html)                  & {rs = 6} Chess
                                    & W         & GG       \\
 [Queen](queen.html)                & W         & GG       \\

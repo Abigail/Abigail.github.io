@@ -44,13 +44,17 @@ from the game(s) they come from. Pieces can be listed multiple times.</p>
 <dd>A piece which doesn't get trapped for at least 20,000 steps, but
     for which it isn't clear it will get trapped or not.
 <dt class = 'boring'>W, GG</dt>
-<dd>A piece which can move at least as the <a href="wazir.html">Wazir</a> (on the Spiral)
-    or the <a href="gold_general.html">Gold General</a> (on the Wedge). The Gold
-    General moves as either the <a href="wazir.html">Wazir</a> or the forward
-    <a href="ferz.html">Ferz</a>. (The piece may have additional movement possibilities).
-    This results in a very
-    boring movement, where the piece visits each square of the
-    board, in the order of the values.
+<dd>This indicates the piece has the necessary movement options to follow
+    all the squares in the same order as the values placed on the square.
+    This results in a very boring pattern. <br>
+    For the Spiral, this happens if the piece can move as the
+    <a href="wazir.html">Wazir</a> (being able to step one square in an orthogonal
+    direction). For the Folded Wedge, this happens if the piece can
+    move as the <a href="gold_general.html">Gold General</a> (being able to step one
+    square in an orthogonal direction, or one square diagonally forward).<br>
+    The piece may have additional move options available, but they will
+    not be used.<br>
+    There is no equivalence for the Flat Spiral.
 <dt class = 'fill'>F/XX.XX%</dt>
 <dd>This is a piece which won't get trapped, and which will eventually
     fill XX.XX% of the board, in a regular fashion, where XX.XX% > 0</dd>
@@ -75,8 +79,8 @@ from the game(s) they come from. Pieces can be listed multiple times.</p>
     <th class = 'cell-0-3 col-3 ' markdown = '1' colspan = '2'>Wedge</td>
   </tr>
   <tr class = 'row-1' markdown = '1'>
-    <th class = 'cell-1-3 col-3 ' markdown = '1'>(Folded)</td>
-    <th class = 'cell-1-4 col-4 ' markdown = '1'>(Flat)</td>
+    <th class = 'cell-1-3 col-3 ' markdown = '1'>Folded</td>
+    <th class = 'cell-1-4 col-4 ' markdown = '1'>Flat</td>
   </tr>
   <tr class = 'row-2' markdown = '1'>
     <td class = 'cell-2-0 col-0 ' markdown = '1'><a href="king.html">King</a></td>
