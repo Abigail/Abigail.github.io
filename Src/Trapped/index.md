@@ -161,7 +161,26 @@ Each piece is classified to be one of:
         & E
         & E
         \\
-
+[Threeleaperrider](threeleaperrider.html)
+        & F/\(11.\overline{1}\%\)
+        & T/6
+        & E
+        \\
+[Camelrider](camelrider.html)
+        & T/1697
+        & T/90
+        & 
+        \\
+[Zebrarider](zebrarider.html)
+        & T/266
+        & T/72
+        &
+        \\
+[Tripperrider](tripperrider.html)
+        & F*/1.953125% 
+        & E
+        &
+        \\
 
 
 
