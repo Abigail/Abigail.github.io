@@ -64,9 +64,15 @@ Each piece is classified to be one of:
 [Rook](rook.html)                  & W
                                    & T/6
                                    & E                    \\
-[Bishop](bishop.html)              & F*/31.25% & E        \\
-[Knight](knight.html)              & T/2015    & T/50     \\
-[Pawn](pawn.html)                  & E         & E        \\
+[Bishop](bishop.html)              & F*/31.25%
+                                   & E
+                                   & E                    \\
+[Knight](knight.html)              & T/2015
+                                   & T/50
+                                   & E*                   \\
+[Pawn](pawn.html)                  & E
+                                   & E
+                                   & E                    \\
 
 [Wazir](wazir.html)                & {rs = 15} Basic Leapers
                                    & W         & T/6      \\
