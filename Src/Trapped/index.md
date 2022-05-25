@@ -54,25 +54,37 @@ Each piece is classified to be one of:
 {th = 1; rs = 2} Spiral &
 {th = 1; cs = 2} Wedge  \\
 {th = 1} Folded & {th = 1} Flat \\
-[King](king.html)                  & {rs = 6} Chess
-                                   & W
-                                   & GG
-                                   & F/100%               \\
-[Queen](queen.html)                & W
-                                   & GG
-                                   & F*/100%              \\
-[Rook](rook.html)                  & W
-                                   & T/6
-                                   & E                    \\
-[Bishop](bishop.html)              & F*/31.25%
-                                   & E
-                                   & E                    \\
-[Knight](knight.html)              & T/2015
-                                   & T/50
-                                   & E*                   \\
-[Pawn](pawn.html)                  & E
-                                   & E
-                                   & E                    \\
+[King](king.html)
+        & {rs = 6} Chess
+        & W
+        & GG
+        & F/100%
+        \\
+[Queen](queen.html)
+        & W
+        & GG
+        & F*/100%
+        \\
+[Rook](rook.html)
+        & W
+        & T/6
+        & E
+        \\
+[Bishop](bishop.html)
+        & F*/31.25%
+        & E
+        & E
+        \\
+[Knight](knight.html)
+        & T/2015
+        & T/50
+        & E*
+        \\
+[Pawn](pawn.html)
+        & E
+        & E
+        & E
+        \\
 
 [Wazir](wazir.html)                & {rs = 15} Basic Leapers
                                    & W         & T/6      \\
@@ -121,19 +133,37 @@ Each piece is classified to be one of:
 [Root 50 Leaper](root_50_leaper.html) = (5,5)-leaper + (7,1)-leaper
                                    & ?         & ?        \\
 
+
+
 [Wazirrider](rook.html) ([Rook](rook.html))
-                                   & {rs = 9} Riders
-                                   & W                   & T/6      \\
+        & {rs = 5} Riders
+        & W
+        & T/6
+        & E
+        \\
 [Ferzrider](bishop.html) ([Bishop](bishop.html))
-                                   & F*/31.25%           & E        \\
-[Dabbabarider](dabbabarider.html)  & F/25%               & E        \\
-[Knightrider](knightrider.html)    & T/509               & T/60     \\
-[Alfilrider](alfilrider.html)      & F*/7.8125%          & E        \\
-[Threeleaperrider](threeleaperrider.html)
-                                   & F/11.1%             & T/6      \\
-[Camelrider](camelrider.html)      & T/1697              & T/90     \\
-[Zebrarider](zebrarider.html)      & T/266               & T/72     \\
-[Tripperrider](tripperrider.html)  & F*/1.953125%        & E        \\
+        & F*/31.25%
+        & E
+        & E
+        \\
+[Dabbabarider](dabbabarider.html)
+        & F/25%
+        & E
+        &
+        \\
+[Knightrider](knightrider.html)
+        & T/509
+        & T/60
+        &
+        \\
+[Alfilrider](alfilrider.html)
+        & F/7.8125%
+        & E
+        &
+        \\
+
+
+
 
 [Dragon](dragon.html) = [Pawn](pawn.html) + [Knight](knight.html)
                                    & {rs = 6} Knighted Pieces
