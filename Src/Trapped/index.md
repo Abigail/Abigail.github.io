@@ -58,8 +58,12 @@ Each piece is classified to be one of:
                                    & W
                                    & GG
                                    & F/100%               \\
-[Queen](queen.html)                & W         & GG       \\
-[Rook](rook.html)                  & W         & T/6      \\
+[Queen](queen.html)                & W
+                                   & GG
+                                   & F*/100%              \\
+[Rook](rook.html)                  & W
+                                   & T/6
+                                   & E                    \\
 [Bishop](bishop.html)              & F*/31.25% & E        \\
 [Knight](knight.html)              & T/2015    & T/50     \\
 [Pawn](pawn.html)                  & E         & E        \\
