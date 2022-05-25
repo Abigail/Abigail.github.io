@@ -149,7 +149,7 @@ Each piece is classified to be one of:
 [Dabbabarider](dabbabarider.html)
         & F/25%
         & E
-        &
+        & E
         \\
 [Knightrider](knightrider.html)
         & T/509
@@ -159,7 +159,7 @@ Each piece is classified to be one of:
 [Alfilrider](alfilrider.html)
         & F/7.8125%
         & E
-        &
+        & E
         \\
 [Threeleaperrider](threeleaperrider.html)
         & F/11.1%

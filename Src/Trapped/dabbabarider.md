@@ -9,12 +9,13 @@ providing each second square is unoccupied.
 Because of this, the Dabbabarider is *colour-bound*, always staying
 on a square of the same colour.
 
-#### Spiral
+### Spiral
 
 The Dabbabarider moves exactly as the [Dabbaba](dabbaba.html) does, 
 visiting 25% of all the squares.
 
-#### Wedge
+### Wedge
 
 Just like the Spiral, the Dabbabarider moves exactly as the
-[Dabbaba](dabbaba.html) does, quickly escaping to infinity.
+[Dabbaba](dabbaba.html) does, on both the Folded and Flat Wedge,
+quickly escaping to infinity in a step wise pattern.

@@ -23,7 +23,8 @@ despite the possible moves of the Bishop being four fold symmetric,
 the resulting pattern isn't, making the Bishop slightly interesting.
 
 If we take the limit, we see that the Bishop will visit
-\(\frac{5}{16} = 31.25 \%\) of the squares on the board.
+\(\frac{1}{2} \cdot (\frac{1}{2} \cdot \frac{3}{4} + \frac{1}{4}) =
+  \frac{5}{16} = 31.25 \%\) of the squares on the board.
 
 ### Wedge
 
