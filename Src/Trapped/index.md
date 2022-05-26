@@ -86,8 +86,14 @@ Each piece is classified to be one of:
         & E
         \\
 
-[Wazir](wazir.html)                & {rs = 15} Basic Leapers
-                                   & W         & T/6      \\
+
+
+[Wazir](wazir.html)
+        & {rs = 15} Basic Leapers
+        & W
+        & T/6
+        & E
+        \\
 [Ferz](ferz.html)                  & F/50%     & E        \\
 [Dabbaba](dabbaba.html)            & F/25%     & E        \\
 [Knight](knight.html)              & T/2015    & T/50     \\

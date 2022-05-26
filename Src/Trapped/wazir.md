@@ -7,7 +7,7 @@ four orthogonal directions.
 In the Shogi variant [D&#x14d;butsu sh&#x14d;gi](#wiki:Dobutsu_shogi),
 the *Giraffe* moves in the same way as the Wazir.
 
-#### Spiral
+### Spiral
 
 Because the Wazir can always make a step in each of the four orthogonal
 directions, it can follow the Spiral, visiting all the squares in order.
@@ -17,6 +17,13 @@ It also means that any piece which can move as the Wazir (even when
 it has more moves available, like the Chess [King](king.html)), will
 follow the Spiral and fill the entire board.
 
-#### Wedge
+### Wedge
 
-On the Wedge, the Wazir gets trapped after no more than 6 steps!
+#### Folded
+
+On the Folded Wedge, the Wazir gets trapped after no more than 6 steps!
+
+#### Flat
+
+On the Flat Wedge, the Wazir escapes to infinity, following a zigzag
+pattern on the right edge of the Flat Wedge.
