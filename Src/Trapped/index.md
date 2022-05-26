@@ -265,11 +265,16 @@ Each piece is classified to be one of:
 [Wizard](wizard.html)              & ?         & F*/50%   \\
 
 
-[Blind Monkey](blind_monkey.html)
-        & {rs = 1} Sh&#x14d;gi variants
+[Blind Monkey](blind_monkey.html) (&#x76f2;&#x733f;)
+        & {rs = 2} Sh&#x14d;gi variants
         & F*/100%
         & GG
         & F/100%
+        \\
+[Flying Cock](flying_cock.html) (&#x9d8f;&#x98db;)
+        & E*
+        & GG
+        & F*/100%
         \\
 
 ====|
