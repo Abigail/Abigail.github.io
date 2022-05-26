@@ -20,18 +20,18 @@ Each piece is classified to be one of:
 <dt class = 'unknown'>?</dt>
 <dd>A piece which doesn't get trapped for at least 20,000 steps, but
     for which it isn't clear it will get trapped or not.
-<dt class = 'boring'>W, GG</dt>
+<dt class = 'boring'>W, FC</dt>
 <dd>This indicates the piece has the necessary movement options to follow
     all the squares in the same order as the values placed on the square.
     This results in a very boring pattern. <br>
     For the Spiral, this happens if the piece can move as the
     [Wazir](wazir.html) (being able to step one square in an orthogonal
     direction). For the Folded Wedge, this happens if the piece can
-    move as the [Gold General](gold_general.html) (being able to step one
-    square in an orthogonal direction, or one square diagonally forward).<br>
+    move as the [Flying Cock](flying_cock.html) (being able to step one
+    square in sideways, or one square diagonally forward).<br>
     The piece may have additional move options available, but they will
     not be used.<br>
-    There is no equivalence for the Flat Spiral.
+    There is no equivalence for the Flat Wedge.
 <dt class = 'fill'>F/XX.XX%</dt>
 <dd>This is a piece which won't get trapped, and which will eventually
     fill XX.XX% of the board, in a regular fashion, where XX.XX% > 0</dd>
@@ -57,12 +57,12 @@ Each piece is classified to be one of:
 [King](king.html)
         & {rs = 6} Chess
         & W
-        & GG
+        & FC
         & F/100%
         \\
 [Queen](queen.html)
         & W
-        & GG
+        & FC
         & F*/100%
         \\
 [Rook](rook.html)
@@ -115,7 +115,7 @@ Each piece is classified to be one of:
 
 [King](king.html) = [Wazir](wazir.html) + [Ferz](ferz.html)
                                    & {rs = 12} Combined Leapers
-                                   & W         & GG       \\
+                                   & W         & FC       \\
 [Squirrel](squirrel.html) = [Dabbaba](dabbaba.html) + [Knight](knight.html) +
                             [Alfil](alfil.html) 
                                    & ?         & F*/100%  \\
@@ -204,7 +204,7 @@ Each piece is classified to be one of:
                              = [Rook](rook.html) + [Knight](knight.html)
                                    & W         & F/100%   \\
 [Amazon](amazon.html) =  [Queen](queen.html) + [Knight](knight.html)
-                                   & W         & GG       \\
+                                   & W         & FC       \\
 [Gnu](gnu.html) = [Camel](camel.html) + [Knight](knight.html)
                                    & ?         & ?        \\
 [Okapi](okapi.html) = [Zebra](zebra.html) + [Knight](knight.html)
@@ -213,9 +213,9 @@ Each piece is classified to be one of:
 
 [Dragon King](dragon_king.html) = [Rook](rook.html) + [King](king.html)
                                    & {rs = 2} Crowned Pieces
-                                   & W         & GG       \\
+                                   & W         & FC       \\
 [Dragon Horse](dragon_horse.html) = [Bishop](bishop.html) + [King](king.html)
-                                   & W         & GG       \\
+                                   & W         & FC       \\
 
 
 [Dragon](dragon.html) = [Knight](knight.html) + [Pawn](pawn.html)
@@ -227,34 +227,34 @@ Each piece is classified to be one of:
 [King General/&#x738b;&#x5c07;](king.html?piece=king_general)
                                    & {rs = 15}
                                      [Shogi (&#x5c06;&#x68cb;)](#wiki:Shogi)
-                                   & {rs = 2} W  & {rs = 2} GG \\
+                                   & {rs = 2} W  & {rs = 2} FC \\
 [Jeweled General/&#x7389;&#x5c07;](king.html?piece=jeweled_general) \\
 [Flying Chariot/&#x98db;&#x8eca;](rook.html?piece=flying_chariot) (Rook)
                                    & W      & T/6 \\
 [Dragon King/&#x9f8d;&#x738b;](dragon_king.html) (Promoted Rook)
-                                   & W      & GG     \\
+                                   & W      & FC     \\
 [Angle Mover/&#x89d2;&#x884c;](bishop.html?piece=angle_mover) (Bishop)
                                    & F*/31.25% & E \\
 [Dragon Horse/&#x9f8d;&#x99ac;](dragon_horse.html), (Promoted Bishop)
-                                   & W      & GG     \\
+                                   & W      & FC     \\
 [Gold General/&#x91d1;&#x5c07;](gold_general.html)
-                                   & W      & GG     \\
+                                   & W      & FC     \\
 [Silver General/&#x9280;&#x5c07;](silver_general.html)
                                    & F*/100% & E \\
 [Promoted Silver/&#x6210;&#x9280;](gold_general.html?piece=promoted_silver)
-                                   & W      & GG     \\
+                                   & W      & FC     \\
 [Katsura Horse/&#x6842;&#x99ac;](katsura_horse.html) (Knight)
                                    & E & E \\
 [Promoted Katsura/&#x6210;&#x6842;](gold_general.html?piece=promoted_katsura)
-  (Promoted Knight)                & W      & GG     \\
+  (Promoted Knight)                & W      & FC     \\
 [Incense Chariot/&#x9999;&#x8eca;](incense_chariot.html) (Lance)
                                    & E & E \\
 [Promoted Incense/&#x6210;&#x9999;](gold_general.html?piece=promoted_incense)
-  (Promoted Lance)                 & W      & GG     \\
+  (Promoted Lance)                 & W      & FC     \\
 [Foot Soldier/&#x6b69;&#x5175;](pawn.html?piece=foot_soldier) (Pawn)
                                    & E & E \\
 [Reaches Gold/&#x3068;&#x91d1;](gold_general.html?piece=reaches_gold)
-  (Promoted Pawn)                  & W      & GG     \\
+  (Promoted Pawn)                  & W      & FC     \\
 
 [Hunter](hunter.html)              & {rs = 2} [Falcon-Hunter
                                                Chess](#wiki:Falcon-hunter_chess)
@@ -268,12 +268,12 @@ Each piece is classified to be one of:
 [Blind Monkey](blind_monkey.html) (&#x76f2;&#x733f;)
         & {rs = 2} Sh&#x14d;gi variants
         & F*/100%
-        & GG
+        & FC
         & F/100%
         \\
 [Flying Cock](flying_cock.html) (&#x9d8f;&#x98db;)
         & E*
-        & GG
+        & FC
         & F*/100%
         \\
 
