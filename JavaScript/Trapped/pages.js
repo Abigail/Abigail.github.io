@@ -86,6 +86,11 @@ let pages = [
     //
     ["hunter",            "Hunter"],
     ["falcon",            "Falcon"],
+
+    //
+    // Shogi variants
+    //
+    ["blind_monkey",      "Blind Monkey"],
 ]
 
 pages . forEach (entry => {

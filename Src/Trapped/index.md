@@ -94,7 +94,11 @@ Each piece is classified to be one of:
         & T/6
         & E
         \\
-[Ferz](ferz.html)                  & F/50%     & E        \\
+[Ferz](ferz.html)                 
+        & F/50%
+        & E
+        & E
+        \\
 [Dabbaba](dabbaba.html)            & F/25%     & E        \\
 [Knight](knight.html)              & T/2015    & T/50     \\
 [Alfil](alfil.html)                & F/12.5%   & E        \\
@@ -259,6 +263,14 @@ Each piece is classified to be one of:
 [Champion](champion.html)          & {rs = 2} [Omega Chess](#wiki) 
                                    & W         & F/100%   \\
 [Wizard](wizard.html)              & ?         & F*/50%   \\
+
+
+[Blind Monkey](blind_monkey.html)
+        & {rs = 1} Sh&#x14d;gi variants
+        & F*/100%
+        & GG
+        & F/100%
+        \\
 
 ====|
 
