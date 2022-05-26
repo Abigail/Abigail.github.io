@@ -91,6 +91,7 @@ let pages = [
     // Shogi variants
     //
     ["blind_monkey",      "Blind Monkey"],
+    ["flying_cock",       "Flying Cock"],
 ]
 
 pages . forEach (entry => {

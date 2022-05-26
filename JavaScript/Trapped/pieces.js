@@ -242,7 +242,8 @@ let pieces = {
     //
     // Shogi variants
     //
-    "blind_monkey":     {betza: "FsW", prefix: "&#x76f2;&#x733f;"},
+    "blind_monkey":     {betza: "FsW",  prefix: "&#x76f2;&#x733f;"},
+    "flying_cock":      {betza: "fFsW", prefix: "&#x9d8f;&#x98db;"},
 }
 
 class Piece {
