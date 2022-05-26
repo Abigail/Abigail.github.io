@@ -6,7 +6,7 @@ $(document) . ready (() => {
         if ($(e) . text () . match (/^\s*F\*/)) {
             $(e) . addClass ("interesting-fill")
         } else
-        if ($(e) . text () . match (/^\s*F/)) {
+        if ($(e) . text () . match (/^\s*F\b/)) {
             $(e) . addClass ("fill")
         } else
         if ($(e) . text () . match (/^\s*E\*/)) {
@@ -15,7 +15,7 @@ $(document) . ready (() => {
         if ($(e) . text () . match (/^\s*E/)) {
             $(e) . addClass ("escape")
         } else 
-        if ($(e) . text () . match (/^\s*(?:W|GG)/)) {
+        if ($(e) . text () . match (/^\s*(?:W|FC)/)) {
             $(e) . addClass ("boring")
         } else {
             $(e) . addClass ("unknown")
