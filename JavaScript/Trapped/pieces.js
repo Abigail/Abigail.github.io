@@ -78,12 +78,14 @@ function betza_leaper (betza) {
     //    'ff':  really forward, dr < 0 && abs (dr) > abs (dc)
     //    'b':   backward, dr > 0
     //    'bb':  really backward, dr > 0 && abs (dr) > abs (dc)
+    //    's':   sideways, dr == 0
     //
     // This really needs work, as this is not just filtering.
     // But for now, this will do.
     //
-    if (betza . match (/f/)) {out = out . filter (move => move . dr < 0)}
-    if (betza . match (/b/)) {out = out . filter (move => move . dr > 0)}
+    if (betza . match (/f/)) {out = out . filter (move => move . dr  < 0)}
+    if (betza . match (/b/)) {out = out . filter (move => move . dr  > 0)}
+    if (betza . match (/s/)) {out = out . filter (move => move . dr == 0)}
 
     if (betza . match (/ff|bb/)) {
          out = out . filter (move => abs (move . dr) > abs (move . dc))
@@ -236,6 +238,11 @@ let pieces = {
     //
     "hunter":           {betza: "fRbB"},
     "falcon":           {betza: "fBbR"},
+
+    //
+    // Shogi variants
+    //
+    "blind_monkey":     {betza: "FsW", prefix: "&#x76f2;&#x733f;"},
 }
 
 class Piece {
