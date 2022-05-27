@@ -1,0 +1,20 @@
+table, td, th {
+    border:                solid black 1px;
+    border-collapse:       collapse;
+}
+
+td {
+    text-align:            right;
+}
+
+th.name {
+    text-align:            left;
+    vertical-align:        top;
+    padding-top:           0.5ex;
+}
+
+td, th {
+    padding-left:          0.5em;
+    padding-right:         0.5em;
+}
+

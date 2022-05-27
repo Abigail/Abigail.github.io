@@ -246,6 +246,9 @@ let pieces = {
     "flying_cock":      {betza: "fFsW", prefix: "&#x9d8f;&#x98db;"},
 }
 
+
+window . pieces = pieces
+
 class Piece {
     constructor (args = {}) {
         this . piece_name = args . piece_name
