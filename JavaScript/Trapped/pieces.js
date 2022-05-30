@@ -28,7 +28,7 @@ function slide (dr, dc, args = {}) {
 let leaper_class   = "[ACDFGHNWZ]"
 let leaper_desc    = "[(][0-9]+,[0-9]+[)]"
 let leaper_pat     = `(?:(${leaper_class})|${leaper_desc})`
-let modifier_class = "[fbrlvs]"
+let modifier_class = "[fbrlvscmnjpgqzo]"
 
 //
 // Helper function
@@ -41,8 +41,136 @@ function abs (x) {return Math . abs (x)}
 // We will make use of the fact that set of letters used for the modifiers
 // and the set of letters used for the leapers are disjoint.
 //
+
+//
+// filter_movement
+//
+//    For a leaper moving orthogonally, we allow the following modifiers:
+//
+//                         f, v
+//
+//                  l, s    *    r, s
+//
+//                         b, v
+//
+//
+//    For a leaper moving orthogonally, we allow the following modifiers:
+//
+//                 f, fl,       f, fr,
+//                 l, lf        r, rf
+//                          *
+//                 b, bl,       b, br,
+//                 l, lb        r, rb
+//
+//
+//
+//    For a leaper moving in 8 directions, we allow the following modifiers:
+//   (https://www.gnu.org/software/xboard/whats_new/rules/Betza.html)
+//
+//                  f, fh,      f, fh,
+//             lv, lh, lf      rv, rh, rf
+//
+//      fs, fh, fl,                   fs, fh, fr
+//           l, lh,                    r, rh
+//                          *
+//      bs, bh, bl,                   bs, bh, br
+//           l, lh,                    r, rh
+//
+//                  b, bh,      b, bh,
+//             lv, lh, lb      rv, rh, rb
+//
+//
+//  This translate to:
+//
+//    - fh:     dr <  0
+//    - fs:     dr <  0            && abs (dr) <= abs (dc)
+//    - fl:     dr <  0 && dc <  0 && abs (dr) <= abs (dc)
+//    - fr:     dr <  0 && dc >  0 && abs (dr) <= abs (dc)
+//    - f:      dr <  0            && abs (dr) >= abs (dc)
+//
+//    - bh:     dr >  0
+//    - bs:     dr >  0            && abs (dr) <= abs (dc)
+//    - bl:     dr >  0 && dc <  0 && abs (dr) <= abs (dc)
+//    - br:     dr >  0 && dc >  0 && abs (dr) <= abs (dc)
+//    - b:      dr >  0            && abs (dr) >= abs (dc)
+//
+//    - lh:                dc <  0
+//    - lv:                dc <  0 && abs (dr) >= abs (dc)
+//    - lf:     dr <  0 && dc <  0 && abs (dr) >= abs (dc)
+//    - lb:     dr >  0 && dc <  0 && abs (dr) >= abs (dc)
+//    - l:                 dc <  0 && abs (dr) <= abs (dc)
+//
+//    - rh:                dc >  0
+//    - rv:                dc >  0 && abs (dr) >= abs (dc)
+//    - rf:     dr <  0 && dc >  0 && abs (dr) >= abs (dc)
+//    - rb:     dr >  0 && dc >  0 && abs (dr) >= abs (dc)
+//    - r:                 dc >  0 && abs (dr) <= abs (dc)
+//
+//    - v:                 dc == 0
+//    - s:      dr == 0
+//
+function move_modifiers (moves, modifiers) {
+    let out = []
+    while (modifiers . length > 0) {
+        if (modifiers . match (/^fh/)) {
+            out = out . concat (moves . filter (move =>
+                           move . dr <  0
+            ))
+            modifiers = modifiers . substring (2)
+            continue
+        }
+        if (modifiers . match (/^fs/)) {
+            out = out . concat (moves . filter (move =>
+                           move . dr <  0 &&
+                      abs (move . dr) <= abs (move . dc)
+            ))
+            modifiers = modifiers . substring (2)
+            continue
+        }
+        if (modifiers . match (/^fl/)) {
+            out = out . concat (moves . filter (move =>
+                           move . dr  <  0 && move . dc  <  0 &&
+                      abs (move . dr) <= abs (move . dc)
+            ))
+            modifiers = modifiers . substring (2)
+            continue
+        }
+        if (modifiers . match (/^fr/)) {
+            out = out . concat (moves . filter (move =>
+                           move . dr  <  0 && move . dc  >  0 &&
+                      abs (move . dr) <= abs (move . dc)
+            ))
+            modifiers = modifiers . substring (2)
+            continue
+        }
+        if (modifiers . match (/^f/)) {
+            out = out . concat (moves . filter (move =>
+                           move . dr  <  0 &&
+                      abs (move . dr) >= abs (move . dc)
+            ))
+            modifiers = modifiers . substring (1)
+            continue
+        }
+    }
+
+    if (out . length) {
+        return out
+    }
+    return moves
+}
+
 function betza_leaper (betza) {
     let out = [];
+
+    //
+    // We cannot deal with:
+    //    - capture moves   ("c" modifier)
+    //    - jump            ("j"/"jj" modifiers)
+    //    - grasshoppers    ("g" modifier)
+    //    - wrapping around ("o" modifier)
+    // So we return an empty set of moves.
+    //
+    if (betza . match (/[cjgo]/)) {return out}
 
     if (betza . match (/A/)) {out . push (... fold ({move: step (2, 2)}))} else
     if (betza . match (/C/)) {out . push (... fold ({move: step (3, 1)}))} else
@@ -70,6 +198,12 @@ function betza_leaper (betza) {
     if (amount = betza . match (/([0-9]+)$/)) {
         out . forEach ((move) => {move . max = + amount [1]})
     }
+
+    let result = betza . match (new RegExp (`(?<modifier>${modifier_class}+)`))
+    if (result) {
+        console . log (`betza ${betza} -> ` + result . groups . modifier)
+    }
+
 
     //
     // Filter moves:
