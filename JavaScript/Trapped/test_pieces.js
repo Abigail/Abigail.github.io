@@ -7,20 +7,45 @@ let movement_knight = [
        "l", "lh", "lv", "lf", "lb", "ll",
        "r", "rh", "rv", "rf", "rb", "rr",
 ];
+let movement_ferz = [
+       "f", "fl", "fr",
+       "b", "bl", "br",
+       "l", "lf", "lb",
+       "r", "rf", "rb",
+];
+let movement_wazir = [
+       "f", "b", "l", "r", "v", "s"
+];
+
 
 $(window) . on ("load", () => {
     let div = $("#pieces")
-    set_up_test ({element: div, pieces: window . pieces})
-    let div2 = $("#knight")
-    set_up_test ({element: div2, movements: movement_knight, test: "N"})
+    $("#pieces") . html (set_up_test ({pieces: window . pieces}))
+    $("#knight") . html (set_up_test ({movements: movement_knight,
+                                       key:      "N",
+                                       name:     "Knight",
+                                       no_end:    true, }) +
+                         set_up_test ({movements: movement_ferz,
+                                       key:      "F",
+                                       name:     "Ferz",
+                                       no_start:  true,
+                                       no_end:    true})  +
+                         set_up_test ({movements: movement_wazir,
+                                       key:      "W",
+                                       name:     "Wazir",
+                                       no_start:  true,}))
 })
 
 
 function set_up_test (args = {}) {
-    let table  = "<table class = 'test_piece_table'>\n"
+    let table = "";
+
+    if (!args . no_start) {
+        table  = "<table class = 'test_piece_table'>\n"
         table += "<tr><th>Name</th><th colspan = 4>Move</th></tr>\n"
         table += "<tr><th></th><th>#</th>" +
                      "<th>dr</th><th>dc</th><th>max</th></tr>\n"
+    }
 
     let piece_list = []
     if (args . pieces) {
@@ -30,7 +55,9 @@ function set_up_test (args = {}) {
     }
     else {
         piece_list = args . movements . map ((movement) => {
-            return new Piece ({"test-N": 1, modifiers: movement})
+            return new Piece ({name:      args . name,
+                               key:       args . key,
+                               modifiers: movement})
         })
     }
 
@@ -64,7 +91,10 @@ function set_up_test (args = {}) {
             table += "</tr>"
         })
     })
-    table += "</table>"
 
-    args . element . html (table)
+    if (!args . no_end) {
+        table += "</table>"
+    }
+
+    return table
 }
