@@ -109,7 +109,7 @@ function abs (x) {return Math . abs (x)}
 //    - v:                 dc == 0
 //    - s:      dr == 0
 //
-function move_modifiers (moves, modifiers, is_ortho = false) {
+function move_modifiers (moves, modifiers, ortho = false) {
     let out = []
     let mod_in = modifiers
     while (modifiers . length > 0) {
@@ -121,99 +121,136 @@ function move_modifiers (moves, modifiers, is_ortho = false) {
         let dcs       = left    ? 1 : right    ? -1 : 0
 
         //
-        // f* and b* movements
+        // Diagonal and 8-directional leapers
         //
-        if (modifiers . match (/^[fb]h/) && !is_ortho) {
-            out = out . concat (moves . filter (move =>
-                     drs * move . dr <  0
-            ))
-            modifiers = modifiers . substring (2)
-            continue
-        }
-        if (modifiers . match (/^[fb]s/) && !is_ortho) {
-            out = out . concat (moves . filter (move =>
-                     drs * move . dr <  0 &&
-                      abs (move . dr) <= abs (move . dc)
-            ))
-            modifiers = modifiers . substring (2)
-            continue
-        }
-        if (modifiers . match (/^[fb]l/) && !is_ortho) {
-            out = out . concat (moves . filter (move =>
-                     drs * move . dr  <  0 && move . dc  <  0 &&
-                      abs (move . dr) <= abs (move . dc)
-            ))
-            modifiers = modifiers . substring (2)
-            continue
-        }
-        if (modifiers . match (/^[fb]r/) && !is_ortho) {
-            out = out . concat (moves . filter (move =>
-                     drs * move . dr  <  0 && move . dc  >  0 &&
-                      abs (move . dr) <= abs (move . dc)
-            ))
-            modifiers = modifiers . substring (2)
-            continue
-        }
-        if (modifiers . match (/^([fb])(?:\1)?/)) {
-            out = out . concat (moves . filter (move =>
-                     drs * move . dr  <  0 &&
-                      abs (move . dr) >= abs (move . dc)
-            ))
-            if (modifiers . match (/^(?:ff|bb)/)) {
+        if (!ortho) {
+            //
+            // f* and b* movements
+            //
+            if (modifiers . match (/^[fb]h/)) {
+                out = out . concat (moves . filter (move =>
+                         drs * move . dr <  0
+                ))
                 modifiers = modifiers . substring (2)
+                continue
             }
-            else {
-                modifiers = modifiers . substring (1)
+            if (modifiers . match (/^[fb]s/)) {
+                out = out . concat (moves . filter (move =>
+                         drs * move . dr <  0 &&
+                          abs (move . dr) <= abs (move . dc)
+                ))
+                modifiers = modifiers . substring (2)
+                continue
             }
-            continue
-        }
+            if (modifiers . match (/^[fb]l/)) {
+                out = out . concat (moves . filter (move =>
+                         drs * move . dr  <  0 && move . dc  <  0 &&
+                          abs (move . dr) <= abs (move . dc)
+                ))
+                modifiers = modifiers . substring (2)
+                continue
+            }
+            if (modifiers . match (/^[fb]r/)) {
+                out = out . concat (moves . filter (move =>
+                         drs * move . dr  <  0 && move . dc  >  0 &&
+                          abs (move . dr) <= abs (move . dc)
+                ))
+                modifiers = modifiers . substring (2)
+                continue
+            }
+            if (modifiers . match (/^([fb])(?:\1)?/)) {
+                out = out . concat (moves . filter (move =>
+                         drs * move . dr  <  0 &&
+                          abs (move . dr) >= abs (move . dc)
+                ))
+                if (modifiers . match (/^(?:ff|bb)/)) {
+                    modifiers = modifiers . substring (2)
+                }
+                else {
+                    modifiers = modifiers . substring (1)
+                }
+                continue
+            }
 
-        //
-        // l* and r* movements
-        //
-        if (modifiers . match (/^[lr]h/) && !is_ortho) {
-            out = out . concat (moves . filter (move =>
-                     dcs * move . dc <  0
-            ))
-            modifiers = modifiers . substring (2)
-            continue
-        }
-        if (modifiers . match (/^[lr]v/) && !is_ortho) {
-            out = out . concat (moves . filter (move =>
-                     dcs * move . dc <  0 &&
-                      abs (move . dc) <= abs (move . dr)
-            ))
-            modifiers = modifiers . substring (2)
-            continue
-        }
-        if (modifiers . match (/^[lr]f/) && !is_ortho) {
-            out = out . concat (moves . filter (move =>
-                     dcs * move . dc  <  0 && move . dr  <  0 &&
-                      abs (move . dc) <= abs (move . dr)
-            ))
-            modifiers = modifiers . substring (2)
-            continue
-        }
-        if (modifiers . match (/^[lr]b/) && !is_ortho) {
-            out = out . concat (moves . filter (move =>
-                     dcs * move . dc  <  0 && move . dr  >  0 &&
-                      abs (move . dc) <= abs (move . dr)
-            ))
-            modifiers = modifiers . substring (2)
-            continue
-        }
-        if (modifiers . match (/^([lr])(?:\1)?/)) {
-            out = out . concat (moves . filter (move =>
-                     dcs * move . dc  <  0 &&
-                      abs (move . dc) >= abs (move . dr)
-            ))
-            if (modifiers . match (/^(?:ll|rr)/)) {
+            //
+            // l* and r* movements
+            //
+            if (modifiers . match (/^[lr]h/)) {
+                out = out . concat (moves . filter (move =>
+                         dcs * move . dc <  0
+                ))
                 modifiers = modifiers . substring (2)
+                continue
             }
-            else {
+            if (modifiers . match (/^[lr]v/)) {
+                out = out . concat (moves . filter (move =>
+                         dcs * move . dc <  0 &&
+                          abs (move . dc) <= abs (move . dr)
+                ))
+                modifiers = modifiers . substring (2)
+                continue
+            }
+            if (modifiers . match (/^[lr]f/)) {
+                out = out . concat (moves . filter (move =>
+                         dcs * move . dc  <  0 && move . dr  <  0 &&
+                          abs (move . dc) <= abs (move . dr)
+                ))
+                modifiers = modifiers . substring (2)
+                continue
+            }
+            if (modifiers . match (/^[lr]b/)) {
+                out = out . concat (moves . filter (move =>
+                         dcs * move . dc  <  0 && move . dr  >  0 &&
+                          abs (move . dc) <= abs (move . dr)
+                ))
+                modifiers = modifiers . substring (2)
+                continue
+            }
+            if (modifiers . match (/^([lr])(?:\1)?/)) {
+                out = out . concat (moves . filter (move =>
+                         dcs * move . dc  <  0 &&
+                          abs (move . dc) >= abs (move . dr)
+                ))
+                if (modifiers . match (/^(?:ll|rr)/)) {
+                    modifiers = modifiers . substring (2)
+                }
+                else {
+                    modifiers = modifiers . substring (1)
+                }
+                continue
+            }
+        }
+        else {
+            if (modifiers . match (/^f/)) {
+                out = out . concat (moves . filter (move => move . dr <  0))
                 modifiers = modifiers . substring (1)
+                continue
             }
-            continue
+            if (modifiers . match (/^b/)) {
+                out = out . concat (moves . filter (move => move . dr >  0))
+                modifiers = modifiers . substring (1)
+                continue
+            }
+            if (modifiers . match (/^s/)) {
+                out = out . concat (moves . filter (move => move . dr == 0))
+                modifiers = modifiers . substring (1)
+                continue
+            }
+            if (modifiers . match (/^l/)) {
+                out = out . concat (moves . filter (move => move . dc <  0))
+                modifiers = modifiers . substring (1)
+                continue
+            }
+            if (modifiers . match (/^r/)) {
+                out = out . concat (moves . filter (move => move . dc >  0))
+                modifiers = modifiers . substring (1)
+                continue
+            }
+            if (modifiers . match (/^v/)) {
+                out = out . concat (moves . filter (move => move . dc == 0))
+                modifiers = modifiers . substring (1)
+                continue
+            }
         }
         break
     }
@@ -265,9 +302,10 @@ function betza_leaper (betza) {
     }
 
     let result = betza . match (new RegExp (`(?<modifier>${modifier_class}+)`))
+    let ortho  = !!betza . match (/[WDH]|[(]0,[0-9]+[)]|[(][0-9]+,0[)]/)
     if (result) {
-        if (betza . match (/N/)) { // Just testing Knight for now
-            return move_modifiers (out, result . groups . modifier)
+        if (betza . match (/[WFN]/)) { // Just testing Knight, Ferz and Wazir
+            return move_modifiers (out, result . groups . modifier, ortho)
         }
     }
 
@@ -452,9 +490,9 @@ window . pieces = pieces
 
 class Piece {
     constructor (args = {}) {
-        if (args ["test-N"]) {
-            this . piece_name = "Knight-" + args ["modifiers"]
-            this . betza      = args ["modifiers"] + "N"
+        if (args . key) {
+            this . piece_name = args . name + "-" + args ["modifiers"]
+            this . betza      = args . modifiers + args . key
         }
         else {
             this . piece_name = args . piece_name
