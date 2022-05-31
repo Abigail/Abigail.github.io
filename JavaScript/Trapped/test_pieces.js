@@ -1,20 +1,38 @@
 //
 // Kick off the page
 //
+let movement_knight = ["f", "fh", "fs", "fl", "fr", "ff",
+                       "b", "bh", "bs", "bl", "br", "bb",
+                      ];
+
 $(window) . on ("load", () => {
     let div = $("#pieces")
-    set_up_test (div)
+    set_up_test ({element: div, pieces: window . pieces})
+    let div2 = $("#knight")
+    set_up_test ({element: div2, movements: movement_knight, test: "N"})
 })
 
 
-function set_up_test (div) {
-    let table  = "<table id = 'test_piece_table'>\n"
+function set_up_test (args = {}) {
+    let table  = "<table class = 'test_piece_table'>\n"
         table += "<tr><th>Name</th><th colspan = 4>Move</th></tr>\n"
         table += "<tr><th></th><th>#</th>" +
                      "<th>dr</th><th>dc</th><th>max</th></tr>\n"
-    let pieces = window . pieces
-    for (const name in pieces) {
-        let piece = new Piece ({piece_name: name})
+
+    let piece_list = []
+    if (args . pieces) {
+        for (const name in pieces) {
+            piece_list . push (new Piece ({piece_name: name}))
+        }
+    }
+    else {
+        piece_list = args . movements . map ((movement) => {
+            return new Piece ({"test-N": 1, modifiers: movement})
+        })
+        console . log (piece_list)
+    }
+
+    piece_list . forEach ((piece) => {
         let moves = piece . moves ()
             moves . sort ((a, b) => {
                         let a_dc   = a . dc  ?? 0
@@ -43,8 +61,8 @@ function set_up_test (div) {
             table += `<td class = "max">${move . max ?? ""}</td>`
             table += "</tr>"
         })
-    }
+    })
     table += "</table>"
 
-    div . html (table)
+    args . element . html (table)
 }

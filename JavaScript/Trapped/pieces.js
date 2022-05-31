@@ -28,7 +28,7 @@ function slide (dr, dc, args = {}) {
 let leaper_class   = "[ACDFGHNWZ]"
 let leaper_desc    = "[(][0-9]+,[0-9]+[)]"
 let leaper_pat     = `(?:(${leaper_class})|${leaper_desc})`
-let modifier_class = "[fbrlvscmnjpgqzo]"
+let modifier_class = "[fbrlvshcmnjpgqzo]"
 
 //
 // Helper function
@@ -111,46 +111,58 @@ function abs (x) {return Math . abs (x)}
 //
 function move_modifiers (moves, modifiers) {
     let out = []
+    let mod_in = modifiers
     while (modifiers . length > 0) {
-        if (modifiers . match (/^fh/)) {
+        let forward   = modifiers . match (/^f/)
+        let backward  = modifiers . match (/^b/)
+        let left      = modifiers . match (/^l/)
+        let right     = modifiers . match (/^r/)
+        let drs       = forward ? 1 : backward ? -1 : 0
+        if (modifiers . match (/^[fb]h/)) {
             out = out . concat (moves . filter (move =>
-                           move . dr <  0
+                     drs * move . dr <  0
             ))
             modifiers = modifiers . substring (2)
             continue
         }
-        if (modifiers . match (/^fs/)) {
+        if (modifiers . match (/^[fb]s/)) {
             out = out . concat (moves . filter (move =>
-                           move . dr <  0 &&
+                     drs * move . dr <  0 &&
                       abs (move . dr) <= abs (move . dc)
             ))
             modifiers = modifiers . substring (2)
             continue
         }
-        if (modifiers . match (/^fl/)) {
+        if (modifiers . match (/^[fb]l/)) {
             out = out . concat (moves . filter (move =>
-                           move . dr  <  0 && move . dc  <  0 &&
+                     drs * move . dr  <  0 && move . dc  <  0 &&
                       abs (move . dr) <= abs (move . dc)
             ))
             modifiers = modifiers . substring (2)
             continue
         }
-        if (modifiers . match (/^fr/)) {
+        if (modifiers . match (/^[fb]r/)) {
             out = out . concat (moves . filter (move =>
-                           move . dr  <  0 && move . dc  >  0 &&
+                     drs * move . dr  <  0 && move . dc  >  0 &&
                       abs (move . dr) <= abs (move . dc)
             ))
             modifiers = modifiers . substring (2)
             continue
         }
-        if (modifiers . match (/^f/)) {
+        if (modifiers . match (/^([fb])(?:\1)?/)) {
             out = out . concat (moves . filter (move =>
-                           move . dr  <  0 &&
+                     drs * move . dr  <  0 &&
                       abs (move . dr) >= abs (move . dc)
             ))
-            modifiers = modifiers . substring (1)
+            if (modifiers . match (/^(?:ff|bb)/)) {
+                modifiers = modifiers . substring (2)
+            }
+            else {
+                modifiers = modifiers . substring (1)
+            }
             continue
         }
+        break
     }
 
     if (out . length) {
@@ -201,7 +213,9 @@ function betza_leaper (betza) {
 
     let result = betza . match (new RegExp (`(?<modifier>${modifier_class}+)`))
     if (result) {
-        console . log (`betza ${betza} -> ` + result . groups . modifier)
+        if (betza . match (/N/)) { // Just testing Knight for now
+            return move_modifiers (out, result . groups . modifier)
+        }
     }
 
 
@@ -385,10 +399,16 @@ window . pieces = pieces
 
 class Piece {
     constructor (args = {}) {
-        this . piece_name = args . piece_name
-        let piece_info = pieces [this . piece_name]
-        for (const prop in piece_info) {
-            this [prop] = piece_info [prop]
+        if (args ["test-N"]) {
+            this . piece_name = "Knight-" + args ["modifiers"]
+            this . betza      = args ["modifiers"] + "N"
+        }
+        else {
+            this . piece_name = args . piece_name
+            let piece_info = pieces [this . piece_name]
+            for (const prop in piece_info) {
+                this [prop] = piece_info [prop]
+            }
         }
     }
     moves (args = {}) {
