@@ -32,7 +32,6 @@ function set_up_test (args = {}) {
         piece_list = args . movements . map ((movement) => {
             return new Piece ({"test-N": 1, modifiers: movement})
         })
-        console . log (piece_list)
     }
 
     piece_list . forEach ((piece) => {
