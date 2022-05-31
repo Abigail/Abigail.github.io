@@ -304,30 +304,7 @@ function betza_leaper (betza) {
     let result = betza . match (new RegExp (`(?<modifier>${modifier_class}+)`))
     let ortho  = !!betza . match (/[WDH]|[(]0,[0-9]+[)]|[(][0-9]+,0[)]/)
     if (result) {
-        if (betza . match (/[WFN]/)) { // Just testing Knight, Ferz and Wazir
-            return move_modifiers (out, result . groups . modifier, ortho)
-        }
-    }
-
-
-    //
-    // Filter moves:
-    //
-    //    'f':   forward, dr < 0
-    //    'ff':  really forward, dr < 0 && abs (dr) > abs (dc)
-    //    'b':   backward, dr > 0
-    //    'bb':  really backward, dr > 0 && abs (dr) > abs (dc)
-    //    's':   sideways, dr == 0
-    //
-    // This really needs work, as this is not just filtering.
-    // But for now, this will do.
-    //
-    if (betza . match (/f/)) {out = out . filter (move => move . dr  < 0)}
-    if (betza . match (/b/)) {out = out . filter (move => move . dr  > 0)}
-    if (betza . match (/s/)) {out = out . filter (move => move . dr == 0)}
-
-    if (betza . match (/ff|bb/)) {
-         out = out . filter (move => abs (move . dr) > abs (move . dc))
+        return move_modifiers (out, result . groups . modifier, ortho)
     }
 
     return out
@@ -465,12 +442,12 @@ let pieces = {
     "gold_general":     {betza:  "WfF", prefix: "&#x91d1;&#x5c07;"},
     "silver_general":   {betza:  "FfW", prefix: "&#x9280;&#x5c07;"},
     "promoted_silver":  {betza:  "WfF", prefix: "&#x6210;&#x9280;"},
-    "katsura_horse":    {betza:  "ffN", prefix: "&#x6842;&#x99ac;"},
+    "katsura_horse":    {betza:  "fN",  prefix: "&#x6842;&#x99ac;"},
     "promoted_katsura": {betza:  "WfF", prefix: "&#x6210;&#x6842;"},
     "incense_chariot":  {betza:  "fR",  prefix: "&#x9999;&#x8eca;"},
     "promoted_incense": {betza:  "WfF", prefix: "&#x6210;&#x9999;"},
     "foot_soldier":     {betza:  "fW",  prefix: "&#x6b69;&#x5175;"},
-    "reaches_gold":     {betza:  "WtF", prefix: "&#x3068;&#x91d1;"},
+    "reaches_gold":     {betza:  "WfF", prefix: "&#x3068;&#x91d1;"},
 
     //
     // Hunter-Falcon chess
