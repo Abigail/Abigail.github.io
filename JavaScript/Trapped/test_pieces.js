@@ -1,9 +1,12 @@
 //
 // Kick off the page
 //
-let movement_knight = ["f", "fh", "fs", "fl", "fr", "ff",
-                       "b", "bh", "bs", "bl", "br", "bb",
-                      ];
+let movement_knight = [
+       "f", "fh", "fs", "fl", "fr", "ff",
+       "b", "bh", "bs", "bl", "br", "bb",
+       "l", "lh", "lv", "lf", "lb", "ll",
+       "r", "rh", "rv", "rf", "rb", "rr",
+];
 
 $(window) . on ("load", () => {
     let div = $("#pieces")
