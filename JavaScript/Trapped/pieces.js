@@ -460,6 +460,11 @@ let pieces = {
     //
     "blind_monkey":     {betza: "FsW",  prefix: "&#x76f2;&#x733f;"},
     "flying_cock":      {betza: "fFsW", prefix: "&#x9d8f;&#x98db;"},
+
+    //
+    // Fairy Chess
+    //
+    "frog":             {betza: "FH"},
 }
 
 
