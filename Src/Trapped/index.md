@@ -277,5 +277,13 @@ Each piece is classified to be one of:
         & F*/100%
         \\
 
+
+[Frog](frog.html)
+        & {rs = 1} Fairy Chess
+        & ??
+        & F*/100%
+        & F*/100%
+        \\
+
 ====|
 

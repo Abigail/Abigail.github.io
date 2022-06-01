@@ -92,6 +92,11 @@ let pages = [
     //
     ["blind_monkey",      "Blind Monkey"],
     ["flying_cock",       "Flying Cock"],
+
+    //
+    // Fairy Chess
+    //
+    ["frog",              "Frog"],
 ]
 
 pages . forEach (entry => {
