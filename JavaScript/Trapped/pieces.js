@@ -382,7 +382,7 @@ let pieces = {
     //    Knighted pieces
     //
     "archbishop":    {betza: "BN"},  "princess": {betza: "BN"},
-    "chancellor":    {betza: "RN"},  "empress":  {betza: "BN"},
+    "chancellor":    {betza: "RN"},  "empress":  {betza: "RN"},
     "amazon":        {betza: "QN"},
     //
     //     Pawned pieces
@@ -475,8 +475,10 @@ let pieces = {
     //   -  Overkill Ecumenical Chess
     //
     "ace":              {betza: "QN"},
+    "acme":             {betza: "QC"},
     "acropolis":        {betza: "RNC"},
     "actor":            {betza: "BNC"},
+    "oec_marshal":      {betza: "RN", name: "marshal"},
     "actress":          {betza: "QNC"},
 }
 

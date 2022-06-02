@@ -91,6 +91,7 @@ let pages = [
     // Chess variants
     //
     ["abbot"],
+    ["acme"],
     ["acropolis"],
     ["actor"],
     ["actress"],
