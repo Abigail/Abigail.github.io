@@ -91,6 +91,9 @@ let pages = [
     // Chess variants
     //
     ["abbot"],
+    ["acropolis"],
+    ["actor"],
+    ["actress"],
 
     //
     // Shogi variants

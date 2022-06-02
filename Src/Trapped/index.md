@@ -63,7 +63,7 @@ Each piece is classified to be one of:
 [Queen](queen.html)
         & W
         & FC
-        & F*/100%
+        & F/100%
         \\
 [Rook](rook.html)
         & W
@@ -204,7 +204,7 @@ Each piece is classified to be one of:
                              = [Rook](rook.html) + [Knight](knight.html)
                                    & W         & F/100%   \\
 [Amazon](amazon.html) =  [Queen](queen.html) + [Knight](knight.html)
-                                   & W         & FC       \\
+                                   & W         & FC    & F/100%       \\
 [Gnu](gnu.html) = [Camel](camel.html) + [Knight](knight.html)
                                    & ?         & ?        \\
 [Okapi](okapi.html) = [Zebra](zebra.html) + [Knight](knight.html)
@@ -285,10 +285,38 @@ Each piece is classified to be one of:
         & F*/100%
         \\
 
+[Ace](amazon.html?piece=ace)
+        & {rs = 5} [*Overkill Ecumenical
+                     Chess*](#chess-v:rules/overkill-ecumenical-chess)
+        & W
+        & FC
+        & F/100%
+        \\
+[Acropolis](acropolis.html)
+        & E
+        & F*/100%
+        & F*/100%
+        \\
+[Actor](actor.html)
+        & ?
+        & F*/100%
+        & F*/100%
+        \\
+[Actress](actress.html)
+        & W
+        & FC
+        & F/100%
+        \\
+[Queen](queen.html)
+        & W
+        & FC
+        & F/100%
+        \\
+
 
 [Frog](frog.html)
         & {rs = 1} Fairy Chess
-        & ??
+        & ?
         & F*/100%
         & F*/100%
         \\

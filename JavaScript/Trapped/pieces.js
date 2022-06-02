@@ -470,6 +470,14 @@ let pieces = {
     // Chess variants
     //
     "abbot":            {betza: "F4N"},    // Typhoon Chess, Scirocco Chess
+
+    //
+    //   -  Overkill Ecumenical Chess
+    //
+    "ace":              {betza: "QN"},
+    "acropolis":        {betza: "RNC"},
+    "actor":            {betza: "BNC"},
+    "actress":          {betza: "QNC"},
 }
 
 

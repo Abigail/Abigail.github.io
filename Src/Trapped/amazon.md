@@ -1,11 +1,32 @@
 # Amazon
 
-The Amazon moves either like the [Queen](queen.html) or the
-[Knight](knight.html).
+The [**Amazon**](#wiki:Amazon_(chess)) combines the moves from the
+[*Queen*](queen.html) and the
+[*Knight*](knight.html), which makes it a *Knighted Piece*.
 
-On the Spiral, it can move like the [Wazir](wazir.html), and
-hence will follow the spiral, visiting all the squares on the
-board. 
+This piece has a long history, and appears in many chess variants. As such,
+it's known under various names, including:
+*Ace* (in [*Overkill Ecumenical
+Chess*](#chess-v:rules/overkill-ecumenical-chess)),
+*Angel*, *Ayanu*, *Commander*, *Crown Prince*, *Elephant*, *Empress*,
+*General*, *Giraffe*, *Grand Chancellor*, *Maharajah*, *Rettah*,
+*Royal Guard, *Superqueen*, *Tetra Queen*, and *Wyvern*.
 
-On the Wedge, since it can move as the Queen, it will visit
-all the squares on the board, in order of the values.
+### Spiral
+
+On the Spiral, since the **Amazon** can move as the [*Queen*](queen.html),
+it can move like the [*Wazir*](wazir.html), and hence will follow the spiral,
+visiting all the squares on the board. 
+
+### Wedge
+
+#### Folded
+
+On the Folded Wedge, since **Amazon** can move as the [*Queen*](queen.html),
+it can also move as the [*Flying Cock*](flying_cock.html). Hence
+it will visit all the squares on the board, in order of the values.
+
+#### Flat
+
+On the Flat Wedge, the **Amazon** fills the entire board, in a 
+rather simple pattern.
