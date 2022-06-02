@@ -465,6 +465,11 @@ let pieces = {
     // Fairy Chess
     //
     "frog":             {betza: "FH"},
+
+    //
+    // Chess variants
+    //
+    "abbot":            {betza: "F4N"},    // Typhoon Chess, Scirocco Chess
 }
 
 

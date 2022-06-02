@@ -277,6 +277,14 @@ Each piece is classified to be one of:
         & F*/100%
         \\
 
+[Abbot](abbot.html)
+        & {rs = 1} [*Typhoon Chess*](#chess-v:rules/typhoon-revised),
+                   [*Scirocco Chess*](#chess-v:invention/scirocco)
+        & T/6334
+        & F*/100%
+        & F*/100%
+        \\
+
 
 [Frog](frog.html)
         & {rs = 1} Fairy Chess
