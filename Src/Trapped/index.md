@@ -202,7 +202,7 @@ Each piece is classified to be one of:
                                    & T/6386    & F/100%   \\
 [Chancellor](chancellor.html)/[Empress](chancellor.html?piece=empress)
                              = [Rook](rook.html) + [Knight](knight.html)
-                                   & W         & F/100%   \\
+                                   & W         & F/100% & F/100%   \\
 [Amazon](amazon.html) =  [Queen](queen.html) + [Knight](knight.html)
                                    & W         & FC    & F/100%       \\
 [Gnu](gnu.html) = [Camel](camel.html) + [Knight](knight.html)
@@ -286,14 +286,19 @@ Each piece is classified to be one of:
         \\
 
 [Ace](amazon.html?piece=ace)
-        & {rs = 5} [*Overkill Ecumenical
+        & {rs = 7} [*Overkill Ecumenical
                      Chess*](#chess-v:rules/overkill-ecumenical-chess)
         & W
         & FC
         & F/100%
         \\
+[Acme](acme.html)
+        & W
+        & FC
+        & F*/100%
+        \\
 [Acropolis](acropolis.html)
-        & E
+        & W
         & F*/100%
         & F*/100%
         \\
@@ -305,6 +310,11 @@ Each piece is classified to be one of:
 [Actress](actress.html)
         & W
         & FC
+        & F/100%
+        \\
+[Marshal](chancellor.html)
+        & W
+        & F/100%
         & F/100%
         \\
 [Queen](queen.html)
