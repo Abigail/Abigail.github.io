@@ -1,6 +1,6 @@
 # Canvasser
 
-The **Canvasser** is a piece from [*Overkill Ecumenical
+The **Canvasser**%%CVP:canvassr%% is a piece from [*Overkill Ecumenical
 Chess*](#chess-v:rules/overkill-ecumenical-chess).
 
 The **Canvasser** combines the movements of the

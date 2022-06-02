@@ -506,6 +506,15 @@ sub process_section ($section, $language, $directives) {
     $section =~ s {("--"|'--'|^\h*--\h*$|^    .*|<!--|-->)|(?<!-)--(?!-)}
                   {$1 || "&mdash;"}gme;
 
+    #
+    # For the Trapped pages, process some tokens
+    #
+    if ($$directives {type} == $TYPE_TRAPPED) {
+        $section =~ s {%%CVP:([-\pL\p{Nd}_]+)%%}
+                      {"<sup><a href = '$CHESS_VARIANT_URL/" .
+                       "piececlopedia.dir/$1.html'>CV</a></sup>"}eg
+    }
+
     $section . "\n";
 }
 
