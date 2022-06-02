@@ -382,6 +382,7 @@ let pieces = {
     //    Knighted pieces
     //
     "archbishop":    {betza: "BN"},  "princess": {betza: "BN"},
+                                     "cardinal": {betza: "BN"},
     "chancellor":    {betza: "RN"},  "empress":  {betza: "RN"},
     "amazon":        {betza: "QN"},
     //
@@ -480,6 +481,8 @@ let pieces = {
     "actor":            {betza: "BNC"},
     "oec_marshal":      {betza: "RN", name: "marshal"},
     "actress":          {betza: "QNC"},
+    "canvasser":        {betza: "RC"},
+    "oec_caliph":       {betza: "BC"},
 }
 
 
