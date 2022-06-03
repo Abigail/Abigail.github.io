@@ -26,3 +26,6 @@ three rows at a time.
 The **Acropolis** also fills the entire Flat Wedge, using a different,
 but also interesting, pattern. It has a bias the right hand side of
 the Wedge.
+
+<div class = 'trapped' data-piece = 'acropolis'></div>
+<div class = 'boxset'  data-sets  = 'overkill_ecumenical_chess'></div>

@@ -59,3 +59,6 @@ a simple pattern.
 On the Flat Wedge, the **Chancellor** fills the complete board, following
 a similar pattern. The **Chancellor** is unusual in the fact the travel
 patterns on both the Folded and Flat Wedge look somewhat similar.
+
+<div class = 'trapped' data-piece = 'chancellor'></div>
+<div class = 'boxset'  data-sets  = 'overkill_ecumenical_chess'></div>

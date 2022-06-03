@@ -25,3 +25,6 @@ using a handful of repeating patterns.
 The **Canvasser** visits all the square of the Flat Wedge, using
 a repeating pattern, and filling the board with a bias to the right
 hand side.
+
+<div class = 'trapped' data-piece = 'canvasser'></div>
+<div class = 'boxset'  data-sets  = 'overkill_ecumenical_chess'></div>

@@ -26,3 +26,6 @@ board by just following the Wedge.
 
 On the Flat Wedge, the **Actress** fills the entire board in a not
 very interesting pattern.
+
+<div class = 'trapped' data-piece = 'actress'></div>
+<div class = 'boxset'  data-sets  = 'overkill_ecumenical_chess'></div>

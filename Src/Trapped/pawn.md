@@ -7,3 +7,6 @@ first move). Since we won't have other pieces on the board, it cannot move
 diagonally to capture. Hence, the Pawn will always move forward, never
 getting trapped; it just quickly escapes to infinity in a straight
 line, regardless of the numbering used.
+
+<div class = 'trapped' data-piece = 'queen'></div>
+<div class = 'boxset'  data-sets  = 'chess,overkill_ecumenical_chess'></div>

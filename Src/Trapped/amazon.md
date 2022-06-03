@@ -30,3 +30,6 @@ it will visit all the squares on the board, in order of the values.
 
 On the Flat Wedge, the **Amazon** fills the entire board, in a 
 rather simple pattern.
+
+<div class = 'trapped' data-piece = 'amazon'></div>
+<div class = 'boxset'  data-sets  = 'overkill_ecumenical_chess'></div>
