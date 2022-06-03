@@ -67,7 +67,7 @@ my $TYPE_INFO = {
         $INFO_DIR      =>  $DIR_TRAPPED,
         $INFO_NAV      =>  "Trapped/pages",
         $INFO_UP       =>  "../..",
-        $INFO_JS       =>  ["trapped", "pieces"],
+        $INFO_JS       =>  ["trapped", "pieces", "boxset"],
     },
 };
 
