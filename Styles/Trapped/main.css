@@ -97,10 +97,18 @@ table.boxset th {
     white-space:                nowrap;
 }
 
+table.boxset td {
+    padding-left:                  1em;
+}
+
 table.boxset th, table.boxset td {
     border-top:        1px solid black;
 }
 
 table.boxset span.piece_name {
     margin-left:                0.25em;
+}
+
+table.boxset span.self {
+    font-weight:                  bold;
 }
