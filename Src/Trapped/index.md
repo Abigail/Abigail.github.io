@@ -185,6 +185,7 @@ Each piece is classified to be one of:
 [Gnu](gnu.html) = [Knight](knight.html) + [Camel](camel.html)
         & ?
         & ?
+        & F*/100%
         \\
 [Bison](bison.html) = [Camel](camel.html) + [Zebra](zebra.html)
         & ?
@@ -417,7 +418,7 @@ Each piece is classified to be one of:
         \\
 
 [Ace](amazon.html?piece=ace)
-        & {rs = 10} [*Overkill Ecumenical
+        & {rs = 11} [*Overkill Ecumenical
                      Chess*](#chess-v:rules/overkill-ecumenical-chess)
         & W
         & FC
@@ -451,6 +452,11 @@ Each piece is classified to be one of:
 [Cardinal](archbishop.html?piece=cardinal)
         & T/6386
         & F*/100%
+        & F*/100%
+        \\
+[Gnu](gnu.html)
+        & ?
+        & ?
         & F*/100%
         \\
 [Marshal](chancellor.html?piece=marshal)
