@@ -105,7 +105,8 @@ Each piece is classified to be one of:
         \\
 [Knight](knight.html)
         & T/2015
-        & T/50 
+        & T/50
+        & E*
         \\
 [Alfil](alfil.html)
         & F/12.5%
@@ -281,7 +282,7 @@ Each piece is classified to be one of:
 [Gnu](gnu.html) = [Camel](camel.html) + [Knight](knight.html)
         & ?
         & ?
-        &
+        & F*/100%
         \\
 [Okapi](okapi.html) = [Zebra](zebra.html) + [Knight](knight.html)
         & ?
