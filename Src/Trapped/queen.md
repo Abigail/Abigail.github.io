@@ -21,3 +21,6 @@ hence will follow the Wedge, filling the entire board.
 
 The Queen will fill the entire board, but in doing so, it has a 
 strong bias on the right hand side of the board. 
+
+<div class = 'trapped' data-piece = 'queen'></div>
+<div class = 'boxset'  data-sets  = 'chess,overkill_ecumenical_chess'></div>
