@@ -542,10 +542,16 @@ class Piece {
     }
 
     file (args = {}) {
-        if (this . main) {
-            return this . main + ".html?piece=" + this . piece_name
+        if (!this . _file) {
+            if (this . main) {
+                this . _file = this . main + ".html?piece=" + this . piece_name
+            }
+            else {
+                this . _file = this . piece_name + ".html"
+            }
         }
-        return this . piece_name + ".html"
+
+        return this . _file
     }
 }
 

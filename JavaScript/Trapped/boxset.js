@@ -30,7 +30,7 @@ function set_up_boxset (div) {
                 table += `<span class = 'self'>${piece . name ()}</span>`
             }
             else {
-                table += `<a href = '${file}'>${piece . name ()}</a>`
+                table += `<a href = '${piece . file ()}'>${piece . name ()}</a>`
             }
             table += "</span>"
         })
