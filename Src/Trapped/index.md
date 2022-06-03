@@ -417,7 +417,7 @@ Each piece is classified to be one of:
         \\
 
 [Ace](amazon.html?piece=ace)
-        & {rs = 9} [*Overkill Ecumenical
+        & {rs = 10} [*Overkill Ecumenical
                      Chess*](#chess-v:rules/overkill-ecumenical-chess)
         & W
         & FC
@@ -457,6 +457,11 @@ Each piece is classified to be one of:
         & W
         & F/100%
         & F/100%
+        \\
+[Pawn](pawn.html)
+        & E
+        & E
+        & E
         \\
 [Queen](queen.html)
         & W
