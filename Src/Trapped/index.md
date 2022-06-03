@@ -199,7 +199,7 @@ Each piece is classified to be one of:
                                    & ?         & T/42     \\
 [Archbishop](archbishop.html)/[Princess](archbishop.html?piece=princess)
                              = [Bishop](bishop.html) + [Knight](knight.html)
-                                   & T/6386    & F/100%   \\
+                                   & T/6386    & F*/100% & F*/100%   \\
 [Chancellor](chancellor.html)/[Empress](chancellor.html?piece=empress)
                              = [Rook](rook.html) + [Knight](knight.html)
                                    & W         & F/100% & F/100%   \\
@@ -286,7 +286,7 @@ Each piece is classified to be one of:
         \\
 
 [Ace](amazon.html?piece=ace)
-        & {rs = 8} [*Overkill Ecumenical
+        & {rs = 9} [*Overkill Ecumenical
                      Chess*](#chess-v:rules/overkill-ecumenical-chess)
         & W
         & FC
@@ -317,7 +317,12 @@ Each piece is classified to be one of:
         & F*/100%
         & F*/100%
         \\
-[Marshal](chancellor.html)
+[Cardinal](archbishop.html?piece=cardinal)
+        & T/6386
+        & F*/100%
+        & F*/100%
+        \\
+[Marshal](chancellor.html?piece=marshal)
         & W
         & F/100%
         & F/100%

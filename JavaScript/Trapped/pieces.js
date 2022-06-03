@@ -479,7 +479,7 @@ let pieces = {
     "acme":             {betza: "QC"},
     "acropolis":        {betza: "RNC"},
     "actor":            {betza: "BNC"},
-    "oec_marshal":      {betza: "RN", name: "marshal"},
+    "marshal":          {betza: "RN"},
     "actress":          {betza: "QNC"},
     "canvasser":        {betza: "RC"},
     "oec_caliph":       {betza: "BC"},

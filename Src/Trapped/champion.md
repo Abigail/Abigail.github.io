@@ -1,8 +1,13 @@
 # Champion
 
-The Champion moves as either the [Wazir](wazir.html), the 
-[Dabbaba](dabbaba.html) or the [Alfil](alfil.html). The
-piece is found in [Omega Chess](#wiki).
+The **Champion** moves as either the [*Wazir*](wazir.html), the 
+[*Dabbaba*](dabbaba.html) or the [*Alfil*](alfil.html). The
+piece is found in [*Omega Chess*](#wiki).
+
+In *Carrera's Chess*, dating from the early
+17<sup>th</sup> century, there was also a piece named *Champion*,
+but this was a [Rook + Knight compound](chancellor.html).
+
 
 Since the Champion can move as the [Wazir](wazir.html), it
 will follow the Spiral, visiting all squares on the board.
