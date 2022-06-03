@@ -167,7 +167,9 @@ Each piece is classified to be one of:
         \\
 [Caliph](caliph.html) = [Wazir](wazir.html) + [Alfil](alfil.html)
         & W
-        & F*/100%  \\
+        & F*/100%
+        & E
+        \\
 [Hawk](hawk.html) = [Alfil](alfil.html) + [Dabbaba](dabbaba.html) +
                     [Threeleaper](threeleaper.html) + [Tripper](tripper.html)
         & F*/100%
@@ -419,7 +421,7 @@ Each piece is classified to be one of:
         \\
 
 [Ace](amazon.html?piece=ace)
-        & {rs = 11} [*Overkill Ecumenical
+        & {rs = 12} [*Overkill Ecumenical
                      Chess*](#chess-v:rules/overkill-ecumenical-chess)
         & W
         & FC
@@ -444,6 +446,11 @@ Each piece is classified to be one of:
         & W
         & FC
         & F/100%
+        \\
+[Caliph](oec_caliph.html)
+        & T/1563
+        & F*/50%
+        & F*/50%
         \\
 [Canvasser](canvasser.html)
         & W

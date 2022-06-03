@@ -482,7 +482,7 @@ let pieces = {
     "marshal":          {betza: "RN"},
     "actress":          {betza: "QNC"},
     "canvasser":        {betza: "RC"},
-    "oec_caliph":       {betza: "BC"},
+    "oec_caliph":       {betza: "BC", _name: "Caliph"},
 }
 
 
