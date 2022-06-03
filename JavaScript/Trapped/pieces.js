@@ -381,9 +381,11 @@ let pieces = {
     // Compound pieces
     //    Knighted pieces
     //
-    "archbishop":    {betza: "BN"},  "princess": {betza: "BN"},
-                                     "cardinal": {betza: "BN"},
-    "chancellor":    {betza: "RN"},  "empress":  {betza: "RN"},
+    "archbishop":    {betza: "BN"},
+         "princess": {betza: "BN", main: "archbishop"},
+         "cardinal": {betza: "BN", main: "archbishop"},
+    "chancellor":    {betza: "RN"},
+         "empress":  {betza: "RN", main: "chancellor"},
     "amazon":        {betza: "QN"},
     //
     //     Pawned pieces
@@ -475,18 +477,30 @@ let pieces = {
     //
     //   -  Overkill Ecumenical Chess
     //
-    "ace":              {betza: "QN"},
+    "ace":              {betza: "QN", main: "amazon"},
     "acme":             {betza: "QC"},
     "acropolis":        {betza: "RNC"},
     "actor":            {betza: "BNC"},
-    "marshal":          {betza: "RN"},
     "actress":          {betza: "QNC"},
-    "canvasser":        {betza: "RC"},
     "oec_caliph":       {betza: "BC", _name: "Caliph"},
+    "canvasser":        {betza: "RC"},
+    "marshal":          {betza: "RN", main: "chancellor"},
+}
+
+let set_info = {
+    chess: {
+        pieces: ["king", "queen", "rook", "bishop", "knight", "pawn"],
+    },
+    overkill_ecumenical_chess: {
+        pieces: ["ace", "acme", "acropolis", "actor", "actress",
+                 "oec_caliph", "canvasser", "cardinal", "gnu",
+                 "marshal", "queen", "pawn"],
+    },
 }
 
 
-window . pieces = pieces
+window . pieces   = pieces
+window . set_info = set_info
 
 class Piece {
     constructor (args = {}) {
@@ -525,6 +539,13 @@ class Piece {
             this . _full_name += this . name ()
         }
         return this . _full_name
+    }
+
+    file (args = {}) {
+        if (this . main) {
+            return this . main + ".html?piece=" + this . piece_name
+        }
+        return this . piece_name + ".html"
     }
 }
 

@@ -81,3 +81,26 @@ th.title {
     height:                 2em;
     font-size:             140%;
 }
+
+
+
+table.boxset {
+    margin-left:                   5em;
+    margin-right:                  5em;
+    margin-top:                    3em;
+    border:            1px solid black;
+    border-collapse:          collapse;
+}
+
+table.boxset th {
+    text-align:                   left;
+    white-space:                nowrap;
+}
+
+table.boxset th, table.boxset td {
+    border-top:        1px solid black;
+}
+
+table.boxset span.piece_name {
+    margin-left:                0.25em;
+}
