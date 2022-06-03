@@ -96,6 +96,7 @@ table.boxset {
 table.boxset th {
     text-align:                   left;
     white-space:                nowrap;
+    padding-left:               0.25em;
 }
 
 table.boxset td {
