@@ -2,7 +2,10 @@
 
 The [**Amazon**](#wiki:Amazon_(chess)) combines the moves from the
 [*Queen*](queen.html) and the
-[*Knight*](knight.html), which makes it a *Knighted Piece*.
+[*Knight*](knight.html), which makes it a *Knighted Piece*. The
+**Amazon** can either slide an unlimited amount of squares in one
+the eight main directions, or jump to a square which is two squares
+away in one orthogonal direction, and one square away in the other.
 
 This piece has a long history, and appears in many chess variants. As such,
 it's known under various names, including:
@@ -10,7 +13,7 @@ it's known under various names, including:
 Chess*](#chess-v:rules/overkill-ecumenical-chess)),
 *Angel*, *Ayanu*, *Commander*, *Crown Prince*, *Elephant*, *Empress*,
 *General*, *Giraffe*, *Grand Chancellor*, *Maharajah*, *Rettah*,
-*Royal Guard, *Superqueen*, *Tetra Queen*, and *Wyvern*.
+*Royal Guard*, *Superqueen*, *Tetra Queen*, and *Wyvern*.
 
 ### Spiral
 
