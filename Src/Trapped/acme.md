@@ -4,7 +4,11 @@ The **Acme** is a piece from [*Overkill Ecumenical
 Chess*](#chess-v:rules/overkill-ecumenical-chess).
 
 The **Acme** combines the movements of the
-[*Queen*](queen.html), and the [*Camel*](camel.html).
+[*Queen*](queen.html), and the [*Camel*](camel.html). That is, 
+the **Acme** can either slide an unlimited number of unoccupied
+squares in each of the eight main directions (orthogonal and
+diagonal), or leap to a square which is three squares away in
+one orthogonal direction, and one square away in the other.
 
 ### Spiral
 
