@@ -184,6 +184,7 @@ Each piece is classified to be one of:
 [Wizard](wizard.html) = [Ferz](ferz.html) + [Camel](camel.html)
         & ?
         & F*/50%
+        & F/50%
         \\
 [Gnu](gnu.html) = [Knight](knight.html) + [Camel](camel.html)
         & ?
@@ -410,7 +411,7 @@ Each piece is classified to be one of:
 [Wizard](wizard.html)
         & ?
         & F*/50%
-        &
+        & F/50%
         \\
 
 

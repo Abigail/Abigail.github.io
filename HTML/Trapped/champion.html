@@ -12,6 +12,7 @@
 <script src = '../../JavaScript/navigation.js'></script>
 <script src = '../../JavaScript/Trapped/trapped.js'></script>
 <script src = '../../JavaScript/Trapped/pieces.js'></script>
+<script src = '../../JavaScript/Trapped/boxset.js'></script>
 <script src = '../../JavaScript/Trapped/pages.js'></script>
 </head>
 
@@ -22,22 +23,43 @@ by Abigail<br>
 
 
 <p>The <strong>Champion</strong> moves as either the <a href="wazir.html"><em>Wazir</em></a>, the 
-<a href="dabbaba.html"><em>Dabbaba</em></a> or the <a href="alfil.html"><em>Alfil</em></a>. The
-piece is found in <a href="https://en.wikipedia.org/wiki/Omega_Chess"><em>Omega Chess</em></a>.</p>
+<a href="dabbaba.html"><em>Dabbaba</em></a> or the <a href="alfil.html"><em>Alfil</em></a>. This means,
+the <strong>Champion</strong> jumps two squares away diagonally or one or
+two squares orthogonally,</p>
+
+<p>The piece is found in <a href="https://en.wikipedia.org/wiki/Omega_Chess"><em>Omega Chess</em></a>.</p>
 
 <p>In <em>Carrera's Chess</em>, dating from the early
 17<sup>th</sup> century, there was also a piece named <em>Champion</em>,
 but this was a <a href="chancellor.html">Rook + Knight compound</a>.</p>
 
-<p>Since the Champion can move as the <a href="wazir.html">Wazir</a>, it
-will follow the Spiral, visiting all squares on the board.</p>
+<h3 id = 'spiral'>Spiral</h3>
 
-<p>On the Wedge, it almost follows the path of the Wedge, except
+<div class = "section">
+<p>Since the <strong>Champion</strong> can move as the <a href="wazir.html"><em>Wazir</em></a>, it
+will follow the Spiral, visiting all squares on the board.</p>
+</div>
+
+<h3 id = 'wedge'>Wedge</h3>
+
+<h4 id = 'folded'>Folded</h4>
+
+<div class = "section">
+<p>On the Folded Wedge, it almost follows the path of the Wedge, except
 for making swapping two squares at each new row. It still visits
 each square on the board.</p>
+</div>
+
+<h4 id = 'flat'>Flat</h4>
+
+<p>On the Flat Wedge, for each row, the <strong>Champion</strong> first visits all the even
+squares (going left to right), then all the odd squares (going right to left).
+It then moves the the next row.</p>
 
 <div class = 'trapped' data-piece = 'champion'></div>
 
+<div class = 'boxset'  data-sets  = 'omega_chess'>
+</div>
 <hr id = 'last-line'>
 <div class = 'trailer'>
 <p class = 'prev'><a class = "prev" href = "">&#x261C;</a></p>
