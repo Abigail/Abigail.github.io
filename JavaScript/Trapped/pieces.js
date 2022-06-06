@@ -512,6 +512,10 @@ let set_info = {
                  "gold_general", "silver_general", "katsura_horse",
                  "incense_chariot", "foot_solder"],
     },
+    omega_chess: {
+        pieces: ["king", "queen", "rook", "champion", "wizard",
+                 "bishop", "knight", "pawn"],
+    }
 }
 
 
