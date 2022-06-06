@@ -39,4 +39,4 @@ On the Flat Wedge, the **Bishop** escapes as well, keep to the right
 edge of the Wedge.
 
 <div class = 'trapped' data-piece = 'bishop'></div>
-<div class = 'boxset'  data-sets  = 'chess'></div>
+<div class = 'boxset'  data-sets  = 'chess,shogi'></div>

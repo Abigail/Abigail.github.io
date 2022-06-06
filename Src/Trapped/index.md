@@ -297,12 +297,12 @@ Each piece is classified to be one of:
         & {rs = 2} Crowned Pieces
         & W
         & FC
-        &
+        & F/100%
         \\
 [Dragon Horse](dragon_horse.html) = [Bishop](bishop.html) + [King](king.html)
         & W
         & FC
-        &
+        & F/100%
         \\
 
 
@@ -319,37 +319,46 @@ Each piece is classified to be one of:
 [King General/&#x738b;&#x5c07;](king.html?piece=king_general)
         & {rs = 15} [Shogi (&#x5c06;&#x68cb;)](#wiki:Shogi)
         & {rs = 2} W
-        & {rs = 2} FC \\
+        & {rs = 2} FC
+        & {rs = 2} F/100% \\
 [Jeweled General/&#x7389;&#x5c07;](king.html?piece=jeweled_general) \\
 [Flying Chariot/&#x98db;&#x8eca;](rook.html?piece=flying_chariot) (Rook)
         & W 
         & T/6
+        & E
         \\
 [Dragon King/&#x9f8d;&#x738b;](dragon_king.html) (Promoted Rook)
         & W
         & FC
+        & F/100%
         \\
 [Angle Mover/&#x89d2;&#x884c;](bishop.html?piece=angle_mover) (Bishop)
         & F*/31.25%
+        & E
         & E
         \\
 [Dragon Horse/&#x9f8d;&#x99ac;](dragon_horse.html) (Promoted Bishop)
         & W
         & FC
+        & F/100%
         \\
 [Gold General/&#x91d1;&#x5c07;](gold_general.html)
         & W
         & FC
+        & F/100%
         \\
 [Silver General/&#x9280;&#x5c07;](silver_general.html)
         & F*/100%
+        & E
         & E
         \\
 [Promoted Silver/&#x6210;&#x9280;](gold_general.html?piece=promoted_silver)
         & W
         & FC
+        & F/100%
         \\
 [Katsura Horse/&#x6842;&#x99ac;](katsura_horse.html) (Knight)
+        & E
         & E
         & E
         \\
@@ -357,8 +366,10 @@ Each piece is classified to be one of:
                                    (Promoted Knight)
         & W
         & FC
+        & F/100%
         \\
 [Incense Chariot/&#x9999;&#x8eca;](incense_chariot.html) (Lance)
+        & E
         & E
         & E
         \\
@@ -366,8 +377,10 @@ Each piece is classified to be one of:
   (Promoted Lance)
         & W
         & FC
+        & F/100%
         \\
 [Foot Soldier/&#x6b69;&#x5175;](pawn.html?piece=foot_soldier) (Pawn)
+        & E
         & E
         & E
         \\
@@ -375,6 +388,7 @@ Each piece is classified to be one of:
   (Promoted Pawn)
         & W
         & FC
+        & F/100%
         \\
 
 [Hunter](hunter.html)

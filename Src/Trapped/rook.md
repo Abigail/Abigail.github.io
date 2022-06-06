@@ -6,7 +6,8 @@ occupied square.
 
 The *Flying Chariot* (&#x98db;&#x8eca;) in 
 [Sh&#x14d;gi (&#x5c06;&#x68cb;)](#wiki:Shogi) moves exactly as
-the **Rook**; it's often indicates as *Rook* by Westeners.
+the **Rook**; it's often indicates as *Rook* by Westeners. The
+*Flying Chariot* promotes to a [*Dragon King*](dragon_king.html).
 
 The **Rook** is a [*Wazir*](wazir.html)*rider*, that it, it moves in the same
 directions as the [*Wazir*](wazir.html), without a limit on the number
@@ -33,4 +34,4 @@ On the Flat Wedge the **Rook** quickly escapes to infinity by alternating make
 a step forward, and a step to the right.
 
 <div class = 'trapped' data-piece = 'room'></div>
-<div class = 'boxset'  data-sets  = 'chess'></div>
+<div class = 'boxset'  data-sets  = 'chess,shogi'></div>
