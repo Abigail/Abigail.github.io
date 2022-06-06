@@ -9,4 +9,5 @@ getting trapped; it just quickly escapes to infinity in a straight
 line, regardless of the numbering used.
 
 <div class = 'trapped' data-piece = 'pawn'></div>
-<div class = 'boxset'  data-sets  = 'chess,overkill_ecumenical_chess'></div>
+<div class = 'boxset'  data-sets  = 'chess,omega_chess,
+     overkill_ecumenical_chess'></div>
