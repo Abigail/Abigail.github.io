@@ -21,10 +21,14 @@ function set_up_boxset (div) {
         let pieces = info . pieces
 
         table += `<tr><th>${info . name || title_case (setname)}</th><td>`
-        pieces . forEach ((piece_name) => {
+        pieces . forEach ((piece_name, index) => {
             let piece = new Piece ({piece_name: piece_name})
             let file  = piece . file () . match (/[^\/]*\.html/) [0]
             let name  = piece . name () . replaceAll (/\s+/g, "&nbsp;")
+
+            if (index > 0) {
+                table += " &#xB7; "
+            }
 
             table += `<span class = 'piece_name'>`
             if (this_file == file) {
@@ -33,7 +37,7 @@ function set_up_boxset (div) {
             else {
                 table += `<a href = '${piece . file ()}'>${name}</a>`
             }
-            table += "</span> "
+            table += "</span>"
         })
         table += "</td></tr>\n"
     })
