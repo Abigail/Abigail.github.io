@@ -9,3 +9,6 @@ The Zebra will circle in an irregular way around the origin, with
 some focus of activity on the diagonals.
 
 The Zebra will get trapped after 4633 moves.
+
+<div class = 'trapped' data-piece = 'zebra'></div>
+<div class = 'boxset'  data-sets  = 'basic_leapers'></div>

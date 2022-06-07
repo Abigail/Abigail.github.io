@@ -102,6 +102,7 @@ Each piece is classified to be one of:
 [Dabbaba](dabbaba.html)
         & F/25%
         & E
+        & E
         \\
 [Knight](knight.html)
         & T/2015
@@ -111,10 +112,12 @@ Each piece is classified to be one of:
 [Alfil](alfil.html)
         & F/12.5%
         & E
+        & E
         \\
 [Threeleaper](threeleaper.html)
         & F/11.1%
         & T/6
+        & E
         \\
 [Camel](camel.html)
         & T/3722
