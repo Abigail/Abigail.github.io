@@ -36,3 +36,6 @@ a zig-zag pattern on the right hand side of the Wedge.
 On the Flat Wedge, the **Ferz** sticks the the right hand side
 edge of the board, escaping to infinity.
 
+
+<div class = 'trapped' data-piece = 'ferz'></div>
+<div class = 'boxset'  data-sets  = 'basic_leapers'></div>

@@ -483,6 +483,13 @@ let set_info = {
     chess: {
         pieces: ["king", "queen", "rook", "bishop", "knight", "pawn"],
     },
+    basic_leapers: {
+        pieces: ["wazir",       "ferz",
+                 "dabbaba",     "knight",  "alfil",
+                 "threeleaper", "camel",   "zebra", "tripper",
+                 "fourleaper",  "giraffe", "stag",  "antelope", "commuter",
+                 "flamingo"],
+    },
     overkill_ecumenical_chess: {
         pieces: ["king", "ace", "acme", "acropolis", "actor", "actress",
                  "oec_caliph", "canvasser", "cardinal", "gnu",
