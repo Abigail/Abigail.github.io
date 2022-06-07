@@ -317,13 +317,12 @@ Each piece is classified to be one of:
         & E
         \\
 
-[King General/&#x738b;&#x5c07;](king.html?piece=king_general)
-        & {rs = 15} [Shogi (&#x5c06;&#x68cb;)](#wiki:Shogi)
-        & {rs = 2} W
-        & {rs = 2} FC
-        & {rs = 2} F/100% \\
-[Jeweled General/&#x7389;&#x5c07;](king.html?piece=jeweled_general) \\
-[Flying Chariot/&#x98db;&#x8eca;](rook.html?piece=flying_chariot) (Rook)
+[King/&#x738b;&#x5c07;/&#x7389;&#x5c07;](king.html)
+        & {rs = 10} [Sh&#x14d;gi (&#x5c06;&#x68cb;)](#wiki:Shogi)
+        & W
+        & FC
+        & F/100% \\
+[Rook/&#x98db;&#x8eca;](rook.html)
         & W 
         & T/6
         & E
@@ -333,7 +332,7 @@ Each piece is classified to be one of:
         & FC
         & F/100%
         \\
-[Angle Mover/&#x89d2;&#x884c;](bishop.html?piece=angle_mover) (Bishop)
+[Bishop/&#x89d2;&#x884c;](bishop.html)
         & F*/31.25%
         & E
         & E
@@ -353,43 +352,20 @@ Each piece is classified to be one of:
         & E
         & E
         \\
-[Promoted Silver/&#x6210;&#x9280;](gold_general.html?piece=promoted_silver)
-        & W
-        & FC
-        & F/100%
-        \\
-[Katsura Horse/&#x6842;&#x99ac;](katsura_horse.html) (Knight)
+[Knight/&#x6842;&#x99ac;](shogi_knight.html)
         & E
         & E
         & E
         \\
-[Promoted Katsura/&#x6210;&#x6842;](gold_general.html?piece=promoted_katsura)
-                                   (Promoted Knight)
-        & W
-        & FC
-        & F/100%
-        \\
-[Incense Chariot/&#x9999;&#x8eca;](incense_chariot.html) (Lance)
+[Lance/&#x9999;&#x8eca;](lance.html)
         & E
         & E
         & E
         \\
-[Promoted Incense/&#x6210;&#x9999;](gold_general.html?piece=promoted_incense)
-  (Promoted Lance)
-        & W
-        & FC
-        & F/100%
-        \\
-[Foot Soldier/&#x6b69;&#x5175;](pawn.html?piece=foot_soldier) (Pawn)
+[Pawn/&#x6b69;&#x5175;](pawn.html)
         & E
         & E
         & E
-        \\
-[Reaches Gold/&#x3068;&#x91d1;](gold_general.html?piece=reaches_gold)
-  (Promoted Pawn)
-        & W
-        & FC
-        & F/100%
         \\
 
 [Hunter](hunter.html)

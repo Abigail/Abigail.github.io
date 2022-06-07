@@ -1,16 +1,17 @@
 # Gold General
 
-The **Gold General** (&#x91d1;&#x5c07;) from
-[Sh&#x14d;gi (&#x5c06;&#x68cb;)](#wiki:Shogi) either moves one step
+The **Gold General** (&#x91d1;&#x5c07;) either moves one step
 in an orthogonal direction (like a [*Wazir*](wazir.html)), or one
 step diagonally forward.
 
-Sh&#x14d;gi has a few promoted pieces which move like a
-**Gold General**: the *Promoted Silver General* (&#x6210;&#x9280;),
-the *Promoted Katsura Horse* (&#x6210;&#x6842;) the *Promoted
-Incense Chariot* (&#x6210;&#x9999;) (aka *Promoted Lance*),
-and the *Reaches Gold* (&#x3068;&#x91d1;) (aka *Promoted Foot Soldier*
-aka *Promoted Pawn*).
+The **Gold General** is a piece in
+[Sh&#x14d;gi (&#x5c06;&#x68cb;)](#wiki:Shogi). It appears in the
+starting array, but several pieces also promote to the
+**Gold General**: the [*Silver General*](silver_general.html)
+(&#x6210;&#x9280;), the [*Lance*](lance.html) (&#x6210;&#x9999;),
+the [*Knight*](shogi_knight.html) (&#x6210;&#x6842;)
+and the [*Pawn*](pawn.html) (&#x3068;&#x91d1;). The
+promoted *Pawn* is often called a *Tokin*.
 
 ### Spiral
 

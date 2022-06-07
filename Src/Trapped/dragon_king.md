@@ -1,13 +1,17 @@
 # Dragon King
 
-The **Dragon King** (&#x9f8d;&#x738b;) from
-[Sh&#x14d;gi (&#x5c06;&#x68cb;)](#wiki:Shogi) combines the moves of
-the [King](king.html) and the [Rook](rook.html). If the 
-[Flying Chariot](rook.html?piece=flying_chariot) in Sh&#x14d;gi promotes,
-it becomes the Dragon King.
+The **Dragon King** (&#x9f8d;&#x738b;) combines the movements of
+the [*King*](king.html) and [*Rook*](rook.html). That is, it steps
+either one square diagonally, or slides an unlimited number of 
+unoccupied squares orthogonally.
 
 It's a so-called *crowned piece*, which is a *compound piece*, 
 combining the movements of the *King* with one or more other pieces.
+
+The **Dragon King** is a piece from
+[Sh&#x14d;gi (&#x5c06;&#x68cb;)](#wiki:Shogi), and only
+appears on the board once a [*Rook*](rook.html) promotes.
+
 
 ### Spiral
 
