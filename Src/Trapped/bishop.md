@@ -2,14 +2,16 @@
 
 The **Bishop** (&#x2657;) can slide an unlimited number of squares in
 each of the four diagonal directions, as long as the squares it
-slides over are not occupied. [Sh&#x14d;gi (&#x5c06;&#x68cb;)](#wiki:Shogi)
-has the *Angle Mover* (&#x89d2;&#x884c;) which moves in the same
-way (which is way the piece is also called a **Bishop**).
+slides over are not occupied.
 
 Due to its diagonal movement, the **Bishop** is *colour bound*: if it
 starts a move on a dark square, it ends the move on a dark square.
 And if it starts on a light square, it ends on a light square. As such,
 the **Bishop** can only reach half the squares of the board.
+
+In [Sh&#x14d;gi (&#x5c06;&#x68cb;)](#wiki:Shogi), the **Bishop**
+is also known as the *Angle Mover* (&#x89d2;&#x884c;). It promotes
+to a [*Dragon Horse* (&#x9f8d;&#x99ac;)](dragon_horse.html).
 
 The **Bishop** is a [*Ferz*](ferz.html)*rider*, that is, it moves in the
 same directions as the [*Ferz*](ferz.html), without a limit on

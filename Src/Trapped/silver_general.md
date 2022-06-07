@@ -5,7 +5,7 @@ orthogonally forward.
 
 The **Silver General** (&#x9280;&#x5c07;) is found in
 [Sh&#x14d;gi (&#x5c06;&#x68cb;)](#wiki:Shogi). When it promotes,
-it moves like a [*Gold General*](gold_general.html?piece=promoted_silver).
+it moves like a [*Gold General*](gold_general.html).
 
 ### Spiral
 

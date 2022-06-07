@@ -436,30 +436,13 @@ let pieces = {
     //
     // Shogi
     //
-    "king_general":     {betza:  "K",   prefix: "&#x738b;&#x5c07;",
-                                        main:   "king"},
-    "jeweled_general":  {betza:  "K",   prefix: "&#x7389;&#x5c07;",
-                                        main:   "king"},
-    "flying_chariot":   {betza:  "R",   prefix: "&#x98db;&#x8eca;",
-                                        main:   "rook"},
     "dragon_king":      {betza:  "FR",  prefix: "&#x9f8d;&#x738b;"},
-    "angle_mover":      {betza:  "B",   prefix: "&#x89d2;&#x884c;",
-                                        main:   "bishop"},
     "dragon_horse":     {betza:  "WB",  prefix: "&#x9f8d;&#x99ac;"},
     "gold_general":     {betza:  "WfF", prefix: "&#x91d1;&#x5c07;"},
     "silver_general":   {betza:  "FfW", prefix: "&#x9280;&#x5c07;"},
-    "promoted_silver":  {betza:  "WfF", prefix: "&#x6210;&#x9280;",
-                                        main:   "gold_general"},
-    "katsura_horse":    {betza:  "fN",  prefix: "&#x6842;&#x99ac;"},
-    "promoted_katsura": {betza:  "WfF", prefix: "&#x6210;&#x6842;",
-                                        main:   "gold_general"},
-    "incense_chariot":  {betza:  "fR",  prefix: "&#x9999;&#x8eca;"},
-    "promoted_incense": {betza:  "WfF", prefix: "&#x6210;&#x9999;",
-                                        main:   "gold_general"},
-    "foot_soldier":     {betza:  "fW",  prefix: "&#x6b69;&#x5175;",
-                                        main:   "pawn"},
-    "reaches_gold":     {betza:  "WfF", prefix: "&#x3068;&#x91d1;",
-                                        main:   "gold_general"},
+    "shogi_knight":     {betza:  "fN",  prefix: "&#x6842;&#x99ac;",
+                                        _name:  "Knight"},
+    "lance":            {betza:  "fR",  prefix: "&#x9999;&#x8eca;"},
 
     //
     // Hunter-Falcon chess
@@ -507,10 +490,9 @@ let set_info = {
     },
     shogi: {
         name:   "Sh&#x14d;gi",
-        pieces: ["king_general", "jeweled_general", "flying_chariot",
-                 "dragon_king", "angle_mover", "dragon_horse",
-                 "gold_general", "silver_general", "katsura_horse",
-                 "incense_chariot", "foot_solder"],
+        pieces: ["king", "rook", "dragon_king", "bishop", "dragon_horse",
+                 "gold_general", "silver_general", "shogi_knight",
+                 "lance", "pawn"],
     },
     omega_chess: {
         pieces: ["king", "queen", "rook", "champion", "wizard",

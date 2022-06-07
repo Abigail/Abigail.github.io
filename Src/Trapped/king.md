@@ -1,19 +1,23 @@
 # King
 
 The **King** (&#x2654;) can step one square away in all eight directions.
-[Sh&#x14d;gi (&#x5c06;&#x68cb;)](#wiki:Shogi) has Kings as well,
-the *King General* (&#x738b;&#x5c07;) and the
-*Jeweled General* (&#x7389;&#x5c07;),
-which moves in exactly the same way. (*King General* and *Jeweled General*
-are names for the same piece, but of opposite sides).
 
-A *Mann* is a piece which moves in exactly the same way, but a *Mann*
-is not *royal*. (Royal pieces are pieces which need lead to a loss
-of the game when they are captured). Royalness however, does not
-matter in our investigation. A *Prince* is another name for a *Mann*.
+The **King** is a *Royal Piece*, which means that if it's captured,
+that side loses. Of course, for our investigation, Royalness plays
+no part.
+
+The **King** appears in many Chess variants, sometimes
+by different names.
+
+In [Sh&#x14d;gi (&#x5c06;&#x68cb;)](#wiki:Shogi) the **King** is also
+called the *King General* (&#x738b;&#x5c07;) (for one side) and the
+*Jeweled General* (&#x7389;&#x5c07;) (for the other side).
 
 In the Sh&#x14d;gi variant [D&#x14d;butsu sh&#x14d;gi](#wiki:Dobutsu_shogi),
 the **King** is known as the *Lion*.
+
+Names for pieces which move like the **King**, but are not Royal,
+include *Mann*, *Prince* and *Commoner*.
 
 ### Spiral
 
