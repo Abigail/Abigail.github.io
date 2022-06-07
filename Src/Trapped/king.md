@@ -42,4 +42,5 @@ with and against the numbers, with a small twist just before reaching
 the left hand side of the Wedge.
 
 <div class = 'trapped' data-piece = 'king'></div>
-<div class = 'boxset'  data-sets  = 'chess,shogi,omega_chess'></div>
+<div class = 'boxset'  data-sets  = 'chess,shogi,overkill_ecumenical_chess,
+     omega_chess'></div>

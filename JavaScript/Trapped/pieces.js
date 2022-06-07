@@ -484,7 +484,7 @@ let set_info = {
         pieces: ["king", "queen", "rook", "bishop", "knight", "pawn"],
     },
     overkill_ecumenical_chess: {
-        pieces: ["ace", "acme", "acropolis", "actor", "actress",
+        pieces: ["king", "ace", "acme", "acropolis", "actor", "actress",
                  "oec_caliph", "canvasser", "cardinal", "gnu",
                  "marshal", "queen", "pawn"],
     },
