@@ -132,6 +132,7 @@ Each piece is classified to be one of:
 [Tripper](tripper.html)
         & F/5.56%
         & E
+        & E
         \\
 [Fourleaper](fourleaper.html)
         & F/6.25%
