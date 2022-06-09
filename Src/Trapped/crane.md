@@ -6,7 +6,8 @@ or straight backwards.
 
 The **Crane** is a piece from [*Tori Sh&#x14d;gi*](#wiki:Tori_Shogi).
 
-The *Ferocious Leopard* from *Chu Sh&#x14d;gi* moves in the same way.
+The *Ferocious Leopard* from [*Chu Sh&#x14d;gi*](#wiki:Chu_Shogi)
+moves in the same way.
 
 ### Spiral
 
