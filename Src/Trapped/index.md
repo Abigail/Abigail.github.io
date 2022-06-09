@@ -487,8 +487,13 @@ Each piece is classified to be one of:
         \\
 
 [Phoenix/&#x9d6c;](king.html?piece=phoenix)
-        & {rs = 7}
+        & {rs = 8}
           [Tori Sh&#x14d;gi (&#x79bd;&#x5c06;&#x68cb;)](#wiki:Tori_Shogi)
+        & W
+        & FC
+        & F/100%
+        \\
+[Eagle/&#x9d70;](eagle.html)
         & W
         & FC
         & F/100%
@@ -520,6 +525,11 @@ Each piece is classified to be one of:
         \\
 [Swallow/&#x71d5;](pawn.html?piece=swallow) (Pawn)
         & F*/25% 
+        & E
+        & E
+        \\
+[Goose/&#x9d08;](goose.html)
+        & E*
         & E
         & E
         \\

@@ -483,14 +483,16 @@ let pieces = {
     //
     //   -  Tori Shogi
     //
-    "phoenix":          {parent: "king", prefix: "&#x9d6c;"},
+    "phoenix":          {parent: "king",            prefix: "&#x9d6c;"},
+    "eagle":            {betza:  "fBbRfsWbB2",      prefix: "&#x9d70;"},
     "tori_falcon":      {parent: "drunk_elephant",  prefix: "&#x9df9;",
-                         _name: "Falcon"},
-    "crane":            {betza: "FvW",      prefix: "&#x9db4;"},
-    "pheasant":         {betza: "fDbF",     prefix: "&#x96c9;"},
-    "left_quail":       {betza: "fRbrBblF", prefix: "&#x9d89;"},
-    "right_quail":      {betza: "fRblBbrF", prefix: "&#x9d89;"},
-    "swallow":          {parent: "pawn",    prefix: "&#x71d5;"},
+                         _name:  "Falcon"},
+    "crane":            {betza:  "FvW",             prefix: "&#x9db4;"},
+    "pheasant":         {betza:  "fDbF",            prefix: "&#x96c9;"},
+    "left_quail":       {betza:  "fRbrBblF",        prefix: "&#x9d89;"},
+    "right_quail":      {betza:  "fRblBbrF",        prefix: "&#x9d89;"},
+    "swallow":          {parent: "pawn",            prefix: "&#x71d5;"},
+    "goose":            {betza:  "fAbD",            prefix: "&#x9d08;"},
 }
 
 let set_info = {
@@ -521,8 +523,8 @@ let set_info = {
     },
     tori_shogi: {
         name:   "Tori Sh&#x14d;gi",
-        pieces: ["phoenix", "tori_falcon", "crane", "pheasant",
-                 "left_quail", "right_quail", "swallow"],
+        pieces: ["phoenix", "eagle", "tori_falcon", "crane", "pheasant",
+                 "left_quail", "right_quail", "swallow", "goose"],
     },
 }
 
