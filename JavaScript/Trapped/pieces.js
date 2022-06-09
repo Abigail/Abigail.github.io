@@ -382,10 +382,10 @@ let pieces = {
     //    Knighted pieces
     //
     "archbishop":    {betza: "BN"},
-         "princess": {betza: "BN", main: "archbishop"},
-         "cardinal": {betza: "BN", main: "archbishop"},
+         "princess": {parent: "archbishop"},
+         "cardinal": {parent: "archbishop"},
     "chancellor":    {betza: "RN"},
-         "empress":  {betza: "RN", main: "chancellor"},
+         "empress":  {parent: "chancellor"},
     "amazon":        {betza: "QN"},
     //
     //     Pawned pieces
@@ -469,14 +469,14 @@ let pieces = {
     //
     //   -  Overkill Ecumenical Chess
     //
-    "ace":              {betza: "QN", main: "amazon"},
+    "ace":              {parent: "amazon"},
     "acme":             {betza: "QC"},
     "acropolis":        {betza: "RNC"},
     "actor":            {betza: "BNC"},
     "actress":          {betza: "QNC"},
     "oec_caliph":       {betza: "BC", _name: "Caliph"},
     "canvasser":        {betza: "RC"},
-    "marshal":          {betza: "RN", main: "chancellor"},
+    "marshal":          {parent: "chancellor"},
 }
 
 let set_info = {
@@ -520,6 +520,16 @@ class Piece {
         else {
             this . piece_name = args . piece_name
             let piece_info = pieces [this . piece_name]
+            //
+            // If we have a "parent", first copy all the info
+            // from the parent.
+            //
+            if (piece_info . parent) {
+                let parent = new Piece ({piece_name: piece_info . parent})
+                for (const prop in parent) {
+                    this [prop] = parent [prop]
+                }
+            }
             for (const prop in piece_info) {
                 this [prop] = piece_info [prop]
             }
@@ -552,8 +562,9 @@ class Piece {
 
     file (args = {}) {
         if (!this . _file) {
-            if (this . main) {
-                this . _file = this . main + ".html?piece=" + this . piece_name
+            if (this . parent) {
+                this . _file = this . parent + ".html?piece=" +
+                               this . piece_name
             }
             else {
                 this . _file = this . piece_name + ".html"
