@@ -445,18 +445,6 @@ let pieces = {
     "lance":            {betza:  "fR",  prefix: "&#x9999;&#x8eca;"},
 
     //
-    // Hunter-Falcon chess
-    //
-    "hunter":           {betza: "fRbB"},
-    "falcon":           {betza: "fBbR"},
-
-    //
-    // Shogi variants
-    //
-    "blind_monkey":     {betza: "FsW",  prefix: "&#x76f2;&#x733f;"},
-    "flying_cock":      {betza: "fFsW", prefix: "&#x9d8f;&#x98db;"},
-
-    //
     // Fairy Chess
     //
     "frog":             {betza: "FH"},
@@ -465,6 +453,12 @@ let pieces = {
     // Chess variants
     //
     "abbot":            {betza: "F4N"},    // Typhoon Chess, Scirocco Chess
+
+    //
+    //   - Hunter-Falcon chess
+    //
+    "hunter":           {betza: "fRbB"},
+    "falcon":           {betza: "fBbR"},
 
     //
     //   -  Overkill Ecumenical Chess
@@ -477,6 +471,23 @@ let pieces = {
     "oec_caliph":       {betza: "BC", _name: "Caliph"},
     "canvasser":        {betza: "RC"},
     "marshal":          {parent: "chancellor"},
+
+    //
+    // Shogi variants
+    //
+    "blind_monkey":     {betza: "FsW",  prefix: "&#x76f2;&#x733f;"},
+    "flying_cock":      {betza: "fFsW", prefix: "&#x9d8f;&#x98db;"},
+    "drunk_elephant":   {betza: "FfsW"},
+
+
+    //
+    //   -  Tori Shogi
+    //
+    "phoenix":          {parent: "king", prefix: "&#x9d6c;"},
+    "tori_falcon":      {parent: "drunk_elephant",  prefix: "&#x9df9;",
+                         _name: "Falcon"},
+    "crane":            {betza: "FvW",  prefix: "&#x9db4;"},
+    "pheasant":         {betza: "fDbF", prefix: "&#x96c9;"},
 }
 
 let set_info = {
@@ -490,6 +501,10 @@ let set_info = {
                  "fourleaper",  "giraffe", "stag",  "antelope", "commuter",
                  "flamingo"],
     },
+    omega_chess: {
+        pieces: ["king", "queen", "rook", "champion", "wizard",
+                 "bishop", "knight", "pawn"],
+    },
     overkill_ecumenical_chess: {
         pieces: ["king", "ace", "acme", "acropolis", "actor", "actress",
                  "oec_caliph", "canvasser", "cardinal", "gnu",
@@ -501,10 +516,10 @@ let set_info = {
                  "gold_general", "silver_general", "shogi_knight",
                  "lance", "pawn"],
     },
-    omega_chess: {
-        pieces: ["king", "queen", "rook", "champion", "wizard",
-                 "bishop", "knight", "pawn"],
-    }
+    tori_shogi: {
+        name:   "Tori Sh&#x14d;gi",
+        pieces: ["phoenix", "tori_falcon", "crane", "pheasant"],
+    },
 }
 
 

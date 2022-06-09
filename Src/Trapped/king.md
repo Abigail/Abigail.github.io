@@ -13,6 +13,9 @@ In [Sh&#x14d;gi (&#x5c06;&#x68cb;)](#wiki:Shogi) the **King** is also
 called the *King General* (&#x738b;&#x5c07;) (for one side) and the
 *Jeweled General* (&#x7389;&#x5c07;) (for the other side).
 
+In [*Tori Sh&#x14d;gi*](#wiki:Tori_Shogi),
+the **King** is known as the *Phoenix* (&#x9d6c;).
+
 In the Sh&#x14d;gi variant [D&#x14d;butsu sh&#x14d;gi](#wiki:Dobutsu_shogi),
 the **King** is known as the *Lion*.
 
@@ -42,5 +45,5 @@ with and against the numbers, with a small twist just before reaching
 the left hand side of the Wedge.
 
 <div class = 'trapped' data-piece = 'king'></div>
-<div class = 'boxset'  data-sets  = 'chess,shogi,overkill_ecumenical_chess,
-     omega_chess'></div>
+<div class = 'boxset'  data-sets  = 'chess,omega_chess,
+     overkill_ecumenical_chess,shogi,tori_shogi'></div>
