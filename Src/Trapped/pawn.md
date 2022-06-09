@@ -10,4 +10,4 @@ line, regardless of the numbering used.
 
 <div class = 'trapped' data-piece = 'pawn'></div>
 <div class = 'boxset'  data-sets  = 'chess,omega_chess,
-     overkill_ecumenical_chess'></div>
+     overkill_ecumenical_chess,tori_shogi'></div>
