@@ -11,3 +11,6 @@ and backwards like a Chess [Rook](rook.html).
 Despite its moves being a mirror image of the Hunter, the Falcon
 doesn't get trapped. It will visit 25% of the squares, in a 
 somewhat interesting pattern.
+
+In [*Tori Sh&#x14d;gi*](#wiki:Tori_Shogi), there is a 
+[different piece with the same name](drunk_elephant.html?piece=tori_falcon).

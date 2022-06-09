@@ -395,13 +395,13 @@ Each piece is classified to be one of:
         \\
 
 
-[Blind Monkey](blind_monkey.html) (&#x76f2;&#x733f;)
+[Blind Monkey/&#x76f2;&#x733f;](blind_monkey.html)
         & {rs = 2} Sh&#x14d;gi variants
         & F*/100%
         & FC
         & F/100%
         \\
-[Flying Cock](flying_cock.html) (&#x9d8f;&#x98db;)
+[Flying Cock/&#x9d8f;&#x98db;](flying_cock.html)
         & E*
         & FC
         & F*/100%
@@ -484,6 +484,24 @@ Each piece is classified to be one of:
         & ?
         & F*/100%
         & F*/100%
+        \\
+
+[Phoenix/&#x9d6c;](king.html?piece=phoenix)
+        & {rs = 3}
+          [Tori Sh&#x14d;gi (&#x79bd;&#x5c06;&#x68cb;)](#wiki:Tori_Shogi)
+        & W
+        & FC
+        & F/100%
+        \\
+[Falcon/&#x9df9;](drunk_elephant.html?piece=tori_falcon)
+        & F*/100%
+        & FC
+        & F/100%
+        \\
+[Crane/&#x9db4;](crane.html)
+        & F*/100%
+        & E*
+        & E
         \\
 
 ====|
