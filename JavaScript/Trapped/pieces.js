@@ -419,22 +419,6 @@ let pieces = {
 
 
     //
-    // Compound pieces
-    //    Knighted pieces
-    //
-    "archbishop":    {betza: "BN"},
-         "princess": {parent: "archbishop"},
-         "cardinal": {parent: "archbishop"},
-    "chancellor":    {betza: "RN"},
-         "empress":  {parent: "chancellor"},
-    "amazon":        {betza: "QN"},
-    //
-    //     Pawned pieces
-    //
-    "dragon":           {betza:  "NfW"},
-    "gryphon":          {betza:  "BfW"},
-
-    //
     // Basic leapers
     //
     "wazir": {        // (1, 0)-leaper
@@ -596,7 +580,9 @@ let pieces = {
         index_names: {
             combined_leapers: "[Gnu](gnu.html) // "      +
                               "[Knight](knight.html) + " +
-                              "[Camel](camel.html)"
+                              "[Camel](camel.html)",
+            knighted_pieces:  "[Gnu](gnu.html) // " +
+                              "[Knight](knight.html) + [Camel](camel.html)",
         }
      },
     "caliph": {
@@ -619,11 +605,13 @@ let pieces = {
      },
     "okapi": {
         betza:    "NZ",
-        results: ["?", "?", ""],
+        results: ["?", "?", "E*"],
         index_names: {
             combined_leapers: "[Okapi](okapi.html) // "  +
                               "[Knight](knight.html) + " +
-                              "[Zebra](zebra.html)"
+                              "[Zebra](zebra.html)",
+            knighted_pieces:  "[Okapi](okapi.html) // " +
+                              "[Knight](knight.html) + [Zebra](zebra.html)",
         }
      },
     "zebu":  {
@@ -705,13 +693,85 @@ let pieces = {
         },
      },
 
+    //
+    // Compound pieces
+    //    Knighted pieces
+    //
+    "archbishop":    {
+        betza:    "BN",
+        results: ["T/6386", "F*/100%", "F*/100%"],
+        index_names: {
+            "knighted_pieces": "[Archbishop/Princess](archbishop.html) // " +
+                               "[Knight](knight.html) + [Bishop](bishop.html)",
+        },
+     },
+    "princess": {parent: "archbishop"},
+    "cardinal": {parent: "archbishop"},
+    "chancellor": {
+        betza:    "RN",
+        results: ["W", "F/100%", "F/100%"],
+        index_names: {
+            "knighted_pieces": "[Chancellor/Empress](chancellor.html) // " +
+                               "[Knight](knight.html) + [Rook](rook.html)",
+        },
+     },
+    "empress":  {parent: "chancellor"},
+    "amazon": {
+        betza: "QN",
+        results: ["W", "FC", "F/100%"],
+        index_names: {
+            "knighted_pieces": "[Amazon](amazon.html) // " +
+                               "[Knight](knight.html) + [Queen](queen.html)",
+        },
+     },
+
+
+
+    //
+    //     Pawned pieces
+    //
+    "dragon": {
+        betza:  "NfW",
+        results: ["?", "T/42", "F*/100%"],
+        index_names: {
+            knighted_pieces: "[Dragon](dragon.html) // " +
+                             "[Knight](knight.html) + [Pawn](pawn.html)",
+            pawned_pieces:   "[Dragon](dragon.html) // " +
+                             "[Pawn](pawn.html) + [Knight](knight.html)",
+        },
+     },
+    "gryphon": {
+        betza:  "BfW",
+        results: ["T/47", "E", "E"],
+        index_names: {
+            pawned_pieces: "[Gryphon](gryphon.html) // " +
+                           "[Pawn](pawn.html) + [Bishop](bishop.html)",
+        },
+     },
+
 
 
     //
     // Shogi
     //
-    "dragon_king":      {betza:  "FR",  prefix: "&#x9f8d;&#x738b;"},
-    "dragon_horse":     {betza:  "WB",  prefix: "&#x9f8d;&#x99ac;"},
+    "dragon_king": {
+        betza:   "FR",
+        prefix:  "&#x9f8d;&#x738b;",
+        results: ["W", "FC", "F/100%"],
+        index_names: {
+            crowned_pieces: "[Dragon King](dragon_king.html) // " +
+                            "[King](king.html) + [Rook](rook.html)",
+        },
+     },
+    "dragon_horse": {
+        betza:  "WB",
+        prefix: "&#x9f8d;&#x99ac;",
+        results: ["W", "FC", "F/100%"],
+        index_names: {
+            crowned_pieces: "[Dragon Horse](dragon_king.html) // " +
+                            "[King](king.html) + [Knight](knight.html)",
+        },
+     },
     "gold_general":     {betza:  "WfF", prefix: "&#x91d1;&#x5c07;"},
     "silver_general":   {betza:  "FfW", prefix: "&#x9280;&#x5c07;"},
     "shogi_knight":     {betza:  "fN",  prefix: "&#x6842;&#x99ac;",
@@ -792,6 +852,20 @@ let set_info = {
                  "threeleaperrider", "camelrider",
                                      "zebrarider", "tripperrider",]
     },
+
+
+    knighted_pieces: {
+        pieces: ["dragon", "archbishop", "chancellor",
+                 "amazon", "gnu", "okapi"],
+    },
+    crowned_pieces: {
+        pieces: ["dragon_king", "dragon_horse"],
+    },
+    pawned_pieces: {
+        pieces: ["dragon", "gryphon"],
+    },
+
+
     omega_chess: {
         pieces: ["king", "queen", "rook", "champion", "wizard",
                  "bishop", "knight", "pawn"],
