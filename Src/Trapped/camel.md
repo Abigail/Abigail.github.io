@@ -11,6 +11,3 @@ A Camel can only reach half the squares on the board.
 The Camel will circle in an irregular way around the origin, in
 the opposite direction from the Spiral; roughly tracing out a square.
 The Camel will get trapped after 3722 moves.
-
-<div class = 'trapped' data-piece = 'camel'></div>
-<div class = 'boxset'  data-sets  = 'basic_leapers'></div>

@@ -26,6 +26,3 @@ get trapped for its first 20,000 steps.
 On the Flat Wedge, the **Gnu** will fill the entire board. It quickly
 travels in a regular pattern, filling the board with a bias to the
 right hand side.
-
-<div class = 'trapped' data-piece = 'gnu'></div>
-<div class = 'boxset'  data-sets  = 'overkill_ecumenical_chess'></div>

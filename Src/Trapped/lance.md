@@ -15,6 +15,3 @@ The **Lance** escapes in a straight line to infinity.
 
 On both the Folded and the Flat Wedge, the **Lance** 
 escapes to infinity using the same line as the Spiral.
-
-<div class = 'trapped' data-piece = 'lance'></div>
-<div class = 'boxset'  data-sets  = 'shogi'></div>

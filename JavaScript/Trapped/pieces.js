@@ -528,6 +528,24 @@ let set_info = {
     },
 }
 
+//
+// For each piece in a set, add the set to its "sets" property.
+// For pieces with a parent, add the set to the parent.
+//
+for (set in set_info) {
+    set_info [set] . pieces . forEach ((piece_name) => {
+        let piece = pieces [piece_name]
+        if (piece . parent) {
+            piece = pieces [piece . parent]
+        }
+        if (!piece . sets) {
+            piece . sets = []
+        }
+        piece . sets . push (set)
+    })
+}
+
+console . log (pieces ["king"])
 
 window . pieces   = pieces
 window . set_info = set_info

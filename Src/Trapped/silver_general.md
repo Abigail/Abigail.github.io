@@ -23,6 +23,3 @@ pattern on the right of the Wedge, escaping to infinity.
 
 On the Flat Wedge, the **Silver General** visits the right most
 square of each row, and not other rows.
-
-<div class = 'trapped' data-piece = 'silver_general'></div>
-<div class = 'boxset'  data-sets  = 'shogi'></div>

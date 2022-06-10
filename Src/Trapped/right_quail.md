@@ -33,6 +33,3 @@ image of the movement on the Folded Wedge: the three right most
 squares of each row are visited while the **Left Quail** escapes
 to infinity. This is exactly the same pattern the
 [*Left Quail*](left_quail.html) leaves behind.
-
-<div class = 'trapped' data-piece = 'right_quail'></div>
-<div class = 'boxset'  data-sets  = 'tori_shogi'></div>

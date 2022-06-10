@@ -28,6 +28,3 @@ board by just following the values of the Folded Wedge.
 
 The **Acme** fills the Flat Wedge using a simple pattern, with a
 bias to the right hand side.
-
-<div class = 'trapped' data-piece = 'acme'></div>
-<div class = 'boxset'  data-sets  = 'overkill_ecumenical_chess'></div>

@@ -29,6 +29,3 @@ each square on the board.
 On the Flat Wedge, for each row, the **Champion** first visits all the even
 squares (going left to right), then all the odd squares (going right to left).
 It then moves the the next row.
-
-<div class = 'trapped' data-piece = 'champion'></div>
-<div class = 'boxset'  data-sets  = 'omega_chess'></div>

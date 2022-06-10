@@ -24,6 +24,3 @@ the board.
 On both the Folded and Flat Wedge, the **Dabbaba** escapes using
 a stepwise pattern: it visits the right most, and third square
 from the right, of each second row.
-
-<div class = 'trapped' data-piece = 'dabbaba'></div>
-<div class = 'boxset'  data-sets  = 'basic_leapers'></div>

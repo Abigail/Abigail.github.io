@@ -43,7 +43,3 @@ the board.
 On the Flat Wedge, the **King** fills the board row by row, alternating going
 with and against the numbers, with a small twist just before reaching
 the left hand side of the Wedge.
-
-<div class = 'trapped' data-piece = 'king'></div>
-<div class = 'boxset'  data-sets  = 'chess,omega_chess,
-     overkill_ecumenical_chess,shogi,tori_shogi'></div>

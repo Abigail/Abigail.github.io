@@ -34,6 +34,3 @@ sixth square from the right.
 
 On the Flat Wedge, the **Tripper** follows a path along the right edge
 of the Wedge, visiting the right most square of each third row.
-
-<div class = 'trapped' data-piece = 'tripper'></div>
-<div class = 'boxset'  data-sets  = 'basic_leapers'></div>

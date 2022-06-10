@@ -26,6 +26,3 @@ On the Folded Wedge, the **Knight** gets trapped quickly, after 50 steps.
 
 On the Flat Wedge, the **Knight** bounces around for the first 30 steps,
 then, making triangular shaped turns, escapes to infinity.
-
-<div class = 'trapped' data-piece = 'knight'></div>
-<div class = 'boxset'  data-sets  = 'chess,basic_leapers,omega_chess'></div>

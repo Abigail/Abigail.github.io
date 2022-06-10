@@ -28,6 +28,3 @@ an interesting pattern. It fills the Wedge in a balanced way.
 On the Flat Wedge, the entire board is filled as well, using a different
 interesting pattern. The **Actor** has a slight bias to the right
 hand side of the board.
-
-<div class = 'trapped' data-piece = 'actor'></div>
-<div class = 'boxset'  data-sets  = 'overkill_ecumenical_chess'></div>

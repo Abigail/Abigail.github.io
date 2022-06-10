@@ -25,6 +25,3 @@ of the squares.
 
 On the Flat Wedge, the **Wizard** follows a striped pattern, visiting 50%
 of the squares.
-
-<div class = 'trapped' data-piece = 'wizard'></div>
-<div class = 'boxset'  data-sets  = 'omega_chess'></div>

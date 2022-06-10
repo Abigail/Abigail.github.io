@@ -30,6 +30,3 @@ On the Flat Wedge, the **Goose** fills the board row by row, alternating going
 with and against the numbers, with a small twist just before reaching
 the left hand side of the Wedge. This is the same pattern the
 [*Phoenix*](king.html?piece=phoenix) uses.
-
-<div class = 'trapped' data-piece = 'eagle'></div>
-<div class = 'boxset'  data-sets  = 'tori_shogi'></div>
