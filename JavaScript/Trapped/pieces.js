@@ -376,7 +376,7 @@ let pieces = {
         prefix: "&#x2654;",
         results: ["W", "FC", "F/100%"],
         index_names: {
-            combined_leapers: "[King](king.html) = " +
+            combined_leapers: "[King](king.html) // " +
                               "[Wazir](wazir.html) + [Ferz](ferz.html)"
         }
      },
@@ -390,7 +390,8 @@ let pieces = {
         prefix: "&#x2656;",
         results: ["W", "T/6", "E"],
         index_names: {
-            riders: "[Wazirrider](rook.html?piece=wazirrider) (Rook)"
+            riders: "[Wazirrider](rook.html?piece=wazirrider) // " +
+                    "(1, 0) - rider (Rook)"
         },
      },
     "bishop": {
@@ -398,13 +399,17 @@ let pieces = {
         prefix: "&#x2657;",
         results: ["F/31.25%", "E", "E"],
         index_names: {
-            riders: "[Ferzrider](bishop.html?piece=ferzrider) (Bishop)"
+            riders: "[Ferzrider](bishop.html?piece=ferzrider) // " +
+                    "(1, 1) - rider (Bishop)"
         },
      },
     "knight": {
         betza:  "N",
         prefix: "&#x2658;",
-        results: ["T/2015", "T/50", "E*"]
+        results: ["T/2015", "T/50", "E*"],
+        index_names: {
+            basic_leapers: "[Knight](knight.html) // (2, 1) - leaper",
+        },
      },
     "pawn": {
         betza: "fW",
@@ -432,34 +437,106 @@ let pieces = {
     //
     // Basic leapers
     //
-    "wazir":         {betza:   "W",                            // (1, 0)
-                     results: ["W", "T/6", "E"]},
-    "ferz":          {betza:   "F",                            // (1, 1)
-                     results: ["F/50%", "E", "E"]},
-    "dabbaba":       {betza:   "D",                            // (2, 0)
-                     results: ["F/25%", "E", "E"]},
-    "alfil":         {betza:   "A",                            // (2, 2)
-                     results: ["F/12.5%", "E", "E"]},
-    "threeleaper":   {betza:   "H",                            // (3, 0)
-                     results: ["F/11.1", "T/6", "E"]},
-    "camel":         {betza:   "C", prefix: "&#x1F42B;",       // (3, 1)
-                     results: ["T/3722", "T/342", "T/2401"]},
-    "zebra":         {betza:   "Z", prefix: "&#x1F993;",       // (3, 2)
-                     results: ["T/4633", "T/80", "T/286"]},
-    "tripper":       {betza:   "G",                            // (3, 3)
-                     results: ["F/5.56%", "E", "E"]},
-    "fourleaper":    {betza:   "(0,4)",                        // (4, 0)
-                     results: ["F/6.25%", "E", ""]},
-    "giraffe":       {betza:   "(1,4)",                        // (4, 1)
-                     results: ["T/13102", "T/114", ""]},
-    "stag":          {betza:   "(2,4)",                        // (4, 2)
-                     results: ["T/2015", "E*", ""]},
-    "antelope":      {betza:   "(3,4)",                        // (4, 3)
-                     results: ["T/1887", "T/128", ""]},
-    "commuter":      {betza:   "(4,4)",                        // (4, 3)
-                     results: ["F/3.125%", "E", ""]},
-    "flamingo":      {betza:   "(1,6)",                        // (6, 1)
-                     results: ["?", "T/90", ""]},
+    "wazir": {        // (1, 0)-leaper
+        betza:    "W",
+        results: ["W", "T/6", "E"],
+        index_names: {
+            basic_leapers: "[Wazir](wazir.html) // (1, 0) - leaper",
+        },
+     },
+    "ferz": {         // (1, 1)-leaper
+        betza:    "F",
+        results: ["F/50%", "E", "E"],
+        index_names: {
+            basic_leapers: "[Ferz](ferz.html) // (1, 1) - leaper",
+        },
+     },
+    "dabbaba": {      // (2, 0)-leaper
+        betza:    "D",
+        results: ["F/25%", "E", "E"],
+        index_names: {
+            basic_leapers: "[Dabbaba](dabbaba.html) // (2, 0) - leaper",
+        },
+     },
+    "alfil": {        // (2, 2)-leaper
+        betza:    "A",
+        results: ["F/12.5%", "E", "E"],
+        index_names: {
+            basic_leapers: "[Alfil](alfil.html) // (2, 2) - leaper",
+        },
+     },
+    "threeleaper": {  // (3, 0)-leaper
+        betza:    "H",
+        results: ["F/11.1", "T/6", "E"],
+        index_names: {
+            basic_leapers: "[Threeleaper](threeleaper.html) // (3, 0) - leaper",
+        },
+     },
+    "camel": {        // (3, 1)-leaper
+        betza:    "C",
+        prefix:   "&#x1F42B;",
+        results: ["T/3722", "T/342", "T/2401"],
+        index_names: {
+            basic_leapers: "[Camel](camel.html) // (3, 1) - leaper",
+        },
+     },
+    "zebra": {        // (3, 2)-leaper
+        betza:    "Z",
+        prefix:   "&#x1F993;",
+        results: ["T/4633", "T/80", "T/286"],
+        index_names: {
+            basic_leapers: "[Zebra](zebra.html) // (3, 2) - leaper",
+        },
+     },
+    "tripper":   {    // (3, 3)-leaper
+        betza:    "G",
+        results: ["F/5.56%", "E", "E"],
+        index_names: {
+            basic_leapers: "[Tripper](tripper.html) // (3, 3) - leaper",
+        },
+     },
+    "fourleaper": {   // (4, 0)-leaper
+        betza:    "(0,4)",
+        results: ["F/6.25%", "E", ""],
+        index_names: {
+            basic_leapers: "[Fourleaper](fourleaper.html) // (4, 4) - leaper",
+        },
+     },
+    "giraffe": {      // (4, 1)-leaper
+        betza:    "(1,4)",
+        results: ["T/13102", "T/114", ""],
+        index_names: {
+            basic_leapers: "[Giraffe](giraffe.html) // (4, 1) - leaper",
+        },
+     },
+    "stag": {         // (4, 2)-leaper
+        betza:    "(2,4)",
+        results: ["T/2015", "E*", ""],
+        index_names: {
+            basic_leapers: "[Stag](stag.html) // (4, 2) - leaper",
+        },
+     },
+    "antelope": {     // (4, 3)-leaper
+        betza:    "(3,4)",
+        results: ["T/1887", "T/128", ""],
+        index_names: {
+            basic_leapers: "[Antelope](antelope.html) // (4, 3) - leaper",
+        },
+     },
+    "commuter": {     // (4, 4)-leaper
+        betza:    "(4,4)",
+        results: ["F/3.125%", "E", ""],
+        index_names: {
+            basic_leapers: "[Commuter](commuter.html) // (4, 4) - leaper",
+        },
+     },
+    "flamingo": {     // (6, 1)-leaper
+        betza:    "(1,6)",
+        results: ["?", "T/90", ""],
+        index_names: {
+            basic_leapers: "[Flamingo](flamingo.html) // (6, 1) - leaper",
+        },
+     },
 
     //
     // Combined leapers (https://www.theproblemist.org/dloads/Glossary.pdf)
@@ -468,8 +545,8 @@ let pieces = {
         betza:    "AD",
         results: ["F/50%", "F/50%", "F/50%"],
         index_names: {
-            combined_leapers: "[Alibaba](alibaba.html) = " +
-                              "[Dabbaba](dabbaba.html) + " +
+            combined_leapers: "[Alibaba](alibaba.html) // " +
+                              "[Dabbaba](dabbaba.html) + "  +
                               "[Alfil](alfil.html)"
         }
      },
@@ -477,9 +554,9 @@ let pieces = {
         betza:    "DNA",
         results: ["?", "F*/100%", ""],
         index_names: {
-            combined_leapers: "[Squirrel](squirrel.html) = " +
-                              "[Wazir](wazir.html) + "       +
-                              "[Ferz](ferz.html) + "         +
+            combined_leapers: "[Squirrel](squirrel.html) // " +
+                              "[Wazir](wazir.html) + "        +
+                              "[Ferz](ferz.html) + "          +
                               "[Dabbaba](dabbaba.html)"
         }
      },
@@ -487,9 +564,9 @@ let pieces = {
         betza:    "ADGH",
         results: ["F*/100%", "F*/100%", ""],
         index_names: {
-            combined_leapers: "[Hawk](hawk.html) = " +
-                              "[Alfil](alfil.html) + "             +
+            combined_leapers: "[Hawk](hawk.html) // "              +
                               "[Dabbaba](dabbaba.html) + "         +
+                              "[Alfil](alfil.html) + "             +
                               "[Threeleaper](threeleaper.html) + " +
                               "[Tripper](tripper.html)"
         }
@@ -498,18 +575,18 @@ let pieces = {
         betza:    "WAD",
         results: ["W", "F/100%", "F/100%"],
         index_names: {
-            combined_leapers: "[Champion](champion.html) = " +
-                              "[Wazir](wazir.html) + "       +
-                              "[Alfil](alfil.html) + "       +
-                              "[Dabbaba](dabbaba.html)"
+            combined_leapers: "[Champion](champion.html) // " +
+                              "[Wazir](wazir.html) + "        +
+                              "[Dabbaba](dabbaba.html) + "    +
+                              "[Alfil](alfil.html)"
         }
      },
     "wizard": {
         betza:    "FC",
         results: ["?", "F*/50%", "F/50%"],
         index_names: {
-            combined_leapers: "[Wizard](wizard.html) = " +
-                              "[Ferz](ferz.html) + "     +
+            combined_leapers: "[Wizard](wizard.html) // " +
+                              "[Ferz](ferz.html) + "      +
                               "[Camel](camel.html)"
         }
      },
@@ -517,8 +594,8 @@ let pieces = {
         betza:    "NC",
         results: ["?", "?", "F*/100%"],
         index_names: {
-            combined_leapers: "[Gnu](gnu.html) = "         +
-                              "[Knight](knight.html) + "   +
+            combined_leapers: "[Gnu](gnu.html) // "      +
+                              "[Knight](knight.html) + " +
                               "[Camel](camel.html)"
         }
      },
@@ -526,8 +603,8 @@ let pieces = {
         betza:    "WA",
         results: ["W", "F*/100%", "E"],
         index_names: {
-            combined_leapers: "[Caliph](caliph.html) = "     +
-                              "[Wazir](wazir.html) + "       +
+            combined_leapers: "[Caliph](caliph.html) // " +
+                              "[Wazir](wazir.html) + "    +
                               "[Alfil](alfil.html)"
         }
      },
@@ -535,8 +612,8 @@ let pieces = {
         betza:    "CZ",
         results: ["?", "?", ""],
         index_names: {
-            combined_leapers: "[Bison](bison.html) = " +
-                              "[Camel](camel.html) + " +
+            combined_leapers: "[Bison](bison.html) // " +
+                              "[Camel](camel.html) + "  +
                               "[Zebra](zebra.html)"
         }
      },
@@ -544,7 +621,7 @@ let pieces = {
         betza:    "NZ",
         results: ["?", "?", ""],
         index_names: {
-            combined_leapers: "[Okapi](okapi.html) = "   +
+            combined_leapers: "[Okapi](okapi.html) // "  +
                               "[Knight](knight.html) + " +
                               "[Zebra](zebra.html)"
         }
@@ -553,7 +630,7 @@ let pieces = {
         betza:    "C(1,4)",
         results: ["?", "?", ""],
         index_names: {
-            combined_leapers: "[Zebu](zebu.html) = "   +
+            combined_leapers: "[Zebu](zebu.html) // "  +
                               "[Camel](camel.html) + " +
                               "[Giraffe](giraffe.html)"
         }
@@ -577,33 +654,55 @@ let pieces = {
     "ferzrider": {
         parent: "bishop",
      },
-    "knightrider": {
-        betza:    "NN",
-        results: ["T/509", "T/60", "T/22"],
-     },
     "dabbabarider": {
         betza:    "DD",
         results: ["F/25%", "E", "E"],
+        index_names: {
+            riders: "[Dabbabarider](dabbabarider.html) // (2, 0) - rider",
+        },
+     },
+    "knightrider": {
+        betza:    "NN",
+        results: ["T/509", "T/60", "T/22"],
+        index_names: {
+            riders: "[Knightrider](knightrider.html) // (2, 1) - rider",
+        },
      },
     "alfilrider": {
         betza:    "AA",
         results: ["F*/7.8125%", "E", "E"],
+        index_names: {
+            riders: "[Alfilrider](alfilrider.html) // (2, 2) - rider",
+        },
      },
     "threeleaperrider": {
         betza:    "HH",
         results: ["F/11.1&#x0305;%", "E", "E"],
+        index_names: {
+            riders: "[Threeleaperrider](threeleaperrider.html) // " +
+                    "(3, 0) - rider",
+        },
      },
     "camelrider": {
         betza:    "CC",
         results: ["T/1697", "T/90", "T/482"],
+        index_names: {
+            riders: "[Camelrider](camelrider.html) // (3, 1) - rider",
+        },
      },
     "zebrarider": {
         betza:    "ZZ",
         results: ["T/266", "T/72", "T/57"],
+        index_names: {
+            riders: "[Zebrarider](zebrarider.html) // (3, 2) - rider",
+        },
      },
     "tripperrider": {
         betza:    "GG",
         results: ["F*/3.472&#x0305;%", "E", "E"],
+        index_names: {
+            riders: "[Tripperrider](tripperrider.html) // (3, 3) - rider",
+        },
      },
 
 
@@ -682,8 +781,9 @@ let set_info = {
                  "flamingo"],
     },
     combined_leapers: {
-        pieces: ["king", "alibaba", "squirrel", "caliph", "hawk", "champion",
-                 "wizard", "gnu", "bison", "okapi", "zebu",
+        pieces: ["king", "squirrel", "champion", "caliph", "wizard",
+                 "alibaba", "hawk",
+                 "gnu", "okapi", "bison", "zebu",
                  "root_25_leaper", "root_50_leaper"]
     },
     riders: {
