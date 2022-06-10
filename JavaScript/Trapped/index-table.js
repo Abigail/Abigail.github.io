@@ -54,6 +54,8 @@ function linkify (args = {}) {
         name = `<a href = '${href}'>${name}</a>`
     }
 
+    name = name . replace (/\/\//, "</td><td class = 'piece-name'>")
+
     return name
 }
 
@@ -62,7 +64,7 @@ function make_index_table () {
     let div = $("div.index")
 
     let table  = "<table class = 'index'>"
-        table += "<tr><th rowspan = 2>Piece</th>"  +
+        table += "<tr><th rowspan = 2 colspan = 2>Piece</th>"  +
                      "<th rowspan = 2>From</th>"   +
                      "<th rowspan = 2>Spiral</th>" +
                      "<th colspan = 2>Wedge</th>"  + 
@@ -76,9 +78,11 @@ function make_index_table () {
         set . pieces . forEach ((piece_name, i) => {
             let piece = new Piece ({piece_name: piece_name})
             let name  = piece . index_name_in_set ({set_name: set_name})
-            table += "<tr><td class = 'piece-name'>"       +
+            let cs    = name . match (/\/\//) ? 1 : 2
+
+            table += `<tr><td class = 'piece-name' colspan = '${cs}'>` +
                      linkify ({name: name,
-                               href: piece . file ()})     +
+                               href: piece . file ()})                 +
                       "</td>"
             if (i == 0) {
                 table += `<td rowspan = '${set . pieces . length}'>` +
