@@ -487,7 +487,7 @@ Each piece is classified to be one of:
         \\
 
 [Phoenix/&#x9d6c;](king.html?piece=phoenix)
-        & {rs = 8}
+        & {rs = 9}
           [Tori Sh&#x14d;gi (&#x79bd;&#x5c06;&#x68cb;)](#wiki:Tori_Shogi)
         & W
         & FC
