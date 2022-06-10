@@ -412,6 +412,7 @@ let pieces = {
     //
     // Combined leapers (https://www.theproblemist.org/dloads/Glossary.pdf)
     //
+    "alibaba":          {betza:  "AD"},
     "squirrel":         {betza:  "DNA"},
     "hawk":             {betza:  "ADGH"},
     "champion":         {betza:  "WAD"},
@@ -505,6 +506,10 @@ let set_info = {
                  "threeleaper", "camel",   "zebra", "tripper",
                  "fourleaper",  "giraffe", "stag",  "antelope", "commuter",
                  "flamingo"],
+    },
+    combined_leapers: {
+        pieces: ["king", "alibaba", "squirrel", "caliph", "hawk", "champion",
+                 "wizard", "gnu", "bison", "okapi", "zebu"]
     },
     omega_chess: {
         pieces: ["king", "queen", "rook", "champion", "wizard",
