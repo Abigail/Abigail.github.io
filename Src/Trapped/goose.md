@@ -24,6 +24,3 @@ pattern, the **Goose** escapes to the lower right.
 On both the Folded and Flat Wedge, the **Goose** visits the right most
 square on each second row, and no other squares. It escapes hugging the
 right edge of the Wedge.
-
-<div class = 'trapped' data-piece = 'goose'></div>
-<div class = 'boxset'  data-sets  = 'tori_shogi'></div>

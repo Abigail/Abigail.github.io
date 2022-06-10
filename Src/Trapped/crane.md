@@ -25,7 +25,3 @@ of each row, escaping to infinity.
 
 On the Flat Wedge, the **Crane** only visits the right most square
 of each row, escaping to infinity quickly.
-
-
-<div class = 'trapped' data-piece = 'crane'></div>
-<div class = 'boxset'  data-sets  = 'tori_shogi'></div>

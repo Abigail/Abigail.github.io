@@ -28,7 +28,3 @@ the **Threeleaper** gets trapped after 6 step.s
 
 On the Flat Wedge, the **Threeleaper** vists two squares on
 every third row, and hence, quickly escapes to infinity.
-
-
-<div class = 'trapped' data-piece = 'threeleaper'></div>
-<div class = 'boxset'  data-sets  = 'basic_leapers'></div>

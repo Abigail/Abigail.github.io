@@ -11,7 +11,13 @@ $(window) . on ("load", () => {
 
 function set_up_boxset (div) {
     let set_info = window . set_info
-    let sets = $(div) . data ("sets") . split (/,\s*/)
+    let name     = $(div) . data ("piece")
+    let piece    = new Piece ({piece_name: name})
+    let sets     = piece . sets
+
+    if (!sets) {
+        return
+    }
 
     let this_file  = window . location . href . match (/[^\/]*\.html/) [0]
 

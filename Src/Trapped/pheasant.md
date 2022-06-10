@@ -26,6 +26,3 @@ same way as on the Spiral.
 On the Flat Wedge, the **Pheasant** escapes to infinity in a zig-zag
 pattern, heading forward-left. This pattern is a mirror image
 from the pattern formed on the Folded Wedge.
-
-<div class = 'trapped' data-piece = 'pheasant'></div>
-<div class = 'boxset'  data-sets  = 'tori_shogi'></div>

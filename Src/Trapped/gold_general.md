@@ -32,6 +32,3 @@ left to right, making a small sidestep just before reaching the left
 edge. Compare this to the [*King*](king.html) and
 [*Dragon Horse*](dragon_horse.html), which do something similar, with
 with a slightly different sidestep.
-
-<div class = 'trapped' data-piece = 'gold_general'></div>
-<div class = 'boxset'  data-sets  = 'shogi'></div>

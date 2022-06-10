@@ -31,6 +31,3 @@ are visited.
 
 On the Flat Wedge the **Rook** quickly escapes to infinity by alternating make 
 a step forward, and a step to the right.
-
-<div class = 'trapped' data-piece = 'rook'></div>
-<div class = 'boxset'  data-sets  = 'chess,shogi,omega_chess'></div>

@@ -866,10 +866,13 @@ sub post_process ($text, $directives) {
     #
     if ($type == $TYPE_TRAPPED  &&
         $base ne "index"        &&
-        $base !~ /^test_/       &&
-        $text !~ /<div[^>]*class\s*=\s*(["'])trapped\1/) {
-        $text .= sprintf "\n<div class = '%s' data-piece = '%s'></div>\n" =>
-                         "trapped", $base;
+        $base !~ /^test_/) {
+        for my $class (qw [trapped boxset]) {
+            if ($text !~ /<div[^>]*class\s*=\s*(["'])$class\1/) {
+                $text .= sprintf "\n<div class = '%s' data-piece = '%s'>" .
+                                 "</div>\n" => $class, $base;
+            }
+        }
     }
 
     $text;

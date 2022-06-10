@@ -45,6 +45,3 @@ On the Flat Wedge, the **Archbishop** also fills the entire board,
 but it has a strong bias to the right hand side of the Wedge.
 The distance between the highest completed row, and the lowest
 unvisited row will always be increasing.
-
-<div class = 'trapped' data-piece = 'canvasser'></div>
-<div class = 'boxset'  data-sets  = 'overkill_ecumenical_chess'></div>

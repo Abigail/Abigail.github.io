@@ -25,6 +25,3 @@ above. As such, the **Alfil** visits \(12.5\%\) of the board.
 
 On both the Folded and Flat Wedge, the **Alfil** escapes to infinity
 by visiting the right most square of each second row.
-
-<div class = 'trapped' data-piece = 'alfil'></div>
-<div class = 'boxset'  data-sets  = 'basic_leapers'></div>

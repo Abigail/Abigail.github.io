@@ -30,7 +30,3 @@ On the Folded Wedge, the **Wazir** gets trapped after no more than 6 steps!
 
 On the Flat Wedge, the **Wazir** escapes to infinity, following a zigzag
 pattern on the right edge of the Flat Wedge.
-
-
-<div class = 'trapped' data-piece = 'wazir'></div>
-<div class = 'boxset'  data-sets  = 'basic_leapers'></div>

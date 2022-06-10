@@ -29,6 +29,3 @@ it will do so, filling the entire board visiting all squares in value order.
 
 The **Dragon King** visits all the squares on the Flat Wedge, with a
 preference to the right hand side of the board.
-
-<div class = 'trapped' data-piece = 'dragon_king'></div>
-<div class = 'boxset'  data-sets  = 'shogi'></div>

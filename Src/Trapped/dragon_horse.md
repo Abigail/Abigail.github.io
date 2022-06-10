@@ -25,8 +25,3 @@ hence just follow the Folded Wedge.
 Just like the [*King*](king.html), on the Flat Wedge, the
 **Dragon Horse** just goes left to right, and right to left, with a
 little sidestep before reaching the left hand side.
-
-
-
-<div class = 'trapped' data-piece = 'dragon_horse'></div>
-<div class = 'boxset'  data-sets  = 'shogi'></div>

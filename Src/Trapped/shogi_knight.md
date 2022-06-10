@@ -18,6 +18,3 @@ The **Knight** escapes in a straight line to infinity.
 
 On both the Folded and the Flat Wedge, the **Knight** 
 escapes to infinity using the same line as the Spiral.
-
-<div class = 'trapped' data-piece = 'shogi_knight'></div>
-<div class = 'boxset'  data-sets  = 'shogi'></div>

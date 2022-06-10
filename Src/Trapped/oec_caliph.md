@@ -34,6 +34,3 @@ being colourbound) of the Flat Wedge. While simple, the travel pattern
 is interesting in the sense that the path the **Caliph** traces
 does not intersect itself. For the Flat Wedge, that's pretty rare
 for a piece which fills the Wedge.
-
-<div class = 'trapped' data-piece = 'oec_caliph'></div>
-<div class = 'boxset'  data-sets  = 'overkill_ecumenical_chess'></div>

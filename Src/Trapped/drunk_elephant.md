@@ -30,6 +30,3 @@ On the Flat Wedge, the **Drunk Elephant** moves in the same way as
 the [*King*](king.html), filling the wedge row by row, going from
 right to left and left to right, with a small side step before
 reaching the left end of each row.
-
-<div class = 'trapped' data-piece = 'drunk_elephant'></div>
-<div class = 'boxset'  data-sets  = 'tori_shogi'></div>
