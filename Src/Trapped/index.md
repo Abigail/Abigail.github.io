@@ -160,9 +160,14 @@ Each piece is classified to be one of:
         \\
 
 [King](king.html) = [Wazir](wazir.html) + [Ferz](ferz.html)
-        & {rs = 12} Combined Leapers
+        & {rs = 13} Combined Leapers
         & W
         & FC
+        \\
+[Alibaba](alibaba.html) = [Alfil](alfil.html) + [Dabbaba](dabbaba.html)
+        & F/50%
+        & F/50%
+        & F/50%
         \\
 [Squirrel](squirrel.html) = [Dabbaba](dabbaba.html) + [Knight](knight.html) +
                             [Alfil](alfil.html) 
