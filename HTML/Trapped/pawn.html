@@ -22,13 +22,42 @@ by Abigail<br>
 </div>
 
 
-<p>The Pawns movement is very limited. It can only move one square forward
-(except the first move, where it has the option to move two squares
-forward, although some Chess Variants don't allow the two squares on the
-first move). Since we won't have other pieces on the board, it cannot move
-diagonally to capture. Hence, the Pawn will always move forward, never
-getting trapped; it just quickly escapes to infinity in a straight
-line, regardless of the numbering used.</p>
+<p>The <strong>Pawn</strong> appears in <a href="https://en.wikipedia.org/wiki/Chess">Chess</a>, 
+<a href="https://en.wikipedia.org/wiki/Shogi">Sh&#x14d;gi (&#x5c06;&#x68cb;)</a>, and many of its
+variants.</p>
+
+<p>In <a href="https://en.wikipedia.org/wiki/Tori_Shogi"><em>Tori Sh&#x14d;gi</em></a>, the pieces is called a
+<em>Swallow</em>.</p>
+
+<p>It's usually a humble piece, appearing multiple times on the board.
+It's movements are complicated, but most movements we can ignore
+for our investigations:</p>
+
+<ul>
+<li>In <a href="https://en.wikipedia.org/wiki/Chess">Chess</a> and its variants, the <strong>Pawn</strong> captures differently
+than it moves. However we can ignore capture moves.</li>
+<li><a href="https://en.wikipedia.org/wiki/Chess">Chess</a> and its variants also have <em>en passant</em> moves, special
+capture moves. We will ignore those as well.</li>
+<li>In <a href="https://en.wikipedia.org/wiki/Chess">Chess</a> and its variants, it is typically the only piece
+which promotes (to a piece selected by the player). In
+<a href="https://en.wikipedia.org/wiki/Shogi">Sh&#x14d;gi (&#x5c06;&#x68cb;)</a>, the <strong>Pawn</strong> promotes
+to the <a href="gold_general.html"><em>Gold General</em></a>. In
+<a href="https://en.wikipedia.org/wiki/Tori_Shogi"><em>Tori Sh&#x14d;gi</em></a>, the <strong>Swallow</strong> promotes to
+the <a href="goose.html"><em>Goose</em></a>.
+We can, however, ignore all promotions.</li>
+<li>In <a href="https://en.wikipedia.org/wiki/Chess">Chess</a> and many of its variants, the <strong>Pawn</strong> may optionally
+take a double (and in larger variants, a triple) step on its first
+move. For none of the numbering systems we use, the <strong>Pawn</strong> will
+make use of this option, so we can ignore this as well.</li>
+</ul>
+
+<p>This makes that the <strong>Pawn</strong> is left with only one possible move:
+one square forward.</p>
+
+<h3 id = 'spiral_and_wedge'>Spiral and Wedge</h3>
+
+<p>On the Spiral and both the Folded and Flat Wedge, the <strong>Pawn</strong>
+escapes to infinity in a straight line forward.</p>
 
 <div class = 'trapped' data-piece = 'pawn'></div>
 
