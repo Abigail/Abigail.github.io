@@ -21,4 +21,80 @@ $(document) . ready (() => {
             $(e) . addClass ("unknown")
         }
     })
+
+    make_index_table ()
 })
+
+//
+// Map the content of the index table to a class
+//
+function css_class (content) {
+    if (content . match (/^\s*T\//))         {return "trapped"}
+    if (content . match (/^\s*F\*\//))       {return "interesting-fill"}
+    if (content . match (/^\s*F\b/))         {return "fill"}
+    if (content . match (/^\s*E\*\//))       {return "interesting-escape"}
+    if (content . match (/^\s*E\b/))         {return "escape"}
+    if (content . match (/^\s*(?:W|FC)\b/))  {return "boring"}
+    if (content . match (/^\?/))             {return "unknown"}
+
+    return ""
+}
+
+function linkify (args = {}) {
+    let name = args . name || ""
+    let href = args . href || ""
+
+    //
+    // If name has one or more [...](...) sections, use that
+    // as links. Else, use the href
+    //
+    name = name . replaceAll (/\[([^\]]+)\]\(([^)]+)\)/g,
+                              "<a href = '$2'>$1</a>")
+    if (!name . match (/<a href =/)) {
+        name = `<a href = '${href}'>${name}</a>`
+    }
+
+    return name
+}
+
+
+function make_index_table () {
+    let div = $("div.index")
+
+    let table  = "<table class = 'index'>"
+        table += "<tr><th rowspan = 2>Piece</th>"  +
+                     "<th rowspan = 2>From</th>"   +
+                     "<th rowspan = 2>Spiral</th>" +
+                     "<th colspan = 2>Wedge</th>"  + 
+                 "</tr>\n" 
+        table += "<tr><th>Folded</th>" +
+                     "<th>Flat</th></tr>\n"
+
+    for (const set_name in set_info) {
+        let set = set_info [set_name]
+
+        set . pieces . forEach ((piece_name, i) => {
+            let piece = new Piece ({piece_name: piece_name})
+            let name  = piece . index_name_in_set ({set_name: set_name})
+            table += "<tr><td class = 'piece-name'>"       +
+                     linkify ({name: name,
+                               href: piece . file ()})     +
+                      "</td>"
+            if (i == 0) {
+                table += `<td rowspan = '${set . pieces . length}'>` +
+                         (set . name || title_case (set_name))       + "</td>"
+            }
+            if (piece . results) {
+                piece . results . forEach ((content) => {
+                    let class_name = css_class (content)
+                    table += `<td class = '${class_name}'>${content}</td>`
+                })
+            }
+            table += "</tr>\n"
+        })
+    }
+
+    table += "</table>"
+
+    $(div) . html (table)
+}
