@@ -18,6 +18,9 @@ same directions as the [*Ferz*](ferz.html), without a limit on
 the number of squares it moves over (as long as the squares it
 moves over are unoccupied).
 
+In [Scirocco](#chess-v:rules/scirocco), the **Bishop** is a promoted
+[*Alfil*](alfil.html).
+
 ### Spiral
 
 On the Spiral, the **Bishop** moves in a regular pattern. However, 

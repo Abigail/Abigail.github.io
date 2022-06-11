@@ -9,6 +9,9 @@ the **Ferz** can only reach half the squares of the board.
 In the Sh&#x14d;gi variant [D&#x14d;butsu sh&#x14d;gi](#wiki:Dobutsu_shogi),
 the *Elephant* moves in the same way as the **Ferz**.
 
+In [Scirocco](#chess-v:rules/scirocco), the piece is known as
+the **Firzan**, which promotes to the *Zig*.
+
 [*Xiangqi*](#wiki) has a piece named *Advisor* (&#x58eb; for Black,
 &#x4ed5; for Red), which moves in the
 same way, except it cannot leave the 3x3 box it started from; this piece
