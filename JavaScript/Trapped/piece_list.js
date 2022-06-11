@@ -164,15 +164,6 @@ let pieces = {
     //
     // Combined leapers (https://www.theproblemist.org/dloads/Glossary.pdf)
     //
-    "alibaba": {
-        betza:    "AD",
-        results: ["F/50%", "F/50%", "F/50%"],
-        index_names: {
-            combined_leapers: "[Alibaba](alibaba.html) // " +
-                              "[Dabbaba](dabbaba.html) + "  +
-                              "[Alfil](alfil.html)"
-        }
-     },
     "squirrel": {
         betza:    "DNA",
         results: ["?", "F*/100%", ""],
@@ -181,6 +172,43 @@ let pieces = {
                               "[Wazir](wazir.html) + "        +
                               "[Ferz](ferz.html) + "          +
                               "[Dabbaba](dabbaba.html)"
+        }
+     },
+    "champion": {
+        betza:    "WAD",
+        results: ["W", "F/100%", "F/100%"],
+        index_names: {
+            combined_leapers: "[Champion](champion.html) // " +
+                              "[Wazir](wazir.html) + "        +
+                              "[Dabbaba](dabbaba.html) + "    +
+                              "[Alfil](alfil.html)"
+        }
+     },
+    "caliph": {
+        betza:    "WA",
+        results: ["W", "F*/100%", "E"],
+        index_names: {
+            combined_leapers: "[Caliph](caliph.html) // " +
+                              "[Wazir](wazir.html) + "    +
+                              "[Alfil](alfil.html)"
+        }
+     },
+    "wizard": {
+        betza:    "FC",
+        results: ["?", "F*/50%", "F/50%"],
+        index_names: {
+            combined_leapers: "[Wizard](wizard.html) // " +
+                              "[Ferz](ferz.html) + "      +
+                              "[Camel](camel.html)"
+        }
+     },
+    "alibaba": {
+        betza:    "AD",
+        results: ["F/50%", "F/50%", "F/50%"],
+        index_names: {
+            combined_leapers: "[Alibaba](alibaba.html) // " +
+                              "[Dabbaba](dabbaba.html) + "  +
+                              "[Alfil](alfil.html)"
         }
      },
     "hawk": {
@@ -194,25 +222,6 @@ let pieces = {
                               "[Tripper](tripper.html)"
         }
      },
-    "champion": {
-        betza:    "WAD",
-        results: ["W", "F/100%", "F/100%"],
-        index_names: {
-            combined_leapers: "[Champion](champion.html) // " +
-                              "[Wazir](wazir.html) + "        +
-                              "[Dabbaba](dabbaba.html) + "    +
-                              "[Alfil](alfil.html)"
-        }
-     },
-    "wizard": {
-        betza:    "FC",
-        results: ["?", "F*/50%", "F/50%"],
-        index_names: {
-            combined_leapers: "[Wizard](wizard.html) // " +
-                              "[Ferz](ferz.html) + "      +
-                              "[Camel](camel.html)"
-        }
-     },
     "gnu": {
         betza:    "NC",
         results: ["?", "?", "F*/100%"],
@@ -224,24 +233,6 @@ let pieces = {
                               "[Knight](knight.html) + [Camel](camel.html)",
         }
      },
-    "caliph": {
-        betza:    "WA",
-        results: ["W", "F*/100%", "E"],
-        index_names: {
-            combined_leapers: "[Caliph](caliph.html) // " +
-                              "[Wazir](wazir.html) + "    +
-                              "[Alfil](alfil.html)"
-        }
-     },
-    "bison": {
-        betza:    "CZ",
-        results: ["?", "?", ""],
-        index_names: {
-            combined_leapers: "[Bison](bison.html) // " +
-                              "[Camel](camel.html) + "  +
-                              "[Zebra](zebra.html)"
-        }
-     },
     "okapi": {
         betza:    "NZ",
         results: ["?", "?", "E*"],
@@ -251,6 +242,15 @@ let pieces = {
                               "[Zebra](zebra.html)",
             knighted_pieces:  "[Okapi](okapi.html) // " +
                               "[Knight](knight.html) + [Zebra](zebra.html)",
+        }
+     },
+    "bison": {
+        betza:    "CZ",
+        results: ["?", "?", ""],
+        index_names: {
+            combined_leapers: "[Bison](bison.html) // " +
+                              "[Camel](camel.html) + "  +
+                              "[Zebra](zebra.html)"
         }
      },
     "zebu":  {
@@ -336,6 +336,16 @@ let pieces = {
     // Compound pieces
     //    Knighted pieces
     //
+    "dragon": {
+        betza:  "NfW",
+        results: ["?", "T/42", "F*/100%"],
+        index_names: {
+            knighted_pieces: "[Dragon](dragon.html) // " +
+                             "[Knight](knight.html) + [Pawn](pawn.html)",
+            pawned_pieces:   "[Dragon](dragon.html) // " +
+                             "[Pawn](pawn.html) + [Knight](knight.html)",
+        },
+     },
     "archbishop":    {
         betza:    "BN",
         results: ["T/6386", "F*/100%", "F*/100%"],
@@ -364,35 +374,9 @@ let pieces = {
         },
      },
 
-
-
-    //
-    //     Pawned pieces
-    //
-    "dragon": {
-        betza:  "NfW",
-        results: ["?", "T/42", "F*/100%"],
-        index_names: {
-            knighted_pieces: "[Dragon](dragon.html) // " +
-                             "[Knight](knight.html) + [Pawn](pawn.html)",
-            pawned_pieces:   "[Dragon](dragon.html) // " +
-                             "[Pawn](pawn.html) + [Knight](knight.html)",
-        },
-     },
-    "gryphon": {
-        betza:  "BfW",
-        results: ["T/47", "E", "E"],
-        index_names: {
-            pawned_pieces: "[Gryphon](gryphon.html) // " +
-                           "[Pawn](pawn.html) + [Bishop](bishop.html)",
-        },
-     },
-
-
-
-    //
-    // Shogi
-    //
+     //
+     //     Crowned pieces
+     //
     "dragon_king": {
         betza:   "FR",
         prefix:  "&#x9f8d;&#x738b;",
@@ -415,57 +399,25 @@ let pieces = {
                             "&#x9f8d;&#x99ac; (Promoted Bishop)",
         },
      },
-    "gold_general": {
-        betza:  "WfF",
-        prefix: "&#x91d1;&#x5c07;",
-        results: ["W", "FC", "F/100%"],
+
+
+
+    //
+    //     Pawned pieces
+    //
+    "gryphon": {
+        betza:  "BfW",
+        results: ["T/47", "E", "E"],
         index_names: {
-            shogi: "[Gold General](gold_general.html) // &#x91d1;&#x5c07;",
-        },
-     },
-    "silver_general": {
-        betza:  "FfW",
-        prefix: "&#x9280;&#x5c07;",
-        results: ["F*/100%", "E", "E"],
-        index_names: {
-            shogi: "[Silver General](silver_general.html) // " +
-                   "&#x91d1;&#x5c07;",
-        },
-     },
-    "shogi_knight": {
-        betza:  "fN",
-        prefix: "&#x6842;&#x99ac;",
-        _name:  "Knight",
-        results: ["E", "E", "E"],
-        index_names: {
-            shogi: "[Knight](shogi_knight.html) // &#x6842;&#x99ac;",
-        },
-     },
-    "lance": {
-        betza:  "fR",
-        prefix: "&#x9999;&#x8eca;",
-        results: ["E", "E", "E"],
-        index_names: {
-            shogi: "[Lance](lance.html) // &#x9999;&#x8eca;",
+            pawned_pieces: "[Gryphon](gryphon.html) // " +
+                           "[Pawn](pawn.html) + [Bishop](bishop.html)",
         },
      },
 
-    //
-    // Fairy Chess
-    //
-    "frog": {
-        betza: "FH",
-        results: ["?", "F*/100%", "F*/100%"],
-    },
+
 
     //
     // Chess variants
-    //
-    "abbot": {  // Typhoon Chess, Scirocco Chess
-        betza:    "F4N",
-        results: ["T/6334", "F*/100%", "F*/100%"],
-     },
-
     //
     //   - Hunter-Falcon chess
     //
@@ -513,36 +465,67 @@ let pieces = {
         parent: "chancellor",
      },
 
+
+    //
+    //   - Typhoon Chess, Scirocco Chess
+    //
+    "abbot": {
+        betza:    "F4N",
+        results: ["T/6334", "F*/100%", "F*/100%"],
+     },
+
+    //
+    // Fairy Chess
+    //
+    "frog": {
+        betza: "FH",
+        results: ["?", "F*/100%", "F*/100%"],
+    },
+
+
+
+
+    //
+    // Shogi
+    //
+    "gold_general": {
+        betza:  "WfF",
+        prefix: "&#x91d1;&#x5c07;",
+        results: ["W", "FC", "F/100%"],
+        index_names: {
+            shogi: "[Gold General](gold_general.html) // &#x91d1;&#x5c07;",
+        },
+     },
+    "silver_general": {
+        betza:  "FfW",
+        prefix: "&#x9280;&#x5c07;",
+        results: ["F*/100%", "E", "E"],
+        index_names: {
+            shogi: "[Silver General](silver_general.html) // " +
+                   "&#x91d1;&#x5c07;",
+        },
+     },
+    "shogi_knight": {
+        betza:  "fN",
+        prefix: "&#x6842;&#x99ac;",
+        _name:  "Knight",
+        results: ["E", "E", "E"],
+        index_names: {
+            shogi: "[Knight](shogi_knight.html) // &#x6842;&#x99ac;",
+        },
+     },
+    "lance": {
+        betza:  "fR",
+        prefix: "&#x9999;&#x8eca;",
+        results: ["E", "E", "E"],
+        index_names: {
+            shogi: "[Lance](lance.html) // &#x9999;&#x8eca;",
+        },
+     },
+
+
     //
     // Shogi variants
-    //
-    "blind_monkey": {
-        betza:    "FsW",
-        prefix:   "&#x76f2;&#x733f;",
-        results: ["F*/100%", "FC", "F/100%"],
-        index_names: {
-            shogi_variants: "[Blind Monkey](blind_monkey.html) // " +
-                            "&#x76f2;&#x733f;",
-        },
-     },
-    "flying_cock": {
-        betza:    "fFsW",
-        prefix:   "&#x9d8f;&#x98db;",
-        results: ["E*", "FC", "F*/100%"],
-        index_names: {
-            shogi_variants: "[Flying Cock](flying_cock.html) // " +
-                            "&#x9d8f;&#x98db;",
-        },
-     },
-    "drunk_elephant": {
-        betza: "FfsW",
-        results: ["F*/100%", "FC", "F/100%"],
-        index_names: {
-            shogi_variants: "[Drunk Elephant](drunk_elephant.html)",
-        },
-     },
-
-
     //
     //   -  Tori Shogi
     //
@@ -611,6 +594,36 @@ let pieces = {
             tori_shogi: "[Goose](goose.html) // &#x9d08;",
         },
      },
+
+    //
+    //   -  Other Shogi variants
+    //
+    "blind_monkey": {
+        betza:    "FsW",
+        prefix:   "&#x76f2;&#x733f;",
+        results: ["F*/100%", "FC", "F/100%"],
+        index_names: {
+            shogi_variants: "[Blind Monkey](blind_monkey.html) // " +
+                            "&#x76f2;&#x733f;",
+        },
+     },
+    "flying_cock": {
+        betza:    "fFsW",
+        prefix:   "&#x9d8f;&#x98db;",
+        results: ["E*", "FC", "F*/100%"],
+        index_names: {
+            shogi_variants: "[Flying Cock](flying_cock.html) // " +
+                            "&#x9d8f;&#x98db;",
+        },
+     },
+    "drunk_elephant": {
+        betza: "FfsW",
+        results: ["F*/100%", "FC", "F/100%"],
+        index_names: {
+            shogi_variants: "[Drunk Elephant](drunk_elephant.html)",
+        },
+     },
+
 }
 
 let set_info = {
