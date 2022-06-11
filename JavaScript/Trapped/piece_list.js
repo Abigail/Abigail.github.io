@@ -606,7 +606,7 @@ let pieces = {
     "goose": {
         betza:  "fAbD",
         prefix: "&#x9d08;",
-        results: ["E*%", "E", "E"],
+        results: ["E*", "E", "E"],
         index_names: {
             tori_shogi: "[Goose](goose.html) // &#x9d08;",
         },
