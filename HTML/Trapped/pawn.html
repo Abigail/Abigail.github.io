@@ -6,6 +6,7 @@
 <link rel = 'stylesheet' href =      'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
 <link rel = 'stylesheet' href = '../../Styles/main.css'>
 <link rel = 'stylesheet' href = '../../Styles/Trapped/main.css'>
+<link rel = 'stylesheet' href = '../../Styles/Trapped/pawn.css'>
 <script src = "../../JavaScript/jquery.js"></script>
 <script id  = 'MathJax-script' async src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.js'></script>
 <script id = 'svg-script' src = 'https://cdn.jsdelivr.net/npm/@svgdotjs/svg.js@3.0/dist/svg.min.js'></script>
@@ -44,14 +45,9 @@ than it moves. However we can ignore capture moves.</li>
 capture moves. We will ignore those as well.</li>
 <li>In <a href="https://en.wikipedia.org/wiki/Chess">Chess</a> and its variants, it is typically the only piece
 which promotes (to a piece selected by the player). In
-<a href="https://en.wikipedia.org/wiki/Shogi">Sh&#x14d;gi (&#x5c06;&#x68cb;)</a>, the <strong>Pawn</strong> promotes
-to the <a href="gold_general.html"><em>Gold General</em></a>.
-The <strong>Chick</strong> from <a href="https://en.wikipedia.org/wiki/Dobutsu_shogi">D&#x14d;butsu sh&#x14d;gi</a>
-promotes to the <a href="gold_general.html?piece=dobutsu_hen"><em>Hen</em></a> (which
-moves in the same way as the <em>Gold General</em>.
-In <a href="https://en.wikipedia.org/wiki/Tori_Shogi"><em>Tori Sh&#x14d;gi</em></a>, the <strong>Swallow</strong> promotes to
-the <a href="goose.html"><em>Goose</em></a>.
-We can, however, ignore all promotions.</li>
+<a href="https://en.wikipedia.org/wiki/Shogi">Sh&#x14d;gi (&#x5c06;&#x68cb;)</a>, and Sh&#x14d;gi
+variants, the <strong>Pawn</strong> is one of the pieces which may promote.
+We will, however, ignore all promotions.</li>
 <li>In <a href="https://en.wikipedia.org/wiki/Chess">Chess</a> and many of its variants, the <strong>Pawn</strong> may optionally
 take a double (and in larger variants, a triple) step on its first
 move. For none of the numbering systems we use, the <strong>Pawn</strong> will
@@ -60,6 +56,42 @@ make use of this option, so we can ignore this as well.</li>
 
 <p>This makes that the <strong>Pawn</strong> is left with only one possible move:
 one square forward.</p>
+
+<h3 id = 'promoting'>Promoting</h3>
+
+<div class = "section">
+<p><strong>Pawns</strong> typically promote. In Chess, they promote to a piece of the
+players choice, but in other games, the pawn promotes to a fixed piece.</p>
+
+<table class = 'promotion'>
+  <tr class = 'row-0' markdown = '1'>
+    <th class = 'cell-0-0 col-0 ' markdown = '1'>Piece</td>
+    <th class = 'cell-0-1 col-1 ' markdown = '1'>Game</td>
+    <th class = 'cell-0-2 col-2 ' markdown = '1'>Promotes to</td>
+  </tr>
+  <tr class = 'row-1' markdown = '1'>
+    <td class = 'cell-1-0 col-0 ' markdown = '1'><strong>Pawn</strong></td>
+    <td class = 'cell-1-1 col-1 ' markdown = '1'>Chess; many Chess variants</td>
+    <td class = 'cell-1-2 col-2 ' markdown = '1'>Player's choice</td>
+  </tr>
+  <tr class = 'row-2' markdown = '1'>
+    <td class = 'cell-2-0 col-0 ' markdown = '1'><strong>Pawn</strong></td>
+    <td class = 'cell-2-1 col-1 ' markdown = '1'><a href="https://en.wikipedia.org/wiki/Shogi">Sh&#x14d;gi (&#x5c06;&#x68cb;)</a></td>
+    <td class = 'cell-2-2 col-2 ' markdown = '1'><a href="gold_general.html"><em>Gold General</em></a></td>
+  </tr>
+  <tr class = 'row-3' markdown = '1'>
+    <td class = 'cell-3-0 col-0 ' markdown = '1'><strong>Chick</strong></td>
+    <td class = 'cell-3-1 col-1 ' markdown = '1'><a href="https://en.wikipedia.org/wiki/Dobutsu_shogi">D&#x14d;butsu sh&#x14d;gi</a></td>
+    <td class = 'cell-3-2 col-2 ' markdown = '1'><a href="gold_general.html?piece=dobutsu_hen"><em>Hen</em></a> (Gold General)</td>
+  </tr>
+  <tr class = 'row-4' markdown = '1'>
+    <td class = 'cell-4-0 col-0 ' markdown = '1'><strong>Swallow</strong></td>
+    <td class = 'cell-4-1 col-1 ' markdown = '1'><a href="https://en.wikipedia.org/wiki/Tori_Shogi">Tori Sh&#x14d;gi</a></td>
+    <td class = 'cell-4-2 col-2 ' markdown = '1'><a href="goose.html"><em>Goose</em></a>
+</td>
+  </tr>
+</table>
+</div>
 
 <h3 id = 'spiral_and_wedge'>Spiral and Wedge</h3>
 
