@@ -7,8 +7,9 @@ This is not unlike the [*Archbishop*](archbishop.html), except
 that the *Archbishop* does not have a limit on the number of
 *Bishop* moves.
 
-The pieces is used in [*Typhoon Chess*](#chess-v:rules/typhoon-revised),
-and [*Scirocco Chess*](#chess-v:invention/scirocco).
+The *Abbot** is used in [*Typhoon*](#chess-v:rules/typhoon-revised),
+and [*Scirocco*](#chess-v:rules/scirocco), where it is a 
+promoted *Marquis*.
 
 
 ### Square

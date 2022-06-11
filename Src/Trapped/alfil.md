@@ -14,6 +14,9 @@ starting square the coordinates \((0, 0)\), then the only squares
 it can reach are the squares \((x, y)\) such that \(x\) is even,
 \(y\) is even, and \(x + y\) is a multiple of \(4\).
 
+The **Alfil** is a piece in [Scirocco](#chess-v:rules/scirocco),
+and promotes to the [*Bishop*](bishop.html).
+
 ### Spiral
 
 On the Spiral, the **Alfil** moves in a similar fashion as the

@@ -200,8 +200,17 @@ let pieces = {
             combined_leapers: "[Wizard](wizard.html) // " +
                               "[Ferz](ferz.html) + "      +
                               "[Camel](camel.html)"
-        }
-     },
+        },
+    },
+    tadpole: {
+        betza: "FH",
+        results: ["?", "?", "?"],
+        index_names: {
+            combined_leapers: "[Tadpole](tadpole.html) // " +
+                              "[Ferz](ferz.html) + "      +
+                              "[Threeleaper](threeleaper.html)"
+        },
+    },
     "alibaba": {
         betza:    "AD",
         results: ["F/50%", "F/50%", "F/50%"],
@@ -473,6 +482,9 @@ let pieces = {
         betza:    "F4N",
         results: ["T/6334", "F*/100%", "F*/100%"],
      },
+    firzan: {
+        parent: "ferz",
+    },
 
     //
     // Fairy Chess
@@ -669,7 +681,7 @@ let set_info = {
                  "flamingo"],
     },
     combined_leapers: {
-        pieces: ["king", "squirrel", "champion", "caliph", "wizard",
+        pieces: ["king", "squirrel", "champion", "caliph", "wizard", "tadpole",
                  "alibaba", "hawk",
                  "gnu", "okapi", "bison", "zebu",
                  "root_25_leaper", "root_50_leaper"]
@@ -723,7 +735,7 @@ let set_info = {
     },
     scirocco: {
         href: "https://www.chessvariants.com/rules/scirocco",
-        pieces: ["abbot"],
+        pieces: ["abbot", "alfil", "bishop", "firzan", "pawn", "tadpole"],
         chess_variant: 1,
     },
     typhoon: {
