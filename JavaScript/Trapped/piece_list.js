@@ -596,6 +596,33 @@ let pieces = {
      },
 
     //
+    //   -  Dobutsu Shogi
+    //
+    dobutsu_lion: {
+        parent: "king",
+        prefix: "",
+        _name: "Lion",
+    },
+    dobutsu_giraffe: {
+        parent: "wazir",
+        _name: "Giraffe",
+    },
+    dobutsu_elephant: {
+        parent: "ferz",
+        _name: "Elephant",
+    },
+    dobutsu_chick: {
+        parent: "pawn",
+        prefix: "",
+        _name: "Chick",
+    },
+    dobutsu_hen: {
+        parent: "gold_general",
+        prefix: "",
+        _name: "Hen",
+    },
+
+    //
     //   -  Other Shogi variants
     //
     "blind_monkey": {
@@ -726,6 +753,13 @@ let set_info = {
                  "left_quail", "right_quail", "swallow", "goose"],
         shogi_variant: 1,
     },
+    dobutsu_shogi: {
+        name: "D&#x14d;butsu Sh&#x14d;gi",
+        href: "https://en.wikipedia.org/wiki/D%C5%8Dbutsu_sh%C5%8Dgi",
+        pieces: ["dobutsu_lion", "dobutsu_giraffe", "dobutsu_elephant",
+                 "dobutsu_chick", "dobutsu_hen"],
+    },
+
     shogi_variants: {
         name:    "Sh&#x14d;gi variants",
         pieces: ["blind_monkey", "flying_cock", "drunk_elephant"],

@@ -13,6 +13,10 @@ the [*Knight*](shogi_knight.html) (&#x6210;&#x6842;)
 and the [*Pawn*](pawn.html) (&#x3068;&#x91d1;). The
 promoted *Pawn* is often called a *Tokin*.
 
+In [D&#x14d;butsu sh&#x14d;gi](#wiki:Dobutsu_shogi), the 
+[*Chick*](pawn.html?piece=dobutsu_chick) promotes to the *Hen*,
+which moves a the **Gold General**.
+
 ### Spiral
 
 Since the **Gold General** can move like the [*Wazir*](wazir.html),
