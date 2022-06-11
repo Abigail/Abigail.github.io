@@ -722,7 +722,7 @@ let set_info = {
         chess_variant: 1,
     },
     scirocco_chess: {
-        href: "https://www.chessvariants.com/rules/typhoon-revised",
+        href: "https://www.chessvariants.com/rules/scirocco",
         pieces: ["abbot"],
         chess_variant: 1,
     },
