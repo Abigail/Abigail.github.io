@@ -721,12 +721,12 @@ let set_info = {
                  "marshal", "queen", "pawn"],
         chess_variant: 1,
     },
-    scirocco_chess: {
+    scirocco: {
         href: "https://www.chessvariants.com/rules/scirocco",
         pieces: ["abbot"],
         chess_variant: 1,
     },
-    typhoon_chess: {
+    typhoon: {
         href: "https://www.chessvariants.com/rules/typhoon-revised",
         pieces: ["abbot"],
         chess_variant: 1,
