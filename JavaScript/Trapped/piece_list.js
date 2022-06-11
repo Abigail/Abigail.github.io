@@ -665,11 +665,13 @@ let set_info = {
         name: "Falcon-Hunter Chess",
         pieces: ["king", "queen", "rook", "falcon", "hunter",
                  "bishop", "knight", "pawn"],
+        chess_variant: 1,
     },
     omega_chess: {
         href:    "https://en.wikipedia.org/wiki/Omega_Chess",
         pieces: ["king", "queen", "rook", "champion", "wizard",
                  "bishop", "knight", "pawn"],
+        chess_variant: 1,
     },
     overkill_ecumenical_chess: {
         href:    "https://www.chessvariants.com/rules/" +
@@ -677,17 +679,21 @@ let set_info = {
         pieces: ["king", "ace", "acme", "acropolis", "actor", "actress",
                  "oec_caliph", "canvasser", "cardinal", "gnu",
                  "marshal", "queen", "pawn"],
+        chess_variant: 1,
     },
     scirocco_chess: {
         href: "https://www.chessvariants.com/rules/typhoon-revised",
         pieces: ["abbot"],
+        chess_variant: 1,
     },
     typhoon_chess: {
         href: "https://www.chessvariants.com/rules/typhoon-revised",
         pieces: ["abbot"],
+        chess_variant: 1,
     },
     fairy_chess: {
         pieces: ["frog"],
+        chess_variant: 1,
     },
 
     //
@@ -705,10 +711,12 @@ let set_info = {
         href:    "https://en.wikipedia.org/wiki/Tori_Shogi",
         pieces: ["phoenix", "eagle", "tori_falcon", "crane", "pheasant",
                  "left_quail", "right_quail", "swallow", "goose"],
+        shogi_variant: 1,
     },
     shogi_variants: {
         name:    "Sh&#x14d;gi variants",
         pieces: ["blind_monkey", "flying_cock", "drunk_elephant"],
+        shogi_variant: 1,
     },
 }
 

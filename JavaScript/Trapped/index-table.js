@@ -59,6 +59,9 @@ function linkify (args = {}) {
     return name
 }
 
+let chess_pieces = {
+    king: 1, queen: 1, rook: 1, bishop: 1, knight: 1, pawn: 1,
+}
 
 function make_index_table () {
     let div = $("div.index")
@@ -74,8 +77,14 @@ function make_index_table () {
 
     for (const set_name in set_info) {
         let set = set_info [set_name]
+        let pieces = set . pieces
+        if (set . chess_variant) {
+            pieces = pieces . filter ((piece_name) => {
+                return !chess_pieces [piece_name]
+            })
+        }
 
-        set . pieces . forEach ((piece_name, i) => {
+        pieces . forEach ((piece_name, i) => {
             let piece = new Piece ({piece_name: piece_name})
             let name  = piece . index_name_in_set ({set_name: set_name})
             let cs    = name . match (/\/\//) ? 1 : 2
@@ -89,7 +98,7 @@ function make_index_table () {
                 if (set . href) {
                     sname = `<a href = '${set . href}'>${sname}</a>`
                 }
-                table += `<td rowspan = '${set . pieces . length}'>` +
+                table += `<td rowspan = '${pieces . length}'>` +
                          `${sname}</td>`
             }
             if (piece . results) {
