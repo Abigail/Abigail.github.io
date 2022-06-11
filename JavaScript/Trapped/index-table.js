@@ -85,8 +85,12 @@ function make_index_table () {
                                href: piece . file ()})                 +
                       "</td>"
             if (i == 0) {
+                let sname = set . name || title_case (set_name)
+                if (set . href) {
+                    sname = `<a href = '${set . href}'>${sname}</a>`
+                }
                 table += `<td rowspan = '${set . pieces . length}'>` +
-                         (set . name || title_case (set_name))       + "</td>"
+                         `${sname}</td>`
             }
             if (piece . results) {
                 piece . results . forEach ((content) => {
