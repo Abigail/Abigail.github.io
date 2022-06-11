@@ -127,7 +127,7 @@ let pieces = {
      },
     "giraffe": {      // (4, 1)-leaper
         betza:    "(1,4)",
-        results: ["T/13102", "T/114", ""],
+        results: ["T/13102", "T/114", "T/94"],
         index_names: {
             basic_leapers: "[Giraffe](giraffe.html) // (4, 1) - leaper",
         },
