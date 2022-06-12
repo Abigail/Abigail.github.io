@@ -494,6 +494,10 @@ let pieces = {
     firzan: {
         parent: "ferz",
     },
+    chariot: {
+        betza:    "R4",
+        results: ["W", "T/6", "E"],
+    },
 
     //
     // Fairy Chess
@@ -745,7 +749,7 @@ let set_info = {
     scirocco: {
         href: "https://www.chessvariants.com/rules/scirocco",
         pieces: ["marquis", "abbot", "alfil", "bishop", "firzan",
-                 "camel", "squirrel",
+                 "camel", "squirrel", "chariot",
                  "pawn", "tadpole"],
         chess_variant: 1,
     },
