@@ -173,8 +173,8 @@ let pieces = {
                               "[Ferz](ferz.html) + "          +
                               "[Dabbaba](dabbaba.html)"
         }
-     },
-    "champion": {
+    },
+    champion: {
         betza:    "WAD",
         results: ["W", "F/100%", "F/100%"],
         index_names: {
@@ -183,8 +183,17 @@ let pieces = {
                               "[Dabbaba](dabbaba.html) + "    +
                               "[Alfil](alfil.html)"
         }
-     },
-    "caliph": {
+    },
+    marquis: {
+        betza:    "WN",
+        results: ["W", "F/100%", "F/100%"],
+        index_names: {
+            combined_leapers: "[Marquis](marquis.html) // " +
+                              "[Wazir](wazir.html) + "    +
+                              "[Knight](knight.html)"
+        }
+    },
+    caliph: {
         betza:    "WA",
         results: ["W", "F*/100%", "E"],
         index_names: {
@@ -681,8 +690,8 @@ let set_info = {
                  "flamingo"],
     },
     combined_leapers: {
-        pieces: ["king", "squirrel", "champion", "caliph", "wizard", "tadpole",
-                 "alibaba", "hawk",
+        pieces: ["king", "squirrel", "champion", "marquis", "caliph",
+                 "wizard", "tadpole", "alibaba", "hawk",
                  "gnu", "okapi", "bison", "zebu",
                  "root_25_leaper", "root_50_leaper"]
     },
@@ -735,7 +744,8 @@ let set_info = {
     },
     scirocco: {
         href: "https://www.chessvariants.com/rules/scirocco",
-        pieces: ["abbot", "alfil", "bishop", "firzan", "pawn", "tadpole"],
+        pieces: ["marquis", "abbot", "alfil", "bishop", "firzan",
+                 "pawn", "tadpole"],
         chess_variant: 1,
     },
     typhoon: {
