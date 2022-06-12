@@ -166,7 +166,7 @@ let pieces = {
     //
     "squirrel": {
         betza:    "DNA",
-        results: ["?", "F*/100%", ""],
+        results: ["?", "F*/100%", "?"],
         index_names: {
             combined_leapers: "[Squirrel](squirrel.html) // " +
                               "[Wazir](wazir.html) + "        +
@@ -745,6 +745,7 @@ let set_info = {
     scirocco: {
         href: "https://www.chessvariants.com/rules/scirocco",
         pieces: ["marquis", "abbot", "alfil", "bishop", "firzan",
+                 "camel", "squirrel",
                  "pawn", "tadpole"],
         chess_variant: 1,
     },
