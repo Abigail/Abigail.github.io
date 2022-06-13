@@ -174,6 +174,15 @@ let pieces = {
                               "[Dabbaba](dabbaba.html)"
         }
     },
+    war_machine: {
+        betza:   "WD",
+        results: ["W", "F/100%", "F/100%"],
+        index_names: {
+            combined_leapers: "[War Machine](war_machine.html) // " +
+                              "[Wazir](wazir.html) + "        +
+                              "[Dabbaba](dabbaba.html)"
+        }
+    },
     champion: {
         betza:    "WAD",
         results: ["W", "F/100%", "F/100%"],
@@ -494,23 +503,8 @@ let pieces = {
     firzan: {
         parent: "ferz",
     },
-    chariot: {
-        betza:    "R4",
-        results: ["W", "T/6", "E"],
-    },
-    octopus: {
-        betza:      "t[FR]",
-        results:   ["E*", "T/7", "E"],
-        move_list: [
-            {dr: -1, dc:  0, or: -1, oc:  1},
-            {dr:  0, dc:  1, or: -1, oc:  1},
-            {dr: -1, dc:  0, or: -1, oc: -1},
-            {dr:  0, dc: -1, or: -1, oc: -1},
-            {dr:  1, dc:  0, or:  1, oc:  1},
-            {dr:  0, dc:  1, or:  1, oc:  1},
-            {dr:  1, dc:  0, or:  1, oc: -1},
-            {dr:  0, dc: -1, or:  1, oc: -1},
-        ]
+    zig: {
+        parent: "war_machine",
     },
 
     //
@@ -708,7 +702,8 @@ let set_info = {
                  "flamingo"],
     },
     combined_leapers: {
-        pieces: ["king", "squirrel", "champion", "marquis", "caliph",
+        pieces: ["king", "squirrel", "war_machine", "champion",
+                 "marquis", "caliph",
                  "wizard", "tadpole", "alibaba", "hawk",
                  "gnu", "okapi", "bison", "zebu",
                  "root_25_leaper", "root_50_leaper"]
@@ -762,8 +757,8 @@ let set_info = {
     },
     scirocco: {
         href: "https://www.chessvariants.com/rules/scirocco",
-        pieces: ["marquis", "abbot", "alfil", "bishop", "firzan",
-                 "camel", "squirrel", "chariot",
+        pieces: ["marquis", "abbot", "alfil", "bishop", "firzan", "zig",
+                 "camel", "squirrel",
                  "pawn", "tadpole"],
         chess_variant: 1,
     },
