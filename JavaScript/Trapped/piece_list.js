@@ -164,7 +164,11 @@ let pieces = {
     //
     // Combined leapers (https://www.theproblemist.org/dloads/Glossary.pdf)
     //
-    "squirrel": {
+    commoner: {
+        parent: "king",
+        prefix: "",
+    },
+    squirrel: {
         betza:    "DNA",
         results: ["?", "F*/100%", "?"],
         index_names: {
@@ -496,15 +500,22 @@ let pieces = {
     //
     //   - Typhoon Chess, Scirocco Chess
     //
-    "abbot": {
+    abbot: {
         betza:    "F4N",
         results: ["T/6334", "F*/100%", "F*/100%"],
-     },
+    },
     firzan: {
         parent: "ferz",
     },
     zig: {
         parent: "war_machine",
+    },
+    wildebeest: {
+        parent: "gnu",
+    },
+    genie: {
+        betza:    "W3F3",
+        results: ["W", "FC", "F*/100%"],
     },
 
     //
@@ -759,7 +770,8 @@ let set_info = {
         href: "https://www.chessvariants.com/rules/scirocco",
         pieces: ["marquis", "abbot", "alfil", "bishop", "firzan", "zig",
                  "camel", "squirrel",
-                 "pawn", "tadpole"],
+                 "pawn", "tadpole", "commoner", "wildebeest",
+                 "dabbaba", "genie"],
         chess_variant: 1,
     },
     typhoon: {

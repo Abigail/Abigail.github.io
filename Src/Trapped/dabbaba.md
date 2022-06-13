@@ -11,6 +11,9 @@ This means, if it starts on an even row (or file), it will remain
 on an even row (of file). And if it starts on an odd row (of file),
 it will remain on an odd row (or file).
 
+In [*Scirocco*](#chess-v:rules/scirocco), the **Dabbaba** promotes
+to the [*Genie*](genie.html).
+
 The name is infrequently used for the [Rook + Knight compound](chancellor.md).
 
 ### Spiral
