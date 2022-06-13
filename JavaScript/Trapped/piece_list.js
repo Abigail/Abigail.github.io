@@ -218,6 +218,7 @@ let pieces = {
     scirocco_frog: {
         betza:    "KGH",
         results: ["W", "FC", ""],
+        _name:    "Frog",
         index_names: {
             combined_leapers: "[Frog](scirocco_frog.html) // "     +
                               "[Wazir](wazir.html) + "             +
