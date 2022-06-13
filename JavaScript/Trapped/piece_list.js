@@ -81,51 +81,51 @@ let pieces = {
             basic_leapers: "[Dabbaba](dabbaba.html) // (2, 0) - leaper",
         },
      },
-    "alfil": {        // (2, 2)-leaper
+    alfil: {        // (2, 2)-leaper
         betza:    "A",
         results: ["F/12.5%", "E", "E"],
         index_names: {
             basic_leapers: "[Alfil](alfil.html) // (2, 2) - leaper",
         },
-     },
-    "threeleaper": {  // (3, 0)-leaper
+    },
+    threeleaper: {  // (3, 0)-leaper
         betza:    "H",
         results: ["F/11.1", "T/6", "E"],
         index_names: {
             basic_leapers: "[Threeleaper](threeleaper.html) // (3, 0) - leaper",
         },
-     },
-    "camel": {        // (3, 1)-leaper
+    },
+    camel: {        // (3, 1)-leaper
         betza:    "C",
         prefix:   "&#x1F42B;",
         results: ["T/3722", "T/342", "T/2401"],
         index_names: {
             basic_leapers: "[Camel](camel.html) // (3, 1) - leaper",
         },
-     },
-    "zebra": {        // (3, 2)-leaper
+    },
+    zebra: {        // (3, 2)-leaper
         betza:    "Z",
         prefix:   "&#x1F993;",
         results: ["T/4633", "T/80", "T/286"],
         index_names: {
             basic_leapers: "[Zebra](zebra.html) // (3, 2) - leaper",
         },
-     },
-    "tripper":   {    // (3, 3)-leaper
+    },
+    tripper:   {    // (3, 3)-leaper
         betza:    "G",
         results: ["F/5.56%", "E", "E"],
         index_names: {
             basic_leapers: "[Tripper](tripper.html) // (3, 3) - leaper",
         },
-     },
-    "fourleaper": {   // (4, 0)-leaper
+    },
+    fourleaper: {   // (4, 0)-leaper
         betza:    "(0,4)",
         results: ["F/6.25%", "E", ""],
         index_names: {
             basic_leapers: "[Fourleaper](fourleaper.html) // (4, 4) - leaper",
         },
-     },
-    "giraffe": {      // (4, 1)-leaper
+    },
+    giraffe: {      // (4, 1)-leaper
         betza:    "(1,4)",
         results: ["T/13102", "T/114", "T/94"],
         index_names: {
@@ -226,6 +226,15 @@ let pieces = {
                               "[Threeleaper](threeleaper.html) + " +
                               "[Tripper](tripper.html)",
 
+        },
+    },
+    goat: {
+        betza:    "FD",
+        results: ["F/50%", "F/50%", "F/50%"],
+        index_names: {
+            combined_leapers: "[Goat](goat.html) // " +
+                              "[Ferz](ferz.html) + "  +
+                              "[Dabbaba](dabbaba.html)",
         },
     },
     priest: {
@@ -775,7 +784,7 @@ let set_info = {
     },
     combined_leapers: {
         pieces: ["king", "squirrel", "scirocco_frog", "war_machine", "champion",
-                 "marquis", "caliph", "priest",
+                 "marquis", "caliph", "goat", "priest",
                  "wizard", "tadpole", "alibaba", "hawk",
                  "gnu", "okapi", "bison", "zebu",
                  "root_25_leaper", "root_50_leaper"]
@@ -830,7 +839,8 @@ let set_info = {
     scirocco: {
         href: "https://www.chessvariants.com/rules/scirocco",
         pieces: ["king", "emperor", "marquis", "abbot", "alfil",
-                 "bishop", "firzan", "zig",
+                 "bishop", "firzan", "zig", "goat",
+                 "zebra",
                  "camel", "squirrel", "champion", "octopus",
                  "pawn", "tadpole", "commoner", "wildebeest",
                  "dabbaba", "genie", "dervish", "harpy",
