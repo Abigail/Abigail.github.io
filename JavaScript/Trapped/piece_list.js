@@ -820,11 +820,16 @@ let set_info = {
 // For pieces with a parent, add the set to the parent.
 //
 for (set in set_info) {
+    let seen = {}
     set_info [set] . pieces . forEach ((piece_name) => {
         let piece = pieces [piece_name]
         if (piece . parent) {
-            piece = pieces [piece . parent]
+            piece = pieces [piece_name = piece . parent]
         }
+        if (seen [piece_name]) {
+            return
+        }
+        seen [piece_name] = 1
         if (!piece . sets) {
             piece . sets = []
         }
