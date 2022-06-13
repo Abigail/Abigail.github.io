@@ -168,16 +168,6 @@ let pieces = {
         parent: "king",
         prefix: "",
     },
-    squirrel: {
-        betza:    "DNA",
-        results: ["?", "F*/100%", "?"],
-        index_names: {
-            combined_leapers: "[Squirrel](squirrel.html) // " +
-                              "[Wazir](wazir.html) + "        +
-                              "[Ferz](ferz.html) + "          +
-                              "[Dabbaba](dabbaba.html)"
-        }
-    },
     war_machine: {
         betza:   "WD",
         results: ["W", "F/100%", "F/100%"],
@@ -266,6 +256,16 @@ let pieces = {
                               "[Ferz](ferz.html) + "      +
                               "[Threeleaper](threeleaper.html)"
         },
+    },
+    squirrel: {
+        betza:    "DNA",
+        results: ["?", "F*/100%", "?"],
+        index_names: {
+            combined_leapers: "[Squirrel](squirrel.html) // " +
+                              "[Dabbaba](dabbaba.html) + "    +
+                              "[Knight](knight.html) + "      +
+                              "[Alfil](alfil.html)"
+        }
     },
     "alibaba": {
         betza:    "AD",
@@ -765,9 +765,9 @@ let set_info = {
                  "flamingo"],
     },
     combined_leapers: {
-        pieces: ["king", "squirrel", "scirocco_frog", "war_machine", "champion",
+        pieces: ["king", "scirocco_frog", "war_machine", "champion",
                  "marquis", "caliph", "goat", "priest",
-                 "wizard", "tadpole", "alibaba", "hawk",
+                 "wizard", "tadpole", "squirrel", "alibaba", "hawk",
                  "gnu", "okapi", "bison", "zebu",
                  "root_25_leaper", "root_50_leaper"]
     },
