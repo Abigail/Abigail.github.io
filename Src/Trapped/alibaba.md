@@ -16,6 +16,11 @@ If one would remove all the odd rows and odd files (none of them
 reachable by the **Alibaba**), the **Alibaba** moves like the 
 [*King*](king.html).
 
+The *Dervish* in [*Scirocco*](#chess-v:rules/scirocco) moves in
+the same way as the **Alibaba**. In addition, the *Dervish* gives
+friendly pieces adjacent to it extra move abilities, but we can
+ignore that. The *Dervish* promotes to the [*Harpy*](genie.html?piece=harpy).
+
 ### Spiral
 
 On the Spiral, the **Alibaba** follows the Spiral, but then with
