@@ -7,6 +7,9 @@ four orthogonal directions.
 In the Shogi variant [D&#x14d;butsu sh&#x14d;gi](#wiki:Dobutsu_shogi),
 the *Giraffe* moves in the same way as the **Wazir**.
 
+In [*Scirocco*](#chess-v:rules/scirocco), the **Wazir** promotes
+to the [*Zag*](zag.html).
+
 The [Knight-Bishop compound](archbishop.html) is sometimes called a
 *Wazir* as well.
 
