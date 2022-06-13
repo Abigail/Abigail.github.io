@@ -6,6 +6,10 @@ the [*Camel*](camel.html), making it a *Knighted Piece*.
 It is used by Problemists, and also appears in
 [*Overkill Ecumenical Chess*](#chess-v:rules/overkill-ecumenical-chess).
 
+In [*Scirocco*](#chess-v:rules/scirocco), this piece is called
+*Wildebeest*. The [*Commoner*](king.html?piece=commoner) promotes
+to the *Wildebeest*. (Wildebeest is another name for Gnu).
+
 ### Spiral
 
 On the Spiral, the **Gnu** circles the origin clockwise, in an
