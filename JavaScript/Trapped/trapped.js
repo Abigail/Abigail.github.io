@@ -704,8 +704,10 @@ class Trapped {
         moves . forEach ((move) => {
             let dr  = move . dr
             let dc  = move . dc
+            let or  = move . or  || 0  // Offset
+            let oc  = move . oc  || 0  // Offset
             let max = move . max || 0
-            let min = move . min || 1
+            let min = move . min || ((or || oc) ? 0 : 1)
 
             let move_best = 0    // Best value within this move
             let prev_val  = 0    // Previous value within this move
@@ -722,8 +724,8 @@ class Trapped {
             //      we cannot improve)
             //
             for (let step = min; max == 0 || step <= max; step ++) {
-                let new_row = row + step * move . dr
-                let new_col = col + step * move . dc
+                let new_row = row + step * move . dr + or
+                let new_col = col + step * move . dc + oc
                 let value   = this . to_value (new_row, new_col)
 
                 if (value <= 0) {

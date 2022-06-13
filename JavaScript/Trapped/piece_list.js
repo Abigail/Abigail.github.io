@@ -498,6 +498,20 @@ let pieces = {
         betza:    "R4",
         results: ["W", "T/6", "E"],
     },
+    octopus: {
+        betza:      "t[FR]",
+        results:   ["E*", "T/7", "E"],
+        move_list: [
+            {dr: -1, dc:  0, or: -1, oc:  1},
+            {dr:  0, dc:  1, or: -1, oc:  1},
+            {dr: -1, dc:  0, or: -1, oc: -1},
+            {dr:  0, dc: -1, or: -1, oc: -1},
+            {dr:  1, dc:  0, or:  1, oc:  1},
+            {dr:  0, dc:  1, or:  1, oc:  1},
+            {dr:  1, dc:  0, or:  1, oc: -1},
+            {dr:  0, dc: -1, or:  1, oc: -1},
+        ]
+    },
 
     //
     // Fairy Chess
