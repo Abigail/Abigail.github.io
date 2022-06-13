@@ -22,6 +22,8 @@ the **King** is known as the *Lion*.
 [*Scirocco*](#chess-v:rules/scirocco) has the *Commoner*, which moves
 exactly as the **King**, but which is not Royal. The *Commoner* promotes
 to a [*Wildebeest*](gnu.html?piece=wildebeest).
+[*Scirocco*](#chess-v:rules/scirocco) also has the **King**, and it
+promotes to the [*Emperor*](champion.html?piece=emperor).
 
 Other names for this piece include:
 include *Mann* (not Royal), and *Prince* (sometimes Royal). 

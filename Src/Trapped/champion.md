@@ -7,6 +7,10 @@ two squares orthogonally,
 
 The piece is found in [*Omega Chess*](#wiki).
 
+[*Scirocco*](#chess-v:rules/scirocco) has a Royal piece named
+*Emperor*, which moves in the same way. It the promoted 
+[*King*](king.html).
+
 In *Carrera's Chess*, dating from the early
 17<sup>th</sup> century, there was also a piece named *Champion*,
 but this was a [Rook + Knight compound](chancellor.html).
