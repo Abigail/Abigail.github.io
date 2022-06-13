@@ -517,6 +517,12 @@ let pieces = {
         betza:    "W3F3",
         results: ["W", "FC", "F*/100%"],
     },
+    dervish: {
+        parent:   "alibaba",
+    },
+    harpy: {
+        parent:   "genie",
+    },
 
     //
     // Fairy Chess
@@ -771,7 +777,7 @@ let set_info = {
         pieces: ["marquis", "abbot", "alfil", "bishop", "firzan", "zig",
                  "camel", "squirrel",
                  "pawn", "tadpole", "commoner", "wildebeest",
-                 "dabbaba", "genie"],
+                 "dabbaba", "genie", "dervish", "harpy"],
         chess_variant: 1,
     },
     typhoon: {

@@ -7,6 +7,12 @@ unoccupied squares in any orthogonal or diagonal direction.
 In [*Scirocco*](#chess-v:rules/scirocco), the **Genie** is the
 promoted [*Dabbaba*](dabbaba.html).
 
+The *Harpy* in [*Scirocco*](#chess-v:rules/scirocco) (to which the
+[*Dervish*](alibaba.html?piece=harpy) promotes) moves in the same
+way as the **Genie**. In addition, the *Harpy* gives some addtional
+movement powers to friendly which are in reach, but we can ignore
+that in our setup. The **Harpy** cannot capture.
+
 ### Spiral
 
 On the Spiral, the **Genie** can move as the [*Wizar*](wizar.html),
