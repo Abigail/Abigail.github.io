@@ -19,8 +19,14 @@ the **King** is known as the *Phoenix* (&#x9d6c;).
 In the Sh&#x14d;gi variant [D&#x14d;butsu sh&#x14d;gi](#wiki:Dobutsu_shogi),
 the **King** is known as the *Lion*.
 
-Names for pieces which move like the **King**, but are not Royal,
-include *Mann*, *Prince* and *Commoner*.
+[*Scirocco*](#chess-v:rules/scirocco) has the *Commoner*, which moves
+exactly as the **King**, but which is not Royal. The *Commoner* promotes
+to a [*Wildebeest*](gnu.html?piece=wildebeest).
+[*Scirocco*](#chess-v:rules/scirocco) also has the **King**, and it
+promotes to the [*Emperor*](champion.html?piece=emperor).
+
+Other names for this piece include:
+include *Mann* (not Royal), and *Prince* (sometimes Royal). 
 
 ### Spiral
 

@@ -10,7 +10,7 @@ In the Sh&#x14d;gi variant [D&#x14d;butsu sh&#x14d;gi](#wiki:Dobutsu_shogi),
 the *Elephant* moves in the same way as the **Ferz**.
 
 In [Scirocco](#chess-v:rules/scirocco), the piece is known as
-the **Firzan**, which promotes to the *Zig*.
+the **Firzan**, which promotes to the [*Zig*](war_machine.html?piece=zig).
 
 [*Xiangqi*](#wiki) has a piece named *Advisor* (&#x58eb; for Black,
 &#x4ed5; for Red), which moves in the

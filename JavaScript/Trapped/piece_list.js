@@ -164,13 +164,26 @@ let pieces = {
     //
     // Combined leapers (https://www.theproblemist.org/dloads/Glossary.pdf)
     //
-    "squirrel": {
+    commoner: {
+        parent: "king",
+        prefix: "",
+    },
+    squirrel: {
         betza:    "DNA",
         results: ["?", "F*/100%", "?"],
         index_names: {
             combined_leapers: "[Squirrel](squirrel.html) // " +
                               "[Wazir](wazir.html) + "        +
                               "[Ferz](ferz.html) + "          +
+                              "[Dabbaba](dabbaba.html)"
+        }
+    },
+    war_machine: {
+        betza:   "WD",
+        results: ["W", "F/100%", "F/100%"],
+        index_names: {
+            combined_leapers: "[War Machine](war_machine.html) // " +
+                              "[Wazir](wazir.html) + "        +
                               "[Dabbaba](dabbaba.html)"
         }
     },
@@ -201,8 +214,33 @@ let pieces = {
                               "[Wazir](wazir.html) + "    +
                               "[Alfil](alfil.html)"
         }
+    },
+    scirocco_frog: {
+        betza:    "KGH",
+        results: ["W", "FC", ""],
+        _name:    "Frog",
+        index_names: {
+            combined_leapers: "[Frog](scirocco_frog.html) // "     +
+                              "[Wazir](wazir.html) + "             +
+                              "[Ferz](ferz.html) + "               +
+                              "[Threeleaper](threeleaper.html) + " +
+                              "[Tripper](tripper.html)",
+
+        },
+    },
+    priest: {
+        betza:    "FN",
+        results: ["T/1050", "F*/100%", "F/100%"],
+        index_names: {
+            combined_leapers: "[Priest](priest.html) // " +
+                              "[Ferz](ferz.html) + "      +
+                              "[Knight](knight.html)",
+            knighted_pieces:  "[Priest](priest.html) // " +
+                              "[Knight](knight.html) + "  +
+                              "[Ferz](ferz.html)",
+        }
      },
-    "wizard": {
+     wizard: {
         betza:    "FC",
         results: ["?", "F*/50%", "F/50%"],
         index_names: {
@@ -487,10 +525,10 @@ let pieces = {
     //
     //   - Typhoon Chess, Scirocco Chess
     //
-    "abbot": {
+    abbot: {
         betza:    "F4N",
         results: ["T/6334", "F*/100%", "F*/100%"],
-     },
+    },
     firzan: {
         parent: "ferz",
     },
@@ -511,6 +549,34 @@ let pieces = {
             {dr:  1, dc:  0, or:  1, oc: -1},
             {dr:  0, dc: -1, or:  1, oc: -1},
         ]
+    },
+    zig: {
+        parent: "war_machine",
+    },
+    wildebeest: {
+        parent: "gnu",
+    },
+    genie: {
+        betza:    "W3F3",
+        results: ["W", "FC", "F*/100%"],
+    },
+    dervish: {
+        parent:   "alibaba",
+    },
+    harpy: {
+        parent:   "genie",
+    },
+    duke: {
+        betza:    "W4N",
+        results: ["W", "F/100%", "F/100%"],
+        index_names: {
+            "knighted_pieces": "[Duke](duke.html) // "     +
+                               "[Knight](knight.html) + "  +
+                               "[Chariot](chariot.html)",
+        },
+    },
+    emperor: {
+        parent:  "champion",
     },
 
     //
@@ -708,7 +774,8 @@ let set_info = {
                  "flamingo"],
     },
     combined_leapers: {
-        pieces: ["king", "squirrel", "champion", "marquis", "caliph",
+        pieces: ["king", "squirrel", "scirocco_frog", "war_machine", "champion",
+                 "marquis", "caliph", "priest",
                  "wizard", "tadpole", "alibaba", "hawk",
                  "gnu", "okapi", "bison", "zebu",
                  "root_25_leaper", "root_50_leaper"]
@@ -725,8 +792,8 @@ let set_info = {
     // Compound pieces
     //
     knighted_pieces: {
-        pieces: ["dragon", "archbishop", "chancellor",
-                 "amazon", "gnu", "okapi"],
+        pieces: ["dragon", "priest", "archbishop", "duke",
+                 "chancellor", "amazon", "gnu", "okapi"],
     },
     crowned_pieces: {
         pieces: ["dragon_king", "dragon_horse"],
@@ -762,9 +829,12 @@ let set_info = {
     },
     scirocco: {
         href: "https://www.chessvariants.com/rules/scirocco",
-        pieces: ["marquis", "abbot", "alfil", "bishop", "firzan",
-                 "camel", "squirrel", "chariot",
-                 "pawn", "tadpole"],
+        pieces: ["king", "emperor", "marquis", "abbot", "alfil",
+                 "bishop", "firzan", "zig",
+                 "camel", "squirrel", "champion", "octopus",
+                 "pawn", "tadpole", "commoner", "wildebeest",
+                 "dabbaba", "genie", "dervish", "harpy",
+                 "priest", "duke"],
         chess_variant: 1,
     },
     typhoon: {
@@ -813,11 +883,16 @@ let set_info = {
 // For pieces with a parent, add the set to the parent.
 //
 for (set in set_info) {
+    let seen = {}
     set_info [set] . pieces . forEach ((piece_name) => {
         let piece = pieces [piece_name]
         if (piece . parent) {
-            piece = pieces [piece . parent]
+            piece = pieces [piece_name = piece . parent]
         }
+        if (seen [piece_name]) {
+            return
+        }
+        seen [piece_name] = 1
         if (!piece . sets) {
             piece . sets = []
         }
