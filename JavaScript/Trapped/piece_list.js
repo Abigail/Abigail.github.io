@@ -241,6 +241,17 @@ let pieces = {
                               "[Dabbaba](dabbaba.html)",
         },
     },
+    fad: {
+        betza:    "FDA",
+        results: ["F/50%", "F/50%", "F/50%"],
+        _name:    "FAD",
+        index_names: {
+            combined_leapers: "[FAD](fad.html) // "        +
+                              "[Ferz](ferz.html) + "       +
+                              "[Dabbaba](dabbaba.html) + " +
+                              "[Alfil](alfil.html)"
+        },
+    },
     priest: {
         betza:    "FN",
         results: ["T/1050", "F*/100%", "F/100%"],
@@ -840,7 +851,8 @@ let set_info = {
     },
     combined_leapers: {
         pieces: ["king", "lioness", "scirocco_frog", "war_machine", "champion",
-                 "marquis", "caliph", "goat", "priest", "modern_elephant",
+                 "marquis", "caliph", "goat", "fad", "priest",
+                 "modern_elephant",
                  "wizard", "tadpole", "squirrel", "alibaba", "hawk",
                  "gnu", "okapi", "bison", "zebu",
                  "root_25_leaper", "root_50_leaper"]
