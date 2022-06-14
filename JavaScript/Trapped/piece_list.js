@@ -597,6 +597,29 @@ let pieces = {
         parent:  "queen",
         prefix:  "",
     },
+    wagon: {
+        results: ["25%", "E", "E"],
+        move_list: [
+            {dr: -1, dc:  0, min_land: 2},
+            {dr:  1, dc:  0, min_land: 2},
+            {dr:  0, dc: -1, min_land: 2},
+            {dr:  0, dc:  1, min_land: 2},
+        ],
+    },
+    spider: {
+        betza: "t[WB]",
+        results: ["W", "T/10", "E"],
+        move_list: [
+            {dr: -1, dc:  1, or: -1, oc:  0},
+            {dr: -1, dc: -1, or: -1, oc:  0},
+            {dr:  1, dc:  1, or:  1, oc:  0},
+            {dr:  1, dc: -1, or:  1, oc:  0},
+            {dr: -1, dc: -1, or:  0, oc: -1},
+            {dr: -1, dc: -1, or:  0, oc: -1},
+            {dr:  1, dc:  1, or:  0, oc:  1},
+            {dr:  1, dc:  1, or:  0, oc:  1},
+        ],
+    },
 
     //
     // Fairy Chess
@@ -855,6 +878,7 @@ let set_info = {
                  "camel", "squirrel", "chariot", "octopus",
                  "pawn", "tadpole", "commoner", "wildebeest",
                  "dabbaba", "genie", "dervish", "harpy",
+                 "wagon", "spider",
                  "priest", "duke", "scirocco_frog"],
         chess_variant: 1,
     },
