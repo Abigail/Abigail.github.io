@@ -253,6 +253,15 @@ let pieces = {
                               "[Ferz](ferz.html)",
         }
      },
+     modern_elephant: {
+        betza:    "FA",
+        results: ["F*/50%", "", ""],
+        index_names: {
+            combined_leapers: "[Modern Elephant](modern_elephant.html) // " +
+                              "[Ferz](ferz.html) + "                        +
+                              "[Alfil](alfil.html)",
+        },
+     },
      wizard: {
         betza:    "FC",
         results: ["?", "F*/50%", "F/50%"],
@@ -558,6 +567,9 @@ let pieces = {
     zig: {
         parent: "war_machine",
     },
+    zag: {
+        parent: "modern_elephant",
+    },
     wildebeest: {
         parent: "gnu",
     },
@@ -800,6 +812,17 @@ let pieces = {
 
 }
 
+//
+// General order of pieces:
+//   - Royal pieces first
+//   - Main (regular) chess pieces, except pawn
+//   - Basic Leapers
+//   - Other (non-pawn) pieces either in alphabetical order, or
+//     in order of strenght, or in order of mobility
+//   - Pawn and pawn like pieces
+//   - Obsolete pieces, if any, last.
+//
+
 let set_info = {
     chess: {
         pieces: ["king", "queen", "rook", "bishop", "knight", "pawn"],
@@ -817,7 +840,7 @@ let set_info = {
     },
     combined_leapers: {
         pieces: ["king", "lioness", "scirocco_frog", "war_machine", "champion",
-                 "marquis", "caliph", "goat", "priest",
+                 "marquis", "caliph", "goat", "priest", "modern_elephant",
                  "wizard", "tadpole", "squirrel", "alibaba", "hawk",
                  "gnu", "okapi", "bison", "zebu",
                  "root_25_leaper", "root_50_leaper"]
@@ -871,15 +894,18 @@ let set_info = {
     },
     scirocco: {
         href: "https://www.chessvariants.com/rules/scirocco",
-        pieces: ["king", "emperor", "marquis", "abbot", "alfil",
-                 "bishop", "firzan", "zig", "goat",
-                 "guard", "zebra", "knight", "rook",
-                 "stork", "queen", "scirocco", "vulture",
-                 "camel", "squirrel", "chariot", "octopus",
-                 "pawn", "tadpole", "commoner", "wildebeest",
-                 "dabbaba", "genie", "dervish", "harpy",
-                 "wagon", "spider",
-                 "priest", "duke", "scirocco_frog"],
+        pieces: ["king", "emperor", "queen", "rook", "bishop",
+                 "knight", "wazir", "firzan", "dabbaba", "alfil",
+                 "camel", "zebra", 
+
+                 "abbot", "chariot", "commoner", "dervish", "duke",
+                 "genie", "goat", "guard", "harpy", "lioness",
+                 "marquis", "octopus", "priest",
+                 "scirocco", "spider", "squirrel", "stork",
+                 "tadpole", "vulture", "wagon", "wildebeest",
+                 "zag", "zig",
+                 
+                 "pawn",  "scirocco_frog",],
         chess_variant: 1,
     },
     typhoon: {
