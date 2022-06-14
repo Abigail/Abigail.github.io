@@ -32,6 +32,11 @@ function set_up_boxset (div) {
             let file  = piece . file () . match (/[^\/]*\.html/) [0]
             let name  = piece . name () . replaceAll (/\s+/g, "&nbsp;")
 
+            if (piece . obsolete &&
+                piece . obsolete [setname]) {
+                name = `<strike>${name}</strike>`
+            }
+
             if (index > 0) {
                 table += " &#xB7; "
             }
