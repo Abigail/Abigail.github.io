@@ -168,6 +168,18 @@ let pieces = {
         parent: "king",
         prefix: "",
     },
+    lioness: {
+        betza: "WFDKA",
+        results: ["W", "FC", "F/100%"],
+        index_names: {
+            combined_leapers: "[Lioness](lioness.html) // " +
+                              "[Wazir](wazir.html) + "      +
+                              "[Ferz](ferz.html) + "        +
+                              "[Dabbaba](dabbaba.html) + "  +
+                              "[Knight](knight.html) + "    +
+                              "[Alfil](alfil.html)",
+        },
+    },
     war_machine: {
         betza:   "WD",
         results: ["W", "F/100%", "F/100%"],
@@ -783,7 +795,7 @@ let set_info = {
                  "flamingo"],
     },
     combined_leapers: {
-        pieces: ["king", "scirocco_frog", "war_machine", "champion",
+        pieces: ["king", "lioness", "scirocco_frog", "war_machine", "champion",
                  "marquis", "caliph", "goat", "priest",
                  "wizard", "tadpole", "squirrel", "alibaba", "hawk",
                  "gnu", "okapi", "bison", "zebu",
@@ -839,7 +851,7 @@ let set_info = {
     scirocco: {
         href: "https://www.chessvariants.com/rules/scirocco",
         pieces: ["king", "emperor", "marquis", "abbot", "alfil",
-                 "bishop", "firzan", "zig", "goat",
+                 "bishop", "firzan", "zig", "goat", "lioness",
                  "zebra",
                  "camel", "squirrel", "champion", "octopus",
                  "pawn", "tadpole", "commoner", "wildebeest",
