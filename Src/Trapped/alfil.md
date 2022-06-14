@@ -15,7 +15,10 @@ it can reach are the squares \((x, y)\) such that \(x\) is even,
 \(y\) is even, and \(x + y\) is a multiple of \(4\).
 
 The **Alfil** is a piece in [Scirocco](#chess-v:rules/scirocco),
-and promotes to the [*Bishop*](bishop.html).
+and promotes to the [*Bishop*](bishop.html). Scirocco also has
+the *Stork*, which moves like the **Alfil**, and captures like
+the [*Wazir*](wazir.html) (but we ignore capture moves). The
+*Stork* promotes to the [*Queen*](queen.html).
 
 ### Spiral
 

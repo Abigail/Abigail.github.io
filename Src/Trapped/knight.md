@@ -7,6 +7,9 @@ to a square which is one square away in one direction, and two squares away
 in a direction orthogonally to the first direction. The move cannot
 be blocked.
 
+In [*Scirocco*](#chess-v:rules/scirocco), the **Knight** promotes
+to the [*Rook*](rook.html).
+
 See also the [*Knightrider*](knightrider.html), a piece which moves
 one or more squares in the same direction as the *Knight*.
 
