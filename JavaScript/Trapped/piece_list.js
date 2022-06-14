@@ -581,6 +581,12 @@ let pieces = {
     emperor: {
         parent:  "champion",
     },
+    guard: {
+        parent:  "wazir",
+    },
+    stork: {
+        parent:  "alfil",
+    },
 
     //
     // Fairy Chess
@@ -833,8 +839,9 @@ let set_info = {
     scirocco: {
         href: "https://www.chessvariants.com/rules/scirocco",
         pieces: ["king", "emperor", "marquis", "abbot", "alfil",
-                 "bishop", "firzan", "zig", "goat", "lioness",
-                 "zebra",
+                 "bishop", "firzan", "zig", "goat",
+                 "guard", "zebra", "knight", "rook",
+                 "stork", "queen",
                  "camel", "squirrel", "chariot", "octopus",
                  "pawn", "tadpole", "commoner", "wildebeest",
                  "dabbaba", "genie", "dervish", "harpy",

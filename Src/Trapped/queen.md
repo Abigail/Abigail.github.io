@@ -5,6 +5,9 @@ directions: four orthogonal directions and four diagonal directions.
 It cannot slide over occupied squares. The **Queen** combines the
 movements of the [*Rook*](rook.html) and [*Bishop*](bishop.html).
 
+In [Scirocco](#chess-v:rules/scirocco), the **Queen** is the promoted
+[*Stork*](alfil.html?piece=stork).
+
 ### Spiral
 
 The **Queen** can move like a [*Wazir*](wazir.html), and a *Wazir* 
