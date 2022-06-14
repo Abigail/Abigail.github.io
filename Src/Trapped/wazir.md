@@ -8,7 +8,9 @@ In the Shogi variant [D&#x14d;butsu sh&#x14d;gi](#wiki:Dobutsu_shogi),
 the *Giraffe* moves in the same way as the **Wazir**.
 
 In [*Scirocco*](#chess-v:rules/scirocco), the **Wazir** promotes
-to the [*Zag*](zag.html).
+to the [*Zag*](zag.html). In the same game, the *Guard* moves as
+the **Wazir**, and captures as the [*Ferz*](ferz.html) (but we
+ignore capture moves). The *Guard* promotes to the [*Zebra*](zebra.html).
 
 The [Knight-Bishop compound](archbishop.html) is sometimes called a
 *Wazir* as well.

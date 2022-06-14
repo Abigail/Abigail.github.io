@@ -227,7 +227,9 @@ let pieces = {
                               "[Ferz](ferz.html) + "               +
                               "[Threeleaper](threeleaper.html) + " +
                               "[Tripper](tripper.html)",
-
+        },
+        obsolete: {
+            scirocco: 1,
         },
     },
     goat: {
@@ -599,6 +601,20 @@ let pieces = {
     emperor: {
         parent:  "champion",
     },
+    guard: {
+        parent:  "wazir",
+    },
+    stork: {
+        parent:  "alfil",
+    },
+    scirocco: {
+        parent:  "dragon_horse",
+        prefix:  "",
+    },
+    vulture: {
+        parent:  "queen",
+        prefix:  "",
+    },
 
     //
     // Fairy Chess
@@ -852,11 +868,12 @@ let set_info = {
         href: "https://www.chessvariants.com/rules/scirocco",
         pieces: ["king", "emperor", "marquis", "abbot", "alfil",
                  "bishop", "firzan", "zig", "goat", "lioness",
-                 "zebra",
-                 "camel", "squirrel", "champion", "octopus",
+                 "guard", "zebra", "knight", "rook",
+                 "stork", "queen", "scirocco", "vulture",
+                 "camel", "squirrel", "chariot", "octopus",
                  "pawn", "tadpole", "commoner", "wildebeest",
                  "dabbaba", "genie", "dervish", "harpy",
-                 "priest", "duke"],
+                 "priest", "duke", "scirocco_frog"],
         chess_variant: 1,
     },
     typhoon: {
