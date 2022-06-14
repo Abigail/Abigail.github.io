@@ -255,7 +255,7 @@ let pieces = {
      },
      modern_elephant: {
         betza:    "FA",
-        results: ["F*/50%", "", ""],
+        results: ["F*/50%", "E", "E"],
         index_names: {
             combined_leapers: "[Modern Elephant](modern_elephant.html) // " +
                               "[Ferz](ferz.html) + "                        +
