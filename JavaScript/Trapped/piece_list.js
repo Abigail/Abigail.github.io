@@ -835,7 +835,7 @@ let set_info = {
         pieces: ["king", "emperor", "marquis", "abbot", "alfil",
                  "bishop", "firzan", "zig", "goat", "lioness",
                  "zebra",
-                 "camel", "squirrel", "champion", "octopus",
+                 "camel", "squirrel", "chariot", "octopus",
                  "pawn", "tadpole", "commoner", "wildebeest",
                  "dabbaba", "genie", "dervish", "harpy",
                  "priest", "duke"],
