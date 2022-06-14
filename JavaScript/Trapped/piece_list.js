@@ -610,7 +610,7 @@ let pieces = {
         prefix:  "",
     },
     wagon: {
-        results: ["25%", "E", "E"],
+        results: ["F/25%", "E", "E"],
         move_list: [
             {dr: -1, dc:  0, min_land: 2},
             {dr:  1, dc:  0, min_land: 2},
