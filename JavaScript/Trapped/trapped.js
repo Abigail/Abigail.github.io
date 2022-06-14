@@ -702,12 +702,13 @@ class Trapped {
         let best       = 0
         let info       = window [this . name]
         moves . forEach ((move) => {
-            let dr  = move . dr
-            let dc  = move . dc
-            let or  = move . or  || 0  // Offset
-            let oc  = move . oc  || 0  // Offset
-            let max = move . max || 0
-            let min = move . min || ((or || oc) ? 0 : 1)
+            let dr        = move . dr
+            let dc        = move . dc
+            let or        = move . or       || 0  // Offset
+            let oc        = move . oc       || 0  // Offset
+            let max       = move . max      || 0
+            let min       = move . min      || ((or || oc) ? 0 : 1)
+            let min_land  = move . min_land || 0
 
             let move_best = 0    // Best value within this move
             let prev_val  = 0    // Previous value within this move
@@ -723,6 +724,27 @@ class Trapped {
             //      of the previous square (too far away from center;
             //      we cannot improve)
             //
+            //  Explaination of move properties:
+            //
+            //    - dr/dc     The row (dr) and column (dc) difference 
+            //                on each "slide" step. They should not both
+            //                be 0.
+            //    - or/oc:    Row (or)/Column (oc) offset from origin. This
+            //                is added to each step in the slide. Defaults to 0.
+            //    - max:      Maximum number of slide steps which can be taken.
+            //                0, the default, mean there is no limit.
+            //    - min:      Minimum number of slide steps which must be taken.
+            //                Defaults to 1, unless one of or/oc isn't 0.
+            //    - min_land: The minimum number of slide moves which must
+            //                be taken before the piece can land. This is
+            //                different from min, and useful for pieces 
+            //                which must slide a minimum number of squares,
+            //                but those squares must be unoccupied.
+            //                The Wagon for instance, will have min = 1,
+            //                but min_land = 2, meaning the first square
+            //                it slides over must be unoccupied, but it
+            //                cannot land on it.
+            //
             for (let step = min; max == 0 || step <= max; step ++) {
                 let new_row = row + step * move . dr + or
                 let new_col = col + step * move . dc + oc
@@ -734,6 +756,10 @@ class Trapped {
 
                 if (value in this . visited) {
                     break    // Square is occupied
+                }
+
+                if (min_land > step) {
+                    continue // May not land on this square
                 }
 
                 if (prev_val && value > prev_val) {
