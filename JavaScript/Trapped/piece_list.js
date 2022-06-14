@@ -120,7 +120,7 @@ let pieces = {
     },
     fourleaper: {   // (4, 0)-leaper
         betza:    "(0,4)",
-        results: ["F/6.25%", "E", ""],
+        results: ["F/6.25%", "E", "E"],
         index_names: {
             basic_leapers: "[Fourleaper](fourleaper.html) // (4, 4) - leaper",
         },
@@ -134,28 +134,28 @@ let pieces = {
      },
     "stag": {         // (4, 2)-leaper
         betza:    "(2,4)",
-        results: ["T/2015", "E*", ""],
+        results: ["T/2015", "E*", "E*"],
         index_names: {
             basic_leapers: "[Stag](stag.html) // (4, 2) - leaper",
         },
      },
     "antelope": {     // (4, 3)-leaper
         betza:    "(3,4)",
-        results: ["T/1887", "T/128", ""],
+        results: ["T/1887", "T/128", "T/416"],
         index_names: {
             basic_leapers: "[Antelope](antelope.html) // (4, 3) - leaper",
         },
      },
     "commuter": {     // (4, 4)-leaper
         betza:    "(4,4)",
-        results: ["F/3.125%", "E", ""],
+        results: ["F/3.125%", "E", "E"],
         index_names: {
             basic_leapers: "[Commuter](commuter.html) // (4, 4) - leaper",
         },
      },
     "flamingo": {     // (6, 1)-leaper
         betza:    "(1,6)",
-        results: ["?", "T/90", ""],
+        results: ["?", "T/90", "T/260"],
         index_names: {
             basic_leapers: "[Flamingo](flamingo.html) // (6, 1) - leaper",
         },
@@ -219,7 +219,7 @@ let pieces = {
     },
     scirocco_frog: {
         betza:    "KGH",
-        results: ["W", "FC", ""],
+        results: ["W", "FC", "F/100%"],
         _name:    "Frog",
         index_names: {
             combined_leapers: "[Frog](scirocco_frog.html) // "     +
@@ -301,7 +301,7 @@ let pieces = {
      },
     "hawk": {
         betza:    "ADGH",
-        results: ["F*/100%", "F*/100%", ""],
+        results: ["F*/100%", "F*/100%", "F*/100%"],
         index_names: {
             combined_leapers: "[Hawk](hawk.html) // "              +
                               "[Dabbaba](dabbaba.html) + "         +
@@ -334,7 +334,7 @@ let pieces = {
      },
     "bison": {
         betza:    "CZ",
-        results: ["?", "?", ""],
+        results: ["?", "?", "?"],
         index_names: {
             combined_leapers: "[Bison](bison.html) // " +
                               "[Camel](camel.html) + "  +
@@ -343,7 +343,7 @@ let pieces = {
      },
     "zebu":  {
         betza:    "C(1,4)",
-        results: ["?", "?", ""],
+        results: ["?", "?", "?"],
         index_names: {
             combined_leapers: "[Zebu](zebu.html) // "  +
                               "[Camel](camel.html) + " +
@@ -352,11 +352,11 @@ let pieces = {
      },
     "root_25_leaper": {
         betza:    "(3,4)(5,0)",
-        results: ["?", "?", ""],
+        results: ["?", "?", "?"],
      },
     "root_50_leaper": {
         betza:    "(5,5)(7,1)",
-        results: ["?", "?", ""],
+        results: ["?", "?", "?"],
      },
 
 
