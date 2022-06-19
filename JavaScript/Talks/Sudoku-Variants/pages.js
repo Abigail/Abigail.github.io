@@ -1,6 +1,7 @@
 let dir = "Talks/Sudoku-Variants"
 
 let pages = [
+    ["title",             "Title"],
     ["intro-01",          "Sudoku Introduction"],
     ["intro-02",          "Sudoku Naming"],
     ["intro-04",          "Sudoku by Regexp"],
