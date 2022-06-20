@@ -70,6 +70,11 @@ polyline.renban {
     stroke-opacity:                     50%;
 }
 
+polyline.german {
+    stroke:                           green;
+    stroke-opacity:                     50%;
+}
+
 
 circle.odd_clue, rect.even_clue {
     fill:                              gray;

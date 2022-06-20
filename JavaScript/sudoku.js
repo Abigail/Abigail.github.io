@@ -36,6 +36,7 @@ function shuffle (array) {
 
 const HL_CLASS         = "highlight"
 const RENBAN_CLASS     = "renban"
+const GERMAN_CLASS     = "german"
 const ODD_CLASS        = "odd_clue"
 const EVEN_CLASS       = "even_clue"
 const BATTENBURG_CLASS = "battenburg"
@@ -290,6 +291,11 @@ class Sudoku {
         // Draw Battenburgs, if any
         //
         this . draw_battenburgs (args)
+
+        //
+        // Draw German Whispers lines
+        //
+        this . draw_german_whispers (args)
 
         return this
     }
@@ -659,6 +665,19 @@ class Sudoku {
         return this
     }
 
+    //
+    // Set a German Whisper line
+    //
+    set_german_whisper (args = {}) {
+        if (args ["german_whisper"]) {
+            if (!this . german_whispers) {
+                this . german_whispers = []
+            }
+            this . german_whispers . push (args ["german_whisper"])
+        }
+        return this
+    }
+
 
     //
     // Draw a polyline
@@ -686,6 +705,19 @@ class Sudoku {
             this . renbans . forEach ((renban) => {
                 this . draw_polyline ({polyline: renban,
                                        class:    RENBAN_CLASS})
+            })
+        }
+        return this
+    }
+
+    //
+    // Draw German Whisper lines
+    //
+    draw_german_whispers (args = {}) {
+        if (this . german_whispers) {
+            this . german_whispers . forEach ((german_whisper) => {
+                this . draw_polyline ({polyline: german_whisper,
+                                       class:    GERMAN_CLASS})
             })
         }
         return this

@@ -60,6 +60,10 @@ let pages = [
     ["battenburg-07",     "Variant: Battenburg"],
     ["battenburg-08",     "Variant: Battenburg"],
     ["battenburg-09",     "Variant: Battenburg (Statistics)"],
+    ["german-01",         "Variant: German Whispers"],
+    ["german-02",         "Variant: German Whispers"],
+    ["german-03",         "Variant: German Whispers"],
+    ["german-04",         "Variant: German Whispers (Statistics)"],
 ]
 
 pages . forEach (entry => {
