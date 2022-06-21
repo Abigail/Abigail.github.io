@@ -71,6 +71,10 @@ let pages = [
     ["quadruple-04",      "Variant: Quadruples"],
     ["quadruple-05",      "Variant: Quadruples"],
     ["quadruple-06",      "Variant: Quadruples (Statistics)"],
+    ["other-01",          "Other Variants"],
+    ["other-02",          "Other Variants"],
+    ["other-03",          "Other Variants"],
+    ["other-04",          "Other Variants"],
 ]
 
 pages . forEach (entry => {

@@ -714,6 +714,73 @@ class Sudoku {
         return this
     }
 
+    draw_diagonal (args = {}) {
+        let rect_size = this . rect_size
+        let [r1, c1] =  Sudoku . id_to_coord (args ["from"])
+        let [r2, c2] =  Sudoku . id_to_coord (args ["to"])
+
+        let desc = 0
+        if (r1 <= r2 && c1 <= c2) {desc = 1} else
+        if (r1 <= r2 && c1 >= c2) {desc = 0} else
+        if (r1 >= r2 && c1 <= c2) {desc = 0} else
+        if (r1 >= r2 && c1 >= c2) {desc = 1}
+
+        if (desc == 1) {
+            r2 += 1
+            c2 += 1
+        }
+        else {
+            r1 += 1
+            c2 += 1
+        }
+
+        console . log (`desc = ${desc} [${r1}, ${c1}] - [${r2}, ${c2}]`)
+
+        r1 *= rect_size
+        c1 *= rect_size
+        r2 *= rect_size
+        c2 *= rect_size
+
+        let diagonal = this . sudoku . line (r1, c1, r2, c2)
+            diagonal . addClass ("diagonal")
+
+        if (args ["class"]) {
+            diagonal . addClass (args ["class"])
+        }
+        return this
+    }
+
+    //
+    // Draw main diagonals
+    //
+    draw_main_diagonals (args = {}) {
+        let size         = this . size
+        let top_left     = Sudoku . coord_to_id (1,    1)
+        let top_right    = Sudoku . coord_to_id (1,    size)
+        let bottom_left  = Sudoku . coord_to_id (size, 1)
+        let bottom_right = Sudoku . coord_to_id (size, size)
+
+        this . draw_diagonal ({from: top_left,  to: bottom_right})
+        this . draw_diagonal ({from: bottom_left, to: top_right})
+
+        return this
+    }
+
+    draw_argyle (args = {}) {
+        if (this . size == 9) {
+            this . draw_diagonal ({from: "R2C1", to: "R9C8"})
+                 . draw_diagonal ({from: "R1C2", to: "R8C9"})
+                 . draw_diagonal ({from: "R8C1", to: "R1C8"})
+                 . draw_diagonal ({from: "R9C2", to: "R2C9"})
+                 . draw_diagonal ({from: "R5C1", to: "R1C5"})
+                 . draw_diagonal ({from: "R1C5", to: "R5C9"})
+                 . draw_diagonal ({from: "R5C1", to: "R9C5"})
+                 . draw_diagonal ({from: "R9C5", to: "R5C9"})
+        }
+
+        return this
+    }
+
     //
     // Draw renban lines
     //

@@ -12,6 +12,11 @@ line.boundary {
     stroke-width:                         5;
 }
 
+line.diagonal {
+    stroke:                         #b0b0ff;
+    stroke-width:                         5;
+}
+
 
 path.border {
     stroke-width:                         8;
