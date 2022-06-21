@@ -1,4 +1,4 @@
-let pattern = "(?:[1-9][1-9])*\\g{R1C7}\\g{R2C8}[1-9]*;"
+let pattern = "(?:[1-9][1-9])*\\g{cell1}\\g{cell2}[1-9]*;"
 
 $(document) . ready (function () {
     let text = "<span class = 'subject'>";

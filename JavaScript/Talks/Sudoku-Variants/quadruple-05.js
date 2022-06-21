@@ -41,6 +41,6 @@ $(document) . ready (function () {
                                   6 3 2  7 9 5  4 8 1
                                   9 7 1  8 3 4  2 5 6`})
       . draw ()
-      . draw_solution ({delay: 200})
+      . draw_solution ({delay: 50})
 
 })
