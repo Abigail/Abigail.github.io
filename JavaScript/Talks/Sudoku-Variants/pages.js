@@ -75,6 +75,10 @@ let pages = [
     ["other-02",          "Other Variants"],
     ["other-03",          "Other Variants"],
     ["other-04",          "Other Variants"],
+//  ["planned-01",        "Planned Variants"],
+//  ["planned-02",        "Planned Variants"],
+    ["planned-50",        "Planned Variants"],
+    ["questions",         "Questions"],
 ]
 
 pages . forEach (entry => {

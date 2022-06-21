@@ -40,6 +40,7 @@ const GERMAN_CLASS     = "german"
 const ODD_CLASS        = "odd_clue"
 const EVEN_CLASS       = "even_clue"
 const BATTENBURG_CLASS = "battenburg"
+const THERMO_CLASS     = "thermo"
 const NRC              = ["R2C2", "R2C3", "R2C4",    "R2C6", "R2C7", "R2C8",
                           "R3C2", "R3C3", "R3C4",    "R3C6", "R3C7", "R3C8",
                           "R4C2", "R4C3", "R4C4",    "R4C6", "R4C7", "R4C8",
@@ -173,7 +174,9 @@ class Sudoku {
                                      . cx         ((col + 0.5) * rect_size)
                                      . cy         ((row + 0.5) * rect_size)
                                      . id         (id)
-                                     . addClass   (class_name)
+            class_name . split (/,/) . forEach ((name) => {
+                rect . addClass (name)
+            })
         })
 
         return this
@@ -287,6 +290,11 @@ class Sudoku {
         // Draw renban lines (noop if no renban lines have been set)
         //
         this . draw_renban (args)
+
+        //
+        // Draw the thermos (if any)
+        //
+        this . draw_thermos (args)
 
         //
         // Draw Battenburgs, if any
@@ -670,6 +678,19 @@ class Sudoku {
     }
 
     //
+    // Set a thermo
+    //
+    set_thermo (args = {}) {
+        if (args ["thermo"]) {
+            if (!this . thermos) {
+                this . thermos = []
+            }
+            this . thermos . push (... args ["thermo"])
+        }
+        return this
+    }
+
+    //
     // Set a renban line
     //
     set_renban (args = {}) {
@@ -790,6 +811,25 @@ class Sudoku {
                 this . draw_polyline ({polyline: renban,
                                        class:    RENBAN_CLASS})
             })
+        }
+        return this
+    }
+
+    //
+    // Draw the thermos
+    //
+    draw_thermos (args = {}) {
+        if (this . thermos) {
+            let rect_size = this . rect_size
+            let list      = this . thermos
+            console . log (list [0])
+            let [row, col] = Sudoku . id_to_coord (list [0])
+            this . sudoku . circle   (0.7         * rect_size)
+                          . cx       ((col + 0.5) * rect_size)
+                          . cy       ((row + 0.5) * rect_size)
+                          . addClass (THERMO_CLASS)
+            this . draw_polyline ({polyline: this . thermos,
+                                   class:    THERMO_CLASS})
         }
         return this
     }

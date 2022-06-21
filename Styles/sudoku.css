@@ -75,6 +75,15 @@ polyline.renban {
     stroke-opacity:                     50%;
 }
 
+circle.thermo {
+    fill:                              gray;
+}
+
+polyline.thermo {
+    stroke:                            gray;
+    stroke-width:                        35;
+}
+
 polyline.german {
     stroke:                           green;
     stroke-opacity:                     50%;
