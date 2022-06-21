@@ -64,6 +64,12 @@ let pages = [
     ["german-02",         "Variant: German Whispers"],
     ["german-03",         "Variant: German Whispers"],
     ["german-04",         "Variant: German Whispers (Statistics)"],
+    ["quadruple-01",      "Variant: Quadruples"],
+    ["quadruple-02",      "Variant: Quadruples"],
+    ["quadruple-03",      "Variant: Quadruples"],
+    ["quadruple-04",      "Variant: Quadruples"],
+    ["quadruple-05",      "Variant: Quadruples"],
+    ["quadruple-06",      "Variant: Quadruples (Statistics)"],
 ]
 
 pages . forEach (entry => {

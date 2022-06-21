@@ -56,7 +56,8 @@ const CENTER_DOT       = ["R2C2", "R2C5", "R2C8",
                           "R5C2", "R5C5", "R5C8",
                           "R8C2", "R8C5", "R8C8"]
 
-const BATTENBURG_SIZE  = 0.5    // Relative to the size of square.
+const BATTENBURG_SIZE  = 0.5    // Relative to the size of a square.
+const QUADRUPLE_SIZE   = 0.75   // Relative to the size of a square.
 
 class Sudoku {
     //
@@ -297,6 +298,11 @@ class Sudoku {
         //
         this . draw_german_whispers (args)
 
+        //
+        // Draw Quadruples
+        //
+        this . draw_all_quadruples (args)
+
         return this
     }
 
@@ -438,16 +444,27 @@ class Sudoku {
         let row   = args ["row"]
         let col   = args ["col"]
         let text  = args ["text"]
-        let dy    = args ["dy"] || 0.2
+        let type  = args ["type"] || ""
+        let dy    = args ["dy"]   || 0.2
+
+        let off_x = 0
+        let off_y = 0
+        if (type == "quadruple") {
+            off_x = 0.5
+            off_y = 0.42
+        }
 
         let rect_size = this . rect_size
 
         let plain = this . sudoku
                          . plain (text)
-                         . attr  ({x: (col + 0.5)      * rect_size,
-                                   y: (row + 0.5 + dy) * rect_size,
+                         . attr  ({x: (off_x + col + 0.5)      * rect_size,
+                                   y: (off_y + row + 0.5 + dy) * rect_size,
                                    "text-anchor": "middle"})
 
+        if (args ["class"]) {
+            plain . addClass (args ["class"])
+        }
         return (plain)
     }
 
@@ -722,6 +739,63 @@ class Sudoku {
         }
         return this
     }
+
+    //
+    // Set a Quadruple constraint. Each constraint is given by its
+    // upper left cell ("cell"), and a list of values.
+    //
+    set_quadruple (args = {}) {
+        if (args ["cell"] && args ["values"]) {
+            if (!this . quadruples) {
+                this . quadruples = {}
+            }
+            this . quadruples [args ["cell"]] = args ["values"]
+        }
+        return this
+    }
+
+    //
+    // Draw all quadruple constraints
+    //
+    draw_all_quadruples (args = {}) {
+        if (this . quadruples) {
+            for (const cell in this . quadruples) {
+                this . draw_quadruple (cell, this . quadruples [cell], args)
+            }
+        }
+        return this
+    }
+
+    //
+    // Draw a single quadruple constraint. 
+    //
+    draw_quadruple (cell, values, args = {}) {
+        //
+        // First, draw the circle
+        //
+        let q_size     = QUADRUPLE_SIZE
+        let [r, c]     = Sudoku . id_to_coord (cell)
+        let rect_size  = this . rect_size
+        let class_name = "quadruple"
+        let circle     = this . sudoku . circle (q_size * rect_size)
+                                       . cx ((c + 1) * rect_size)
+                                       . cy ((r + 1) * rect_size)
+                                       . fill ("black")
+                                       . addClass (class_name)
+
+        //
+        // Draw the clues
+        //
+        let clues = values . join ("")
+        this . place_text ({row:    r,
+                            col:    c,
+                            text:   clues,
+                            type:  "quadruple",
+                            class: "quadruple"})
+
+        return this
+    }
+
 
 
     //

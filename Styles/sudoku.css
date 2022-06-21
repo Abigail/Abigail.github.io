@@ -96,5 +96,14 @@ rect.battenburg-2 {
 }
 
 rect.anti-battenburg {
-    fill:                              white;
+    fill:                             white;
+}
+
+
+circle.quadruple {
+    fill:                             white;
+    stroke:                           black;
+}
+text.quadruple {
+    font-size:                          50%;
 }
