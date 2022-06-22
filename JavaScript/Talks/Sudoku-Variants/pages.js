@@ -1,4 +1,4 @@
-let dir = "Talks/Sudoku-Variants"
+let dir = "Talks/Sudoku-variants"
 
 let pages = [
     ["title",             "Title"],
