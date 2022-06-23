@@ -5,7 +5,8 @@ a [*Rook*](rook.html), but with a limited range. The **Chariot**
 slides up to four unoccupied squares in an orthogonal direction.
 
 The **Chariot** is a piece in [*Scirocco*](#chess-v:rules/scirocco), 
-and it promotes to the [*Octopus*](octopus.html).
+and in [*Typhoon*](#chess-v:rules/typhoon-revised).
+In both games, it promotes to the [*Octopus*](octopus.html).
 
 ### Spiral
 

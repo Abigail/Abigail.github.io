@@ -692,6 +692,25 @@ let pieces = {
         betza:    "FbsW",
         results: ["F*/100%", "", ""],
     },
+    cicada: {
+        parent: "king",
+    },
+    copper_general: {
+        betza:    "fFvW",
+        results: ["E*", "E", "E"],
+    },
+    cuckoo: {
+        betza:    "sWfD",
+        results: ["12.5%", "E", "E"],
+    },
+    dayrider: {
+        betza:    "WFAADD",
+        results: ["W", "FC", "F/100%"],
+    },
+    diving_osprey: {
+        betza:    "W4fFA",
+        results: ["W", "FC", "F/100%"],
+    },
 
     //
     // Fairy Chess
@@ -977,7 +996,8 @@ let set_info = {
                  "camel", "zebra", 
             
                  "abbot", "banner", "beaver", "bishops_dog", "blind_tiger",
-                 "centaur",
+                 "centaur", "chariot", "cicada", "copper_general", "cuckoo",
+                 "dayrider", "diving_osprey",
                  "marquis",
                  ],
         chess_variant: 1,
