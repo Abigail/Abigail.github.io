@@ -19,11 +19,20 @@ the **King** is known as the *Phoenix* (&#x9d6c;).
 In the Sh&#x14d;gi variant [D&#x14d;butsu sh&#x14d;gi](#wiki:Dobutsu_shogi),
 the **King** is known as the *Lion*.
 
-[*Scirocco*](#chess-v:rules/scirocco) has the *Commoner*, which moves
+[*Scirocco*](#chess-v:rules/scirocco) and
+[*Typhoon*](#chess-v:rules/typhoon-revised) have the *Commoner*, which moves
 exactly as the **King**, but which is not Royal. The *Commoner* promotes
 to a [*Wildebeest*](gnu.html?piece=wildebeest).
 [*Scirocco*](#chess-v:rules/scirocco) also has the **King**, and it
 promotes to the [*Emperor*](champion.html?piece=emperor).
+
+The *Cicada* from [*Typhoon*](#chess-v:rules/typhoon-revised) moves
+(but does not capture) as the **King**. The *Cicada* also has hopping
+moves and captures in the directions of the [*Queen*](queen.html),
+but we will ignore hopping moves as we're studying the movements of
+a single piece on an infinite board -- so there will not be any other
+piece to hop over. The *Cicada* promotes to the 
+[*Salamander*](salamander.html).
 
 Other names for this piece include:
 include *Mann* (not Royal), and *Prince* (sometimes Royal). 

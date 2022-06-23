@@ -12,7 +12,9 @@ on an even row (of file). And if it starts on an odd row (of file),
 it will remain on an odd row (or file).
 
 In [*Scirocco*](#chess-v:rules/scirocco), the **Dabbaba** promotes
-to the [*Genie*](genie.html).
+to the [*Genie*](genie.html), while in
+[*Typhoon*](#chess-v:rules/typhoon-revised), the **Dabbaba**
+promotes to the [*Dragon Kite*](dragon-kite.html).
 
 The name is infrequently used for the [Rook + Knight compound](chancellor.md).
 
