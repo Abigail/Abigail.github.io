@@ -10,7 +10,7 @@ slides up to four unoccupied squares in a diagonal direction.
 This makes the **Abbot** a limited range [*Archbishop*](archbishop.html).
 
 The **Abbot** is used in [*Typhoon*](#chess-v:rules/typhoon-revised),
-and [*Scirocco*](#chess-v:rules/scirocco), where it is a 
+and [*Scirocco*](#chess-v:rules/scirocco). In both games, it is the 
 promoted *Marquis*.
 
 

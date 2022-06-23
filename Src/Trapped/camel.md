@@ -9,7 +9,8 @@ This makes that the **Camel** is
 [colourbound](#wiki:Glossary_of_chess#Colorbound).
 The **Camel** can only reach half the squares on the board.
 
-In [*Scirocco*](#chess-v:rules/scirocco), the **Camel** promotes
+In [*Scirocco*](#chess-v:rules/scirocco) and
+[*Typhoon*](#chess-v:rules/typhoon-revised), the **Camel** promotes
 to the [*Squirrel*](squirrel.html).
 
 ### Spiral
