@@ -18,7 +18,9 @@ The **Alfil** is a piece in [Scirocco](#chess-v:rules/scirocco),
 and promotes to the [*Bishop*](bishop.html). Scirocco also has
 the *Stork*, which moves like the **Alfil**, and captures like
 the [*Wazir*](wazir.html) (but we ignore capture moves). The
-*Stork* promotes to the [*Queen*](queen.html).
+*Stork* promotes to the [*Queen*](queen.html). The **Alfil**
+is also appears in [*Typhoon*](#chess-v:rules/typhoon-revised),
+where it promotes to the [*Scirocco*](scirocco.html).
 
 ### Spiral
 

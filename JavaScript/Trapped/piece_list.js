@@ -168,6 +168,10 @@ let pieces = {
         parent: "king",
         prefix: "",
     },
+    centaur: {
+        betza:    "WFN",
+        results: ["W", "FC", "F/100%"],
+    },
     lioness: {
         betza: "WFDKA",
         results: ["W", "FC", "F/100%"],
@@ -663,6 +667,27 @@ let pieces = {
     },
 
     //
+    // Typhoon
+    //
+    banner: {
+        betza:    "fsW",
+        results: ["F/25%", "F/100%", "E"],
+    },
+    beaver: {
+        betza:    "fFfWsW4bW0",
+        results: ["W", "FC", "F*/100%"],
+    },
+    bishops_dog: {
+        betza:    "F3",
+        results: ["T/129", "E", "E"],
+        _name:    "Bishop's Dog",
+    },
+    blind_tiger: {
+        betza:    "FbsW",
+        results: ["F*/100%", "", ""],
+    },
+
+    //
     // Fairy Chess
     //
     "frog": {
@@ -868,7 +893,8 @@ let set_info = {
                  "flamingo"],
     },
     combined_leapers: {
-        pieces: ["king", "lioness", "scirocco_frog", "war_machine", "champion",
+        pieces: ["king", "centaur", "lioness", "scirocco_frog",
+                 "war_machine", "champion",
                  "marquis", "caliph", "goat", "fad", "priest",
                  "modern_elephant",
                  "wizard", "tadpole", "squirrel", "alibaba", "hawk",
@@ -940,7 +966,14 @@ let set_info = {
     },
     typhoon: {
         href: "https://www.chessvariants.com/rules/typhoon-revised",
-        pieces: ["abbot"],
+        pieces: ["king", "emperor", "queen", "rook", "bishop",
+                 "knight", "wazir", "firzan", "dabbaba", "alfil",
+                 "camel", "zebra", 
+            
+                 "abbot", "banner", "beaver", "bishops_dog", "blind_tiger",
+                 "centaur",
+                 "marquis",
+                 ],
         chess_variant: 1,
     },
     fairy_chess: {

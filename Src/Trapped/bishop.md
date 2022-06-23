@@ -18,8 +18,9 @@ same directions as the [*Ferz*](ferz.html), without a limit on
 the number of squares it moves over (as long as the squares it
 moves over are unoccupied).
 
-In [Scirocco](#chess-v:rules/scirocco), the **Bishop** is a promoted
-[*Alfil*](alfil.html).
+In [Scirocco](#chess-v:rules/scirocco), the **Bishop** is the promoted
+[*Alfil*](alfil.html), while in [*Typhoon*](#chess-v:rules/typhoon-revised)
+it is the [*Guard*](guard.html) which promotes to the **Bishop**.
 
 ### Spiral
 

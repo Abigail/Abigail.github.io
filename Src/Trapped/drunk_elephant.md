@@ -1,6 +1,8 @@
 # Drunk Elephant
 
 The **Drunk Elephant** moves one square in any direction, except backwards.
+This is a mirror of the movement of the [*Blind Tiger*](blind_tiger.html)
+which moves one square in any direction except forwards.
 
 The **Drunk Elephant** is found in [*Chu Sh&#x14d;gi*](#wiki:Chu_Shogi).
 
@@ -27,6 +29,6 @@ causing the **Drunk Elephant** to follow the numbers.
 #### Flat
 
 On the Flat Wedge, the **Drunk Elephant** moves in the same way as
-the [*King*](king.html), filling the wedge row by row, going from
+the [*King*](king.html) does, filling the wedge row by row, going from
 right to left and left to right, with a small side step before
 reaching the left end of each row.
