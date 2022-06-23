@@ -168,12 +168,8 @@ let pieces = {
         parent: "king",
         prefix: "",
     },
-    centaur: {
-        betza:    "WFN",
-        results: ["W", "FC", "F/100%"],
-    },
     lioness: {
-        betza: "WFDKA",
+        betza: "WFDNA",
         results: ["W", "FC", "F/100%"],
         index_names: {
             combined_leapers: "[Lioness](lioness.html) // " +
@@ -182,6 +178,16 @@ let pieces = {
                               "[Dabbaba](dabbaba.html) + "  +
                               "[Knight](knight.html) + "    +
                               "[Alfil](alfil.html)",
+        },
+    },
+    centaur: {
+        betza:    "WFN",
+        results: ["W", "FC", "F/100%"],
+        index_names: {
+            combined_leapers: "[Centaur](centaur.html) // " +
+                              "[Wazir](wazir.html) + "      +
+                              "[Ferz](ferz.html) + "        +
+                              "[Knight](knight.html)"
         },
     },
     war_machine: {
@@ -875,7 +881,7 @@ let set_info = {
                  "flamingo"],
     },
     combined_leapers: {
-        pieces: ["king", "centaur", "lioness", "scirocco_frog",
+        pieces: ["king", "lioness", "centaur", "scirocco_frog",
                  "war_machine", "champion",
                  "marquis", "caliph", "goat", "fad", "priest",
                  "modern_elephant",
