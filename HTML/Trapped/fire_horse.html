@@ -1,0 +1,74 @@
+<html>
+<head>
+<title>Fire Horse</title>
+<meta charset = "utf-8">
+<link rel  = 'preconnect' href = 'https://fonts.gstatic.com'>
+<link rel = 'stylesheet' href =      'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
+<link rel = 'stylesheet' href = '../../Styles/main.css'>
+<link rel = 'stylesheet' href = '../../Styles/Trapped/main.css'>
+<script src = "../../JavaScript/jquery.js"></script>
+<script id  = 'MathJax-script' async src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.js'></script>
+<script id = 'svg-script' src = 'https://cdn.jsdelivr.net/npm/@svgdotjs/svg.js@3.0/dist/svg.min.js'></script>
+<script src = '../../JavaScript/navigation.js'></script>
+<script src = '../../JavaScript/Trapped/piece_list.js'></script>
+<script src = '../../JavaScript/Trapped/trapped.js'></script>
+<script src = '../../JavaScript/Trapped/pieces.js'></script>
+<script src = '../../JavaScript/Trapped/boxset.js'></script>
+<script src = '../../JavaScript/Trapped/pages.js'></script>
+</head>
+
+<body><h1>Fire Horse</h1><div class = "byline">
+by Abigail<br>
+<img src = "../../Images/jan_sluiters.jpg">
+</div>
+
+
+<p>The <strong>Fire Horse</strong> either moves an unlimited number of unoccupied
+squares forward (like the <a href="rook.html"><em>Rook</em></a>), or to a square
+which is two backwards and one sideward, or one backward and two
+sideways (so, like a backward <a href="knight.html"><em>Knight</em></a>).</p>
+
+<p>In <a href="https://www.chessvariants.com/rules/typhoon-revised"><em>Typhoon</em></a>, the <strong>Fire Horse</strong>
+promotes to the <a href="flying_ox.html"><em>Flying Ox</em></a>.</p>
+
+<h3 id = 'spiral'>Spiral</h3>
+
+<div class = "section">
+<p>On the Spiral, the <strong>Fire Horse</strong> gets trapped quickly, after 45 steps.</p>
+</div>
+
+<h3 id = 'wedge'>Wedge</h3>
+
+<h4 id = 'folded'>Folded</h4>
+
+<div class = "section">
+<p>On the Folded Wedge, the <strong>Fire Horse</strong> escapes to infinity by visiting
+the four left most squares of each row. The pattern consist of repeating
+the following four moves (starting from a right most square of a row):
+three times a step forward, then a Knight's move backward (to a square
+two back, and one to the right). This lands the piece on the right most
+square of the row one ahead of the starting row, so the pattern can
+repeat.</p>
+</div>
+
+<h4 id = 'flat'>Flat</h4>
+
+<p>On the Flat Wedge, the <strong>Fire Horse</strong> travels using the same pattern
+as it does on the Folded Wedge, but mirrored along the vertical axis.
+Not many other pieces have this mirror like behaviour.</p>
+
+<div class = 'trapped' data-piece = 'fire_horse'></div>
+
+<div class = 'boxset' data-piece = 'fire_horse'></div>
+
+<hr id = 'last-line'>
+<div class = 'trailer'>
+<p class = 'prev'><a class = "prev" href = "">&#x261C;</a></p>
+<p class = 'issue'>Please leave any comments as a
+  <a href = 'https://github.com/Abigail/Abigail.github.io/issues'
+     title = 'GitHub issue'>GitHub issue</a>.
+<p class = 'next'><a class = "next" href = "">&#x261E;</a></p>
+</div>
+
+</body>
+</html>

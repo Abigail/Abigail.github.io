@@ -7,7 +7,7 @@ which moves one square in any direction except forwards.
 The **Drunk Elephant** is found in [*Chu Sh&#x14d;gi*](#wiki:Chu_Shogi).
 
 In [*Typhoon*](#chess-v:rules/typhoon-revised), the **Drunk Elephant**
-promotes to the [*Elephant Prince*](elephant_prince.html).
+promotes to the [*Elephant Prince*](king.html?piece=elephant_prince).
 
 In [*Tori Sh&#x14d;gi*](#wiki:Tori_Shogi), the *Falcon (&#x9df9;)* moves in
 the same way, and promotes to the [*Eagle*](eagle.hmtl).
