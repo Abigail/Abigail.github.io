@@ -693,6 +693,9 @@ let pieces = {
         betza:    "W4fFA",
         results: ["W", "FC", "F/100%"],
     },
+    dragon_kite: {
+        parent:   "dragon_king",
+    },
 
     //
     // Fairy Chess
@@ -979,7 +982,8 @@ let set_info = {
             
                  "abbot", "banner", "beaver", "bishops_dog", "blind_tiger",
                  "centaur", "chariot", "cicada", "copper_general", "cuckoo",
-                 "dayrider", "diving_osprey",
+                 "dayrider", "diving_osprey", "dragon_kite", "drunk_elephant",
+                 "duke",
                  "marquis",
                  ],
         chess_variant: 1,

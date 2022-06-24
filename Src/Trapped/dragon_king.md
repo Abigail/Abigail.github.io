@@ -12,6 +12,9 @@ The **Dragon King** is a piece from
 [Sh&#x14d;gi (&#x5c06;&#x68cb;)](#wiki:Shogi), and only
 appears on the board once a [*Rook*](rook.html) promotes.
 
+In [*Typhoon*](#chess-v:rules/typhoon-revised), the *Dragon Kite*
+(the promoted [*Dabbaba*](dabbaba.html)) moves as the **Dragon Horse**.
+
 
 ### Spiral
 

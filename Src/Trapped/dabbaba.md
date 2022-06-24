@@ -14,7 +14,7 @@ it will remain on an odd row (or file).
 In [*Scirocco*](#chess-v:rules/scirocco), the **Dabbaba** promotes
 to the [*Genie*](genie.html), while in
 [*Typhoon*](#chess-v:rules/typhoon-revised), the **Dabbaba**
-promotes to the [*Dragon Kite*](dragon-kite.html).
+promotes to the [*Dragon Kite*](dragon_king.html?piece=dragon_kite).
 
 The name is infrequently used for the [Rook + Knight compound](chancellor.md).
 
