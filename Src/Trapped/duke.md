@@ -8,7 +8,8 @@ away in one orthogonal direction, and one away in the other.
 
 The **Duke** moves like a limited range [*Chancellor*](chancellor.html).
 
-In [*Scirocco*](#chess-v:rules/scirocco), the [*Priest*](priest.html)
+In [*Scirocco*](#chess-v:rules/scirocco) and 
+[*Typhoon*](#chess-v:rules/typhoon-revised), the [*Priest*](priest.html)
 promotes to the **Duke**.
 
 ### Spiral
