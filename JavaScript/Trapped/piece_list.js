@@ -696,6 +696,18 @@ let pieces = {
     dragon_kite: {
         parent:   "dragon_king",
     },
+    elephant_prince: {
+        parent:   "king",
+    },
+
+    ferocious_leopard: {
+        betza:    "FvW",
+        results: ["F/100%", "E", "E"],
+    },
+    fire_horse: {
+        betza:    "fRbhN",
+        results: ["T/45", "E*", ""],
+    },
 
     //
     // Fairy Chess
@@ -983,7 +995,7 @@ let set_info = {
                  "abbot", "banner", "beaver", "bishops_dog", "blind_tiger",
                  "centaur", "chariot", "cicada", "copper_general", "cuckoo",
                  "dayrider", "diving_osprey", "dragon_kite", "drunk_elephant",
-                 "duke",
+                 "duke", "elephant_prince", "ferocious_leopard", "fire_horse",
                  "marquis",
                  ],
         chess_variant: 1,
