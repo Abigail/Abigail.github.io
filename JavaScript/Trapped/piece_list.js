@@ -690,7 +690,7 @@ let pieces = {
     },
     blind_tiger: {
         betza:    "FbsW",
-        results: ["F*/100%", "", ""],
+        results: ["F*/100%", "FC", "F/100%"],
     },
     cicada: {
         parent: "king",
@@ -740,6 +740,21 @@ let pieces = {
     ghost_warrior: {
         betza:    "bFfR",
         results: ["F%/25%", "", ""]
+    },
+    horned_owl: {
+        betza:    "F4DfW",
+        results: ["?", "F/50%", "F*/100%"],
+    },
+    hummingbird: {
+        betza:    "sbWfD",
+        results: ["T/172", "E", "E"],
+    },
+    ibis: {
+        parent:   "dragon_king",
+    },
+    lantern: {
+        betza:    "fF",
+        results: ["E", "E", "E"],
     },
 
     //
@@ -1030,7 +1045,8 @@ let set_info = {
                  "dayrider", "diving_osprey", "dragon_kite", "drunk_elephant",
                  "duke", "elephant_prince", "ferocious_leopard", "fire_horse",
                  "flying_ox", "free_boar", "genie", "ghost_warrior", "goat",
-                 "gold_general", "guard",
+                 "gold_general", "guard", "harpy", "horned_owl", "hummingbird",
+                 "ibis", "lantern", "lioness",
                  "marquis",
                  ],
         chess_variant: 1,

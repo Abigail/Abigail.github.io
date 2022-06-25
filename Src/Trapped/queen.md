@@ -11,6 +11,11 @@ moves like the **Queen** (but it cannot capture on its diagonal
 moves which are not direction adjacent to its starting square). The
 *Vulture* is the promoted [*Scirocco*](dragon_horse.html?piece=scirocco).
 
+The *Immobilizer* moves (but does not capture) as the **Queen**. It will
+prevent any adjacent piece (from the other side) to move. In
+[Typhoon](#chess-v:rules/typhoon-revised), the *Immobilizer* is the
+promoted [*Hummingbird*](hummingbird.html).
+
 ### Spiral
 
 The **Queen** can move like a [*Wazir*](wazir.html), and a *Wazir* 
