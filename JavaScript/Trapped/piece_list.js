@@ -726,6 +726,21 @@ let pieces = {
         betza:    "fRbhN",
         results: ["T/45", "E*", ""],
     },
+    flying_ox: {
+        betza:    "BvR",
+        results: ["T/540", "E", "E"],
+    },
+    free_boar: {
+        betza:    "BsR",
+        results: ["T/251", "FC", "F/100%"],
+    },
+    fu: {
+        parent:   "pawn",
+    },
+    ghost_warrior: {
+        betza:    "bFfR",
+        results: ["F%/25%", "", ""]
+    },
 
     //
     // Fairy Chess
@@ -1007,13 +1022,15 @@ let set_info = {
     typhoon: {
         href: "https://www.chessvariants.com/rules/typhoon-revised",
         pieces: ["king", "emperor", "queen", "rook", "bishop",
-                 "knight", "wazir", "firzan", "dabbaba", "alfil",
+                 "knight", "fu", "wazir", "firzan", "dabbaba", "alfil",
                  "camel", "zebra", 
             
                  "abbot", "banner", "beaver", "bishops_dog", "blind_tiger",
                  "centaur", "chariot", "cicada", "copper_general", "cuckoo",
                  "dayrider", "diving_osprey", "dragon_kite", "drunk_elephant",
                  "duke", "elephant_prince", "ferocious_leopard", "fire_horse",
+                 "flying_ox", "free_boar", "genie", "ghost_warrior", "goat",
+                 "gold_general", "guard",
                  "marquis",
                  ],
         chess_variant: 1,

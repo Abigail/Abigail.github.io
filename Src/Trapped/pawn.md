@@ -1,14 +1,8 @@
 # Pawn &#x2659;
 
 The **Pawn** appears in [Chess](#wiki), 
-[Sh&#x14d;gi (&#x5c06;&#x68cb;)](#wiki:Shogi), and many of its
+[Sh&#x14d;gi (&#x5c06;&#x68cb;)](#wiki:Shogi), and many of their
 variants.
-
-In [*Tori Sh&#x14d;gi*](#wiki:Tori_Shogi), the piece is called the
-*Swallow*.
-
-In [D&#x14d;butsu sh&#x14d;gi](#wiki:Dobutsu_shogi), the piece is
-called the **Chick**.
 
 It's usually a humble piece, appearing multiple times on the board.
 It's movements are complicated, but most movements we can ignore
@@ -31,10 +25,13 @@ for our investigations:
 This makes that the **Pawn** is left with only one possible move:
 one square forward.
 
-### Promoting
+### Promoting and Names
 
 **Pawns** typically promote. In Chess, they promote to a piece of the
 players choice, but in other games, the pawn promotes to a fixed piece.
+In the table below, we list under which names the **Pawn** is known, 
+and to which it promotes (if any). In Chess and many of its variants,
+it's the players choice to which the **Pawn** promotes.
 
 |====
 {class = 'promotion'}
@@ -47,11 +44,14 @@ players choice, but in other games, the pawn promotes to a fixed piece.
              &  [*Gold General*](gold_general.html)                          \\
 **Pawn**     &  [Scirocco](#chess-v:rules/scirocco)
              &  [*Tadpole*](tadpole.html)                                    \\
+**Fu**       &  [Typhoon](#chess-v:rules/typhoon-revised)
+             &  [*Zebra*](zebra.html)                                        \\
 **Chick**    &  [D&#x14d;butsu sh&#x14d;gi](#wiki:Dobutsu_shogi)
              &  [*Hen*](gold_general.html?piece=dobutsu_hen) (Gold General)  \\
 **Swallow**  &  [Tori Sh&#x14d;gi](#wiki:Tori_Shogi)
              &  [*Goose*](goose.html)
 ====|
+
 ### Spiral and Wedge
 
 On the Spiral and both the Folded and Flat Wedge, the **Pawn**

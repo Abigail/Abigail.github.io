@@ -4,12 +4,13 @@ The **Wazir** is one of the basic leapers. It's a very old piece, appearing
 in very early chess variants. It may step one square in each of the
 four orthogonal directions.
 
-In the Shogi variant [D&#x14d;butsu sh&#x14d;gi](#wiki:Dobutsu_shogi),
+In the Sh&#x14d;gi variant [D&#x14d;butsu sh&#x14d;gi](#wiki:Dobutsu_shogi),
 the *Giraffe* moves in the same way as the **Wazir**.
 
-In [*Scirocco*](#chess-v:rules/scirocco), the **Wazir** promotes
+In [Scirocco](#chess-v:rules/scirocco), the **Wazir** promotes
 to the [*Zag*](modern_elephant.html?piece=zag).
-In the same game, the *Guard* moves as
+In the same game, and in [Typhoon](#chess-v:rules/typhoon-revised),
+the *Guard* moves as
 the **Wazir**, and captures as the [*Ferz*](ferz.html) (but we
 ignore capture moves). The *Guard* promotes to the [*Zebra*](zebra.html).
 

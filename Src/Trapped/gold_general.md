@@ -13,6 +13,9 @@ the [*Knight*](shogi_knight.html) (&#x6210;&#x6842;)
 and the [*Pawn*](pawn.html) (&#x3068;&#x91d1;). The
 promoted *Pawn* is often called a *Tokin*.
 
+In [Typhoon](#chess-v:rules/typhoon-revised), the **Gold General**
+promotes to the [*Horned Owl*](horned_owl.html).
+
 In [D&#x14d;butsu sh&#x14d;gi](#wiki:Dobutsu_shogi), the 
 [*Chick*](pawn.html?piece=dobutsu_chick) promotes to the *Hen*,
 which moves a the **Gold General**.

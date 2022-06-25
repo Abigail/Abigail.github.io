@@ -4,8 +4,10 @@ The **Genie** moves as the [*Queen*](queen.html), but only up
 to three squares. That is, the **Genie** can slide up to three
 unoccupied squares in any orthogonal or diagonal direction.
 
-In [*Scirocco*](#chess-v:rules/scirocco), the **Genie** is the
-promoted [*Dabbaba*](dabbaba.html).
+In [Scirocco](#chess-v:rules/scirocco), the **Genie** is the
+promoted [*Dabbaba*](dabbaba.html). In
+[Typhoon](#chess-v:rules/typhoon-revised), the **Genie** is
+the promoted [*Salamander*](salamander.html).
 
 The *Harpy* in [*Scirocco*](#chess-v:rules/scirocco) (to which the
 [*Dervish*](alibaba.html?piece=harpy) promotes) moves in the same
