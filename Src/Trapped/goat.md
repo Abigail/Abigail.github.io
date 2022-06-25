@@ -5,7 +5,8 @@ The **Goat** either jumps to a square one away diagonally
 (like the [*Dabbaba*](dabbaba.html)). This makes the
 **Goat** a [colourbound](#wiki:Glossary_of_chess#Colorbound) piece.
 
-In [*Scirocco*](#chess-v:rules/scirocco), the **Goat** promotes
+In [Scirocco](#chess-v:rules/scirocco) and 
+[Typhoon](#chess-v:rules/typhoon-revised), the **Goat** promotes
 to the [*Lioness*](lioness.html).
 
 ### Spiral
