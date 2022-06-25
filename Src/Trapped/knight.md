@@ -7,7 +7,11 @@ to a square which is one square away in one direction, and two squares away
 in a direction orthogonally to the first direction. The move cannot
 be blocked.
 
-In [*Scirocco*](#chess-v:rules/scirocco), the **Knight** promotes
+The **Knight** is one of the traditional Chess pieces, and appears in
+many of its variants.
+
+In [Scirocco](#chess-v:rules/scirocco) and
+[Typhoon](#chess-v:rules/typhoon-revised) the **Knight** promotes
 to the [*Rook*](rook.html).
 
 See also the [*Knightrider*](knightrider.html), a piece which moves

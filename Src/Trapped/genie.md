@@ -9,7 +9,8 @@ promoted [*Dabbaba*](dabbaba.html). In
 [Typhoon](#chess-v:rules/typhoon-revised), the **Genie** is
 the promoted [*Salamander*](salamander.html).
 
-The *Harpy* in [*Scirocco*](#chess-v:rules/scirocco) (to which the
+The *Harpy* in [Scirocco](#chess-v:rules/scirocco) and
+[Typhoon](#chess-v:rules/typhoon-revised) (to which the
 [*Dervish*](alibaba.html?piece=harpy) promotes) moves in the same
 way as the **Genie**. In addition, the *Harpy* gives some addtional
 movement powers to friendly which are in reach, but we can ignore
