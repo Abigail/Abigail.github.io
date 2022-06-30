@@ -7,6 +7,9 @@ square diagonally, or jumps to a square three orthogonally away.
 The **Tadpole** is a piece from [Scirocco](#chess-v:rules/scirocco),
 and it is the piece the [*Pawn*](pawn.html) promotes to.
 
+This piece is also know as the *Frog*, (not to be confused with
+[the piece in Scirocco with the same name](scirocco_frog.html)).
+
 ### Spiral
 
 On the Spiral, the **Tadpole** does not get trapped for its

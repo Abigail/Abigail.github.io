@@ -1,6 +1,6 @@
 <html>
 <head>
-<title>Kightrider</title>
+<title>Missionary</title>
 <meta charset = "utf-8">
 <link rel  = 'preconnect' href = 'https://fonts.gstatic.com'>
 <link rel = 'stylesheet' href =      'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
@@ -17,27 +17,31 @@
 <script src = '../../JavaScript/Trapped/pages.js'></script>
 </head>
 
-<body><h1>Kightrider</h1><div class = "byline">
+<body><h1>Missionary</h1><div class = "byline">
 by Abigail<br>
 <img src = "../../Images/jan_sluiters.jpg">
 </div>
 
 
-<p>The <strong>Knightrider</strong> moves one or more squares like a <a href="knight.html"><em>Knight</em></a>,
-where each subsequents moves must be in the same direction as the
-first, and each square may not be occupied.</p>
+<p>The <strong>Missionary</strong> moves one or two unoccupied squares orthogonally
+or diagonally. This makes the <strong>Missionary</strong>, meaning it cannot
+reach half the squares on the board.</p>
 
-<p>In <a href="https://www.chessvariants.com/rules/typhoon-revised"><em>Typhoon</em></a>, the 
-<a href="king.html?piece=overtaker"><em>Overtaker</em></a> promotes to the
-<strong>Knightrider</strong>.</p>
+<p>In <a href="https://www.chessvariants.com/rules/typhoon-revised">Typhoon</a>, the <strong>Missionary</strong>
+promotes to the <a href="otter.html"><em>Otter</em></a>.</p>
 
 <h3 id = 'spiral'>Spiral</h3>
 
 <div class = "section">
-<p>Surpringly, despite the <strong>Knightrider</strong> having more squares to move to in
-each steps, the <strong>Knightrider</strong> gets trapped sooner than the
-<a href="knight.html"><em>Knight</em></a>. Where the <a href="knight.html"><em>Knight</em></a> gets trapped
-in 2,015 steps, the Knightrider gets trapped after 509 steps!</p>
+<p>On the Spiral the <strong>Missionary</strong> follows a pattern similar to the
+<a href="bishop.html"><em>Bishop</em></a>, except for the parts the <a href="bishop.html"><em>Bishop</em></a>
+skips; the <strong>Missionary</strong> will visit every second square on such parts.
+The <strong>Missionary</strong> will visit
+\(\frac{1}{2} \cdot
+((\frac{1}{2} + \frac{1}{4}) \cdot \frac{3}{4} + \frac{1}{4}) =
+  \frac{1}{2} \cdot (\frac{9}{16} + \frac{1}{4}) =
+  \frac{1}{2} \cdot \frac{13}{16} = \frac{13}{32} = 40.625\%\)
+of the squares.</p>
 </div>
 
 <h3 id = 'wedge'>Wedge</h3>
@@ -45,18 +49,19 @@ in 2,015 steps, the Knightrider gets trapped after 509 steps!</p>
 <h4 id = 'folded'>Folded</h4>
 
 <div class = "section">
-<p>On the Folded Wedge, the <strong>Knightrider</strong> gets trapped after 60 steps, which is
-10 steps more than the <a href="knight.html"><em>Knight</em></a>.</p>
+<p>On the Folded Wedge, the <strong>Missionary</strong> will escape using a stepwise pattern, 
+visiting the right most square, and the square two to the left of the
+rightmost square of every row.</p>
 </div>
 
 <h4 id = 'flat'>Flat</h4>
 
-<p>On the Flat Wedge, the <strong>Knightrider</strong> gets trapped after 22 steps, while
-the <a href="knight.html"><em>Knight</em></a> escapes.</p>
+<p>On the Flat Wedge, the <strong>Missionary</strong> stays to the far right, escaping
+along the edge of the Wedge.</p>
 
-<div class = 'trapped' data-piece = 'knightrider'></div>
+<div class = 'trapped' data-piece = 'missionary'></div>
 
-<div class = 'boxset' data-piece = 'knightrider'></div>
+<div class = 'boxset' data-piece = 'missionary'></div>
 
 <hr id = 'last-line'>
 <div class = 'trailer'>

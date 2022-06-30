@@ -1,8 +1,20 @@
 # Flamingo
 
-The Flamingo is a (1,6)-leaper. 
+The **Flamingo** is a (1,6)-leaper. That is, on each step, it leaps to
+a square which is six squares away in one orthogonal direction, and one
+away in the other orthogonal direction.
 
-This may, or may not, get trapped. On the Spiral, it doesn't get trapped
-in the first 20,000 steps, but it doesn't follow a regular path either.
+### Spiral
 
-On the Wedge, it get trapped after 90 steps.
+On the Spiral, the **Flamingo** does get trapped, but it takes 26,966
+steps before it gets trapped!
+
+### Wedge
+
+#### Folded
+
+On the Folded Wedge, the **Flamingo** gets trapped after 90 steps.
+
+#### Flat
+
+On the Flat Wedge, the **Flamingo** gets trapped after 260 steps.
