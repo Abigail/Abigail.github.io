@@ -199,9 +199,32 @@ int main (int argc, char ** argv) {
     int ** move_list   = (int **) NULL;
     size_t nr_of_moves = 0;
 
-    for (int i = 1; i < argc - 1; i += 2) {
-        move_list  = add_leaper_moves (move_list, &nr_of_moves,
-                                       atoi (argv [i]), atoi (argv [i + 1]));
+    for (int i = 1; i < argc; i ++) {
+        if (strlen (argv [i]) == 1) {
+            int dr = 0;
+            int dc = 0;
+            switch (argv [i] [0]) {
+                case 'W': dr = 1; dc = 0; break;
+                case 'F': dr = 1; dc = 1; break;
+                case 'D': dr = 2; dc = 0; break;
+                case 'K': dr = 2; dc = 1; break;
+                case 'A': dr = 2; dc = 2; break;
+                case 'H': dr = 3; dc = 0; break;
+                case 'C': dr = 3; dc = 1; break;
+                case 'Z': dr = 3; dc = 2; break;
+                case 'T': dr = 3; dc = 3; break;
+            }
+            if (dr > 0 || dc > 0) {
+                move_list = add_leaper_moves (move_list, &nr_of_moves, dr, dc);
+                continue;
+            }
+        }
+        if (i < argc - 1) {
+            move_list  = add_leaper_moves (move_list, &nr_of_moves,
+                                           atoi (argv [i]),
+                                           atoi (argv [i + 1]));
+            i ++;
+        }
     }
 
 
