@@ -6,6 +6,9 @@
 
 # define SIZE 16 * 1024 * 1024
 
+# define D_ROW  0
+# define D_COL  1
+
 size_t spiral_to_value (int row, int col) {
     int abs_row = abs (row);
     int abs_col = abs (col);
@@ -76,17 +79,17 @@ int ** add_leaper_moves (int ** move_list, size_t * n, int d_row, int d_col) {
                 exit (1);
             }
             switch (i) {
-                case (0): move_list [* n + i] [0] =   d;
-                          move_list [* n + i] [1] =   0;
+                case (0): move_list [* n + i] [D_ROW] =   d;
+                          move_list [* n + i] [D_COL] =   0;
                           break;
-                case (1): move_list [* n + i] [0] = - d;
-                          move_list [* n + i] [1] =   0;
+                case (1): move_list [* n + i] [D_ROW] = - d;
+                          move_list [* n + i] [D_COL] =   0;
                           break;
-                case (2): move_list [* n + i] [0] =   0;
-                          move_list [* n + i] [1] =   d;
+                case (2): move_list [* n + i] [D_ROW] =   0;
+                          move_list [* n + i] [D_COL] =   d;
                           break;
-                case (3): move_list [* n + i] [0] =   0;
-                          move_list [* n + i] [1] = - d;
+                case (3): move_list [* n + i] [D_ROW] =   0;
+                          move_list [* n + i] [D_COL] = - d;
                           break;
             }
         }
@@ -99,17 +102,17 @@ int ** add_leaper_moves (int ** move_list, size_t * n, int d_row, int d_col) {
                 exit (1);
             }
             switch (i) {
-                case (0): move_list [* n + i] [0] =   d_row;
-                          move_list [* n + i] [1] =   d_col;
+                case (0): move_list [* n + i] [D_ROW] =   d_row;
+                          move_list [* n + i] [D_COL] =   d_col;
                           break;
-                case (1): move_list [* n + i] [0] = - d_row;
-                          move_list [* n + i] [1] =   d_col;
+                case (1): move_list [* n + i] [D_ROW] = - d_row;
+                          move_list [* n + i] [D_COL] =   d_col;
                           break;
-                case (2): move_list [* n + i] [0] = - d_row;
-                          move_list [* n + i] [1] = - d_col;
+                case (2): move_list [* n + i] [D_ROW] = - d_row;
+                          move_list [* n + i] [D_COL] = - d_col;
                           break;
-                case (3): move_list [* n + i] [0] =   d_row;
-                          move_list [* n + i] [1] = - d_col;
+                case (3): move_list [* n + i] [D_ROW] =   d_row;
+                          move_list [* n + i] [D_COL] = - d_col;
                           break;
             }
         }
@@ -121,17 +124,17 @@ int ** add_leaper_moves (int ** move_list, size_t * n, int d_row, int d_col) {
                     exit (1);
                 }
                 switch (i) {
-                    case (4): move_list [* n + i] [0] =   d_col;
-                              move_list [* n + i] [1] =   d_row;
+                    case (4): move_list [* n + i] [D_ROW] =   d_col;
+                              move_list [* n + i] [D_COL] =   d_row;
                               break;
-                    case (5): move_list [* n + i] [0] = - d_col;
-                              move_list [* n + i] [1] =   d_row;
+                    case (5): move_list [* n + i] [D_ROW] = - d_col;
+                              move_list [* n + i] [D_COL] =   d_row;
                               break;
-                    case (6): move_list [* n + i] [0] = - d_col;
-                              move_list [* n + i] [1] = - d_row;
+                    case (6): move_list [* n + i] [D_ROW] = - d_col;
+                              move_list [* n + i] [D_COL] = - d_row;
                               break;
-                    case (7): move_list [* n + i] [0] =   d_col;
-                              move_list [* n + i] [1] = - d_row;
+                    case (7): move_list [* n + i] [D_ROW] =   d_col;
+                              move_list [* n + i] [D_COL] = - d_row;
                               break;
                 }
             }
@@ -238,8 +241,8 @@ int main (int argc, char ** argv) {
         bool found = false;
 
         for (int i = 0; i < nr_of_moves; i ++) {
-            int try_row = row + move_list [i] [0];
-            int try_col = col + move_list [i] [1];
+            int try_row = row + move_list [i] [D_ROW];
+            int try_col = col + move_list [i] [D_COL];
             size_t try_value = to_value (try_row, try_col);
 
             if (try_value >= SIZE) {
