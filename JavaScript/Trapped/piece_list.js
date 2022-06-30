@@ -447,7 +447,7 @@ let pieces = {
     //
     dragon: {
         betza:  "NfW",
-        results: ["?", "T/42", "F*/100%"],
+        results: ["T/94,632", "T/42", "F*/100%"],
         index_names: {
             knighted_pieces: "[Dragon](dragon.html) // " +
                              "[Knight](knight.html) + [Pawn](pawn.html)",

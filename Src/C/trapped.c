@@ -61,6 +61,29 @@ size_t flat_wedge_to_value (int row, int col) {
 }
 
 
+int ** add_move (int ** move_list, size_t * n, int d_row, int d_col) {
+    size_t m = * n + 1;
+    if ((move_list = (int **) realloc (move_list, m * sizeof (int *)))
+                   == NULL) {
+        perror ("Realloc failed");
+        exit (1);
+    }
+    move_list [* n] = (int *) malloc (2 * sizeof (int));
+    if (move_list [* n] == NULL) {
+        perror ("Malloc failed");
+        exit (1);
+    }
+
+    move_list [* n] [D_ROW] = d_row;
+    move_list [* n] [D_COL] = d_col;
+
+    * n = m;
+
+    return move_list;;
+}
+
+
+
 int ** add_leaper_moves (int ** move_list, size_t * n, int d_row, int d_col) {
     size_t m = * n + ((d_row == 0 || d_col == 0 ||
                        abs (d_row) == abs (d_col)) ? 4 : 8);
@@ -207,18 +230,22 @@ int main (int argc, char ** argv) {
             int dr = 0;
             int dc = 0;
             switch (argv [i] [0]) {
-                case 'W': dr = 1; dc = 0; break;
-                case 'F': dr = 1; dc = 1; break;
-                case 'D': dr = 2; dc = 0; break;
-                case 'K': dr = 2; dc = 1; break;
-                case 'A': dr = 2; dc = 2; break;
-                case 'H': dr = 3; dc = 0; break;
-                case 'C': dr = 3; dc = 1; break;
-                case 'Z': dr = 3; dc = 2; break;
-                case 'T': dr = 3; dc = 3; break;
+                case 'W': dr = 1; dc = 0; break;  /* Wazir       */
+                case 'F': dr = 1; dc = 1; break;  /* Ferz        */
+                case 'D': dr = 2; dc = 0; break;  /* Dabbaba     */
+                case 'N': dr = 2; dc = 1; break;  /* Knight      */
+                case 'A': dr = 2; dc = 2; break;  /* Alfil       */
+                case 'H': dr = 3; dc = 0; break;  /* Threeleaper */
+                case 'C': dr = 3; dc = 1; break;  /* Camel       */
+                case 'Z': dr = 3; dc = 2; break;  /* Zebra       */
+                case 'T': dr = 3; dc = 3; break;  /* Tripper     */
             }
             if (dr > 0 || dc > 0) {
                 move_list = add_leaper_moves (move_list, &nr_of_moves, dr, dc);
+                continue;
+            }
+            if (!strcmp (argv [i], "p")) { /* pawn moves */
+                move_list = add_move (move_list, &nr_of_moves, -1, 0);
                 continue;
             }
         }
