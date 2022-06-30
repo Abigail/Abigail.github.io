@@ -4,8 +4,8 @@ The **Cuckoo** either moves one square sideways, or two squares
 orthogonally forward. It also has the ability to change the colour
 of pieces, but that is irrelevant here.
 
-In [*Typhoon*](#chess-v:rules/typhoon-revised), the **Cuckoo**
-promotes to the [*Longleaper*](longleaper.html).
+In [Typhoon](#chess-v:rules/typhoon-revised), the **Cuckoo**
+promotes to the [*Longleaper*](queen.html?piece=longleaper).
 
 ### Spiral
 

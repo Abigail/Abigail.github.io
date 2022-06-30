@@ -6,7 +6,8 @@ the **Marquis** either moves one square in an orthogonal direction,
 or jumps to a square which is two squares away in one orthogonal
 direction, and one away in the other.
 
-In [*Scirocco*](#chess-v:rules/scirocco), the **Marquis** promotes
+In [Scirocco](#chess-v:rules/scirocco) and 
+[Typhoon](#chess-v:rules/typhoon-revised), the **Marquis** promotes
 to the [*Abbot*](abbot.html).
 
 ### Spiral

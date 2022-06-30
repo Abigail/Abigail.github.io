@@ -16,6 +16,11 @@ prevent any adjacent piece (from the other side) to move. In
 [Typhoon](#chess-v:rules/typhoon-revised), the *Immobilizer* is the
 promoted [*Hummingbird*](hummingbird.html).
 
+The *Longleaper* moves (but not captures) like the **Queen**. It has
+additional hopping capture moves, but we ignore those. In
+[Typhoon](#chess-v:rules/typhoon-revised), the [*Cuckoo*](cuckoo.html)
+promotes to the *Longleaper*.
+
 ### Spiral
 
 The **Queen** can move like a [*Wazir*](wazir.html), and a *Wazir* 
