@@ -6,8 +6,31 @@
 
 # define SIZE 16 * 1024 * 1024
 
-# define D_ROW  0
-# define D_COL  1
+/*
+ * A struct defining a "move part". A move part describes one direction
+ * a particular piece can move in. So, a Knight or a Queen will have 
+ * eight move parts, a Rook four, and a Pawn one.
+ */
+typedef struct move_part {
+    int dr;
+    int dc;
+    int min;
+    int max;
+} move_part;
+
+/*
+ * Return an empty move_part struct, initialized with some defaults.
+ */
+move_part new_move_part () {
+    move_part out;
+
+    out . dr  = 0;
+    out . dc  = 0;
+    out . min = 1;
+    out . max = 1;
+
+    return out;
+}
 
 size_t spiral_to_value (int row, int col) {
     int abs_row = abs (row);
@@ -61,105 +84,81 @@ size_t flat_wedge_to_value (int row, int col) {
 }
 
 
-int ** add_move (int ** move_list, size_t * n, int d_row, int d_col) {
+/*
+ * Add a single move (a leap) to a list of move parts
+ */
+move_part * add_move (move_part * move_list, size_t * n, int d_row, int d_col) {
     size_t m = * n + 1;
-    if ((move_list = (int **) realloc (move_list, m * sizeof (int *)))
+    if ((move_list = (move_part *) realloc (move_list, m * sizeof (move_part)))
                    == NULL) {
         perror ("Realloc failed");
         exit (1);
     }
-    move_list [* n] = (int *) malloc (2 * sizeof (int));
-    if (move_list [* n] == NULL) {
-        perror ("Malloc failed");
-        exit (1);
-    }
 
-    move_list [* n] [D_ROW] = d_row;
-    move_list [* n] [D_COL] = d_col;
+    move_part new = new_move_part ();
+    new . dr = d_row;
+    new . dc = d_col;
+
+    move_list [* n] = new;
 
     * n = m;
 
-    return move_list;;
+    return move_list;
 }
 
 
+/*
+ * Add a full set of leaper move parts to a list of move parts:
+ * full rotational symmetry.
+ */
+move_part * add_leaper_moves (move_part * move_list, size_t * n,
+                             int d_row, int d_col) {
 
-int ** add_leaper_moves (int ** move_list, size_t * n, int d_row, int d_col) {
     size_t m = * n + ((d_row == 0 || d_col == 0 ||
                        abs (d_row) == abs (d_col)) ? 4 : 8);
-    if ((move_list = (int **) realloc (move_list, m * sizeof (int *)))
+    if ((move_list = (move_part *) realloc (move_list, m * sizeof (move_part)))
                    == NULL) {
         perror ("Realloc failed");
         exit (1);
     }
 
+    /*
+     * Handle the case of an orthogonal leaper
+     */
     if (d_row == 0 || d_col == 0) {
         int d = d_row + d_col;
         for (size_t i = 0; i < 4; i ++) {
-            move_list [* n + i] = (int *) malloc (2 * sizeof (int));
-            if (move_list [* n + i] == NULL) {
-                perror ("Malloc failed");
-                exit (1);
-            }
+            move_part new = new_move_part ();
             switch (i) {
-                case (0): move_list [* n + i] [D_ROW] =   d;
-                          move_list [* n + i] [D_COL] =   0;
-                          break;
-                case (1): move_list [* n + i] [D_ROW] = - d;
-                          move_list [* n + i] [D_COL] =   0;
-                          break;
-                case (2): move_list [* n + i] [D_ROW] =   0;
-                          move_list [* n + i] [D_COL] =   d;
-                          break;
-                case (3): move_list [* n + i] [D_ROW] =   0;
-                          move_list [* n + i] [D_COL] = - d;
-                          break;
+                case (0): new . dr =   d; break;
+                case (1): new . dr = - d; break;
+                case (2): new . dc =   d; break;
+                case (3): new . dc = - d; break;
             }
+            move_list [* n + i] = new;
         }
     }
     else {
         for (size_t i = 0; i < 4; i ++) {
-            move_list [* n + i] = (int *) malloc (2 * sizeof (int));
-            if (move_list [* n + i] == NULL) {
-                perror ("Malloc failed");
-                exit (1);
-            }
+            move_part new = new_move_part ();
             switch (i) {
-                case (0): move_list [* n + i] [D_ROW] =   d_row;
-                          move_list [* n + i] [D_COL] =   d_col;
-                          break;
-                case (1): move_list [* n + i] [D_ROW] = - d_row;
-                          move_list [* n + i] [D_COL] =   d_col;
-                          break;
-                case (2): move_list [* n + i] [D_ROW] = - d_row;
-                          move_list [* n + i] [D_COL] = - d_col;
-                          break;
-                case (3): move_list [* n + i] [D_ROW] =   d_row;
-                          move_list [* n + i] [D_COL] = - d_col;
-                          break;
+                case (0): new . dr =   d_row; new . dc =   d_col; break;
+                case (1): new . dr = - d_row; new . dc =   d_col; break;
+                case (2): new . dr = - d_row; new . dc = - d_col; break;
+                case (3): new . dr =   d_row; new . dc = - d_col; break;
             }
+            move_list [* n + i] = new;
         }
         if (m - * n == 8) {
             for (size_t i = 4; i < 8; i ++) {
-                move_list [* n + i] = (int *) malloc (2 * sizeof (int));
-                if (move_list [* n + i] == NULL) {
-                    perror ("Malloc failed");
-                    exit (1);
-                }
+                move_part new = new_move_part ();
                 switch (i) {
-                    case (4): move_list [* n + i] [D_ROW] =   d_col;
-                              move_list [* n + i] [D_COL] =   d_row;
-                              break;
-                    case (5): move_list [* n + i] [D_ROW] = - d_col;
-                              move_list [* n + i] [D_COL] =   d_row;
-                              break;
-                    case (6): move_list [* n + i] [D_ROW] = - d_col;
-                              move_list [* n + i] [D_COL] = - d_row;
-                              break;
-                    case (7): move_list [* n + i] [D_ROW] =   d_col;
-                              move_list [* n + i] [D_COL] = - d_row;
-                              break;
+                    case (4): new . dc =   d_row; new . dr =   d_col; break;
+                    case (5): new . dc = - d_row; new . dr =   d_col; break;
+                    case (6): new . dc = - d_row; new . dr = - d_col; break;
+                    case (7): new . dc =   d_row; new . dr = - d_col; break;
                 }
+                move_list [* n + i] = new;
             }
         }
     }
@@ -216,14 +215,14 @@ int main (int argc, char ** argv) {
     /*
      * Current position and value of the piece; we start at the origin.
      */
-    int row            = 0;
-    int col            = 0;
-    size_t value       = to_value (row, col);
-    bool out_of_bounds = false;
-    int steps          = 0;
+    int row               = 0;
+    int col               = 0;
+    size_t value          = to_value (row, col);
+    bool out_of_bounds    = false;
+    int steps             = 0;
 
-    int ** move_list   = (int **) NULL;
-    size_t nr_of_moves = 0;
+    move_part * move_list = (move_part *) NULL;
+    size_t nr_of_moves    = 0;
 
     for (int i = 1; i < argc; i ++) {
         if (strlen (argv [i]) == 1) {
@@ -268,8 +267,8 @@ int main (int argc, char ** argv) {
         bool found = false;
 
         for (int i = 0; i < nr_of_moves; i ++) {
-            int try_row = row + move_list [i] [D_ROW];
-            int try_col = col + move_list [i] [D_COL];
+            int try_row = row + move_list [i] . dr;
+            int try_col = col + move_list [i] . dc;
             size_t try_value = to_value (try_row, try_col);
 
             if (try_value >= SIZE) {
