@@ -4,7 +4,7 @@
 # include <unistd.h>
 # include <string.h>
 
-# define SIZE 16 * 1024 * 1024
+# define SIZE 1024 * 1024 * 1024
 
 /*
  * A struct defining a "move part". A move part describes one direction
@@ -112,7 +112,7 @@ move_part * add_move (move_part * move_list, size_t * n, int d_row, int d_col) {
  * full rotational symmetry.
  */
 move_part * add_leaper_moves (move_part * move_list, size_t * n,
-                             int d_row, int d_col) {
+                             int d_row, int d_col, int steps) {
 
     size_t m = * n + ((d_row == 0 || d_col == 0 ||
                        abs (d_row) == abs (d_col)) ? 4 : 8);
@@ -129,6 +129,7 @@ move_part * add_leaper_moves (move_part * move_list, size_t * n,
         int d = d_row + d_col;
         for (size_t i = 0; i < 4; i ++) {
             move_part new = new_move_part ();
+            new . max = steps;
             switch (i) {
                 case (0): new . dr =   d; break;
                 case (1): new . dr = - d; break;
@@ -141,6 +142,7 @@ move_part * add_leaper_moves (move_part * move_list, size_t * n,
     else {
         for (size_t i = 0; i < 4; i ++) {
             move_part new = new_move_part ();
+            new . max = steps;
             switch (i) {
                 case (0): new . dr =   d_row; new . dc =   d_col; break;
                 case (1): new . dr = - d_row; new . dc =   d_col; break;
@@ -152,6 +154,7 @@ move_part * add_leaper_moves (move_part * move_list, size_t * n,
         if (m - * n == 8) {
             for (size_t i = 4; i < 8; i ++) {
                 move_part new = new_move_part ();
+                new . max = steps;
                 switch (i) {
                     case (4): new . dc =   d_row; new . dr =   d_col; break;
                     case (5): new . dc = - d_row; new . dr =   d_col; break;
@@ -225,33 +228,38 @@ int main (int argc, char ** argv) {
     size_t nr_of_moves    = 0;
 
     for (int i = 1; i < argc; i ++) {
-        if (strlen (argv [i]) == 1) {
-            int dr = 0;
-            int dc = 0;
-            switch (argv [i] [0]) {
-                case 'W': dr = 1; dc = 0; break;  /* Wazir       */
-                case 'F': dr = 1; dc = 1; break;  /* Ferz        */
-                case 'D': dr = 2; dc = 0; break;  /* Dabbaba     */
-                case 'N': dr = 2; dc = 1; break;  /* Knight      */
-                case 'A': dr = 2; dc = 2; break;  /* Alfil       */
-                case 'H': dr = 3; dc = 0; break;  /* Threeleaper */
-                case 'C': dr = 3; dc = 1; break;  /* Camel       */
-                case 'Z': dr = 3; dc = 2; break;  /* Zebra       */
-                case 'T': dr = 3; dc = 3; break;  /* Tripper     */
-            }
-            if (dr > 0 || dc > 0) {
-                move_list = add_leaper_moves (move_list, &nr_of_moves, dr, dc);
-                continue;
-            }
-            if (!strcmp (argv [i], "p")) { /* pawn moves */
-                move_list = add_move (move_list, &nr_of_moves, -1, 0);
-                continue;
-            }
+        int dr = 0;
+        int dc = 0;
+        switch (* argv [i]) {
+            case 'W': dr = 1; dc = 0; break;  /* Wazir       */
+            case 'F': dr = 1; dc = 1; break;  /* Ferz        */
+            case 'D': dr = 2; dc = 0; break;  /* Dabbaba     */
+            case 'N': dr = 2; dc = 1; break;  /* Knight      */
+            case 'A': dr = 2; dc = 2; break;  /* Alfil       */
+            case 'H': dr = 3; dc = 0; break;  /* Threeleaper */
+            case 'C': dr = 3; dc = 1; break;  /* Camel       */
+            case 'Z': dr = 3; dc = 2; break;  /* Zebra       */
+            case 'T': dr = 3; dc = 3; break;  /* Tripper     */
         }
+        if (dr > 0 || dc > 0) {
+            int steps = 1;
+            if (* (argv [i] + 1)) {
+                steps = atoi (argv [i] + 1);
+            }
+            move_list = add_leaper_moves (move_list, &nr_of_moves,
+                                                     dr, dc, steps);
+            continue;
+        }
+        if (!strcmp (argv [i], "p")) { /* pawn moves */
+            move_list = add_move (move_list, &nr_of_moves, -1, 0);
+            continue;
+        }
+
         if (i < argc - 1) {
             move_list  = add_leaper_moves (move_list, &nr_of_moves,
                                            atoi (argv [i]),
-                                           atoi (argv [i + 1]));
+                                           atoi (argv [i + 1]),
+                                           1);
             i ++;
         }
     }
@@ -263,33 +271,85 @@ int main (int argc, char ** argv) {
          */
         int best_row;
         int best_col;
-        size_t best_value;
-        bool found = false;
+        size_t best_value = 0;
+        bool found  = false;
 
         for (int i = 0; i < nr_of_moves; i ++) {
-            int try_row = row + move_list [i] . dr;
-            int try_col = col + move_list [i] . dc;
-            size_t try_value = to_value (try_row, try_col);
+            move_part this = move_list [i];
 
-            if (try_value >= SIZE) {
-                printf ("Ran out of bounds on step %d\n", steps);
-                out_of_bounds = true;
+            int move_best = 0;  /* Best value within this move     */
+            int move_row  = 0;
+            int move_col  = 0;
+            int prev_val  = 0;  /* Previous value within this move */
+
+            /*
+             * Slide along this move. A step (or leap) is just a slide
+             * with a max of 1. We stop the slide if at least one of the
+             * following conditions is true:
+             *
+             *  - We exceed the max step size (max reach)
+             *  - The value is 0 or less (out of bounds)
+             *  - Value equals or exceeds SIZE (too far away)
+             *  - We reach a visited square (move is blocked)
+             *  - The value of a square is higher than the value
+             *    of the previous square (too far away from center;
+             *    we cannot improve).
+             */
+
+            for (int slide  = this . min;
+                     slide <= this . max || this . max == 0;
+                     slide ++) {
+
+                int new_row  = row + slide * this . dr;
+                int new_col  = col + slide * this . dc;
+                size_t value = to_value (new_row, new_col);
+
+                if (value <= 0) {
+                    break;   /* Out of bounds (some spirals only) */
+                }
+
+                if (value >= SIZE) {
+                    out_of_bounds = true;
+                    break;   /* Too far way */
+                }
+
+                if (board [value]) {
+                    break;   /* Square has been visited */
+                }
+
+                if (prev_val > 0 && value > prev_val) {
+                    break;   /* Cannot improve */
+                }
+
+                if (move_best == 0 || value < move_best) {
+                    move_best = value;
+                    move_row  = new_row;
+                    move_col  = new_col;
+                }
+
+                prev_val = value;
+            }
+
+            if (out_of_bounds) {
                 break;
             }
 
-            if (try_value > 0) {
-                if (!board [try_value]) {
-                    if (!found || try_value < best_value) {
-                        found      = true;
-                        best_row   = try_row;
-                        best_col   = try_col;
-                        best_value = try_value;
-                    }
-                }
+            /*
+             * Improve the best score if:
+             *    - We found a possible square (move_best > 0)
+             *    - We improved on the best score (move_best < best)
+             *         + Or we did not have a best score yet
+             */
+            if (move_best && (best_value == 0 || move_best < best_value)) {
+                best_value = move_best;
+                best_row   = move_row;
+                best_col   = move_col;
+                found      = true;
             }
         }
 
         if (out_of_bounds) {
+            printf ("Ran out of bounds on step %d\n", steps);
             break;
         }
 
