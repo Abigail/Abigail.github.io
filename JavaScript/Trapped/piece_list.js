@@ -555,7 +555,7 @@ let pieces = {
     },
     actor: {
         betza:    "BNC",
-        results: ["?", "F*/100%", "F*/100%"],
+        results: ["T/3,700,894", "F*/100%", "F*/100%"],
     },
     actress: {
         betza:    "QNC",
@@ -725,7 +725,7 @@ let pieces = {
     },
     horned_owl: {
         betza:    "F4DfW",
-        results: ["?", "F/50%", "F*/100%"],
+        results: ["?/1,056,723,023", "F/50%", "F*/100%"],
     },
     hummingbird: {
         betza:    "sbWfD",
