@@ -5,7 +5,8 @@ and the [*Knight*](knight.html). That is, it either jumps to a
 square diagonally adjacent, or to a square which is two away in
 one orthogonal direction, and one in the other.
 
-The **Priest** is found in [*Scirocco*](#chess-v:rules/scirocco),
+The **Priest** is found in [Scirocco](#chess-v:rules/scirocco),
+and [Typhoon](#chess-v:rules/typhoon-revised),
 where it promotes to the [*Duke*](duke.html).
 
 Problemists may call this piece a *Prince*. The piece is also

@@ -7,7 +7,7 @@ unoccupied squares in any orthogonal or diagonal direction.
 In [Scirocco](#chess-v:rules/scirocco), the **Genie** is the
 promoted [*Dabbaba*](dabbaba.html). In
 [Typhoon](#chess-v:rules/typhoon-revised), the **Genie** is
-the promoted [*Salamander*](salamander.html).
+the promoted [*Salamander*](king.html?piece=salamander).
 
 The *Harpy* in [Scirocco](#chess-v:rules/scirocco) and
 [Typhoon](#chess-v:rules/typhoon-revised) (to which the
