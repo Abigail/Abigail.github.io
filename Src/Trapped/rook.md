@@ -12,7 +12,8 @@ The **Rook** is a [*Wazir*](wazir.html)*rider*, that it, it moves in the same
 directions as the [*Wazir*](wazir.html), without a limit on the number
 of squares it moves over (but all the intermediate squares must be empty).
 
-In [*Scirocco*](#chess-v:rules/scirocco), the **Rook** is the promoted
+In [Scirocco](#chess-v:rules/scirocco), and
+[Typhoon](#chess-v:rules/typhoon-revised), the **Rook** is the promoted
 [*Knight*](knight.html).
 
 ### Spiral

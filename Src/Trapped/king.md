@@ -12,7 +12,8 @@ by different names.
 The **King** in [Typhoon](#chess-v:rules/typhoon-revised) and
 [Scirocco](#chess-v:rules/scirocco) promotes to
 the [*Emperor*](king.html?piece=emperor). In
-[Typhoon](#chess-v:rules/typhoon-revised) under some conditions may
+[Typhoon](#chess-v:rules/typhoon-revised) under some conditions the
+**King** may
 also promote to the [*Emperor of Emperors*](emperor_of_emperors.html).
 
 ### Kings in Sh&#x14d;gi and Sh&#x14d;gi variants
@@ -46,12 +47,18 @@ moves and captures in the directions of the [*Queen*](queen.html),
 but we will ignore hopping moves as we're studying the movements of
 a single piece on an infinite board -- so there will not be any other
 piece to hop over. The *Cicada* promotes to the 
-[*Salamander*](salamander.html).
+[*Typhoon*](typoon.html).
 
 The *Overtaker* from [Typhoon](#chess-v:rules/typhoon-revised) moves
 as the **King**. To capture, the *Overtaker* must hop, but we ignore
 capturing moves. The *Overtaker* promotes to the
 [*Nightrider*](knightrider.html).
+
+The *Salamander*, also from [Typhoon](#chess-v:rules/typhoon-revised),
+moves as the **King**. It can also move as the [*Queen*](queen.html)
+(up to four squares), but only if it lands adjacent to a friendly piece.
+We can ignore such moves. The *Salamander* promotes to the
+[*Genie*](genie.html).
 
 Other names for this piece include:
 include *Mann* (not Royal), and *Prince* (sometimes Royal). 

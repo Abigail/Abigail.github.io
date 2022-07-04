@@ -31,25 +31,43 @@ one square forward.
 players choice, but in other games, the pawn promotes to a fixed piece.
 In the table below, we list under which names the **Pawn** is known, 
 and to which it promotes (if any). In Chess and many of its variants,
-it's the players choice to which the **Pawn** promotes.
+it's the players choice to which the **Pawn** promotes. The column
+marked **MS** indicates whether the pawn has the option to move more than
+one square on its first move. The column **Cap** is marked if the pawn
+captures differently than it moves.
 
 |====
 {class = 'promotion'}
 {th = 1} Piece &
 {th = 1} Game  &
-{th = 1} Promotes to \\
+{th = 1} Promotes to &
+{th = 1} MS &
+{th = 1} Cap. \\
 **Pawn**     &  Chess; many Chess variants
-             &  Player's choice                                              \\
+             &  Player's choice
+             &  &#x2713;
+             &  &#x2713;                                                     \\
 **Pawn**     &  [Sh&#x14d;gi (&#x5c06;&#x68cb;)](#wiki:Shogi)
-             &  [*Gold General*](gold_general.html)                          \\
-**Pawn**     &  [Scirocco](#chess-v:rules/scirocco)
-             &  [*Tadpole*](tadpole.html)                                    \\
+             &  [*Gold General*](gold_general.html)
+             &  &#x2717;
+             &  &#x2717;                                                     \\
+**Pawn**     &  [Scirocco](#chess-v:rules/scirocco), 
+                [Typhoon](#chess-v:rules/typhoon-revised)
+             &  [*Tadpole*](tadpole.html)
+             &  &#x2717;
+             &  &#x2713;                                                     \\
 **Fu**       &  [Typhoon](#chess-v:rules/typhoon-revised)
-             &  [*Zebra*](zebra.html)                                        \\
+             &  [*Zebra*](zebra.html)
+             &  &#x2717;
+             &  &#x2717;                                                     \\
 **Chick**    &  [D&#x14d;butsu sh&#x14d;gi](#wiki:Dobutsu_shogi)
-             &  [*Hen*](gold_general.html?piece=dobutsu_hen) (Gold General)  \\
+             &  [*Hen*](gold_general.html?piece=dobutsu_hen) (Gold General)
+             &  &#x2717;
+             &  &#x2717;                                                     \\
 **Swallow**  &  [Tori Sh&#x14d;gi](#wiki:Tori_Shogi)
              &  [*Goose*](goose.html)
+             &  &#x2717;
+             &  &#x2717;                                                     \\
 ====|
 
 ### Spiral and Wedge

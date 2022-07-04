@@ -3,7 +3,7 @@
 The **Lantern** moves one square diagonally forward.
 
 In [Typhoon](#chess-v:rules/typhoon-revised), the **Lantern**
-promotes to the [*Parrot*](parrot.html).
+promotes to the [*Parrot*](war_machine.html?piece=parrot).
 
 ### Spiral
 

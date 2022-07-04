@@ -8,9 +8,11 @@ squares diagonally.
 In [Sh&#x14d;gi](#wiki:Shogi), the **Dragon Horse** is the 
 promoted [*Bishop*](bishop.html).
 
-In [Scirocco](#chess-v:rules/scirocco), the *Scirocco* moves
-in the same way as the **Dragon Horse**, and promotes to
-the [*Vulture*](queen.html?piece=vulture).
+The *Scirocco* moves in the same way as the **Dragon Horse**.
+In [Scirocco](#chess-v:rules/scirocco), the *Scirocco*
+promotes to the [*Vulture*](queen.html?piece=vulture).
+In [Typhoon](#chess-v:rules/typhoon-revised), the [*Alfil*](alfil.html)
+promotes to the *Scirocco*.
 
 
 

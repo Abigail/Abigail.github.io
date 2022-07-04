@@ -4,8 +4,8 @@ The **Banner** moves like a forward and sideways [*Wazir*](wazir.html).
 That is, the **Banner** can move one square to its right or left, or
 one square forward.
 
-The **Banner** is a piece in [*Typhoon*](#chess-v:rules/typhoon-revised),
-where it promotes to the [*Raven*](raven.html).
+The **Banner** is a piece in [Typhoon](#chess-v:rules/typhoon-revised),
+where it promotes to the [*Raven*](modern_elephant.html?piece=raven).
 
 ### Spiral
 

@@ -717,7 +717,6 @@ let pieces = {
     elephant_prince: {
         parent:   "king",
     },
-
     ferocious_leopard: {
         betza:    "FvW",
         results: ["F/100%", "E", "E"],
@@ -768,6 +767,15 @@ let pieces = {
         results: ["T/321", "FC", "F/100%"],
     },
     overtaker: {
+        parent:   "king",
+    },
+    parrot: {
+        parent:   "war_machine",
+    },
+    raven: {
+        parent:   "modern_elephant",
+    },
+    salamander: {
         parent:   "king",
     },
 
@@ -1051,7 +1059,7 @@ let set_info = {
     typhoon: {
         href: "https://www.chessvariants.com/rules/typhoon-revised",
         pieces: ["king", "emperor", "queen", "rook", "bishop",
-                 "knight", "fu", "wazir", "firzan", "dabbaba", "alfil",
+                 "knight", "wazir", "firzan", "dabbaba", "alfil",
                  "camel", "zebra", 
             
                  "abbot", "banner", "beaver", "bishops_dog", "blind_tiger",
@@ -1062,6 +1070,9 @@ let set_info = {
                  "gold_general", "guard", "harpy", "horned_owl", "hummingbird",
                  "ibis", "lantern", "lioness", "longleaper", "marquis",
                  "missionary", "knightrider", "octopus", "otter", "overtaker",
+                 "parrot", "priest", "raven", "salamander", "scirocco",
+
+                 "fu", "pawn",
                  ],
         chess_variant: 1,
     },

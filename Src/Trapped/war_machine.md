@@ -5,10 +5,15 @@ or the [*Dabbaba*](dabbaba.html). That is, it jumps either one or
 two squares in an orthogonal direction. It may jump over an 
 occupied square.
 
-The *Zig* from [*Scirocco*](#chess-v:rules/scirocco) (the promoted
+The *Zig* from [Scirocco](#chess-v:rules/scirocco) (the promoted
 [*Firzan*](ferz.html?piece=firzan)) moves in exactly the same way,
 although it may hop over an enemy piece diagnonally to capture it.
 But here, we ignore captures.
+
+The *Parrot* from [Typhoon](#chess-v:rules/typhoon-revised) (which
+is what the [*Lantern*](lantern.html) promotes to) moves in the way
+as the **War Machine**, although it has additional capture moves
+(and can pass). But we ignore capture moves.
 
 Other names for the **War Machine** include: *Machine*, *Wazaba*, 
 and *Woody Rook* ([*Chess with different armies*](#wiki)).

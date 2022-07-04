@@ -17,8 +17,8 @@ Each piece is classified to be one of:
 <dl markdown="1">
 <dt class = 'trapped'>T/NNNN</dt>
 <dd>This indicates the piece gets trapped after NNNN steps.
-<dt class = 'unknown'>?</dt>
-<dd>A piece which doesn't get trapped for at least 20,000 steps, but
+<dt class = 'unknown'>?/NNNN</dt>
+<dd>A piece which doesn't get trapped for at least NNNN steps, but
     for which it isn't clear it will get trapped or not.
 <dt class = 'boring'>W, FC</dt>
 <dd>This indicates the piece has the necessary movement options to follow
