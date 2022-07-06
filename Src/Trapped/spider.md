@@ -4,7 +4,8 @@ The **Spider** first moves one square orthogonally (like the
 [*Wazir*](wazir.html)), then zero or more squares diagonally
 outwards (like the [*Bishop*](bishop.html)).
 
-In [*Scirocco*](#chess-v:rules/scirocco), the **Spider** is
+In [Scirocco](#chess-v:rules/scirocco), and
+[Typhoon](#chess-v:rules/typhoon-revised), the **Spider** is
 the promoted [*Wagon*](wagon.html).
 
 ### Spiral

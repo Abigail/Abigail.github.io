@@ -7,6 +7,10 @@ The **Silver General** (&#x9280;&#x5c07;) is found in
 [Sh&#x14d;gi (&#x5c06;&#x68cb;)](#wiki:Shogi). When it promotes,
 it moves like a [*Gold General*](gold_general.html).
 
+In [Typhoon](#chess-v:rules/typhoon-revised), the
+**Silver General** promotes to the
+[*Vulture*](dragon_horse.html?piece=vulture).
+
 ### Spiral
 
 The **Silver General** visits all the squares of the Spiral, in

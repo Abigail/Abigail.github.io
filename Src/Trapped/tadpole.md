@@ -5,6 +5,7 @@ The **Tadpole** moves as either the [*Ferz*](ferz.html) or the
 square diagonally, or jumps to a square three orthogonally away.
 
 The **Tadpole** is a piece from [Scirocco](#chess-v:rules/scirocco),
+and [Typhoon](#chess-v:rules/typhoon-revised)
 and it is the piece the [*Pawn*](pawn.html) promotes to.
 
 This piece is also know as the *Frog*, (not to be confused with
@@ -13,12 +14,18 @@ This piece is also know as the *Frog*, (not to be confused with
 ### Spiral
 
 On the Spiral, the **Tadpole** does not get trapped for its
-first 20,000 steps. It's unclear whether it will stay untrapped
+first 1,066,282,804 steps. It's unclear whether it will stay untrapped
 for ever.
 
 ### Wedge
 
-On both the Folded Wedge, and the Flat Wedge, the **Tadpole** does
-not get trapped for its first 20,000. And it doesn't seem that its
-movement pattern is regular enough to determine it will never
-get trapped.
+#### Folded
+
+On the Folded Wedge, the **Tadpole** gets trapped after
+8,619,774 steps.
+
+#### Flat
+
+On the Folded Wedge, the **Tadpole** gets trapped after
+4,637,261 steps.
+

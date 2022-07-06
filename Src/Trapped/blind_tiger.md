@@ -2,11 +2,11 @@
 
 The **Blind Tiger** moves one step in all directions (diagonally and
 orthogonally), except straight forward. It is the mirror image of
-the [*Drink Elephant*](drunk_elephant.html) which moves in all
+the [*Drunk Elephant*](drunk_elephant.html) which moves in all
 directions, except straight backwards.
 
-In [*Typhoon*](#chess-v:rules/typhoon-revised), the
-**Blind Tiger** promotes to the [*Tiger Prince*](tiger_prince.html).
+In [Typhoon](#chess-v:rules/typhoon-revised), the
+**Blind Tiger** promotes to the [*Tiger Prince*](king.html?piece=tiger_prince).
 
 ### Spiral
 
@@ -15,7 +15,7 @@ unusual manner. It fills up the board in an expanding, roughly triangle
 shaped pattern.
 It adds three rows at the bottom, for each row at the right and left
 side of the triangle. This is the mirror of the travel pattern
-of the [*Drink Elephant*](drunk_elephant.html).
+of the [*Drunk Elephant*](drunk_elephant.html).
 
 ### Wedge
 

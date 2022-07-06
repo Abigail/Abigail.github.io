@@ -4,7 +4,7 @@ The **Knightrider** moves one or more squares like a [*Knight*](knight.html),
 where each subsequents moves must be in the same direction as the
 first, and each square may not be occupied.
 
-In [*Typhoon*](#chess-v:rules/typhoon-revised), the 
+In [Typhoon](#chess-v:rules/typhoon-revised), the 
 [*Overtaker*](king.html?piece=overtaker) promotes to the
 **Knightrider**.
 

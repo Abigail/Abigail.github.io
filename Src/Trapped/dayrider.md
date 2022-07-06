@@ -8,7 +8,7 @@ of the [*King*](king.html), the [*Dabbabarider*](dabbabarider.html)
 and the [*Alfilrider*](alfilrider.html).
 
 In [*Typhoon*](#chess-v:rules/typhoon-revised), the 
-**Dayrider** is the promoted [*Undertaker*](undertaker.html).
+**Dayrider** is the promoted [*Undertaker*](king.html?piece=undertaker).
 
 ### Spiral
 

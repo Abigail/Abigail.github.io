@@ -28,6 +28,14 @@ the **King** is known as the *Phoenix* (&#x9d6c;).
 In the Sh&#x14d;gi variant [D&#x14d;butsu sh&#x14d;gi](#wiki:Dobutsu_shogi),
 the **King** is known as the *Lion*.
 
+### Other Royal King movers
+
+The *Tiger Prince*, as found in [Typhoon](#chess-v:rules/typhoon-revised)
+moves (but does not capture) as the **King**. (It captures as the
+[*Dabbaba*](dabbaba.html) or [*Knight*](knight.html), but we ignore
+capture moves). The [*Blind Tiger*](blind_tiger.html) promotes to the
+[*Tiger Prince*].
+
 ### Non Royal King movers
 
 [Scirocco](#chess-v:rules/scirocco) and
@@ -47,7 +55,7 @@ moves and captures in the directions of the [*Queen*](queen.html),
 but we will ignore hopping moves as we're studying the movements of
 a single piece on an infinite board -- so there will not be any other
 piece to hop over. The *Cicada* promotes to the 
-[*Typhoon*](typoon.html).
+[*Typhoon*](genie.html?piece=typoon).
 
 The *Overtaker* from [Typhoon](#chess-v:rules/typhoon-revised) moves
 as the **King**. To capture, the *Overtaker* must hop, but we ignore
@@ -59,6 +67,11 @@ moves as the **King**. It can also move as the [*Queen*](queen.html)
 (up to four squares), but only if it lands adjacent to a friendly piece.
 We can ignore such moves. The *Salamander* promotes to the
 [*Genie*](genie.html).
+
+The *Undertaker*, as found in [Typhoon](#chess-v:rules/typhoon-revised),
+moves like the **King**. To capture, it has to move away from an adjacent
+enemy piece (but we ignore captures). The *Undertaker* promotes to
+the [*Dayrider*](dayrider.html).
 
 Other names for this piece include:
 include *Mann* (not Royal), and *Prince* (sometimes Royal). 

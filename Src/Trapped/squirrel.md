@@ -5,7 +5,8 @@ the [*Knight*](knight.html) or the [*Alfil*](alfil.html). That is,
 the **Squirrel** jumps to a square which is two away in one orthogonal
 direction, and no more than two in the other.
 
-In [*Scirocco*](#chess-v:rules/scirocco), the [*Camel*](camel.html)
+In [Scirocco](#chess-v:rules/scirocco), and
+[Typhoon](#chess-v:rules/typhoon-revised), the [*Camel*](camel.html)
 promotes to the **Squirrel**.
 
 ### Spiral

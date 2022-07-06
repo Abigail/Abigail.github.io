@@ -10,9 +10,16 @@ promoted [*Bishop*](bishop.html).
 
 The *Scirocco* moves in the same way as the **Dragon Horse**.
 In [Scirocco](#chess-v:rules/scirocco), the *Scirocco*
-promotes to the [*Vulture*](queen.html?piece=vulture).
+promotes to the [*Vulture*](dragon_horse.html?piece=vulture).
 In [Typhoon](#chess-v:rules/typhoon-revised), the [*Alfil*](alfil.html)
 promotes to the *Scirocco*.
+
+The *Vulture* in [Scirocco](#chess-v:rules/scirocco) and 
+[Typhoon](#chess-v:rules/typhoon-revised)
+also moves like the **Dragon Horse** (but it cannot capture on its diagonal
+moves which are not direct adjacent to its starting square).
+In [Typhoon](#chess-v:rules/typhoon-revised) the
+*Vulture* is the promoted [*Silver General*](silver_general.html).
 
 
 
