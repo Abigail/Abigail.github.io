@@ -5,7 +5,8 @@ in any orthogonal direction, but it may not land on a square
 next to the starting square (but the square must be unoccupied
 if the **Wagon** wants to move in that direction).
 
-The **Wagon** in [Scirocco](#chess-v:rules/scirocco) promotes
+The **Wagon** in [Scirocco](#chess-v:rules/scirocco),
+and [Typhoon](#chess-v:rules/typhoon-revised)promotes
 to the [*Spider*](spider.html).
 
 ### Spiral

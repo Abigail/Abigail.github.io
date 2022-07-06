@@ -7,10 +7,12 @@ four orthogonal directions.
 In the Sh&#x14d;gi variant [D&#x14d;butsu sh&#x14d;gi](#wiki:Dobutsu_shogi),
 the *Giraffe* moves in the same way as the **Wazir**.
 
-In [Scirocco](#chess-v:rules/scirocco), the **Wazir** promotes
+In [Scirocco](#chess-v:rules/scirocco), and
+[Typhoon](#chess-v:rules/typhoon-revised), the **Wazir** promotes
 to the [*Zag*](modern_elephant.html?piece=zag).
-In the same game, and in [Typhoon](#chess-v:rules/typhoon-revised),
-the *Guard* moves as
+
+The *Guard*, as found in [Scirocco](#chess-v:rules/scirocco), and 
+[Typhoon](#chess-v:rules/typhoon-revised), moves as
 the **Wazir**, and captures as the [*Ferz*](ferz.html) (but we
 ignore capture moves). The *Guard* promotes to the [*Zebra*](zebra.html).
 
