@@ -4,7 +4,8 @@ The **Modern Elephant** moves as either the [*Ferz*](ferz.html) or
 the [*Alfil*](alfil.html). The **Modern Elephant** jumps to a
 square which is one or two away diagonally.
 
-The *Zag* from [*Scirocco*](#chess-v:rules/scirocco) moves as
+The *Zag* from [*Scirocco*](#chess-v:rules/scirocco), and
+[Typhoon](#chess-v:rules/typhoon-revised) moves as
 the **Modern Elephant**. The *Zag* can additionally capture
 as the [*Wazir*](wazir.html), but we ignore capture moves. The
 *Zag* is the promoted [*Wazir*](wazir.html).
