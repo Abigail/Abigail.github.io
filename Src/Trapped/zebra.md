@@ -5,7 +5,8 @@ that the **Zebra** jumps to a square which is three squares away in
 an orthogonal direction, and two squares away into a direction
 perpendicular to the first direction.
 
-In [*Scirocco*](#chess-v:rules/scirocco), the [*Guard*](guard.html)
+In [Scirocco](#chess-v:rules/scirocco), and
+[Typhoon](#chess-v:rules/typhoon-revised), the [*Guard*](guard.html)
 promotes to the **Zebra**.
 
 ### Spiral

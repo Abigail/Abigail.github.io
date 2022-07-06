@@ -1086,7 +1086,7 @@ let set_info = {
                  "parrot", "priest", "raven", "salamander", "scirocco",
                  "sorcerer", "spider", "squirrel", "stork", "tadpole",
                  "tiger_prince", "typhoon", "undertaker", "vulture", "wagon",
-                 "wildebeest",
+                 "wildebeest", "zag", "zig",
 
                  "fu", "pawn",
                  ],

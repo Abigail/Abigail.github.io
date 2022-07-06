@@ -5,7 +5,8 @@ or the [*Dabbaba*](dabbaba.html). That is, it jumps either one or
 two squares in an orthogonal direction. It may jump over an 
 occupied square.
 
-The *Zig* from [Scirocco](#chess-v:rules/scirocco) (the promoted
+The *Zig* from [Scirocco](#chess-v:rules/scirocco) and
+[Typhoon](#chess-v:rules/typhoon-revised) (the promoted
 [*Firzan*](ferz.html?piece=firzan)) moves in exactly the same way,
 although it may hop over an enemy piece diagnonally to capture it.
 But here, we ignore captures.
