@@ -285,7 +285,7 @@ let pieces = {
     },
     tadpole: {
         betza: "FH",
-        results: ["?/16,480,276", "T/8,619,774", "T/4,637,261"],
+        results: ["?/1,066,282,804", "T/8,619,774", "T/4,637,261"],
         index_names: {
             combined_leapers: "[Tadpole](tadpole.html) // " +
                               "[Ferz](ferz.html) + "      +
@@ -503,7 +503,7 @@ let pieces = {
         results: ["W", "FC", "F/100%"],
         index_names: {
             crowned_pieces: "[Dragon Horse](dragon_horse.html) // " +
-                            "[King](king.html) + [Knight](knight.html)",
+                            "[King](king.html) + [Bishop](bishop.html)",
             shogi:          "[Dragon Horse](dragon_horse.html) // " +
                             "&#x9f8d;&#x99ac; (Promoted Bishop)",
         },
@@ -627,7 +627,7 @@ let pieces = {
         prefix:  "",
     },
     vulture: {
-        parent:  "queen",
+        parent:  "dragon_horse",
         prefix:  "",
     },
     wagon: {
@@ -758,6 +758,19 @@ let pieces = {
         parent:   "modern_elephant",
     },
     salamander: {
+        parent:   "king",
+    },
+    sorcerer: {
+        betza:    "W2F2",
+        results: ["W", "FC", "F/100%"],
+    },
+    tiger_prince: {
+        parent:   "king",
+    },
+    typhoon: {
+        parent:   "genie",
+    },
+    undertaker: {
         parent:   "king",
     },
 
@@ -1053,6 +1066,8 @@ let set_info = {
                  "ibis", "lantern", "lioness", "longleaper", "marquis",
                  "missionary", "knightrider", "octopus", "otter", "overtaker",
                  "parrot", "priest", "raven", "salamander", "scirocco",
+                 "sorcerer", "spider", "squirrel", "stork", "tadpole",
+                 "tiger_prince", "typhoon", "undertaker", "vulture",
 
                  "fu", "pawn",
                  ],

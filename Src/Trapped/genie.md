@@ -16,6 +16,12 @@ way as the **Genie**. In addition, the *Harpy* gives some addtional
 movement powers to friendly which are in reach, but we can ignore
 that in our setup. The **Harpy** cannot capture.
 
+The *Typhoon*, as found in [Typhoon](#chess-v:rules/typhoon-revised)
+moves in the same way as the **Genie**. In addition, it may capture
+any enemy piece (so, up to three) it finds in its path (but we ignore
+captures). The [*Cicada*](king.html?piece=cicada) promotes to the
+*Typhoon*.
+
 ### Spiral
 
 On the Spiral, the **Genie** can move as the [*Wizar*](wizar.html),

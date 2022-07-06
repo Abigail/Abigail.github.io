@@ -15,12 +15,15 @@ it can reach are the squares \((x, y)\) such that \(x\) is even,
 \(y\) is even, and \(x + y\) is a multiple of \(4\).
 
 The **Alfil** is a piece in [Scirocco](#chess-v:rules/scirocco),
-and promotes to the [*Bishop*](bishop.html). Scirocco also has
+and promotes to the [*Bishop*](bishop.html). In 
+[Typhoon](#chess-v:rules/typhoon-revised), the **Alfil** promotes
+to the [*Scirocco*](scirocco.html).
+
+[Scirocco](#chess-v:rules/scirocco) and
+[Typhoon](#chess-v:rules/typhoon-revised) also have
 the *Stork*, which moves like the **Alfil**, and captures like
 the [*Wazir*](wazir.html) (but we ignore capture moves). The
-*Stork* promotes to the [*Queen*](queen.html). The **Alfil**
-is also appears in [*Typhoon*](#chess-v:rules/typhoon-revised),
-where it promotes to the [*Scirocco*](scirocco.html).
+*Stork* promotes to the [*Queen*](queen.html).
 
 ### Spiral
 
