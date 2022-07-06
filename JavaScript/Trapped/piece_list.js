@@ -333,7 +333,7 @@ let pieces = {
     },
     gnu: {
         betza:    "NC",
-        results: ["?/16,535,436", "?/13,073,552", "F*/100%"],
+        results: ["?/1,067,426,464", "?/1,056,869,405", "F*/100%"],
         index_names: {
             combined_leapers: "[Gnu](gnu.html) // "      +
                               "[Knight](knight.html) + " +
@@ -1067,7 +1067,8 @@ let set_info = {
                  "missionary", "knightrider", "octopus", "otter", "overtaker",
                  "parrot", "priest", "raven", "salamander", "scirocco",
                  "sorcerer", "spider", "squirrel", "stork", "tadpole",
-                 "tiger_prince", "typhoon", "undertaker", "vulture",
+                 "tiger_prince", "typhoon", "undertaker", "vulture", "wagon",
+                 "wildebeest",
 
                  "fu", "pawn",
                  ],
