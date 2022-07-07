@@ -11,6 +11,9 @@ In [Typhoon](#chess-v:rules/typhoon-revised), the
 **Silver General** promotes to the
 [*Vulture*](dragon_horse.html?piece=vulture).
 
+The [*Humpback*](humpback.html) mirrors the movements of the
+**Silver General**.
+
 ### Spiral
 
 The **Silver General** visits all the squares of the Spiral, in

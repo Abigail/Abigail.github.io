@@ -4,8 +4,22 @@ The **Hummingbird** may move to a square one way orthogonally sidewards
 or backwards (like a sidewards/backwards [*Wazir*](wazir.html)), or
 two steps forward (like a forward [*Dabbaba*](dabbaba.html)).
 
-[Typhoon](#chess-v:rules/typhoon-revised) the **Hummingbird** promotes
-to the [*Immobilizer*](queen.html?piece=immobilizer).
+Pieces which can move like the **Hummingbird** can be found in
+several games:
+
+|====
+{class = piece_list}
+{th = 1} Game &
+{th = 1} Piece &
+{th = 1} Promoted &
+{th = 1} Promotes to &
+{th = 1} Capture moves \\
+{th = 1} %%TYPHOON%%
+       & **Hummingbird** &
+       & [*Immobilizer*](queen.html?piece=immobilizer) & \\
+{th = 1} %%WHALE_SHOGI%%
+       & **Narwhal** & & & \\
+====|
 
 ### Spiral
 

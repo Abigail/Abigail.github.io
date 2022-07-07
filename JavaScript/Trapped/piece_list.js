@@ -936,10 +936,11 @@ let pieces = {
     },
     humpback: {
         betza:    "bWF",
-        results: ["", "", ""],
+        results: ["E*", "", ""],
     },
     killer_whale: {
         parent:   "dragon_king",
+        prefix:   "",
     },
     narwhal: {
         parent:   "hummingbird",

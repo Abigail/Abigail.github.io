@@ -47,25 +47,28 @@ captures differently than it moves.
              &  Player's choice
              &  &#x2713;
              &  &#x2713;                                                     \\
-**Pawn**     &  [Sh&#x14d;gi (&#x5c06;&#x68cb;)](#wiki:Shogi)
+**Pawn**     &  %%SHOGI%%
              &  [*Gold General*](gold_general.html)
              &  &#x2717;
              &  &#x2717;                                                     \\
-**Pawn**     &  [Scirocco](#chess-v:rules/scirocco), 
-                [Typhoon](#chess-v:rules/typhoon-revised)
+**Pawn**     &  %%SCIROCCO%%, %%TYPHOON%%
              &  [*Tadpole*](tadpole.html)
              &  &#x2717;
              &  &#x2713;                                                     \\
-**Fu**       &  [Typhoon](#chess-v:rules/typhoon-revised)
+**Fu**       &  %%TYPHOON%%
              &  [*Zebra*](zebra.html)
              &  &#x2717;
              &  &#x2717;                                                     \\
-**Chick**    &  [D&#x14d;butsu sh&#x14d;gi](#wiki:Dobutsu_shogi)
+**Chick**    &  %%DOBUTSU%%
              &  [*Hen*](gold_general.html?piece=dobutsu_hen) (Gold General)
              &  &#x2717;
              &  &#x2717;                                                     \\
-**Swallow**  &  [Tori Sh&#x14d;gi](#wiki:Tori_Shogi)
+**Swallow**  &  %%TORI_SHOGI%%
              &  [*Goose*](goose.html)
+             &  &#x2717;
+             &  &#x2717;                                                     \\
+**Dolphin**  &  %%WHALE_SHOGI%%
+             &
              &  &#x2717;
              &  &#x2717;                                                     \\
 ====|
