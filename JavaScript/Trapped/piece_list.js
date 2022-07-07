@@ -941,6 +941,37 @@ let pieces = {
     },
 
     //
+    //   - Whale Shogi
+    //
+    white_whale: {
+        parent: "king",
+    },
+    blue_whale: {
+        parent:   "copper_general",
+    },
+    grey_whale: {
+        parent:   "hunter",
+    },
+    humpback: {
+        betza:    "bWF",
+        results: ["", "", ""],
+    },
+    killer_whale: {
+        parent:   "dragon_king",
+    },
+    narwhal: {
+        parent:   "hummingbird",
+    },
+    porpoise: {
+        betza:    "sW",
+        results: ["E", "", ""],
+    },
+    dolphin: {
+        parent:   "pawn",
+    },
+
+
+    //
     //   -  Other Shogi variants
     //
     "blind_monkey": {
@@ -1115,6 +1146,14 @@ let set_info = {
         href: "https://en.wikipedia.org/wiki/D%C5%8Dbutsu_sh%C5%8Dgi",
         pieces: ["dobutsu_lion", "dobutsu_giraffe", "dobutsu_elephant",
                  "dobutsu_chick", "dobutsu_hen"],
+    },
+    whale_shogi: {
+        name: "Whale Sh&#x14d;gi",
+        href: "https://www.chessvariants.com/shogivariants.dir/whale.html",
+        pieces: ["white_whale",
+                 "blue_whale", "grey_whale", "humpback", "killer_whale",
+                 "narwhal", "porpoise",
+                 "dolphin",],
     },
 
     shogi_variants: {

@@ -159,11 +159,13 @@ my %WHERE_INFO = (
 
 my %MACROS = (
     $TYPE_TRAPPED => {
-        DOBUTSU    =>  '[D&#x14d;butsu sh&#x14d;gi](#wiki:Dobutsu_shogi)',
-        SCIROCCO   =>  '[Scirocco](#chess-v:rules/scirocco)',
-        SHOGI      =>  '[Sh&#x14d;gi (&#x5c06;&#x68cb;)](#wiki:Shogi)',
-        TYPHOON    =>  '[Typhoon](#chess-v:rules/typhoon-revised)',
-        TORI_SHOGI =>  '[Tori Sh&#x14d;gi](#wiki:Tori_Shogi)',
+        DOBUTSU      =>  '[D&#x14d;butsu sh&#x14d;gi](#wiki:Dobutsu_shogi)',
+        SCIROCCO     =>  '[Scirocco](#chess-v:rules/scirocco)',
+        SHOGI        =>  '[Sh&#x14d;gi (&#x5c06;&#x68cb;)](#wiki:Shogi)',
+        TYPHOON      =>  '[Typhoon](#chess-v:rules/typhoon-revised)',
+        TORI_SHOGI   =>  '[Tori Sh&#x14d;gi](#wiki:Tori_Shogi)',
+        WHALE_SHOGI  =>  '[Whale Sh&#x14d;gi (&#x9be8;&#x5c06;&#x68cb;)]' .
+                         '(#chess-v:shogivariants.dir/whale.html)',
     },
 );
 
