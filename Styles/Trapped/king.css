@@ -1,0 +1,10 @@
+table.shogi_kings, table.shogi_kings td, table.shogi_kings th {
+    border:                solid black 1px;
+    border-collapse:       collapse;
+}
+
+table.shogi_kings td, table.shogi_kings th {
+    padding-left:          0.5em;
+    padding-right:         0.5em;
+    text-align:            left;
+}

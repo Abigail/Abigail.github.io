@@ -3,8 +3,10 @@
 The **Copper General** either moves one square forward (either orthogonally
 or diagonally), or one square orthogonally backward.
 
-In [*Typhoon*](#chess-v:rules/typhoon-revised), the
+In %%TYPHOON%%, the
 **Copper General** promotes to the [*Ibis*](dragon_king.html?piece=ibis).
+
+In %%WHALE_SHOGI%%, this piece is known as the *Blue Whale*.
 
 ### Spiral
 

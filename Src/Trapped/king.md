@@ -18,15 +18,20 @@ also promote to the [*Emperor of Emperors*](emperor_of_emperors.html).
 
 ### Kings in Sh&#x14d;gi and Sh&#x14d;gi variants
 
-In %%SHOGI%% the **King** is also
-called the *King General* (&#x738b;&#x5c07;) (for one side) and the
-*Jeweled General* (&#x7389;&#x5c07;) (for the other side).
+Sh&#x14d;gi and its variants typically have a royal piece which moves
+in exactly the same way as the **King** from Chess, but it's usually
+known under a different name. This table list some of the variants
+and the name(s) of the **King**:
 
-In %%TORI_SHOGI%%,
-the **King** is known as the *Phoenix* (&#x9d6c;).
-
-In the Sh&#x14d;gi variant %%DOBUTSU%%,
-the **King** is known as the *Lion*.
+|====
+{class = 'shogi_kings'}
+{th = 1; rs = 2} %%SHOGI%%
+                                 & *King General* (&#x738b;&#x5c07;)    \\
+                                   *Jeweled General* (&#x7389;&#x5c07;) \\
+{th = 1}         %%DOBUTSU%%     & *Lion*                               \\
+{th = 1}         %%WHALE_SHOGI%% & *White Whale*                        \\
+{th = 1}         %%TORI_SHOGI%%  & *Phoenix* (&#x9d6c;)                 \\
+====|
 
 ### Other Royal King movers
 
@@ -34,7 +39,7 @@ The *Tiger Prince*, as found in %%TYPHOON%%
 moves (but does not capture) as the **King**. (It captures as the
 [*Dabbaba*](dabbaba.html) or [*Knight*](knight.html), but we ignore
 capture moves). The [*Blind Tiger*](blind_tiger.html) promotes to the
-[*Tiger Prince*].
+*Tiger Prince*.
 
 ### Non Royal King movers
 
