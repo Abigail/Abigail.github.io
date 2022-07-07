@@ -111,3 +111,15 @@ table.boxset th, table.boxset td {
 table.boxset span.self {
     font-weight:                  bold;
 }
+
+
+table.piece_list, table.piece_list td, table.piece_list th {
+    border:                solid black 1px;
+    border-collapse:       collapse;
+}
+
+table.piece_list td, table.piece_list th {
+    padding-left:          0.5em;
+    padding-right:         0.5em;
+    text-align:            left;
+}

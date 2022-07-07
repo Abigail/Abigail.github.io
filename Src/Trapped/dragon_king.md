@@ -1,6 +1,6 @@
 # Dragon King
 
-The **Dragon King** (&#x9f8d;&#x738b;) combines the movements of
+The **Dragon King** combines the movements of
 the [*King*](king.html) and [*Rook*](rook.html). That is, it steps
 either one square diagonally, or slides an unlimited number of 
 unoccupied squares orthogonally.
@@ -8,16 +8,29 @@ unoccupied squares orthogonally.
 It's a so-called *crowned piece*, which is a *compound piece*, 
 combining the movements of the *King* with one or more other pieces.
 
-The **Dragon King** is a piece from
-[Sh&#x14d;gi (&#x5c06;&#x68cb;)](#wiki:Shogi), and only
-appears on the board once a [*Rook*](rook.html) promotes.
+Pieces which can move like the **Dragon King** can be found in
+several games:
 
-In [Typhoon](#chess-v:rules/typhoon-revised), the *Dragon Kite*
-(the promoted [*Dabbaba*](dabbaba.html)) moves as the **Dragon Horse**.
+|====
+{class = piece_list}
+{th = 1} Game &
+{th = 1} Piece &
+{th = 1} Promoted &
+{th = 1} Promotes to &
+{th = 1} Capture moves \\
+{th = 1} %%SHOGI%% & **Dragon King** (&#x9f8d;&#x738b;)
+                   & [*Rook*](rook.html) &  & \\
+{th = 1; rs = 2} %%TYPHOON%% & **Dragon Kite**
+                             & [*Dabbaba*](dabbaba.html) & & \\
+                               **Ibis**
+                             & [*Copper General*](copper_general.html)
+                             & & &#x2713; \\
+{th = 1} %%WHALE_SHOGI%% & **Killer Whale** 
+                         & [*Porpoise*](porpoise.html)<sup>1</sup> & & \\
+====|
 
-Also in [Typhoon](#chess-v:rules/typhoon-revised), the *Ibis* moves
-as the **Dragon King**. The *Ibis* has some additional captures moves,
-but we ignore capture moves.
+<sup>1</sup> An enemey [*Porpoise*](porpoise.html) must be captured;
+             it does not promote.
 
 
 ### Spiral
