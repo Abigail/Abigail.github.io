@@ -156,6 +156,18 @@ my %WHERE_INFO = (
    "chess-v"   =>  {url => $CHESS_VARIANT_URL}, # Not all pages use .html...
 );
 
+
+my %MACROS = (
+    $TYPE_TRAPPED => {
+        DOBUTSU    =>  '[D&#x14d;butsu sh&#x14d;gi](#wiki:Dobutsu_shogi)',
+        SCIROCCO   =>  '[Scirocco](#chess-v:rules/scirocco)',
+        SHOGI      =>  '[Sh&#x14d;gi (&#x5c06;&#x68cb;)](#wiki:Shogi)',
+        TYPHOON    =>  '[Typhoon](#chess-v:rules/typhoon-revised)',
+        TORI_SHOGI =>  '[Tori Sh&#x14d;gi](#wiki:Tori_Shogi)',
+    },
+);
+
+
 my %LINK_GROUP; init_link_group ();
 
 chdir $TOP_DIR or die "chdir: $!";
@@ -615,6 +627,8 @@ sub table ($text) {
 sub pre_process ($text, $directives) {
     state $lang_pat = join "|" => map {quotemeta $_} keys %LANGUAGE_INFO;
 
+    my $type = $$directives {type} || "";
+
     my $out = "";
 
     #
@@ -666,6 +680,12 @@ sub pre_process ($text, $directives) {
         }
         redo if $changed;
     }
+
+    #
+    # Handle macros
+    #
+    1 while $text =~ s {(%%([A-Z_]+)%%)}
+                       {$MACROS {$type} {$2} || $1}e;
 
     #
     # Iterate over the lines. Use a state to determine what the current
