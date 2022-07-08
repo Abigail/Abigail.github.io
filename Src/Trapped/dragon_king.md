@@ -1,6 +1,6 @@
-# Dragon King
+# %%PIECE%%
 
-The **Dragon King** combines the movements of
+The %%PIECE%% combines the movements of
 the [*King*](king.html) and [*Rook*](rook.html). That is, it steps
 either one square diagonally, or slides an unlimited number of 
 unoccupied squares orthogonally.
@@ -8,7 +8,7 @@ unoccupied squares orthogonally.
 It's a so-called *crowned piece*, which is a *compound piece*, 
 combining the movements of the *King* with one or more other pieces.
 
-Pieces which can move like the **Dragon King** can be found in
+Pieces which can move like the %%PIECE%% can be found in
 several games:
 
 |====
@@ -35,17 +35,17 @@ several games:
 
 ### Spiral
 
-The **Dragon King** can move as a [*Wazir*](wazir.html). Hence, it will not
+The %%PIECE%% can move as a [*Wazir*](wazir.html). Hence, it will not
 get stuck, filling the entire board by just following the spiral.
 
 ### Wedge
 
 #### Folded
 
-Since the **Dragon King** can move as the [*Flying Cock*](flying_cock.html),
+Since the %%PIECE%% can move as the [*Flying Cock*](flying_cock.html),
 it will do so, filling the entire board visiting all squares in value order.
 
 #### Flat
 
-The **Dragon King** visits all the squares on the Flat Wedge, with a
+The %%PIECE%% visits all the squares on the Flat Wedge, with a
 preference to the right hand side of the board.
