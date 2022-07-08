@@ -2,10 +2,14 @@
 // Fill the "trapped" divs
 //
 $(window) . on ("load", () => {
-    let url_params = new URLSearchParams (window.location.search)
-    let piece_name = url_params . get ('piece') ||
-                     location . href . replace (/^.*\//,   "")
+    let file       = location . href . replace (/^.*\//,   "") 
                                      . replace (/\.html$/, "")
+    if (file == "index") {
+        return
+    }
+
+    let url_params = new URLSearchParams (window.location.search)
+    let piece_name = url_params . get ('piece') || file
     let piece      = new Piece ({piece_name: piece_name})
 
     $("div.trapped") . each ((i, e) => {
