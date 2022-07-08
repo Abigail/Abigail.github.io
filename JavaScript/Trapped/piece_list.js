@@ -1,4 +1,7 @@
 let pieces = {
+    //
+    // A pieces
+    //
     abbot: {
         betza:    "F4N",
         results: ["T/6334", "F*/100%", "F*/100%"],
@@ -58,6 +61,9 @@ let pieces = {
         results: ["T/6386", "F*/100%", "F*/100%"],
     },
 
+    //
+    // B pieces
+    //
     banner: {
         betza:    "fsW",
         results: ["F/25%", "F/100%", "E"],
@@ -98,7 +104,94 @@ let pieces = {
         parent:   "copper_general",
     },
 
+    //
+    // C pieces
+    //
+    caliph: {
+        betza:    "WA",
+        results: ["W", "F*/100%", "E"],
+    },
 
+    oec_caliph: {
+        betza:       "BC",
+        _name:       "Caliph",
+        _index_name: "Caliph (OEC)",
+        results:    ["T/1563", "F*/50%", "F*/50%"],
+    },
+
+    camel: {        // (3, 1)-leaper
+        betza:    "C",
+        results: ["T/3722", "T/342", "T/2401"],
+    },
+
+    camelrider: {
+        betza:    "CC",
+        results: ["T/1697", "T/90", "T/482"],
+    },
+
+    canvasser: {
+        betza:    "RC",
+        results: ["W", "F*/100%", "F*/100%"],
+    },
+
+    cardinal: {parent: "archbishop"},
+
+    centaur: {
+        betza:    "WFN",
+        results: ["W", "FC", "F/100%"],
+    },
+
+    champion: {
+        betza:    "WAD",
+        results: ["W", "F/100%", "F/100%"],
+    },
+
+    chancellor: {
+        betza:    "RN",
+        results: ["W", "F/100%", "F/100%"],
+    },
+
+    chariot: {
+        betza:    "R4",
+        results: ["W", "T/6", "E"],
+    },
+
+    dobutsu_chick: {
+        parent: "pawn",
+        _name: "Chick",
+    },
+
+    cicada: {
+        parent: "king",
+    },
+
+    commoner: {
+        parent: "king",
+    },
+
+    commuter: {     // (4, 4)-leaper
+        betza:    "(4,4)",
+        results: ["F/3.125%", "E", "E"],
+    },
+
+    copper_general: {
+        betza:    "fFvW",
+        results: ["E*", "E", "E"],
+    },
+
+    crane: {
+        betza:  "FvW",
+        results: ["F*/100%", "E*", "F/100%"],
+    },
+
+    cuckoo: {
+        betza:    "sWfD",
+        results: ["F/12.5%", "E", "E"],
+    },
+
+    //
+    // D pieces
+    //
 
 
     king: {
@@ -139,10 +232,6 @@ let pieces = {
         betza:    "H",
         results: ["F/11.1", "T/6", "E"],
     },
-    camel: {        // (3, 1)-leaper
-        betza:    "C",
-        results: ["T/3722", "T/342", "T/2401"],
-    },
     zebra: {        // (3, 2)-leaper
         betza:    "Z",
         results: ["T/4633", "T/80", "T/286"],
@@ -163,10 +252,6 @@ let pieces = {
         betza:    "(2,4)",
         results: ["T/2015", "E*", "E*"],
     },
-    commuter: {     // (4, 4)-leaper
-        betza:    "(4,4)",
-        results: ["F/3.125%", "E", "E"],
-     },
     flamingo: {     // (6, 1)-leaper
         betza:    "(1,6)",
         results: ["T/26966", "T/90", "T/260"],
@@ -175,32 +260,17 @@ let pieces = {
     //
     // Combined leapers (https://www.theproblemist.org/dloads/Glossary.pdf)
     //
-    commoner: {
-        parent: "king",
-    },
     lioness: {
         betza: "WFDNA",
-        results: ["W", "FC", "F/100%"],
-    },
-    centaur: {
-        betza:    "WFN",
         results: ["W", "FC", "F/100%"],
     },
     war_machine: {
         betza:   "WD",
         results: ["W", "F/100%", "F/100%"],
     },
-    champion: {
-        betza:    "WAD",
-        results: ["W", "F/100%", "F/100%"],
-    },
     marquis: {
         betza:    "WN",
         results: ["W", "F/100%", "F/100%"],
-    },
-    caliph: {
-        betza:    "WA",
-        results: ["W", "F*/100%", "E"],
     },
     scirocco_frog: {
         betza:    "KGH",
@@ -286,10 +356,6 @@ let pieces = {
         betza:    "HH",
         results: ["F/11.1&#x0305;%", "E", "E"],
     },
-    camelrider: {
-        betza:    "CC",
-        results: ["T/1697", "T/90", "T/482"],
-    },
     zebrarider: {
         betza:    "ZZ",
         results: ["T/266", "T/72", "T/57"],
@@ -308,11 +374,6 @@ let pieces = {
         results: ["T/94,632", "T/42", "F*/100%"],
     },
     princess: {parent: "archbishop"},
-    cardinal: {parent: "archbishop"},
-    chancellor: {
-        betza:    "RN",
-        results: ["W", "F/100%", "F/100%"],
-    },
     empress:  {parent: "chancellor"},
 
     //
@@ -353,15 +414,6 @@ let pieces = {
         results: ["T/146", "E", "E"],
     },
 
-    oec_caliph: {
-        betza:    "BC",
-        _name:    "Caliph",
-        results: ["T/1563", "F*/50%", "F*/50%"],
-    },
-    canvasser: {
-        betza:    "RC",
-        results: ["W", "F*/100%", "F*/100%"],
-    },
     marshal: {
         parent: "chancellor",
     },
@@ -369,10 +421,6 @@ let pieces = {
 
     firzan: {
         parent: "ferz",
-    },
-    chariot: {
-        betza:    "R4",
-        results: ["W", "T/6", "E"],
     },
     octopus: {
         betza:      "t[FR]",
@@ -453,17 +501,6 @@ let pieces = {
     //
     // Typhoon
     //
-    cicada: {
-        parent: "king",
-    },
-    copper_general: {
-        betza:    "fFvW",
-        results: ["E*", "E", "E"],
-    },
-    cuckoo: {
-        betza:    "sWfD",
-        results: ["F/12.5%", "E", "E"],
-    },
     dayrider: {
         betza:    "WFAADD",
         results: ["W", "FC", "F/100%"],
@@ -591,41 +628,37 @@ let pieces = {
     //
     //   -  Tori Shogi
     //
-    "phoenix": {
+    phoenix: {
         parent: "king",
     },
-    "eagle": {
+    eagle: {
         betza:  "fBbRfsWbB2",
         results: ["W", "FC", "F/100%"],
-     },
-    "tori_falcon": {
+    },
+    tori_falcon: {
         parent: "drunk_elephant",
         _name:  "Falcon",
         results: ["F*/100%", "FC", "F/100%"],
-     },
-    "crane": {
-        betza:  "FvW",
-        results: ["F*/100%", "E*", "F/100%"],
-     },
-    "pheasant": {
+    },
+    pheasant: {
         betza:  "fDbF",
         results: ["E", "E", "E"],
-     },
-    "left_quail": {
+    },
+    left_quail: {
         betza:  "fRbrBblF",
         results: ["T/146", "E", "E"],
-     },
-    "right_quail": {
+    },
+    right_quail: {
         betza:  "fRblBbrF",
         results: ["F*/25%", "E", "E"],
-     },
-    "swallow": {
+    },
+    swallow: {
         parent: "pawn",
-     },
-    "goose": {
+    },
+    goose: {
         betza:  "fAbD",
         results: ["E*", "E", "E"],
-     },
+    },
 
     //
     //   -  Dobutsu Shogi
@@ -641,10 +674,6 @@ let pieces = {
     dobutsu_elephant: {
         parent: "ferz",
         _name: "Elephant",
-    },
-    dobutsu_chick: {
-        parent: "pawn",
-        _name: "Chick",
     },
     dobutsu_hen: {
         parent: "gold_general",
