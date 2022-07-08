@@ -164,23 +164,28 @@ my sub tooltip ($text, $tooltiptext) {
 
 my %MACROS = (
     $TYPE_TRAPPED => {
-        DOBUTSU      =>  '[D&#x14d;butsu sh&#x14d;gi](#wiki:Dobutsu_shogi)',
-        SCIROCCO     =>  '[Scirocco](#chess-v:rules/scirocco)',
-        SHOGI        =>  '[Sh&#x14d;gi (&#x5c06;&#x68cb;)](#wiki:Shogi)',
-        TYPHOON      =>  '[Typhoon](#chess-v:rules/typhoon-revised)',
-        TORI_SHOGI   =>  '[Tori Sh&#x14d;gi](#wiki:Tori_Shogi)',
-        WHALE_SHOGI  =>  '[Whale Sh&#x14d;gi (&#x9be8;&#x5c06;&#x68cb;)]' .
-                         '(#chess-v:shogivariants.dir/whale.html)',
+        DOBUTSU       =>  '[D&#x14d;butsu sh&#x14d;gi](#wiki:Dobutsu_shogi)',
+        OVERKILL      =>  '[Overkill Ecumenical Chess]' .
+                          '(#chess-v:rules/overkill-ecumenical-chess)',
+        SCIROCCO      =>  '[Scirocco](#chess-v:rules/scirocco)',
+        SHOGI         =>  '[Sh&#x14d;gi (&#x5c06;&#x68cb;)](#wiki:Shogi)',
+        TYPHOON       =>  '[Typhoon](#chess-v:rules/typhoon-revised)',
+        TORI_SHOGI    =>  '[Tori Sh&#x14d;gi](#wiki:Tori_Shogi)',
+        WHALE_SHOGI   =>  '[Whale Sh&#x14d;gi (&#x9be8;&#x5c06;&#x68cb;)]' .
+                          '(#chess-v:shogivariants.dir/whale.html)',
 
-        ROYAL        =>  tooltip ("&#x265A;", "This piece is *Royal*; if "  .
-                                              "all Royal pieces have been " .
-                                              "captured, the game is lost"),
-        MORE_MOVES   =>  tooltip ("&rlarr;",  "This piece has additional "  .
-                                              "moves,<br>which are not "    .
-                                              "relevant here"),
-        CAPTURE      =>  tooltip ("&#x238B;", "This piece has additional "  .
-                                              "capture moves,<br>"          .
-                                              "which we can ignore here"),
+        PIECE_HEADERS =>  "{class = piece_list}\n"            .
+                          "{th = 1} Game & {th = 1} Piece & " .
+                          "{th = 1} Promoted & {th = 1} Info \\\\",
+        ROYAL         =>  tooltip ("&#x265A;", "This piece is *Royal*; if "  .
+                                               "all Royal pieces have been " .
+                                               "captured, the game is lost"),
+        MORE_MOVES    =>  tooltip ("&rlarr;",  "This piece has additional "  .
+                                               "moves,<br>which are not "    .
+                                               "relevant here"),
+        CAPTURE       =>  tooltip ("&#x238B;", "This piece has additional "  .
+                                               "capture moves,<br>"          .
+                                               "which we can ignore here"),
     },
 );
 
@@ -654,6 +659,11 @@ sub pre_process ($text, $directives) {
     $text =~ s/^\{%\s+(?:end)?raw\s+%\}\h*\n//gm;
 
     #
+    # Handle macros
+    #
+    $text =~ s {(%%([A-Z_]+)%%)} {$MACROS {$type} {$2} || $1}eg;
+
+    #
     # Scan for directives, which are of the format
     #
     #   <!-- %%  directive        --> or
@@ -697,11 +707,6 @@ sub pre_process ($text, $directives) {
         }
         redo if $changed;
     }
-
-    #
-    # Handle macros
-    #
-    $text =~ s {(%%([A-Z_]+)%%)} {$MACROS {$type} {$2} || $1}eg;
 
     #
     # Iterate over the lines. Use a state to determine what the current
