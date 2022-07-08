@@ -411,13 +411,11 @@ class Piece {
     //
     // For use in the index.
     //
-    index_name_in_set (args = {}) {
-        if (this . index_names &&
-            this . index_names [args . set_name]) {
-            return this . index_names [args . set_name]
+    index_name (args = {}) {
+        if (!this . _index_name) {
+            this . _index_name = this . name ()
         }
-
-        return this . name ()
+        return this . _index_name 
     }
 
 

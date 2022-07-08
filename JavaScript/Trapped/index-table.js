@@ -77,7 +77,7 @@ function make_index_table () {
 
     let names = Object . keys (pieces) . sort () . forEach ((piece_name) => {
         let piece = new Piece ({piece_name: piece_name})
-        let name  = piece . name ();
+        let name  = piece . index_name ();
 
         table += `<tr><td class = 'piece-name'>`               +
                  linkify ({name: name, href: piece . file ()}) + "</td>"
