@@ -2,9 +2,21 @@
 // Fill the "trapped" divs
 //
 $(window) . on ("load", () => {
+    let url_params = new URLSearchParams (window.location.search)
+    let piece_name = url_params . get ('piece') ||
+                     location . href . replace (/^.*\//,   "")
+                                     . replace (/\.html$/, "")
+    let piece      = new Piece ({piece_name: piece_name})
+
     $("div.trapped") . each ((i, e) => {
-        set_up (e)
+        set_up (e, piece)
     })
+
+    let text = $("body") . html ()
+        text = text . replaceAll (/%%PIECE%%/g,
+                    `<span class = "piece">${piece . name ()}</span>`)
+    $("body") . html (text)
+    $("title") . html (piece . name ())
 })
 
 //
@@ -29,21 +41,19 @@ function svg_id    (name)       {return make_id ("svg",    name)}
 //
 // Create the two responsive divs inside any "trapped" divs.
 //
-function set_up (element) {
-    let url_params = new URLSearchParams (window.location.search)
-    let name       = url_params . get ('piece') || $(element) . data ("piece")
-    let piece      = new Piece ({piece_name: name})
+function set_up (element, piece) {
+    let piece_name = piece . piece_name
 
     $(element) . html (
-        `<div class = 'board' id = '${board_id (name)}'></div>` +
-        `<div class = 'info'  id = '${info_id  (name)}' ></div>`
+        `<div class = 'board' id = '${board_id (piece_name)}'></div>` +
+        `<div class = 'info'  id = '${info_id  (piece_name)}' ></div>`
     )
 
-    window [name] = {}
-    window [name] . piece = piece
+    window [piece_name] = {}
+    window [piece_name] . piece = piece
 
-    set_up_info (name, piece)
-    init_trapped ({piece: piece, name: name})
+    set_up_info (piece_name, piece)
+    init_trapped ({piece: piece, name: piece_name})
 }
 
 //

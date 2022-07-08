@@ -83,6 +83,10 @@ th.title {
 }
 
 
+span.piece {
+    font-weight:                  bold;
+}
+
 
 table.boxset {
     margin-left:                   5em;
