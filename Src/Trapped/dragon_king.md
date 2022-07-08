@@ -17,14 +17,14 @@ several games:
 {th = 1} Piece &
 {th = 1} Promoted &
 {th = 1} Promotes to &
-{th = 1} Capture moves \\
+{th = 1} Info \\
 {th = 1} %%SHOGI%% & **Dragon King** (&#x9f8d;&#x738b;)
                    & [*Rook*](rook.html) &  & \\
 {th = 1; rs = 2} %%TYPHOON%% & **Dragon Kite**
                              & [*Dabbaba*](dabbaba.html) & & \\
                                **Ibis**
                              & [*Copper General*](copper_general.html)
-                             & & &#x2713; \\
+                             & & %%CAPTURE%% \\
 {th = 1} %%WHALE_SHOGI%% & **Killer Whale** 
                          & [*Porpoise*](porpoise.html)<sup>1</sup> & & \\
 ====|

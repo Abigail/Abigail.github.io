@@ -156,6 +156,11 @@ my %WHERE_INFO = (
    "chess-v"   =>  {url => $CHESS_VARIANT_URL}, # Not all pages use .html...
 );
 
+my sub tooltip ($text, $tooltiptext) {
+    sprintf "<span class = '%s'>%s<span class = '%s'>%s</span></span>" =>
+            "tooltip", $text, "tooltiptext", $tooltiptext
+}
+
 
 my %MACROS = (
     $TYPE_TRAPPED => {
@@ -166,6 +171,16 @@ my %MACROS = (
         TORI_SHOGI   =>  '[Tori Sh&#x14d;gi](#wiki:Tori_Shogi)',
         WHALE_SHOGI  =>  '[Whale Sh&#x14d;gi (&#x9be8;&#x5c06;&#x68cb;)]' .
                          '(#chess-v:shogivariants.dir/whale.html)',
+
+        ROYAL        =>  tooltip ("&#x265A;", "This piece is *Royal*; if "  .
+                                              "all Royal pieces have been " .
+                                              "captured, the game is lost"),
+        MORE_MOVES   =>  tooltip ("&rlarr;",  "This piece has additional "  .
+                                              "moves,<br>which are not "    .
+                                              "relevant here"),
+        CAPTURE      =>  tooltip ("&#x238B;", "This piece has additional "  .
+                                              "capture moves,<br>"          .
+                                              "which we can ignore here"),
     },
 );
 
