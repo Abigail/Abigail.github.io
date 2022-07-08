@@ -1,6 +1,6 @@
 <html>
 <head>
-<title>Alfil</title>
+<title>%%PIECE%%</title>
 <meta charset = "utf-8">
 <link rel  = 'preconnect' href = 'https://fonts.gstatic.com'>
 <link rel = 'stylesheet' href =      'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
@@ -17,46 +17,74 @@
 <script src = '../../JavaScript/Trapped/pages.js'></script>
 </head>
 
-<body><h1>Alfil</h1><div class = "byline">
+<body><h1>%%PIECE%%</h1><div class = "byline">
 by Abigail<br>
 <img src = "../../Images/jan_sluiters.jpg">
 </div>
 
 
-<p>The <strong>Alfil</strong> is a (2,2)-leaper. On each step, it jumps to a square
+<p>The %%PIECE%% is a (2,2)-<a href="https://en.wikipedia.org/wiki/Fairy_chess_piece#Leapers"><em>Leaper</em></a>. On each step, it jumps to a square
 which is two away diagonally. It can jump over an occupied square.
-This makes the <strong>Alfil</strong>
-<a href="https://en.wikipedia.org/wiki/Glossary_of_chess#Colorbound">colourbound</a> &mdash; that is,
-if it starts on a black square, it will always be on a black
-square and if it starts on a white square, it will always be on
-a white square.</p>
+This makes the %%PIECE%% <span class = 'tooltip underline'>colourbound<span class = 'tooltiptext'>A colourbound piece will always stay on a square of the same colour: if it starts on a black square, it will always remain on a black square; if it starts on a white square, it will always remain on a white square</span></span>.</p>
 
-<p>The <strong>Alfil</strong> is more limited than just being
-<a href="https://en.wikipedia.org/wiki/Glossary_of_chess#Colorbound">colourbound</a>. If we give its
+<p>The %%PIECE%% is more limited than just being
+<span class = 'tooltip underline'>colourbound<span class = 'tooltiptext'>A colourbound piece will always stay on a square of the same colour: if it starts on a black square, it will always remain on a black square; if it starts on a white square, it will always remain on a white square</span></span>. If we give its
 starting square the coordinates <span class = 'latex-inline'>\((0, 0)\)</span>, then the only squares
 it can reach are the squares <span class = 'latex-inline'>\((x, y)\)</span> such that <span class = 'latex-inline'>\(x\)</span> is even,
 <span class = 'latex-inline'>\(y\)</span> is even, and <span class = 'latex-inline'>\(x + y\)</span> is a multiple of <span class = 'latex-inline'>\(4\)</span>.</p>
 
-<p>The <strong>Alfil</strong> is a piece in <a href="https://www.chessvariants.com/rules/scirocco">Scirocco</a>,
-and promotes to the <a href="bishop.html"><em>Bishop</em></a>. Scirocco also has
-the <em>Stork</em>, which moves like the <strong>Alfil</strong>, and captures like
-the <a href="wazir.html"><em>Wazir</em></a> (but we ignore capture moves). The
-<em>Stork</em> promotes to the <a href="queen.html"><em>Queen</em></a>. The <strong>Alfil</strong>
-is also appears in <a href="https://www.chessvariants.com/rules/typhoon-revised"><em>Typhoon</em></a>,
-where it promotes to the <a href="scirocco.html"><em>Scirocco</em></a>.</p>
+<p>There are several pieces which move like the %%PIECE%%:</p>
+
+<table class = piece_list>
+  <tr class = 'row-0' markdown = '1'>
+    <th class = 'cell-0-0 col-0 ' markdown = '1'>Game</td>
+    <th class = 'cell-0-1 col-1 ' markdown = '1'>Piece</td>
+    <th class = 'cell-0-2 col-2 ' markdown = '1'>Promoted</td>
+    <th class = 'cell-0-3 col-3 ' markdown = '1'>Promotes to</td>
+    <th class = 'cell-0-4 col-4 ' markdown = '1'>Info</td>
+  </tr>
+  <tr class = 'row-1' markdown = '1'>
+    <th class = 'cell-1-0 col-0 ' markdown = '1'><a href="https://en.wikipedia.org/wiki/Fairy_chess_piece#Leapers"><em>Leapers</em></a></td>
+    <td class = 'cell-1-1 col-1 ' markdown = '1'><strong>Alfil</strong></td>
+    <td class = 'cell-1-2 col-2 ' markdown = '1'></td>
+    <td class = 'cell-1-3 col-3 ' markdown = '1'></td>
+    <td class = 'cell-1-4 col-4 ' markdown = '1'></td>
+  </tr>
+  <tr class = 'row-2' markdown = '1'>
+    <th class = 'cell-2-0 col-0 ' markdown = '1'><a href="https://www.chessvariants.com/rules/scirocco">Scirocco</a></td>
+    <td class = 'cell-2-1 col-1 ' markdown = '1'><strong>Alfil</strong></td>
+    <td class = 'cell-2-2 col-2 ' markdown = '1'></td>
+    <td class = 'cell-2-3 col-3 ' markdown = '1'><a href="bishop.html"><em>Bishop</em></a></td>
+    <td class = 'cell-2-4 col-4 ' markdown = '1'></td>
+  </tr>
+  <tr class = 'row-3' markdown = '1'>
+    <th class = 'cell-3-0 col-0 ' markdown = '1'><a href="https://www.chessvariants.com/rules/typhoon-revised">Typhoon</a></td>
+    <td class = 'cell-3-1 col-1 ' markdown = '1'><strong>Alfil</strong></td>
+    <td class = 'cell-3-2 col-2 ' markdown = '1'></td>
+    <td class = 'cell-3-3 col-3 ' markdown = '1'><a href="scirocco.html"><em>Scirocco</em></a></td>
+    <td class = 'cell-3-4 col-4 ' markdown = '1'></td>
+  </tr>
+  <tr class = 'row-4' markdown = '1'>
+    <th class = 'cell-4-0 col-0 ' markdown = '1'><a href="https://www.chessvariants.com/rules/scirocco">Scirocco</a>; <a href="https://www.chessvariants.com/rules/typhoon-revised">Typhoon</a></td>
+    <td class = 'cell-4-1 col-1 ' markdown = '1'><strong>Stork</strong></td>
+    <td class = 'cell-4-2 col-2 ' markdown = '1'></td>
+    <td class = 'cell-4-3 col-3 ' markdown = '1'><a href="queen.html"><em>Queen</em></a></td>
+    <td class = 'cell-4-4 col-4 ' markdown = '1'><span class = 'tooltip'>&#x238B;<span class = 'tooltiptext'>This piece has additional capture moves,<br>which we can ignore here</span></span></td>
+  </tr>
+</table>
 
 <h3 id = 'spiral'>Spiral</h3>
 
 <div class = "section">
-<p>On the Spiral, the <strong>Alfil</strong> moves in a similar fashion as the
+<p>On the Spiral, the %%PIECE%% moves in a similar fashion as the
 <a href="ferz.html"><em>Ferz</em></a>, except that it's path is blown up by a factor two.
 It will visit all the squares of the board which satisfy the condition
-above. As such, the <strong>Alfil</strong> visits <span class = 'latex-inline'>\(12.5\%\)</span> of the board.</p>
+above. As such, the %%PIECE%% visits <span class = 'latex-inline'>\(12.5\%\)</span> of the board.</p>
 </div>
 
 <h3 id = 'wedge'>Wedge</h3>
 
-<p>On both the Folded and Flat Wedge, the <strong>Alfil</strong> escapes to infinity
+<p>On both the Folded and Flat Wedge, the %%PIECE%% escapes to infinity
 by visiting the right most square of each second row.</p>
 
 <div class = 'trapped' data-piece = 'alfil'></div>
