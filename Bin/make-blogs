@@ -177,6 +177,8 @@ my %MACROS = (
 
         LEAPER        =>  '[*Leaper*](#wiki:Fairy_chess_piece#Leapers)',
         LEAPERS       =>  '[*Leapers*](#wiki:Fairy_chess_piece#Leapers)',
+        RIDER         =>  '[*Rider*](#wiki:Fairy_chess_piece#Riders)',
+        RIDERS        =>  '[*Riders*](#wiki:Fairy_chess_piece#Riders)',
 
         PIECE_HEADERS =>  "{class = piece_list}\n"            .
                           "{th = 1} Game & {th = 1} Piece & " .
@@ -191,6 +193,9 @@ my %MACROS = (
         CAPTURE       =>  tooltip ("&#x238B;", "This piece has additional "  .
                                                "capture moves,<br>"          .
                                                "which we can ignore here"),
+        ABILITIES     =>  tooltip ("&#x1F3A9;", "This piece has additional " .
+                                                "abilities,<br>which we "    .
+                                                "can ignore here"),
         COLOUR_BOUND  =>  tooltip ("colourbound", 
                                    "A colourbound piece will always stay "   .
                                    "on a square of the same colour: if it "  .

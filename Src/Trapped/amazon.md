@@ -29,7 +29,8 @@ it's known under various names, including:
          [Perfect Chess](#chess-v:diffmove.dir/perfectchess.html);
          [Turkish Chess](#chess-v:large.dir/turkishchess.html)
        & **General** & & & \\
-{th = 1} [Turkish Great Chess](#chess-v:historic.dir/indiangr1.html)
+{th = 1} [Eric's Great Chess](large.dir/ericgr.html);
+         [Turkish Great Chess](#chess-v:historic.dir/indiangr1.html)
        & **Giraffe**<sup>2</sup> & & & \\
 {th = 1} [Maharajah and the Sepoys](#wiki)
        & **Maharajah** & & & %%ROYAL%% \\
