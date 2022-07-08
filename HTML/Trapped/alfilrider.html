@@ -1,6 +1,6 @@
 <html>
 <head>
-<title>Alfilrider</title>
+<title>%%PIECE%%</title>
 <meta charset = "utf-8">
 <link rel  = 'preconnect' href = 'https://fonts.gstatic.com'>
 <link rel = 'stylesheet' href =      'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
@@ -17,24 +17,42 @@
 <script src = '../../JavaScript/Trapped/pages.js'></script>
 </head>
 
-<body><h1>Alfilrider</h1><div class = "byline">
+<body><h1>%%PIECE%%</h1><div class = "byline">
 by Abigail<br>
 <img src = "../../Images/jan_sluiters.jpg">
 </div>
 
 
-<p>The Alfilrider moves like a <a href="bishop.html">Bishop</a>, except that
+<p>The %%PIECE%% moves like a <a href="bishop.html"><em>Bishop</em></a>, except that
 it skips every other square. This means, on each move, it can
 move an unlimited, <em>even</em> number of squares in each of the four
 diagonal directions, under the condition each each second square
 is empty (it can jump over occupied squares which are an odd
-number of squares away from the starting position).</p>
+number of squares away from the starting position). The
+%%PIECE%% is <span class = 'tooltip underline'>colourbound<span class = 'tooltiptext'>A colourbound piece will always stay on a square of the same colour: if it starts on a black square, it will always remain on a black square; if it starts on a white square, it will always remain on a white square</span></span>.</p>
+
+<table class = piece_list>
+  <tr class = 'row-0' markdown = '1'>
+    <th class = 'cell-0-0 col-0 ' markdown = '1'>Game</td>
+    <th class = 'cell-0-1 col-1 ' markdown = '1'>Piece</td>
+    <th class = 'cell-0-2 col-2 ' markdown = '1'>Promoted</td>
+    <th class = 'cell-0-3 col-3 ' markdown = '1'>Promotes to</td>
+    <th class = 'cell-0-4 col-4 ' markdown = '1'>Info</td>
+  </tr>
+  <tr class = 'row-1' markdown = '1'>
+    <th class = 'cell-1-0 col-0 ' markdown = '1'><a href="https://en.wikipedia.org/wiki/Fairy_chess_piece#Riders"><em>Riders</em></a></td>
+    <td class = 'cell-1-1 col-1 ' markdown = '1'><strong>Alfilrider</strong></td>
+    <td class = 'cell-1-2 col-2 ' markdown = '1'></td>
+    <td class = 'cell-1-3 col-3 ' markdown = '1'></td>
+    <td class = 'cell-1-4 col-4 ' markdown = '1'></td>
+  </tr>
+</table>
 
 <h3 id = 'spiral'>Spiral</h3>
 
 <div class = "section">
-<p>On the Spiral, the Alfilrider moves in a similar way as the
-<a href="bishop.html">Bishop</a> does, but its path "blown up" by a factor
+<p>On the Spiral, the %%PIECE%% moves in a similar way as the
+<a href="bishop.html"><em>Bishop</em></a> does, but its path "blown up" by a factor
 of two. As such, it will visit
 \(\frac{1}{8} \cdot (\frac{1}{2} \cdot \frac{3}{4} + \frac{1}{4}) =
   \frac{5}{64} = 7.8125 \%\)
@@ -43,7 +61,7 @@ of the squares on the board.</p>
 
 <h3 id = 'wedge'>Wedge</h3>
 
-<p>On both the Folded Wedge and the Flat Wedge, the Alfilrider escapes
+<p>On both the Folded Wedge and the Flat Wedge, the %%PIECE%% escapes
 to infinity in a straight line, hugging the right side of the Wedge.</p>
 
 <div class = 'trapped' data-piece = 'alfilrider'></div>
