@@ -421,17 +421,6 @@ class Piece {
     }
 
 
-    full_name (args = {}) {
-        if (!this . _full_name) {
-            this . _full_name = ""
-            if (this . prefix) {
-                this . _full_name += this . prefix + " "
-            }
-            this . _full_name += this . name ()
-        }
-        return this . _full_name
-    }
-
     file (args = {}) {
         if (!this . _file) {
             if (this . parent) {

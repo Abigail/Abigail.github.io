@@ -135,7 +135,7 @@ function set_up_info (name, piece) {
     let info_table = `
         <table class = 'info_table'>
              <tr><th colspan = 4 id = 'title-${name}' class = 'title'>
-                 ${piece . full_name ()}</th></tr>
+                 ${piece . name ()}</th></tr>
              <tr><td>Step</td>
                  <td colspan = 3 id = 'steps-${name}'></td></tr>
              <tr><td>Max value</td>
@@ -433,7 +433,7 @@ class Trapped {
     // Set the title (name of piece) in the title field
     //
     set_title () {
-        let title = this . piece . full_name ()
+        let title = this . piece . name ()
 
         $(`#title-${this . name}`) . html (title)
     }

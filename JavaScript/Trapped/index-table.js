@@ -63,55 +63,37 @@ let chess_pieces = {
     king: 1, queen: 1, rook: 1, bishop: 1, knight: 1, pawn: 1,
 }
 
+
 function make_index_table () {
     let div = $("div.index")
 
     let table  = "<table class = 'index'>"
-        table += "<tr><th rowspan = 2 colspan = 2>Piece</th>"  +
-                     "<th rowspan = 2>From</th>"   +
+        table += "<tr><th rowspan = 2>Piece</th>"  +
                      "<th rowspan = 2>Spiral</th>" +
                      "<th colspan = 2>Wedge</th>"  + 
                  "</tr>\n" 
         table += "<tr><th>Folded</th>" +
                      "<th>Flat</th></tr>\n"
 
-    for (const set_name in set_info) {
-        let set = set_info [set_name]
-        let pieces = set . pieces
-        if (set . chess_variant) {
-            pieces = pieces . filter ((piece_name) => {
-                return !chess_pieces [piece_name]
+    let names = Object . keys (pieces) . sort () . forEach ((piece_name) => {
+        let piece = new Piece ({piece_name: piece_name})
+        let name  = piece . name ();
+
+        table += `<tr><td class = 'piece-name'>`               +
+                 linkify ({name: name, href: piece . file ()}) + "</td>"
+
+        if (piece . results) {
+            piece . results . forEach ((content) => {
+                let class_name = css_class (content)
+                table += `<td class = '${class_name}'>${content}</td>`
             })
         }
+        table += "</tr>";
+    })
 
-        pieces . forEach ((piece_name, i) => {
-            let piece = new Piece ({piece_name: piece_name})
-            let name  = piece . index_name_in_set ({set_name: set_name})
-            let cs    = name . match (/\/\//) ? 1 : 2
-
-            table += `<tr><td class = 'piece-name' colspan = '${cs}'>` +
-                     linkify ({name: name,
-                               href: piece . file ()})                 +
-                      "</td>"
-            if (i == 0) {
-                let sname = set . name || title_case (set_name)
-                if (set . href) {
-                    sname = `<a href = '${set . href}'>${sname}</a>`
-                }
-                table += `<td rowspan = '${pieces . length}'>` +
-                         `${sname}</td>`
-            }
-            if (piece . results) {
-                piece . results . forEach ((content) => {
-                    let class_name = css_class (content)
-                    table += `<td class = '${class_name}'>${content}</td>`
-                })
-            }
-            table += "</tr>\n"
-        })
-    }
 
     table += "</table>"
 
     $(div) . html (table)
 }
+
