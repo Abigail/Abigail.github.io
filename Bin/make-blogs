@@ -686,8 +686,7 @@ sub pre_process ($text, $directives) {
     #
     # Handle macros
     #
-    1 while $text =~ s {(%%([A-Z_]+)%%)}
-                       {$MACROS {$type} {$2} || $1}e;
+    $text =~ s {(%%([A-Z_]+)%%)} {$MACROS {$type} {$2} || $1}eg;
 
     #
     # Iterate over the lines. Use a state to determine what the current
