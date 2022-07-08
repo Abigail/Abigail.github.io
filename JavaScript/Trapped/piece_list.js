@@ -1,7 +1,106 @@
 let pieces = {
-    //
-    // Chess pieces
-    //
+    abbot: {
+        betza:    "F4N",
+        results: ["T/6334", "F*/100%", "F*/100%"],
+    },
+
+    ace: {
+        parent: "amazon",
+    },
+
+    acme: {
+        betza:    "QC",
+        results: ["W", "FC", "F/100%"],
+    },
+
+    acropolis: {
+        betza:    "RNC",
+        results: ["W", "F*/100%", "F*/100%"],
+    },
+
+    actor: {
+        betza:    "BNC",
+        results: ["T/3,700,894", "F*/100%", "F*/100%"],
+    },
+
+    actress: {
+        betza:    "QNC",
+        results: ["W", "FC", "F/100%"],
+    },
+
+    alfil: {        // (2, 2)-leaper
+        betza:    "A",
+        results: ["F/12.5%", "E", "E"],
+    },
+
+    alfilrider: {
+        betza:    "AA",
+        results: ["F*/7.8125%", "E", "E"],
+    },
+
+    alibaba: {
+        betza:    "AD",
+        results: ["F/50%", "F/50%", "F/50%"],
+    },
+
+    amazon: {
+        betza: "QN",
+        results: ["W", "FC", "F/100%"],
+    },
+
+    antelope: {     // (4, 3)-leaper
+        betza:    "(3,4)",
+        results: ["T/1887", "T/128", "T/416"],
+    },
+
+    archbishop:    {
+        betza:    "BN",
+        results: ["T/6386", "F*/100%", "F*/100%"],
+    },
+
+    banner: {
+        betza:    "fsW",
+        results: ["F/25%", "F/100%", "E"],
+    },
+
+    beaver: {
+        betza:    "fFfWsW4bW0",
+        results: ["W", "FC", "F*/100%"],
+    },
+
+    bishop: {
+        betza:  "B",
+        results: ["F/31.25%", "E", "E"],
+     },
+
+    bishops_dog: {
+        betza:    "F3",
+        results: ["T/129", "E", "E"],
+        _name:    "Bishop's Dog",
+    },
+
+    bison: {
+        betza:    "CZ",
+        results: ["T/844,094", "?/16,641,162", "?/12,266,550"],
+    },
+
+    blind_monkey: {
+        betza:    "FsW",
+        results: ["F*/100%", "FC", "F/100%"],
+    },
+
+    blind_tiger: {
+        betza:    "FbsW",
+        results: ["F*/100%", "FC", "F/100%"],
+    },
+
+    blue_whale: {
+        parent:   "copper_general",
+    },
+
+
+
+
     king: {
         betza:  "K",
         results: ["W", "FC", "F/100%"],
@@ -14,10 +113,6 @@ let pieces = {
         betza:  "R",
         results: ["W", "T/6", "E"],
     },
-    bishop: {
-        betza:  "B",
-        results: ["F/31.25%", "E", "E"],
-     },
     knight: {
         betza:  "N",
         results: ["T/2015", "T/50", "E*"],
@@ -28,9 +123,6 @@ let pieces = {
     },
 
 
-    //
-    // Basic leapers
-    //
     wazir: {        // (1, 0)-leaper
         betza:    "W",
         results: ["W", "T/6", "E"],
@@ -42,10 +134,6 @@ let pieces = {
     dabbaba: {      // (2, 0)-leaper
         betza:    "D",
         results: ["F/25%", "E", "E"],
-    },
-    alfil: {        // (2, 2)-leaper
-        betza:    "A",
-        results: ["F/12.5%", "E", "E"],
     },
     threeleaper: {  // (3, 0)-leaper
         betza:    "H",
@@ -74,10 +162,6 @@ let pieces = {
     stag: {         // (4, 2)-leaper
         betza:    "(2,4)",
         results: ["T/2015", "E*", "E*"],
-    },
-    antelope: {     // (4, 3)-leaper
-        betza:    "(3,4)",
-        results: ["T/1887", "T/128", "T/416"],
     },
     commuter: {     // (4, 4)-leaper
         betza:    "(4,4)",
@@ -155,10 +239,6 @@ let pieces = {
         betza:    "DNA",
         results: ["?/14,106,875", "F*/100%", "?/16,744,468"],
     },
-    alibaba: {
-        betza:    "AD",
-        results: ["F/50%", "F/50%", "F/50%"],
-    },
     hawk: {
         betza:    "ADGH",
         results: ["F*/100%", "F*/100%", "F*/100%"],
@@ -170,10 +250,6 @@ let pieces = {
     okapi: {
         betza:    "NZ",
         results: ["T/947,668", "?/16,637,381", "E*"],
-    },
-    bison: {
-        betza:    "CZ",
-        results: ["T/844,094", "?/16,641,162", "?/12,266,550"],
     },
     zebu:  {
         betza:    "C(1,4)",
@@ -206,10 +282,6 @@ let pieces = {
         betza:    "NN",
         results: ["T/509", "T/60", "T/22"],
     },
-    alfilrider: {
-        betza:    "AA",
-        results: ["F*/7.8125%", "E", "E"],
-    },
     threeleaperrider: {
         betza:    "HH",
         results: ["F/11.1&#x0305;%", "E", "E"],
@@ -235,10 +307,6 @@ let pieces = {
         betza:  "NfW",
         results: ["T/94,632", "T/42", "F*/100%"],
     },
-    archbishop:    {
-        betza:    "BN",
-        results: ["T/6386", "F*/100%", "F*/100%"],
-    },
     princess: {parent: "archbishop"},
     cardinal: {parent: "archbishop"},
     chancellor: {
@@ -246,10 +314,6 @@ let pieces = {
         results: ["W", "F/100%", "F/100%"],
     },
     empress:  {parent: "chancellor"},
-    amazon: {
-        betza: "QN",
-        results: ["W", "FC", "F/100%"],
-    },
 
     //
     //     Crowned pieces
@@ -289,28 +353,6 @@ let pieces = {
         results: ["T/146", "E", "E"],
     },
 
-    //
-    //   -  Overkill Ecumenical Chess
-    //
-    ace: {
-        parent: "amazon",
-    },
-    acme: {
-        betza:    "QC",
-        results: ["W", "FC", "F/100%"],
-    },
-    acropolis: {
-        betza:    "RNC",
-        results: ["W", "F*/100%", "F*/100%"],
-    },
-    actor: {
-        betza:    "BNC",
-        results: ["T/3,700,894", "F*/100%", "F*/100%"],
-    },
-    actress: {
-        betza:    "QNC",
-        results: ["W", "FC", "F/100%"],
-    },
     oec_caliph: {
         betza:    "BC",
         _name:    "Caliph",
@@ -325,13 +367,6 @@ let pieces = {
     },
 
 
-    //
-    //   - Typhoon Chess, Scirocco Chess
-    //
-    abbot: {
-        betza:    "F4N",
-        results: ["T/6334", "F*/100%", "F*/100%"],
-    },
     firzan: {
         parent: "ferz",
     },
@@ -418,23 +453,6 @@ let pieces = {
     //
     // Typhoon
     //
-    banner: {
-        betza:    "fsW",
-        results: ["F/25%", "F/100%", "E"],
-    },
-    beaver: {
-        betza:    "fFfWsW4bW0",
-        results: ["W", "FC", "F*/100%"],
-    },
-    bishops_dog: {
-        betza:    "F3",
-        results: ["T/129", "E", "E"],
-        _name:    "Bishop's Dog",
-    },
-    blind_tiger: {
-        betza:    "FbsW",
-        results: ["F*/100%", "FC", "F/100%"],
-    },
     cicada: {
         parent: "king",
     },
@@ -639,9 +657,6 @@ let pieces = {
     white_whale: {
         parent: "king",
     },
-    blue_whale: {
-        parent:   "copper_general",
-    },
     grey_whale: {
         parent:   "hunter",
     },
@@ -667,18 +682,14 @@ let pieces = {
     //
     //   -  Other Shogi variants
     //
-    "blind_monkey": {
-        betza:    "FsW",
-        results: ["F*/100%", "FC", "F/100%"],
-     },
-    "flying_cock": {
+    flying_cock: {
         betza:    "fFsW",
         results: ["E*", "FC", "F*/100%"],
-     },
-    "drunk_elephant": {
+    },
+    drunk_elephant: {
         betza: "FfsW",
         results: ["F*/100%", "FC", "F/100%"],
-     },
+    },
 
 }
 
