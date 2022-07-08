@@ -110,12 +110,13 @@ let pieces = {
     caliph: {
         betza:    "WA",
         results: ["W", "F*/100%", "E"],
+        _index_name: "Caliph (Wazir + Alfil)",
     },
 
     oec_caliph: {
         betza:       "BC",
         _name:       "Caliph",
-        _index_name: "Caliph (OEC)",
+        _index_name: "Caliph (Bison + Camel)",
         results:    ["T/1563", "F*/50%", "F*/50%"],
     },
 
@@ -134,7 +135,9 @@ let pieces = {
         results: ["W", "F*/100%", "F*/100%"],
     },
 
-    cardinal: {parent: "archbishop"},
+    cardinal: {
+        parent: "archbishop"
+    },
 
     centaur: {
         betza:    "WFN",
@@ -193,7 +196,71 @@ let pieces = {
     // D pieces
     //
 
+    //
+    // E pieces
+    //
+    elder: {
+        parent: "amazon"
+    },
 
+    empress:  {
+        parent: "chancellor",
+        _index_name: "Empress (Rook-Knight Compound)",
+    },
+
+    empress_qn: {
+        parent: "amazon",
+        _name:  "Empress",
+        _index_name: "Empress (Queen-Knight Compound)",
+    },
+
+    //
+    // G pieces
+    //
+    general: {
+        parent: "amazon"
+    },
+
+    giraffe: {      // (4, 1)-leaper
+        betza:    "(1,4)",
+        results: ["T/13102", "T/114", "T/94"],
+        _index_name: "Giraffe ((4, 1) - leaper)",
+    },
+
+    giraffe_dobutsu: {
+        parent: "wazir",
+        _name: "Giraffe",
+        _index_name: "Giraffe (D&#x14d;butsu sh&#x14d;gi)",
+    },
+
+    giraffe_tgc: {
+        parent: "amazon",
+        _name:  "Giraffe",
+        _index_name: "Giraffe (Turkish Great Chess)",
+    },
+
+    //
+    // M pieces
+    //
+    maharajah: {
+        parent: "amazon",
+    },
+
+    //
+    // T pieces
+    //
+    terror: {
+        parent: "amazon",
+    },
+
+    tiger: {
+        parent: "amazon",
+    },
+
+
+    //
+    // Unsorted
+    //
     king: {
         betza:  "K",
         results: ["W", "FC", "F/100%"],
@@ -243,10 +310,6 @@ let pieces = {
     fourleaper: {   // (4, 0)-leaper
         betza:    "(0,4)",
         results: ["F/6.25%", "E", "E"],
-    },
-    giraffe: {      // (4, 1)-leaper
-        betza:    "(1,4)",
-        results: ["T/13102", "T/114", "T/94"],
     },
     stag: {         // (4, 2)-leaper
         betza:    "(2,4)",
@@ -374,7 +437,6 @@ let pieces = {
         results: ["T/94,632", "T/42", "F*/100%"],
     },
     princess: {parent: "archbishop"},
-    empress:  {parent: "chancellor"},
 
     //
     //     Crowned pieces
@@ -667,10 +729,6 @@ let pieces = {
         parent: "king",
         _name: "Lion",
     },
-    dobutsu_giraffe: {
-        parent: "wazir",
-        _name: "Giraffe",
-    },
     dobutsu_elephant: {
         parent: "ferz",
         _name: "Elephant",
@@ -864,7 +922,7 @@ let set_info = {
     dobutsu_shogi: {
         name: "D&#x14d;butsu Sh&#x14d;gi",
         href: "https://en.wikipedia.org/wiki/D%C5%8Dbutsu_sh%C5%8Dgi",
-        pieces: ["dobutsu_lion", "dobutsu_giraffe", "dobutsu_elephant",
+        pieces: ["dobutsu_lion", "giraffe_dobutsu", "dobutsu_elephant",
                  "dobutsu_chick", "dobutsu_hen"],
     },
     whale_shogi: {
