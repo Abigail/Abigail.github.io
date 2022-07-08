@@ -187,6 +187,9 @@ span.qed:hover::after {
     position:                        absolute;
     z-index:                                1;
 }
+.tooltip.underline {
+    border-bottom:           black dotted 1px;
+}
 
 .tooltip:hover .tooltiptext {
     visibility:                       visible;

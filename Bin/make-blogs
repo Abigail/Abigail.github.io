@@ -156,9 +156,10 @@ my %WHERE_INFO = (
    "chess-v"   =>  {url => $CHESS_VARIANT_URL}, # Not all pages use .html...
 );
 
-my sub tooltip ($text, $tooltiptext) {
+my sub tooltip ($text, $tooltiptext, @classes) {
+    my $classes = join " ", "tooltip", @classes;
     sprintf "<span class = '%s'>%s<span class = '%s'>%s</span></span>" =>
-            "tooltip", $text, "tooltiptext", $tooltiptext
+            $classes, $text, "tooltiptext", $tooltiptext
 }
 
 
@@ -174,6 +175,9 @@ my %MACROS = (
         WHALE_SHOGI   =>  '[Whale Sh&#x14d;gi (&#x9be8;&#x5c06;&#x68cb;)]' .
                           '(#chess-v:shogivariants.dir/whale.html)',
 
+        LEAPER        =>  '[*Leaper*](#wiki:Fairy_chess_piece#Leapers)',
+        LEAPERS       =>  '[*Leapers*](#wiki:Fairy_chess_piece#Leapers)',
+
         PIECE_HEADERS =>  "{class = piece_list}\n"            .
                           "{th = 1} Game & {th = 1} Piece & " .
                           "{th = 1} Promoted & {th = 1} Promotes to & " .
@@ -187,6 +191,14 @@ my %MACROS = (
         CAPTURE       =>  tooltip ("&#x238B;", "This piece has additional "  .
                                                "capture moves,<br>"          .
                                                "which we can ignore here"),
+        COLOUR_BOUND  =>  tooltip ("colourbound", 
+                                   "A colourbound piece will always stay "   .
+                                   "on a square of the same colour: if it "  .
+                                   "starts on a black square, it will "      .
+                                   "always remain on a black square; if "    .
+                                   "it starts on a white square, it will "   .
+                                   "always remain on a white square",
+                                   "underline"),
     },
 );
 
