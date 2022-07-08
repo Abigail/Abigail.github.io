@@ -75,8 +75,15 @@ function make_index_table () {
         table += "<tr><th>Folded</th>" +
                      "<th>Flat</th></tr>\n"
 
-    let names = Object . keys (pieces) . sort () . forEach ((piece_name) => {
-        let piece = new Piece ({piece_name: piece_name})
+    Object . keys (pieces) . map ((piece_name) => {
+        return new Piece ({piece_name: piece_name})
+    }) . sort ((p1, p2) => {
+        let name1 = p1 . index_name ()
+        let name2 = p2 . index_name ()
+        if (name1 < name2) {return -1}
+        if (name1 > name2) {return  1}
+                            return  0
+    }) . forEach ((piece) => {
         let name  = piece . index_name ();
 
         table += `<tr><td class = 'piece-name'>`               +
