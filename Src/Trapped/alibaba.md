@@ -17,10 +17,11 @@ There are several pieces which move this way:
 |====
 %%PIECE_HEADERS%%
 {th = 1} *Combined Leapers*
-       & **Alfilrider** & & & \\
+       & **Alibaba**
+       & \\
 {th = 1} %%SCIROCCO%%; %%TYPHOON%%
        & **Dervish**
-       & & [*Harpy*](genie.html?piece=harpy) & %%ABILITIES%% \\
+       & %%PROMOTES_TO%% [*Harpy*](genie.html?piece=harpy); %%ABILITIES%% \\
 ====|
 
 ### Spiral

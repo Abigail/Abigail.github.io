@@ -10,7 +10,8 @@ one orthogonal direction, and one square away in the other.
 |====
 %%PIECE_HEADERS%%
 {th = 1} %%OVERKILL%%
-       & **Acme** & & & \\
+       & **Acme**
+       & \\
 ====|
 
 

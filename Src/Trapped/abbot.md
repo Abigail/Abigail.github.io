@@ -14,8 +14,7 @@ This makes the %%PIECE%% a limited range [*Archbishop*](archbishop.html).
 %%PIECE_HEADERS%%
 {th = 1} %%TYPHOON%%, %%SCIROCCO%%
        & **Abbot**
-       & [*Marquis*](marquis.html)
-       & & \\
+       & %%PROMOTED%% [*Marquis*](marquis.html) \\
 ====|
 
 

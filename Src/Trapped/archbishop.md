@@ -4,25 +4,29 @@ The %%PIECE%% combines the movements
 of the [*Knight*](knight.html) and [*Bishop*](bishop.html).
 
 The [*Knight*](knight.html)-[*Bishop*](bishop.html) compound
-is used in many games, and it known under several names:
+is used in many games, and it is known under several names:
 
 |====
 %%PIECE_HEADERS%%
 {th = 1} [The Emperor's Game](#chess-v:large.dir/emperor.html);
          [The Sultan's Game](#chess-v:large.dir/sultan.html)
-       & **Adjudant** & & & \\
+       & **Adjudant**
+       & \\
 {th = 1} [Abecedarian Big Chess
                     (ABChess)](#chess-v:unequal.dir/abchess/abeced-home.html);
          [Cagliostro's Chess](#chess-v:large.dir/cagliostro.html);
          [Capablanca Chess](#chess-v:large.dir/capablanca.html);
          [Haynie's Great Chess](#chess-v:large.dir/haynieschess.html);
          [Renniassance Chess](#chess-v:large.dir/renaiss.html)
-       & **Archbishop** & & & \\
+       & **Archbishop**
+       & \\
 {th = 1} [Twenty-First Century
                        Chess](#chess-v:large.dir/21st-century-chess.html)
-       & **Baron** & & & \\
+       & **Baron**
+       & \\
 {th = 1} [Hammer Chess](#chess-v:diffmove.dir/hammer.html)
-       & **Bishop**<sup>1</sup> & & & \\
+       & **Bishop**
+       & Not to be confused with the traditional [*Bishop*](bishop.html) \\
 {th = 1} [4 Armies](large.dir/4armies.html);
          [Euchess](#chess-v:large.dir/euchess.html);
          [Fantasy Grand Chess](#chess-v:large.dir/fantasygrandchess.html);
@@ -34,26 +38,36 @@ is used in many games, and it known under several names:
          [Pre-Grandchess](large.dir/pregrand.html);
          [Pick-the-team Chess](#chess-v:large.dir/contest/picktheteam.html);
          [Terror Chess](#chess-v:large.dir/terror.html)
-       & **Cardinal** & & & \\
+       & **Cardinal**
+       & \\
 {th = 1} [Carrera's Chess](#chess-v:historic.dir/carrera.html)
-       & **Centaur**<sup>2</sup> & & & \\
+       & **Centaur**
+       & The [King - Knight compound](centaur.html) is
+         also known as the *Centaur* \\
 {th = 1} [The Knightliest Black Hole](#chess-v:32turn.dir/knight32.html)
-       & **Count** & & & \\
+       & **Count**
+       & \\
 {th = 1} [Drop Chess](#chess-v:unequal.dir/dropchess.html)
-       & **Crusader** & & & \\
+       & **Crusader**
+       & \\
 {th = 1} [Bird's Chess](#chess-v:large.dir/bird.html)
-       & **Equerry** & & & \\
+       & **Equerry**
+       & \\
 {th = 1} [Wolf Chess](large.dir/wolf.html)
-       & **Fox** & & & \\
+       & **Fox**
+       & \\
 {th = 1} [Janus Chess](#wiki)
-       & **Janus** & & & \\
+       & **Janus**
+       & \\
 {th = 1} [Giant Chess](#chess-v:large.dir/giantchess.html);
          [Modern Chess](#chess-v:large.dir/modern.html);
          [Perfect Chess](#chess-v:diffmove.dir/perfectchess.html);
          [Turkish Chess](#chess-v:large.dir/turkishchess.html)
-       & **Minister** & & & \\
+       & **Minister**
+       & \\
 {th = 1} [The Colorbound Clobberers](#chess-v:d.betza/chessvar/cda/colclob.html)
-       & **NB** & & & \\
+       & **NB**
+       & \\
 {th = 1} [Bedlam](#chess-v:other.dir/bedlam.html);
          [Cavalier Chess](#chess-v:dpieces.dir/cavalier/index.html);
          [Fusion Chess](#chess-v:other.dir/fusion.html);
@@ -61,20 +75,18 @@ is used in many games, and it known under several names:
          [Grand Cavalier Chess](#chess-v:large.dir/grandcavalier.html);
          [Metamorph Chess](#chess-v:other.dir/metamorph.html);
          [Metamorphin' Fusion Chess](#chess-v:other.dir/metamorph-fusion.html)
-       & **Paladin** & & & \\
+       & **Paladin**
+       & \\
 {th = 1} [Tutti-Frutti Chess](#chess-v:dpieces.dir/tuttifr.html);
          Problemists
-       & **Princess** & & & \\
+       & **Princess**
+       & \\
 {th = 1} [Cobra Chess](#chess-v:large.dir/cobra.html);
          [Eric's Great Chess](large.dir/ericgr.html);
          [Turkish Great Chess](#chess-v:historic.dir/indiangr1.html)
-       & **Vizir** & & & \\
+       & **Vizir**
+       & \\
 ====|
-
-<sup>1</sup> Not to be confused with the traditional
-            [*Bishop*](bishop.html).<br>
-<sup>2</sup>The [King - Knight compound](centaur.html) is also known as the
-            *Centaur*.<br>
 
 Other, less common names are: *Adjutant*, *Aircraft*, *Davidson*, *Deacon*,
 *Hawk*, *Horseman*, *Monk*, *Pilot*, *Police Chief*,

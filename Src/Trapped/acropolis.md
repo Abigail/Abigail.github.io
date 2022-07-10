@@ -7,7 +7,8 @@ the movements of the [*Knight*](knight.html) and [*Camel*](camel.html).)
 |====
 %%PIECE_HEADERS%%
 {th = 1} %%OVERKILL%%
-       & **Acropolis** & & & \\
+       & **Acropolis**
+       & \\
 ====|
 
 ### Spiral

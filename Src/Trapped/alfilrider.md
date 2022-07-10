@@ -11,7 +11,8 @@ number of squares away from the starting position). The
 |====
 %%PIECE_HEADERS%%
 {th = 1} %%RIDERS%%
-       & **Alfilrider** & & & \\
+       & **Alfilrider** 
+       & \\
 ====|
 
 ### Spiral

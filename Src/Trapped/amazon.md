@@ -14,34 +14,47 @@ it's known under various names, including:
 %%PIECE_HEADERS%%
 {th = 1} [Cardmate](#chess-v:large.dir/cardmat.html);
          %%OVERKILL%%
-       & **Ace** & &&  \\
+       & **Ace**
+       & \\
 {th = 1} [Amazon Chess](#chess-v:diffmove.dir/amazone.html);
          [Gigachess](#chess-v:large.dir/gigachess.html);
          [Haynie's Great Chess](#chess-v:large.dir/haynieschess.html);
          [Tutti-Frutti Chess](#chess-v:dpieces.dir/tuttifr.html)
-       & **Amazon** & & & \\
+       & **Amazon**
+       & \\
 {th = 1} [Fantasy Grand Chess](#chess-v:large.dir/contest/fantasygrand.html)
-       & **Elder** & & \\
+       & **Elder**
+       & \\
 {th = 1} [Beau Monde Chess](#chess-v:large.dir/beaumonde.html);
          [Millenial Chess](#chess-v:large.dir/contest/milchess.html)
-       & **Empress**<sup>1</sup> & & & \\
+       & **Empress**
+       & The [Rook-Knight compound](chancellor.html?piece=empress) is
+         also known as the *Empress* \\
 {th = 1} [The Emperor's Game](#chess-v:large.dir/emperor.html);
          [Giant Chess](#chess-v:large.dir/giantchess.html);
          [Perfect Chess](#chess-v:diffmove.dir/perfectchess.html);
          [Turkish Chess](#chess-v:large.dir/turkishchess.html)
-       & **General** & & & \\
+       & **General**
+       & \\
 {th = 1} [Eric's Great Chess](large.dir/ericgr.html);
          [Turkish Great Chess](#chess-v:historic.dir/indiangr1.html)
-       & **Giraffe**<sup>2</sup> & & & \\
+       & **Giraffe**
+       & Not to be confused with the (4,1)-leaper [*Giraffe*](giraffe.html),
+         or the [*Giraffe*](wazir.html?piece=giraffe_dobutsu) from
+         %%DOBUTSU%% \\
 {th = 1} [Maharajah and the Sepoys](#wiki)
-       & **Maharajah** & & & %%ROYAL%% \\
+       & **Maharajah**
+       & %%ROYAL%% \\
 {th = 1} [Terror Chess](#chess-v:large.dir/terror.html)
-       & **Terror** & & & \\
+       & **Terror**
+       & \\
 {th = 1} [Tiger Hunt](#chess-v:unequal.dir/tigerhnt.html)
-       & **Tiger** & & & %%ROYAL%% \\
+       & **Tiger**
+       & %%ROYAL%% \\
 {th = 1} [Twenty-First Century
                        Chess](#chess-v:large.dir/21st-century-chess.html)
-       & **Sorceror** & [*Pawn*](pawn.html) or *Jester* & & \\
+       & **Sorceror**
+       & %%PROMOTED%% [*Pawn*](pawn.html) or *Jester* \\
 ====|
 
 Other names include:
@@ -49,11 +62,6 @@ Other names include:
 *Grand Chancellor*, *Rettah*,
 *Royal Guard*, *Superqueen*, *Tetra Queen*, and *Wyvern*.
 
-<sup>1</sup>The Rook-Knight compound is also known as the 
-            [*Empress*](chancellor.html?piece=empress).<br>
-<sup>2</sup>Not to be confused with the (4,1)-leaper [*Giraffe*](giraffe.html),
-            or the [*Giraffe*](wazir.html?piece=giraffe_dobutsu) from
-            %%DOBUTSU%%.
 
 ### Spiral
 
