@@ -11,27 +11,57 @@ is used in many games, and it known under several names:
 {th = 1} [The Emperor's Game](#chess-v:large.dir/emperor.html);
          [The Sultan's Game](#chess-v:large.dir/sultan.html)
        & **Adjudant** & & & \\
-{th = 1} [Cagliostro's Chess](#chess-v:large.dir/cagliostro.html);
+{th = 1} [Abecedarian Big Chess
+                    (ABChess)](#chess-v:unequal.dir/abchess/abeced-home.html);
+         [Cagliostro's Chess](#chess-v:large.dir/cagliostro.html);
          [Capablanca Chess](#chess-v:large.dir/capablanca.html);
+         [Haynie's Great Chess](#chess-v:large.dir/haynieschess.html);
          [Renniassance Chess](#chess-v:large.dir/renaiss.html)
        & **Archbishop** & & & \\
-{th = 1} [Euchess](#chess-v:large.dir/euchess.html);
+{th = 1} [Twenty-First Century
+                       Chess](#chess-v:large.dir/21st-century-chess.html)
+       & **Baron** & & & \\
+{th = 1} [Hammer Chess](#chess-v:diffmove.dir/hammer.html)
+       & **Bishop**<sup>1</sup> & & & \\
+{th = 1} [4 Armies](large.dir/4armies.html);
+         [Euchess](#chess-v:large.dir/euchess.html);
+         [Fantasy Grand Chess](#chess-v:large.dir/fantasygrandchess.html);
+         [Full Double Chess](#chess-v:large.dir/full-double-chess.html);
+         [Gigachess](#chess-v:large.dir/gigachess.html);
          [Grand Chess](large.dir/freeling.html);
+         [Haynie's Great Chess](#chess-v:large.dir/haynieschess.html);
          %%OVERKILL%%;
-         [Pre-Grandchess](large.dir/pregrand.html)
+         [Pre-Grandchess](large.dir/pregrand.html);
+         [Pick-the-team Chess](#chess-v:large.dir/contest/picktheteam.html);
+         [Terror Chess](#chess-v:large.dir/terror.html)
        & **Cardinal** & & & \\
 {th = 1} [Carrera's Chess](#chess-v:historic.dir/carrera.html)
-       & **Centaur** & & & \\
+       & **Centaur**<sup>2</sup> & & & \\
+{th = 1} [The Knightliest Black Hole](#chess-v:32turn.dir/knight32.html)
+       & **Count** & & & \\
+{th = 1} [Drop Chess](#chess-v:unequal.dir/dropchess.html)
+       & **Crusader** & & & \\
 {th = 1} [Bird's Chess](#chess-v:large.dir/bird.html)
        & **Equerry** & & & \\
 {th = 1} [Wolf Chess](large.dir/wolf.html)
        & **Fox** & & & \\
 {th = 1} [Janus Chess](#wiki)
        & **Janus** & & & \\
-{th = 1} [Modern Chess](#chess-v:large.dir/modern.html)
+{th = 1} [Giant Chess](#chess-v:large.dir/giantchess.html);
+         [Modern Chess](#chess-v:large.dir/modern.html);
+         [Perfect Chess](#chess-v:diffmove.dir/perfectchess.html);
+         [Turkish Chess](#chess-v:large.dir/turkishchess.html)
        & **Minister** & & & \\
 {th = 1} [The Colorbound Clobberers](#chess-v:d.betza/chessvar/cda/colclob.html)
        & **NB** & & & \\
+{th = 1} [Bedlam](#chess-v:other.dir/bedlam.html);
+         [Cavalier Chess](#chess-v:dpieces.dir/cavalier/index.html);
+         [Fusion Chess](#chess-v:other.dir/fusion.html);
+         [Fusion Chessgi](#chess-v:other.dir/fusion-chessgi.html);
+         [Grand Cavalier Chess](#chess-v:large.dir/grandcavalier.html);
+         [Metamorph Chess](#chess-v:other.dir/metamorph.html);
+         [Metamorphin' Fusion Chess](#chess-v:other.dir/metamorph-fusion.html)
+       & **Paladin** & & & \\
 {th = 1} [Tutti-Frutti Chess](#chess-v:dpieces.dir/tuttifr.html);
          Problemists
        & **Princess** & & & \\
@@ -41,9 +71,10 @@ is used in many games, and it known under several names:
        & **Vizir** & & & \\
 ====|
 
-It is a frequently seen fairy chess piece. Problemists call this
-piece a *Princess*. In *Turkish Great Chess*, the piece was
-known as a *Vizir*.
+<sup>1</sup> Not to be confused with the traditional
+            [*Bishop*](bishop.html).<br>
+<sup>2</sup>The [King - Knight compound](centaur.html) is also known as the
+            *Centaur*.<br>
 
 Other, less common names are: *Adjutant*, *Aircraft*, *Davidson*, *Deacon*,
 *Hawk*, *Horseman*, *Monk*, *Pilot*, *Police Chief*,
