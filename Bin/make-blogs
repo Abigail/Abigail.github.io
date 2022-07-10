@@ -182,7 +182,6 @@ my %MACROS = (
 
         PIECE_HEADERS =>  "{class = piece_list}\n"            .
                           "{th = 1} Game & {th = 1} Piece & " .
-                          "{th = 1} Promoted & {th = 1} Promotes to & " .
                           "{th = 1} Info \\\\",
         ROYAL         =>  tooltip ("&#x265A;", "This piece is *Royal*; if "  .
                                                "all Royal pieces have been " .
@@ -196,6 +195,8 @@ my %MACROS = (
         ABILITIES     =>  tooltip ("&#x1F3A9;", "This piece has additional " .
                                                 "abilities,<br>which we "    .
                                                 "can ignore here"),
+        PROMOTES_TO   =>  tooltip ("&#x260A;",  "Promotes to"),
+        PROMOTED      =>  tooltip ("&#x260B;",  "Is promoted"),
         COLOUR_BOUND  =>  tooltip ("colourbound", 
                                    "A colourbound piece will always stay "   .
                                    "on a square of the same colour: if it "  .

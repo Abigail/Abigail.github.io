@@ -542,7 +542,7 @@ let pieces = {
     knight: {
         betza:  "N",
         results: ["T/2015", "T/50", "E*"],
-        _name: "Knight (Chess)",
+        _index_name: "Knight (Chess)",
     },
 
     shogi_knight: {
@@ -1026,7 +1026,8 @@ let set_info = {
             
                  "abbot", "banner", "beaver", "bishops_dog", "blind_tiger",
                  "centaur", "chariot", "cicada", "copper_general", "cuckoo",
-                 "dayrider", "diving_osprey", "dragon_kite", "drunk_elephant",
+                 "dayrider", "dervish", "diving_osprey", "dragon_kite",
+                 "drunk_elephant",
                  "duke", "elephant_prince", "ferocious_leopard", "fire_horse",
                  "flying_ox", "free_boar", "genie", "ghost_warrior", "goat",
                  "gold_general", "guard", "harpy", "horned_owl", "hummingbird",

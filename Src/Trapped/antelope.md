@@ -5,7 +5,8 @@ The %%PIECE%% is a (3,4)-%%LEAPER%%.
 |====
 %%PIECE_HEADERS%%
 {th = 1} %%LEAPERS%%
-       & **Antelope** & & & \\
+       & **Antelope**
+       & \\
 ====|
 
 ### Spiral
