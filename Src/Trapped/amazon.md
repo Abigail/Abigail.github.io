@@ -16,6 +16,7 @@ it's known under various names, including:
          %%OVERKILL%%
        & **Ace** & &&  \\
 {th = 1} [Amazon Chess](#chess-v:diffmove.dir/amazone.html);
+         [Gigachess](#chess-v:large.dir/gigachess.html);
          [Haynie's Great Chess](#chess-v:large.dir/haynieschess.html);
          [Tutti-Frutti Chess](#chess-v:dpieces.dir/tuttifr.html)
        & **Amazon** & & & \\
@@ -38,6 +39,9 @@ it's known under various names, including:
        & **Terror** & & & \\
 {th = 1} [Tiger Hunt](#chess-v:unequal.dir/tigerhnt.html)
        & **Tiger** & & & %%ROYAL%% \\
+{th = 1} [Twenty-First Century
+                       Chess](#chess-v:large.dir/21st-century-chess.html)
+       & **Sorceror** & [*Pawn*](pawn.html) or *Jester* & & \\
 ====|
 
 Other names include:
