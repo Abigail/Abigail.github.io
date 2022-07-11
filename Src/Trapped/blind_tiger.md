@@ -1,16 +1,20 @@
-# Blind Tiger
+# %%PIECE%%
 
-The **Blind Tiger** moves one step in all directions (diagonally and
+The %%PIECE%% moves one step in all directions (diagonally and
 orthogonally), except straight forward. It is the mirror image of
 the [*Drunk Elephant*](drunk_elephant.html) which moves in all
 directions, except straight backwards.
 
-In [Typhoon](#chess-v:rules/typhoon-revised), the
-**Blind Tiger** promotes to the [*Tiger Prince*](king.html?piece=tiger_prince).
+|====
+%%PIECE_HEADERS%%
+{th = 1} %%TYPHOON%%
+       & **Blind Tiger**
+       & %%PROMOTES_TO%% [*Tiger Prince*](king.html?piece=tiger_prince) \\
+====|
 
 ### Spiral
 
-The **Blind Tiger** fills the entire board, but it does so in an
+The %%PIECE%% fills the entire board, but it does so in an
 unusual manner. It fills up the board in an expanding, roughly triangle
 shaped pattern.
 It adds three rows at the bottom, for each row at the right and left
@@ -21,12 +25,12 @@ of the [*Drunk Elephant*](drunk_elephant.html).
 
 #### Folded
 
-The **Blind Tiger** can move as the [*Flying Cock*](flying_cock.html),
-causing the **Blind Tiger** to follow the numbers.
+The %%PIECE%% can move as the [*Flying Cock*](flying_cock.html),
+causing the %%PIECE%% to follow the numbers.
 
 #### Flat
 
-On the Flat Wedge, the **Blind Tiger** moves in the same way as
+On the Flat Wedge, the %%PIECE%% moves in the same way as
 the [*King*](king.html) does, filling the wedge row by row, going from
 right to left and left to right, with a small side step before
 reaching the left end of each row.
