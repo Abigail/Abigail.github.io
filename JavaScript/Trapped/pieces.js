@@ -384,7 +384,7 @@ class Piece {
             if (piece_info . parent) {
                 let parent = new Piece ({piece_name: piece_info . parent})
                 for (const prop in parent) {
-                    if (!this [prop]) {
+                    if (!this [prop] && prop . charAt (0) != "_") {
                         this [prop] = parent [prop]
                     }
                 }

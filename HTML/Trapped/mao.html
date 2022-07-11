@@ -23,9 +23,9 @@ by Abigail<br>
 </div>
 
 
-<p>The %%PIECE%% moves one or more squares like a <a href="knight.html"><em>Knight</em></a>,
-where each subsequents moves must be in the same direction as the
-first, and each square may not be occupied.</p>
+<p>The %%PIECE%% moves as the <a href="knight.html"><em>Knight</em></a>, but it
+may not jump. It moves one square orthogonally (which must
+be unoccupied), then one square diagonally outward.</p>
 
 <table class = piece_list>
   <tr class = 'row-0' markdown = '1'>
@@ -34,24 +34,22 @@ first, and each square may not be occupied.</p>
     <th class = 'cell-0-2 col-2 ' markdown = '1'>Info</td>
   </tr>
   <tr class = 'row-1' markdown = '1'>
-    <th class = 'cell-1-0 col-0 ' markdown = '1'><a href="https://www.chessvariants.com/large.dir/grandcavalier.html">Grand Cavalier Chess</a></td>
-    <td class = 'cell-1-1 col-1 ' markdown = '1'><strong>Knightrider</strong></td>
+    <th class = 'cell-1-0 col-0 ' markdown = '1'>Problemists</td>
+    <td class = 'cell-1-1 col-1 ' markdown = '1'>Mao</td>
     <td class = 'cell-1-2 col-2 ' markdown = '1'></td>
   </tr>
   <tr class = 'row-2' markdown = '1'>
-    <th class = 'cell-2-0 col-0 ' markdown = '1'><a href="https://www.chessvariants.com/rules/typhoon-revised">Typhoon</a></td>
-    <td class = 'cell-2-1 col-1 ' markdown = '1'><strong>Knightrider</strong></td>
-    <td class = 'cell-2-2 col-2 ' markdown = '1'><span class = 'tooltip'>&#x260B;<span class = 'tooltiptext'>Is promoted</span></span> <a href="king.html?piece=overtaker"><em>Overtaker</em></a></td>
+    <th class = 'cell-2-0 col-0 ' markdown = '1'><a href="https://www.chessvariants.com/large.dir/grandcavalier.html">Grand Cavalier Chess</a></td>
+    <td class = 'cell-2-1 col-1 ' markdown = '1'>Cavalier</td>
+    <td class = 'cell-2-2 col-2 ' markdown = '1'><span class = 'tooltip'>&#x260A;<span class = 'tooltiptext'>Promotes to</span></span> Varies</td>
   </tr>
 </table>
 
 <h3 id = 'spiral'>Spiral</h3>
 
 <div class = "section">
-<p>Surpringly, despite the %%PIECE%% having more squares to move to in
-each steps, the <strong>Knightrider</strong> gets trapped sooner than the
-<a href="knight.html"><em>Knight</em></a>. Where the <a href="knight.html"><em>Knight</em></a> gets trapped
-in 2,015 steps, the Knightrider gets trapped after 509 steps!</p>
+<p>On the Spiral, the %%PIECE%% gets trapped quickly, after
+no more than 28 steps.</p>
 </div>
 
 <h3 id = 'wedge'>Wedge</h3>
@@ -59,18 +57,19 @@ in 2,015 steps, the Knightrider gets trapped after 509 steps!</p>
 <h4 id = 'folded'>Folded</h4>
 
 <div class = "section">
-<p>On the Folded Wedge, the %%PIECE%% gets trapped after 60 steps, which is
-10 steps more than the <a href="knight.html"><em>Knight</em></a>.</p>
+<p>On the Folded Wedge, the %%PIECE%% uses a six step loop
+to move two squares to the upper left. It escapes to
+infinity by repeating this loop forever.</p>
 </div>
 
 <h4 id = 'flat'>Flat</h4>
 
-<p>On the Flat Wedge, the %%PIECE%% gets trapped after 22 steps, while
-the <a href="knight.html"><em>Knight</em></a> escapes.</p>
+<p>On the Flat Wedge, the %%PIECE%% gets trapped even sooner
+than on the Spiral. 12 steps, and it is trapped.</p>
 
-<div class = 'trapped' data-piece = 'knightrider'></div>
+<div class = 'trapped' data-piece = 'mao'></div>
 
-<div class = 'boxset' data-piece = 'knightrider'></div>
+<div class = 'boxset' data-piece = 'mao'></div>
 
 <hr id = 'last-line'>
 <div class = 'trailer'>

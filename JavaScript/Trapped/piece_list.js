@@ -142,6 +142,10 @@ let pieces = {
         results: ["T/1,697", "T/90", "T/482"],
     },
 
+    cannon: {
+        parent: "rook",
+    },
+
     canvasser: {
         betza:    "RC",
         results: ["W", "F*/100%", "F*/100%"],
@@ -149,6 +153,10 @@ let pieces = {
 
     cardinal: {
         parent: "archbishop"
+    },
+
+    cavalier: {
+        parent: "mao",
     },
 
     centaur: {
@@ -166,6 +174,13 @@ let pieces = {
     champion: {
         betza:    "WAD",
         results: ["W", "F/100%", "F/100%"],
+        _index_name: "Champion (Wazir + Alfil + Dabbaba)",
+    },
+
+    champion_nr: {
+        parent: "chancellor",
+        _name:  "Champion",
+        _index_name: "Champion (Rook + Knight)",
     },
 
     chancellor: {
@@ -225,6 +240,10 @@ let pieces = {
     dabbaba: {      // (2, 0)-leaper
         betza:    "D",
         results: ["F/25%", "E", "E"],
+    },
+
+    dabbabah: {
+        parent: "chancellor",
     },
 
     dabbabarider: {
@@ -310,6 +329,8 @@ let pieces = {
 
     emperor: {
         parent:  "champion",
+        _name:   "Emperor",
+        _index_name: "Emperor",
     },
 
     empress:  {
@@ -325,6 +346,12 @@ let pieces = {
 
     equerry: {
         parent: "archbishop",
+    },
+
+    eques_rex: {
+        parent: "centaur",
+        _name:  "Eques Rex",
+        _index_name: "Eques Rex",
     },
 
     //
@@ -608,12 +635,31 @@ let pieces = {
         parent: "amazon",
     },
 
+    mao: {
+        betza: "t[WF]",
+        results: ["T/28", "E*", "T/12"],
+        move_list: [
+            {dr: -1, dc:  2, ur:  0, uc:  1, max: 1},
+            {dr: -1, dc: -2, ur:  0, uc: -1, max: 1},
+            {dr:  1, dc:  2, ur:  0, uc:  1, max: 1},
+            {dr:  1, dc: -2, ur:  0, uc: -1, max: 1},
+            {dr: -2, dc: -1, ur: -1, uc:  0, max: 1},
+            {dr: -2, dc: -1, ur: -1, uc:  0, max: 1},
+            {dr:  2, dc:  1, ur:  1, uc:  0, max: 1},
+            {dr:  2, dc:  1, ur:  1, uc:  0, max: 1},
+        ],
+    },
+
     marquis: {
         betza:    "WN",
         results: ["W", "F/100%", "F/100%"],
     },
 
     marshal: {
+        parent: "chancellor",
+    },
+
+    marshall: {
         parent: "chancellor",
     },
 
@@ -881,6 +927,13 @@ let pieces = {
     war_machine: {
         betza:   "WD",
         results: ["W", "F/100%", "F/100%"],
+        _index_name: "War Machine (Wazir + Dabbaba)",
+    },
+
+    war_machine_nr: {
+        parent: "chancellor",
+        _name: "War Machine",
+        _index_name: "War Machine (Rook + Knight)",
     },
 
     wazir: {        // (1, 0)-leaper
@@ -1052,6 +1105,12 @@ let set_info = {
 
                  "fu", "pawn",
                  ],
+        chess_variant: 1,
+    },
+    grand_cavalier_chess: {
+        href: "https://www.chessvariants.com/large.dir/grandcavalier.html",
+        pieces: ["eques_rex", "queen", "marshall", "paladin", "cannon",
+                 "knightrider", "cavalier"],
         chess_variant: 1,
     },
 
