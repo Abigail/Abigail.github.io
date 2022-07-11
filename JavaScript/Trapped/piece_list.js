@@ -57,12 +57,12 @@ let pieces = {
 
     antelope: {     // (4, 3)-leaper
         betza:    "(3,4)",
-        results: ["T/1887", "T/128", "T/416"],
+        results: ["T/1,887", "T/128", "T/416"],
     },
 
     archbishop:    {
         betza:    "BN",
-        results: ["T/6386", "F*/100%", "F*/100%"],
+        results: ["T/6,386", "F*/100%", "F*/100%"],
     },
 
     //
@@ -95,7 +95,11 @@ let pieces = {
 
     bison: {
         betza:    "CZ",
-        results: ["T/844,094", "?/16,641,162", "?/12,266,550"],
+        results: ["T/844,094", "?/1,071,081,527", "?/784,352,068"],
+    },
+
+    blind_bear: {
+        parent: "blind_monkey",
     },
 
     blind_monkey: {
@@ -125,17 +129,17 @@ let pieces = {
         betza:       "BC",
         _name:       "Caliph",
         _index_name: "Caliph (Bison + Camel)",
-        results:    ["T/1563", "F*/50%", "F*/50%"],
+        results:    ["T/1,563", "F*/50%", "F*/50%"],
     },
 
     camel: {        // (3, 1)-leaper
         betza:    "C",
-        results: ["T/3722", "T/342", "T/2401"],
+        results: ["T/3,722", "T/342", "T/2,401"],
     },
 
     camelrider: {
         betza:    "CC",
-        results: ["T/1697", "T/90", "T/482"],
+        results: ["T/1,697", "T/90", "T/482"],
     },
 
     canvasser: {
@@ -237,6 +241,10 @@ let pieces = {
         parent:   "alibaba",
     },
 
+    diabolo: {
+        parent: "blind_monkey",
+    },
+
     diving_osprey: {
         betza:    "W4fFA",
         results: ["W", "FC", "F/100%"],
@@ -268,6 +276,10 @@ let pieces = {
     drunk_elephant: {
         betza: "FfsW",
         results: ["F*/100%", "FC", "F/100%"],
+    },
+
+    drunken_ferz: {
+        parent: "blind_monkey",
     },
 
     duke: {
@@ -361,7 +373,7 @@ let pieces = {
 
     flamingo: {     // (6, 1)-leaper
         betza:    "(1,6)",
-        results: ["T/26966", "T/90", "T/260"],
+        results: ["T/26,966", "T/90", "T/260"],
     },
 
     flying_cock: {
@@ -427,7 +439,7 @@ let pieces = {
 
     giraffe: {      // (4, 1)-leaper
         betza:    "(1,4)",
-        results: ["T/13102", "T/114", "T/94"],
+        results: ["T/13,102", "T/114", "T/94"],
         _index_name: "Giraffe ((4, 1) - leaper)",
     },
 
@@ -541,7 +553,7 @@ let pieces = {
 
     knight: {
         betza:  "N",
-        results: ["T/2015", "T/50", "E*"],
+        results: ["T/2,015", "T/50", "E*"],
         _index_name: "Knight (Chess)",
     },
 
@@ -695,7 +707,7 @@ let pieces = {
 
     priest: {
         betza:    "FN",
-        results: ["T/1050", "F*/100%", "F/100%"],
+        results: ["T/1,050", "F*/100%", "F/100%"],
     },
 
     princess: {
@@ -780,7 +792,7 @@ let pieces = {
 
     stag: {         // (4, 2)-leaper
         betza:    "(2,4)",
-        results: ["T/2015", "E*", "E*"],
+        results: ["T/2,015", "E*", "E*"],
     },
 
     stork: {
@@ -902,7 +914,7 @@ let pieces = {
 
     zebra: {        // (3, 2)-leaper
         betza:    "Z",
-        results: ["T/4633", "T/80", "T/286"],
+        results: ["T/4,633", "T/80", "T/286"],
     },
 
     zebrarider: {
