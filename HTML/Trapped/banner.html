@@ -1,6 +1,6 @@
 <html>
 <head>
-<title>Banner</title>
+<title>%%PIECE%%</title>
 <meta charset = "utf-8">
 <link rel  = 'preconnect' href = 'https://fonts.gstatic.com'>
 <link rel = 'stylesheet' href =      'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
@@ -17,29 +17,40 @@
 <script src = '../../JavaScript/Trapped/pages.js'></script>
 </head>
 
-<body><h1>Banner</h1><div class = "byline">
+<body><h1>%%PIECE%%</h1><div class = "byline">
 by Abigail<br>
 <img src = "../../Images/jan_sluiters.jpg">
 </div>
 
 
-<p>The <strong>Banner</strong> moves like a forward and sideways <a href="wazir.html"><em>Wazir</em></a>.
-That is, the <strong>Banner</strong> can move one square to its right or left, or
+<p>The %%PIECE%% moves like a forward and sideways <a href="wazir.html"><em>Wazir</em></a>.
+That is, the %%PIECE%% can move one square to its right or left, or
 one square forward.</p>
 
-<p>The <strong>Banner</strong> is a piece in <a href="https://www.chessvariants.com/rules/typhoon-revised">Typhoon</a>,
-where it promotes to the <a href="modern_elephant.html?piece=raven"><em>Raven</em></a>.</p>
+<table class = piece_list>
+  <tr class = 'row-0' markdown = '1'>
+    <th class = 'cell-0-0 col-0 ' markdown = '1'>Game</td>
+    <th class = 'cell-0-1 col-1 ' markdown = '1'>Piece</td>
+    <th class = 'cell-0-2 col-2 ' markdown = '1'>Info</td>
+  </tr>
+  <tr class = 'row-1' markdown = '1'>
+    <th class = 'cell-1-0 col-0 ' markdown = '1'><a href="https://www.chessvariants.com/rules/typhoon-revised">Typhoon</a></td>
+    <td class = 'cell-1-1 col-1 ' markdown = '1'><strong>Banner</strong></td>
+    <td class = 'cell-1-2 col-2 ' markdown = '1'><span class = 'tooltip'>&#x260A;<span class = 'tooltiptext'>Promotes to</span></span> <a href="modern_elephant.html?piece=raven"><em>Raven</em></a>
+</td>
+  </tr>
+</table>
 
 <h3 id = 'spiral'>Spiral</h3>
 
 <div class = "section">
-<p>On the Spiral, the <strong>Banner</strong> moves over those rows of the Spiral,
+<p>On the Spiral, the %%PIECE%% moves over those rows of the Spiral,
 where the numbers increase from right to left, going to the next
 row where the Spiral turns downward (or comes up from below). If
-you view the Spiral as a set of concentric squares, it <strong>Banner</strong>
+you view the Spiral as a set of concentric squares, it %%PIECE%%
 moves of the top edge of each square.</p>
 
-<p>This makes the <strong>Banner</strong> cover 25% of the board.</p>
+<p>This makes the %%PIECE%% cover 25% of the board.</p>
 </div>
 
 <h3 id = 'wedge'>Wedge</h3>
@@ -47,15 +58,15 @@ moves of the top edge of each square.</p>
 <h4 id = 'folded'>Folded</h4>
 
 <div class = "section">
-<p>On the Folded Wedge, the <strong>Banner</strong> moves in practical the same
+<p>On the Folded Wedge, the %%PIECE%% moves in practical the same
 pattern as on the Spiral, visiting all squares but one of each
-row. This makes that, in the limit, the <strong>Banner</strong> visits 100%
+row. This makes that, in the limit, the %%PIECE%% visits 100%
 of the board.</p>
 </div>
 
 <h4 id = 'flat'>Flat</h4>
 
-<p>On the Flat Wedge, the <strong>Banner</strong> visits the two right most squares
+<p>On the Flat Wedge, the %%PIECE%% visits the two right most squares
 on each row, escaping to infinity in a step-wise pattern.</p>
 
 <div class = 'trapped' data-piece = 'banner'></div>

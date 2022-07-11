@@ -165,6 +165,7 @@ my sub tooltip ($text, $tooltiptext, @classes) {
 
 my %MACROS = (
     $TYPE_TRAPPED => {
+        CHESS         =>  '[Chess](#wiki)',
         DOBUTSU       =>  '[D&#x14d;butsu sh&#x14d;gi](#wiki:Dobutsu_shogi)',
         OVERKILL      =>  '[Overkill Ecumenical Chess]' .
                           '(#chess-v:rules/overkill-ecumenical-chess)',

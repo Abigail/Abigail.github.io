@@ -1,6 +1,6 @@
 <html>
 <head>
-<title>Bishop</title>
+<title>%%PIECE%%</title>
 <meta charset = "utf-8">
 <link rel  = 'preconnect' href = 'https://fonts.gstatic.com'>
 <link rel = 'stylesheet' href =      'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
@@ -17,42 +17,61 @@
 <script src = '../../JavaScript/Trapped/pages.js'></script>
 </head>
 
-<body><h1>Bishop</h1><div class = "byline">
+<body><h1>%%PIECE%%</h1><div class = "byline">
 by Abigail<br>
 <img src = "../../Images/jan_sluiters.jpg">
 </div>
 
 
-<p>The <strong>Bishop</strong> (&#x2657;) can slide an unlimited number of squares in
+<p>The %%PIECE%% can slide an unlimited number of squares in
 each of the four diagonal directions, as long as the squares it
 slides over are not occupied.</p>
 
-<p>Due to its diagonal movement, the <strong>Bishop</strong> is <em>colour bound</em>: if it
-starts a move on a dark square, it ends the move on a dark square.
-And if it starts on a light square, it ends on a light square. As such,
-the <strong>Bishop</strong> can only reach half the squares of the board.</p>
+<p>Due to its diagonal movement, the %%PIECE%% is <span class = 'tooltip underline'>colourbound<span class = 'tooltiptext'>A colourbound piece will always stay on a square of the same colour: if it starts on a black square, it will always remain on a black square; if it starts on a white square, it will always remain on a white square</span></span>.</p>
 
-<p>In <a href="https://en.wikipedia.org/wiki/Shogi">Sh&#x14d;gi (&#x5c06;&#x68cb;)</a>, the <strong>Bishop</strong>
-is also known as the <em>Angle Mover</em> (&#x89d2;&#x884c;). It promotes
-to a <a href="dragon_horse.html"><em>Dragon Horse</em> (&#x9f8d;&#x99ac;)</a>.</p>
-
-<p>The <strong>Bishop</strong> is a <a href="ferz.html"><em>Ferz</em></a><em>rider</em>, that is, it moves in the
-same directions as the <a href="ferz.html"><em>Ferz</em></a>, without a limit on
-the number of squares it moves over (as long as the squares it
-moves over are unoccupied).</p>
-
-<p>In <a href="https://www.chessvariants.com/rules/scirocco">Scirocco</a>, the <strong>Bishop</strong> is the promoted
-<a href="alfil.html"><em>Alfil</em></a>, while in <a href="https://www.chessvariants.com/rules/typhoon-revised"><em>Typhoon</em></a>
-it is the <a href="guard.html"><em>Guard</em></a> which promotes to the <strong>Bishop</strong>.</p>
+<table class = piece_list>
+  <tr class = 'row-0' markdown = '1'>
+    <th class = 'cell-0-0 col-0 ' markdown = '1'>Game</td>
+    <th class = 'cell-0-1 col-1 ' markdown = '1'>Piece</td>
+    <th class = 'cell-0-2 col-2 ' markdown = '1'>Info</td>
+  </tr>
+  <tr class = 'row-1' markdown = '1'>
+    <th class = 'cell-1-0 col-0 ' markdown = '1'><a href="https://en.wikipedia.org/wiki/Chess">Chess</a></td>
+    <td class = 'cell-1-1 col-1 ' markdown = '1'><strong>Bishop</strong> (&#x2657;)</td>
+    <td class = 'cell-1-2 col-2 ' markdown = '1'></td>
+  </tr>
+  <tr class = 'row-2' markdown = '1'>
+    <th class = 'cell-2-0 col-0 ' markdown = '1'><a href="https://en.wikipedia.org/wiki/Fairy_chess_piece#Riders"><em>Riders</em></a></td>
+    <td class = 'cell-2-1 col-1 ' markdown = '1'><strong>Ferzrider</strong></td>
+    <td class = 'cell-2-2 col-2 ' markdown = '1'>Moves likes <a href="ferz.html"><em>Ferz</em></a>, without a limit on the number
+         of squares it moves over, as long as the squares are unoccupied</td>
+  </tr>
+  <tr class = 'row-3' markdown = '1'>
+    <th class = 'cell-3-0 col-0 ' markdown = '1'><a href="https://www.chessvariants.com/rules/scirocco">Scirocco</a></td>
+    <td class = 'cell-3-1 col-1 ' markdown = '1'><strong>Bishop</strong></td>
+    <td class = 'cell-3-2 col-2 ' markdown = '1'><span class = 'tooltip'>&#x260B;<span class = 'tooltiptext'>Is promoted</span></span> <a href="alfil.html"><em>Alfil</em></a></td>
+  </tr>
+  <tr class = 'row-4' markdown = '1'>
+    <th class = 'cell-4-0 col-0 ' markdown = '1'><a href="https://en.wikipedia.org/wiki/Shogi">Sh&#x14d;gi (&#x5c06;&#x68cb;)</a></td>
+    <td class = 'cell-4-1 col-1 ' markdown = '1'><strong>Bishop</strong></td>
+    <td class = 'cell-4-2 col-2 ' markdown = '1'>Also known as <em>Angle Mover</em> (&#x89d2;&#x884c;); <span class = 'tooltip'>&#x260A;<span class = 'tooltiptext'>Promotes to</span></span>
+         <a href="dragon_horse.html"><em>Dragon Horse</em> (&#x9f8d;&#x99ac;)</a></td>
+  </tr>
+  <tr class = 'row-5' markdown = '1'>
+    <th class = 'cell-5-0 col-0 ' markdown = '1'><a href="https://www.chessvariants.com/rules/typhoon-revised">Typhoon</a></td>
+    <td class = 'cell-5-1 col-1 ' markdown = '1'><strong>Bishop</strong></td>
+    <td class = 'cell-5-2 col-2 ' markdown = '1'><span class = 'tooltip'>&#x260B;<span class = 'tooltiptext'>Is promoted</span></span> <a href="guard.html"><em>Guard</em></a></td>
+  </tr>
+</table>
 
 <h3 id = 'spiral'>Spiral</h3>
 
 <div class = "section">
-<p>On the Spiral, the <strong>Bishop</strong> moves in a regular pattern. However, 
-despite the possible moves of the <strong>Bishop</strong> being four fold symmetric,
-the resulting pattern isn't, making the <strong>Bishop</strong> slightly interesting.</p>
+<p>On the Spiral, the %%PIECE%% moves in a regular pattern. However, 
+despite the possible moves of the %%PIECE%% being four fold symmetric,
+the resulting pattern isn't, making the %%PIECE%% slightly interesting.</p>
 
-<p>If we take the limit, we see that the <strong>Bishop</strong> will visit
+<p>If we take the limit, we see that the %%PIECE%% will visit
 \(\frac{1}{2} \cdot (\frac{1}{2} \cdot \frac{3}{4} + \frac{1}{4}) =
   \frac{5}{16} = 31.25 \%\) of the squares on the board.</p>
 </div>
@@ -62,13 +81,13 @@ the resulting pattern isn't, making the <strong>Bishop</strong> slightly interes
 <h4 id = 'folded'>Folded</h4>
 
 <div class = "section">
-<p>On the Folded Wedge, the <strong>Bishop</strong> quickly escapes to infinity, moving in
+<p>On the Folded Wedge, the %%PIECE%% quickly escapes to infinity, moving in
 a stepwise pattern.</p>
 </div>
 
 <h4 id = 'flat'>Flat</h4>
 
-<p>On the Flat Wedge, the <strong>Bishop</strong> escapes as well, keep to the right
+<p>On the Flat Wedge, the %%PIECE%% escapes as well, keep to the right
 edge of the Wedge.</p>
 
 <div class = 'trapped' data-piece = 'bishop'></div>

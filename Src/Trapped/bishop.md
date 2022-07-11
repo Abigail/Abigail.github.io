@@ -1,34 +1,39 @@
-# Bishop
+# %%PIECE%%
 
-The **Bishop** (&#x2657;) can slide an unlimited number of squares in
+The %%PIECE%% can slide an unlimited number of squares in
 each of the four diagonal directions, as long as the squares it
 slides over are not occupied.
 
-Due to its diagonal movement, the **Bishop** is *colour bound*: if it
-starts a move on a dark square, it ends the move on a dark square.
-And if it starts on a light square, it ends on a light square. As such,
-the **Bishop** can only reach half the squares of the board.
+Due to its diagonal movement, the %%PIECE%% is %%COLOUR_BOUND%%.
 
-In [Sh&#x14d;gi (&#x5c06;&#x68cb;)](#wiki:Shogi), the **Bishop**
-is also known as the *Angle Mover* (&#x89d2;&#x884c;). It promotes
-to a [*Dragon Horse* (&#x9f8d;&#x99ac;)](dragon_horse.html).
-
-The **Bishop** is a [*Ferz*](ferz.html)*rider*, that is, it moves in the
-same directions as the [*Ferz*](ferz.html), without a limit on
-the number of squares it moves over (as long as the squares it
-moves over are unoccupied).
-
-In [Scirocco](#chess-v:rules/scirocco), the **Bishop** is the promoted
-[*Alfil*](alfil.html), while in [*Typhoon*](#chess-v:rules/typhoon-revised)
-it is the [*Guard*](guard.html) which promotes to the **Bishop**.
+|====
+%%PIECE_HEADERS%%
+{th = 1} %%CHESS%%
+       & **Bishop** (&#x2657;)
+       & \\
+{th = 1} %%RIDERS%%
+       & **Ferzrider**
+       & Moves likes [*Ferz*](ferz.html), without a limit on the number
+         of squares it moves over, as long as the squares are unoccupied \\
+{th = 1} %%SCIROCCO%%
+       & **Bishop**
+       & %%PROMOTED%% [*Alfil*](alfil.html) \\
+{th = 1} %%SHOGI%%
+       & **Bishop**
+       & Also known as *Angle Mover* (&#x89d2;&#x884c;); %%PROMOTES_TO%%
+         [*Dragon Horse* (&#x9f8d;&#x99ac;)](dragon_horse.html) \\
+{th = 1} %%TYPHOON%%
+       & **Bishop**
+       & %%PROMOTED%% [*Guard*](guard.html) \\
+====|
 
 ### Spiral
 
-On the Spiral, the **Bishop** moves in a regular pattern. However, 
-despite the possible moves of the **Bishop** being four fold symmetric,
-the resulting pattern isn't, making the **Bishop** slightly interesting.
+On the Spiral, the %%PIECE%% moves in a regular pattern. However, 
+despite the possible moves of the %%PIECE%% being four fold symmetric,
+the resulting pattern isn't, making the %%PIECE%% slightly interesting.
 
-If we take the limit, we see that the **Bishop** will visit
+If we take the limit, we see that the %%PIECE%% will visit
 \(\frac{1}{2} \cdot (\frac{1}{2} \cdot \frac{3}{4} + \frac{1}{4}) =
   \frac{5}{16} = 31.25 \%\) of the squares on the board.
 
@@ -36,10 +41,10 @@ If we take the limit, we see that the **Bishop** will visit
 
 #### Folded
 
-On the Folded Wedge, the **Bishop** quickly escapes to infinity, moving in
+On the Folded Wedge, the %%PIECE%% quickly escapes to infinity, moving in
 a stepwise pattern.
 
 #### Flat
 
-On the Flat Wedge, the **Bishop** escapes as well, keep to the right
+On the Flat Wedge, the %%PIECE%% escapes as well, keep to the right
 edge of the Wedge.
