@@ -1,6 +1,6 @@
 <html>
 <head>
-<title>Rook</title>
+<title>%%PIECE%%</title>
 <meta charset = "utf-8">
 <link rel  = 'preconnect' href = 'https://fonts.gstatic.com'>
 <link rel = 'stylesheet' href =      'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
@@ -17,32 +17,55 @@
 <script src = '../../JavaScript/Trapped/pages.js'></script>
 </head>
 
-<body><h1>Rook</h1><div class = "byline">
+<body><h1>%%PIECE%%</h1><div class = "byline">
 by Abigail<br>
 <img src = "../../Images/jan_sluiters.jpg">
 </div>
 
 
-<p>The <strong>Rook</strong> (&#x2656;) can slide an unlimited number of squares in all
+<p>The %%PIECE%% can slide an unlimited number of squares in all
 four orthogonal directions, as long as it does not slide over an
 occupied square.</p>
 
-<p>In <a href="https://en.wikipedia.org/wiki/Shogi">Sh&#x14d;gi (&#x5c06;&#x68cb;)</a>, the <strong>Rook</strong> is
-also known as the <em>Flying Chariot</em> (&#x98db;&#x8eca;). It can 
-promote to a <a href="dragon_king.html"><em>Dragon King (&#x9f8d;&#x738b;)</em></a>.</p>
-
-<p>The <strong>Rook</strong> is a <a href="wazir.html"><em>Wazir</em></a><em>rider</em>, that it, it moves in the same
-directions as the <a href="wazir.html"><em>Wazir</em></a>, without a limit on the number
-of squares it moves over (but all the intermediate squares must be empty).</p>
-
-<p>In <a href="https://www.chessvariants.com/rules/scirocco">Scirocco</a>, and
-<a href="https://www.chessvariants.com/rules/typhoon-revised">Typhoon</a>, the <strong>Rook</strong> is the promoted
-<a href="knight.html"><em>Knight</em></a>.</p>
+<table class = piece_list>
+  <tr class = 'row-0' markdown = '1'>
+    <th class = 'cell-0-0 col-0 ' markdown = '1'>Game</td>
+    <th class = 'cell-0-1 col-1 ' markdown = '1'>Piece</td>
+    <th class = 'cell-0-2 col-2 ' markdown = '1'>Info</td>
+  </tr>
+  <tr class = 'row-1' markdown = '1'>
+    <th class = 'cell-1-0 col-0 ' markdown = '1'><a href="https://en.wikipedia.org/wiki/Chess">Chess</a></td>
+    <td class = 'cell-1-1 col-1 ' markdown = '1'><strong>Rook</strong> (&#x2656;)</td>
+    <td class = 'cell-1-2 col-2 ' markdown = '1'></td>
+  </tr>
+  <tr class = 'row-2' markdown = '1'>
+    <th class = 'cell-2-0 col-0 ' markdown = '1'><a href="https://www.chessvariants.com/large.dir/grandcavalier.html">Grand Cavalier Chess</a></td>
+    <td class = 'cell-2-1 col-1 ' markdown = '1'><strong>Cannon</strong></td>
+    <td class = 'cell-2-2 col-2 ' markdown = '1'><span class = 'tooltip'>&#x238B;<span class = 'tooltiptext'>This piece has additional capture moves,<br>which we can ignore here</span></span></td>
+  </tr>
+  <tr class = 'row-3' markdown = '1'>
+    <th class = 'cell-3-0 col-0 ' markdown = '1'><a href="https://en.wikipedia.org/wiki/Shogi">Sh&#x14d;gi (&#x5c06;&#x68cb;)</a></td>
+    <td class = 'cell-3-1 col-1 ' markdown = '1'><strong>Rook</strong></td>
+    <td class = 'cell-3-2 col-2 ' markdown = '1'>Also known as <em>Flying Chariot</em> (&#x98db;&#x8eca;);
+         <span class = 'tooltip'>&#x260A;<span class = 'tooltiptext'>Promotes to</span></span> <a href="dragon_king.html"><em>Dragon King (&#x9f8d;&#x738b;)</em></a></td>
+  </tr>
+  <tr class = 'row-4' markdown = '1'>
+    <th class = 'cell-4-0 col-0 ' markdown = '1'><a href="https://www.chessvariants.com/rules/scirocco">Scirocco</a>; <a href="https://www.chessvariants.com/rules/typhoon-revised">Typhoon</a></td>
+    <td class = 'cell-4-1 col-1 ' markdown = '1'><strong>Rook</strong></td>
+    <td class = 'cell-4-2 col-2 ' markdown = '1'><span class = 'tooltip'>&#x260B;<span class = 'tooltiptext'>Is promoted</span></span> <a href="knight.html"><em>Knight</em></a></td>
+  </tr>
+  <tr class = 'row-5' markdown = '1'>
+    <th class = 'cell-5-0 col-0 ' markdown = '1'><a href="https://en.wikipedia.org/wiki/Fairy_chess_piece#Riders"><em>Riders</em></a></td>
+    <td class = 'cell-5-1 col-1 ' markdown = '1'><strong>Wazirrider</strong></td>
+    <td class = 'cell-5-2 col-2 ' markdown = '1'>Moves likes <a href="wazir.html"><em>Wazir</em></a>, without a limit on the number
+         of squares it moves over, as long as the squares are unoccupied</td>
+  </tr>
+</table>
 
 <h3 id = 'spiral'>Spiral</h3>
 
 <div class = "section">
-<p>Since the <strong>Rook</strong>'s movement is a superset of the movement of the
+<p>Since the %%PIECE%%'s movement is a superset of the movement of the
 <a href="wazir.html"><em>Wazir</em></a>, it follows the Spiral, visiting all squares
 on the board.</p>
 </div>
@@ -52,15 +75,15 @@ on the board.</p>
 <h4 id = 'folded'>Folded</h4>
 
 <div class = "section">
-<p>On the Folded Wedge, the <strong>Rook</strong> gets trapped very quickly, after 6 moves. This
-is the same number of moves that the <a href="wazir.html"><em>Wazir</em></a> takes before
+<p>On the Folded Wedge, the %%PIECE%% gets trapped very quickly, after 6 moves.
+This is the same number of moves that the <a href="wazir.html"><em>Wazir</em></a> takes before
 it gets trapped, but there is a slight difference in which squares
 are visited.</p>
 </div>
 
 <h4 id = 'flat'>Flat</h4>
 
-<p>On the Flat Wedge the <strong>Rook</strong> quickly escapes to infinity by alternating make 
+<p>On the Flat Wedge the %%PIECE%% quickly escapes to infinity by alternating make 
 a step forward, and a step to the right.</p>
 
 <div class = 'trapped' data-piece = 'rook'></div>
