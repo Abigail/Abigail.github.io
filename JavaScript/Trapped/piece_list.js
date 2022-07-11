@@ -429,7 +429,7 @@ let pieces = {
 
     frog: {
         betza: "FH",
-        results: ["?", "F*/100%", "F*/100%"],
+        results: ["?/1,066,282,804", "F*/100%", "F*/100%"],
         _index_name: "Frog (Ferz + Threeleaper)",
     },
 
@@ -544,7 +544,7 @@ let pieces = {
 
     humpback: {
         betza:    "bWF",
-        results: ["E*", "", ""],
+        results: ["E*", "E", "E"],
     },
 
     hunter: {
