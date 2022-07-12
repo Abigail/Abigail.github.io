@@ -720,8 +720,7 @@ class Trapped {
             let dc        = move . dc
             let or        = move . or       || 0  // Offset
             let oc        = move . oc       || 0  // Offset
-            let ur        = move . ur       || 0
-            let uc        = move . uc       || 0
+            let us        = move . us       || []
             let max       = move . max      || 0
             let min       = move . min      || ((or || oc) ? 0 : 1)
             let min_land  = move . min_land || 0
@@ -747,8 +746,7 @@ class Trapped {
             //                be 0.
             //    - or/oc:    Row (or)/Column (oc) offset from origin. This
             //                is added to each step in the slide. Defaults to 0.
-            //    - ur/uc:    Row (ur)/Column (uc) offset from origin
-            //                which must be unoccupied.
+            //    - us:       List of row/columns which must be unoccupied.
             //    - max:      Maximum number of slide steps which can be taken.
             //                0, the default, mean there is no limit.
             //    - min:      Minimum number of slide steps which must be taken.
@@ -776,14 +774,19 @@ class Trapped {
                     break    // Square is occupied
                 }
 
-                if (ur || uc) {
-                    let u_value = this . to_value (row + ur, col + uc)
-                    if (u_value in this . visited) {
-                        //
-                        // Move is blocked
-                        //
-                        break
+                //
+                // Check whether the move is blocked
+                //
+                let blocked = false
+                us . forEach ((coord) => {
+                    let [r, c] = coord
+                    let value  = this . to_value (row + r, col + c)
+                    if (value in this . visited) {
+                        blocked = true
                     }
+                })
+                if (blocked) {
+                    break
                 }
 
                 if (min_land > step) {

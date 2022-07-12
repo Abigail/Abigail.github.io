@@ -28,13 +28,20 @@ function set_up_boxset (div) {
 
         table += `<tr><th>${info . name || title_case (setname)}</th><td>`
         pieces . forEach ((piece_name, index) => {
-            let piece = new Piece ({piece_name: piece_name})
-            let file  = piece . file () . match (/[^\/]*\.html/) [0]
-            let name  = piece . name () . replaceAll (/\s+/g, "&nbsp;")
+            let name = ""
+            let file = ""
+            if (piece_name . match (/^!!/)) {
+                name = piece_name . replace (/^!!/, "")
+            }
+            else {
+                let piece = new Piece ({piece_name: piece_name})
+                file  = piece . file () . match (/[^\/]*\.html/) [0]
+                name  = piece . name () . replaceAll (/\s+/g, "&nbsp;")
 
-            if (piece . obsolete &&
-                piece . obsolete [setname]) {
-                name = `<strike>${name}</strike>`
+                if (piece . obsolete &&
+                    piece . obsolete [setname]) {
+                    name = `<strike>${name}</strike>`
+                }
             }
 
             if (index > 0) {
@@ -42,7 +49,10 @@ function set_up_boxset (div) {
             }
 
             table += `<span class = 'piece_name'>`
-            if (this_file == file) {
+            if (file == "") {
+                table += name
+            }
+            else if (this_file == file) {
                 table += `<span class = 'self'>${name}</span>`
             }
             else {

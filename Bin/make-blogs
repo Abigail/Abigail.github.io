@@ -169,6 +169,7 @@ my %MACROS = (
         GRAND_CAVALIER =>  '[Grand Cavalier Chess]' .
                            '(#chess-v:large.dir/grandcavalier.html)',
         DOBUTSU        =>  '[D&#x14d;butsu sh&#x14d;gi](#wiki:Dobutsu_shogi)',
+        JANGGI         =>  '[Janggi (&#xC7A5;&#xAE30;)](#wiki:Janggi)',
         OVERKILL       =>  '[Overkill Ecumenical Chess]' .
                            '(#chess-v:rules/overkill-ecumenical-chess)',
         SCIROCCO       =>  '[Scirocco](#chess-v:rules/scirocco)',
@@ -198,6 +199,10 @@ my %MACROS = (
                                                 "which we can ignore here"),
         ABILITIES      =>  tooltip ("&#x1F3A9;", "This piece has additional " .
                                                  "abilities,<br>which we "    .
+                                                 "can ignore here"),
+        HOPPER         =>  tooltip ("&#x1F407;", "This piece has additional " .
+                                                 "hopping moves or "          .
+                                                 "captures, which we "        .
                                                  "can ignore here"),
         PROMOTES_TO    =>  tooltip ("&#x260A;",  "Promotes to"),
         PROMOTED       =>  tooltip ("&#x260B;",  "Is promoted"),

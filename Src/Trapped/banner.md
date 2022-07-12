@@ -9,6 +9,9 @@ one square forward.
 {th = 1} %%TYPHOON%%
        & **Banner**
        & %%PROMOTES_TO%% [*Raven*](modern_elephant.html?piece=raven) \\
+{th = 1} %%JANGGI%%
+       & **Soldier**
+       & \\
 {th = 1} %%XIANGQI%%
        & **Soldier**
        & Only after crossing the river; before crossing the river,
