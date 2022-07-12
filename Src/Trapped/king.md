@@ -32,6 +32,9 @@ Of course, for our investigation, Royalness plays no part.
 {th = 1} %%CHESS%%
        & **King** (&#x2654;)
        & %%ROYAL%% \\
+{th = 1} %%MAKRUK%%
+       & **King** (&#x0E02;)
+       & %%ROYAL%% \\
 {th = 1} %%SCIROCCO%%
        & **King**
        & %%ROYAL%%;

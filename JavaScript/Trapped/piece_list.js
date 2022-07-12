@@ -1255,7 +1255,8 @@ let set_info = {
 
     makruk: {
         href:  "https://en.wikipedia.org/wiki/Makruk",
-        pieces: ["queen_makruk", "bishop_makruk", "pawn"],
+        pieces: ["king", "rook", "bishop_makruk", "knight",
+                 "queen_makruk", "pawn"],
     },
 }
 
