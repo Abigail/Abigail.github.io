@@ -56,6 +56,11 @@ captures differently than it moves.
              &  [*Tadpole*](tadpole.html)
              &  &#x2717;
              &  &#x2713;                                                     \\
+**Pawn** (&#x0E1A;)
+             &  %%MAKRUK%%
+             &  [*Queen*](ferz.html?piece=queen) (Ferz)
+             &  &#x2717;
+             &  &#x2713;                                                     \\
 **Fu**       &  %%TYPHOON%%
              &  [*Zebra*](zebra.html)
              &  &#x2717;
