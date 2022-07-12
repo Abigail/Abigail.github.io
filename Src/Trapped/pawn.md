@@ -1,8 +1,8 @@
-# Pawn &#x2659;
+# Pawn
 
 The **Pawn** appears in [Chess](#wiki), 
 [Sh&#x14d;gi (&#x5c06;&#x68cb;)](#wiki:Shogi), and many of their
-variants.
+variants; it is known under different names.
 
 It's usually a humble piece, appearing multiple times on the board.
 It's movements are complicated, but most movements we can ignore
@@ -27,7 +27,7 @@ one square forward.
 
 ### Promoting and Names
 
-**Pawns** typically promote. In Chess, they promote to a piece of the
+**Pawns** often promote. In Chess, they promote to a piece of the
 players choice, but in other games, the pawn promotes to a fixed piece.
 In the table below, we list under which names the **Pawn** is known, 
 and to which it promotes (if any). In Chess and many of its variants,
@@ -43,7 +43,8 @@ captures differently than it moves.
 {th = 1} Promotes to &
 {th = 1} MS &
 {th = 1} Cap. \\
-**Pawn**     &  Chess; many Chess variants
+**Pawn** (&#x2659;)
+             &  %%CHESS%%; many Chess variants
              &  Player's choice
              &  &#x2713;
              &  &#x2713;                                                     \\
@@ -51,7 +52,7 @@ captures differently than it moves.
              &  [*Gold General*](gold_general.html)
              &  &#x2717;
              &  &#x2717;                                                     \\
-**Pawn**     &  %%SCIROCCO%%, %%TYPHOON%%
+**Pawn**     &  %%SCIROCCO%%; %%TYPHOON%%
              &  [*Tadpole*](tadpole.html)
              &  &#x2717;
              &  &#x2713;                                                     \\
@@ -63,6 +64,11 @@ captures differently than it moves.
              &  [*Hen*](gold_general.html?piece=dobutsu_hen) (Gold General)
              &  &#x2717;
              &  &#x2717;                                                     \\
+**Soldier**<sup>1</sup>
+             &  %%XIANGQI%%
+             &
+             &  &#x2717;
+             &  &#x2717;                                                     \\
 **Swallow**  &  %%TORI_SHOGI%%
              &  [*Goose*](goose.html)
              &  &#x2717;
@@ -72,6 +78,11 @@ captures differently than it moves.
              &  &#x2717;
              &  &#x2717;                                                     \\
 ====|
+
+<sup>1</sup> In %%XIANGQI%%, once the **Soldier** crosses the river,
+             in addition to moving one square forward, it may also
+             move one square sideways. This makes it move like the
+             [*Banner*](banner.html).
 
 ### Spiral and Wedge
 

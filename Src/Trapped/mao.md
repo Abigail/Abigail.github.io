@@ -6,12 +6,16 @@ be unoccupied), then one square diagonally outward.
 
 |====
 %%PIECE_HEADERS%%
-{th = 1} Problemists
-       & Mao
-       & \\
 {th = 1} %%GRAND_CAVALIER%%
-       & Cavalier
+       & **Cavalier**
        & %%PROMOTES_TO%% Varies \\
+{th = 1} %%XIANGQI%%
+       & **Horse** (&#x99AC;/&#x508C;)
+       & Sometimes called *Knight* (not to be confused with the
+         Chess [*Knight*](knight.html)) \\
+{th = 1} Problemists
+       & **Mao**
+       & \\
 ====|
 
 ### Spiral

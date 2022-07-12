@@ -7,23 +7,22 @@ four diagonal directions. This makes the %%PIECE%% %%COLOUR_BOUND%%.
 
 |====
 %%PIECE_HEADERS%%
+{th = 1} %%XIANGQI%%
+       & **Advisor** (&#x58eb;/&#x4ed5;)
+       & In the game, the piece is restricted to 5 squares of the
+         3x3 palace. Alternative names: *Assistant*, *Counsellor*,
+         *Guard*, *Mandarin*, *Minister*, *Officer*, *Scholar*,
+         *Warrior* \\
+{th = 1} %%DOBUTSU%%
+       & **Elephant**
+       & \\
 {th = 1} %%LEAPERS%%
        & **Ferz**
        & \\
+{th = 1} %%SCIROCCO%%; %%TYPHOON%%
+       & **Firzan**
+       & %%PROMOTES_TO%% [*Zig*](war_machine.html?piece=zig) \\
 ====|
-
-In the Sh&#x14d;gi variant [D&#x14d;butsu sh&#x14d;gi](#wiki:Dobutsu_shogi),
-the *Elephant* moves in the same way as the **Ferz**.
-
-In [Scirocco](#chess-v:rules/scirocco) and
-[*Typhoon*](#chess-v:rules/typhoon-revised), the piece is known as
-the **Firzan**, which promotes to the [*Zig*](war_machine.html?piece=zig).
-
-[*Xiangqi*](#wiki) has a piece named *Advisor* (&#x58eb; for Black,
-&#x4ed5; for Red), which moves in the
-same way, except it cannot leave the 3x3 box it started from; this piece
-is also known as *Counsellor*, *Mandarin*, *Guard*, *Officer*, *Scholar*,
-*Assistant*, *Warrior* and, *Minister*.
 
 ### Spiral
 

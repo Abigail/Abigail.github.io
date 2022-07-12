@@ -7,12 +7,18 @@ occupied square.
 
 |====
 %%PIECE_HEADERS%%
-{th = 1} %%CHESS%%
-       & **Rook** (&#x2656;)
-       & \\
 {th = 1} %%GRAND_CAVALIER%%
        & **Cannon**
        & %%CAPTURE%% \\
+{th = 1} %%XIANGQI%%
+       & **Cannon** (&#x7832;/&#x70AE;)
+       & %%CAPTURE%% \\
+{th = 1} %%XIANGQI%%
+       & **Chariot** (&#x8ECA;/&#x4FE5;)
+       & Also known as *Rook* \\
+{th = 1} %%CHESS%%
+       & **Rook** (&#x2656;)
+       & \\
 {th = 1} %%SHOGI%%
        & **Rook**
        & Also known as *Flying Chariot* (&#x98db;&#x8eca;);
