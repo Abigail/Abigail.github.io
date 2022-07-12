@@ -9,6 +9,9 @@ be unoccupied), then one square diagonally outward.
 {th = 1} %%GRAND_CAVALIER%%
        & **Cavalier**
        & %%PROMOTES_TO%% Varies \\
+{th = 1} %%JANGGI%%
+       & **Horse** (&#xB9C8;)
+       & \\
 {th = 1} %%XIANGQI%%
        & **Horse** (&#x99AC;/&#x508C;)
        & Sometimes called *Knight* (not to be confused with the

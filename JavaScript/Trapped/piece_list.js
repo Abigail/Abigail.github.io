@@ -200,7 +200,7 @@ let pieces = {
     chariot_xiangqi: {
         parent: "rook",
         _name: "Chariot",
-        _index_name: "Chariot (Xiangqi)",
+        _index_name: "Chariot (Janggi/Xiangqi)",
     },
 
     dobutsu_chick: {
@@ -334,8 +334,26 @@ let pieces = {
         _index_name: "Elephant (D&#x14d;butsu Sh&#x14d;gi)",
     },
 
-    elephant: {
+    elephant_janggi: {
+        betza: "",
+        results: ["T/55", "T/47", "T/18"],
+        _name: "Elephant",
+        _index_name: "Elephant (Janggi)",
+        move_list: [
+            {dr: -3, dc: -2, us: [[-1,  0], [-2, -1]], max: 1},
+            {dr: -3, dc:  2, us: [[-1,  0], [-2,  1]], max: 1},
+            {dr: -2, dc: -3, us: [[ 0, -1], [-1, -2]], max: 1},
+            {dr: -2, dc:  3, us: [[ 0,  1], [-1,  2]], max: 1},
+            {dr:  2, dc: -3, us: [[ 0, -1], [ 1, -2]], max: 1},
+            {dr:  2, dc:  3, us: [[ 0,  1], [ 1,  2]], max: 1},
+            {dr:  3, dc: -2, us: [[ 1,  0], [ 2, -1]], max: 1},
+            {dr:  3, dc:  2, us: [[ 1,  0], [ 2,  1]], max: 1},
+        ],
+    },
+
+    elephant_xiangqi: {
         parent: "missionary",
+        _name:       "Elephant",
         _index_name: "Elephant (Xiangqi)",
     },
 
@@ -343,10 +361,16 @@ let pieces = {
         parent:   "king",
     },
 
-    emperor: {
+    emperor_scirocco: {
         parent:  "champion",
         _name:   "Emperor",
-        _index_name: "Emperor",
+        _index_name: "Emperor (Scirocco)",
+    },
+
+    emperor_typhoon: {
+        betza: "W2F2Q",
+        _name: "Emperor",
+        _index_name: "Emperor (Typhoon)",
     },
 
     empress:  {
@@ -476,6 +500,12 @@ let pieces = {
         _index_name: "General (Xiangqi)",
     },
 
+    general_janggi: {
+        parent: "king",
+        _name: "General",
+        _index_name: "General (Janggi)",
+    },
+
     genie: {
         betza:    "W3F3",
         results: ["W", "FC", "F*/100%"],
@@ -535,6 +565,13 @@ let pieces = {
 
     guard: {
         parent:  "wazir",
+        _index_name: "Guard (Wazir)",
+    },
+
+    guard_janggi: {
+        parent: "king",
+        _name: "Guard",
+        _index_name: "Guard (Janggi)",
     },
 
     //
@@ -665,14 +702,14 @@ let pieces = {
         betza: "t[WF]",
         results: ["T/28", "E*", "T/12"],
         move_list: [
-            {dr: -1, dc:  2, ur:  0, uc:  1, max: 1},
-            {dr: -1, dc: -2, ur:  0, uc: -1, max: 1},
-            {dr:  1, dc:  2, ur:  0, uc:  1, max: 1},
-            {dr:  1, dc: -2, ur:  0, uc: -1, max: 1},
-            {dr: -2, dc: -1, ur: -1, uc:  0, max: 1},
-            {dr: -2, dc: -1, ur: -1, uc:  0, max: 1},
-            {dr:  2, dc:  1, ur:  1, uc:  0, max: 1},
-            {dr:  2, dc:  1, ur:  1, uc:  0, max: 1},
+            {dr: -1, dc:  2, us: [[ 0,  1]], max: 1},
+            {dr: -1, dc: -2, us: [[ 0, -1]], max: 1},
+            {dr:  1, dc:  2, us: [[ 0,  1]], max: 1},
+            {dr:  1, dc: -2, us: [[ 0, -1]], max: 1},
+            {dr: -2, dc: -1, us: [[-1,  0]], max: 1},
+            {dr: -2, dc: -1, us: [[-1,  0]], max: 1},
+            {dr:  2, dc:  1, us: [[ 1,  0]], max: 1},
+            {dr:  2, dc:  1, us: [[ 1,  0]], max: 1},
         ],
     },
 
@@ -844,6 +881,13 @@ let pieces = {
 
     soldier: {
         parent: "pawn",
+        _index_name: "Soldier (Xiangqi)",
+    },
+
+    soldier_janggi: {
+        parent: "banner",
+        _name: "Soldier",
+        _index_name: "Soldier (Janggi)",
     },
 
     spider: {
@@ -1099,7 +1143,7 @@ let set_info = {
     },
     scirocco: {
         href: "https://www.chessvariants.com/rules/scirocco",
-        pieces: ["king", "emperor", "queen", "rook", "bishop",
+        pieces: ["king", "emperor_scirocco", "queen", "rook", "bishop",
                  "knight", "wazir", "firzan", "dabbaba", "alfil",
                  "camel", "zebra", 
 
@@ -1115,7 +1159,7 @@ let set_info = {
     },
     typhoon: {
         href: "https://www.chessvariants.com/rules/typhoon-revised",
-        pieces: ["king", "emperor", "queen", "rook", "bishop",
+        pieces: ["king", "emperor_typhoon", "queen", "rook", "bishop",
                  "knight", "wazir", "firzan", "dabbaba", "alfil",
                  "camel", "zebra", 
             
@@ -1184,8 +1228,15 @@ let set_info = {
 
     xiangqi: {
         href:  "https://en.wikipedia.org/wiki/Xiangqi",
-        pieces: ["general_xiangqi", "advisor", "elephant", "horse",
+        pieces: ["general_xiangqi", "advisor", "elephant_xiangqi", "horse",
                  "chariot_xiangqi", "cannon", "soldier"],
+    },
+
+    janggi: {
+        href:  "https://en.wikipedia.org/wiki/Janggi",
+        pieces: ["general_janggi", "guard_janggi", "horse",
+                 "elephant_janggi", "chariot_xiangqi",
+                 "!!Cannon", "soldier_janggi"],
     },
 }
 
@@ -1196,6 +1247,9 @@ let set_info = {
 for (set in set_info) {
     let seen = {}
     set_info [set] . pieces . forEach ((piece_name) => {
+        if (piece_name . match (/^!!/)) {
+            return
+        }
         let piece = pieces [piece_name]
         if (piece . parent) {
             piece = pieces [piece_name = piece . parent]

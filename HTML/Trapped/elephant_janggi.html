@@ -23,9 +23,12 @@ by Abigail<br>
 </div>
 
 
-<p>The %%PIECE%% moves as the <a href="knight.html"><em>Knight</em></a>, but it
-may not jump. It moves one square orthogonally (which must
-be unoccupied), then one square diagonally outward.</p>
+<p>The %%PIECE%% moves as a blocking <a href="zebra.html"><em>Zebra</em></a>. That is,
+the %%PIECE%% moves one square orthogonally, and then two squares
+diagonally outward &mdash; and those squares it moves over must be
+unoccupied. (Unlike the <a href="zebra.html"><em>Zebra</em></a> which can leap
+to the same squares as the %%PIECE%% can, but which cannot be
+blocked).</p>
 
 <table class = piece_list>
   <tr class = 'row-0' markdown = '1'>
@@ -34,33 +37,17 @@ be unoccupied), then one square diagonally outward.</p>
     <th class = 'cell-0-2 col-2 ' markdown = '1'>Info</td>
   </tr>
   <tr class = 'row-1' markdown = '1'>
-    <th class = 'cell-1-0 col-0 ' markdown = '1'><a href="https://www.chessvariants.com/large.dir/grandcavalier.html">Grand Cavalier Chess</a></td>
-    <td class = 'cell-1-1 col-1 ' markdown = '1'><strong>Cavalier</strong></td>
-    <td class = 'cell-1-2 col-2 ' markdown = '1'><span class = 'tooltip'>&#x260A;<span class = 'tooltiptext'>Promotes to</span></span> Varies</td>
-  </tr>
-  <tr class = 'row-2' markdown = '1'>
-    <th class = 'cell-2-0 col-0 ' markdown = '1'><a href="https://en.wikipedia.org/wiki/Janggi">Janggi (&#xC7A5;&#xAE30;)</a></td>
-    <td class = 'cell-2-1 col-1 ' markdown = '1'><strong>Horse</strong> (&#xB9C8;)</td>
-    <td class = 'cell-2-2 col-2 ' markdown = '1'></td>
-  </tr>
-  <tr class = 'row-3' markdown = '1'>
-    <th class = 'cell-3-0 col-0 ' markdown = '1'><a href="https://en.wikipedia.org/wiki/xiangqi">Xiangqi (&#x8C61;&#x68CB;)</a></td>
-    <td class = 'cell-3-1 col-1 ' markdown = '1'><strong>Horse</strong> (&#x99AC;/&#x508C;)</td>
-    <td class = 'cell-3-2 col-2 ' markdown = '1'>Sometimes called <em>Knight</em> (not to be confused with the
-         Chess <a href="knight.html"><em>Knight</em></a>)</td>
-  </tr>
-  <tr class = 'row-4' markdown = '1'>
-    <th class = 'cell-4-0 col-0 ' markdown = '1'>Problemists</td>
-    <td class = 'cell-4-1 col-1 ' markdown = '1'><strong>Mao</strong></td>
-    <td class = 'cell-4-2 col-2 ' markdown = '1'></td>
+    <th class = 'cell-1-0 col-0 ' markdown = '1'><a href="https://en.wikipedia.org/wiki/Janggi">Janggi (&#xC7A5;&#xAE30;)</a></td>
+    <td class = 'cell-1-1 col-1 ' markdown = '1'><strong>Elephant</strong> (&#xC0C1;)</td>
+    <td class = 'cell-1-2 col-2 ' markdown = '1'></td>
   </tr>
 </table>
 
 <h3 id = 'spiral'>Spiral</h3>
 
 <div class = "section">
-<p>On the Spiral, the %%PIECE%% gets trapped quickly, after
-no more than 28 steps.</p>
+<p>On the Spiral, the %%PIECE%% gets trapped quickly, after no more
+than 55 steps.</p>
 </div>
 
 <h3 id = 'wedge'>Wedge</h3>
@@ -68,19 +55,17 @@ no more than 28 steps.</p>
 <h4 id = 'folded'>Folded</h4>
 
 <div class = "section">
-<p>On the Folded Wedge, the %%PIECE%% uses a six step loop
-to move two squares to the upper left. It escapes to
-infinity by repeating this loop forever.</p>
+<p>On the Folded Wedge, the %%PIECE%% gets trapped quickly as well,
+after 47 steps.</p>
 </div>
 
 <h4 id = 'flat'>Flat</h4>
 
-<p>On the Flat Wedge, the %%PIECE%% gets trapped even sooner
-than on the Spiral. 12 steps, and it is trapped.</p>
+<p>On the Flat Wedge, the %%PIECE%% gets trapped even faster: 18 steps.</p>
 
-<div class = 'trapped' data-piece = 'mao'></div>
+<div class = 'trapped' data-piece = 'elephant_janggi'></div>
 
-<div class = 'boxset' data-piece = 'mao'></div>
+<div class = 'boxset' data-piece = 'elephant_janggi'></div>
 
 <hr id = 'last-line'>
 <div class = 'trailer'>

@@ -13,6 +13,9 @@ occupied square.
 {th = 1} %%XIANGQI%%
        & **Cannon** (&#x7832;/&#x70AE;)
        & %%CAPTURE%% \\
+{th = 1} %%JANGGI%%
+       & **Chariot** (&#xCC28;)
+       & %%MORE_MOVES%%; Also known as *Rook* \\
 {th = 1} %%XIANGQI%%
        & **Chariot** (&#x8ECA;/&#x4FE5;)
        & Also known as *Rook* \\
