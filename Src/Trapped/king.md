@@ -51,6 +51,9 @@ Of course, for our investigation, Royalness plays no part.
 {th = 1} %%DOBUTSU%%
        & **Lion**
        & %%ROYAL%% \\
+{th = 1} %%SENTEREJ%%
+       & **Negus**
+       & %%ROYAL%% \\
 {th = 1} %%TYPHOON%%
        & **Overtaker**
        & %%HOPPER%%; %%PROMOTES_TO%% [*Nightrider*](knightrider.html) \\

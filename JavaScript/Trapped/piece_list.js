@@ -273,6 +273,10 @@ let pieces = {
         results: ["W", "FC", "F/100%"],
     },
 
+    der: {
+        parent: "rook",
+    },
+
     dervish: {
         parent:   "alibaba",
     },
@@ -422,9 +426,17 @@ let pieces = {
         results: ["F*/100%", "FC", "F/100%"],
     },
 
+    ferese: {
+        parent: "knight",
+    },
+
     ferocious_leopard: {
         betza:    "FvW",
         results: ["F/100%", "E", "E"],
+    },
+
+    fers: {
+        parent: "ferz",
     },
 
     ferz: {         // (1, 1)-leaper
@@ -733,6 +745,10 @@ let pieces = {
         parent: "chancellor",
     },
 
+    medeq: {
+        parent: "pawn",
+    },
+
     minister: {
         parent: "archbishop",
     },
@@ -752,6 +768,10 @@ let pieces = {
     //
     narwhal: {
         parent:   "hummingbird",
+    },
+
+    negus: {
+        parent: "king",
     },
 
     nb: {
@@ -875,17 +895,16 @@ let pieces = {
     //
     // S pieces
     //
+    saba: {
+        parent: "alfil",
+    },
+
     salamander: {
         parent:   "king",
     },
 
     scirocco: {
         parent:  "dragon_horse",
-    },
-
-    sorcerer: {
-        betza:    "W2F2",
-        results: ["W", "FC", "F/100%"],
     },
 
     silver_general: {
@@ -902,6 +921,11 @@ let pieces = {
         parent: "banner",
         _name: "Soldier",
         _index_name: "Soldier (Janggi)",
+    },
+
+    sorcerer: {
+        betza:    "W2F2",
+        results: ["W", "FC", "F/100%"],
     },
 
     spider: {
@@ -1257,6 +1281,11 @@ let set_info = {
         href:  "https://en.wikipedia.org/wiki/Makruk",
         pieces: ["king", "rook", "bishop_makruk", "knight",
                  "queen_makruk", "pawn"],
+    },
+
+    senterej: {
+        href:  "https://en.wikipedia.org/wiki/Senterej",
+        pieces: ["negus", "fers", "saba", "ferese", "der", "medeq"],
     },
 }
 

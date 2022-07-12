@@ -69,6 +69,10 @@ captures differently than it moves.
              &  [*Hen*](gold_general.html?piece=dobutsu_hen) (Gold General)
              &  &#x2717;
              &  &#x2717;                                                     \\
+**Medeq**    &  %%SENTEREJ%%
+             &  Player's choice of captured pieces
+             &  &#x2717;
+             &  &#x2713;                                                     \\
 **Soldier**<sup>1</sup>
              &  %%XIANGQI%%
              &

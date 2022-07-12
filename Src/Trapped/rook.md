@@ -19,6 +19,9 @@ occupied square.
 {th = 1} %%XIANGQI%%
        & **Chariot** (&#x8ECA;/&#x4FE5;)
        & Also known as *Rook* \\
+{th = 1} %%SENTEREJ%%
+       & **Der**
+       & *Der* meaning *Castle* \\
 {th = 1} %%CHESS%%
        & **Rook** (&#x2656;)
        & \\

@@ -18,6 +18,9 @@ be blocked.
 {th = 1} %%MAKRUK%%
        & **Knight** (&#x0E21;)
        & \\
+{th = 1} %%SENTEREJ%%
+       & **Ferese**
+       & *Ferese* meaning *Horse* \\
 ====|
 
 See also the [*Knightrider*](knightrider.html), a piece which moves
