@@ -30,11 +30,12 @@ function set_up_boxset (div) {
         pieces . forEach ((piece_name, index) => {
             let name = ""
             let file = ""
+            let piece = {}
             if (piece_name . match (/^!!/)) {
                 name = piece_name . replace (/^!!/, "")
             }
             else {
-                let piece = new Piece ({piece_name: piece_name})
+                piece = new Piece ({piece_name: piece_name})
                 file  = piece . file () . match (/[^\/]*\.html/) [0]
                 name  = piece . name () . replaceAll (/\s+/g, "&nbsp;")
 

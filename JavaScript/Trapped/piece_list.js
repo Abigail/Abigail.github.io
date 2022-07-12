@@ -89,7 +89,14 @@ let pieces = {
     bishop: {
         betza:  "B",
         results: ["F/31.25%", "E", "E"],
-     },
+        _index_name: "Bishop (Chess)",
+    },
+
+    bishop_makruk: {
+        parent: "silver_general",
+        _name: "Bishop",
+        _index_name: "Bishop (Makruk)",
+    },
 
     bishops_dog: {
         betza:    "F3",
@@ -828,7 +835,14 @@ let pieces = {
     //
     queen: {
         betza:  "Q",
-        results: ["W", "FC", "F/100%"]
+        results: ["W", "FC", "F/100%"],
+        _index_name: "Queen (Chess)",
+    },
+
+    queen_makruk: {
+        parent: "ferz",
+        _name: "Queen",
+        _index_name: "Queen (Makruk)",
     },
 
     //
@@ -1237,6 +1251,11 @@ let set_info = {
         pieces: ["general_janggi", "guard_janggi", "horse",
                  "elephant_janggi", "chariot_xiangqi",
                  "!!Cannon", "soldier_janggi"],
+    },
+
+    makruk: {
+        href:  "https://en.wikipedia.org/wiki/Makruk",
+        pieces: ["queen_makruk", "bishop_makruk", "pawn"],
     },
 }
 
