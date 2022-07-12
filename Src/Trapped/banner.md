@@ -8,7 +8,11 @@ one square forward.
 %%PIECE_HEADERS%%
 {th = 1} %%TYPHOON%%
        & **Banner**
-       & %%PROMOTES_TO%% [*Raven*](modern_elephant.html?piece=raven)
+       & %%PROMOTES_TO%% [*Raven*](modern_elephant.html?piece=raven) \\
+{th = 1} %%XIANGQI%%
+       & **Soldier**
+       & Only after crossing the river; before crossing the river,
+         it moves like the [*Pawn*](pawn.html?piece=soldier) \\
 ====|
 
 ### Spiral

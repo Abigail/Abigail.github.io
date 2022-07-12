@@ -197,6 +197,12 @@ let pieces = {
         results: ["W", "T/6", "E"],
     },
 
+    chariot_xiangqi: {
+        parent: "rook",
+        _name: "Chariot",
+        _index_name: "Chariot (Xiangqi)",
+    },
+
     dobutsu_chick: {
         parent: "pawn",
         _name: "Chick",
@@ -325,6 +331,12 @@ let pieces = {
     dobutsu_elephant: {
         parent: "ferz",
         _name: "Elephant",
+        _index_name: "Elephant (D&#x14d;butsu Sh&#x14d;gi)",
+    },
+
+    elephant: {
+        parent: "missionary",
+        _index_name: "Elephant (Xiangqi)",
     },
 
     elephant_prince: {
@@ -545,6 +557,10 @@ let pieces = {
     horned_owl: {
         betza:    "F4DfW",
         results: ["?/1,056,723,023", "F/50%", "F*/100%"],
+    },
+
+    horse: {
+        parent: "mao",
     },
 
     hummingbird: {
@@ -824,6 +840,10 @@ let pieces = {
     silver_general: {
         betza:  "FfW",
         results: ["F*/100%", "E", "E"],
+    },
+
+    soldier: {
+        parent: "pawn",
     },
 
     spider: {
@@ -1164,7 +1184,8 @@ let set_info = {
 
     xiangqi: {
         href:  "https://en.wikipedia.org/wiki/Xiangqi",
-        pieces: ["general_xiangqi"],
+        pieces: ["general_xiangqi", "advisor", "elephant", "horse",
+                 "chariot_xiangqi", "cannon", "soldier"],
     },
 }
 
