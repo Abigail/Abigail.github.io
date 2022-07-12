@@ -1,6 +1,6 @@
 # %%PIECE%%
 
-The %%PIECE%% moves as one of the basic leapers.
+The %%PIECE%% is a (1, 1)-%%LEAPER%%.
 It's a very old piece, appearing
 in very early chess variants. It may step one square in each of the
 four diagonal directions. This makes the %%PIECE%% %%COLOUR_BOUND%%.
@@ -15,6 +15,9 @@ four diagonal directions. This makes the %%PIECE%% %%COLOUR_BOUND%%.
          *Warrior* \\
 {th = 1} %%DOBUTSU%%
        & **Elephant**
+       & \\
+{th = 1} %%SENTEREJ%%
+       & **Fers**
        & \\
 {th = 1} %%LEAPERS%%
        & **Ferz**
