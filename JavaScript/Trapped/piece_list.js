@@ -35,6 +35,10 @@ let pieces = {
         parent: "archbishop",
     },
 
+    advisor: {
+        parent: "ferz",
+    },
+
     alfil: {        // (2, 2)-leaper
         betza:    "A",
         results: ["F/12.5%", "E", "E"],
@@ -452,6 +456,12 @@ let pieces = {
     //
     general: {
         parent: "amazon"
+    },
+
+    general_xiangqi: {
+        parent: "wazir",
+        _name:  "General",
+        _index_name: "General (Xiangqi)",
     },
 
     genie: {
@@ -1150,6 +1160,11 @@ let set_info = {
         name:    "Sh&#x14d;gi variants",
         pieces: ["blind_monkey", "flying_cock", "drunk_elephant"],
         shogi_variant: 1,
+    },
+
+    xiangqi: {
+        href:  "https://en.wikipedia.org/wiki/Xiangqi",
+        pieces: ["general_xiangqi"],
     },
 }
 

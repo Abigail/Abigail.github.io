@@ -177,6 +177,7 @@ my %MACROS = (
         TORI_SHOGI     =>  '[Tori Sh&#x14d;gi](#wiki:Tori_Shogi)',
         WHALE_SHOGI    =>  '[Whale Sh&#x14d;gi (&#x9be8;&#x5c06;&#x68cb;)]' .
                            '(#chess-v:shogivariants.dir/whale.html)',
+        XIANGQI        =>  '[Xiangqi (&#x8C61;&#x68CB;)](#wiki:xiangqi)',
 
         LEAPER         =>  '[*Leaper*](#wiki:Fairy_chess_piece#Leapers)',
         LEAPERS        =>  '[*Leapers*](#wiki:Fairy_chess_piece#Leapers)',
