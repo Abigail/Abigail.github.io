@@ -217,6 +217,9 @@ my %MACROS = (
                                     "it starts on a white square, it will "   .
                                     "always remain on a white square",
                                     "underline"),
+
+        YES            =>  '<span class = "yes">&#x2713;</span>',
+        NO             =>  '<span class =  "no">&#x2717;</span>',
     },
 );
 

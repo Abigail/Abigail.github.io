@@ -128,3 +128,11 @@ table.piece_list td, table.piece_list th {
     text-align:            left;
 }
 
+
+span.yes {
+    color:                 green;
+}
+
+span.no  {
+    color:                   red;
+}

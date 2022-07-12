@@ -46,46 +46,46 @@ captures differently than it moves.
 **Pawn** (&#x2659;)
              &  %%CHESS%%; many Chess variants
              &  Player's choice
-             &  &#x2713;
-             &  &#x2713;                                                     \\
+             &  %%YES%% 
+             &  %%YES%%                                                      \\
 **Pawn**     &  %%SHOGI%%
              &  [*Gold General*](gold_general.html)
-             &  &#x2717;
-             &  &#x2717;                                                     \\
+             &  %%NO%%  
+             &  %%NO%%                                                       \\
 **Pawn**     &  %%SCIROCCO%%; %%TYPHOON%%
              &  [*Tadpole*](tadpole.html)
-             &  &#x2717;
-             &  &#x2713;                                                     \\
+             &  %%NO%%  
+             &  %%YES%%                                                      \\
 **Pawn** (&#x0E1A;)
              &  %%MAKRUK%%
              &  [*Queen*](ferz.html?piece=queen) (Ferz)
-             &  &#x2717;
-             &  &#x2713;                                                     \\
+             &  %%NO%%  
+             &  %%YES%%                                                      \\
 **Fu**       &  %%TYPHOON%%
              &  [*Zebra*](zebra.html)
-             &  &#x2717;
-             &  &#x2717;                                                     \\
+             &  %%NO%%  
+             &  %%NO%%                                                       \\
 **Chick**    &  %%DOBUTSU%%
              &  [*Hen*](gold_general.html?piece=dobutsu_hen) (Gold General)
-             &  &#x2717;
-             &  &#x2717;                                                     \\
+             &  %%NO%%  
+             &  %%NO%%                                                       \\
 **Medeq**    &  %%SENTEREJ%%
              &  Player's choice of captured pieces
-             &  &#x2717;
-             &  &#x2713;                                                     \\
+             &  %%NO%%  
+             &  %%YES%%                                                      \\
 **Soldier**<sup>1</sup>
              &  %%XIANGQI%%
              &
-             &  &#x2717;
-             &  &#x2717;                                                     \\
+             &  %%NO%%  
+             &  %%NO%%                                                       \\
 **Swallow**  &  %%TORI_SHOGI%%
              &  [*Goose*](goose.html)
-             &  &#x2717;
-             &  &#x2717;                                                     \\
+             &  %%NO%%  
+             &  %%NO%%                                                       \\
 **Dolphin**  &  %%WHALE_SHOGI%%
              &
-             &  &#x2717;
-             &  &#x2717;                                                     \\
+             &  %%NO%%  
+             &  %%NO%%                                                       \\
 ====|
 
 <sup>1</sup> In %%XIANGQI%%, once the **Soldier** crosses the river,
