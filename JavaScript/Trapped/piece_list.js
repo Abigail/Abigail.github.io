@@ -387,7 +387,7 @@ let pieces = {
     },
 
     emperor_typhoon: {
-        betza: "W2F2Q",
+        betza: "W2F2N",
         _name: "Emperor",
         _index_name: "Emperor (Typhoon)",
     },
