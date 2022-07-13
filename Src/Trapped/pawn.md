@@ -65,6 +65,14 @@ captures differently than it moves.
              &  [*Hen*](gold_general.html?piece=dobutsu_hen) (Gold General)
              &  %%NO%%  
              &  %%NO%%                                                       \\
+**Dolphin**  &  %%WHALE_SHOGI%%
+             &
+             &  %%NO%%  
+             &  %%NO%%                                                       \\
+**Fu**       &  %%HIASHATAR%%
+             &  [*Bers*](queen.html?piece=pers)
+             &  %%YES%%
+             &  %%NO%%                                                       \\
 **Fu**       &  %%TYPHOON%%
              &  [*Zebra*](zebra.html)
              &  %%NO%%  
@@ -86,10 +94,6 @@ captures differently than it moves.
              &  %%NO%%                                                       \\
 **Swallow**  &  %%TORI_SHOGI%%
              &  [*Goose*](goose.html)
-             &  %%NO%%  
-             &  %%NO%%                                                       \\
-**Dolphin**  &  %%WHALE_SHOGI%%
-             &
              &  %%NO%%  
              &  %%NO%%                                                       \\
 ====|

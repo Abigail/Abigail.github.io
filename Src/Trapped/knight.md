@@ -21,6 +21,9 @@ be blocked.
 {th = 1} %%SENTEREJ%%
        & **Ferese**
        & *Ferese* meaning *Horse* \\
+{th = 1} %%HIASHATAR%%
+       & **Mori**
+       & \\
 {th = 1} %%SHATAR%%
        & **Mori** (<span class =
                         "mongolian">&#x182E;&#x1823;&#x1837;&#x1822;</span>)

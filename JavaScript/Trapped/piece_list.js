@@ -90,6 +90,10 @@ let pieces = {
         results: ["W", "FC", "F*/100%"],
     },
 
+    bers: {
+        parent: "queen",
+    },
+
     bishop: {
         betza:  "B",
         results: ["F/31.25%", "E", "E"],
@@ -614,6 +618,10 @@ let pieces = {
         _name: "Hen",
     },
 
+    hia: {
+        parent: "sorcerer",
+    },
+
     horned_owl: {
         betza:    "F4DfW",
         results: ["?/1,056,723,023", "F/50%", "F*/100%"],
@@ -793,6 +801,10 @@ let pieces = {
     },
 
     noyan: {
+        parent: "king",
+    },
+
+    noyon: {
         parent: "king",
     },
 
@@ -988,6 +1000,10 @@ let pieces = {
 
     teme: {
         parent: "bishop",
+    },
+
+    tereg: {
+        parent: "rook",
     },
 
     terge: {
@@ -1316,6 +1332,11 @@ let set_info = {
     shatar: {
         href:  "https://www.chessvariants.com/oriental.dir/shatar.html",
         pieces: ["noyan", "baras", "terge", "teme", "mori", "kuu"],
+    },
+
+    hiashatar: {
+        href: "https://en.wikipedia.org/wiki/Hiashatar",
+        pieces: ["noyon", "bers", "hia", "tereg", "teme", "mori", "fu"],
     },
 }
 

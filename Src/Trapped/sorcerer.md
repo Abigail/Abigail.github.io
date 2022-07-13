@@ -1,26 +1,30 @@
-# Sorcerer
+# %%PIECE%%
 
-The **Sorcerer** moves up to two unoccupied squares in each of the
-eight main directions. It cannot capture this way, instead, if it lands
-adjacent to an enemy piece in the same direction as it moves, it capture
-this piece (and any consecutive piece in the same direction). However,
-we do ignore captures.
+The %%PIECE%% moves up to two unoccupied squares in each of the
+eight main directions.
 
-In [Typhoon](#chess-v:rules/typhoon-revised), the [*Beaver*](beaver.html)
-promotes to the **Sorcerer**.
+|====
+%%PIECE_HEADERS%%
+{th = 1} %%TYPHOON%%
+       & **Sorcerer**
+       & %%PROMOTED%% [*Beaver*](beaver.html); %%CAPTURE%% \\
+{th = 1} %%HIASHATAR%%
+       & **Hia** or **Bodyguard**
+       & %%ABILITIES%% \\
+====|
 
 ### Spiral
 
-The **Sorcerer** can move as the [*Wazir*](wazir.html), and as such,
+The %%PIECE%% can move as the [*Wazir*](wazir.html), and as such,
 if will follow the Spiral.
 
 ### Wedge
 
 #### Folded
 
-The **Sorcerer** can move as the [*Flying Cock*](flying_cock.html),
+The %%PIECE%% can move as the [*Flying Cock*](flying_cock.html),
 and as such, if will follow the Folded Wedge.
 
 #### Flat
 
-On the Flat Wedge, the **Sorcerer** will visit all the squares.
+On the Flat Wedge, the %%PIECE%% will visit all the squares.

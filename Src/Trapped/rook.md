@@ -35,6 +35,9 @@ occupied square.
 {th = 1} %%MAKRUK%%
        & **Rook** (&#x0E23;)
        & \\
+{th = 1} %%HIASHATAR%%
+       & **Tereg** 
+       & \\
 {th = 1} %%SHATAR%%
        & **Terge** 
        & \\
