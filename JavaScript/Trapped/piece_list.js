@@ -143,7 +143,7 @@ let pieces = {
     oec_caliph: {
         betza:       "BC",
         _name:       "Caliph",
-        _index_name: "Caliph (Bison + Camel)",
+        _index_name: "Caliph (Bishop + Camel)",
         results:    ["T/1,563", "F*/50%", "F*/50%"],
     },
 
