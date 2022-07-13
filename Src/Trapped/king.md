@@ -54,6 +54,10 @@ Of course, for our investigation, Royalness plays no part.
 {th = 1} %%SENTEREJ%%
        & **Negus**
        & %%ROYAL%% \\
+{th = 1} %%SHATAR%%
+       & **Noyan** (<span class =
+       "mongolian">&#x1828;&#x1823;&#x1836;&#x1820;&#x1828;</span>) or **Noin**
+       & %%ROYAL%%; *Noyan* meaning *Lord* \\
 {th = 1} %%TYPHOON%%
        & **Overtaker**
        & %%HOPPER%%; %%PROMOTES_TO%% [*Nightrider*](knightrider.html) \\

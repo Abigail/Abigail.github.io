@@ -61,19 +61,25 @@ captures differently than it moves.
              &  [*Queen*](ferz.html?piece=queen) (Ferz)
              &  %%NO%%  
              &  %%YES%%                                                      \\
-**Fu**       &  %%TYPHOON%%
-             &  [*Zebra*](zebra.html)
-             &  %%NO%%  
-             &  %%NO%%                                                       \\
 **Chick**    &  %%DOBUTSU%%
              &  [*Hen*](gold_general.html?piece=dobutsu_hen) (Gold General)
              &  %%NO%%  
              &  %%NO%%                                                       \\
+**Fu**       &  %%TYPHOON%%
+             &  [*Zebra*](zebra.html)
+             &  %%NO%%  
+             &  %%NO%%                                                       \\
+**K&#x00FC;&#x00FC;** (<span class =
+                "mongolian">&#x182C;&#x1826;&#x1826;</span>) or **Chu**
+             &  %%SHATAR%%
+             &  [*Baras*](dragon_king.html?piece=baras)
+             &  %%NO%%<sup>1</sup>
+             &  %%YES%%                                                      \\
 **Medeq**    &  %%SENTEREJ%%
              &  Player's choice of captured pieces
              &  %%NO%%  
              &  %%YES%%                                                      \\
-**Soldier**<sup>1</sup>
+**Soldier**<sup>2</sup>
              &  %%XIANGQI%%
              &
              &  %%NO%%  
@@ -88,7 +94,10 @@ captures differently than it moves.
              &  %%NO%%                                                       \\
 ====|
 
-<sup>1</sup> In %%XIANGQI%%, once the **Soldier** crosses the river,
+<sup>1</sup> Except for the one in front of the
+             [*Baras*](dragon_king.html?piece=baras); each game starts
+             with 1. d2-d4, d7-d5.<br>
+<sup>2</sup> In %%XIANGQI%%, once the **Soldier** crosses the river,
              in addition to moving one square forward, it may also
              move one square sideways. This makes it move like the
              [*Banner*](banner.html).

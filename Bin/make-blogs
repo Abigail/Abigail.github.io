@@ -176,6 +176,8 @@ my %MACROS = (
         SCIROCCO       =>  '[Scirocco](#chess-v:rules/scirocco)',
         SENTEREJ       =>  '[Senterej](#wiki) [[C&#x2C7D;](#chess-v:' .
                            'historic.dir/HistoricalChessVariants.pdf)]',
+        SHATAR         =>  '[Shatar](#wiki) [[C&#x2C7D;](#chess-v:' .
+                           'oriental.dir/shatar.html)]',
         SHOGI          =>  '[Sh&#x14d;gi (&#x5c06;&#x68cb;)](#wiki:Shogi)',
         TYPHOON        =>  '[Typhoon](#chess-v:rules/typhoon-revised)',
         TORI_SHOGI     =>  '[Tori Sh&#x14d;gi](#wiki:Tori_Shogi)',
