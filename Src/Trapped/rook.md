@@ -35,6 +35,9 @@ occupied square.
 {th = 1} %%MAKRUK%%
        & **Rook** (&#x0E23;)
        & \\
+{th = 1} %%SHATAR%%
+       & **Terge** 
+       & \\
 {th = 1} %%RIDERS%%
        & **Wazirrider**
        & Moves likes [*Wazir*](wazir.html), without a limit on the number

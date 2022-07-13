@@ -25,6 +25,9 @@ Due to its diagonal movement, the %%PIECE%% is %%COLOUR_BOUND%%.
 {th = 1} %%TYPHOON%%
        & **Bishop**
        & %%PROMOTED%% [*Guard*](guard.html) \\
+{th = 1} %%SHATAR%%
+       & **Teme**
+       & \\
 ====|
 
 ### Spiral

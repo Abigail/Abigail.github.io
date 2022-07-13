@@ -77,6 +77,10 @@ let pieces = {
         results: ["F/25%", "F/100%", "E"],
     },
 
+    baras: {
+        parent: "dragon_king",
+    },
+
     baron: {
         parent: "archbishop",
     },
@@ -678,6 +682,11 @@ let pieces = {
         results: ["T/509", "T/60", "T/22"],
     },
 
+    kuu: {
+        parent: "pawn",
+        _name: "K&#x00FC;&#x00FC;",
+    },
+
     //
     // L pieces
     //
@@ -763,6 +772,10 @@ let pieces = {
         results: ["F*/50%", "E", "E"],
     },
 
+    mori: {
+        parent: "knight",
+    },
+
     //
     // N pieces
     //
@@ -770,13 +783,17 @@ let pieces = {
         parent:   "hummingbird",
     },
 
+    nb: {
+        parent: "archbishop",
+        _name: "NB",
+    },
+
     negus: {
         parent: "king",
     },
 
-    nb: {
-        parent: "archbishop",
-        _name: "NB",
+    noyan: {
+        parent: "king",
     },
 
     //
@@ -967,6 +984,14 @@ let pieces = {
     tadpole: {
         betza: "FH",
         results: ["?/1,066,282,804", "T/8,619,774", "T/4,637,261"],
+    },
+
+    teme: {
+        parent: "bishop",
+    },
+
+    terge: {
+        parent: "rook",
     },
 
     terror: {
@@ -1286,6 +1311,11 @@ let set_info = {
     senterej: {
         href:  "https://en.wikipedia.org/wiki/Senterej",
         pieces: ["negus", "fers", "saba", "ferese", "der", "medeq"],
+    },
+
+    shatar: {
+        href:  "https://www.chessvariants.com/oriental.dir/shatar.html",
+        pieces: ["noyan", "baras", "terge", "teme", "mori", "kuu"],
     },
 }
 

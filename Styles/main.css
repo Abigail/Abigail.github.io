@@ -68,7 +68,6 @@ hr#last-line {
 
 div.byline {
     padding-top:                          0px;
-    padding-left:                       0.5em;
     margin-top:                         -30px;
     margin-right:                      -2.5em;
     float:                              right;
@@ -194,4 +193,10 @@ span.qed:hover::after {
 
 .tooltip:hover .tooltiptext {
     visibility:                       visible;
+}
+
+
+span.mongolian {
+    writing-mode:                 vertical-lr;
+    vertical-align:                    middle;
 }

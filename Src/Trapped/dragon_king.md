@@ -12,26 +12,25 @@ Pieces which can move like the %%PIECE%% can be found in
 several games:
 
 |====
-{class = piece_list}
-{th = 1} Game &
-{th = 1} Piece &
-{th = 1} Promoted &
-{th = 1} Promotes to &
-{th = 1} Info \\
-{th = 1} %%SHOGI%% & **Dragon King** (&#x9f8d;&#x738b;)
-                   & [*Rook*](rook.html) &  & \\
-{th = 1; rs = 2} %%TYPHOON%% & **Dragon Kite**
-                             & [*Dabbaba*](dabbaba.html) & & \\
-                               **Ibis**
-                             & [*Copper General*](copper_general.html)
-                             & & %%CAPTURE%% \\
-{th = 1} %%WHALE_SHOGI%% & **Killer Whale** 
-                         & [*Porpoise*](porpoise.html)<sup>1</sup> & & \\
+%%PIECE_HEADERS%%
+{th = 1} %%SHOGI%%
+       & **Dragon King** (&#x9f8d;&#x738b;)
+       & %%PROMOTED%% [*Rook*](rook.html)  \\
+{th = 1; rs = 2} %%TYPHOON%%
+       & **Dragon Kite**
+       & %%PROMOTED%% [*Dabbaba*](dabbaba.html) \\
+         **Ibis**
+       & %%PROMOTED%%  [*Copper General*](copper_general.html); %%CAPTURE%% \\
+{th = 1} %%WHALE_SHOGI%%
+       & **Killer Whale** 
+       & Captured enemy [*Porpoise*](porpoise.html) \\
+{th = 1} %%SHATAR%%
+       & **Baras** or **Berse**
+         (<span class = "mongolian">&#x182A;&#x1820;&#x1837;&#x1830;</span>)
+       & In modern rules, the **Baras** moves like the
+         Chess [*Queen*](queen.html); *Baras* meaning *Tiger*. \\
+      
 ====|
-
-<sup>1</sup> An enemey [*Porpoise*](porpoise.html) must be captured;
-             it does not promote.
-
 
 ### Spiral
 
