@@ -9,7 +9,7 @@ be blocked.
 
 |====
 %%PIECE_HEADERS%%
-{th = 1} %%CHESS%%
+{th = 1} %%CHESS%%; %%WILDEBEEST%%
        & **Knight** (&#x2658;)
        & \\
 {th = 1} %%SCIROCCO%%; %%TYPHOON%%
@@ -29,6 +29,9 @@ be blocked.
                         "mongolian">&#x182E;&#x1823;&#x1837;&#x1822;</span>)
        & May not deliver mate \\
 ====|
+      
+Links: [%%WIKI%%](#wiki:Knight_(chess)),
+       [%%CHESS_V%%](#piece:knight)
 
 See also the [*Knightrider*](knightrider.html), a piece which moves
 one or more squares in the same direction as the %%PIECE%%.

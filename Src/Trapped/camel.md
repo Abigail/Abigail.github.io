@@ -1,32 +1,40 @@
-# Camel &#x1F42B;
+# %%PIECE%%
 
-The **Camel** is one of the basic leapers, a (3, 1)-leaper. This means
-that a Camel jumps to a square which is three squares away in an orthogonal
+The %%PIECE%% is  a (3, 1)-%%LEAPER%%. This means
+that the %%PIECE%% jumps to a square which is three squares away in
+one orthogonal
 direction, and one square away into a direction perpendicular to the
 first direction.
 
-This makes that the **Camel** is
-[colourbound](#wiki:Glossary_of_chess#Colorbound).
-The **Camel** can only reach half the squares on the board.
+This makes the %%PIECE%% %%COLOUR_BOUND%%.
 
-In [*Scirocco*](#chess-v:rules/scirocco) and
-[*Typhoon*](#chess-v:rules/typhoon-revised), the **Camel** promotes
-to the [*Squirrel*](squirrel.html).
+|====
+%%PIECE_HEADERS%%
+{th = 1} %%LEAPERS%%; %%WILDEBEEST%%
+       & **Camel**
+       & \\
+{th = 1} %%SCIROCCO%%; %%TYPHOON%%
+       & %%PROMOTES_TO%% [*Squirrel*](squirrel.html)
+====|
+      
+Links: [%%WIKI%%](#wiki:Camel_(chess)),
+       [%%CHESS_V%%](#piece:camel)
+
 
 ### Spiral
 
-The **Camel** will circle in an irregular way around the origin, in
+The %%PIECE%% will circle in an irregular way around the origin, in
 the opposite direction from the Spiral; roughly tracing out a square.
-The **Camel** will get trapped after 3,722 steps.
+The %%PIECE%% will get trapped after 3,722 steps.
 
 ### Wedge
 
 #### Folded
 
-On the Folded Wedge, the **Camel** gets trapped much sooner than on
-the Spiral, after no more than 342 steps, the **Camel** is trapped.
+On the Folded Wedge, the %%PIECE%% gets trapped much sooner than on
+the Spiral, after no more than 342 steps, the %%PIECE%% is trapped.
 
 #### Flat
 
 On the Flat Wedge, it takes much longer than on the Folded Wedge for
-the **Camel** to get trapped: 2,401 steps.
+the %%PIECE%% to get trapped: 2,401 steps.

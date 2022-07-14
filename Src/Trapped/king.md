@@ -29,7 +29,7 @@ Of course, for our investigation, Royalness plays no part.
          and the **General** does not have all its moves available 
          on every square of the palace; Also known as *Assistant* or
          *Mandarin* \\
-{th = 1} %%CHESS%%; %%WOLF%%; Other chess variants
+{th = 1} %%CHESS%%; %%WILDEBEEST%%; %%WOLF%%; Other chess variants
        & **King** (&#x2654;)
        & %%ROYAL%% \\
 {th = 1} %%MAKRUK%%
@@ -84,6 +84,9 @@ Of course, for our investigation, Royalness plays no part.
 
 Other names for pieces which move like the %%PIECE%%
 include *Mann* (not Royal), and *Prince* (sometimes Royal). 
+
+Links: [%%WIKI%%](#wiki:King_(chess)),
+       [%%CHESS_V%%](#piece:king)
 
 ### Spiral
 

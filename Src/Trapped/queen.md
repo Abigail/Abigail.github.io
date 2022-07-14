@@ -9,12 +9,9 @@ It's common in many Chess variant, using different names:
 
 |====
 %%PIECE_HEADERS%%
-{th = 1} %%CHESS%%; %%WOLF%%; Other chess variants
-       & **Queen** (&#x2655;)
+{th = 1} %%HIASHATAR%%
+       & **Bers**
        & \\
-{th = 1} %%SCIROCCO%%; %%TYPHOON%%
-       & **Queen**
-       & %%PROMOTED%% [*Stork*](alfil.html?piece=stork) \\
 {th = 1} %%TYPHOON%%
        & **Immobilizer**
        & %%PROMOTED%% [*Hummingbird*](hummingbird.html);
@@ -22,11 +19,20 @@ It's common in many Chess variant, using different names:
 {th = 1} %%TYPHOON%%
        & **Longleaper**
        & %%PROMOTED%% [*Cuckoo*](cuckoo.html); %%HOPPER%% \\
-{th = 1} %%HIASHATAR%%
-       & **Bers**
+{th = 1} %%CHESS%%; %%WOLF%%; Other chess variants
+       & **Queen** (&#x2655;)
        & \\
+{th = 1} %%SCIROCCO%%; %%TYPHOON%%
+       & **Queen**
+       & %%PROMOTED%% [*Stork*](alfil.html?piece=stork) \\
+{th = 1} %%WILDEBEEST%%
+       & **Queen**
+       & The *Queen* is one of two pieces a [*Pawn*](pawn.html)
+         may promote to \\
 ====|
       
+Links: [%%WIKI%%](#wiki:Queen_(chess)),
+       [%%CHESS_V%%](#piece:queen)
 
 ### Spiral
 

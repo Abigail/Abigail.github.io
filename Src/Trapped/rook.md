@@ -22,7 +22,7 @@ occupied square.
 {th = 1} %%SENTEREJ%%
        & **Der**
        & *Der* meaning *Castle* \\
-{th = 1} %%CHESS%%; %%WOLF%%; Other Chess variants
+{th = 1} %%CHESS%%; %%WILDEBEEST%%; %%WOLF%%; Other Chess variants
        & **Rook** (&#x2656;)
        & \\
 {th = 1} %%SHOGI%%
@@ -46,6 +46,9 @@ occupied square.
        & Moves likes [*Wazir*](wazir.html), without a limit on the number
          of squares it moves over, as long as the squares are unoccupied \\
 ====|
+      
+Links: [%%WIKI%%](#wiki:Rook_(chess)),
+       [%%CHESS_V%%](#piece:rook)
 
 ### Spiral
 
