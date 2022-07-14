@@ -49,6 +49,12 @@ captures differently than it moves.
              &  %%YES%% 
              &  %%YES%%                                                      \\
 **Pawn** (&#x2659;)
+             &  %%WILDEBEEST%%
+             &  [*Queen*](queen.html) or
+                [*Wildebeest*](gnu.html?piece=wildebeest)
+             &  %%YES%% 
+             &  %%YES%%                                                      \\
+**Pawn** (&#x2659;)
              &  %%WOLF%%
              &  Player's choice, including the
                 [*Elephant*](amazon_rider.html?piece=elephant_wolf)

@@ -1364,6 +1364,12 @@ let set_info = {
         pieces: ["king", "queen", "rook", "bishop", "nightrider", "wolf",
                  "fox", "elephant_wolf", "sergeant", "pawn"],
     },
+
+    wildebeest_chess: {
+        href: "https://en.wikipedia.org/wiki/Wildebeest_chess",
+        pieces: ["king", "queen", "rook", "bishop", "knight",
+                 "camel", "wildebeest", "pawn"],
+    },
 }
 
 //

@@ -8,7 +8,7 @@ Due to its diagonal movement, the %%PIECE%% is %%COLOUR_BOUND%%.
 
 |====
 %%PIECE_HEADERS%%
-{th = 1} %%CHESS%%; %%WOLF%%; Other Chess variants
+{th = 1} %%CHESS%%; %%WILDEBEEST%%; %%WOLF%%; Other Chess variants
        & **Bishop** (&#x2657;)
        & \\
 {th = 1} %%RIDERS%%
@@ -29,6 +29,9 @@ Due to its diagonal movement, the %%PIECE%% is %%COLOUR_BOUND%%.
        & **Teme**
        & \\
 ====|
+      
+Links: [%%WIKI%%](#wiki:Bishop_(chess)),
+       [%%CHESS_V%%](#piece:bishop)
 
 ### Spiral
 

@@ -188,6 +188,8 @@ my %MACROS = (
         TORI_SHOGI     =>  '[Tori Sh&#x14d;gi](#wiki:Tori_Shogi)',
         WHALE_SHOGI    =>  '[Whale Sh&#x14d;gi (&#x9be8;&#x5c06;&#x68cb;)]' .
                            '(#chess-v:shogivariants.dir/whale.html)',
+        WILDEBEEST     =>  "[Wildebeest Chess](#wiki) [[$CHESS_V_TOKEN]" .
+                           "(#chess-v:large.dir/wildebeest.html)]",
         WOLF           =>  '[Wolf Chess](#chess-v:large.dir/wolf.html) ' .
                            "[[$WIKI_TOKEN](#wiki:Wolf_chess)]",
         XIANGQI        =>  '[Xiangqi (&#x8C61;&#x68CB;)](#wiki:xiangqi)',
