@@ -1,17 +1,26 @@
-# Lance
+# %%PIECE%%
 
-The **Lance**, also called an *Incense Chariot*, can slide an
+The %%PIECE%% slides an
 unlimited number of unoccupied squares straight ahead.
 
-The **Lance** is a piece from
-[Sh&#x14d;gi (&#x5c06;&#x68cb;)](#wiki:Shogi), and
-promotes to a [*Gold General*](gold_general).
+|====
+%%PIECE_HEADERS%%
+{th = 1}  %%SHOGI%%
+       &  **Lance** (&#x9999;&#x8ECA;)
+       &  %%PROMOTES_TO%% [*Gold General*](gold_general) \\
+{th = 1}  %%MICRO_SHOGI%%
+       &  **Lance** (&#x9999;&#x8ECA;)
+       &  Becomes a [*Silver General*](silver_general.html)
+          when capturing \\
+====|
+
+Link: [%%CHESS_V%%](#piece:lance)
 
 ### Spiral
 
-The **Lance** escapes in a straight line to infinity.
+The %%PIECE%% escapes in a straight line to infinity.
 
 ### Wedge
 
-On both the Folded and the Flat Wedge, the **Lance** 
+On both the Folded and the Flat Wedge, the %%PIECE%% 
 escapes to infinity using the same line as the Spiral.

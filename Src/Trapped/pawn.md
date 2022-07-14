@@ -65,6 +65,12 @@ captures differently than it moves.
              &  [*Gold General*](gold_general.html)
              &  %%NO%%  
              &  %%NO%%                                                       \\
+**Pawn** (&#x6B69;&#x5175;)
+             &  %%MICRO_SHOGI%%
+             &  [*Knight*](shogi_knight.html) (when capturing, there is
+                no promotion in Micro Sh&#x14d;gi)
+             &  %%NO%%  
+             &  %%NO%%                                                       \\
 **Pawn**     &  %%SCIROCCO%%; %%TYPHOON%%
              &  [*Tadpole*](tadpole.html)
              &  %%NO%%  

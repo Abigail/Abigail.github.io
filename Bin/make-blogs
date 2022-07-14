@@ -12,34 +12,35 @@ use experimental 'lexical_subs';
 use Text::Markdown qw [markdown];
 use Getopt::Long;
 
-my $POLYFILL_URL   = "https://polyfill.io/v3/polyfill.min.js?features=es6";
-my $MATHJAX_URL    = "https://cdn.jsdelivr.net/npm/mathjax@3/" .
-                             "es5/tex-mml-chtml.js";
-my $SVG_URL        = 'https://cdn.jsdelivr.net/npm/@svgdotjs/' .
-                             'svg.js@3.0/dist/svg.min.js';
-my $CHART_URL      = "https://cdn.jsdelivr.net/npm/chart.js";
+my  $POLYFILL_URL   = "https://polyfill.io/v3/polyfill.min.js?features=es6";
+my  $MATHJAX_URL    = "https://cdn.jsdelivr.net/npm/mathjax@3/" .
+                              "es5/tex-mml-chtml.js";
+my  $SVG_URL        = 'https://cdn.jsdelivr.net/npm/@svgdotjs/' .
+                              'svg.js@3.0/dist/svg.min.js';
+my  $CHART_URL      = "https://cdn.jsdelivr.net/npm/chart.js";
 
-my $HOME           = $ENV {HOME};
-my $TOP_DIR        = "$HOME/GitHub/Blogs";
-my $SRC_DIR        = "Src";
-my $HTML_DIR       = "HTML";
-my $DIR_PWC        = "Perl-Weekly-Challenge";
-my $DIR_FC         = "Feature-Compare";
-my $DIR_ADVENT     = "AdventOfCode";
-my $DIR_TALK       = "Talks";
-my $DIR_TRAPPED    = "Trapped";
+my  $HOME           = $ENV {HOME};
+my  $TOP_DIR        = "$HOME/GitHub/Blogs";
+my  $SRC_DIR        = "Src";
+my  $BIN_DIR        = "$TOP_DIR/Bin";
+my  $HTML_DIR       = "HTML";
+my  $DIR_PWC        = "Perl-Weekly-Challenge";
+my  $DIR_FC         = "Feature-Compare";
+my  $DIR_ADVENT     = "AdventOfCode";
+my  $DIR_TALK       = "Talks";
+my  $DIR_TRAPPED    = "Trapped";
 
-my $TYPE_PWC       = 1;
-my $TYPE_FC        = $TYPE_PWC    + 1;
-my $TYPE_ADVENT    = $TYPE_FC     + 1;
-my $TYPE_TALK      = $TYPE_ADVENT + 1;
-my $TYPE_TRAPPED   = $TYPE_TALK   + 1;
+our $TYPE_PWC       = 1;
+our $TYPE_FC        = $TYPE_PWC    + 1;
+our $TYPE_ADVENT    = $TYPE_FC     + 1;
+our $TYPE_TALK      = $TYPE_ADVENT + 1;
+our $TYPE_TRAPPED   = $TYPE_TALK   + 1;
 
-my $INFO_DIR       = 0;
-my $INFO_NAV       = 1;
-my $INFO_UP        = 2;
-my $INFO_IS_TALK   = 3;
-my $INFO_JS        = 4;
+my  $INFO_DIR       = 0;
+my  $INFO_NAV       = 1;
+my  $INFO_UP        = 2;
+my  $INFO_IS_TALK   = 3;
+my  $INFO_JS        = 4;
 
 my $TYPE_INFO = {
     $TYPE_PWC      =>  {
@@ -158,85 +159,8 @@ my %WHERE_INFO = (
     piece      =>  {url => $PIECECLOPEDIA_URL, ext => ".html"},
 );
 
-my sub tooltip ($text, $tooltiptext, @classes) {
-    my $classes = join " ", "tooltip", @classes;
-    sprintf "<span class = '%s'>%s<span class = '%s'>%s</span></span>" =>
-            $classes, $text, "tooltiptext", $tooltiptext
-}
 
-my $WIKI_TOKEN    = "&#x1F146;";
-my $CHESS_V_TOKEN = "C&#x2C7D;";
-
-my %MACROS = (
-    $TYPE_TRAPPED => {
-        CHESS          =>  '[Chess](#wiki)',
-        GRAND_CAVALIER =>  '[Grand Cavalier Chess]' .
-                           '(#chess-v:large.dir/grandcavalier.html)',
-        DOBUTSU        =>  '[D&#x14d;butsu sh&#x14d;gi](#wiki:Dobutsu_shogi)',
-        JANGGI         =>  '[Janggi (&#xC7A5;&#xAE30;)](#wiki:Janggi)',
-        HIASHATAR      =>  '[Hiashatar](#wiki)',
-        MAKRUK         =>  '[Makruk](#wiki)',
-        OVERKILL       =>  '[Overkill Ecumenical Chess]' .
-                           '(#chess-v:rules/overkill-ecumenical-chess)',
-        SCIROCCO       =>  '[Scirocco](#chess-v:rules/scirocco)',
-        SENTEREJ       =>  "[Senterej](#wiki) [[$CHESS_V_TOKEN](#chess-v:" .
-                           'historic.dir/HistoricalChessVariants.pdf)]',
-        SHATAR         =>  "[Shatar](#wiki) [[$CHESS_V_TOKEN](#chess-v:" .
-                           'oriental.dir/shatar.html)]',
-        SHOGI          =>  '[Sh&#x14d;gi (&#x5c06;&#x68cb;)](#wiki:Shogi)',
-        TYPHOON        =>  '[Typhoon](#chess-v:rules/typhoon-revised)',
-        TORI_SHOGI     =>  '[Tori Sh&#x14d;gi](#wiki:Tori_Shogi)',
-        WHALE_SHOGI    =>  '[Whale Sh&#x14d;gi (&#x9be8;&#x5c06;&#x68cb;)]' .
-                           '(#chess-v:shogivariants.dir/whale.html)',
-        WILDEBEEST     =>  "[Wildebeest Chess](#wiki) [[$CHESS_V_TOKEN]" .
-                           "(#chess-v:large.dir/wildebeest.html)]",
-        WOLF           =>  '[Wolf Chess](#chess-v:large.dir/wolf.html) ' .
-                           "[[$WIKI_TOKEN](#wiki:Wolf_chess)]",
-        XIANGQI        =>  '[Xiangqi (&#x8C61;&#x68CB;)](#wiki:xiangqi)',
-
-        LEAPER         =>  '[*Leaper*](#wiki:Fairy_chess_piece#Leapers)',
-        LEAPERS        =>  '[*Leapers*](#wiki:Fairy_chess_piece#Leapers)',
-        RIDER          =>  '[*Rider*](#wiki:Fairy_chess_piece#Riders)',
-        RIDERS         =>  '[*Riders*](#wiki:Fairy_chess_piece#Riders)',
-
-        PIECE_HEADERS  =>  "{class = piece_list}\n"            .
-                           "{th = 1} Game & {th = 1} Piece & " .
-                           "{th = 1} Info \\\\",
-        ROYAL          =>  tooltip ("&#x265A;", "This piece is *Royal*; if "  .
-                                                "all Royal pieces have been " .
-                                                "captured, the game is lost"),
-        MORE_MOVES     =>  tooltip ("&rlarr;",  "This piece has additional "  .
-                                                "moves,<br>which are not "    .
-                                                "relevant here"),
-        CAPTURE        =>  tooltip ("&#x238B;", "This piece has additional "  .
-                                                "capture moves,<br>"          .
-                                                "which we can ignore here"),
-        ABILITIES      =>  tooltip ("&#x1F3A9;", "This piece has additional " .
-                                                 "abilities,<br>which we "    .
-                                                 "can ignore here"),
-        HOPPER         =>  tooltip ("&#x1F407;", "This piece has additional " .
-                                                 "hopping moves or "          .
-                                                 "captures, which we "        .
-                                                 "can ignore here"),
-        PROMOTES_TO    =>  tooltip ("&#x260A;",  "Promotes to"),
-        PROMOTED       =>  tooltip ("&#x260B;",  "Is promoted"),
-        COLOUR_BOUND   =>  tooltip ("colourbound", 
-                                    "A colourbound piece will always stay "   .
-                                    "on a square of the same colour: if it "  .
-                                    "starts on a black square, it will "      .
-                                    "always remain on a black square; if "    .
-                                    "it starts on a white square, it will "   .
-                                    "always remain on a white square",
-                                    "underline"),
-
-        YES            =>  '<span class = "yes">&#x2713;</span>',
-        NO             =>  '<span class =  "no">&#x2717;</span>',
-
-        WIKI           =>  $WIKI_TOKEN,
-        CHESS_V        =>  $CHESS_V_TOKEN,
-    },
-);
-
+our %MACROS; require "$BIN_DIR/macros.pl";
 
 my %LINK_GROUP; init_link_group ();
 

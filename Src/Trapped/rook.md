@@ -26,9 +26,12 @@ occupied square.
        & **Rook** (&#x2656;)
        & \\
 {th = 1} %%SHOGI%%
-       & **Rook**
+       & **Rook** (&#x98DB;&#x8ECA;)
        & Also known as *Flying Chariot* (&#x98db;&#x8eca;);
-         %%PROMOTES_TO%% [*Dragon King (&#x9f8d;&#x738b;)*](dragon_king.html) \\
+         %%PROMOTES_TO%% [*Dragon King*](dragon_king.html) \\
+{th = 1} %%MICRO_SHOGI%%
+       & **Rook** (&#x98DB;&#x8ECA;)
+       & Becomes a [*Gold General*](gold_general.html) when capturing \\
 {th = 1} %%SCIROCCO%%; %%TYPHOON%%
        & **Rook**
        & %%PROMOTED%% [*Knight*](knight.html) \\

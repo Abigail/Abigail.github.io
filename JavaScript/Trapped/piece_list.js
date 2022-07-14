@@ -1053,6 +1053,10 @@ let pieces = {
         results: ["F/5.56%", "E", "E"],
     },
 
+    tokin: {
+        parent: "gold_general",
+    },
+
     tripperrider: {
         betza:    "GG",
         results: ["F*/3.472&#x0305;%", "E", "E"],
@@ -1184,6 +1188,7 @@ let set_info = {
                  "fourleaper",  "giraffe", "stag",  "antelope", "commuter",
                  "flamingo"],
     },
+
     combined_leapers: {
         pieces: ["king", "lioness", "centaur", "scirocco_frog",
                  "war_machine", "champion",
@@ -1193,26 +1198,12 @@ let set_info = {
                  "gnu", "okapi", "bison", "zebu",
                  "root_25_leaper", "root_50_leaper"]
     },
+
     riders: {
         pieces: ["wazirrider", "ferzrider",
                  "dabbabarider", "nightrider", "alfilrider",
                  "threeleaperrider", "camelrider",
-                                     "zebrarider", "tripperrider",]
-    },
-
-
-    //
-    // Compound pieces
-    //
-    knighted_pieces: {
-        pieces: ["dragon", "priest", "archbishop", "duke",
-                 "chancellor", "amazon", "gnu", "okapi"],
-    },
-    crowned_pieces: {
-        pieces: ["dragon_king", "dragon_horse"],
-    },
-    pawned_pieces: {
-        pieces: ["dragon", "gryphon"],
+                 "zebrarider", "tripperrider",]
     },
 
 
@@ -1225,11 +1216,13 @@ let set_info = {
         pieces: ["king", "queen", "rook", "falcon", "hunter",
                  "bishop", "knight", "pawn"],
     },
+
     omega_chess: {
         href:    "https://en.wikipedia.org/wiki/Omega_Chess",
         pieces: ["king", "queen", "rook", "bishop", "knight",
                  "champion", "wizard", "pawn"],
     },
+
     overkill_ecumenical_chess: {
         href:    "https://www.chessvariants.com/rules/" +
                  "overkill-ecumenical-chess",
@@ -1237,6 +1230,25 @@ let set_info = {
                  "oec_caliph", "canvasser", "cardinal", "gnu",
                  "marshal", "queen", "pawn"],
     },
+
+    grand_cavalier_chess: {
+        href: "https://www.chessvariants.com/large.dir/grandcavalier.html",
+        pieces: ["eques_rex", "queen", "marshall", "paladin", "cannon",
+                 "nightrider", "cavalier"],
+    },
+
+    wolf_chess: {
+        href: "https://en.wikipedia.org/wiki/Wolf_chess",
+        pieces: ["king", "queen", "rook", "bishop", "nightrider", "wolf",
+                 "fox", "elephant_wolf", "sergeant", "pawn"],
+    },
+
+    wildebeest_chess: {
+        href: "https://en.wikipedia.org/wiki/Wildebeest_chess",
+        pieces: ["king", "queen", "rook", "bishop", "knight",
+                 "camel", "wildebeest", "pawn"],
+    },
+
     scirocco: {
         href: "https://www.chessvariants.com/rules/scirocco",
         pieces: ["king", "emperor_scirocco", "queen", "rook", "bishop",
@@ -1252,6 +1264,7 @@ let set_info = {
                  
                  "pawn",  "scirocco_frog",],
     },
+
     typhoon: {
         href: "https://www.chessvariants.com/rules/typhoon-revised",
         pieces: ["king", "emperor_typhoon", "queen", "rook", "bishop",
@@ -1275,12 +1288,6 @@ let set_info = {
                  "fu", "pawn",
                  ],
     },
-    grand_cavalier_chess: {
-        href: "https://www.chessvariants.com/large.dir/grandcavalier.html",
-        pieces: ["eques_rex", "queen", "marshall", "paladin", "cannon",
-                 "nightrider", "cavalier"],
-    },
-
     //
     // Shogi and shogi variants
     //
@@ -1291,18 +1298,19 @@ let set_info = {
                  "gold_general", "silver_general", "shogi_knight",
                  "lance", "pawn"],
     },
-    tori_shogi: {
-        name:    "Tori Sh&#x14d;gi",
-        href:    "https://en.wikipedia.org/wiki/Tori_Shogi",
-        pieces: ["phoenix", "eagle", "tori_falcon", "crane", "pheasant",
-                 "left_quail", "right_quail", "swallow", "goose"],
-    },
     dobutsu_shogi: {
         name: "D&#x14d;butsu Sh&#x14d;gi",
         href: "https://en.wikipedia.org/wiki/D%C5%8Dbutsu_sh%C5%8Dgi",
         pieces: ["dobutsu_lion", "giraffe_dobutsu", "dobutsu_elephant",
                  "dobutsu_chick", "dobutsu_hen"],
     },
+    micro_shogi: {
+        href: "https://en.wikipedia.org/wiki/Micro_shogi",
+        name: "Micro Sh&#x14d;gi",
+        pieces: ["king", "rook", "bishop", "gold_general", "silver_general",
+                 "shogi_knight", "lance", "tokin", "pawn"],
+    },
+
     whale_shogi: {
         name: "Whale Sh&#x14d;gi",
         href: "https://www.chessvariants.com/shogivariants.dir/whale.html",
@@ -1310,6 +1318,12 @@ let set_info = {
                  "blue_whale", "grey_whale", "humpback", "killer_whale",
                  "narwhal", "porpoise",
                  "dolphin",],
+    },
+    tori_shogi: {
+        name:    "Tori Sh&#x14d;gi",
+        href:    "https://en.wikipedia.org/wiki/Tori_Shogi",
+        pieces: ["phoenix", "eagle", "tori_falcon", "crane", "pheasant",
+                 "left_quail", "right_quail", "swallow", "goose"],
     },
 
     shogi_variants: {
@@ -1349,18 +1363,6 @@ let set_info = {
     hiashatar: {
         href: "https://en.wikipedia.org/wiki/Hiashatar",
         pieces: ["noyon", "bers", "hia", "tereg", "teme", "mori", "fu"],
-    },
-
-    wolf_chess: {
-        href: "https://en.wikipedia.org/wiki/Wolf_chess",
-        pieces: ["king", "queen", "rook", "bishop", "nightrider", "wolf",
-                 "fox", "elephant_wolf", "sergeant", "pawn"],
-    },
-
-    wildebeest_chess: {
-        href: "https://en.wikipedia.org/wiki/Wildebeest_chess",
-        pieces: ["king", "queen", "rook", "bishop", "knight",
-                 "camel", "wildebeest", "pawn"],
     },
 }
 
