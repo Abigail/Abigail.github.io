@@ -107,6 +107,7 @@ my $WIKI_URL          = "https://en.wikipedia.org/wiki";
 my $OEIS_URL          = "https://oeis.org";
 my $MATH_WORLD_URL    = "https://mathworld.wolfram.com";
 my $CHESS_VARIANT_URL = "https://www.chessvariants.com";
+my $PIECECLOPEDIA_URL = "https://www.chessvariants.com/piececlopedia.dir";
 
 my $GITHUB_URL        = "https://github.com";
 my $GITHUB_USER       = "Abigail";
@@ -154,6 +155,7 @@ my %WHERE_INFO = (
     mathworld  =>  {url => $MATH_WORLD_URL,    ext => ".html"},
     meta       =>  {url => $METACPAN_URL},
    "chess-v"   =>  {url => $CHESS_VARIANT_URL}, # Not all pages use .html...
+    piece      =>  {url => $PIECECLOPEDIA_URL, ext => ".html"},
 );
 
 my sub tooltip ($text, $tooltiptext, @classes) {
@@ -162,6 +164,8 @@ my sub tooltip ($text, $tooltiptext, @classes) {
             $classes, $text, "tooltiptext", $tooltiptext
 }
 
+my $WIKI_TOKEN    = "&#x1F146;";
+my $CHESS_V_TOKEN = "C&#x2C7D;";
 
 my %MACROS = (
     $TYPE_TRAPPED => {
@@ -175,15 +179,17 @@ my %MACROS = (
         OVERKILL       =>  '[Overkill Ecumenical Chess]' .
                            '(#chess-v:rules/overkill-ecumenical-chess)',
         SCIROCCO       =>  '[Scirocco](#chess-v:rules/scirocco)',
-        SENTEREJ       =>  '[Senterej](#wiki) [[C&#x2C7D;](#chess-v:' .
+        SENTEREJ       =>  "[Senterej](#wiki) [[$CHESS_V_TOKEN](#chess-v:" .
                            'historic.dir/HistoricalChessVariants.pdf)]',
-        SHATAR         =>  '[Shatar](#wiki) [[C&#x2C7D;](#chess-v:' .
+        SHATAR         =>  "[Shatar](#wiki) [[$CHESS_V_TOKEN](#chess-v:" .
                            'oriental.dir/shatar.html)]',
         SHOGI          =>  '[Sh&#x14d;gi (&#x5c06;&#x68cb;)](#wiki:Shogi)',
         TYPHOON        =>  '[Typhoon](#chess-v:rules/typhoon-revised)',
         TORI_SHOGI     =>  '[Tori Sh&#x14d;gi](#wiki:Tori_Shogi)',
         WHALE_SHOGI    =>  '[Whale Sh&#x14d;gi (&#x9be8;&#x5c06;&#x68cb;)]' .
                            '(#chess-v:shogivariants.dir/whale.html)',
+        WOLF           =>  '[Wolf Chess](#chess-v:large.dir/wolf.html) ' .
+                           "[[$WIKI_TOKEN](#wiki:Wolf_chess)]",
         XIANGQI        =>  '[Xiangqi (&#x8C61;&#x68CB;)](#wiki:xiangqi)',
 
         LEAPER         =>  '[*Leaper*](#wiki:Fairy_chess_piece#Leapers)',
@@ -223,6 +229,9 @@ my %MACROS = (
 
         YES            =>  '<span class = "yes">&#x2713;</span>',
         NO             =>  '<span class =  "no">&#x2717;</span>',
+
+        WIKI           =>  $WIKI_TOKEN,
+        CHESS_V        =>  $CHESS_V_TOKEN,
     },
 );
 

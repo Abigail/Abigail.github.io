@@ -48,7 +48,14 @@ captures differently than it moves.
              &  Player's choice
              &  %%YES%% 
              &  %%YES%%                                                      \\
-**Pawn**     &  %%SHOGI%%
+**Pawn** (&#x2659;)
+             &  %%WOLF%%
+             &  Player's choice, including the
+                [*Elephant*](amazon_rider.html?piece=elephant_wolf)
+             &  %%YES%% 
+             &  %%YES%%                                                      \\
+**Pawn** (&#x6B69;&#x5175;)
+             &  %%SHOGI%%
              &  [*Gold General*](gold_general.html)
              &  %%NO%%  
              &  %%NO%%                                                       \\

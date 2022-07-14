@@ -59,6 +59,11 @@ let pieces = {
         results: ["W", "FC", "F/100%"],
     },
 
+    amazon_rider: {
+        betza: "W0F0N0",
+        results: ["W", "FC", "F/100%"],
+    },
+
     antelope: {     // (4, 3)-leaper
         betza:    "(3,4)",
         results: ["T/1,887", "T/128", "T/416"],
@@ -380,6 +385,12 @@ let pieces = {
         parent:   "king",
     },
 
+    elephant_wolf: {
+        parent:  "amazon_rider",
+        _name: "Elephant",
+        _index_name: "Elephant (Wolf Chess)",
+    },
+
     emperor_scirocco: {
         parent:  "champion",
         _name:   "Emperor",
@@ -685,11 +696,6 @@ let pieces = {
         results: ["E", "E", "E"],
     },
 
-    knightrider: {
-        betza:    "NN",
-        results: ["T/509", "T/60", "T/22"],
-    },
-
     kuu: {
         parent: "pawn",
         _name: "K&#x00FC;&#x00FC;",
@@ -798,6 +804,11 @@ let pieces = {
 
     negus: {
         parent: "king",
+    },
+
+    nightrider: {
+        betza:    "NN",
+        results: ["T/509", "T/60", "T/22"],
     },
 
     noyan: {
@@ -934,6 +945,11 @@ let pieces = {
 
     scirocco: {
         parent:  "dragon_horse",
+    },
+
+    sergeant: {
+        betza: "fWfF",
+        results: ["E", "E", "E"],
     },
 
     silver_general: {
@@ -1111,6 +1127,10 @@ let pieces = {
         results: ["?/6,986,937", "F*/50%", "F/50%"],
     },
 
+    wolf: {
+        parent: "chancellor",
+    },
+
     //
     // Z pieces
     //
@@ -1175,7 +1195,7 @@ let set_info = {
     },
     riders: {
         pieces: ["wazirrider", "ferzrider",
-                 "dabbabarider", "knightrider", "alfilrider",
+                 "dabbabarider", "nightrider", "alfilrider",
                  "threeleaperrider", "camelrider",
                                      "zebrarider", "tripperrider",]
     },
@@ -1250,7 +1270,7 @@ let set_info = {
                  "flying_ox", "free_boar", "genie", "ghost_warrior", "goat",
                  "gold_general", "guard", "harpy", "horned_owl", "hummingbird",
                  "ibis", "lantern", "lioness", "longleaper", "marquis",
-                 "missionary", "knightrider", "octopus", "otter", "overtaker",
+                 "missionary", "nightrider", "octopus", "otter", "overtaker",
                  "parrot", "priest", "raven", "salamander", "scirocco",
                  "sorcerer", "spider", "squirrel", "stork", "tadpole",
                  "tiger_prince", "typhoon", "undertaker", "vulture", "wagon",
@@ -1263,7 +1283,7 @@ let set_info = {
     grand_cavalier_chess: {
         href: "https://www.chessvariants.com/large.dir/grandcavalier.html",
         pieces: ["eques_rex", "queen", "marshall", "paladin", "cannon",
-                 "knightrider", "cavalier"],
+                 "nightrider", "cavalier"],
         chess_variant: 1,
     },
 
@@ -1337,6 +1357,12 @@ let set_info = {
     hiashatar: {
         href: "https://en.wikipedia.org/wiki/Hiashatar",
         pieces: ["noyon", "bers", "hia", "tereg", "teme", "mori", "fu"],
+    },
+
+    wolf_chess: {
+        href: "https://en.wikipedia.org/wiki/Wolf_chess",
+        pieces: ["king", "queen", "rook", "bishop", "nightrider", "wolf",
+                 "fox", "elephant_wolf", "sergeant", "pawn"],
     },
 }
 
