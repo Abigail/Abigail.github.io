@@ -19,9 +19,12 @@ Due to its diagonal movement, the %%PIECE%% is %%COLOUR_BOUND%%.
        & **Bishop**
        & %%PROMOTED%% [*Alfil*](alfil.html) \\
 {th = 1} %%SHOGI%%
-       & **Bishop**
+       & **Bishop** (&#x89D2;&#x884C;)
        & Also known as *Angle Mover* (&#x89d2;&#x884c;); %%PROMOTES_TO%%
          [*Dragon Horse* (&#x9f8d;&#x99ac;)](dragon_horse.html) \\
+{th = 1} %%MICRO_SHOGI%%
+       & **Bishop**
+       & Becomes a [*Tokin*](gold_general.html?piece=tokin) when capturing. \\
 {th = 1} %%TYPHOON%%
        & **Bishop**
        & %%PROMOTED%% [*Guard*](guard.html) \\
