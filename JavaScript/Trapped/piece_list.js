@@ -1224,13 +1224,11 @@ let set_info = {
         name: "Falcon-Hunter Chess",
         pieces: ["king", "queen", "rook", "falcon", "hunter",
                  "bishop", "knight", "pawn"],
-        chess_variant: 1,
     },
     omega_chess: {
         href:    "https://en.wikipedia.org/wiki/Omega_Chess",
-        pieces: ["king", "queen", "rook", "champion", "wizard",
-                 "bishop", "knight", "pawn"],
-        chess_variant: 1,
+        pieces: ["king", "queen", "rook", "bishop", "knight",
+                 "champion", "wizard", "pawn"],
     },
     overkill_ecumenical_chess: {
         href:    "https://www.chessvariants.com/rules/" +
@@ -1238,7 +1236,6 @@ let set_info = {
         pieces: ["king", "ace", "acme", "acropolis", "actor", "actress",
                  "oec_caliph", "canvasser", "cardinal", "gnu",
                  "marshal", "queen", "pawn"],
-        chess_variant: 1,
     },
     scirocco: {
         href: "https://www.chessvariants.com/rules/scirocco",
@@ -1254,7 +1251,6 @@ let set_info = {
                  "zag", "zig",
                  
                  "pawn",  "scirocco_frog",],
-        chess_variant: 1,
     },
     typhoon: {
         href: "https://www.chessvariants.com/rules/typhoon-revised",
@@ -1278,13 +1274,11 @@ let set_info = {
 
                  "fu", "pawn",
                  ],
-        chess_variant: 1,
     },
     grand_cavalier_chess: {
         href: "https://www.chessvariants.com/large.dir/grandcavalier.html",
         pieces: ["eques_rex", "queen", "marshall", "paladin", "cannon",
                  "nightrider", "cavalier"],
-        chess_variant: 1,
     },
 
     //
@@ -1302,7 +1296,6 @@ let set_info = {
         href:    "https://en.wikipedia.org/wiki/Tori_Shogi",
         pieces: ["phoenix", "eagle", "tori_falcon", "crane", "pheasant",
                  "left_quail", "right_quail", "swallow", "goose"],
-        shogi_variant: 1,
     },
     dobutsu_shogi: {
         name: "D&#x14d;butsu Sh&#x14d;gi",
@@ -1322,7 +1315,6 @@ let set_info = {
     shogi_variants: {
         name:    "Sh&#x14d;gi variants",
         pieces: ["blind_monkey", "flying_cock", "drunk_elephant"],
-        shogi_variant: 1,
     },
 
     xiangqi: {
