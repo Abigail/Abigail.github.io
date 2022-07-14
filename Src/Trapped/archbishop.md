@@ -4,7 +4,9 @@ The %%PIECE%% combines the movements
 of the [*Knight*](knight.html) and [*Bishop*](bishop.html).
 
 The [*Knight*](knight.html)-[*Bishop*](bishop.html) compound
-is used in many games, and it is known under several names:
+is used in many games, and it is known under several names,
+of which **Archbishop**, **Cardinal** and **Princess** are the
+most frequently used.
 
 |====
 %%PIECE_HEADERS%%
@@ -53,7 +55,7 @@ is used in many games, and it is known under several names:
 {th = 1} [Bird's Chess](#chess-v:large.dir/bird.html)
        & **Equerry**
        & \\
-{th = 1} [Wolf Chess](large.dir/wolf.html)
+{th = 1} %%WOLF%%
        & **Fox**
        & \\
 {th = 1} [Janus Chess](#wiki)
@@ -93,14 +95,14 @@ Other, less common names are: *Adjutant*, *Aircraft*, *Davidson*, *Deacon*,
 *Prime Minister*, *Rhino*, *Squire*, *Superbishop*, *Templar*, *Wazir*,
 and *Zek*.
 
-[Piececlopedia Entry](#chess-v:piececlopedia.dir/bishop-knight.html)<br>
-[Wikipedia Entry](#wiki:Princess_(chess))
+Links: [%%WIKI%%](#wiki:Princess_(chess)),
+       [%%CHESS_V%%](#chess-v:piececlopedia.dir/bishop-knight.html)
 
 ### Spiral
 
 On the Spiral, the %%PIECE%% follows an irregular pattern
 in a clockwise direction around the origin, getting trapped after
-6386 steps.
+6,386 steps.
 
 ### Wedge
 

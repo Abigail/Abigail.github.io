@@ -1,4 +1,4 @@
-# %%PIECE%% &#x2655;
+# %%PIECE%%
 
 The %%PIECE%%Queen** can slide an unlimited number of squares in all eight 
 directions: four orthogonal directions and four diagonal directions.
@@ -9,7 +9,7 @@ It's common in many Chess variant, using different names:
 
 |====
 %%PIECE_HEADERS%%
-{th = 1} %%CHESS%%, Chess variants
+{th = 1} %%CHESS%%; %%WOLF%%; Other chess variants
        & **Queen** (&#x2655;)
        & \\
 {th = 1} %%SCIROCCO%%; %%TYPHOON%%

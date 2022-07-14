@@ -22,7 +22,7 @@ occupied square.
 {th = 1} %%SENTEREJ%%
        & **Der**
        & *Der* meaning *Castle* \\
-{th = 1} %%CHESS%%
+{th = 1} %%CHESS%%; %%WOLF%%; Other Chess variants
        & **Rook** (&#x2656;)
        & \\
 {th = 1} %%SHOGI%%

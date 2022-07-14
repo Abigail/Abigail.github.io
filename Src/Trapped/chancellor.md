@@ -3,8 +3,9 @@
 The %%PIECE%% combines the movements of the [*Knight*](knight.html)
 and [*Rook*](rook.html). This makes it a *Knighted Piece*.
 
-The **Chancellor** is a common Fairy Piece, and has a long history.
-It's known under many names.
+The %%PIECE%% is a common Fairy Piece, and has a long history.
+It's known under many names, of which **Chancellor**, **Empress**
+and **Marshal(l)** are the most frequently used.
 
 |====
 %%PIECE_HEADERS%%
@@ -35,6 +36,9 @@ It's known under many names.
 {th = 1} %%GRAND_CAVALIER%%
        & **Marshall**
        & \\
+{th = 1} %%WOLF%%
+       & **Wolf**
+       & \\
 ====|
 
 Less frequently used names for this piece include:
@@ -45,7 +49,10 @@ Less frequently used names for this piece include:
 *Lambeth*, *Lord Chancellor*,
 *Princess* (a name which is more commonly used for the
             [Bishop + Knight compound](archbishop.html?piece=princess)),
-*Samurai*, *Superrook*, *Tank*, *Visier*, and *Wolf*.
+*Samurai*, *Superrook*, *Tank*, and *Visier*.
+
+Links: [%%WIKI%%](#wiki:Empress_(chess)),
+       [%%CHESS_V%%](#chess-v:piececlopedia.dir/rook-knight.html)
 
 ### Spiral
 

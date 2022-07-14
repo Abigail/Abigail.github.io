@@ -7,19 +7,28 @@ first, and each square may not be occupied.
 |====
 %%PIECE_HEADERS%%
 {th = 1} %%GRAND_CAVALIER%%
-      & **Knightrider**
-      & \\
+       & **Nightrider**
+       & \\
 {th = 1} %%TYPHOON%%
-      & **Knightrider**
-      & %%PROMOTED%% [*Overtaker*](king.html?piece=overtaker) \\
+       & [**Nightrider**](#chess-v:rules/typhoon-revised#Nightrider)
+       & %%PROMOTED%% [*Overtaker*](king.html?piece=overtaker) \\
+{th = 1} %%WOLF%%
+       & **Nightrider** or **Narr**
+       & \\
+{th = 1} %%RIDERS%%
+       & **Nightrider**
+       & \\
 ====|
+
+Links: [%%WIKI%%](#wiki:Nightrider_(chess)),
+       [%%CHESS_V%%](#chess-v:piececlopedia.dir/knightrider.html).
 
 ### Spiral
 
 Surpringly, despite the %%PIECE%% having more squares to move to in
-each steps, the **Knightrider** gets trapped sooner than the
+each steps, the %%PIECE%% gets trapped sooner than the
 [*Knight*](knight.html). Where the [*Knight*](knight.html) gets trapped
-in 2,015 steps, the Knightrider gets trapped after 509 steps!
+in 2,015 steps, the %%PIECE%% gets trapped after 509 steps!
 
 ### Wedge
 
