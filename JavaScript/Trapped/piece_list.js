@@ -532,16 +532,22 @@ let pieces = {
         parent: "amazon"
     },
 
+    general_janggi: {
+        parent: "king",
+        _name: "General",
+        _index_name: "General (Janggi)",
+    },
+
     general_xiangqi: {
         parent: "wazir",
         _name:  "General",
         _index_name: "General (Xiangqi)",
     },
 
-    general_janggi: {
+    general_yari: {
         parent: "king",
-        _name: "General",
-        _index_name: "General (Janggi)",
+        _name:  "General",
+        _index_name:  "General (Yari Sh&#x14d;gi)",
     },
 
     genie: {
@@ -1157,6 +1163,35 @@ let pieces = {
     },
 
     //
+    // Y pieces
+    //
+
+    yari_bishop: {
+        betza: "fFfR",
+        results: ["E", "E", "E"],
+    },
+
+    yari_gold: {
+        betza: "WfFbR",
+        results: ["W", "FC", "F/100%"],
+    },
+
+    yari_knight: {
+        betza: "fNfR",
+        results: ["E", "E", "E"],
+    },
+
+    yari_rook: {
+        betza: "frlR",
+        results: ["E", "F*/50%", ""],
+    },
+
+    yari_silver: {
+        betza: "fWfFbR",
+        results: ["F*/25%", "E", ""],
+    },
+
+    //
     // Z pieces
     //
     zag: {
@@ -1348,11 +1383,19 @@ let set_info = {
                  "narwhal", "porpoise",
                  "dolphin",],
     },
+
     tori_shogi: {
         name:    "Tori Sh&#x14d;gi",
         href:    "https://en.wikipedia.org/wiki/Tori_Shogi",
         pieces: ["phoenix", "eagle", "tori_falcon", "crane", "pheasant",
                  "left_quail", "right_quail", "swallow", "goose"],
+    },
+
+    yari_shogi: {
+        name:    "Yari Sh&#x14d;gi",
+        href:    "https://en.wikipedia.org/wiki/Yari_shogi",
+        pieces: ["general_yari", "rook", "yari_rook", "yari_bishop",
+                 "yari_gold", "yari_knight", "yari_silver", "pawn"],
     },
 
     shogi_variants: {

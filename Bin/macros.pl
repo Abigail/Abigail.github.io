@@ -46,6 +46,7 @@ our %MACROS = (
         WOLF           =>  '[Wolf Chess](#chess-v:large.dir/wolf.html) ' .
                            "[[$WIKI_TOKEN](#wiki:Wolf_chess)]",
         XIANGQI        =>  '[Xiangqi (&#x8C61;&#x68CB;)](#wiki:xiangqi)',
+        YARI_SHOGI     =>  '[Yari Sh&#x14d;gi](#wiki:Yari_shogi)',
 
         LEAPER         =>  '[*Leaper*](#wiki:Fairy_chess_piece#Leapers)',
         LEAPERS        =>  '[*Leapers*](#wiki:Fairy_chess_piece#Leapers)',

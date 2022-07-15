@@ -71,6 +71,10 @@ captures differently than it moves.
                 no promotion in Micro Sh&#x14d;gi)
              &  %%NO%%  
              &  %%NO%%                                                       \\
+**Pawn**     &  %%YARI_SHOGI%%
+             &  [*Yari Silver*](yari_silver.html)
+             &  %%NO%%  
+             &  %%NO%%                                                       \\
 **Pawn**     &  %%SCIROCCO%%; %%TYPHOON%%
              &  [*Tadpole*](tadpole.html)
              &  %%NO%%  

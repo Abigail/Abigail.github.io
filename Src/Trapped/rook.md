@@ -32,6 +32,9 @@ occupied square.
 {th = 1} %%MICRO_SHOGI%%
        & **Rook** (&#x98DB;&#x8ECA;)
        & Becomes a [*Gold General*](gold_general.html) when capturing \\
+{th = 1} %%YARI_SHOGI%%
+       & **Rook**
+       & %%PROMOTED%% [*Yari Rook*](yari_rook.html) \\
 {th = 1} %%SCIROCCO%%; %%TYPHOON%%
        & **Rook**
        & %%PROMOTED%% [*Knight*](knight.html) \\
