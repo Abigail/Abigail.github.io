@@ -395,10 +395,21 @@ class Piece {
         }
     }
     moves (args = {}) {
-        if (!this . move_list && this . betza) {
-            this . move_list = betza (this . betza)
+        let step = args . step || 1
+
+        if (!this . move_lists) {
+            if (this . move_list) {
+                this . move_lists = [this . move_list]
+            }
+            else if (this . betza) {
+                this . move_lists = [betza (this . betza)]
+            }
+            else if (this . betza_list) {
+                this . move_lists = this . betza_list . map (b => betza (b))
+            }
         }
-        return this . move_list
+
+        return this . move_lists [(step - 1) % this . move_lists . length]
     }
 
     name (args = {}) {
