@@ -344,6 +344,15 @@ let pieces = {
         parent: "king",
     },
 
+    cloud_eagle: {
+        betza: "fbRfB3K",
+        results: {
+            spiral:       "W",
+            folded_wedge: "FC",
+            flat_wedge:   "",
+        },
+    },
+
     commoner: {
         parent: "king",
     },
@@ -377,6 +386,10 @@ let pieces = {
             folded_wedge: "E*", 
             flat_wedge:   "F/100%",
         },
+    },
+
+    crane_king: {
+        parent: "king",
     },
 
     crusader: {
@@ -692,6 +705,15 @@ let pieces = {
             spiral:       "E*", 
             folded_wedge: "FC", 
             flat_wedge:   "F*/100%",
+        },
+    },
+
+    flying_falcon: {
+        betza: "fWB",
+        results: {
+            spiral:       "T/67", 
+            folded_wedge: "E", 
+            flat_wedge:   "E",
         },
     },
 
@@ -1504,6 +1526,15 @@ let pieces = {
         parent:   "king",
     },
 
+    treacherous_fox: {
+        betza: "vWFvDA",
+        results: {
+            spiral:       "F/100%",
+            folded_wedge: "E", 
+            flat_wedge:   "E",
+        },
+    },
+
     tripper:   {    // (3, 3)-leaper
         betza:    "G",
         results: {
@@ -1881,6 +1912,13 @@ let set_info = {
         href:    "https://en.wikipedia.org/wiki/Yari_shogi",
         pieces: ["general_yari", "rook", "yari_rook", "yari_bishop",
                  "yari_gold", "yari_knight", "yari_silver", "pawn"],
+    },
+
+    wa_shogi: {
+        name:    "Wa Sh&#x14d;gi",
+        href:    "https://en.wikipedia.org/wiki/Wa_shogi",
+        pieces: ["crane_king", "cloud_eagle", "treacherous_fox",
+                 "flying_falcon"],
     },
 
     shogi_variants: {

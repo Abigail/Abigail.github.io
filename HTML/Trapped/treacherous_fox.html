@@ -1,0 +1,80 @@
+<html>
+<head>
+<title>%%PIECE%%</title>
+<meta charset = "utf-8">
+<link rel  = 'preconnect' href = 'https://fonts.gstatic.com'>
+<link rel = 'stylesheet' href =      'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
+<link rel = 'stylesheet' href = '../../Styles/main.css'>
+<link rel = 'stylesheet' href = '../../Styles/Trapped/main.css'>
+<script src = "../../JavaScript/jquery.js"></script>
+<script id  = 'MathJax-script' async src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.js'></script>
+<script id = 'svg-script' src = 'https://cdn.jsdelivr.net/npm/@svgdotjs/svg.js@3.0/dist/svg.min.js'></script>
+<script src = '../../JavaScript/navigation.js'></script>
+<script src = '../../JavaScript/Trapped/piece_list.js'></script>
+<script src = '../../JavaScript/Trapped/trapped.js'></script>
+<script src = '../../JavaScript/Trapped/pieces.js'></script>
+<script src = '../../JavaScript/Trapped/boxset.js'></script>
+<script src = '../../JavaScript/Trapped/pages.js'></script>
+</head>
+
+<body><h1>%%PIECE%%</h1><div class = "byline">
+by Abigail<br>
+<img src = "../../Images/jan_sluiters.jpg">
+</div>
+
+
+<p>The %%PIECE%% combines the movements of the <a href="ferz.html"><em>Ferz</em></a>,
+the <a href="alfil.html"><em>Alfil</em></a>, the vertical <a href="wazir.html"><em>Wazir</em></a>
+and the vertical <a href="dabbaba.html"><em>Dabbaba</em></a>. That is, the
+%%PIECE%% leaps one or two squares diagonally, or orthogonally
+backward or forward.</p>
+
+<table class = piece_list>
+  <tr class = 'row-0' markdown = '1'>
+    <th class = 'cell-0-0 col-0 ' markdown = '1'>Game</td>
+    <th class = 'cell-0-1 col-1 ' markdown = '1'>Piece</td>
+    <th class = 'cell-0-2 col-2 ' markdown = '1'>Info</td>
+  </tr>
+  <tr class = 'row-1' markdown = '1'>
+    <th class = 'cell-1-0 col-0 ' markdown = '1'><a href="https://en.wikipedia.org/wiki/Wa_shogi">Wa Sh&#x14d;gi</a></td>
+    <td class = 'cell-1-1 col-1 ' markdown = '1'><strong>Treacherous Fox</strong> (&#x96A0;&#x72D0;)</td>
+    <td class = 'cell-1-2 col-2 ' markdown = '1'><span class = 'tooltip'>&#x260B;<span class = 'tooltiptext'>Is promoted</span></span> <a href="running_rabbit.html"><em>Running Rabbit</em></a></td>
+  </tr>
+</table>
+
+<h3 id = 'spiral'>Spiral</h3>
+
+<div class = "section">
+<p>The %%PIECE%% visits all the squares on the Spiral, using a pretty
+unique pattern. </p>
+</div>
+
+<h3 id = 'wedge'>Wedge</h3>
+
+<h4 id = 'folded'>Folded</h4>
+
+<div class = "section">
+<p>On the Folded Wedge, the %%PIECE%% escapes to the upper right, by
+visiting the three right most squares of each row.</p>
+</div>
+
+<h4 id = 'flat'>Flat</h4>
+
+<p>On the Flat Wedge, teh %%PIECE%% escapes by visiting the right most
+square on each row.</p>
+
+<div class = 'trapped' data-piece = 'treacherous_fox'></div>
+
+<div class = 'boxset' data-piece = 'treacherous_fox'></div>
+
+<hr id = 'last-line'>
+<div class = 'trailer'>
+<p class = 'prev'><a class = "prev" href = "">&#x261C;</a></p>
+<p class = 'issue'>Please leave any comments as a
+  <a href = 'https://github.com/Abigail/Abigail.github.io/issues'
+     title = 'GitHub issue'>GitHub issue</a>.
+<p class = 'next'><a class = "next" href = "">&#x261E;</a></p>
+</div>
+
+</body>
+</html>
