@@ -4,7 +4,11 @@ let pieces = {
     //
     abbot: {
         betza:    "F4N",
-        results: ["T/6334", "F*/100%", "F*/100%"],
+        results: {
+            spiral:       "T/6334",
+            folded_wedge: "F*/100%",
+            flat_wedge:   "F*/100%",
+        },
     },
 
     ace: {
@@ -13,22 +17,38 @@ let pieces = {
 
     acme: {
         betza:    "QC",
-        results: ["W", "FC", "F/100%"],
+        results: {
+            spiral:       "W",
+            folded_wedge: "FC",
+            flat_wedge:   "F/100%",
+        },
     },
 
     acropolis: {
         betza:    "RNC",
-        results: ["W", "F*/100%", "F*/100%"],
+        results: {
+            spiral:       "W",
+            folded_wedge: "F*/100%", 
+            flat_wedge:   "F*/100%",
+        },
     },
 
     actor: {
         betza:    "BNC",
-        results: ["T/3,700,894", "F*/100%", "F*/100%"],
+        results: {
+            spiral:       "T/3,700,894",
+            folded_wedge: "F*/100%", 
+            flat_wedge:   "F*/100%",
+        },
     },
 
     actress: {
         betza:    "QNC",
-        results: ["W", "FC", "F/100%"],
+        results: {
+            spiral:       "W",
+            folded_wedge: "FC", 
+            flat_wedge:   "F/100%",
+        },
     },
 
     adjudant: {
@@ -41,37 +61,65 @@ let pieces = {
 
     alfil: {        // (2, 2)-leaper
         betza:    "A",
-        results: ["F/12.5%", "E", "E"],
+        results: {
+            spiral:       "F/12.5%",
+            folded_wedge: "E", 
+            flat_wedge:   "E",
+        },
     },
 
     alfilrider: {
         betza:    "AA",
-        results: ["F*/7.8125%", "E", "E"],
+        results: {
+            spiral:       "F*/7.8125%",
+            folded_wedge: "E", 
+            flat_wedge:   "E",
+        },
     },
 
     alibaba: {
         betza:    "AD",
-        results: ["F/50%", "F/50%", "F/50%"],
+        results: {
+            spiral:       "F/50%",
+            folded_wedge: "F/50%", 
+            flat_wedge:   "F/50%",
+        },
     },
 
     amazon: {
         betza: "QN",
-        results: ["W", "FC", "F/100%"],
+        results: {
+            spiral:       "W",
+            folded_wedge: "FC", 
+            flat_wedge:   "F/100%",
+        },
     },
 
     amazon_rider: {
         betza: "W0F0N0",
-        results: ["W", "FC", "F/100%"],
+        results: {
+            spiral:       "W",
+            folded_wedge: "FC", 
+            flat_wedge:   "F/100%",
+        },
     },
 
     antelope: {     // (4, 3)-leaper
         betza:    "(3,4)",
-        results: ["T/1,887", "T/128", "T/416"],
+        results: {
+            spiral:       "T/1,887",
+            folded_wedge: "T/128", 
+            flat_wedge:   "T/416",
+        },
     },
 
     archbishop:    {
         betza:    "BN",
-        results: ["T/6,386", "F*/100%", "F*/100%"],
+        results: {
+            spiral:       "T/6,386",
+            folded_wedge: "F*/100%", 
+            flat_wedge:   "F*/100%",
+        },
     },
 
     //
@@ -79,7 +127,11 @@ let pieces = {
     //
     banner: {
         betza:    "fsW",
-        results: ["F/25%", "F/100%", "E"],
+        results: {
+            spiral:       "F/25%",
+            folded_wedge: "F/100%", 
+            flat_wedge:   "E",
+        },
     },
 
     baras: {
@@ -92,7 +144,11 @@ let pieces = {
 
     beaver: {
         betza:    "fFfWsW4bW0",
-        results: ["W", "FC", "F*/100%"],
+        results: {
+            spiral:       "W", 
+            folded_wedge: "FC", 
+            flat_wedge:   "F*/100%",
+        },
     },
 
     bers: {
@@ -101,7 +157,11 @@ let pieces = {
 
     bishop: {
         betza:  "B",
-        results: ["F/31.25%", "E", "E"],
+        results: {
+            spiral:       "F/31.25%", 
+            folded_wedge: "E", 
+            flat_wedge:   "E",
+        },
         _index_name: "Bishop (Chess)",
     },
 
@@ -113,13 +173,21 @@ let pieces = {
 
     bishops_dog: {
         betza:    "F3",
-        results: ["T/129", "E", "E"],
+        results: {
+            spiral:       "T/129", 
+            folded_wedge: "E", 
+            flat_wedge:   "E",
+        },
         _name:    "Bishop's Dog",
     },
 
     bison: {
         betza:    "CZ",
-        results: ["T/844,094", "?/1,071,081,527", "?/784,352,068"],
+        results: {
+            spiral:       "T/844,094", 
+            folded_wedge: "?/1,071,081,527", 
+            flat_wedge:   "?/784,352,068",
+        },
     },
 
     blind_bear: {
@@ -128,12 +196,20 @@ let pieces = {
 
     blind_monkey: {
         betza:    "FsW",
-        results: ["F*/100%", "FC", "F/100%"],
+        results: {
+            spiral:       "F*/100%", 
+            folded_wedge: "FC", 
+            flat_wedge:   "F/100%",
+        },
     },
 
     blind_tiger: {
         betza:    "FbsW",
-        results: ["F*/100%", "FC", "F/100%"],
+        results: {
+            spiral:       "F*/100%", 
+            folded_wedge: "FC", 
+            flat_wedge:   "F/100%",
+        },
     },
 
     blue_whale: {
@@ -145,7 +221,11 @@ let pieces = {
     //
     caliph: {
         betza:    "WA",
-        results: ["W", "F*/100%", "E"],
+        results: {
+            spiral:       "W", 
+            folded_wedge: "F*/100%", 
+            flat_wedge:   "E",
+        },
         _index_name: "Caliph (Wazir + Alfil)",
     },
 
@@ -153,17 +233,29 @@ let pieces = {
         betza:       "BC",
         _name:       "Caliph",
         _index_name: "Caliph (Bishop + Camel)",
-        results:    ["T/1,563", "F*/50%", "F*/50%"],
+        results:    {
+            spiral:       "T/1,563", 
+            folded_wedge: "F*/50%", 
+            flat_wedge:   "F*/50%",
+        },
     },
 
     camel: {        // (3, 1)-leaper
         betza:    "C",
-        results: ["T/3,722", "T/342", "T/2,401"],
+        results: {
+            spiral:       "T/3,722", 
+            folded_wedge: "T/342", 
+            flat_wedge:   "T/2,401",
+        },
     },
 
     camelrider: {
         betza:    "CC",
-        results: ["T/1,697", "T/90", "T/482"],
+        results: {
+            spiral:       "T/1,697", 
+            folded_wedge: "T/90", 
+            flat_wedge:   "T/482",
+        },
     },
 
     cannon: {
@@ -172,7 +264,11 @@ let pieces = {
 
     canvasser: {
         betza:    "RC",
-        results: ["W", "F*/100%", "F*/100%"],
+        results: {
+            spiral:       "W", 
+            folded_wedge: "F*/100%", 
+            flat_wedge:   "F*/100%",
+        },
     },
 
     cardinal: {
@@ -185,7 +281,11 @@ let pieces = {
 
     centaur: {
         betza:    "WFN",
-        results: ["W", "FC", "F/100%"],
+        results: {
+            spiral:       "W", 
+            folded_wedge: "FC", 
+            flat_wedge:   "F/100%",
+        },
         _index_name: "Centaur (King + Knight)",
     },
 
@@ -197,7 +297,11 @@ let pieces = {
 
     champion: {
         betza:    "WAD",
-        results: ["W", "F/100%", "F/100%"],
+        results: {
+            spiral:       "W", 
+            folded_wedge: "F/100%", 
+            flat_wedge:   "F/100%",
+        },
         _index_name: "Champion (Wazir + Alfil + Dabbaba)",
     },
 
@@ -209,12 +313,20 @@ let pieces = {
 
     chancellor: {
         betza:    "RN",
-        results: ["W", "F/100%", "F/100%"],
+        results: {
+            spiral:       "W", 
+            folded_wedge: "F/100%", 
+            flat_wedge:   "F/100%",
+        },
     },
 
     chariot: {
         betza:    "R4",
-        results: ["W", "T/6", "E"],
+        results: {
+            spiral:       "W", 
+            folded_wedge: "T/6", 
+            flat_wedge:   "E",
+        },
     },
 
     chariot_xiangqi: {
@@ -238,12 +350,20 @@ let pieces = {
 
     commuter: {     // (4, 4)-leaper
         betza:    "(4,4)",
-        results: ["F/3.125%", "E", "E"],
+        results: {
+            spiral:       "F/3.125%", 
+            folded_wedge: "E", 
+            flat_wedge:   "E",
+        },
     },
 
     copper_general: {
         betza:    "fFvW",
-        results: ["E*", "E", "E"],
+        results: {
+            spiral:       "E*", 
+            folded_wedge: "E", 
+            flat_wedge:   "E",
+        },
     },
 
     count: {
@@ -252,7 +372,11 @@ let pieces = {
 
     crane: {
         betza:  "FvW",
-        results: ["F*/100%", "E*", "F/100%"],
+        results: {
+            spiral:       "F*/100%", 
+            folded_wedge: "E*", 
+            flat_wedge:   "F/100%",
+        },
     },
 
     crusader: {
@@ -261,7 +385,11 @@ let pieces = {
 
     cuckoo: {
         betza:    "sWfD",
-        results: ["F/12.5%", "E", "E"],
+        results: {
+            spiral:       "F/12.5%", 
+            folded_wedge: "E", 
+            flat_wedge:   "E",
+        },
     },
 
     //
@@ -269,7 +397,11 @@ let pieces = {
     //
     dabbaba: {      // (2, 0)-leaper
         betza:    "D",
-        results: ["F/25%", "E", "E"],
+        results: {
+            spiral:       "F/25%", 
+            folded_wedge: "E", 
+            flat_wedge:   "E",
+        },
     },
 
     dabbabah: {
@@ -278,12 +410,20 @@ let pieces = {
 
     dabbabarider: {
         betza:    "DD",
-        results: ["F/25%", "E", "E"],
+        results: {
+            spiral:       "F/25%", 
+            folded_wedge: "E", 
+            flat_wedge:   "E",
+        },
     },
 
     dayrider: {
         betza:    "WFAADD",
-        results: ["W", "FC", "F/100%"],
+        results: {
+            spiral:       "W", 
+            folded_wedge: "FC", 
+            flat_wedge:   "F/100%",
+        },
     },
 
     der: {
@@ -300,7 +440,11 @@ let pieces = {
 
     diving_osprey: {
         betza:    "W4fFA",
-        results: ["W", "FC", "F/100%"],
+        results: {
+            spiral:       "W", 
+            folded_wedge: "FC", 
+            flat_wedge:   "F/100%",
+        },
     },
 
     dolphin: {
@@ -309,17 +453,29 @@ let pieces = {
 
     dragon: {
         betza:  "NfW",
-        results: ["T/94,632", "T/42", "F*/100%"],
+        results: {
+            spiral:       "T/94,632", 
+            folded_wedge: "T/42", 
+            flat_wedge:   "F*/100%",
+        },
     },
 
     dragon_horse: {
         betza:    "WB",
-        results: ["W", "FC", "F/100%"],
+        results: {
+            spiral:       "W", 
+            folded_wedge: "FC", 
+            flat_wedge:   "F/100%",
+        },
     },
 
     dragon_king: {
         betza:   "FR",
-        results: ["W", "FC", "F/100%"],
+        results: {
+            spiral:       "W", 
+            folded_wedge: "FC", 
+            flat_wedge:   "F/100%",
+        },
     },
 
     dragon_kite: {
@@ -328,7 +484,11 @@ let pieces = {
 
     drunk_elephant: {
         betza: "FfsW",
-        results: ["F*/100%", "FC", "F/100%"],
+        results: {
+            spiral:       "F*/100%", 
+            folded_wedge: "FC", 
+            flat_wedge:   "F/100%",
+        },
     },
 
     drunken_ferz: {
@@ -337,7 +497,11 @@ let pieces = {
 
     duke: {
         betza:    "W4N",
-        results: ["W", "F/100%", "F/100%"],
+        results: {
+            spiral:       "W", 
+            folded_wedge: "F/100%", 
+            flat_wedge:   "F/100%",
+        },
     },
 
     //
@@ -345,7 +509,11 @@ let pieces = {
     //
     eagle: {
         betza:  "fBbRfsWbB2",
-        results: ["W", "FC", "F/100%"],
+        results: {
+            spiral:       "W", 
+            folded_wedge: "FC", 
+            flat_wedge:   "F/100%",
+        },
     },
 
     elder: {
@@ -360,7 +528,11 @@ let pieces = {
 
     elephant_janggi: {
         betza: "",
-        results: ["T/55", "T/47", "T/18"],
+        results: {
+            spiral:       "T/55", 
+            folded_wedge: "T/47", 
+            flat_wedge:   "T/18",
+        },
         _name: "Elephant",
         _index_name: "Elephant (Janggi)",
         move_list: [
@@ -399,7 +571,11 @@ let pieces = {
 
     emperor_typhoon: {
         betza: "W2F2N",
-        results: ["W", "FC", "F/100%"],
+        results: {
+            spiral:       "W", 
+            folded_wedge: "FC", 
+            flat_wedge:   "F/100%",
+        },
         _name: "Emperor",
         _index_name: "Emperor (Typhoon)",
     },
@@ -430,20 +606,32 @@ let pieces = {
     //
     fad: {
         betza:    "FDA",
-        results: ["F/50%", "F/50%", "F/50%"],
+        results: {
+            spiral:       "F/50%", 
+            folded_wedge: "F/50%", 
+            flat_wedge:   "F/50%",
+        },
         _name:    "FAD",
     },
 
     falcon: {
         betza:    "fBbR",
-        results: ["F*/25%", "E", "E"],
+        results: {
+            spiral:       "F*/25%", 
+            folded_wedge: "E", 
+            flat_wedge:   "E",
+        },
     },
 
     tori_falcon: {
         parent: "drunk_elephant",
         _name:  "Falcon",
         _index_name: "Falcon (Tori Sh&#x14d;gi)",
-        results: ["F*/100%", "FC", "F/100%"],
+        results: {
+            spiral:       "F*/100%", 
+            folded_wedge: "FC", 
+            flat_wedge:   "F/100%",
+        },
     },
 
     ferese: {
@@ -452,7 +640,11 @@ let pieces = {
 
     ferocious_leopard: {
         betza:    "FvW",
-        results: ["F/100%", "E", "E"],
+        results: {
+            spiral:       "F/100%", 
+            folded_wedge: "E", 
+            flat_wedge:   "E",
+        },
     },
 
     fers: {
@@ -461,7 +653,11 @@ let pieces = {
 
     ferz: {         // (1, 1)-leaper
         betza:    "F",
-        results: ["F/50%", "E", "E"],
+        results: {
+            spiral:       "F/50%", 
+            folded_wedge: "E", 
+            flat_wedge:   "E",
+        },
     },
 
     ferzrider: {
@@ -470,7 +666,11 @@ let pieces = {
 
     fire_horse: {
         betza:    "fRbhN",
-        results: ["T/45", "E*", "E*"],
+        results: {
+            spiral:       "T/45", 
+            folded_wedge: "E*", 
+            flat_wedge:   "E*",
+        },
     },
 
     firzan: {
@@ -479,22 +679,38 @@ let pieces = {
 
     flamingo: {     // (6, 1)-leaper
         betza:    "(1,6)",
-        results: ["T/26,966", "T/90", "T/260"],
+        results: {
+            spiral:       "T/26,966", 
+            folded_wedge: "T/90", 
+            flat_wedge:   "T/260",
+        },
     },
 
     flying_cock: {
         betza:    "fFsW",
-        results: ["E*", "FC", "F*/100%"],
+        results: {
+            spiral:       "E*", 
+            folded_wedge: "FC", 
+            flat_wedge:   "F*/100%",
+        },
     },
 
     flying_ox: {
         betza:    "BvR",
-        results: ["T/540", "E", "E"],
+        results: {
+            spiral:       "T/540", 
+            folded_wedge: "E", 
+            flat_wedge:   "E",
+        },
     },
 
     fourleaper: {   // (4, 0)-leaper
         betza:    "(0,4)",
-        results: ["F/6.25%", "E", "E"],
+        results: {
+            spiral:       "F/6.25%", 
+            folded_wedge: "E", 
+            flat_wedge:   "E",
+        },
     },
 
     fox: {
@@ -503,18 +719,30 @@ let pieces = {
 
     free_boar: {
         betza:    "BsR",
-        results: ["T/251", "FC", "F/100%"],
+        results: {
+            spiral:       "T/251", 
+            folded_wedge: "FC", 
+            flat_wedge:   "F/100%",
+        },
     },
 
     frog: {
         betza: "FH",
-        results: ["?/1,066,282,804", "F*/100%", "F*/100%"],
+        results: {
+            spiral:       "?/1,066,282,804", 
+            folded_wedge: "F*/100%", 
+            flat_wedge:   "F*/100%",
+        },
         _index_name: "Frog (Ferz + Threeleaper)",
     },
 
     scirocco_frog: {
         betza:    "KGH",
-        results: ["W", "FC", "F/100%"],
+        results: {
+            spiral:       "W", 
+            folded_wedge: "FC", 
+            flat_wedge:   "F/100%",
+        },
         _name:    "Frog",
         _index_name: "Frog (Scirocco)",
         obsolete: {
@@ -553,22 +781,38 @@ let pieces = {
 
     genie: {
         betza:    "W3F3",
-        results: ["W", "FC", "F*/100%"],
+        results: {
+            spiral:       "W", 
+            folded_wedge: "FC", 
+            flat_wedge:   "F*/100%",
+        },
     },
 
     ghost_warrior: {
         betza:    "bFfR",
-        results: ["F*/25%", "E", "E"]
+        results: {
+            spiral:       "F*/25%", 
+            folded_wedge: "E", 
+            flat_wedge:   "E",
+        },
     },
 
     ginkaku: {
         betza_list: ["fWF", "B"],
-        results:    ["T/80", "E", "E"],
+        results:    {
+            spiral:       "T/80", 
+            folded_wedge: "E", 
+            flat_wedge:   "E",
+        },
     },
 
     giraffe: {      // (4, 1)-leaper
         betza:    "(1,4)",
-        results: ["T/13,102", "T/114", "T/94"],
+        results: {
+            spiral:       "T/13,102", 
+            folded_wedge: "T/114", 
+            flat_wedge:   "T/94",
+        },
         _index_name: "Giraffe ((4, 1) - leaper)",
     },
 
@@ -586,22 +830,38 @@ let pieces = {
 
     gnu: {
         betza:    "NC",
-        results: ["?/1,067,426,464", "?/1,056,869,405", "F*/100%"],
+        results: {
+            spiral:       "?/1,067,426,464", 
+            folded_wedge: "?/1,056,869,405", 
+            flat_wedge:   "F*/100%",
+        },
     },
 
     goat: {
         betza:    "FD",
-        results: ["F/50%", "F/50%", "F/50%"],
+        results: {
+            spiral:       "F/50%", 
+            folded_wedge: "F/50%", 
+            flat_wedge:   "F/50%"
+        },
     },
 
     gold_general: {
         betza:  "WfF",
-        results: ["W", "FC", "F/100%"],
+        results: {
+            spiral:       "W", 
+            folded_wedge: "FC", 
+            flat_wedge:   "F/100%"
+        },
     },
 
     goose: {
         betza:  "fAbD",
-        results: ["E*", "E", "E"],
+        results: {
+            spiral:       "E*", 
+            folded_wedge: "E", 
+            flat_wedge:   "E"
+        },
     },
 
     grey_whale: {
@@ -610,7 +870,11 @@ let pieces = {
 
     gryphon: {
         betza:  "BfW",
-        results: ["T/47", "E", "E"],
+        results: {
+            spiral:       "T/47", 
+            folded_wedge: "E", 
+            flat_wedge:   "E"
+        },
     },
 
     guard: {
@@ -633,7 +897,11 @@ let pieces = {
 
     hawk: {
         betza:    "ADGH",
-        results: ["F*/100%", "F*/100%", "F*/100%"],
+        results: {
+            spiral:       "F*/100%", 
+            folded_wedge: "F*/100%", 
+            flat_wedge:   "F*/100%"
+        },
     },
 
     dobutsu_hen: {
@@ -647,12 +915,20 @@ let pieces = {
 
     hifu: {
         betza_list: ["fW", "R"],
-        results:    ["E", "E*", "E"],
+        results:    {
+            spiral:       "E", 
+            folded_wedge: "E*", 
+            flat_wedge:   "E"
+        },
     },
 
     horned_owl: {
         betza:    "F4DfW",
-        results: ["?/1,056,723,023", "F/50%", "F*/100%"],
+        results: {
+            spiral:       "?/1,056,723,023", 
+            folded_wedge: "F/50%", 
+            flat_wedge:   "F*/100%"
+        },
     },
 
     horse: {
@@ -661,17 +937,29 @@ let pieces = {
 
     hummingbird: {
         betza:    "sbWfD",
-        results: ["T/172", "E", "E"],
+        results: {
+            spiral:       "T/172", 
+            folded_wedge: "E", 
+            flat_wedge:   "E"
+        },
     },
 
     humpback: {
         betza:    "bWF",
-        results: ["E*", "E", "E"],
+        results: {
+            spiral:       "E*", 
+            folded_wedge: "E", 
+            flat_wedge:   "E"
+        },
     },
 
     hunter: {
         betza:    "fRbB",
-        results: ["T/146", "E", "E"],
+        results: {
+            spiral:       "T/146", 
+            folded_wedge: "E", 
+            flat_wedge:   "E"
+        },
     },
 
     //
@@ -697,17 +985,29 @@ let pieces = {
 
     king: {
         betza:  "K",
-        results: ["W", "FC", "F/100%"],
+        results: {
+            spiral:       "W", 
+            folded_wedge: "FC", 
+            flat_wedge:   "F/100%"
+        },
     },
 
     kinkei: {
         betza_list: ["WfF", "fN"],
-        results: ["E", "E*", "E"],
+        results: {
+            spiral:       "E", 
+            folded_wedge: "E*", 
+            flat_wedge:   "E"
+        },
     },
 
     knight: {
         betza:  "N",
-        results: ["T/2,015", "T/50", "E*"],
+        results: {
+            spiral:       "T/2,015", 
+            folded_wedge: "T/50", 
+            flat_wedge:   "E*"
+        },
         _index_name: "Knight (Chess)",
     },
 
@@ -715,7 +1015,11 @@ let pieces = {
         betza:  "fN",
         _name:  "Knight",
         _index_name: "Knight (Sh&#x14d;gi)",
-        results: ["E", "E", "E"],
+        results: {
+            spiral:       "E", 
+            folded_wedge: "E", 
+            flat_wedge:   "E"
+        },
     },
 
     kuu: {
@@ -725,7 +1029,11 @@ let pieces = {
 
     kyoto: {
         betza_list: ["WfF", "fR"],
-        results: ["E", "E*", "E"],
+        results: {
+            spiral:       "E", 
+            folded_wedge: "E*", 
+            flat_wedge:   "E"
+        },
         _name: "Ky&#x014D;to",
     },
 
@@ -734,17 +1042,29 @@ let pieces = {
     //
     lance: {
         betza:  "fR",
-        results: ["E", "E", "E"],
+        results: {
+            spiral:       "E", 
+            folded_wedge: "E", 
+            flat_wedge:   "E"
+        },
     },
 
     lantern: {
         betza:    "fF",
-        results: ["E", "E", "E"],
+        results: {
+            spiral:       "E", 
+            folded_wedge: "E", 
+            flat_wedge:   "E"
+        },
     },
 
     left_quail: {
         betza:  "fRbrBblF",
-        results: ["T/146", "E", "E"],
+        results: {
+            spiral:       "T/146", 
+            folded_wedge: "E", 
+            flat_wedge:   "E"
+        },
     },
 
     dobutsu_lion: {
@@ -754,7 +1074,11 @@ let pieces = {
 
     lioness: {
         betza: "WFDNA",
-        results: ["W", "FC", "F/100%"],
+        results: {
+            spiral:       "W", 
+            folded_wedge: "FC", 
+            flat_wedge:   "F/100%"
+        },
     },
 
     longleaper: {
@@ -770,7 +1094,11 @@ let pieces = {
 
     mao: {
         betza: "t[WF]",
-        results: ["T/28", "E*", "T/12"],
+        results: {
+            spiral:       "T/28", 
+            folded_wedge: "E*", 
+            flat_wedge:   "T/12"
+        },
         move_list: [
             {dr: -1, dc:  2, us: [[ 0,  1]], max: 1},
             {dr: -1, dc: -2, us: [[ 0, -1]], max: 1},
@@ -785,7 +1113,11 @@ let pieces = {
 
     marquis: {
         betza:    "WN",
-        results: ["W", "F/100%", "F/100%"],
+        results: {
+            spiral:       "W", 
+            folded_wedge: "F/100%", 
+            flat_wedge:   "F/100%"
+        },
     },
 
     marshal: {
@@ -806,12 +1138,20 @@ let pieces = {
 
     missionary: {
         betza:    "F2",
-        results: ["F/40.625%", "E", "E"],
+        results: {
+            spiral:       "F/40.625%", 
+            folded_wedge: "E", 
+            flat_wedge:   "E"
+        },
     },
 
     modern_elephant: {
         betza:    "FA",
-        results: ["F*/50%", "E", "E"],
+        results: {
+            spiral:       "F*/50%", 
+            folded_wedge: "E", 
+            flat_wedge:   "E"
+        },
     },
 
     mori: {
@@ -836,7 +1176,11 @@ let pieces = {
 
     nightrider: {
         betza:    "NN",
-        results: ["T/509", "T/60", "T/22"],
+        results: {
+            spiral:       "T/509", 
+            folded_wedge: "T/60", 
+            flat_wedge:   "T/22"
+        },
     },
 
     noyan: {
@@ -852,7 +1196,11 @@ let pieces = {
     //
     octopus: {
         betza:      "t[FR]",
-        results:   ["E*", "T/7", "E"],
+        results:   {
+            spiral:       "E*", 
+            folded_wedge: "T/7", 
+            flat_wedge:   "E"
+        },
         move_list: [
             {dr: -1, dc:  0, or: -1, oc:  1},
             {dr:  0, dc:  1, or: -1, oc:  1},
@@ -867,12 +1215,20 @@ let pieces = {
 
     okapi: {
         betza:    "NZ",
-        results: ["T/947,668", "?/16,637,381", "E*"],
+        results: {
+            spiral:       "T/947,668", 
+            folded_wedge: "?/16,637,381", 
+            flat_wedge:   "E*"
+        },
     },
 
     otter: {
         betza:    "FfWsW4",
-        results: ["T/321", "FC", "F/100%"],
+        results: {
+            spiral:       "T/321", 
+            folded_wedge: "FC", 
+            flat_wedge:   "F/100%",
+        },
     },
 
     overtaker: {
@@ -892,12 +1248,20 @@ let pieces = {
 
     pawn: {
         betza:    "fW",
-        results: ["E", "E", "E"],
+        results: {
+            spiral:       "E", 
+            folded_wedge: "E", 
+            flat_wedge:   "E",
+        },
     },
 
     pheasant: {
         betza:  "fDbF",
-        results: ["E", "E", "E"],
+        results: {
+            spiral:       "E", 
+            folded_wedge: "E", 
+            flat_wedge:   "E",
+        },
     },
 
     phoenix: {
@@ -906,12 +1270,20 @@ let pieces = {
 
     porpoise: {
         betza:    "sW",
-        results: ["E", "", ""],
+        results: {
+            spiral:       "E", 
+            folded_wedge: "", 
+            flat_wedge:   "",
+        },
     },
 
     priest: {
         betza:    "FN",
-        results: ["T/1,050", "F*/100%", "F/100%"],
+        results: {
+            spiral:       "T/1,050", 
+            folded_wedge: "F*/100%", 
+            flat_wedge:   "F/100%",
+        },
     },
 
     princess: {
@@ -923,7 +1295,11 @@ let pieces = {
     //
     queen: {
         betza:  "Q",
-        results: ["W", "FC", "F/100%"],
+        results: {
+            spiral:       "W", 
+            folded_wedge: "FC", 
+            flat_wedge:   "F/100%",
+        },
         _index_name: "Queen (Chess)",
     },
 
@@ -942,22 +1318,38 @@ let pieces = {
 
     right_quail: {
         betza:  "fRblBbrF",
-        results: ["F*/25%", "E", "E"],
+        results: {
+            spiral:       "F*/25%", 
+            folded_wedge: "E", 
+            flat_wedge:   "E",
+        },
     },
 
     rook: {
         betza:  "R",
-        results: ["W", "T/6", "E"],
+        results: {
+            spiral:       "W", 
+            folded_wedge: "T/6", 
+            flat_wedge:   "E",
+        },
     },
 
     root_25_leaper: {
         betza:    "(3,4)(5,0)",
-        results: ["T/800,494", "T/644,454", "T/80,152"],
+        results: {
+            spiral:       "T/800,494", 
+            folded_wedge: "T/644,454", 
+            flat_wedge:   "T/80,152",
+        },
     },
 
     root_50_leaper: {
         betza:    "(5,5)(7,1)",
-        results: ["?/7,751,614", "T/84,355", "?/7,104,702"],
+        results: {
+            spiral:       "?/7,751,614", 
+            folded_wedge: "T/84,355", 
+            flat_wedge:   "?/7,104,702",
+        },
     },
 
     //
@@ -977,12 +1369,20 @@ let pieces = {
 
     sergeant: {
         betza: "fWfF",
-        results: ["E", "E", "E"],
+        results: {
+            spiral:       "E", 
+            folded_wedge: "E", 
+            flat_wedge:   "E",
+        },
     },
 
     silver_general: {
         betza:  "FfW",
-        results: ["F*/100%", "E", "E"],
+        results: {
+            spiral:       "F*/100%", 
+            folded_wedge: "E", 
+            flat_wedge:   "E",
+        },
     },
 
     soldier: {
@@ -998,12 +1398,20 @@ let pieces = {
 
     sorcerer: {
         betza:    "W2F2",
-        results: ["W", "FC", "F/100%"],
+        results: {
+            spiral:       "W", 
+            folded_wedge: "FC", 
+            flat_wedge:   "F/100%",
+        },
     },
 
     spider: {
         betza: "t[WB]",
-        results: ["W", "T/10", "E"],
+        results: {
+            spiral:       "W",
+            folded_wedge: "T/10",
+            flat_wedge:   "E",
+        },
         move_list: [
             {dr: -1, dc:  1, or: -1, oc:  0},
             {dr: -1, dc: -1, or: -1, oc:  0},
@@ -1018,12 +1426,20 @@ let pieces = {
 
     squirrel: {
         betza:    "DNA",
-        results: ["?/14,106,875", "F*/100%", "?/16,744,468"],
+        results: {
+            spiral:       "?/14,106,875", 
+            folded_wedge: "F*/100%", 
+            flat_wedge:   "?/16,744,468",
+        },
     },
 
     stag: {         // (4, 2)-leaper
         betza:    "(2,4)",
-        results: ["T/2,015", "E*", "E*"],
+        results: {
+            spiral:       "T/2,015", 
+            folded_wedge: "E*", 
+            flat_wedge:   "E*",
+        },
     },
 
     stork: {
@@ -1039,7 +1455,11 @@ let pieces = {
     //
     tadpole: {
         betza: "FH",
-        results: ["?/1,066,282,804", "T/8,619,774", "T/4,637,261"],
+        results: {
+            spiral:       "?/1,066,282,804", 
+            folded_wedge: "T/8,619,774", 
+            flat_wedge:   "T/4,637,261",
+        },
     },
 
     teme: {
@@ -1060,12 +1480,20 @@ let pieces = {
 
     threeleaper: {  // (3, 0)-leaper
         betza:    "H",
-        results: ["F/11.1", "T/6", "E"],
+        results: {
+            spiral:       "F/11.1", 
+            folded_wedge: "T/6", 
+            flat_wedge:   "E",
+        },
     },
 
     threeleaperrider: {
         betza:    "HH",
-        results: ["F/11.1&#x0305;%", "E", "E"],
+        results: {
+            spiral:       "F/11.1&#x0305;%", 
+            folded_wedge: "E", 
+            flat_wedge:   "E",
+        },
     },
 
     tiger: {
@@ -1078,7 +1506,11 @@ let pieces = {
 
     tripper:   {    // (3, 3)-leaper
         betza:    "G",
-        results: ["F/5.56%", "E", "E"],
+        results: {
+            spiral:       "F/5.56%", 
+            folded_wedge: "E", 
+            flat_wedge:   "E",
+        },
     },
 
     tokin: {
@@ -1087,7 +1519,11 @@ let pieces = {
 
     tripperrider: {
         betza:    "GG",
-        results: ["F*/3.472&#x0305;%", "E", "E"],
+        results: {
+            spiral:       "F*/3.472&#x0305;%", 
+            folded_wedge: "E", 
+            flat_wedge:   "E",
+        },
     },
 
     typhoon: {
@@ -1116,7 +1552,11 @@ let pieces = {
     // W pieces
     //
     wagon: {
-        results: ["F/25%", "E", "E"],
+        results: {
+            spiral:       "F/25%", 
+            folded_wedge: "E", 
+            flat_wedge:   "E",
+        },
         move_list: [
             {dr: -1, dc:  0, min_land: 2},
             {dr:  1, dc:  0, min_land: 2},
@@ -1127,7 +1567,11 @@ let pieces = {
 
     war_machine: {
         betza:   "WD",
-        results: ["W", "F/100%", "F/100%"],
+        results: {
+            spiral:       "W", 
+            folded_wedge: "F/100%", 
+            flat_wedge:   "F/100%",
+        },
         _index_name: "War Machine (Wazir + Dabbaba)",
     },
 
@@ -1139,7 +1583,11 @@ let pieces = {
 
     wazir: {        // (1, 0)-leaper
         betza:    "W",
-        results: ["W", "T/6", "E"],
+        results: {
+            spiral:       "W", 
+            folded_wedge: "T/6", 
+            flat_wedge:   "E",
+        },
     },
 
     wazirrider: {
@@ -1156,7 +1604,11 @@ let pieces = {
 
     wizard: {
         betza:    "FC",
-        results: ["?/6,986,937", "F*/50%", "F/50%"],
+        results: {
+            spiral:       "?/6,986,937", 
+            folded_wedge: "F*/50%", 
+            flat_wedge:   "F/50%",
+        },
     },
 
     wolf: {
@@ -1169,27 +1621,47 @@ let pieces = {
 
     yari_bishop: {
         betza: "fFfR",
-        results: ["E", "E", "E"],
+        results: {
+            spiral:       "E", 
+            folded_wedge: "E", 
+            flat_wedge:   "E",
+        },
     },
 
     yari_gold: {
         betza: "WfFbR",
-        results: ["W", "FC", "F/100%"],
+        results: {
+            spiral:       "W", 
+            folded_wedge: "FC", 
+            flat_wedge:   "F/100%",
+        },
     },
 
     yari_knight: {
         betza: "fNfR",
-        results: ["E", "E", "E"],
+        results: {
+            spiral:       "E", 
+            folded_wedge: "E", 
+            flat_wedge:   "E",
+        },
     },
 
     yari_rook: {
         betza: "frlR",
-        results: ["E", "F*/50%", ""],
+        results: {
+            spiral:       "E", 
+            folded_wedge: "F*/50%", 
+            flat_wedge:   "E",
+        },
     },
 
     yari_silver: {
         betza: "fWfFbR",
-        results: ["F*/25%", "E", ""],
+        results: {
+            spiral:       "F*/25%", 
+            folded_wedge: "E", 
+            flat_wedge:   "E",
+        },
     },
 
     //
@@ -1201,17 +1673,29 @@ let pieces = {
 
     zebra: {        // (3, 2)-leaper
         betza:    "Z",
-        results: ["T/4,633", "T/80", "T/286"],
+        results: {
+            spiral:       "T/4,633", 
+            folded_wedge: "T/80", 
+            flat_wedge:   "T/286",
+        },
     },
 
     zebrarider: {
         betza:    "ZZ",
-        results: ["T/266", "T/72", "T/57"],
+        results: {
+            spiral:       "T/266", 
+            folded_wedge: "T/72", 
+            flat_wedge:   "T/57",
+        },
     },
 
     zebu:  {
         betza:    "C(1,4)",
-        results: ["?/16,421,113", "?/16,471,455", "?/11,122,547"],
+        results: {
+            spiral:       "?/16,421,113", 
+            folded_wedge: "?/16,471,455", 
+            flat_wedge:   "?/11,122,547",
+        },
     },
 
     zig: {

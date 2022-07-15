@@ -90,7 +90,8 @@ function make_index_table () {
                  linkify ({name: name, href: piece . file ()}) + "</td>"
 
         if (piece . results) {
-            piece . results . forEach ((content) => {
+            ["spiral", "folded_wedge", "flat_wedge"] . forEach ((name) => {
+                let content = piece . results [name]
                 let class_name = css_class (content)
                 table += `<td class = '${class_name}'>${content}</td>`
             })
