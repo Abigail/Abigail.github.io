@@ -14,6 +14,9 @@ Of course, for our investigation, Royalness plays no part.
 {th = 1} %%SCIROCCO%%; %%TYPHOON%%
        & **Commoner**
        & %%PROMOTES_TO%% [*Wildebeest*](gnu.html?piece=wildebeest) \\
+{th = 1} %%WA_SHOGI%%
+       & **Crane King** (&#x974F;&#x7389;)
+       & %%ROYAL%% \\
 {th = 1} %%TYPHOON%%
        & **Elephant Prince**
        & %%CAPTURE%%; %%PROMOTED%% [*Drunk Elephant*](drunk_elephant.html) \\
