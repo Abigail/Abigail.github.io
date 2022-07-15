@@ -45,9 +45,9 @@ Of course, for our investigation, Royalness plays no part.
          %%PROMOTES_TO%% [*Emperor*](emperor_typhoon.html) or
                          [*Emperor of Emperors*](emperor_of_emperors.html) \\
 {th = 1; rs = 2} %%SHOGI%%; %%KYOTO_SHOGI%%; %%MICRO_SHOGI%%
-       & **King General** (&#x738b;&#x5c07;) 
+       & **King General** (&#x738b;&#x5c06;)
        & {rs = 2} %%ROYAL%%; Also named *King* \\
-         **Jeweled General** (&#x7389;&#x5c07;) \\
+         **Jeweled General** (&#x7389;&#x5c06;) \\
 {th = 1} %%DOBUTSU%%
        & **Lion**
        & %%ROYAL%% \\
