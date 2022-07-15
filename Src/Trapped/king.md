@@ -23,6 +23,9 @@ Of course, for our investigation, Royalness plays no part.
          In the game, the **General** is restricted to the 3x3 palace,
          and the **General** does not have all its moves available 
          on every square of the palace \\
+{th = 1} %%YARI_SHOGI%%
+       & **General**
+       & %%ROYAL%% \\
 {th = 1} %%JANGGI%%
        & **Guard** (&#xC0AC;)
        & In the game, the **Guard** is restricted to the 3x3 palace,
