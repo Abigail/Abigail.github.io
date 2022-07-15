@@ -554,6 +554,11 @@ let pieces = {
         results: ["F*/25%", "E", "E"]
     },
 
+    ginkaku: {
+        betza_list: ["fWF", "B"],
+        results:    ["T/80", "E", "E"],
+    },
+
     giraffe: {      // (4, 1)-leaper
         betza:    "(1,4)",
         results: ["T/13,102", "T/114", "T/94"],
@@ -688,6 +693,11 @@ let pieces = {
         results: ["W", "FC", "F/100%"],
     },
 
+    kinkei: {
+        betza_list: ["WfF", "fN"],
+        results: ["E", "E*", "E"],
+    },
+
     knight: {
         betza:  "N",
         results: ["T/2,015", "T/50", "E*"],
@@ -704,6 +714,12 @@ let pieces = {
     kuu: {
         parent: "pawn",
         _name: "K&#x00FC;&#x00FC;",
+    },
+
+    kyoto: {
+        betza_list: ["WfF", "fR"],
+        results: ["E", "E*", "E"],
+        _name: "Ky&#x014D;to",
     },
 
     //
@@ -1303,17 +1319,25 @@ let set_info = {
                  "gold_general", "silver_general", "shogi_knight",
                  "lance", "pawn"],
     },
+
     dobutsu_shogi: {
         name: "D&#x14d;butsu Sh&#x14d;gi",
         href: "https://en.wikipedia.org/wiki/D%C5%8Dbutsu_sh%C5%8Dgi",
         pieces: ["dobutsu_lion", "giraffe_dobutsu", "dobutsu_elephant",
                  "dobutsu_chick", "dobutsu_hen"],
     },
+
     micro_shogi: {
         href: "https://en.wikipedia.org/wiki/Micro_shogi",
         name: "Micro Sh&#x14d;gi",
         pieces: ["king", "rook", "bishop", "gold_general", "silver_general",
                  "shogi_knight", "lance", "tokin", "pawn"],
+    },
+
+    kyoto_shogi: {
+        href: "https://en.wikipedia.org/wiki/Kyoto_shogi",
+        name: "Ky&#x014D;to Sh&#x014D;gi",
+        pieces: ["king", "hifu", "ginkaku", "kinkei", "kyoto"],
     },
 
     whale_shogi: {

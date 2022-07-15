@@ -26,6 +26,7 @@ our %MACROS = (
         DOBUTSU        =>  '[D&#x14d;butsu sh&#x14d;gi](#wiki:Dobutsu_shogi)',
         JANGGI         =>  '[Janggi (&#xC7A5;&#xAE30;)](#wiki:Janggi)',
         HIASHATAR      =>  '[Hiashatar](#wiki)',
+        KYOTO_SHOGI    =>  '[Ky&#x014D;to Sh&#x014D;gi](#wiki:Kyoto_shogi)',
         MAKRUK         =>  '[Makruk](#wiki)',
         MICRO_SHOGI    =>  '[Micro Sh&#x14d;gi](#wiki:Micro_shogi)',
         OVERKILL       =>  '[Overkill Ecumenical Chess]' .
