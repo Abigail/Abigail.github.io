@@ -633,6 +633,11 @@ let pieces = {
         parent: "sorcerer",
     },
 
+    hifu: {
+        betza_list: ["fW", "R"],
+        results:    ["E", "E*", "E"],
+    },
+
     horned_owl: {
         betza:    "F4DfW",
         results: ["?/1,056,723,023", "F/50%", "F*/100%"],
