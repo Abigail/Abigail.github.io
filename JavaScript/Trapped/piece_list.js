@@ -142,6 +142,11 @@ let pieces = {
         parent: "archbishop",
     },
 
+    bears_eyes: {
+        parent: "king",
+        _name: "Bear's Eyes",
+    },
+
     beaver: {
         betza:    "fFfWsW4bW0",
         results: {
@@ -192,6 +197,15 @@ let pieces = {
 
     blind_bear: {
         parent: "blind_monkey",
+    },
+
+    blind_dog: {
+        betza: "bsWfF",
+        results: {
+            spiral:       "F*/100%", 
+            folded_wedge: "FC", 
+            flat_wedge:   "F/100%",
+        },
     },
 
     blind_monkey: {
@@ -342,6 +356,10 @@ let pieces = {
 
     cicada: {
         parent: "king",
+    },
+
+    climbing_monkey: {
+        parent: "copper_general",
     },
 
     cloud_eagle: {
@@ -1347,6 +1365,10 @@ let pieces = {
         },
     },
 
+    roaming_bear: {
+        parent: "drunk_elephant",
+    },
+
     rook: {
         betza:  "R",
         results: {
@@ -1371,6 +1393,15 @@ let pieces = {
             spiral:       "?/7,751,614", 
             folded_wedge: "T/84,355", 
             flat_wedge:   "?/7,104,702",
+        },
+    },
+
+    running_rabbit: {
+        betza:   "bWFfR",
+        results: {
+            spiral:       "F*/100%",
+            folded_wedge: "E",
+            flat_wedge:   "E",
         },
     },
 
@@ -1488,6 +1519,15 @@ let pieces = {
         parent: "bishop",
     },
 
+    tenacious_falcon: {
+        betza: "sWvRB",
+        results: {
+            spiral:       "",
+            folded_wedge: "",
+            flat_wedge:   "",
+        },
+    },
+
     tereg: {
         parent: "rook",
     },
@@ -1571,6 +1611,14 @@ let pieces = {
     //
     // V pieces
     //
+    violent_stag: {
+        parent: "silver_general",
+    },
+
+    violent_wolf: {
+        parent: "gold_general"
+    },
+
     vizir: {
         parent: "archbishop",
     },
@@ -1918,7 +1966,9 @@ let set_info = {
         name:    "Wa Sh&#x14d;gi",
         href:    "https://en.wikipedia.org/wiki/Wa_shogi",
         pieces: ["crane_king", "cloud_eagle", "treacherous_fox",
-                 "flying_falcon"],
+                 "flying_falcon", "tenacious_falcon", "running_rabbit",
+                 "violent_wolf", "bears_eyes", "violent_stag", "roaming_bear",
+                 "blind_dog", "climbing_monkey"],
     },
 
     shogi_variants: {
