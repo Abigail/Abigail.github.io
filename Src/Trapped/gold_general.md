@@ -25,7 +25,12 @@ step diagonally forward, like a forward [*Ferz*](ferz.html).
        &  %%PROMOTED%% [*Pawn*](pawn.html) \\
 {th = 1}  %%MICRO_SHOGI%%
        &  **Tokin** (&#x3068;&#x91D1;)
-       &  Become a [*Bishop*](bishop.html) when capturing \\
+       &  Becomes a [*Bishop*](bishop.html) when capturing \\
+{th = 1}  %%WA_SHOGI%%
+       &  **Violent Wolf** (&#x731B;&#x72FC;)
+       &  %%PROMOTED%% [*Blind Dog*](blind_dog.html);
+          %%PROMOTES_TO%% [*Bear's Eyes*](king.html?piece=bears_eyes);
+          A promoted [*Blind Dog*](blind_dog.html) won't promote again \\
 ====|
 
 Link: [%%CHESS_V%%](#piece:goldgeneral)

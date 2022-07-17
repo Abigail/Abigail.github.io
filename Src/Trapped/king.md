@@ -8,6 +8,9 @@ Of course, for our investigation, Royalness plays no part.
 
 |====
 %%PIECE_HEADERS%%
+{th = 1} %%WA_SHOGI%%
+       & **Bear's Eyes** (&#x718A;&#x773C;)
+       & %%PROMOTED%% [*Violent Wolf*](gold_general.html?piece=violent_wolf) \\
 {th = 1} %%TYPHOON%%
        & **Cicada**
        & %%HOPPER%%; %%PROMOTES_TO%% [*Typhoon*](genie.html?piece=typoon) \\

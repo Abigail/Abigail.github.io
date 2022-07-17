@@ -18,6 +18,15 @@ different names.
 {th = 1} %%TYPHOON%%
        & **Silver General**
        & %%PROMOTES_TO%% [*Vulture*](dragon_horse.html?piece=vulture) \\
+{th = 1} %%WA_SHOGI%%
+       & **Violent Stag** (&#x731B;&#x9E7F;)
+       & %%PROMOTED%%
+         [*Climbing Monkey*](copper_general.html?piece=climbing_monkey);
+         %%PROMOTES_TO%%
+         [*Roaming Bear*](drunk_elephant.html?piece=roaming_bear);
+         A promoted
+         [*Climbing Monkey*](copper_general.html?piece=climbing_monkey)
+         will not promote again \\
 ====|
 
 Link: [%%CHESS_V%%](#piece:silvergeneral)

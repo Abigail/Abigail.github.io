@@ -5,12 +5,16 @@ or diagonally), or one square orthogonally backward.
 
 |====
 %%PIECE_HEADERS%%
-{th = 1} %%TYPHOON%%
-       & **Copper General**
-       & %%PROMOTES_TO%% [*Ibis*](dragon_king.html?piece=ibis) \\
-{th = 1} %%WHALE_SHOGI%%
-       & **Blue Whale**
-       & \\
+{th = 1}  %%WHALE_SHOGI%%
+       &  **Blue Whale**
+       &  \\
+{th = 1}  %%WA_SHOGI%%
+       &  **Climbing Monkey** (&#x767B;&#x733F;)
+       &  %%PROMOTES_TO%%
+          [*Violent Stag*](silver_general.html?piece=violent_stag) \\
+{th = 1}  %%TYPHOON%%
+       &  **Copper General**
+       &  %%PROMOTES_TO%% [*Ibis*](dragon_king.html?piece=ibis) \\
 ====|
 
 ### Spiral
