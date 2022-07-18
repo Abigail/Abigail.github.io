@@ -136,3 +136,8 @@ span.yes {
 span.no  {
     color:                   red;
 }
+
+
+span.uni_name {
+    white-space:          nowrap;
+}
