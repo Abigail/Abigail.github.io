@@ -735,6 +735,10 @@ let pieces = {
         },
     },
 
+    flying_goose: {
+        parent: "copper_general",
+    },
+
     flying_ox: {
         betza:    "BvR",
         results: {
@@ -868,6 +872,10 @@ let pieces = {
         _index_name: "Giraffe (Turkish Great Chess)",
     },
 
+    gliding_swallow: {
+        parent: "rook",
+    },
+
     gnu: {
         betza:    "NC",
         results: {
@@ -893,6 +901,10 @@ let pieces = {
             folded_wedge: "FC", 
             flat_wedge:   "F/100%"
         },
+    },
+
+    golden_bird: {
+        parent: "gold_general",
     },
 
     goose: {
@@ -941,6 +953,15 @@ let pieces = {
             spiral:       "F*/100%", 
             folded_wedge: "F*/100%", 
             flat_wedge:   "F*/100%"
+        },
+    },
+
+    heavenly_horse: {
+        betza: "fbN",
+        results:    {
+            spiral:       "", 
+            folded_wedge: "", 
+            flat_wedge:   ""
         },
     },
 
@@ -1121,6 +1142,15 @@ let pieces = {
         },
     },
 
+    liberated_horse: {
+        betza: "bW2fW0",
+        results: {
+            spiral:       "E",
+            folded_wedge: "E",
+            flat_wedge:   "E",
+        },
+    },
+
     longleaper: {
         parent:   "queen",
     },
@@ -1275,6 +1305,10 @@ let pieces = {
         parent:   "king",
     },
 
+    oxcart: {
+        parent: "lance",
+    },
+
     //
     // P pieces
     //
@@ -1305,6 +1339,10 @@ let pieces = {
     },
 
     phoenix: {
+        parent: "king",
+    },
+
+    plodding_ox: {
         parent: "king",
     },
 
@@ -1355,6 +1393,16 @@ let pieces = {
     raven: {
         parent:   "modern_elephant",
     },
+
+    raiding_falcon: {
+        betza: "sWfFvR",
+        results: {
+            spiral:       "W",
+            folded_wedge: "FC", 
+            flat_wedge:   "F/100%",
+        },
+    },
+
 
     right_quail: {
         betza:  "fRblBbrF",
@@ -1458,6 +1506,10 @@ let pieces = {
         },
     },
 
+    sparrow_pawn: {
+        parent: "pawn",
+    },
+
     spider: {
         betza: "t[WB]",
         results: {
@@ -1499,8 +1551,31 @@ let pieces = {
         parent:  "alfil",
     },
 
+    strutting_crow: {
+        betza: "fWbF",
+        results: {
+            spiral:       "E*",
+            folded_wedge: "E",
+            flat_wedge:   "E",
+        },
+    },
+
     swallow: {
         parent: "pawn",
+    },
+
+    swallows_wings: {
+        betza: "vWsR",
+        results: {
+            spiral:       "W",
+            folded_wedge: "T/6",
+            flat_wedge:   "E",
+        },
+        _name: "Swallow's Wings",
+    },
+
+    swooping_owl: {
+        parent: "strutting_crow",
     },
 
     //
@@ -1968,12 +2043,11 @@ let set_info = {
         pieces: ["crane_king", "cloud_eagle", "treacherous_fox",
                  "flying_falcon", "tenacious_falcon", "running_rabbit",
                  "violent_wolf", "bears_eyes", "violent_stag", "roaming_bear",
-                 "blind_dog", "climbing_monkey"],
-    },
-
-    shogi_variants: {
-        name:    "Sh&#x14d;gi variants",
-        pieces: ["blind_monkey", "flying_cock", "drunk_elephant"],
+                 "blind_dog", "climbing_monkey", "flying_goose",
+                 "swallows_wings", "flying_cock", "raiding_falcon",
+                 "gliding_swallow", "strutting_crow", "swooping_owl",
+                 "liberated_horse", "heavenly_horse", "oxcart",
+                 "plodding_ox", "golden_bird", "sparrow_pawn"],
     },
 
     xiangqi: {

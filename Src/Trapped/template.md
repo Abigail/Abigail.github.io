@@ -1,6 +1,6 @@
 # %%PIECE%%
 
-The %%PIECE%% moves as
+The %%PIECE%% either moves as
 
 |====
 %%PIECE_HEADERS%%

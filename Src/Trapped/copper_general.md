@@ -15,6 +15,10 @@ or diagonally), or one square orthogonally backward.
 {th = 1}  %%TYPHOON%%
        &  **Copper General**
        &  %%PROMOTES_TO%% [*Ibis*](dragon_king.html?piece=ibis) \\
+{th = 1}  %%WA_SHOGI%%
+       &  **Flying Goose** (&#x9CEB;&#x98DB;)
+       &  %%PROMOTES_TO%%
+          [*Swallow's Wings*](swallows_wings.html) \\
 ====|
 
 ### Spiral
