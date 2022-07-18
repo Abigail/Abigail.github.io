@@ -115,6 +115,11 @@ captures differently than it moves.
              &
              &  %%NO%%  
              &  %%NO%%                                                       \\
+**Sparrow Pawn** (&#x8411;&#x6B69;)
+             &  %%WA_SHOGI%%
+             &  [*Golden Bird*](gold_general.html?piece=golden_bird)
+             &  %%NO%%  
+             &  %%NO%%                                                       \\
 **Swallow**  &  %%TORI_SHOGI%%
              &  [*Goose*](goose.html)
              &  %%NO%%  
