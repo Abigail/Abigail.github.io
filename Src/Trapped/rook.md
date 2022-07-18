@@ -22,6 +22,9 @@ occupied square.
 {th = 1} %%SENTEREJ%%
        & **Der**
        & *Der* meaning *Castle* \\
+{th = 1} %%WA_SHOGI%%
+       & **Gliding Swallow** (&#x71D5;&#x884C;)
+       & %%PROMOTED%% [*Swallow's Wings**](swallows_wings.html) \\
 {th = 1} %%CHESS%%; %%WILDEBEEST%%; %%WOLF%%; Other Chess variants
        & **Rook** (&#x2656;)
        & \\

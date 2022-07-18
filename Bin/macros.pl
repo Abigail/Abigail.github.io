@@ -39,7 +39,8 @@ our %MACROS = (
         SHOGI          =>  '[Sh&#x14d;gi (&#x5c06;&#x68cb;)](#wiki:Shogi)',
         TYPHOON        =>  '[Typhoon](#chess-v:rules/typhoon-revised)',
         TORI_SHOGI     =>  '[Tori Sh&#x14d;gi](#wiki:Tori_Shogi)',
-        WA_SHOGI       =>  '[Wa Sh&#x14d;gi](#wiki:Wa_shogi)',
+        WA_SHOGI       =>  '[Wa Sh&#x14d;gi (&#x548C;&#x5C06;&#x68CB;)]' . 
+                           '(#wiki:Wa_shogi)',
         WHALE_SHOGI    =>  '[Whale Sh&#x14d;gi (&#x9be8;&#x5c06;&#x68cb;)]' .
                            '(#chess-v:shogivariants.dir/whale.html)',
         WILDEBEEST     =>  "[Wildebeest Chess](#wiki) [[$CHESS_V_TOKEN]" .

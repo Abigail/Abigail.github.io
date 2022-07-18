@@ -12,7 +12,8 @@ a backward [*Ferz*](ferz.html).
 %%PIECE_HEADERS%%
 {th = 1}  %%WA_SHOGI%%
        &  **Cloud Eagle** (&#x96F2;&#x9DF2;)
-       & \\
+       &  %%PROMOTED%%
+          [*Swooping Owl*](strutting_crow.html?piece=swooping_owl) \\
 ====|
 
 ### Spiral
