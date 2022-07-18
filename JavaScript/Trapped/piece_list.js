@@ -367,7 +367,7 @@ let pieces = {
         results: {
             spiral:       "W",
             folded_wedge: "FC",
-            flat_wedge:   "",
+            flat_wedge:   "F/100%",
         },
     },
 
@@ -959,9 +959,9 @@ let pieces = {
     heavenly_horse: {
         betza: "fbN",
         results:    {
-            spiral:       "", 
-            folded_wedge: "", 
-            flat_wedge:   ""
+            spiral:       "F*/25%", 
+            folded_wedge: "E", 
+            flat_wedge:   "E"
         },
     },
 
@@ -1597,9 +1597,9 @@ let pieces = {
     tenacious_falcon: {
         betza: "sWvRB",
         results: {
-            spiral:       "",
-            folded_wedge: "",
-            flat_wedge:   "",
+            spiral:       "W",
+            folded_wedge: "FC",
+            flat_wedge:   "F/100%",
         },
     },
 
