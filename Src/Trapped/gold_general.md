@@ -17,6 +17,9 @@ step diagonally forward, like a forward [*Ferz*](ferz.html).
 {th = 1}  %%TYPHOON%%
        &  [**Gold General**](#chess-v:rules/typhoon-revised#GoldGeneral)
        &  %%PROMOTES_TO%% [*Horned Owl*](horned_owl.html) \\
+{th = 1}  %%WA_SHOGI%%
+       &  **Golden Bird** (&#x91D1;&#x9CE5;)
+       &  %%PROMOTED%% [*Sparrow Pawn*](pawn.html?piece=sparrow_pawn) \\
 {th = 1}  %%DOBUTSU%%
        &  **Hen**
        &  %%PROMOTED%% [*Chick*](pawn.html?piece=dobutsu_chick) \\

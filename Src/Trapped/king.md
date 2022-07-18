@@ -76,6 +76,9 @@ Of course, for our investigation, Royalness plays no part.
 {th = 1} %%TORI_SHOGI%%
        & **Phoenix** (&#x9d6c;)
        & %%ROYAL%% \\
+{th = 1} %%WA_SHOGI%%
+       & **Plodding Ox** (&#x6B6C;&#x725B;)
+       & %%PROMOTED%% [*Oxcart*](lance.html?piece=oxchart) \\
 {th = 1} %%TYPHOON%%
        & **Salamander**
        & %%MORE_MOVES%%; %%PROMOTES_TO%% [*Genie*](genie.html) \\

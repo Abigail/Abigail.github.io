@@ -7,11 +7,14 @@ unlimited number of unoccupied squares straight ahead.
 %%PIECE_HEADERS%%
 {th = 1}  %%SHOGI%%
        &  **Lance** (&#x9999;&#x8ECA;)
-       &  %%PROMOTES_TO%% [*Gold General*](gold_general) \\
+       &  %%PROMOTES_TO%% [*Gold General*](gold_general.html) \\
 {th = 1}  %%MICRO_SHOGI%%
        &  **Lance** (&#x9999;&#x8ECA;)
        &  Becomes a [*Silver General*](silver_general.html)
           when capturing \\
+{th = 1}  %%WA_SHOGI%%
+       &  **Oxcart** (&#x725B;&#x8ECA;)
+       &  %%PROMOTES_TO%% [*Plodding Ox*](king.html?piece=plodding_ox) \\
 ====|
 
 Link: [%%CHESS_V%%](#piece:lance)
