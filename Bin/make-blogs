@@ -781,8 +781,9 @@ sub post_process ($text, $directives) {
     #
     if (my $class = $$directives {class}) {
         foreach my $entry (ref $class ? @$class : $class) {
-            my ($name, $pattern) = split ' ' => $entry, 2;
-            $pattern =~ s/ +/\\s+/g;
+            my ($name, $pattern) = ref $entry ?             @$entry
+                                              : split ' ' => $entry, 2;
+            $pattern =~ s/ +/\\s+/g unless ref $pattern;
             $text =~ s {$pattern} {<span class = '$name'>${^MATCH}</span>}gp;
         }
     }
@@ -1010,6 +1011,12 @@ foreach my $todo (@todo) {
     $$directives {day}  = $day;
 
     $source_text = pre_process $source_text, $directives;
+
+    if ($type == $TYPE_TRAPPED) {
+        $$directives {class} ||= [];
+        push @{$$directives {class}} =>
+                [uni_name => qr {[(](?:&#x[0-9A-F]{2,};)+[)]}i];
+    }
 
     my $html_text   = markdown ($source_text => {
         empty_element_suffix => ">"

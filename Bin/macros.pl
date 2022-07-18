@@ -18,6 +18,10 @@ my sub tooltip ($text, $tooltiptext, @classes) {
             $classes, $text, "tooltiptext", $tooltiptext
 }
 
+my sub uni_name ($text) {
+    sprintf "(<span class = 'uni_name'>%s</span>)" => $text
+}
+
 our %MACROS = (
     our $TYPE_TRAPPED => {
         CHESS          =>  '[Chess](#wiki)',
