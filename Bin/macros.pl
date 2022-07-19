@@ -25,15 +25,17 @@ my sub uni_name ($text) {
 our %MACROS = (
     our $TYPE_TRAPPED => {
         CHESS          =>  '[Chess](#wiki)',
-        GRAND_CAVALIER =>  '[Grand Cavalier Chess]' .
+        CHU_SHOGI      =>  '[Chu&nbsp;Sh&#x014d;gi ' .
+                           '(&#x4E2D;&#x5C06;&#x68CB;)](#wiki:chu_shogi)',
+        GRAND_CAVALIER =>  '[Grand&nbsp;Cavalier&nbsp;Chess]' .
                            '(#chess-v:large.dir/grandcavalier.html)',
         DOBUTSU        =>  '[D&#x14d;butsu sh&#x14d;gi](#wiki:Dobutsu_shogi)',
         JANGGI         =>  '[Janggi (&#xC7A5;&#xAE30;)](#wiki:Janggi)',
         HIASHATAR      =>  '[Hiashatar](#wiki)',
         KYOTO_SHOGI    =>  '[Ky&#x014D;to Sh&#x014D;gi](#wiki:Kyoto_shogi)',
         MAKRUK         =>  '[Makruk](#wiki)',
-        MICRO_SHOGI    =>  '[Micro Sh&#x14d;gi](#wiki:Micro_shogi)',
-        OVERKILL       =>  '[Overkill Ecumenical Chess]' .
+        MICRO_SHOGI    =>  '[Micro&nbsp;Sh&#x14d;gi](#wiki:Micro_shogi)',
+        OVERKILL       =>  '[Overkill&nbsp;Ecumenical&nbsp;Chess]' .
                            '(#chess-v:rules/overkill-ecumenical-chess)',
         SCIROCCO       =>  '[Scirocco](#chess-v:rules/scirocco)',
         SENTEREJ       =>  "[Senterej](#wiki) [[$CHESS_V_TOKEN](#chess-v:" .
@@ -42,17 +44,18 @@ our %MACROS = (
                            'oriental.dir/shatar.html)]',
         SHOGI          =>  '[Sh&#x14d;gi (&#x5c06;&#x68cb;)](#wiki:Shogi)',
         TYPHOON        =>  '[Typhoon](#chess-v:rules/typhoon-revised)',
-        TORI_SHOGI     =>  '[Tori Sh&#x14d;gi](#wiki:Tori_Shogi)',
-        WA_SHOGI       =>  '[Wa Sh&#x14d;gi (&#x548C;&#x5C06;&#x68CB;)]' . 
+        TORI_SHOGI     =>  '[Tori&nbsp;Sh&#x14d;gi](#wiki:Tori_Shogi)',
+        WA_SHOGI       =>  '[Wa&nbsp;Sh&#x14d;gi (&#x548C;&#x5C06;&#x68CB;)]' . 
                            '(#wiki:Wa_shogi)',
-        WHALE_SHOGI    =>  '[Whale Sh&#x14d;gi (&#x9be8;&#x5c06;&#x68cb;)]' .
+        WHALE_SHOGI    =>  '[Whale&nbsp;Sh&#x14d;gi ' .
+                           '(&#x9be8;&#x5c06;&#x68cb;)]' .
                            '(#chess-v:shogivariants.dir/whale.html)',
-        WILDEBEEST     =>  "[Wildebeest Chess](#wiki) [[$CHESS_V_TOKEN]" .
+        WILDEBEEST     =>  "[Wildebeest&nbsp;Chess](#wiki) [[$CHESS_V_TOKEN]" .
                            "(#chess-v:large.dir/wildebeest.html)]",
-        WOLF           =>  '[Wolf Chess](#chess-v:large.dir/wolf.html) ' .
+        WOLF           =>  '[Wolf&nbsp;Chess](#chess-v:large.dir/wolf.html) ' .
                            "[[$WIKI_TOKEN](#wiki:Wolf_chess)]",
         XIANGQI        =>  '[Xiangqi (&#x8C61;&#x68CB;)](#wiki:xiangqi)',
-        YARI_SHOGI     =>  '[Yari Sh&#x14d;gi](#wiki:Yari_shogi)',
+        YARI_SHOGI     =>  '[Yari&nbsp;Sh&#x14d;gi](#wiki:Yari_shogi)',
 
         LEAPER         =>  '[*Leaper*](#wiki:Fairy_chess_piece#Leapers)',
         LEAPERS        =>  '[*Leapers*](#wiki:Fairy_chess_piece#Leapers)',

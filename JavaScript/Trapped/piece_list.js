@@ -1477,6 +1477,10 @@ let pieces = {
         },
     },
 
+    side_mover: {
+        parent: "swallows_wings",
+    },
+
     silver_general: {
         betza:  "FfW",
         results: {
@@ -1686,6 +1690,15 @@ let pieces = {
     //
     // V pieces
     //
+    vertical_mover: {
+        betza: "sWvR",
+        results: {
+            spiral:       "W",
+            folded_wedge: "T/6",
+            flat_wedge:   "E",
+        },
+    },
+
     violent_stag: {
         parent: "silver_general",
     },
@@ -2040,14 +2053,23 @@ let set_info = {
     wa_shogi: {
         name:    "Wa Sh&#x14d;gi",
         href:    "https://en.wikipedia.org/wiki/Wa_shogi",
-        pieces: ["crane_king", "cloud_eagle", "treacherous_fox",
-                 "flying_falcon", "tenacious_falcon", "running_rabbit",
-                 "violent_wolf", "bears_eyes", "violent_stag", "roaming_bear",
-                 "blind_dog", "climbing_monkey", "flying_goose",
-                 "swallows_wings", "flying_cock", "raiding_falcon",
-                 "gliding_swallow", "strutting_crow", "swooping_owl",
-                 "liberated_horse", "heavenly_horse", "oxcart",
-                 "plodding_ox", "golden_bird", "sparrow_pawn"],
+        pieces: ["crane_king", "gliding_swallow",
+                 "bears_eyes", "blind_dog", "climbing_monkey", "cloud_eagle",
+                 "flying_cock", "flying_falcon", "flying_goose", "golden_bird",
+                 "heavenly_horse", "liberated_horse", "oxcart", "plodding_ox",
+                 "raiding_falcon", "roaming_bear", "running_rabbit",
+                 "strutting_crow", "swallows_wings", "swooping_owl",
+                 "tenacious_falcon", "treacherous_fox", "violent_stag",
+                 "violent_wolf", "sparrow_pawn"],
+    },
+
+    chu_shogi: {
+        name:    "Chu Sh&#x14d;gi",
+        href:    "https://en.wikipedia.org/wiki/Chu_shogi",
+        pieces: ["king", "queen", "rook", "bishop",
+                 "flying_ox",
+                 "side_mover",
+                 "vertical_mover"],
     },
 
     xiangqi: {
