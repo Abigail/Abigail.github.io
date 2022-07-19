@@ -117,12 +117,13 @@ table.boxset span.self {
 }
 
 
-table.piece_list {
+table.piece_list, table.promotion {
     border:                solid black 2px;
     border-collapse:       collapse;
 }
 
-table.piece_list td, table.piece_list th {
+table.piece_list td, table.piece_list th,
+table.promotion  td, table.promotion  th {
     border:                solid black 1px;
     padding-left:          0.5em;
     padding-right:         0.5em;
@@ -134,7 +135,12 @@ table.piece_list tr.row-0 th {
     border-bottom:         solid black 2px;
 }
 
-table.piece_list td.col-1 {
+table.promotion tr.row-0 th {
+    background:            #FFDDC7;
+    border-bottom:         solid black 2px;
+}
+
+table.piece_list td.col-1, table.promotion td.col-0 {
     white-space:          nowrap;
 }
 
