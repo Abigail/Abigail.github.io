@@ -9,43 +9,43 @@ Of course, for our investigation, Royalness plays no part.
 |====
 %%PIECE_HEADERS%%
 {th = 1} %%WA_SHOGI%%
-       & **Bear's Eyes** (&#x718A;&#x773C;)
+       & **Bear's Eyes** & &#x718A;&#x773C;
        & %%PROMOTED%% [*Violent Wolf*](gold_general.html?piece=violent_wolf) \\
 {th = 1} %%TYPHOON%%
-       & **Cicada**
+       & {cs = 2} **Cicada**
        & %%HOPPER%%; %%PROMOTES_TO%% [*Typhoon*](genie.html?piece=typoon) \\
 {th = 1} %%SCIROCCO%%; %%TYPHOON%%
-       & **Commoner**
+       & {cs = 2} **Commoner**
        & %%PROMOTES_TO%% [*Wildebeest*](gnu.html?piece=wildebeest) \\
 {th = 1} %%WA_SHOGI%%
-       & **Crane King** (&#x974F;&#x7389;)
+       & **Crane King** & &#x974F;&#x7389;
        & %%ROYAL%% \\
 {th = 1} %%TYPHOON%%
-       & **Elephant Prince**
+       & {cs = 2} **Elephant Prince**
        & %%CAPTURE%%; %%PROMOTED%% [*Drunk Elephant*](drunk_elephant.html) \\
 {th = 1} %%JANGGI%%
-       & **General** (&#xD55C;/&#xCD08;)
+       & **General** & &#xD55C;/&#xCD08;
        & %%ROYAL%%;
          In the game, the **General** is restricted to the 3x3 palace,
          and the **General** does not have all its moves available 
          on every square of the palace \\
 {th = 1} %%YARI_SHOGI%%
-       & **General**
+       & {cs = 2} **General**
        & %%ROYAL%% \\
 {th = 1} %%JANGGI%%
-       & **Guard** (&#xC0AC;)
+       & **Guard** & &#xC0AC;
        & In the game, the **Guard** is restricted to the 3x3 palace,
          and the **General** does not have all its moves available 
          on every square of the palace; Also known as *Assistant* or
          *Mandarin* \\
 {th = 1} %%CHESS%%; %%WILDEBEEST%%; %%WOLF%%; Other chess variants
-       & **King** (&#x2654;)
+       & **King** & &#x2654;
        & %%ROYAL%% \\
 {th = 1} %%MAKRUK%%
-       & **King** (&#x0E02;)
+       & **King** & &#x0E02;
        & %%ROYAL%% \\
 {th = 1} %%SCIROCCO%%
-       & {rs = 2} **King**
+       & {rs = 2; cs = 2} **King**
        & %%ROYAL%%;
          %%PROMOTES_TO%% [*Emperor*](champion.html?piece=emperor_scirocco) \\
 {th = 1} %%TYPHOON%%
@@ -53,48 +53,49 @@ Of course, for our investigation, Royalness plays no part.
          %%PROMOTES_TO%% [*Emperor*](emperor_typhoon.html) or
                          [*Emperor of Emperors*](emperor_of_emperors.html) \\
 {th = 1; rs = 2} %%SHOGI%%; %%KYOTO_SHOGI%%; %%MICRO_SHOGI%%; %%CHU_SHOGI%%
-       & **King General** (&#x738b;&#x5c06;)
+       & **King General** & &#x738b;&#x5c06;
        & {rs = 2} %%ROYAL%%; Also named *King* \\
          **Jeweled General** or<br>
-         **Jade General** (&#x7389;&#x5C06;) \\
+         **Jade General** & &#x7389;&#x5C06; \\
 {th = 1} %%DOBUTSU%%
-       & **Lion**
+       & {cs = 2} **Lion**
        & %%ROYAL%% \\
 {th = 1} %%SENTEREJ%%
-       & **Negus**
+       & {cs = 2} **Negus**
        & %%ROYAL%% \\
 {th = 1} %%SHATAR%%
-       & **Noyan** (<span class =
-       "mongolian">&#x1828;&#x1823;&#x1836;&#x1820;&#x1828;</span>) or **Noin**
+       & **Noyan** or **Noin**
+       & <span class =
+        "mongolian">&#x1828;&#x1823;&#x1836;&#x1820;&#x1828;</span>
        & %%ROYAL%%; *Noyan* meaning *Lord* \\
 {th = 1} %%HIASHATAR%%
-       & **Noyon** 
+       & {cs = 2} **Noyon** 
        & %%ROYAL%% \\
 {th = 1} %%TYPHOON%%
-       & **Overtaker**
+       & {cs = 2} **Overtaker**
        & %%HOPPER%%; %%PROMOTES_TO%% [*Nightrider*](knightrider.html) \\
 {th = 1} %%TORI_SHOGI%%
-       & **Phoenix** (&#x9d6c;)
+       & **Phoenix** & &#x9d6c;
        & %%ROYAL%%; This is a different piece than the 
          [*Phoenix*](caliph.html?piece=phoenix_chu) from %%CHU_SHOGI%% \\
 {th = 1} %%WA_SHOGI%%
-       & **Plodding Ox** (&#x6B6C;&#x725B;)
+       & **Plodding Ox** & &#x6B6C;&#x725B;
        & %%PROMOTED%% [*Oxcart*](lance.html?piece=oxchart) \\
 {th = 1} %%CHU_SHOGI%%
-       & **Prince**
+       & **Prince** & &#x592A;&#x5B50;
        & %%ROYAL%%; %%PROMOTED%% [*Drunk Elephant*](drunk_elephant.html) \\
 {th = 1} %%TYPHOON%%
-       & **Salamander**
+       & {cs = 2} **Salamander**
        & %%MORE_MOVES%%; %%PROMOTES_TO%% [*Genie*](genie.html) \\
 {th = 1} %%TYPHOON%%
-       & **Tiger Prince**
+       & {cs = 2} **Tiger Prince**
        & %%ROYAL%%; %%CAPTURE%%;
          %%PROMOTED%% [*Blind Tiger*](blind_tiger.html) \\
 {th = 1} %%TYPHOON%%
-       & **Undertaker**
+       & {cs = 2} **Undertaker**
        & %%CAPTURE%%; %%PROMOTES_TO%% [*Dayrider*](dayrider.html) \\
 {th = 1} %%WHALE_SHOGI%%
-       & **White Whale**
+       & {cs = 2} **White Whale**
        & %%ROYAL%% \\
 ====|
 

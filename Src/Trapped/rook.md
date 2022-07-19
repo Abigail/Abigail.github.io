@@ -8,28 +8,33 @@ occupied square.
 |====
 %%PIECE_HEADERS%%
 {th = 1} %%GRAND_CAVALIER%%
-       & **Cannon**
+       & {cs = 2} **Cannon**
        & %%CAPTURE%% \\
 {th = 1} %%XIANGQI%%
-       & **Cannon** (&#x7832;/&#x70AE;)
+       & **Cannon** & &#x7832;/&#x70AE;
        & %%CAPTURE%% \\
 {th = 1} %%JANGGI%%
-       & **Chariot** (&#xCC28;)
+       & **Chariot** & &#xCC28;
        & %%MORE_MOVES%%; Also known as *Rook* \\
 {th = 1} %%XIANGQI%%
-       & **Chariot** (&#x8ECA;/&#x4FE5;)
+       & **Chariot** & &#x8ECA;/&#x4FE5;
        & Also known as *Rook* \\
 {th = 1} %%SENTEREJ%%
-       & **Der**
+       & {cs = 2} **Der**
        & *Der* meaning *Castle* \\
 {th = 1} %%WA_SHOGI%%
-       & **Gliding Swallow** (&#x71D5;&#x884C;)
+       & **Gliding Swallow** & &#x71D5;&#x884C;
        & %%PROMOTED%% [*Swallow's Wings*](swallows_wings.html) \\
+{th = 1} %%YARI_SHOGI%%
+       & {rs = 2; cs = 2} **Rook**
+       & %%PROMOTED%% [*Yari Rook*](yari_rook.html) \\
+{th = 1} %%SCIROCCO%%; %%TYPHOON%%
+       & %%PROMOTED%% [*Knight*](knight.html) \\
 {th = 1} %%CHESS%%; %%WILDEBEEST%%; %%WOLF%%; Other Chess variants
-       & **Rook** (&#x2656;)
+       & **Rook** & &#x2656;
        & \\
 {th = 1} %%SHOGI%%
-       & {rs = 3} **Rook** (&#x98DB;&#x8ECA;)
+       & {rs = 3} **Rook** & {rs = 3} &#x98DB;&#x8ECA;
        & &#x98db;&#x8eca; meaning *Flying Chariot*;
          %%PROMOTES_TO%% [*Dragon King*](dragon_king.html) \\
 {th = 1} %%CHU_SHOGI%%
@@ -39,22 +44,17 @@ occupied square.
          promote again \\
 {th = 1} %%MICRO_SHOGI%%
        & Becomes a [*Gold General*](gold_general.html) when capturing \\
-{th = 1} %%YARI_SHOGI%%
-       & {rs = 2} **Rook**
-       & %%PROMOTED%% [*Yari Rook*](yari_rook.html) \\
-{th = 1} %%SCIROCCO%%; %%TYPHOON%%
-       & %%PROMOTED%% [*Knight*](knight.html) \\
 {th = 1} %%MAKRUK%%
-       & **Rook** (&#x0E23;)
+       & **Rook** & &#x0E23;
        & \\
 {th = 1} %%HIASHATAR%%
-       & **Tereg** 
+       & {cs = 2} **Tereg** 
        & \\
 {th = 1} %%SHATAR%%
-       & **Terge** 
+       & {cs = 2} **Terge** 
        & \\
 {th = 1} %%RIDERS%%
-       & **Wazirrider**
+       & {cs = 2} **Wazirrider**
        & Moves likes [*Wazir*](wazir.html), without a limit on the number
          of squares it moves over, as long as the squares are unoccupied \\
 ====|

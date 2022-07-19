@@ -140,8 +140,13 @@ table.promotion tr.row-0 th {
     border-bottom:         solid black 2px;
 }
 
-table.piece_list td.col-1, table.promotion td.col-0 {
+table.piece_list td.col-1, table.piece_list td.col-2,
+table.promotion td.col-0 {
     white-space:          nowrap;
+}
+
+table.piece_list td.col-2 {
+    text-align:           center;
 }
 
 span.yes {
