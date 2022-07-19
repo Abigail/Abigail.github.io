@@ -24,13 +24,13 @@ occupied square.
        & *Der* meaning *Castle* \\
 {th = 1} %%WA_SHOGI%%
        & **Gliding Swallow** (&#x71D5;&#x884C;)
-       & %%PROMOTED%% [*Swallow's Wings**](swallows_wings.html) \\
+       & %%PROMOTED%% [*Swallow's Wings*](swallows_wings.html) \\
 {th = 1} %%CHESS%%; %%WILDEBEEST%%; %%WOLF%%; Other Chess variants
        & **Rook** (&#x2656;)
        & \\
-{th = 1} %%SHOGI%%
+{th = 1} %%SHOGI%%; %%CHU_SHOGI%%
        & **Rook** (&#x98DB;&#x8ECA;)
-       & Also known as *Flying Chariot* (&#x98db;&#x8eca;);
+       & &#x98db;&#x8eca; meaning *Flying Chariot*;
          %%PROMOTES_TO%% [*Dragon King*](dragon_king.html) \\
 {th = 1} %%MICRO_SHOGI%%
        & **Rook** (&#x98DB;&#x8ECA;)

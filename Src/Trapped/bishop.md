@@ -11,16 +11,12 @@ Due to its diagonal movement, the %%PIECE%% is %%COLOUR_BOUND%%.
 {th = 1} %%CHESS%%; %%WILDEBEEST%%; %%WOLF%%; Other Chess variants
        & **Bishop** (&#x2657;)
        & \\
-{th = 1} %%RIDERS%%
-       & **Ferzrider**
-       & Moves likes [*Ferz*](ferz.html), without a limit on the number
-         of squares it moves over, as long as the squares are unoccupied \\
 {th = 1} %%SCIROCCO%%
        & **Bishop**
        & %%PROMOTED%% [*Alfil*](alfil.html) \\
-{th = 1} %%SHOGI%%
+{th = 1} %%SHOGI%%; %%CHU_SHOGI%%
        & **Bishop** (&#x89D2;&#x884C;)
-       & Also known as *Angle Mover* (&#x89d2;&#x884c;); %%PROMOTES_TO%%
+       & &#x89D2;&#x884C; meaning *Angle Mover*; %%PROMOTES_TO%%
          [*Dragon Horse* (&#x9f8d;&#x99ac;)](dragon_horse.html) \\
 {th = 1} %%MICRO_SHOGI%%
        & **Bishop**
@@ -28,6 +24,10 @@ Due to its diagonal movement, the %%PIECE%% is %%COLOUR_BOUND%%.
 {th = 1} %%TYPHOON%%
        & **Bishop**
        & %%PROMOTED%% [*Guard*](guard.html) \\
+{th = 1} %%RIDERS%%
+       & **Ferzrider**
+       & Moves likes [*Ferz*](ferz.html), without a limit on the number
+         of squares it moves over, as long as the squares are unoccupied \\
 {th = 1} %%SHATAR%%; %%HIASHATAR%%
        & **Teme**
        & \\

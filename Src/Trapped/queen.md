@@ -1,8 +1,8 @@
 # %%PIECE%%
 
-The %%PIECE%%Queen** can slide an unlimited number of squares in all eight 
+The %%PIECE%% can slide an unlimited number of squares in all eight 
 directions: four orthogonal directions and four diagonal directions.
-It cannot slide over occupied squares. The %%PIECE%%Queen** combines the
+It cannot slide over occupied squares. The %%PIECE%% combines the
 movements of the [*Rook*](rook.html) and [*Bishop*](bishop.html).
 
 It's common in many Chess variant, using different names:
@@ -22,6 +22,9 @@ It's common in many Chess variant, using different names:
 {th = 1} %%CHESS%%; %%WOLF%%; Other chess variants
        & **Queen** (&#x2655;)
        & \\
+{th = 1} %%CHU_SHOGI%%
+       & **Queen** (&#x5954;&#x738B;)
+       & &#x5954;&#x738B; meaning *Free King* \\
 {th = 1} %%SCIROCCO%%; %%TYPHOON%%
        & **Queen**
        & %%PROMOTED%% [*Stork*](alfil.html?piece=stork) \\

@@ -23,12 +23,10 @@ by Abigail<br>
 </div>
 
 
-<p>The %%PIECE%% moves an unlimited amount of unoccupied squares
-diagonally (like the <a href="bishop.html"><em>Bishop</em></a>, or orthogonally
-forward or backward (like the forward/backward <a href="rook.html"><em>Rook</em></a>).</p>
-
-<p>Compare with the <a href="free_boar.html"><em>Free Boar</em></a> which has the same
-movements, rotated 90&deg;.</p>
+<p>The %%PIECE%% either moves one square to the right or left
+(like a sideways <a href="wazir.html"><em>Wazir</em></a>) or slides an unlimited
+amount of unoccupied squares orthogonally forward or backward
+(like a vertical <a href="rook.html"><em>Rook</em></a>).</p>
 
 <table class = piece_list>
   <tr class = 'row-0' markdown = '1'>
@@ -38,42 +36,35 @@ movements, rotated 90&deg;.</p>
   </tr>
   <tr class = 'row-1' markdown = '1'>
     <th class = 'cell-1-0 col-0 ' markdown = '1'><a href="https://en.wikipedia.org/wiki/chu_shogi">Chu&nbsp;Sh&#x014d;gi <span class = 'uni_name'>(&#x4E2D;&#x5C06;&#x68CB;)</span></a></td>
-    <td class = 'cell-1-1 col-1 ' markdown = '1'><strong>Flying Ox</strong> <span class = 'uni_name'>(&#x98DB;&#x725B;)</span></td>
-    <td class = 'cell-1-2 col-2 ' markdown = '1'><span class = 'tooltip'>&#x260B;<span class = 'tooltiptext'>Is promoted</span></span> <a href="vertical_mover.html"><em>Vertical Mover</em></a></td>
-  </tr>
-  <tr class = 'row-2' markdown = '1'>
-    <th class = 'cell-2-0 col-0 ' markdown = '1'><a href="https://www.chessvariants.com/rules/typhoon-revised">Typhoon</a></td>
-    <td class = 'cell-2-1 col-1 ' markdown = '1'><strong>Flying Ox</strong></td>
-    <td class = 'cell-2-2 col-2 ' markdown = '1'><span class = 'tooltip'>&#x260B;<span class = 'tooltiptext'>Is promoted</span></span> <a href="fire_horse.html"><em>Fire Horse</em></a></td>
+    <td class = 'cell-1-1 col-1 ' markdown = '1'><strong>Vertical Mover</strong> <span class = 'uni_name'>(&#x7AEA;&#x884C;)</span></td>
+    <td class = 'cell-1-2 col-2 ' markdown = '1'><span class = 'tooltip'>&#x260A;<span class = 'tooltiptext'>Promotes to</span></span> <a href="flying_ox.html"><em>Flying Ox</em></a></td>
   </tr>
 </table>
 
 <h3 id = 'spiral'>Spiral</h3>
 
 <div class = "section">
-<p>Despite the <a href="bishop.html"><em>Bishop</em></a> and the forward/backward 
-<a href="rook.html"><em>Rook</em></a> not getting trapped, nor the <a href="queen.html"><em>Queen</em></a>
-(which combines the <a href="bishop.html"><em>Bishop</em></a> and full <a href="rook.html"><em>Rook</em></a>),
-the %%PIECE%% does get trapped, after 540 steps.</p>
+<p>The %%PIECE%% can move as the <a href="wazir.html"><em>Wazir</em></a> so it visits
+all the squares by following the Spiral.</p>
 </div>
 
 <h3 id = 'wedge'>Wedge</h3>
 
-<h4 id = 'folded_wedge'>Folded Wedge</h4>
+<h4 id = 'folded'>Folded</h4>
 
 <div class = "section">
-<p>On the Folded Wedge, the %%PIECE%% escapes, visiting the three
-right most squares on each row.</p>
+<p>Like the <a href="wazir.html"><em>Wazir</em></a>, the %%PIECE%% gets trapped 
+on the Folded Wedge after 6 steps.</p>
 </div>
 
-<h4 id = 'flat_wedge'>Flat Wedge</h4>
+<h4 id = 'flat'>Flat</h4>
 
-<p>On the Folded Wedge, the %%PIECE%% escapes, visiting the
-right most square on each row.</p>
+<p>On the Flat Wedge, the %%PIECE%% escapes to the upper right 
+using a step wise pattern.</p>
 
-<div class = 'trapped' data-piece = 'flying_ox'></div>
+<div class = 'trapped' data-piece = 'vertical_mover'></div>
 
-<div class = 'boxset' data-piece = 'flying_ox'></div>
+<div class = 'boxset' data-piece = 'vertical_mover'></div>
 
 <hr id = 'last-line'>
 <div class = 'trailer'>
