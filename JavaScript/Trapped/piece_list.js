@@ -209,7 +209,7 @@ let pieces = {
     },
 
     blind_monkey: {
-        betza:    "FsW",
+        betza:    "sWF",
         results: {
             spiral:       "F*/100%", 
             folded_wedge: "FC", 
@@ -218,7 +218,7 @@ let pieces = {
     },
 
     blind_tiger: {
-        betza:    "FbsW",
+        betza:    "sbWF",
         results: {
             spiral:       "F*/100%", 
             folded_wedge: "FC", 
@@ -743,6 +743,15 @@ let pieces = {
         },
     },
 
+    flying_stag: {
+        betza: "sWFvR",
+        results: {
+            spiral:       "W",
+            folded_wedge: "FC", 
+            flat_wedge:   "F/100%",
+        },
+    },
+
     fourleaper: {   // (4, 0)-leaper
         betza:    "(0,4)",
         results: {
@@ -1067,6 +1076,10 @@ let pieces = {
         },
     },
 
+    kirin: {
+        parent: "goat",
+    },
+
     knight: {
         betza:  "N",
         results: {
@@ -1343,8 +1356,16 @@ let pieces = {
         },
     },
 
-    phoenix: {
+    phoenix_chu: {
+        parent: "caliph",
+        _name: "Phoenix",
+        _index_name: "Phoenix (Chu&nbsp;Sh&#x014d;gi)",
+    },
+
+    phoenix_tori: {
         parent: "king",
+        _name: "Phoenix",
+        _index_name: "Phoenix (Tori&nbsp;Sh&#x014d;gi)",
     },
 
     plodding_ox: {
@@ -1405,6 +1426,15 @@ let pieces = {
             spiral:       "W",
             folded_wedge: "FC", 
             flat_wedge:   "F/100%",
+        },
+    },
+
+    reverse_chariot: {
+        betza: "vR",
+        results: {
+            spiral:       "E",
+            folded_wedge: "E", 
+            flat_wedge:   "E",
         },
     },
 
@@ -1766,6 +1796,15 @@ let pieces = {
         parent: "rook",
     },
 
+    whale: {
+        betza: "vRbB",
+        results: {
+            spiral:       "F*/25%",
+            folded_wedge: "E",
+            flat_wedge:   "E",
+        },
+    },
+
     white_whale: {
         parent: "king",
     },
@@ -2044,7 +2083,7 @@ let set_info = {
     tori_shogi: {
         name:    "Tori Sh&#x14d;gi",
         href:    "https://en.wikipedia.org/wiki/Tori_Shogi",
-        pieces: ["phoenix", "eagle", "tori_falcon", "crane", "pheasant",
+        pieces: ["phoenix_tori", "eagle", "tori_falcon", "crane", "pheasant",
                  "left_quail", "right_quail", "swallow", "goose"],
     },
 
@@ -2072,12 +2111,24 @@ let set_info = {
         name:    "Chu Sh&#x14d;gi",
         href:    "https://en.wikipedia.org/wiki/Chu_shogi",
         pieces: ["king", "queen", "rook", "bishop",
+                 "blind_tiger",
+                 "copper_general",
                  "dragon_horse", "dragon_king",
+                 "drunk_elephant",
                  "ferocious_leopard",
                  "flying_ox",
+                 "flying_stag",
+                 "free_boar",
                  "go_between",
+                 "gold_general",
+                 "kirin",
+                 "lance",
+                 "phoenix_chu",
+                 "reverse_chariot",
                  "side_mover",
+                 "silver_general",
                  "vertical_mover",
+                 "whale",
                  
                  "pawn"],
     },

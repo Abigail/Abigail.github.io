@@ -28,12 +28,16 @@ occupied square.
 {th = 1} %%CHESS%%; %%WILDEBEEST%%; %%WOLF%%; Other Chess variants
        & **Rook** (&#x2656;)
        & \\
-{th = 1} %%SHOGI%%; %%CHU_SHOGI%%
-       & **Rook** (&#x98DB;&#x8ECA;)
+{th = 1} %%SHOGI%%
+       & {rs = 3} **Rook** (&#x98DB;&#x8ECA;)
        & &#x98db;&#x8eca; meaning *Flying Chariot*;
          %%PROMOTES_TO%% [*Dragon King*](dragon_king.html) \\
+{th = 1} %%CHU_SHOGI%%
+       & %%PROMOTED%% [*Gold General*](gold_general.html);
+         %%PROMOTES_TO%% [*Dragon King*](dragon_king.html);
+         A promoted [*Gold General*](gold_general.html) will not
+         promote again \\
 {th = 1} %%MICRO_SHOGI%%
-       & **Rook** (&#x98DB;&#x8ECA;)
        & Becomes a [*Gold General*](gold_general.html) when capturing \\
 {th = 1} %%YARI_SHOGI%%
        & {rs = 2} **Rook**

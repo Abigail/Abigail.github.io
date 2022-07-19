@@ -75,7 +75,8 @@ Of course, for our investigation, Royalness plays no part.
        & %%HOPPER%%; %%PROMOTES_TO%% [*Nightrider*](knightrider.html) \\
 {th = 1} %%TORI_SHOGI%%
        & **Phoenix** (&#x9d6c;)
-       & %%ROYAL%% \\
+       & %%ROYAL%%; This is a different piece than the 
+         [*Phoenix*](caliph.html?piece=phoenix_chu) from %%CHU_SHOGI%% \\
 {th = 1} %%WA_SHOGI%%
        & **Plodding Ox** (&#x6B6C;&#x725B;)
        & %%PROMOTED%% [*Oxcart*](lance.html?piece=oxchart) \\
