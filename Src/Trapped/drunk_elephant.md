@@ -6,13 +6,15 @@ which moves one square in any direction except forwards.
 
 |====
 %%PIECE_HEADERS%%
-{th = 1}  %%CHU_SHOGI%%
-       &  **Drunk Elephant**
-       &  %%PROMOTED%% [*Go-Between*](go_between.html) \\
 {th = 1}  %%TYPHOON%%
        &  **Drunk Elephant**
        &  %%PROMOTES_TO%%
           [*Elephant Prince*](king.html?piece=elephant_prince) \\
+{th = 1}  %%CHU_SHOGI%%
+       &  **Drunk Elephant** (&#x9154;&#x8C61;)
+       &  %%PROMOTED%% [*Go-Between*](go_between.html);
+          %%PROMOTES_TO%% [*Prince*](king.html?piece=prince);
+          A promoted [*Go-Between*](go_between.html) will not promote again \\
 {th = 1}  %%TORI_SHOGI%%
        &  **Falcon** (&#x9df9;)
        &  %%PROMOTES_TO%% [*Eagle*](eagle.html); 

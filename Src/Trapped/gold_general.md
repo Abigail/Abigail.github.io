@@ -6,17 +6,18 @@ step diagonally forward, like a forward [*Ferz*](ferz.html).
 
 |====
 %%PIECE_HEADERS%%
+{th = 1}  %%TYPHOON%%
+       &  **Gold General**
+       &  %%PROMOTES_TO%% [*Horned Owl*](horned_owl.html) \\
 {th = 1}  %%SHOGI%%
-       &  **Gold General** (&#x91d1;&#x5c07;)
+       &  {rs = 3} **Gold General** (&#x91d1;&#x5c07;)
        &  The [*Silver General*](silver_general.html),
           [*Lance*](lance.html), and [*Knight*](shogi_knight.html)
           all promote to a piece which moves like the *Gold General* \\
 {th = 1}  %%MICRO_SHOGI%%
-       &  **Gold General** (&#x91d1;&#x5c07;)
        &  Become a [*Rook*](rook.html) when capturing \\
-{th = 1}  %%TYPHOON%%
-       &  [**Gold General**](#chess-v:rules/typhoon-revised#GoldGeneral)
-       &  %%PROMOTES_TO%% [*Horned Owl*](horned_owl.html) \\
+{th = 1}  %%CHU_SHOGI%%
+       &  %%PROMOTES_TO%% [*Rook*](rook.html) \\
 {th = 1}  %%WA_SHOGI%%
        &  **Golden Bird** (&#x91D1;&#x9CE5;)
        &  %%PROMOTED%% [*Sparrow Pawn*](pawn.html?piece=sparrow_pawn) \\
@@ -24,10 +25,9 @@ step diagonally forward, like a forward [*Ferz*](ferz.html).
        &  **Hen**
        &  %%PROMOTED%% [*Chick*](pawn.html?piece=dobutsu_chick) \\
 {th = 1}  %%SHOGI%%
-       &  **Tokin** (&#x3068;&#x91D1;)
+       &  {rs = 2} **Tokin** (&#x3068;&#x91D1;)
        &  %%PROMOTED%% [*Pawn*](pawn.html) \\
 {th = 1}  %%MICRO_SHOGI%%
-       &  **Tokin** (&#x3068;&#x91D1;)
        &  Becomes a [*Bishop*](bishop.html) when capturing \\
 {th = 1}  %%WA_SHOGI%%
        &  **Violent Wolf** (&#x731B;&#x72FC;)

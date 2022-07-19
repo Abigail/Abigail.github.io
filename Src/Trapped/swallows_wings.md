@@ -9,7 +9,10 @@ vertical [*Wazir*](wazir.html)).
 %%PIECE_HEADERS%%
 {th = 1}  %%CHU_SHOGI%%
        &  **Side Mover** (&#x6A2A;&#x884C;)
-       &  %%PROMOTES_TO%% [*Free Boar*](free_boar.html) \\
+       &  %%PROMOTED%% [*Copper General*](copper_general.html);
+          %%PROMOTES_TO%% [*Free Boar*](free_boar.html);
+          A promoted [*Copper General*](copper_general.html) will 
+          not promote again \\
 {th = 1}  %%WA_SHOGI%%
        &  **Swallow's Wings** (&#x71D5;&#x7FBD;)
        &  %%PROMOTED%% [*Flying Goose*](copper_general.html?piece=flying_goose);

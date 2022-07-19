@@ -7,9 +7,13 @@ directions, except straight backwards.
 
 |====
 %%PIECE_HEADERS%%
-{th = 1} %%TYPHOON%%
-       & **Blind Tiger**
-       & %%PROMOTES_TO%% [*Tiger Prince*](king.html?piece=tiger_prince) \\
+{th = 1}  %%TYPHOON%%
+       &  **Blind Tiger**
+       &  %%PROMOTES_TO%% [*Tiger Prince*](king.html?piece=tiger_prince) \\
+{th = 1}  %%CHU_SHOGI%%
+       &  **Bling Tiger** (&#x76F2;&#x864E;)
+       &  %%PROMOTES_TO%% [*Flying Stag*](flying_stag.html) \\
+
 ====|
 
 ### Spiral
