@@ -80,6 +80,9 @@ Of course, for our investigation, Royalness plays no part.
 {th = 1} %%WA_SHOGI%%
        & **Plodding Ox** (&#x6B6C;&#x725B;)
        & %%PROMOTED%% [*Oxcart*](lance.html?piece=oxchart) \\
+{th = 1} %%CHU_SHOGI%%
+       & **Prince**
+       & %%ROYAL%%; %%PROMOTED%% [*Drunk Elephant*](drunk_elephant.html) \\
 {th = 1} %%TYPHOON%%
        & **Salamander**
        & %%MORE_MOVES%%; %%PROMOTES_TO%% [*Genie*](genie.html) \\
@@ -96,7 +99,7 @@ Of course, for our investigation, Royalness plays no part.
 ====|
 
 Other names for pieces which move like the %%PIECE%%
-include *Mann* (not Royal), and *Prince* (sometimes Royal). 
+include *Mann* (not Royal).
 
 Links: [%%WIKI%%](#wiki:King_(chess)),
        [%%CHESS_V%%](#piece:king)
