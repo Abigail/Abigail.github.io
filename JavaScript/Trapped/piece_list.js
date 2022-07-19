@@ -2076,7 +2076,9 @@ let set_info = {
                  "flying_ox",
                  "go_between",
                  "side_mover",
-                 "vertical_mover"],
+                 "vertical_mover",
+                 
+                 "pawn"],
     },
 
     xiangqi: {
