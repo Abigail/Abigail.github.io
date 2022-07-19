@@ -1,21 +1,30 @@
 # %%PIECE%%
 
 The %%PIECE%% combines the movements of
-the [*King*](king.html) and [*Rook*](rook.html). That is, it steps
+the [*Ferz*](ferz.html) and [*Rook*](rook.html). That is, it steps
 either one square diagonally, or slides an unlimited number of 
 unoccupied squares orthogonally.
-
-It's a so-called *crowned piece*, which is a *compound piece*, 
-combining the movements of the *King* with one or more other pieces.
 
 Pieces which can move like the %%PIECE%% can be found in
 several games:
 
 |====
 %%PIECE_HEADERS%%
+{th = 1} %%SHATAR%%
+       & **Baras** or **Berse**
+         (<span class = "mongolian">&#x182A;&#x1820;&#x1837;&#x1830;</span>)
+       & In modern rules, the **Baras** moves like the
+         Chess [*Queen*](queen.html); *Baras* meaning *Tiger*. \\
+{th = 1} [The Duke of Rutland's Chess](#chess:v:historic.dir/rutland.html)
+       & **Crowned Rook**
+       & \\
 {th = 1} %%SHOGI%%
-       & **Dragon King** (&#x9f8d;&#x738b;)
+       & {rs = 2} **Dragon King** (&#x9f8d;&#x738b;)
        & %%PROMOTED%% [*Rook*](rook.html)  \\
+{th = 1} %%CHU_SHOGI%%
+       & %%PROMOTED%% [*Rook*](rook.html);
+         %%PROMOTES_TO%% [*Soaring Eagle*](soaring_eagle.html);
+         A promoted [*Rook*](rook.html) will not promote again \\
 {th = 1; rs = 2} %%TYPHOON%%
        & **Dragon Kite**
        & %%PROMOTED%% [*Dabbaba*](dabbaba.html) \\
@@ -24,13 +33,9 @@ several games:
 {th = 1} %%WHALE_SHOGI%%
        & **Killer Whale** 
        & Captured enemy [*Porpoise*](porpoise.html) \\
-{th = 1} %%SHATAR%%
-       & **Baras** or **Berse**
-         (<span class = "mongolian">&#x182A;&#x1820;&#x1837;&#x1830;</span>)
-       & In modern rules, the **Baras** moves like the
-         Chess [*Queen*](queen.html); *Baras* meaning *Tiger*. \\
-      
 ====|
+
+Link: [%%CHESS_V%%](#piece:dragonking)
 
 ### Spiral
 
