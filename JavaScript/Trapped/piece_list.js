@@ -2072,6 +2072,7 @@ let set_info = {
         name:    "Chu Sh&#x14d;gi",
         href:    "https://en.wikipedia.org/wiki/Chu_shogi",
         pieces: ["king", "queen", "rook", "bishop",
+                 "dragon_horse", "dragon_king",
                  "ferocious_leopard",
                  "flying_ox",
                  "go_between",

@@ -26,10 +26,9 @@ It's common in many Chess variant, using different names:
        & **Queen** (&#x5954;&#x738B;)
        & &#x5954;&#x738B; meaning *Free King* \\
 {th = 1} %%SCIROCCO%%; %%TYPHOON%%
-       & **Queen**
+       & {rs = 2} **Queen**
        & %%PROMOTED%% [*Stork*](alfil.html?piece=stork) \\
 {th = 1} %%WILDEBEEST%%
-       & **Queen**
        & The *Queen* is one of two pieces a [*Pawn*](pawn.html)
          may promote to \\
 ====|

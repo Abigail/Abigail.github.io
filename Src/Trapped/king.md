@@ -45,11 +45,10 @@ Of course, for our investigation, Royalness plays no part.
        & **King** (&#x0E02;)
        & %%ROYAL%% \\
 {th = 1} %%SCIROCCO%%
-       & **King**
+       & {rs = 2} **King**
        & %%ROYAL%%;
          %%PROMOTES_TO%% [*Emperor*](champion.html?piece=emperor_scirocco) \\
 {th = 1} %%TYPHOON%%
-       & **King**
        & %%ROYAL%%;
          %%PROMOTES_TO%% [*Emperor*](emperor_typhoon.html) or
                          [*Emperor of Emperors*](emperor_of_emperors.html) \\

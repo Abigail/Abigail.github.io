@@ -11,18 +11,16 @@ Due to its diagonal movement, the %%PIECE%% is %%COLOUR_BOUND%%.
 {th = 1} %%CHESS%%; %%WILDEBEEST%%; %%WOLF%%; Other Chess variants
        & **Bishop** (&#x2657;)
        & \\
-{th = 1} %%SCIROCCO%%
-       & **Bishop**
-       & %%PROMOTED%% [*Alfil*](alfil.html) \\
 {th = 1} %%SHOGI%%; %%CHU_SHOGI%%
        & **Bishop** (&#x89D2;&#x884C;)
        & &#x89D2;&#x884C; meaning *Angle Mover*; %%PROMOTES_TO%%
          [*Dragon Horse* (&#x9f8d;&#x99ac;)](dragon_horse.html) \\
 {th = 1} %%MICRO_SHOGI%%
-       & **Bishop**
-       & Becomes a [*Tokin*](gold_general.html?piece=tokin) when capturing. \\
+       & {rs = 3} **Bishop**
+       & Becomes a [*Tokin*](gold_general.html?piece=tokin) when capturing \\
+{th = 1} %%SCIROCCO%%
+       & %%PROMOTED%% [*Alfil*](alfil.html) \\
 {th = 1} %%TYPHOON%%
-       & **Bishop**
        & %%PROMOTED%% [*Guard*](guard.html) \\
 {th = 1} %%RIDERS%%
        & **Ferzrider**
