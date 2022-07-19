@@ -61,8 +61,8 @@ captures differently than it moves.
              &  %%YES%% 
              &  %%YES%%                                                      \\
 **Pawn** (&#x6B69;&#x5175;)
-             &  %%SHOGI%%
-             &  [*Gold General*](gold_general.html)
+             &  %%SHOGI%%; %%CHU_SHOGI%%
+             &  [*Tokin*](gold_general.html?piece=tokin) (Gold General)
              &  %%NO%%  
              &  %%NO%%                                                       \\
 **Pawn** (&#x6B69;&#x5175;)
