@@ -117,17 +117,26 @@ table.boxset span.self {
 }
 
 
-table.piece_list, table.piece_list td, table.piece_list th {
-    border:                solid black 1px;
+table.piece_list {
+    border:                solid black 2px;
     border-collapse:       collapse;
 }
 
 table.piece_list td, table.piece_list th {
+    border:                solid black 1px;
     padding-left:          0.5em;
     padding-right:         0.5em;
     text-align:            left;
 }
 
+table.piece_list tr.row-0 th {
+    background:            #D7F4D2;
+    border-bottom:         solid black 2px;
+}
+
+table.piece_list td.col-1 {
+    white-space:          nowrap;
+}
 
 span.yes {
     color:                 green;
