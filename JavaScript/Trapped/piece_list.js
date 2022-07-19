@@ -1390,6 +1390,10 @@ let pieces = {
         },
     },
 
+    prince: {
+        parent: "king",
+    },
+
     princess: {
         parent: "archbishop"
     },
@@ -1805,6 +1809,15 @@ let pieces = {
         },
     },
 
+    white_horse: {
+        betza: "vRfB",
+        results: {
+            spiral:       "F*/25%",
+            folded_wedge: "E",
+            flat_wedge:   "E",
+        },
+    },
+
     white_whale: {
         parent: "king",
     },
@@ -2110,7 +2123,7 @@ let set_info = {
     chu_shogi: {
         name:    "Chu Sh&#x14d;gi",
         href:    "https://en.wikipedia.org/wiki/Chu_shogi",
-        pieces: ["king", "queen", "rook", "bishop",
+        pieces: ["king", "prince", "queen", "rook", "bishop",
                  "blind_tiger",
                  "copper_general",
                  "dragon_horse", "dragon_king",
@@ -2129,6 +2142,7 @@ let set_info = {
                  "silver_general",
                  "vertical_mover",
                  "whale",
+                 "white_horse",
                  
                  "pawn"],
     },

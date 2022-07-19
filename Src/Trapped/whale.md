@@ -19,7 +19,9 @@ movements of the [*White Horse*](white_horse.html).
 
 The %%PIECE%% will visit almost all squares in a wedge to the
 left of the origin. As such, in the limit, the %%PIECE%% will
-visite 25% of the squares on the board.
+visit 25% of the squares on the board.
+
+This mirrors the squares visited by the [*White Horse*](white_horse.html).
 
 ### Wedge
 
