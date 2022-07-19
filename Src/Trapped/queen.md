@@ -10,23 +10,23 @@ It's common in many Chess variant, using different names:
 |====
 %%PIECE_HEADERS%%
 {th = 1} %%HIASHATAR%%
-       & **Bers**
+       & {cs = 2} **Bers**
        & \\
 {th = 1} %%TYPHOON%%
-       & **Immobilizer**
+       & {cs = 2} **Immobilizer**
        & %%PROMOTED%% [*Hummingbird*](hummingbird.html);
          %%ABILITIES%%; %%CAPTURE%% \\
 {th = 1} %%TYPHOON%%
-       & **Longleaper**
+       & {cs = 2} **Longleaper**
        & %%PROMOTED%% [*Cuckoo*](cuckoo.html); %%HOPPER%% \\
 {th = 1} %%CHESS%%; %%WOLF%%; Other chess variants
-       & **Queen** (&#x2655;)
+       & **Queen** & &#x2655;
        & \\
 {th = 1} %%CHU_SHOGI%%
-       & **Queen** (&#x5954;&#x738B;)
+       & **Queen** & &#x5954;&#x738B;
        & &#x5954;&#x738B; meaning *Free King* \\
 {th = 1} %%SCIROCCO%%; %%TYPHOON%%
-       & {rs = 2} **Queen**
+       & {rs = 2; cs = 2} **Queen**
        & %%PROMOTED%% [*Stork*](alfil.html?piece=stork) \\
 {th = 1} %%WILDEBEEST%%
        & The *Queen* is one of two pieces a [*Pawn*](pawn.html)
