@@ -1,9 +1,0 @@
-table.promotion, table.promotion td, table.promotion th {
-    border:                solid black 1px;
-    border-collapse:       collapse;
-}
-
-table.promotion td, table.promotion th {
-    padding-left:          0.5em;
-    padding-right:         0.5em;
-}
