@@ -398,7 +398,7 @@ let pieces = {
     },
 
     crane: {
-        betza:  "FvW",
+        betza:  "vWF",
         results: {
             spiral:       "F*/100%", 
             folded_wedge: "E*", 
@@ -670,12 +670,7 @@ let pieces = {
     },
 
     ferocious_leopard: {
-        betza:    "FvW",
-        results: {
-            spiral:       "F/100%", 
-            folded_wedge: "E", 
-            flat_wedge:   "E",
-        },
+        parent: "crane",
     },
 
     fers: {
@@ -2077,6 +2072,7 @@ let set_info = {
         name:    "Chu Sh&#x14d;gi",
         href:    "https://en.wikipedia.org/wiki/Chu_shogi",
         pieces: ["king", "queen", "rook", "bishop",
+                 "ferocious_leopard",
                  "flying_ox",
                  "go_between",
                  "side_mover",
