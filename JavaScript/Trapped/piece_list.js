@@ -385,7 +385,7 @@ let pieces = {
     },
 
     copper_general: {
-        betza:    "fFvW",
+        betza:    "vWfF",
         results: {
             spiral:       "E*", 
             folded_wedge: "E", 
@@ -891,6 +891,16 @@ let pieces = {
             spiral:       "F/50%", 
             folded_wedge: "F/50%", 
             flat_wedge:   "F/50%"
+        },
+    },
+
+    go_between: {
+        betza: "vW",
+        _name: "Go-Between",
+        results: {
+            spiral:       "E", 
+            folded_wedge: "E", 
+            flat_wedge:   "E",
         },
     },
 
@@ -2068,6 +2078,7 @@ let set_info = {
         href:    "https://en.wikipedia.org/wiki/Chu_shogi",
         pieces: ["king", "queen", "rook", "bishop",
                  "flying_ox",
+                 "go_between",
                  "side_mover",
                  "vertical_mover"],
     },

@@ -6,9 +6,9 @@ which moves one square in any direction except forwards.
 
 |====
 %%PIECE_HEADERS%%
-{th = 1}  [Chu Sh&#x14d;gi](#wiki:Chu_Shogi)
+{th = 1}  %%CHU_SHOGI%%
        &  **Drunk Elephant**
-       &  \\
+       &  %%PROMOTED%% [*Go-Between*](go_between.html) \\
 {th = 1}  %%TYPHOON%%
        &  **Drunk Elephant**
        &  %%PROMOTES_TO%%
