@@ -1,7 +1,9 @@
 # %%PIECE%%
 
-The %%PIECE%% moves as either the [*Wazir*](wazir.html) or the
-[*Alfil*](alfil.html). As such, it's a *compound leaper*.
+The %%PIECE%% either moves one square orthogonally (like the
+[*Wazir*](wazir.html)) or jumps to a square which is two
+away diagonally (like the [*Alfil*](alfil.html)).
+As such, it's a *compound leaper*.
 
 |====
 %%PIECE_HEADERS%%
