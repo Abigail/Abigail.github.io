@@ -1,6 +1,6 @@
 <html>
 <head>
-<title>Camelrider</title>
+<title>%%PIECE%%</title>
 <meta charset = "utf-8">
 <link rel  = 'preconnect' href = 'https://fonts.gstatic.com'>
 <link rel = 'stylesheet' href =      'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
@@ -17,26 +17,38 @@
 <script src = '../../JavaScript/Trapped/pages.js'></script>
 </head>
 
-<body><h1>Camelrider</h1><div class = "byline">
+<body><h1>%%PIECE%%</h1><div class = "byline">
 by Abigail<br>
 <img src = "../../Images/jan_sluiters.jpg">
 </div>
 
 
-<p>On each move, the Camelrider makes one or more steps as a 
-<a href="camel.html">Camel</a>, provided it doesn't turn, and each
-step lands on an unoccupied square. The <a href="camel.html">Camel</a>
+<p>On each move, the %%PIECE%% makes one or more steps as the 
+<a href="camel.html"><em>Camel</em></a>, provided it doesn't turn, and each
+step lands on an unoccupied square. The <a href="camel.html"><em>Camel</em></a>
 is a (3,1)-leaper, that is, each move it moves to a square
 three away in one orthogonal direction, and one away in the
-other orthogonal direction. The Camelrider is 
-<a href="https://en.wikipedia.org/wiki/Glossary_of_chess#Colorbound"><em>colour-bound</em></a>.</p>
+other orthogonal direction. The %%PIECE%% is <span class = 'tooltip underline'>colourbound<span class = 'tooltiptext'>A colourbound piece will always stay on a square of the same colour: if it starts on a black square, it will always remain on a black square; if it starts on a white square, it will always remain on a white square</span></span>.</p>
+
+<table class = piece_list>
+  <tr class = 'row-0' markdown = '1'>
+    <th class = 'cell-0-0 col-0 ' markdown = '1'>Game</td>
+    <th class = 'cell-0-1 col-1 ' markdown = '1' colspan = '2'>Piece</td>
+    <th class = 'cell-0-3 col-3 ' markdown = '1'>Info</td>
+  </tr>
+  <tr class = 'row-1' markdown = '1'>
+    <th class = 'cell-1-0 col-0 ' markdown = '1'><a href="https://en.wikipedia.org/wiki/Fairy_chess_piece#Riders"><em>Riders</em></a></td>
+    <td class = 'cell-1-1 col-1 ' markdown = '1' colspan = '2'><strong>Camelrider</strong></td>
+    <td class = 'cell-1-3 col-3 ' markdown = '1'></td>
+  </tr>
+</table>
 
 <h3 id = 'spiral'>Spiral</h3>
 
 <div class = "section">
-<p>On the Spiral, the Camelrider gets trapped after 1697 steps, which
+<p>On the Spiral, the %%PIECE%% gets trapped after 1,697 steps, which
 is a lot sooner than the <a href="camel.html">Camel</a>, which gets trapped
-after 3722 steps.</p>
+after 3,722 steps.</p>
 </div>
 
 <h3 id = 'wedge'>Wedge</h3>
@@ -44,16 +56,16 @@ after 3722 steps.</p>
 <h4 id = 'folded'>Folded</h4>
 
 <div class = "section">
-<p>On the Folded Wedge, the Camelrider gets trapped after 90 steps.
-This is also sooner than the <a href="camel.html">Camel</a>, which gets trapped
+<p>On the Folded Wedge, the %%PIECE%% gets trapped after 90 steps.
+This is also sooner than the <a href="camel.html"><em>Camel</em></a>, which gets trapped
 after 342 steps.</p>
 </div>
 
 <h4 id = 'flat'>Flat</h4>
 
-<p>On the Flat Wedge, the Camelrider gets trapped after 482 steps, which
-is also sooner than the <a href="camel.html">Camel</a>, which gets trapped
-after 2401 steps.</p>
+<p>On the Flat Wedge, the %%PIECE%% gets trapped after 482 steps, which
+is also sooner than the <a href="camel.html"><em>Camel</em></a>, which gets trapped
+after 2,401 steps.</p>
 
 <div class = 'trapped' data-piece = 'camelrider'></div>
 
