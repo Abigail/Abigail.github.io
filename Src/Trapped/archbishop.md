@@ -10,84 +10,85 @@ most frequently used.
 
 |====
 %%PIECE_HEADERS%%
-{th = 1} [The Emperor's Game](#chess-v:large.dir/emperor.html);
-         [The Sultan's Game](#chess-v:large.dir/sultan.html)
-       & **Adjudant**
-       & \\
-{th = 1} [Abecedarian Big Chess
+  {th = 1}  [The Emperor's Game](#chess-v:large.dir/emperor.html);
+            [The Sultan's Game](#chess-v:large.dir/sultan.html)
+& {cs = 2}  **Adjudant**
+&           \\
+  {th = 1}  [Abecedarian Big Chess
                     (ABChess)](#chess-v:unequal.dir/abchess/abeced-home.html);
-         [Cagliostro's Chess](#chess-v:large.dir/cagliostro.html);
-         [Capablanca Chess](#chess-v:large.dir/capablanca.html);
-         [Haynie's Great Chess](#chess-v:large.dir/haynieschess.html);
-         [Renniassance Chess](#chess-v:large.dir/renaiss.html)
-       & **Archbishop**
-       & \\
-{th = 1} [Twenty-First Century
+            [Cagliostro's Chess](#chess-v:large.dir/cagliostro.html);
+            [Capablanca Chess](#chess-v:large.dir/capablanca.html);
+            [Haynie's Great Chess](#chess-v:large.dir/haynieschess.html);
+            [Renniassance Chess](#chess-v:large.dir/renaiss.html)
+& {cs = 2}  **Archbishop**
+&           \\
+  {th = 1}  [Twenty-First Century
                        Chess](#chess-v:large.dir/21st-century-chess.html)
-       & **Baron**
-       & \\
-{th = 1} [Hammer Chess](#chess-v:diffmove.dir/hammer.html)
-       & **Bishop**
-       & Not to be confused with the traditional [*Bishop*](bishop.html) \\
-{th = 1} [4 Armies](large.dir/4armies.html);
-         [Euchess](#chess-v:large.dir/euchess.html);
-         [Fantasy Grand Chess](#chess-v:large.dir/fantasygrandchess.html);
-         [Full Double Chess](#chess-v:large.dir/full-double-chess.html);
-         [Gigachess](#chess-v:large.dir/gigachess.html);
-         [Grand Chess](large.dir/freeling.html);
-         [Haynie's Great Chess](#chess-v:large.dir/haynieschess.html);
-         %%OVERKILL%%;
-         [Pre-Grandchess](large.dir/pregrand.html);
-         [Pick-the-team Chess](#chess-v:large.dir/contest/picktheteam.html);
-         [Terror Chess](#chess-v:large.dir/terror.html)
-       & **Cardinal**
-       & \\
-{th = 1} [Carrera's Chess](#chess-v:historic.dir/carrera.html)
-       & **Centaur**
-       & The [King - Knight compound](centaur.html) is
-         also known as the *Centaur* \\
-{th = 1} [The Knightliest Black Hole](#chess-v:32turn.dir/knight32.html)
-       & **Count**
-       & \\
-{th = 1} [Drop Chess](#chess-v:unequal.dir/dropchess.html)
-       & **Crusader**
-       & \\
-{th = 1} [Bird's Chess](#chess-v:large.dir/bird.html)
-       & **Equerry**
-       & \\
-{th = 1} %%WOLF%%
-       & **Fox**
-       & \\
-{th = 1} [Janus Chess](#wiki)
-       & **Janus**
-       & \\
-{th = 1} [Giant Chess](#chess-v:large.dir/giantchess.html);
-         [Modern Chess](#chess-v:large.dir/modern.html);
-         [Perfect Chess](#chess-v:diffmove.dir/perfectchess.html);
-         [Turkish Chess](#chess-v:large.dir/turkishchess.html)
-       & **Minister**
-       & \\
-{th = 1} [The Colorbound Clobberers](#chess-v:d.betza/chessvar/cda/colclob.html)
-       & **NB**
-       & \\
-{th = 1} [Bedlam](#chess-v:other.dir/bedlam.html);
-         [Cavalier Chess](#chess-v:dpieces.dir/cavalier/index.html);
-         [Fusion Chess](#chess-v:other.dir/fusion.html);
-         [Fusion Chessgi](#chess-v:other.dir/fusion-chessgi.html);
-         [Grand Cavalier Chess](#chess-v:large.dir/grandcavalier.html);
-         [Metamorph Chess](#chess-v:other.dir/metamorph.html);
-         [Metamorphin' Fusion Chess](#chess-v:other.dir/metamorph-fusion.html)
-       & **Paladin**
-       & \\
-{th = 1} [Tutti-Frutti Chess](#chess-v:dpieces.dir/tuttifr.html);
-         Problemists
-       & **Princess**
-       & \\
-{th = 1} [Cobra Chess](#chess-v:large.dir/cobra.html);
-         [Eric's Great Chess](large.dir/ericgr.html);
-         [Turkish Great Chess](#chess-v:historic.dir/indiangr1.html)
-       & **Vizir**
-       & \\
+& {cs = 2}  **Baron**
+&           \\
+  {th = 1}  [Hammer Chess](#chess-v:diffmove.dir/hammer.html)
+& {cs = 2}  **Bishop**
+&           Not to be confused with the traditional [*Bishop*](bishop.html) \\
+  {th = 1}  [4 Armies](large.dir/4armies.html);
+            [Euchess](#chess-v:large.dir/euchess.html);
+            [Fantasy Grand Chess](#chess-v:large.dir/fantasygrandchess.html);
+            [Full Double Chess](#chess-v:large.dir/full-double-chess.html);
+            [Gigachess](#chess-v:large.dir/gigachess.html);
+            [Grand Chess](large.dir/freeling.html);
+            [Haynie's Great Chess](#chess-v:large.dir/haynieschess.html);
+            %%OVERKILL%%;
+            [Pre-Grandchess](large.dir/pregrand.html);
+            [Pick-the-team Chess](#chess-v:large.dir/contest/picktheteam.html);
+            [Terror Chess](#chess-v:large.dir/terror.html)
+& {cs = 2}  **Cardinal**
+&           \\
+  {th = 1}  [Carrera's Chess](#chess-v:historic.dir/carrera.html)
+& {cs = 2}  **Centaur**
+&           The [King - Knight compound](centaur.html) is
+            also known as the *Centaur* \\
+  {th = 1}  [The Knightliest Black Hole](#chess-v:32turn.dir/knight32.html)
+& {cs = 2}  **Count**
+&           \\
+  {th = 1}  [Drop Chess](#chess-v:unequal.dir/dropchess.html)
+& {cs = 2}  **Crusader**
+&           \\
+  {th = 1}  [Bird's Chess](#chess-v:large.dir/bird.html)
+& {cs = 2}  **Equerry**
+&           \\
+  {th = 1}  %%WOLF%%
+& {cs = 2}  **Fox**
+&           \\
+  {th = 1}  [Janus Chess](#wiki)
+& {cs = 2}  **Janus**
+&           \\
+  {th = 1}  [Giant Chess](#chess-v:large.dir/giantchess.html);
+            [Modern Chess](#chess-v:large.dir/modern.html);
+            [Perfect Chess](#chess-v:diffmove.dir/perfectchess.html);
+            [Turkish Chess](#chess-v:large.dir/turkishchess.html)
+& {cs = 2}  **Minister**
+&           \\
+  {th = 1}  [The Colorbound
+                 Clobberers](#chess-v:d.betza/chessvar/cda/colclob.html)
+& {cs = 2}  **NB**
+&           \\
+  {th = 1}  [Bedlam](#chess-v:other.dir/bedlam.html);
+            [Cavalier Chess](#chess-v:dpieces.dir/cavalier/index.html);
+            [Fusion Chess](#chess-v:other.dir/fusion.html);
+            [Fusion Chessgi](#chess-v:other.dir/fusion-chessgi.html);
+            [Grand Cavalier Chess](#chess-v:large.dir/grandcavalier.html);
+            [Metamorph Chess](#chess-v:other.dir/metamorph.html);
+            [Metamorphin' Fusion Chess](#chess-v:other.dir/metamorph-fusion.html)
+& {cs = 2}  **Paladin**
+&           \\
+  {th = 1}  [Tutti-Frutti Chess](#chess-v:dpieces.dir/tuttifr.html);
+            Problemists
+& {cs = 2}  **Princess**
+&           \\
+  {th = 1}  [Cobra Chess](#chess-v:large.dir/cobra.html);
+            [Eric's Great Chess](large.dir/ericgr.html);
+            [Turkish Great Chess](#chess-v:historic.dir/indiangr1.html)
+& {cs = 2}  **Vizir**
+&           \\
 ====|
 
 Other, less common names are: *Adjutant*, *Aircraft*, *Davidson*, *Deacon*,

@@ -7,9 +7,9 @@ slides an unlimited number of squares forward.
 
 |====
 %%PIECE_HEADERS%%
-{th = 1}  %%YARI_SHOGI%%
-       &  **Yari Knight**
-       &  %%PROMOTES_TO%% [*Yari Gold*](yari_gold.html) \\
+  {th = 1}  %%YARI_SHOGI%%
+& {cs = 2}  **Yari Knight**
+&           %%PROMOTES_TO%% [*Yari Gold*](yari_gold.html) \\
 ====|
 
 ### Spiral

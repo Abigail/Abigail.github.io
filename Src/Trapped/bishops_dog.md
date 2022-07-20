@@ -5,9 +5,9 @@ a limited [*Bishop*](bishop.html).
 
 |====
 %%PIECE_HEADERS%%
-{th = 1} %%TYPHOON%%
-       & **Bishop's Dog**
-       & %%PROMOTES_TO%% [*Centaur*](centaur.html) \\
+  {th = 1}  %%TYPHOON%%
+& {cs = 2}  **Bishop's Dog**
+&           %%PROMOTES_TO%% [*Centaur*](centaur.html) \\
 ====|
 
 ### Spiral

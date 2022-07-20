@@ -5,24 +5,24 @@ or diagonally), or one square orthogonally backward.
 
 |====
 %%PIECE_HEADERS%%
-{th = 1}  %%WHALE_SHOGI%%
-       &  **Blue Whale**
+  {th = 1}  %%WHALE_SHOGI%%
+& {cs = 2}  **Blue Whale**
        &  \\
-{th = 1}  %%WA_SHOGI%%
-       &  **Climbing Monkey** (&#x767B;&#x733F;)
-       &  %%PROMOTES_TO%%
-          [*Violent Stag*](silver_general.html?piece=violent_stag) \\
-{th = 1}  %%TYPHOON%%
-       &  **Copper General**
-       &  %%PROMOTES_TO%% [*Ibis*](dragon_king.html?piece=ibis) \\
-{th = 1}  %%CHU_SHOGI%%
-       &  **Copper General** (&#x9285;&#x5C06;)
-       &  %%PROMOTES_TO%%
-          [*Side Mover*](swallows_wings.html?piece=side_mover) \\
-{th = 1}  %%WA_SHOGI%%
-       &  **Flying Goose** (&#x9CEB;&#x98DB;)
-       &  %%PROMOTES_TO%%
-          [*Swallow's Wings*](swallows_wings.html) \\
+  {th = 1}  %%WA_SHOGI%%
+&           **Climbing Monkey** & &#x767B;&#x733F;
+&           %%PROMOTES_TO%%
+            [*Violent Stag*](silver_general.html?piece=violent_stag) \\
+  {th = 1}  %%TYPHOON%%
+& {cs = 2}  **Copper General**
+&           %%PROMOTES_TO%% [*Ibis*](dragon_king.html?piece=ibis) \\
+  {th = 1}  %%CHU_SHOGI%%
+&           **Copper General** & &#x9285;&#x5C06;
+&           %%PROMOTES_TO%%
+            [*Side Mover*](swallows_wings.html?piece=side_mover) \\
+  {th = 1}  %%WA_SHOGI%%
+&           **Flying Goose** & &#x9CEB;&#x98DB;
+&           %%PROMOTES_TO%%
+            [*Swallow's Wings*](swallows_wings.html) \\
 ====|
 
 ### Spiral

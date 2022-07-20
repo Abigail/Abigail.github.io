@@ -5,9 +5,9 @@ orthogonally forward or backward (like a vertical [*Rook*](rook.html)).
 
 |====
 %%PIECE_HEADERS%%
-{th = 1}  %%CHU_SHOGI%%
-       &  **Reverse Chariot** (&#x53CD;&#x8ECA;)
-       &  %%PROMOTES_TO%% [*Whale*](whale.html) \\
+  {th = 1}  %%CHU_SHOGI%%
+&           **Reverse Chariot** & &#x53CD;&#x8ECA;
+&           %%PROMOTES_TO%% [*Whale*](whale.html) \\
 ====|
 
 ### Spiral

@@ -6,24 +6,24 @@ which moves one square in any direction except forwards.
 
 |====
 %%PIECE_HEADERS%%
-{th = 1}  %%TYPHOON%%
-       &  **Drunk Elephant**
-       &  %%PROMOTES_TO%%
-          [*Elephant Prince*](king.html?piece=elephant_prince) \\
-{th = 1}  %%CHU_SHOGI%%
-       &  **Drunk Elephant** (&#x9154;&#x8C61;)
-       &  %%PROMOTED%% [*Go-Between*](go_between.html);
-          %%PROMOTES_TO%% [*Prince*](king.html?piece=prince);
-          A promoted [*Go-Between*](go_between.html) will not promote again \\
-{th = 1}  %%TORI_SHOGI%%
-       &  **Falcon** (&#x9df9;)
-       &  %%PROMOTES_TO%% [*Eagle*](eagle.html); 
-          This is a different piece than the [*Falcon*](falcon.html)
-          from [Falcon-Hunter Chess](#wiki) \\
-{th = 1}  %%WA_SHOGI%%
-       &  **Roaming Bear** (&#x884C;&#x732A;)
-       &  %%PROMOTED%%
-          [*Violent Stag*](silver_general.html?piece=violent_stag) \\
+  {th = 1}  %%TYPHOON%%
+& {cs = 2}  **Drunk Elephant**
+&           %%PROMOTES_TO%%
+            [*Elephant Prince*](king.html?piece=elephant_prince) \\
+  {th = 1}  %%CHU_SHOGI%%
+&           **Drunk Elephant** & &#x9154;&#x8C61;
+&           %%PROMOTED%% [*Go-Between*](go_between.html);
+            %%PROMOTES_TO%% [*Prince*](king.html?piece=prince);
+            A promoted [*Go-Between*](go_between.html) will not promote again \\
+  {th = 1}  %%TORI_SHOGI%%
+&           **Falcon**  & &#x9df9;
+&           %%PROMOTES_TO%% [*Eagle*](eagle.html); 
+            This is a different piece than the [*Falcon*](falcon.html)
+            from [Falcon-Hunter Chess](#wiki) \\
+  {th = 1}  %%WA_SHOGI%%
+&           **Roaming Bear** & &#x884C;&#x732A;
+&           %%PROMOTED%%
+            [*Violent Stag*](silver_general.html?piece=violent_stag) \\
 ====|
      
 ### Spiral

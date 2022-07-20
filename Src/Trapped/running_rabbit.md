@@ -8,9 +8,9 @@ of unoccupied squares orthogonally forward (like a forward
 
 |====
 %%PIECE_HEADERS%%
-{th = 1}  %%WA_SHOGI%%
-       &  **Running Rabbit** (&#x8D70;&#x514E;)
-       & %%PROMOTES_TO%% [*Treacherous Fox*](treacherous_fox.html) \\
+  {th = 1}  %%WA_SHOGI%%
+&           **Running Rabbit** & &#x8D70;&#x514E;
+&           %%PROMOTES_TO%% [*Treacherous Fox*](treacherous_fox.html) \\
 ====|
 
 ### Spiral

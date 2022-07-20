@@ -9,10 +9,10 @@ unoccupied squares backward.
 
 |====
 %%PIECE_HEADERS%%
-{th = 1}  %%YARI_SHOGI%%
-       &  **Yari Gold**
-       &  %%PROMOTED%% [*Yari Knight*](yari_knight.html) or
-                       [*Yari Bishop*](yari_bishop.html)\\
+  {th = 1}  %%YARI_SHOGI%%
+& {cs = 2}  **Yari Gold**
+&           %%PROMOTED%% [*Yari Knight*](yari_knight.html) or
+                         [*Yari Bishop*](yari_bishop.html)\\
 ====|
 
 ### Spiral

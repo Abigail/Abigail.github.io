@@ -7,28 +7,28 @@ four diagonal directions. This makes the %%PIECE%% %%COLOUR_BOUND%%.
 
 |====
 %%PIECE_HEADERS%%
-{th = 1} %%XIANGQI%%
-       & **Advisor** (&#x58eb;/&#x4ed5;)
-       & In the game, the piece is restricted to 5 squares of the
-         3x3 palace. Alternative names: *Assistant*, *Counsellor*,
-         *Guard*, *Mandarin*, *Minister*, *Officer*, *Scholar*,
-         *Warrior* \\
-{th = 1} %%DOBUTSU%%
-       & **Elephant**
-       & \\
-{th = 1} %%SENTEREJ%%
-       & **Fers**
-       & \\
-{th = 1} %%LEAPERS%%
-       & **Ferz**
-       & \\
-{th = 1} %%SCIROCCO%%; %%TYPHOON%%
-       & **Firzan**
-       & %%PROMOTES_TO%% [*Zig*](war_machine.html?piece=zig) \\
-{th = 1} %%MAKRUK%%
-       & **Queen** (&#x0E21;&#x0E47;)
-       & %%PROMOTED%% [*Pawn*](pawn.html); Not to be confused with
-         the Chess [*Queen*](queen.html) \\
+  {th = 1}  %%XIANGQI%%
+&           **Advisor** & &#x58eb;/&#x4ed5;
+&           In the game, the piece is restricted to 5 squares of the
+            3x3 palace. Alternative names: *Assistant*, *Counsellor*,
+            *Guard*, *Mandarin*, *Minister*, *Officer*, *Scholar*,
+            *Warrior* \\
+  {th = 1}  %%DOBUTSU%%
+& {cs = 2}  **Elephant**
+&           \\
+  {th = 1}  %%SENTEREJ%%
+& {cs = 2}  **Fers**
+&           \\
+  {th = 1}  %%LEAPERS%%
+& {cs = 2}  **Ferz**
+&           \\
+  {th = 1}  %%SCIROCCO%%; %%TYPHOON%%
+& {cs = 2}  **Firzan**
+&           %%PROMOTES_TO%% [*Zig*](war_machine.html?piece=zig) \\
+  {th = 1}  %%MAKRUK%%
+&           **Queen** & &#x0E21;&#x0E47;
+&           %%PROMOTED%% [*Pawn*](pawn.html); Not to be confused with
+            the Chess [*Queen*](queen.html) \\
 ====|
 
 ### Spiral

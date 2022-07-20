@@ -12,9 +12,9 @@ This makes the %%PIECE%% a limited range [*Archbishop*](archbishop.html).
 
 |====
 %%PIECE_HEADERS%%
-{th = 1} %%TYPHOON%%, %%SCIROCCO%%
-       & **Abbot**
-       & %%PROMOTED%% [*Marquis*](marquis.html) \\
+  {th = 1}  %%TYPHOON%%, %%SCIROCCO%%
+& {cs = 2}  **Abbot**
+&           %%PROMOTED%% [*Marquis*](marquis.html) \\
 ====|
 
 

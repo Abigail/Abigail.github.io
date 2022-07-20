@@ -8,17 +8,13 @@ Pieces which can move like the **Hummingbird** can be found in
 several games:
 
 |====
-{class = piece_list}
-{th = 1} Game &
-{th = 1} Piece &
-{th = 1} Promoted &
-{th = 1} Promotes to &
-{th = 1} Capture moves \\
-{th = 1} %%TYPHOON%%
-       & **Hummingbird** &
-       & [*Immobilizer*](queen.html?piece=immobilizer) & \\
-{th = 1} %%WHALE_SHOGI%%
-       & **Narwhal** & & & \\
+%%PIECE_HEADERS%%
+  {th = 1}  %%TYPHOON%%
+& {cs = 2}  **Hummingbird**
+&           %%PROMOTES_TO%% [*Immobilizer*](queen.html?piece=immobilizer) \\
+  {th = 1}  %%WHALE_SHOGI%%
+& {cs = 2}  **Narwhal**
+&           \\
 ====|
 
 ### Spiral

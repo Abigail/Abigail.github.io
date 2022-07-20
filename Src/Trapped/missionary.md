@@ -5,14 +5,14 @@ or diagonally. This makes the %%PIECE%% %%COLOUR_BOUND%%.
 
 |====
 %%PIECE_HEADERS%%
-{th = 1} %%XIANGQI%%
-       & **Elphant** (&#x8C61;/&#x76F8;)
-       & In the game, this piece cannot cross the river, restricting
-         it to 7 squares on the board (but we do not have a river here);
-         Also known as *Bishop* \\
-{th = 1} %%TYPHOON%%
-       & **Missionary**
-       & %%PROMOTES_TO%% [*Otter*](otter.html) \\
+  {th = 1}  %%XIANGQI%%
+&           **Elphant** & &#x8C61;/&#x76F8;
+&           In the game, this piece cannot cross the river, restricting
+            it to 7 squares on the board (but we do not have a river here);
+            Also known as *Bishop* \\
+  {th = 1}  %%TYPHOON%%
+& {cs = 2}  **Missionary**
+&           %%PROMOTES_TO%% [*Otter*](otter.html) \\
 ====|
 
 ### Spiral

@@ -5,16 +5,16 @@ the [*Camel*](camel.html), making it a *Knighted Piece*.
 
 |====
 %%PIECE_HEADERS%%
-{th = 1}  %%OVERKILL%%; Problemists
-       &  **Gnu**
-       &  \\
-{th = 1}  %%SCIROCCO%%; %%TYPHOON%%
-       &  **Wildebeest**
-       &  %%PROMOTED%% [*Commoner*](king.html?piece=commoner) \\
-{th = 1}  %%WILDEBEEST%%
-       &  **Wildebeest**
-       &  The *Wildebeest* is one of the two pieces a
-          [*Pawn*](pawn.html) may promote to. \\
+  {th = 1}  %%OVERKILL%%; Problemists
+& {cs = 2}  **Gnu**
+&           \\
+  {th = 1}  %%SCIROCCO%%; %%TYPHOON%%
+& {cs = 2; rs = 2}
+            **Wildebeest**
+&           %%PROMOTED%% [*Commoner*](king.html?piece=commoner) \\
+  {th = 1}  %%WILDEBEEST%%
+&           The *Wildebeest* is one of the two pieces a
+            [*Pawn*](pawn.html) may promote to. \\
 ====|
 
 Link: [%%CHESS_V%%](#piece:gnus)

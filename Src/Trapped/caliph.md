@@ -5,15 +5,15 @@ The %%PIECE%% moves as either the [*Wazir*](wazir.html) or the
 
 |====
 %%PIECE_HEADERS%%
-{th = 1}  Problemists
-       &  **Caliph**
-       &  This is a different piece than the [*Caliph*](oec_caliph.html)
-          from %%OVERKILL%% \\
-{th = 1}  %%CHU_SHOGI%%
-       &  **Phoenix** (&#x9CF3;&#x51F0;)
-       &  %%PROMOTES_TO%% [*Queen*](queen.html); This is a different
-          piece than the [*Phoenix*](king.html?piece=phoenix_tori) from
-          %%TORI_SHOGI%% \\
+  {th = 1}  Problemists
+& {cs = 2}  **Caliph**
+&           This is a different piece than the [*Caliph*](oec_caliph.html)
+            from %%OVERKILL%% \\
+  {th = 1}  %%CHU_SHOGI%%
+&           **Phoenix** & &#x9CF3;&#x51F0;
+&           %%PROMOTES_TO%% [*Queen*](queen.html); This is a different
+            piece than the [*Phoenix*](king.html?piece=phoenix_tori) from
+            %%TORI_SHOGI%% \\
 ====|
 
 ### Spiral

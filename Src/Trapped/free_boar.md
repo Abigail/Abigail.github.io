@@ -9,12 +9,12 @@ movements, rotated 90&deg;.
 
 |====
 %%PIECE_HEADERS%%
-{th = 1}  %%TYPHOON%%
-       &  **Free Boar**
-       &  %%PROMOTED%% [*Ghost Warrior*](ghost_warrior.html) \\
-{th = 1}  %%CHU_SHOGI%%
-       &  **Free Boar** (&#x5954;&#x732A;)
-       &  %%PROMOTED%% [*Side Mover*](swallows_wings.html?piece=side_mover) \\
+  {th = 1}  %%TYPHOON%%
+& {cs = 2}  **Free Boar**
+&           %%PROMOTED%% [*Ghost Warrior*](ghost_warrior.html) \\
+  {th = 1}  %%CHU_SHOGI%%
+&           **Free Boar**  & &#x5954;&#x732A;
+&           %%PROMOTED%% [*Side Mover*](swallows_wings.html?piece=side_mover) \\
 ====|
 
 ### Spiral

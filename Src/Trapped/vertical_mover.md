@@ -7,12 +7,12 @@ amount of unoccupied squares orthogonally forward or backward
 
 |====
 %%PIECE_HEADERS%%
-{th = 1}  %%CHU_SHOGI%%
-       &  **Vertical Mover** (&#x7AEA;&#x884C;)
-       &  %%PROMOTED%% [*Silver General*](silver_general.html);
-          %%PROMOTES_TO%% [*Flying Ox*](flying_ox.html);
-          A promoted [*Silver General*](silver_general.html) will
-          not promote again \\
+  {th = 1}  %%CHU_SHOGI%%
+&           **Vertical Mover** & &#x7AEA;&#x884C;
+&           %%PROMOTED%% [*Silver General*](silver_general.html);
+            %%PROMOTES_TO%% [*Flying Ox*](flying_ox.html);
+            A promoted [*Silver General*](silver_general.html) will
+            not promote again \\
 ====|
 
 ### Spiral

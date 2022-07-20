@@ -5,9 +5,9 @@ That is, it may slide an unlimited number of squares sideways or forward.
 
 |====
 %%PIECE_HEADERS%%
-{th = 1}  %%YARI_SHOGI%%
-       &  **Yari Rook**
-       &  %%PROMOTES_TO%% [*Rook*](rook.html) \\
+  {th = 1}  %%YARI_SHOGI%%
+& {cs = 2}  **Yari Rook**
+&           %%PROMOTES_TO%% [*Rook*](rook.html) \\
 ====|
 
 ### Spiral

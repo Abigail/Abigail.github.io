@@ -9,25 +9,25 @@ be blocked.
 
 |====
 %%PIECE_HEADERS%%
-{th = 1} %%CHESS%%; %%WILDEBEEST%%
-       & **Knight** (&#x2658;)
-       & \\
-{th = 1} %%SCIROCCO%%; %%TYPHOON%%
-       & **Knight**
-       & %%PROMOTES_TO%% [*Rook*](rook.html) \\
-{th = 1} %%MAKRUK%%
-       & **Knight** (&#x0E21;)
-       & \\
-{th = 1} %%SENTEREJ%%
-       & **Ferese**
-       & *Ferese* meaning *Horse* \\
-{th = 1} %%HIASHATAR%%
-       & **Mori**
-       & \\
-{th = 1} %%SHATAR%%
-       & **Mori** (<span class =
+  {th = 1}  %%SCIROCCO%%; %%TYPHOON%%
+& {cs = 2}  **Knight**
+&           %%PROMOTES_TO%% [*Rook*](rook.html) \\
+  {th = 1}  %%CHESS%%; %%WILDEBEEST%%
+&           **Knight** & &#x2658;
+&           \\
+  {th = 1}  %%MAKRUK%%
+&           **Knight** & &#x0E21;
+&           \\
+  {th = 1}  %%SENTEREJ%%
+& {cs = 2}  **Ferese**
+&           *Ferese* meaning *Horse* \\
+  {th = 1}  %%HIASHATAR%%
+& {cs = 2}  **Mori**
+&           \\
+  {th = 1}  %%SHATAR%%
+&           **Mori**  & <span class =
                         "mongolian">&#x182E;&#x1823;&#x1837;&#x1822;</span>)
-       & May not deliver mate \\
+&           May not deliver mate \\
 ====|
       
 Links: [%%WIKI%%](#wiki:Knight_(chess)),

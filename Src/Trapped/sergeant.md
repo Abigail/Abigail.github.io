@@ -4,11 +4,11 @@ The %%PIECE%% moves one square forward, either orthogonally, or diagonally.
 
 |====
 %%PIECE_HEADERS%%
-{th = 1} %%WOLF%%
-       & **Sergeant**
-       & %%PROMOTES_TO%% Player's choice, except the
-         [*Elephant*](amazon_rider.html?piece=elephant_wolf);
-         %%MORE_MOVES%% \\
+  {th = 1}  %%WOLF%%
+& {cs = 2}  **Sergeant**
+&           %%PROMOTES_TO%% Player's choice, except the
+            [*Elephant*](amazon_rider.html?piece=elephant_wolf);
+            %%MORE_MOVES%% \\
 ====|
 
 Link: [%%CHESS_V%%](#piece:sergeant)

@@ -9,12 +9,12 @@ movements, rotated 90&deg;.
 
 |====
 %%PIECE_HEADERS%%
-{th = 1}  %%TYPHOON%%
-       &  **Flying Ox**
-       &  %%PROMOTED%% [*Fire Horse*](fire_horse.html) \\
-{th = 1}  %%CHU_SHOGI%%
-       &  **Flying Ox** (&#x98DB;&#x725B;)
-       &  %%PROMOTED%% [*Vertical Mover*](vertical_mover.html) \\
+  {th = 1}  %%TYPHOON%%
+& {cs = 2}  **Flying Ox**
+&           %%PROMOTED%% [*Fire Horse*](fire_horse.html) \\
+  {th = 1}  %%CHU_SHOGI%%
+&           **Flying Ox** & &#x98DB;&#x725B;
+&           %%PROMOTED%% [*Vertical Mover*](vertical_mover.html) \\
 ====|
 
 ### Spiral

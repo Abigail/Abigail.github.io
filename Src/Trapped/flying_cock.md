@@ -5,13 +5,12 @@ or one square diagonally forward.
 
 |====
 %%PIECE_HEADERS%%
-{th = 1}  %%WA_SHOGI%%
-       &  **Flying Cock** (&#x9d8f;&#x98db;)
-       &  %%PROMOTES_TO%% [*Raiding Falcon*](raiding_falcon.html) \\
-{th = 1}  [Taikyoku sh&#x14d;gi (&#x5927;&#x5c40;&#x5c06;&#x68cb;)
-          ](#wiki:Taikyoku_shogi) 
-       &  **Flying Cock** (&#x9d8f;&#x98db;)
-       &  \\
+  {th = 1}  %%WA_SHOGI%%
+& {rs = 2}  **Flying Cock** & {rs = 2} &#x9d8f;&#x98db;
+&           %%PROMOTES_TO%% [*Raiding Falcon*](raiding_falcon.html) \\
+  {th = 1}  [Taikyoku sh&#x14d;gi (&#x5927;&#x5c40;&#x5c06;&#x68cb;)
+            ](#wiki:Taikyoku_shogi) 
+&           \\
 ====|
 
 The piece is also known as the *Sidewinder*.

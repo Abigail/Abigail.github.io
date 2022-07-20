@@ -5,12 +5,13 @@ one square diagonally backward.
 
 |====
 %%PIECE_HEADERS%%
-{th = 1}  %%WA_SHOGI%%
-       &  **Strutting Crow** (&#x70CF;&#x884C;)
-       &  %%PROMOTES_TO%% [*Flying Falcon*](flying_falcon.html) \\
-{th = 1}  %%WA_SHOGI%%
-       &  **Swooping Owl** (&#x9D1F;&#x884C;)
-       &  %%PROMOTES_TO%% [*Cloud Eagle*](cloud_eagle.html) \\
+  {th = 1; rs = 2}
+            %%WA_SHOGI%%
+&           **Strutting Crow** & &#x70CF;&#x884C;
+&           %%PROMOTES_TO%% [*Flying Falcon*](flying_falcon.html) \\
+  
+            **Swooping Owl** & &#x9D1F;&#x884C;
+&           %%PROMOTES_TO%% [*Cloud Eagle*](cloud_eagle.html) \\
 ====|
 
 ### Spiral

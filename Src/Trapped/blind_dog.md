@@ -7,10 +7,10 @@ or to a square which is one away diagonally forward
 
 |====
 %%PIECE_HEADERS%%
-{th = 1}  %%WA_SHOGI%%
-       &  **Blind Dog** (&#x76F2;&#x72AC;)
-       &  %%PROMOTES_TO%%
-          [*Violent Wolf*](gold_general.html?piece=violent_wolf) \\
+  {th = 1}  %%WA_SHOGI%%
+&           **Blind Dog** & &#x76F2;&#x72AC;
+&           %%PROMOTES_TO%%
+            [*Violent Wolf*](gold_general.html?piece=violent_wolf) \\
 ====|
 
 ### Spiral
