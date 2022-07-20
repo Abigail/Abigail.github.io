@@ -12,7 +12,7 @@ The %%PIECE%% either jumps to a square one away diagonally
 &           %%PROMOTES_TO%% [*Lioness*](lioness.html) \\
   {th = 1}  %%CHU_SHOGI%%
 &           **Kirin** & &#x9E92;&#x9E9F;
-&           %%PROMOTES_TO%% [*Lion*](lion.html) \\
+&           %%PROMOTES_TO%% [*Lion*](lioness.html?piece=lion) \\
 ====|
 
 ### Spiral
