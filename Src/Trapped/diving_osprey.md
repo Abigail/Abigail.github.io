@@ -7,11 +7,11 @@ one square in one of the two diagonal forward directions.
 
 |====
 %%PIECE_HEADERS%%
-{th = 1}  %%TYPHOON%%
-       &  [**Diving Osprey**](#chess-v:rules/typhoon-revised#DivingOsprey)
-       &  %%PROMOTED%%
-          [*Ferocious Leopard*](crane.html?piece=ferocious_leopard);
-          %%CAPTURE%%; %%HOPPER%% \\
+  {th = 1}  %%TYPHOON%%
+& {cs = 2}  [**Diving Osprey**](#chess-v:rules/typhoon-revised#DivingOsprey)
+&           %%PROMOTED%%
+            [*Ferocious Leopard*](crane.html?piece=ferocious_leopard);
+            %%CAPTURE%%; %%HOPPER%% \\
 ====|
 
 ### Spiral

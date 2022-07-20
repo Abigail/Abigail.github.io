@@ -7,9 +7,9 @@ square to the right or left (like a sideways [*Wazir*](wazir.html)).
 
 |====
 %%PIECE_HEADERS%%
-{th = 1}  %%WA_SHOGI%%
-       &  **Tenacious Falcon** (&#x2FF0;&#x595A;&#x529B;)
-       &  %%PROMOTED%% [*Flying Falcon*](flying_falcon.html) \\
+  {th = 1}  %%WA_SHOGI%%
+&           **Tenacious Falcon** & &#x2FF0;&#x595A;&#x529B;
+&           %%PROMOTED%% [*Flying Falcon*](flying_falcon.html) \\
 ====|
 
 ### Spiral

@@ -5,9 +5,9 @@ The %%PIECE%% moves one square orthogonally forward or backward
 
 |====
 %%PIECE_HEADERS%%
-{th = 1}  %%CHU_SHOGI%%
-       &  **Go-Between** (&#x4EF2;&#x4EBA;)
-       &  %%PROMOTES_TO%% [*Drunk Elephant*](drunk_elephant.html) \\
+  {th = 1}  %%CHU_SHOGI%%
+&           **Go-Between** & &#x4EF2;&#x4EBA;
+&           %%PROMOTES_TO%% [*Drunk Elephant*](drunk_elephant.html) \\
 ====|
 
 ### Spiral

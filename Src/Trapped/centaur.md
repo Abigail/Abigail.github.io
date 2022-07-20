@@ -7,12 +7,12 @@ two away in one orthogonal direction and one in the other.
 
 |====
 %%PIECE_HEADERS%%
-{th = 1} %%GRAND_CAVALIER%%
-       & **Eques Rex**
-       & %%ROYAL%% \\
-{th = 1} %%TYPHOON%%
-       & **Centaur**
-       & %%PROMOTED%% [*Bishop's Dog*](bishops_dog.html) \\
+  {th = 1}  %%TYPHOON%%
+& {cs = 2}  **Centaur**
+&           %%PROMOTED%% [*Bishop's Dog*](bishops_dog.html) \\
+  {th = 1}  %%GRAND_CAVALIER%%
+& {cs = 2}  **Eques Rex**
+&           %%ROYAL%% \\
 ====|
 
 ### Spiral

@@ -10,11 +10,12 @@ This makes the %%PIECE%% %%COLOUR_BOUND%%.
 
 |====
 %%PIECE_HEADERS%%
-{th = 1} %%LEAPERS%%; %%WILDEBEEST%%
-       & **Camel**
-       & \\
-{th = 1} %%SCIROCCO%%; %%TYPHOON%%
-       & %%PROMOTES_TO%% [*Squirrel*](squirrel.html)
+  {th = 1}  %%LEAPERS%%; %%WILDEBEEST%%
+& {rs = 2; cs = 2}
+            **Camel**
+&           \\
+  {th = 1}  %%SCIROCCO%%; %%TYPHOON%%
+&           %%PROMOTES_TO%% [*Squirrel*](squirrel.html)
 ====|
       
 Links: [%%WIKI%%](#wiki:Camel_(chess)),

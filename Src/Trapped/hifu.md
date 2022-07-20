@@ -8,9 +8,9 @@ orthogonally.
 
 |====
 %%PIECE_HEADERS%%
-{th = 1}  %%KYOTO_SHOGI%%
-       &  **Hifu**
-       &  \\
+  {th = 1}  %%KYOTO_SHOGI%%
+& {cs = 2}  **Hifu**
+&           \\
 ====|
 
 ### Spiral

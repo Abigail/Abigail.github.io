@@ -9,9 +9,9 @@ square.
 
 |====
 %%PIECE_HEADERS%%
-{th = 1} %%TYPHOON%%
-       & **Emperor**
-       & %%ROYAL%%; %%PROMOTED%% [*King*](king.html) \\
+  {th = 1}  %%TYPHOON%%
+& {cs = 2}  **Emperor**
+&           %%ROYAL%%; %%PROMOTED%% [*King*](king.html) \\
 ====|
 
 ### Spiral

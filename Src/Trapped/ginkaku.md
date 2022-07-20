@@ -8,9 +8,9 @@ moves, it slides over an unlimited number of unoccupied squares diagonally.
 
 |====
 %%PIECE_HEADERS%%
-{th = 1}  %%KYOTO_SHOGI%%
-       &  **Ginkaku**
-       & \\
+  {th = 1}  %%KYOTO_SHOGI%%
+& {cs = 2}  **Ginkaku**
+&           \\
 ====|
 
 ### Spiral

@@ -8,9 +8,9 @@ number of unoccupied squares orthogonally forward or backward
 
 |====
 %%PIECE_HEADERS%%
-{th = 1}  %%WA_SHOGI%%
-       &  **Raiding Falcon** (&#x5EF6;&#x9DF9;)
-       &  %%PROMOTED%% [*Flying Cock*](flying_cock.html) \\
+  {th = 1}  %%WA_SHOGI%%
+&           **Raiding Falcon** & &#x5EF6;&#x9DF9;
+&           %%PROMOTED%% [*Flying Cock*](flying_cock.html) \\
 ====|
 
 ### Spiral

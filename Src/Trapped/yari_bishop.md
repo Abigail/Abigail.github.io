@@ -7,9 +7,9 @@ amount of unoccupied squares orthogonally forward
 
 |====
 %%PIECE_HEADERS%%
-{th = 1}  %%YARI_SHOGI%%
-       &  **Yari Bishop**
-       &  %%PROMOTES_TO%% [*Yari Gold*](yari_gold.html) \\
+  {th = 1}  %%YARI_SHOGI%%
+& {cs = 2}  **Yari Bishop**
+&           %%PROMOTES_TO%% [*Yari Gold*](yari_gold.html) \\
 ====|
 
 ### Spiral

@@ -7,12 +7,12 @@ The %%PIECE%% either jumps to a square one away diagonally
 
 |====
 %%PIECE_HEADERS%%
-{th = 1}  %%SCIROCCO%%; %%TYPHOON%%
-       &  **Goat**
-       &  %%PROMOTES_TO%% [*Lioness*](lioness.html) \\
-{th = 1}  %%CHU_SHOGI%%
-       &  **Kirin** (&#x9E92;&#x9E9F;)
-       &  %%PROMOTES_TO%% [*Lion*](lion.html) \\
+  {th = 1}  %%SCIROCCO%%; %%TYPHOON%%
+& {cs = 2}  **Goat**
+&           %%PROMOTES_TO%% [*Lioness*](lioness.html) \\
+  {th = 1}  %%CHU_SHOGI%%
+&           **Kirin** & &#x9E92;&#x9E9F;
+&           %%PROMOTES_TO%% [*Lion*](lion.html) \\
 ====|
 
 ### Spiral

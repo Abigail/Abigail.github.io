@@ -8,9 +8,9 @@ or an unlimited of unoccupied squares orthogonally backward
 
 |====
 %%PIECE_HEADERS%%
-{th = 1} %%TYPHOON%%
-       & **Beaver**
-       & %%PROMOTES_TO%% [*Sorcerer*](sorcerer.html)
+  {th = 1}  %%TYPHOON%%
+& {cs = 2}  **Beaver**
+&           %%PROMOTES_TO%% [*Sorcerer*](sorcerer.html)
 ====|
 
 ### Spiral

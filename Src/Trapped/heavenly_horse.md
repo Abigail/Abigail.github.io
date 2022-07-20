@@ -5,9 +5,9 @@ backward, and one away to the right or left.
 
 |====
 %%PIECE_HEADERS%%
-{th = 1}  %%WA_SHOGI%%
-       &  **Heavenly Horse** (&#x5929;&#x99AC;)
-       &  %%PROMOTED%% [*Liberated Horse*](liberated_horse.html) \\
+  {th = 1}  %%WA_SHOGI%%
+&           **Heavenly Horse** & &#x5929;&#x99AC;
+&           %%PROMOTED%% [*Liberated Horse*](liberated_horse.html) \\
 ====|
 
 ### Spiral

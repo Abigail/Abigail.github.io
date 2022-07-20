@@ -5,9 +5,9 @@ the [*Zebra*](zebra.html), making it a combined leaper.
 
 |====
 %%PIECE_HEADERS%%
-{th = 1} Combined %%LEAPERS%%
-       & **Bison**
-       & \\
+  {th = 1} Combined %%LEAPERS%%
+& {cs = 2} **Bison**
+&          \\
 ====|
 
 ### Spiral

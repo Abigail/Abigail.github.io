@@ -8,24 +8,24 @@ the %%PIECE%%.
 
 |====
 %%PIECE_HEADERS%%
-{th = 1} %%XIANGQI%%
-       & **General** (&#x5C07;/&#x5E25;)
-       & This piece is normally limited to a 3 x 3 box, but we ignore this;
-         %%ROYAL%% \\
-{th = 1} %%DOBUTSU%%
-       & **Giraffe**
-       & Not to be confused with the (4,1)-leaper [*Giraffe*](giraffe.html),
-         or the [Queen + Knight compound](amazon.html?piece=giraffe) also
-         name *Giraffe* \\
-{th = 1} %%SCIROCCO%%; %%TYPHOON%%
-       & **Guard**
-       & %%PROMOTES_TO%% [*Zebra*](zebra.html); %%CAPTURE%% \\
-{th = 1} %%LEAPERS%%
-       & **Wazir**
-       & \\
-{th = 1} %%SCIROCCO%%; %%TYPHOON%%
-       & **Wazir**
-       & %%PROMOTES_TO%% [*Zag*](modern_elephant.html?piece=zag) \\
+  {th = 1}  %%XIANGQI%%
+&           **General**  & &#x5C07;/&#x5E25;
+&           %%ROYAL%%; This piece is normally limited to a 3 x 3 box,
+            but we ignore this \\
+  {th = 1}  %%DOBUTSU%%
+& {cs = 2}  **Giraffe**
+&           Not to be confused with the (4,1)-leaper [*Giraffe*](giraffe.html),
+            or the [Queen + Knight compound](amazon.html?piece=giraffe) also
+            named *Giraffe* \\
+  {th = 1}  %%SCIROCCO%%; %%TYPHOON%%
+& {cs = 2}  **Guard**
+&           %%PROMOTES_TO%% [*Zebra*](zebra.html); %%CAPTURE%% \\
+  {th = 1}  %%LEAPERS%%
+& {rs = 2; cs = 2}
+            **Wazir**
+&           \\
+  {th = 1}  %%SCIROCCO%%; %%TYPHOON%%
+&           %%PROMOTES_TO%% [*Zag*](modern_elephant.html?piece=zag) \\
 ====|
 
 The [Knight-Bishop compound](archbishop.html) is sometimes called a

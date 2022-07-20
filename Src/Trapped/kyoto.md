@@ -1,6 +1,6 @@
 # %%PIECE%%
 
-THe %%PIECE%% alternates moving as the
+The %%PIECE%% alternates moving as the
 [*Tokin*](gold_general.html?piece=tokin) and
 the [*Lance*](lance.html), starting with the former.
 This means, on odd moves, the %%PIECE%% moves one square 
@@ -10,9 +10,9 @@ squares orthogonally forward.
 
 |====
 %%PIECE_HEADERS%%
-{th = 1}  %%KYOTO_SHOGI%%
-       &  **Ky&#x014D;to**
-       &  \\
+  {th = 1}  %%KYOTO_SHOGI%%
+& {cs = 2}  **Ky&#x014D;to**
+&           \\
 ====|
 
 ### Spiral

@@ -6,9 +6,9 @@ squares orthogonally backward.
 
 |====
 %%PIECE_HEADERS%%
-{th = 1}  %%YARI_SHOGI%%
-       &  **Yari Silver**
-       &  %%PROMOTED%% [*Pawn*](pawn.html) \\
+  {th = 1}  %%YARI_SHOGI%%
+& {cs = 2}  **Yari Silver**
+&           %%PROMOTED%% [*Pawn*](pawn.html) \\
 ====|
 
 ### Spiral

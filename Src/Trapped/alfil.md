@@ -14,21 +14,19 @@ There are several pieces which move like the %%PIECE%%:
 
 |====
 %%PIECE_HEADERS%%
-{th = 1} %%LEAPERS%%
-       & **Alfil**
-       & \\
-{th = 1} %%SCIROCCO%%
-       & **Alfil**
-       & %%PROMOTES_TO%% [*Bishop*](bishop.html) \\
-{th = 1} %%TYPHOON%%
-       & **Alfil**
-       & %%PROMOTES_TO%% [*Scirocco*](scirocco.html) \\
-{th = 1} %%SENTEREJ%%
-       & **Saba**
-       & *Saba* meaning *Elephant* \\
-{th = 1} %%SCIROCCO%%; %%TYPHOON%%
-       & **Stork** 
-       & %%PROMOTES_TO%% [*Queen*](queen.html); %%CAPTURE%% \\
+  {th = 1}  %%LEAPERS%%
+& {cs = 2; rs = 3}  **Alfil**
+&           \\
+  {th = 1}  %%SCIROCCO%%
+&           %%PROMOTES_TO%% [*Bishop*](bishop.html) \\
+  {th = 1}  %%TYPHOON%%
+&           %%PROMOTES_TO%% [*Scirocco*](scirocco.html) \\
+  {th = 1}  %%SENTEREJ%%
+& {cs = 2}  **Saba**
+&           *Saba* meaning *Elephant* \\
+  {th = 1}  %%SCIROCCO%%; %%TYPHOON%%
+& {cs = 2}  **Stork** 
+&           %%PROMOTES_TO%% [*Queen*](queen.html); %%CAPTURE%% \\
 ====|
 
 ### Spiral

@@ -7,12 +7,12 @@ squares diagonally.
 
 |====
 %%PIECE_HEADERS%%
-{th = 1}  %%WA_SHOGI%%
-       &  **Flying Falcon** (&#x98DB;&#x9DF9;)
-       &  %%PROMOTED%% [*Strutting Crow*](strutting_crow.html);
-          %%PROMOTES_TO%% [*Tenacious Falcon*](tenacious_falcon.html);
-          A promoted [*Strutting Crow*](strutting_crow.html) will
-          not promote again \\
+  {th = 1}  %%WA_SHOGI%%
+&           **Flying Falcon** & &#x98DB;&#x9DF9;
+&           %%PROMOTED%% [*Strutting Crow*](strutting_crow.html);
+            %%PROMOTES_TO%% [*Tenacious Falcon*](tenacious_falcon.html);
+            A promoted [*Strutting Crow*](strutting_crow.html) will
+            not promote again \\
 ====|
 
 ### Spiral

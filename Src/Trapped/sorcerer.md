@@ -5,12 +5,12 @@ eight main directions.
 
 |====
 %%PIECE_HEADERS%%
-{th = 1} %%TYPHOON%%
-       & **Sorcerer**
-       & %%PROMOTED%% [*Beaver*](beaver.html); %%CAPTURE%% \\
-{th = 1} %%HIASHATAR%%
-       & **Hia** or **Bodyguard**
-       & %%ABILITIES%% \\
+  {th = 1}  %%HIASHATAR%%
+& {cs = 2}  **Hia** or **Bodyguard**
+&           %%ABILITIES%% \\
+  {th = 1}  %%TYPHOON%%
+& {cs = 2}  **Sorcerer**
+&           %%PROMOTED%% [*Beaver*](beaver.html); %%CAPTURE%% \\
 ====|
 
 ### Spiral

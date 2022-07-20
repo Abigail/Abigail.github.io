@@ -10,9 +10,9 @@ movements of the [*Whale*](whale.html).
 
 |====
 %%PIECE_HEADERS%%
-{th = 1}  %%CHU_SHOGI%%
-       &  **White Horse** (&#x767D;&#x99D2;)
-       &  %%PROMOTED%% [*Lance*](lance.html) \\
+  {th = 1}  %%CHU_SHOGI%%
+&           **White Horse** & &#x767D;&#x99D2;
+&           %%PROMOTED%% [*Lance*](lance.html) \\
 ====|
 
 

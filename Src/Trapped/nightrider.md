@@ -6,18 +6,17 @@ first, and each square may not be occupied.
 
 |====
 %%PIECE_HEADERS%%
-{th = 1} %%GRAND_CAVALIER%%
-       & **Nightrider**
-       & \\
-{th = 1} %%TYPHOON%%
-       & [**Nightrider**](#chess-v:rules/typhoon-revised#Nightrider)
-       & %%PROMOTED%% [*Overtaker*](king.html?piece=overtaker) \\
-{th = 1} %%WOLF%%
-       & **Nightrider** or **Narr**
-       & \\
-{th = 1} %%RIDERS%%
-       & **Nightrider**
-       & \\
+  {th = 1}  %%GRAND_CAVALIER%%
+& {rs = 3; cs = 2}
+            **Nightrider**
+&           \\
+  {th = 1}  %%TYPHOON%%
+&           %%PROMOTED%% [*Overtaker*](king.html?piece=overtaker) \\
+  {th = 1}  %%RIDERS%%
+&           \\
+  {th = 1}  %%WOLF%%
+& {cs = 2}  **Nightrider** or **Narr**
+&           \\
 ====|
 
 Links: [%%WIKI%%](#wiki:Nightrider_(chess)),

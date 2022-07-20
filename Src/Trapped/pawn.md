@@ -38,89 +38,95 @@ captures differently than it moves.
 
 |====
 {class = 'promotion'}
-{th = 1} Piece &
+{th = 1; cs = 2} Piece &
 {th = 1} Game  &
 {th = 1} Promotes to &
 {th = 1} MS &
 {th = 1} Cap. \\
-**Pawn** (&#x2659;)
+{rs = 3} **Pawn** & {rs = 3} &#x2659;
              &  %%CHESS%%; many Chess variants
              &  Player's choice
              &  %%YES%% 
              &  %%YES%%                                                      \\
-**Pawn** (&#x2659;)
-             &  %%WILDEBEEST%%
+
+                %%WILDEBEEST%%
              &  [*Queen*](queen.html) or
                 [*Wildebeest*](gnu.html?piece=wildebeest)
              &  %%YES%% 
              &  %%YES%%                                                      \\
-**Pawn** (&#x2659;)
-             &  %%WOLF%%
+
+                %%WOLF%%
              &  Player's choice, including the
                 [*Elephant*](amazon_rider.html?piece=elephant_wolf)
              &  %%YES%% 
              &  %%YES%%                                                      \\
-**Pawn** (&#x6B69;&#x5175;)
+{rs = 2} **Pawn** & {rs = 2} &#x6B69;&#x5175;
              &  %%SHOGI%%; %%CHU_SHOGI%%
              &  [*Tokin*](gold_general.html?piece=tokin) (Gold General)
              &  %%NO%%  
              &  %%NO%%                                                       \\
-**Pawn** (&#x6B69;&#x5175;)
-             &  %%MICRO_SHOGI%%
+
+                %%MICRO_SHOGI%%
              &  [*Knight*](shogi_knight.html) (when capturing, there is
                 no promotion in Micro Sh&#x14d;gi)
              &  %%NO%%  
              &  %%NO%%                                                       \\
-**Pawn**     &  %%YARI_SHOGI%%
+{rs = 2; cs = 2} **Pawn**
+             &  %%YARI_SHOGI%%
              &  [*Yari Silver*](yari_silver.html)
              &  %%NO%%  
              &  %%NO%%                                                       \\
-**Pawn**     &  %%SCIROCCO%%; %%TYPHOON%%
+
+                %%SCIROCCO%%; %%TYPHOON%%
              &  [*Tadpole*](tadpole.html)
              &  %%NO%%  
              &  %%YES%%                                                      \\
-**Pawn** (&#x0E1A;)
+**Pawn** & &#x0E1A;
              &  %%MAKRUK%%
              &  [*Queen*](ferz.html?piece=queen) (Ferz)
              &  %%NO%%  
              &  %%YES%%                                                      \\
-**Chick**    &  %%DOBUTSU%%
+{cs = 2} **Chick**    &  %%DOBUTSU%%
              &  [*Hen*](gold_general.html?piece=dobutsu_hen) (Gold General)
              &  %%NO%%  
              &  %%NO%%                                                       \\
-**Dolphin**  &  %%WHALE_SHOGI%%
+{cs = 2} **Dolphin**  &  %%WHALE_SHOGI%%
              &
              &  %%NO%%  
              &  %%NO%%                                                       \\
-**Fu**       &  %%HIASHATAR%%
+{rs = 2; cs = 2} **Fu**
+             &  %%HIASHATAR%%
              &  [*Bers*](queen.html?piece=pers)
              &  %%YES%%
              &  %%NO%%                                                       \\
-**Fu**       &  %%TYPHOON%%
+
+                %%TYPHOON%%
              &  [*Zebra*](zebra.html)
              &  %%NO%%  
              &  %%NO%%                                                       \\
-**K&#x00FC;&#x00FC;** (<span class =
-                "mongolian">&#x182C;&#x1826;&#x1826;</span>) or **Chu**
+**K&#x00FC;&#x00FC;** or **Chu**
+             &  <span class = "mongolian">&#x182C;&#x1826;&#x1826;</span>
              &  %%SHATAR%%
              &  [*Baras*](dragon_king.html?piece=baras)
              &  %%NO%%<sup>1</sup>
              &  %%YES%%                                                      \\
-**Medeq**    &  %%SENTEREJ%%
+{cs = 2} **Medeq**
+             &  %%SENTEREJ%%
              &  Player's choice of captured pieces
              &  %%NO%%  
              &  %%YES%%                                                      \\
-**Soldier**<sup>2</sup>
+{cs = 2} **Soldier**<sup>2</sup>
              &  %%XIANGQI%%
              &
              &  %%NO%%  
              &  %%NO%%                                                       \\
-**Sparrow Pawn** (&#x8411;&#x6B69;)
+**Sparrow Pawn** & &#x8411;&#x6B69;
              &  %%WA_SHOGI%%
              &  [*Golden Bird*](gold_general.html?piece=golden_bird)
              &  %%NO%%  
              &  %%NO%%                                                       \\
-**Swallow**  &  %%TORI_SHOGI%%
+{cs = 2} **Swallow**
+             &  %%TORI_SHOGI%%
              &  [*Goose*](goose.html)
              &  %%NO%%  
              &  %%NO%%                                                       \\

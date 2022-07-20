@@ -12,49 +12,48 @@ it's known under various names, including:
 
 |====
 %%PIECE_HEADERS%%
-{th = 1} [Cardmate](#chess-v:large.dir/cardmat.html);
-         %%OVERKILL%%
-       & **Ace**
-       & \\
-{th = 1} [Amazon Chess](#chess-v:diffmove.dir/amazone.html);
-         [Gigachess](#chess-v:large.dir/gigachess.html);
-         [Haynie's Great Chess](#chess-v:large.dir/haynieschess.html);
-         [Tutti-Frutti Chess](#chess-v:dpieces.dir/tuttifr.html)
-       & **Amazon**
-       & \\
-{th = 1} [Fantasy Grand Chess](#chess-v:large.dir/contest/fantasygrand.html)
-       & **Elder**
-       & \\
-{th = 1} [Beau Monde Chess](#chess-v:large.dir/beaumonde.html);
-         [Millenial Chess](#chess-v:large.dir/contest/milchess.html)
-       & **Empress**
-       & The [Rook-Knight compound](chancellor.html?piece=empress) is
-         also known as the *Empress* \\
-{th = 1} [The Emperor's Game](#chess-v:large.dir/emperor.html);
-         [Giant Chess](#chess-v:large.dir/giantchess.html);
-         [Perfect Chess](#chess-v:diffmove.dir/perfectchess.html);
-         [Turkish Chess](#chess-v:large.dir/turkishchess.html)
-       & **General**
-       & \\
-{th = 1} [Eric's Great Chess](large.dir/ericgr.html);
-         [Turkish Great Chess](#chess-v:historic.dir/indiangr1.html)
-       & **Giraffe**
-       & Not to be confused with the (4,1)-leaper [*Giraffe*](giraffe.html),
-         or the [*Giraffe*](wazir.html?piece=giraffe_dobutsu) from
-         %%DOBUTSU%% \\
-{th = 1} [Maharajah and the Sepoys](#wiki)
-       & **Maharajah**
-       & %%ROYAL%% \\
-{th = 1} [Terror Chess](#chess-v:large.dir/terror.html)
-       & **Terror**
-       & \\
-{th = 1} [Tiger Hunt](#chess-v:unequal.dir/tigerhnt.html)
-       & **Tiger**
-       & %%ROYAL%% \\
-{th = 1} [Twenty-First Century
-                       Chess](#chess-v:large.dir/21st-century-chess.html)
-       & **Sorceror**
-       & %%PROMOTED%% [*Pawn*](pawn.html) or *Jester* \\
+  {th = 1}  [Cardmate](#chess-v:large.dir/cardmat.html); %%OVERKILL%%
+& {cs = 2}  **Ace**
+&           \\
+  {th = 1}  [Amazon Chess](#chess-v:diffmove.dir/amazone.html);
+            [Gigachess](#chess-v:large.dir/gigachess.html);
+            [Haynie's Great Chess](#chess-v:large.dir/haynieschess.html);
+            [Tutti-Frutti Chess](#chess-v:dpieces.dir/tuttifr.html)
+& {cs = 2}  **Amazon**
+&           \\
+  {th = 1}  [Fantasy Grand Chess](#chess-v:large.dir/contest/fantasygrand.html)
+& {cs = 2}  **Elder**
+&           \\
+  {th = 1}  [Beau Monde Chess](#chess-v:large.dir/beaumonde.html);
+            [Millenial Chess](#chess-v:large.dir/contest/milchess.html)
+& {cs = 2}  **Empress**
+&           The [Rook-Knight compound](chancellor.html?piece=empress) is
+            also known as the *Empress* \\
+  {th = 1}  [The Emperor's Game](#chess-v:large.dir/emperor.html);
+            [Giant Chess](#chess-v:large.dir/giantchess.html);
+            [Perfect Chess](#chess-v:diffmove.dir/perfectchess.html);
+            [Turkish Chess](#chess-v:large.dir/turkishchess.html)
+& {cs = 2}  **General**
+&           \\
+  {th = 1}  [Eric's Great Chess](large.dir/ericgr.html);
+            [Turkish Great Chess](#chess-v:historic.dir/indiangr1.html)
+& {cs = 2}  **Giraffe**
+&           Not to be confused with the (4,1)-leaper [*Giraffe*](giraffe.html),
+            or the [*Giraffe*](wazir.html?piece=giraffe_dobutsu) from
+            %%DOBUTSU%% \\
+  {th = 1}  [Maharajah and the Sepoys](#wiki)
+& {cs = 2}  **Maharajah**
+&           %%ROYAL%% \\
+  {th = 1}  [Terror Chess](#chess-v:large.dir/terror.html)
+& {cs = 2}  **Terror**
+&           \\
+  {th = 1}  [Tiger Hunt](#chess-v:unequal.dir/tigerhnt.html)
+& {cs = 2}  **Tiger**
+&           %%ROYAL%% \\
+  {th = 1}  [Twenty-First Century
+             Chess](#chess-v:large.dir/21st-century-chess.html)
+& {cs = 2}  **Sorceror**
+            & %%PROMOTED%% [*Pawn*](pawn.html) or *Jester* \\
 ====|
 
 Other names include:

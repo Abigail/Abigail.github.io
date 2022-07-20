@@ -6,10 +6,10 @@ strong piece (even stronger than the [*Amazon*](amazon.html).
 
 |====
 %%PIECE_HEADERS%%
-{th = 1} %%WOLF%%
-       & **Elephant**
-       & Not in the starting line up; only appears after a
-         [*Pawn*](pawn.html) promotion. \\
+  {th = 1}  %%WOLF%%
+& {cs = 2}  **Elephant**
+&           Not in the starting line up; only appears after a
+            [*Pawn*](pawn.html) promotion. \\
 ====|
 
 ### Spiral

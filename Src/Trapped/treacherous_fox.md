@@ -8,9 +8,9 @@ backward or forward.
 
 |====
 %%PIECE_HEADERS%%
-{th = 1}  %%WA_SHOGI%%
-       &  **Treacherous Fox** (&#x96A0;&#x72D0;)
-       &  %%PROMOTED%% [*Running Rabbit*](running_rabbit.html) \\
+  {th = 1}  %%WA_SHOGI%%
+&           **Treacherous Fox** & &#x96A0;&#x72D0;
+&           %%PROMOTED%% [*Running Rabbit*](running_rabbit.html) \\
 ====|
 
 ### Spiral

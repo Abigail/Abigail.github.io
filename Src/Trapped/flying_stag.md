@@ -7,9 +7,9 @@ squares orthogonally forward or backward (like a vertical [*Rook*](rook.html)).
 
 |====
 %%PIECE_HEADERS%%
-{th = 1}  %%CHU_SHOGI%%
-       &  **Flying Stag** (&#x98DB;&#x9E7F;)
-       &  %%PROMOTED%% [*Blind Tiger*](blind_tiger.html) \\
+  {th = 1}  %%CHU_SHOGI%%
+&           **Flying Stag** & &#x98DB;&#x9E7F;
+&           %%PROMOTED%% [*Blind Tiger*](blind_tiger.html) \\
 ====|
 
 ### Spiral

@@ -10,9 +10,9 @@ sideways.
 
 |====
 %%PIECE_HEADERS%%
-{th = 1}  %%KYOTO_SHOGI%%
-       &  **Kinkei**
-       &  \\
+  {th = 1}  %%KYOTO_SHOGI%%
+& {cs = 2}  **Kinkei**
+&           \\
 ====|
 
 ### Spiral

@@ -9,9 +9,9 @@ blocked).
 
 |====
 %%PIECE_HEADERS%%
-{th = 1} %%JANGGI%%
-       & **Elephant** (&#xC0C1;)
-       & \\
+  {th = 1}  %%JANGGI%%
+&           **Elephant** & &#xC0C1;
+&           \\
 ====|
 
 
