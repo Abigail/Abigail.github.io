@@ -130,6 +130,11 @@ table.promotion  td, table.promotion  th {
     text-align:            left;
 }
 
+table.piece_list td.col-2 {
+    padding-left:          0.1em;
+    padding-right:         0.1em;
+}
+
 table.piece_list tr.row-0 th {
     background:            #D7F4D2;
     border-bottom:         solid black 2px;
