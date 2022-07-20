@@ -23,11 +23,11 @@ by Abigail<br>
 </div>
 
 
-<p>The %%PIECE%% combines the movments of the <a href="king.html"><em>Wazir</em></a>,
-<a href="ferz.html"><em>Ferz</em></a>,
-<a href="dabbaba.html"><em>Dabbaba</em></a>, <a href="knight.html"><em>Knight</em></a> and <a href="alfil.html"><em>Alfil</em></a>.
-This means, the %%PIECE%% can jump anywhere in a 5 x 5 square centered
-around the starting position (but it can't jump to the starting square).</p>
+<p>The %%PIECE%% either slides an unlimited number of unoccupied squares
+orthogonally (like a <a href="rook.html"><em>Rook</em></a>), or diagonally backward
+(like a backward <a href="bishop.html"><em>Bishop</em></a>), or jumps one or two
+squares diagonally forward (like a forward <a href="ferz.html"><em>Ferz</em></a> or
+a forward <a href="alfil.html"><em>Alfil</em></a>). </p>
 
 <table class = piece_list>
   <tr class = 'row-0' markdown = '1'>
@@ -37,22 +37,18 @@ around the starting position (but it can't jump to the starting square).</p>
   </tr>
   <tr class = 'row-1' markdown = '1'>
     <th class = 'cell-1-0 col-0 ' markdown = '1'><a href="https://en.wikipedia.org/wiki/chu_shogi">Chu&nbsp;Sh&#x014d;gi <span class = 'uni_name'>(&#x4E2D;&#x5C06;&#x68CB;)</span></a></td>
-    <td class = 'cell-1-1 col-1 ' markdown = '1'><strong>Lion</strong></td>
-    <td class = 'cell-1-2 col-2 ' markdown = '1'>&#x7345;&#x5B50;</td>
-    <td class = 'cell-1-3 col-3 ' markdown = '1'><span class = 'tooltip'>&rlarr;<span class = 'tooltiptext'>This piece has additional moves,<br>which are not relevant here</span></span>; <span class = 'tooltip'>&#x238B;<span class = 'tooltiptext'>This piece has additional capture moves,<br>which we can ignore here</span></span>; <span class = 'tooltip'>&#x1F3A9;<span class = 'tooltiptext'>This piece has additional abilities,<br>which we can ignore here</span></span></td>
-  </tr>
-  <tr class = 'row-2' markdown = '1'>
-    <th class = 'cell-2-0 col-0 ' markdown = '1'><a href="https://www.chessvariants.com/rules/scirocco">Scirocco</a></td>
-    <td class = 'cell-2-1 col-1 ' markdown = '1' colspan = '2'><strong>Lioness</strong></td>
-    <td class = 'cell-2-3 col-3 ' markdown = '1'><span class = 'tooltip'>&#x260B;<span class = 'tooltiptext'>Is promoted</span></span> <a href="goat.html"><em>Goat</em></a></td>
+    <td class = 'cell-1-1 col-1 ' markdown = '1'><strong>Soaring Eagle</strong></td>
+    <td class = 'cell-1-2 col-2 ' markdown = '1'>&#x98DB;&#x9DF2;</td>
+    <td class = 'cell-1-3 col-3 ' markdown = '1'><span class = 'tooltip'>&#x260B;<span class = 'tooltiptext'>Is promoted</span></span> <a href="dragon_king.html"><em>Dragon King</em></a>;
+            <span class = 'tooltip'>&rlarr;<span class = 'tooltiptext'>This piece has additional moves,<br>which are not relevant here</span></span>; <span class = 'tooltip'>&#x238B;<span class = 'tooltiptext'>This piece has additional capture moves,<br>which we can ignore here</span></span>; <span class = 'tooltip'>&#x1F3A9;<span class = 'tooltiptext'>This piece has additional abilities,<br>which we can ignore here</span></span></td>
   </tr>
 </table>
 
 <h3 id = 'spiral'>Spiral</h3>
 
 <div class = "section">
-<p>The %%PIECE%% can move as the <a href="wazir.html"><em>Wazir</em></a>, so it will
-follow the Spiral.</p>
+<p>On the Spiral, the %%PIECE%% can move as the <a href="wazir.html"><em>Wazir</em></a>,
+so it visit all the squares by following the Spiral.</p>
 </div>
 
 <h3 id = 'wedge'>Wedge</h3>
@@ -60,20 +56,19 @@ follow the Spiral.</p>
 <h4 id = 'folded'>Folded</h4>
 
 <div class = "section">
-<p>The %%PIECE%% can move as the <a href="flying_cock.html"><em>Flying Cock</em></a>,
-so it will follow the Folded Wedge.</p>
+<p>On the Folded Wedge, the %%PIECE%% can move as the
+<a href="flying_cock.html"><em>Flying Cock</em></a>,
+so it visit all the squares by following the Wedge.</p>
 </div>
 
 <h4 id = 'flat'>Flat</h4>
 
-<p>On the Flat Wedge, the fills the board row by row, where each row
-has half its squares visited on a left to right sweep, then the
-rest is visited on a right to left sweep. When all the squares
-in a row have been visited, the %%PIECE%% moves to the next row.</p>
+<p>On the Flat Wedge, the %%PIECE%% visits all the squares
+using a pattern with a strong bias to the right.</p>
 
-<div class = 'trapped' data-piece = 'lioness'></div>
+<div class = 'trapped' data-piece = 'soaring_eagle'></div>
 
-<div class = 'boxset' data-piece = 'lioness'></div>
+<div class = 'boxset' data-piece = 'soaring_eagle'></div>
 
 <hr id = 'last-line'>
 <div class = 'trailer'>

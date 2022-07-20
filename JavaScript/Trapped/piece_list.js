@@ -997,6 +997,15 @@ let pieces = {
         },
     },
 
+    horned_falcon: {
+        betza: "fWfDBsbR",
+        results: {
+            spiral:       "W",
+            folded_wedge: "FC",
+            flat_wedge:   "F/100%",
+        },
+    },
+
     horned_owl: {
         betza:    "F4DfW",
         results: {
@@ -1149,6 +1158,10 @@ let pieces = {
     dobutsu_lion: {
         parent: "king",
         _name: "Lion",
+    },
+
+    lion: {
+        parent: "lioness",
     },
 
     lioness: {
@@ -1526,6 +1539,15 @@ let pieces = {
             spiral:       "F*/100%", 
             folded_wedge: "E", 
             flat_wedge:   "E",
+        },
+    },
+
+    soaring_eagle: {
+        betza: "fFfAbBR",
+        results: {
+            spiral:       "W",
+            folded_wedge: "FC", 
+            flat_wedge:   "",
         },
     },
 
@@ -2124,27 +2146,13 @@ let set_info = {
         name:    "Chu Sh&#x14d;gi",
         href:    "https://en.wikipedia.org/wiki/Chu_shogi",
         pieces: ["king", "prince", "queen", "rook", "bishop",
-                 "blind_tiger",
-                 "copper_general",
-                 "dragon_horse", "dragon_king",
-                 "drunk_elephant",
-                 "ferocious_leopard",
-                 "flying_ox",
-                 "flying_stag",
-                 "free_boar",
-                 "go_between",
-                 "gold_general",
-                 "kirin",
-                 "lance",
-                 "phoenix_chu",
-                 "reverse_chariot",
-                 "side_mover",
-                 "silver_general",
-                 "vertical_mover",
-                 "whale",
-                 "white_horse",
-                 
-                 "pawn"],
+                 "blind_tiger", "copper_general", "dragon_horse",
+                 "dragon_king", "drunk_elephant", "ferocious_leopard",
+                 "flying_ox", "flying_stag", "free_boar", "go_between",
+                 "gold_general", "horned_falcon", "kirin", "lance",
+                 "lion", "phoenix_chu", "reverse_chariot", "side_mover",
+                 "silver_general", "soaring_eagle", "vertical_mover",
+                 "whale", "white_horse", "pawn"],
     },
 
     xiangqi: {
