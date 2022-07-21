@@ -72,6 +72,7 @@ div.byline {
     margin-right:                      -2.5em;
     float:                              right;
     font-family:     'Pinyon Script', cursive;
+    padding-left:                       0.5em;
 }
 
 div.byline img {
