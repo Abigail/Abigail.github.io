@@ -22,6 +22,9 @@ There are several pieces which move this way:
   {th = 1}  %%SCIROCCO%%; %%TYPHOON%%
 & {cs = 2}  **Dervish**
 &           %%PROMOTES_TO%% [*Harpy*](genie.html?piece=harpy); %%ABILITIES%% \\
+  {th = 1}  %%INTERDEPENDENT%%
+& {cs = 2}  **Spider**
+&           %%CAPTURE%% \\
 ====|
 
 Link: [%%CHESS_V%%](#piece:alibaba)
