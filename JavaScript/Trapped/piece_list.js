@@ -55,6 +55,10 @@ let pieces = {
         parent: "archbishop",
     },
 
+    advancer: {
+        parent: "queen",
+    },
+
     advisor: {
         parent: "ferz",
     },
@@ -276,6 +280,10 @@ let pieces = {
         parent: "rook",
     },
 
+    cannon_pawn: {
+        parent: "king",
+    },
+
     canvasser: {
         betza:    "RC",
         results: {
@@ -307,6 +315,10 @@ let pieces = {
         parent: "archbishop",
         _name:  "Centaur",
         _index_name: "Centaur (Bishop + Knight)",
+    },
+
+    chameleon: {
+        parent: "queen",
     },
 
     champion: {
@@ -1053,6 +1065,10 @@ let pieces = {
         parent:   "dragon_king",
     },
 
+    immobilizer: {
+        parent: "queen",
+    },
+
     //
     // J pieces
     //
@@ -1639,6 +1655,10 @@ let pieces = {
         _name: "Swallow's Wings",
     },
 
+    swapper: {
+        parent: "queen",
+    },
+
     swooping_owl: {
         parent: "strutting_crow",
     },
@@ -1848,6 +1868,10 @@ let pieces = {
         parent: "gnu",
     },
 
+    withdrawer: {
+        parent: "queen",
+    },
+
     wizard: {
         betza:    "FC",
         results: {
@@ -2031,6 +2055,12 @@ let set_info = {
                  "marshal", "pawn"],
     },
 
+    rococo: {
+        href: "https://www.chessvariants.com/other.dir/rococo.html",
+        pieces: ["king", "advancer", "chameleon", "immobilizer",
+                 "longleaper", "swapper", "withdrawer", "cannon_pawn"],
+    },
+
     scirocco: {
         href: "https://www.chessvariants.com/rules/scirocco",
         pieces: ["king", "emperor_scirocco", "queen", "rook", "bishop",
@@ -2060,7 +2090,8 @@ let set_info = {
                  "duke", "elephant_prince", "ferocious_leopard", "fire_horse",
                  "flying_ox", "free_boar", "genie", "ghost_warrior", "goat",
                  "gold_general", "guard", "harpy", "horned_owl", "hummingbird",
-                 "ibis", "lantern", "lioness", "longleaper", "marquis",
+                 "ibis", "immobilizer", "lantern", "lioness", "longleaper",
+                 "marquis",
                  "missionary", "nightrider", "octopus", "otter", "overtaker",
                  "parrot", "priest", "raven", "salamander", "scirocco",
                  "sorcerer", "spider", "squirrel", "stork", "tadpole",

@@ -9,15 +9,27 @@ It's common in many Chess variant, using different names:
 
 |====
 %%PIECE_HEADERS%%
+  {th = 1}  %%ROCOCO%%
+& {cs = 2}  **Advancer** <sup>[%%CHESS_V%%](#piece:advancer)</sup>
+&           %%CAPTURE%%; %%ABILITIES%% \\
   {th = 1}  %%HIASHATAR%%
 & {cs = 2}  **Bers**
 &           \\
-  {th = 1; rs = 2}  %%TYPHOON%%
-& {cs = 2}  **Immobilizer**
-&           %%PROMOTED%% [*Hummingbird*](hummingbird.html);
-            %%ABILITIES%%; %%CAPTURE%% \\
+  {th = 1; rs = 2}  %%ROCOCO%%
+& {cs = 2}  **Chameleon**
+&           %%CAPTURE%%; %%ABILITIES%% \\
   
-  {cs = 2}  **Longleaper**
+  {cs = 2; rs = 2}
+            **Immobilizer**
+&           %%CAPTURE%%; %%ABILITIES%% \\
+  {th = 1}  %%TYPHOON%%
+&           %%PROMOTED%% [*Hummingbird*](hummingbird.html);
+            %%CAPTURE%%; %%ABILITIES%% \\
+  {th = 1}  %%ROCOCO%%
+& {cs = 2; rs = 2}
+            **Longleaper**
+&           %%HOPPER%% \\
+  {th = 1}  %%TYPHOON%%
 &           %%PROMOTED%% [*Cuckoo*](cuckoo.html); %%HOPPER%% \\
   {th = 1}  %%SCIROCCO%%; %%TYPHOON%%
 & {cs = 2}  **Queen**
@@ -32,6 +44,13 @@ It's common in many Chess variant, using different names:
   {th = 1}  %%CHU_SHOGI%%
 &           **Queen** & &#x5954;&#x738B;
 &           &#x5954;&#x738B; meaning *Free King* \\
+  {th = 1; rs = 2}
+            %%ROCOCO%%
+& {cs = 2}  **Swapper**
+&           %%CAPTURE%%; %%ABILITIES%% \\
+
+  {cs = 2}  **Withdrawer**
+&           %%CAPTURE%%; %%ABILITIES%% \\
 ====|
       
 Links: [%%WIKI%%](#wiki:Queen_(chess)),

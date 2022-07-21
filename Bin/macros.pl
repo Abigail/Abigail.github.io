@@ -9,8 +9,8 @@ no  warnings 'syntax';
 use experimental 'signatures';
 use experimental 'lexical_subs';
 
-my $WIKI_TOKEN    = "&#x1F146;";
-my $CHESS_V_TOKEN = "C&#x2C7D;";
+my $WIKI_TOKEN    = "<span class = 'wiki_token'>&#x1F146;</span>";
+my $CHESS_V_TOKEN = "<span class = 'chess_v_token'>C&#x2C7D;</span>";
 
 my sub tooltip ($text, $tooltiptext, @classes) {
     my $classes = join " ", "tooltip", @classes;
@@ -40,6 +40,7 @@ our %MACROS = (
         MICRO_SHOGI    =>  '[Micro&nbsp;Sh&#x14d;gi](#wiki:Micro_shogi)',
         OVERKILL       =>  '[Overkill&nbsp;Ecumenical&nbsp;Chess]' .
                            '(#chess-v:rules/overkill-ecumenical-chess)',
+        ROCOCO         =>  '[Rococo](#chess-v:other.dir/rococo.html)',
         SCIROCCO       =>  '[Scirocco](#chess-v:rules/scirocco)',
         SENTEREJ       =>  "[Senterej](#wiki) [[$CHESS_V_TOKEN](#chess-v:" .
                            'historic.dir/HistoricalChessVariants.pdf)]',
