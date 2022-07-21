@@ -5,7 +5,7 @@ The %%PIECE%% combines the movements of the [*Alfil*](alfil.html) and
 combines the movements of two or more *basic leapers*.
 
 The %%PIECE%% jumps to a square two squares away from its starting
-point. It may jump over occupied squares. 
+point, either orthogonally, or diagonally. It may jump over occupied squares. 
 This makes the %%PIECE%% %%COLOUR_BOUND%%.
 
 If one would remove all the odd rows and odd files (none of them 
@@ -23,6 +23,8 @@ There are several pieces which move this way:
 & {cs = 2}  **Dervish**
 &           %%PROMOTES_TO%% [*Harpy*](genie.html?piece=harpy); %%ABILITIES%% \\
 ====|
+
+Link: [%%CHESS_V%%](#piece:alibaba)
 
 ### Spiral
 
