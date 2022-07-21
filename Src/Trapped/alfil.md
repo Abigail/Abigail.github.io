@@ -24,9 +24,6 @@ There are several pieces which move like the %%PIECE%%:
   {th = 1}  %%SENTEREJ%%
 & {cs = 2}  **Saba**
 &           *Saba* meaning *Elephant* \\
-  {th = 1}  %%INTERDEPENDENT%%
-& {cs = 2}  **Spider**
-&           %%CAPTURE%% \\
   {th = 1}  %%SCIROCCO%%; %%TYPHOON%%
 & {cs = 2}  **Stork** 
 &           %%PROMOTES_TO%% [*Queen*](queen.html); %%CAPTURE%% \\

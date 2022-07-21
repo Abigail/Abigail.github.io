@@ -1615,7 +1615,7 @@ let pieces = {
     },
 
     spider_interdependent: {
-        parent: "alfil",
+        parent: "alibaba",
         _name:  "Spider",
         _index_name: "Spider (Interdependent Chess)",
     },
