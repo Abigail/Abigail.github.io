@@ -29,6 +29,8 @@ There are several pieces which move like the %%PIECE%%:
 &           %%PROMOTES_TO%% [*Queen*](queen.html); %%CAPTURE%% \\
 ====|
 
+Link: [%%CHESS_V%%](#chess-v:alfil)
+
 ### Spiral
 
 On the Spiral, the %%PIECE%% moves in a similar fashion as the
