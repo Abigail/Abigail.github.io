@@ -12,6 +12,10 @@ Of course, for our investigation, Royalness plays no part.
 &           **Bear's Eyes** & &#x718A;&#x773C;
 &           %%PROMOTED%%
               [*Violent Wolf*](gold_general.html?piece=violent_wolf) \\
+  {th = 1}  %%ROCOCO%%
+& {cs = 2}  **Cannon Pawn**
+&           %%PROMOTES_TO%% Player's choice of captured friendly piece;
+            %%CAPTURE%%; %%HOPPER%% \\
   {th = 1}  %%TYPHOON%%
 & {cs = 2}  **Cicada**
 &           %%HOPPER%%; %%PROMOTES_TO%% [*Typhoon*](genie.html?piece=typoon) \\
@@ -48,7 +52,7 @@ Of course, for our investigation, Royalness plays no part.
 &           %%ROYAL%%;
             %%PROMOTES_TO%% [*Emperor*](emperor_typhoon.html) or
                             [*Emperor of Emperors*](emperor_of_emperors.html) \\
-  {th = 1}  %%CHESS%%; %%CAGLIOSTRO%%; %%FALCON_HUNTER%%;
+  {th = 1}  %%CHESS%%; %%CAGLIOSTRO%%; %%FALCON_HUNTER%%; %%ROCOCO%%;
             %%WILDEBEEST%%; %%WOLF%%; Other chess variants
 &           **King** & &#x2654;
 &           %%ROYAL%% \\
