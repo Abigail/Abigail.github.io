@@ -1997,11 +1997,24 @@ let set_info = {
     //
     // Chess variants
     //
+    cagliostro: {
+        href: "https://www.chessvariants.com/large.dir/cagliostro.html",
+        name: "Cagliostro's Chess",
+        pieces: ["king", "queen", "rook", "bishop", "knight",
+                 "archbishop", "chancellor", "general", "pawn"],
+    },
+
     falcon_hunter_chess: {
         href: "https://en.wikipedia.org/wiki/Falcon-hunter_chess",
         name: "Falcon-Hunter Chess",
-        pieces: ["king", "queen", "rook", "falcon", "hunter",
-                 "bishop", "knight", "pawn"],
+        pieces: ["king", "queen", "rook", "bishop", "knight",
+                 "falcon", "hunter", "pawn"],
+    },
+
+    grand_cavalier_chess: {
+        href: "https://www.chessvariants.com/large.dir/grandcavalier.html",
+        pieces: ["eques_rex", "queen", "marshall", "paladin", "cannon",
+                 "nightrider", "cavalier"],
     },
 
     omega_chess: {
@@ -2016,24 +2029,6 @@ let set_info = {
         pieces: ["king", "ace", "acme", "acropolis", "actor", "actress",
                  "oec_caliph", "canvasser", "cardinal", "gnu",
                  "marshal", "queen", "pawn"],
-    },
-
-    grand_cavalier_chess: {
-        href: "https://www.chessvariants.com/large.dir/grandcavalier.html",
-        pieces: ["eques_rex", "queen", "marshall", "paladin", "cannon",
-                 "nightrider", "cavalier"],
-    },
-
-    wolf_chess: {
-        href: "https://en.wikipedia.org/wiki/Wolf_chess",
-        pieces: ["king", "queen", "rook", "bishop", "nightrider", "wolf",
-                 "fox", "elephant_wolf", "sergeant", "pawn"],
-    },
-
-    wildebeest_chess: {
-        href: "https://en.wikipedia.org/wiki/Wildebeest_chess",
-        pieces: ["king", "queen", "rook", "bishop", "knight",
-                 "camel", "wildebeest", "pawn"],
     },
 
     scirocco: {
@@ -2075,6 +2070,19 @@ let set_info = {
                  "fu", "pawn",
                  ],
     },
+
+    wildebeest_chess: {
+        href: "https://en.wikipedia.org/wiki/Wildebeest_chess",
+        pieces: ["king", "queen", "rook", "bishop", "knight",
+                 "camel", "wildebeest", "pawn"],
+    },
+
+    wolf_chess: {
+        href: "https://en.wikipedia.org/wiki/Wolf_chess",
+        pieces: ["king", "queen", "rook", "bishop", "nightrider", "wolf",
+                 "fox", "elephant_wolf", "sergeant", "pawn"],
+    },
+
     //
     // Shogi and shogi variants
     //

@@ -12,11 +12,9 @@ and **Marshal(l)** are the most frequently used.
   {th = 1}  Carrera's Chess
 & {cs = 2}  **Champion**
 &           \\
-  {th = 1}  [Chancellor Chess](#wiki)
-& {cs = 2; rs = 2}
-            **Chancellor**
-&           \\
-  {th = 1}  [Capablanca Chess](#wiki)
+  {th = 1}  [Capablanca Chess](#wiki); %%CAGLIOSTRO%%;
+            [Chancellor Chess](#wiki)
+& {cs = 2}  **Chancellor**
 &           \\
   {th = 1; rs = 2}
             [Turkish Great Chess](#chess-v:historic.dir/indiangr1.html)

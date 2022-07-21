@@ -8,13 +8,6 @@ Due to its diagonal movement, the %%PIECE%% is %%COLOUR_BOUND%%.
 
 |====
 %%PIECE_HEADERS%%
-  {th = 1}  %%CHESS%%; %%WILDEBEEST%%; %%WOLF%%; Other Chess variants
-&           **Bishop**  & &#x2657;
-&           \\
-  {th = 1}  %%SHOGI%%; %%CHU_SHOGI%%
-&           **Bishop**  & &#x89D2;&#x884C;
-&           &#x89D2;&#x884C; meaning *Angle Mover*;
-            %%PROMOTES_TO%% [*Dragon Horse*](dragon_horse.html) \\
   {th = 1}  %%MICRO_SHOGI%%
 & {rs = 3; cs = 2}
             **Bishop**
@@ -23,6 +16,14 @@ Due to its diagonal movement, the %%PIECE%% is %%COLOUR_BOUND%%.
 &           %%PROMOTED%% [*Alfil*](alfil.html) \\
   {th = 1}  %%TYPHOON%%
 &           %%PROMOTED%% [*Guard*](guard.html) \\
+  {th = 1}  %%CHESS%%; %%CAGLIOSTRO%%; %%FALCON_HUNTER%%;
+            %%WILDEBEEST%%; %%WOLF%%; Other Chess variants
+&           **Bishop**  & &#x2657;
+&           \\
+  {th = 1}  %%SHOGI%%; %%CHU_SHOGI%%
+&           **Bishop**  & &#x89D2;&#x884C;
+&           &#x89D2;&#x884C; meaning *Angle Mover*;
+            %%PROMOTES_TO%% [*Dragon Horse*](dragon_horse.html) \\
   {th = 1}  %%RIDERS%%
 & {cs = 2}  **Ferzrider**
 &           Moves likes [*Ferz*](ferz.html), without a limit on the number

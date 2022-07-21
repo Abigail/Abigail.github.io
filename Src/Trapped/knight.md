@@ -12,7 +12,7 @@ be blocked.
   {th = 1}  %%SCIROCCO%%; %%TYPHOON%%
 & {cs = 2}  **Knight**
 &           %%PROMOTES_TO%% [*Rook*](rook.html) \\
-  {th = 1}  %%CHESS%%; %%WILDEBEEST%%
+  {th = 1}  %%CHESS%%; %%CAGLIOSTRO%%; %%FALCON_HUNTER%%; %%WILDEBEEST%%
 &           **Knight** & &#x2658;
 &           \\
   {th = 1}  %%MAKRUK%%
@@ -26,7 +26,7 @@ be blocked.
 &           \\
   {th = 1}  %%SHATAR%%
 &           **Mori**  & <span class =
-                        "mongolian">&#x182E;&#x1823;&#x1837;&#x1822;</span>)
+                        "mongolian">&#x182E;&#x1823;&#x1837;&#x1822;</span>
 &           May not deliver mate \\
 ====|
       
