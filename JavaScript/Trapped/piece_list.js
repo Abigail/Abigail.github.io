@@ -1338,7 +1338,7 @@ let pieces = {
         betza:    "NZ",
         results: {
             spiral:       "T/947,668", 
-            folded_wedge: "?/16,637,381", 
+            folded_wedge: "?/1,069,645,177",
             flat_wedge:   "E*"
         },
     },
@@ -1510,9 +1510,9 @@ let pieces = {
     root_50_leaper: {
         betza:    "(5,5)(7,1)",
         results: {
-            spiral:       "?/7,751,614", 
+            spiral:       "T/69,275,961",
             folded_wedge: "T/84,355", 
-            flat_wedge:   "?/7,104,702",
+            flat_wedge:   "?/456,951,942",
         },
     },
 
@@ -1623,9 +1623,9 @@ let pieces = {
     squirrel: {
         betza:    "DNA",
         results: {
-            spiral:       "?/14,106,875", 
+            spiral:       "?/918,377,302",
             folded_wedge: "F*/100%", 
-            flat_wedge:   "?/16,744,468",
+            flat_wedge:   "?/1,073,479,700",
         },
     },
 
@@ -1889,7 +1889,7 @@ let pieces = {
     wizard: {
         betza:    "FC",
         results: {
-            spiral:       "?/6,986,937", 
+            spiral:       "?/423,775,498",
             folded_wedge: "F*/50%", 
             flat_wedge:   "F/50%",
         },
