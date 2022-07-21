@@ -199,4 +199,5 @@ span.qed:hover::after {
 span.mongolian {
     writing-mode:                 vertical-lr;
     vertical-align:                    middle;
+    padding-right:                     1.25em;
 }
