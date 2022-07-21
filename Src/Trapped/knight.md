@@ -13,8 +13,10 @@ be blocked.
 & {cs = 2}  **Knight**
 &           %%PROMOTES_TO%% [*Rook*](rook.html) \\
   {th = 1}  %%CHESS%%; %%CAGLIOSTRO%%; %%FALCON_HUNTER%%; %%WILDEBEEST%%
-&           **Knight** & &#x2658;
+& {rs = 2}  **Knight** & {rs = 2} &#x2658;
 &           \\
+  {th = 1}  %%INTERDEPENDENT%%
+&           %%CAPTURE%%  \\
   {th = 1}  %%MAKRUK%%
 &           **Knight** & &#x0E21;
 &           \\

@@ -52,10 +52,12 @@ Of course, for our investigation, Royalness plays no part.
 &           %%ROYAL%%;
             %%PROMOTES_TO%% [*Emperor*](emperor_typhoon.html) or
                             [*Emperor of Emperors*](emperor_of_emperors.html) \\
-  {th = 1}  %%CHESS%%; %%CAGLIOSTRO%%; %%FALCON_HUNTER%%; %%ROCOCO%%;
-            %%WILDEBEEST%%; %%WOLF%%; Other chess variants
-&           **King** & &#x2654;
+  {th = 1}  %%CHESS%%; %%CAGLIOSTRO%%; %%FALCON_HUNTER%%;
+            %%ROCOCO%%; %%WILDEBEEST%%; %%WOLF%%; Other chess variants
+& {rs = 2}  **King** & {rs = 2} &#x2654;
 &           %%ROYAL%% \\
+  {th = 1}  %%INTERDEPENDENT%%
+&           %%ROYAL%%; %%CAPTURE%%  \\
   {th = 1}  %%MAKRUK%%
 &           **King** & &#x0E02;
 &           %%ROYAL%% \\

@@ -25,6 +25,9 @@ four diagonal directions. This makes the %%PIECE%% %%COLOUR_BOUND%%.
   {th = 1}  %%SCIROCCO%%; %%TYPHOON%%
 & {cs = 2}  **Firzan**
 &           %%PROMOTES_TO%% [*Zig*](war_machine.html?piece=zig) \\
+  {th = 1}  %%INTERDEPENDENT%%
+& {cs = 2}  **Guardian**
+&           %%CAPTURE%% \\
   {th = 1}  %%MAKRUK%%
 &           **Queen** & &#x0E21;&#x0E47;
 &           %%PROMOTED%% [*Pawn*](pawn.html); Not to be confused with
