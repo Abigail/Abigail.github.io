@@ -2013,8 +2013,8 @@ let set_info = {
 
     grand_cavalier_chess: {
         href: "https://www.chessvariants.com/large.dir/grandcavalier.html",
-        pieces: ["eques_rex", "queen", "marshall", "paladin", "cannon",
-                 "nightrider", "cavalier"],
+        pieces: ["eques_rex", "queen", "cannon", "cavalier", "marshall",
+                 "nightrider", "paladin"],
     },
 
     omega_chess: {
@@ -2026,9 +2026,9 @@ let set_info = {
     overkill_ecumenical_chess: {
         href:    "https://www.chessvariants.com/rules/" +
                  "overkill-ecumenical-chess",
-        pieces: ["king", "ace", "acme", "acropolis", "actor", "actress",
-                 "oec_caliph", "canvasser", "cardinal", "gnu",
-                 "marshal", "queen", "pawn"],
+        pieces: ["king", "queen", "ace", "acme", "acropolis", "actor",
+                 "actress", "oec_caliph", "canvasser", "cardinal", "gnu",
+                 "marshal", "pawn"],
     },
 
     scirocco: {

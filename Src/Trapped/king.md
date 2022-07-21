@@ -39,13 +39,6 @@ Of course, for our investigation, Royalness plays no part.
             and the **General** does not have all its moves available 
             on every square of the palace; Also known as *Assistant* or
             *Mandarin* \\
-  {th = 1}  %%CHESS%%; %%CAGLIOSTRO%%; %%FALCON_HUNTER%%;
-            %%WILDEBEEST%%; %%WOLF%%; Other chess variants
-&           **King** & &#x2654;
-&           %%ROYAL%% \\
-  {th = 1}  %%MAKRUK%%
-&           **King** & &#x0E02;
-&           %%ROYAL%% \\
   {th = 1}  %%SCIROCCO%%
 & {rs = 2; cs = 2}
             **King**
@@ -55,6 +48,13 @@ Of course, for our investigation, Royalness plays no part.
 &           %%ROYAL%%;
             %%PROMOTES_TO%% [*Emperor*](emperor_typhoon.html) or
                             [*Emperor of Emperors*](emperor_of_emperors.html) \\
+  {th = 1}  %%CHESS%%; %%CAGLIOSTRO%%; %%FALCON_HUNTER%%;
+            %%WILDEBEEST%%; %%WOLF%%; Other chess variants
+&           **King** & &#x2654;
+&           %%ROYAL%% \\
+  {th = 1}  %%MAKRUK%%
+&           **King** & &#x0E02;
+&           %%ROYAL%% \\
   {th = 1; rs = 2}
             %%SHOGI%%; %%KYOTO_SHOGI%%; %%MICRO_SHOGI%%; %%CHU_SHOGI%%
 &           **King General** & &#x738b;&#x5c06;
@@ -88,15 +88,16 @@ Of course, for our investigation, Royalness plays no part.
   {th = 1}  %%CHU_SHOGI%%
 &           **Prince** & &#x592A;&#x5B50;
 &           %%ROYAL%%; %%PROMOTED%% [*Drunk Elephant*](drunk_elephant.html) \\
-  {th = 1}  %%TYPHOON%%
+  {th = 1; rs = 3}
+            %%TYPHOON%%
 & {cs = 2}  **Salamander**
 &           %%MORE_MOVES%%; %%PROMOTES_TO%% [*Genie*](genie.html) \\
-  {th = 1}  %%TYPHOON%%
-& {cs = 2}  **Tiger Prince**
+  
+  {cs = 2}  **Tiger Prince**
 &           %%ROYAL%%; %%CAPTURE%%;
             %%PROMOTED%% [*Blind Tiger*](blind_tiger.html) \\
-  {th = 1}  %%TYPHOON%%
-& {cs = 2}  **Undertaker**
+
+  {cs = 2}  **Undertaker**
 &           %%CAPTURE%%; %%PROMOTES_TO%% [*Dayrider*](dayrider.html) \\
   {th = 1}  %%WHALE_SHOGI%%
 & {cs = 2}  **White Whale**
