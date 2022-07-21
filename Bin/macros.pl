@@ -33,6 +33,8 @@ our %MACROS = (
                            '(#chess-v:large.dir/grandcavalier.html)',
         DOBUTSU        =>  '[D&#x14d;butsu sh&#x14d;gi](#wiki:Dobutsu_shogi)',
         FALCON_HUNTER  =>  '[Falcon-Hunter Chess](#wiki:Falcon-hunter_chess)',
+        INTERDEPENDENT =>  '[Interdependent Chess]' .
+                           '(#chess-v:42.dir/interdependent/)',
         JANGGI         =>  '[Janggi (&#xC7A5;&#xAE30;)](#wiki:Janggi)',
         HIASHATAR      =>  '[Hiashatar](#wiki)',
         KYOTO_SHOGI    =>  '[Ky&#x014D;to Sh&#x014D;gi](#wiki:Kyoto_shogi)',

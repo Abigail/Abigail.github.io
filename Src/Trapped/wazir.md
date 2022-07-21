@@ -20,6 +20,9 @@ the %%PIECE%%.
   {th = 1}  %%SCIROCCO%%; %%TYPHOON%%
 & {cs = 2}  **Guard**
 &           %%PROMOTES_TO%% [*Zebra*](zebra.html); %%CAPTURE%% \\
+  {th = 1}  %%INTERDEPENDENT%%
+& {cs = 2}  **Steward**
+&           %%CAPTURE%% \\
   {th = 1}  %%LEAPERS%%
 & {rs = 2; cs = 2}
             **Wazir**

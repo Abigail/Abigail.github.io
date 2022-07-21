@@ -966,6 +966,10 @@ let pieces = {
         _index_name: "Guard (Janggi)",
     },
 
+    guardian: {
+        parent: "ferz",
+    },
+
     //
     // H pieces
     //
@@ -1610,6 +1614,12 @@ let pieces = {
         ],
     },
 
+    spider_interdependent: {
+        parent: "alfil",
+        _name:  "Spider",
+        _index_name: "Spider (Interdependent Chess)",
+    },
+
     squirrel: {
         betza:    "DNA",
         results: {
@@ -1626,6 +1636,10 @@ let pieces = {
             folded_wedge: "E*", 
             flat_wedge:   "E*",
         },
+    },
+
+    steward: {
+        parent: "wazir",
     },
 
     stork: {
@@ -2041,6 +2055,12 @@ let set_info = {
                  "nightrider", "paladin"],
     },
 
+    interdependent_chess: {
+        href:    "https://www.chessvariants.com/42.dir/interdependent/",
+        pieces: ["king", "!!Conservative", "guardian", "knight",
+                 "spider_interdependent", "steward", "!!Universalist",],
+    },
+
     omega_chess: {
         href:    "https://en.wikipedia.org/wiki/Omega_Chess",
         pieces: ["king", "queen", "rook", "bishop", "knight",
@@ -2240,8 +2260,16 @@ for (set in set_info) {
             return
         }
         let piece = pieces [piece_name]
+        if (!piece) {
+            alert (`No piece for ${piece_name}`)
+            return
+        }
         if (piece . parent) {
             piece = pieces [piece_name = piece . parent]
+        }
+        if (!piece) {
+            alert (`No piece for ${piece_name}`)
+            return
         }
         if (seen [piece_name]) {
             return
