@@ -29,7 +29,8 @@ it's known under various names, including:
 & {cs = 2}  **Empress**
 &           The [Rook-Knight compound](chancellor.html?piece=empress) is
             also known as the *Empress* \\
-  {th = 1}  [The Emperor's Game](#chess-v:large.dir/emperor.html);
+  {th = 1}  %%CAGLIOSTRO%%;
+            [The Emperor's Game](#chess-v:large.dir/emperor.html);
             [Giant Chess](#chess-v:large.dir/giantchess.html);
             [Perfect Chess](#chess-v:diffmove.dir/perfectchess.html);
             [Turkish Chess](#chess-v:large.dir/turkishchess.html)

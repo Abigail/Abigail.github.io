@@ -25,11 +25,14 @@ my sub uni_name ($text) {
 our %MACROS = (
     our $TYPE_TRAPPED => {
         CHESS          =>  '[Chess](#wiki)',
+        CAGLIOSTRO     =>  "[Cagliostro's Chess]" .
+                           '(#chess-v:large.dir/cagliostro.html)',
         CHU_SHOGI      =>  '[Chu&nbsp;Sh&#x014d;gi ' .
                            '(&#x4E2D;&#x5C06;&#x68CB;)](#wiki:chu_shogi)',
         GRAND_CAVALIER =>  '[Grand&nbsp;Cavalier&nbsp;Chess]' .
                            '(#chess-v:large.dir/grandcavalier.html)',
         DOBUTSU        =>  '[D&#x14d;butsu sh&#x14d;gi](#wiki:Dobutsu_shogi)',
+        FALCON_HUNTER  =>  '[Falcon-Hunter Chess](#wiki:Falcon-hunter_chess)',
         JANGGI         =>  '[Janggi (&#xC7A5;&#xAE30;)](#wiki:Janggi)',
         HIASHATAR      =>  '[Hiashatar](#wiki)',
         KYOTO_SHOGI    =>  '[Ky&#x014D;to Sh&#x014D;gi](#wiki:Kyoto_shogi)',
