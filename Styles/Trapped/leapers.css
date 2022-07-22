@@ -1,0 +1,16 @@
+table.leapers {
+    border:                solid black 2px;
+    border-collapse:       collapse;
+}
+
+table.leapers td {
+    border:                solid black 1px;
+    padding-left:          0.5em;
+    padding-right:         0.5em;
+    text-align:            left;
+}
+
+table.leapers tr.row-0 td, table.leapers td.col-0 {
+    text-align:            center;
+    font-weight:           bold;
+}

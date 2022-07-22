@@ -1,6 +1,7 @@
 # %%PIECE%%
 
-The %%PIECE%% is a (2,2)-%%LEAPER%%. On each step, it jumps to a square
+The %%PIECE%% is a [*(2,2)-leaper*](leapers.html#basic_leapers).
+On each step, it jumps to a square
 which is two away diagonally. It can jump over an occupied square.
 This makes the %%PIECE%% %%COLOUR_BOUND%%.
 
@@ -14,7 +15,7 @@ There are several pieces which move like the %%PIECE%%:
 
 |====
 %%PIECE_HEADERS%%
-  {th = 1}  %%LEAPERS%%
+  {th = 1}  %%BASIC_LEAPERS%%
 & {cs = 2; rs = 3}  **Alfil**
 &           \\
   {th = 1}  %%SCIROCCO%%

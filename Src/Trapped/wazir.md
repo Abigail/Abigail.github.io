@@ -1,7 +1,7 @@
 # %%PIECE%%
 
-The %%PIECE%% moves as one of the basic leapers. It's a very old piece,
-appearing
+The %%PIECE%% is a [*(0,1)-leaper*](leapers.html#basic_leapers).
+It's a very old piece, appearing
 in very early chess variants. It may step one square in each of the
 four orthogonal directions. Many games have a piece which moves as
 the %%PIECE%%.
@@ -23,7 +23,7 @@ the %%PIECE%%.
   {th = 1}  %%INTERDEPENDENT%%
 & {cs = 2}  **Steward**
 &           %%CAPTURE%% \\
-  {th = 1}  %%LEAPERS%%
+  {th = 1}  %%BASIC_LEAPERS%%
 & {rs = 2; cs = 2}
             **Wazir**
 &           \\

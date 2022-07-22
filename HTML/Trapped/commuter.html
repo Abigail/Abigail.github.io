@@ -1,6 +1,6 @@
 <html>
 <head>
-<title>Commuter</title>
+<title>%%PIECE%%</title>
 <meta charset = "utf-8">
 <link rel  = 'preconnect' href = 'https://fonts.gstatic.com'>
 <link rel = 'stylesheet' href =      'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
@@ -17,11 +17,43 @@
 <script src = '../../JavaScript/Trapped/pages.js'></script>
 </head>
 
-<body><h1>Commuter</h1><div class = "byline">
+<body><h1>%%PIECE%%</h1><div class = "byline">
 by Abigail<br>
 <img src = "../../Images/jan_sluiters.jpg">
 </div>
 
+
+<p>The %%PIECE%% is a <a href="leapers.html#basic_leapers">(4,4)-leaper</a>.
+That is, it jumps to a square
+which is 4 squares away in any diagonal direction. Since it only
+moves on diagonals, the %%PIECE%% is <span class = 'tooltip underline'>colourbound<span class = 'tooltiptext'>A colourbound piece will always stay on a square of the same colour: if it starts on a black square, it will always remain on a black square; if it starts on a white square, it will always remain on a white square</span></span>.</p>
+
+<table class = piece_list>
+  <tr class = 'row-0' markdown = '1'>
+    <th class = 'cell-0-0 col-0 ' markdown = '1'>Game</td>
+    <th class = 'cell-0-1 col-1 ' markdown = '1' colspan = '2'>Piece</td>
+    <th class = 'cell-0-3 col-3 ' markdown = '1'>Info</td>
+  </tr>
+  <tr class = 'row-1' markdown = '1'>
+    <th class = 'cell-1-0 col-0 ' markdown = '1'><a href="leapers.html#basic_leapers"><em>Basic Leapers</em></a></td>
+    <td class = 'cell-1-1 col-1 ' markdown = '1' colspan = '2'><strong>Commuter</strong></td>
+    <td class = 'cell-1-3 col-3 ' markdown = '1'></td>
+  </tr>
+</table>
+
+<h3 id = 'spiral'>Spiral</h3>
+
+<div class = "section">
+<p>The %%PIECE%% follows the same path as the <a href="ferz.html"><em>Ferz</em></a>,
+except blown up by a factor of three. As such, it visits 
+<span class = 'latex-inline'>\(\frac{1}{2} \cdot \frac{1}{4^2} = \frac{1}{32} = 3.125\%\)</span>
+of the squares.</p>
+</div>
+
+<h3 id = 'wedge'>Wedge</h3>
+
+<p>On both the Folded and Flat Wedge, the %%PIECE%% follows a path along the
+right edge of the Wedge, visiting the right most square of each fourth row.</p>
 
 <div class = 'trapped' data-piece = 'commuter'></div>
 
