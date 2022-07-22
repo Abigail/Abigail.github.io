@@ -194,8 +194,8 @@ let pieces = {
         betza:    "CZ",
         results: {
             spiral:       "T/844,094", 
-            folded_wedge: "?/1,071,081,527", 
-            flat_wedge:   "?/784,352,068",
+            folded_wedge: "?/1G",
+            flat_wedge:   "?/784M",
         },
     },
 
@@ -789,7 +789,7 @@ let pieces = {
     frog: {
         betza: "FH",
         results: {
-            spiral:       "?/1,066,282,804", 
+            spiral:       "?/1G",
             folded_wedge: "F*/100%", 
             flat_wedge:   "F*/100%",
         },
@@ -895,8 +895,8 @@ let pieces = {
     gnu: {
         betza:    "NC",
         results: {
-            spiral:       "?/1,067,426,464", 
-            folded_wedge: "?/1,056,869,405", 
+            spiral:       "?/1G",
+            folded_wedge: "?/1G",
             flat_wedge:   "F*/100%",
         },
     },
@@ -1025,7 +1025,7 @@ let pieces = {
     horned_owl: {
         betza:    "F4DfW",
         results: {
-            spiral:       "?/1,056,723,023", 
+            spiral:       "?/1G",
             folded_wedge: "F/50%", 
             flat_wedge:   "F*/100%"
         },
@@ -1338,7 +1338,7 @@ let pieces = {
         betza:    "NZ",
         results: {
             spiral:       "T/947,668", 
-            folded_wedge: "?/1,069,645,177",
+            folded_wedge: "?/1G",
             flat_wedge:   "E*"
         },
     },
@@ -1512,7 +1512,7 @@ let pieces = {
         results: {
             spiral:       "T/69,275,961",
             folded_wedge: "T/84,355", 
-            flat_wedge:   "?/456,951,942",
+            flat_wedge:   "?/456M",
         },
     },
 
@@ -1623,9 +1623,9 @@ let pieces = {
     squirrel: {
         betza:    "DNA",
         results: {
-            spiral:       "?/918,377,302",
+            spiral:       "?/918M",
             folded_wedge: "F*/100%", 
-            flat_wedge:   "?/1,073,479,700",
+            flat_wedge:   "?/1G",
         },
     },
 
@@ -1683,7 +1683,7 @@ let pieces = {
     tadpole: {
         betza: "FH",
         results: {
-            spiral:       "?/1,066,282,804", 
+            spiral:       "?/1G",
             folded_wedge: "T/8,619,774", 
             flat_wedge:   "T/4,637,261",
         },
@@ -1889,7 +1889,7 @@ let pieces = {
     wizard: {
         betza:    "FC",
         results: {
-            spiral:       "?/423,775,498",
+            spiral:       "?/1G",
             folded_wedge: "F*/50%", 
             flat_wedge:   "F/50%",
         },
@@ -1976,9 +1976,9 @@ let pieces = {
     zebu:  {
         betza:    "C(1,4)",
         results: {
-            spiral:       "?/16,421,113", 
-            folded_wedge: "?/16,471,455", 
-            flat_wedge:   "?/11,122,547",
+            spiral:       "?/1G",
+            folded_wedge: "?/1G",
+            flat_wedge:   "?/1G",
         },
     },
 
