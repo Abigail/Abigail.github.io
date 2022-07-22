@@ -1,10 +1,12 @@
 # %%PIECE%%
 
-The %%PIECE%% is a (3,4)-%%LEAPER%%.
+The %%PIECE%% is a [*(3,4)-leaper*](leapers.html#basic_leapers).
+That is, the %%PIECE%% jumps to a square which is three away in
+one orthogonal direction, and four in the other.
 
 |====
 %%PIECE_HEADERS%%
-  {th = 1}  %%LEAPERS%%
+  {th = 1}  %%BASIC_LEAPERS%%
 & {cs = 2}  **Antelope**
 &           \\
 ====|

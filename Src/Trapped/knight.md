@@ -2,7 +2,8 @@
 
 This is the piece it all started with.
 
-A %%PIECE%% is a (1, 2)-%%LEAPER%%. That is, a %%PIECE%% moves from a square
+A %%PIECE%% is a [*(1,2)-leaper*](leapers.html#basic_leapers).
+That is, a %%PIECE%% moves from a square
 to a square which is one square away in one direction, and two squares away
 in a direction orthogonally to the first direction. The move cannot
 be blocked.
@@ -12,7 +13,8 @@ be blocked.
   {th = 1}  %%SCIROCCO%%; %%TYPHOON%%
 & {cs = 2}  **Knight**
 &           %%PROMOTES_TO%% [*Rook*](rook.html) \\
-  {th = 1}  %%CHESS%%; %%CAGLIOSTRO%%; %%FALCON_HUNTER%%; %%WILDEBEEST%%
+  {th = 1}  %%CHESS%%; %%CAGLIOSTRO%%; %%FALCON_HUNTER%%; %%WILDEBEEST%%;
+            %%BASIC_LEAPERS%%
 & {rs = 2}  **Knight** & {rs = 2} &#x2658;
 &           \\
   {th = 1}  %%INTERDEPENDENT%%

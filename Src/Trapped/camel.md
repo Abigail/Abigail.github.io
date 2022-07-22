@@ -1,6 +1,6 @@
 # %%PIECE%%
 
-The %%PIECE%% is  a (3, 1)-%%LEAPER%%. This means
+The %%PIECE%% is  a [*(1,3)-leaper*](leapers.html#basic_leapers). This means
 that the %%PIECE%% jumps to a square which is three squares away in
 one orthogonal
 direction, and one square away into a direction perpendicular to the
@@ -10,7 +10,7 @@ This makes the %%PIECE%% %%COLOUR_BOUND%%.
 
 |====
 %%PIECE_HEADERS%%
-  {th = 1}  %%LEAPERS%%; %%WILDEBEEST%%
+  {th = 1}  %%BASIC_LEAPERS%%; %%WILDEBEEST%%
 & {rs = 2; cs = 2}
             **Camel**
 &           \\

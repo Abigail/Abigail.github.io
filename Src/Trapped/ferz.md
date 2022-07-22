@@ -1,6 +1,6 @@
 # %%PIECE%%
 
-The %%PIECE%% is a (1, 1)-%%LEAPER%%.
+The %%PIECE%% is a [*(1,1)-leaper*](leapers.html#basic_leapers).
 It's a very old piece, appearing
 in very early chess variants. It may step one square in each of the
 four diagonal directions. This makes the %%PIECE%% %%COLOUR_BOUND%%.

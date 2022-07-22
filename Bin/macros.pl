@@ -63,8 +63,9 @@ our %MACROS = (
         XIANGQI        =>  '[Xiangqi (&#x8C61;&#x68CB;)](#wiki:xiangqi)',
         YARI_SHOGI     =>  '[Yari&nbsp;Sh&#x14d;gi](#wiki:Yari_shogi)',
 
-        LEAPER         =>  '[*Leaper*](#wiki:Fairy_chess_piece#Leapers)',
-        LEAPERS        =>  '[*Leapers*](#wiki:Fairy_chess_piece#Leapers)',
+        BASIC_LEAPERS  =>  '[*Basic Leapers*](leapers.html#basic_leapers)',
+        LEAPER         =>  '[*Leaper*](leapers.html)',
+        LEAPERS        =>  '[*Leapers*](leapers.html)',
         RIDER          =>  '[*Rider*](#wiki:Fairy_chess_piece#Riders)',
         RIDERS         =>  '[*Riders*](#wiki:Fairy_chess_piece#Riders)',
 
