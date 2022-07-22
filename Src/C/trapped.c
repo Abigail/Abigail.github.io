@@ -4,7 +4,8 @@
 # include <unistd.h>
 # include <string.h>
 
-# define SIZE 1024 * 1024 * 1024
+# define SIZE  (long long) 1024 * 1024 * 1024
+# define STEPS (long long) 1000 * 1000 * 1000
 
 /*
  * A struct defining a "move part". A move part describes one direction
@@ -179,31 +180,42 @@ int main (int argc, char ** argv) {
      */
     size_t (* to_value) (int, int) = &spiral_to_value;
     int ch;
-    while ((ch = getopt (argc, argv, "b:")) != -1) {
+    int max_steps = 0;
+    int size_mult = 1;
+    while ((ch = getopt (argc, argv, "b:m:s:")) != -1) {
         char * board_type = optarg;
         bool   match      = false;
-        if (!strcmp (board_type, "spiral")) {
-            to_value = &spiral_to_value;
-            match    = true;
+        if (ch == 'b') {
+            if (!strcmp (board_type, "spiral")) {
+                to_value = &spiral_to_value;
+                match    = true;
+            }
+            if (!strcmp (board_type, "folded_wedge")) {
+                to_value = &folded_wedge_to_value;
+                match    = true;
+            }
+            if (!strcmp (board_type, "flat_wedge")) {
+                to_value = &flat_wedge_to_value;
+                match    = true;
+            }
+            if (!match) {
+                printf ("Do not know what to do with board type %s\n",
+                                board_type);
+                exit (1);
+            }
         }
-        if (!strcmp (board_type, "folded_wedge")) {
-            to_value = &folded_wedge_to_value;
-            match    = true;
+        if (ch == 'm') {
+            max_steps = atol (optarg);
         }
-        if (!strcmp (board_type, "flat_wedge")) {
-            to_value = &flat_wedge_to_value;
-            match    = true;
-        }
-        if (!match) {
-            printf ("Do not know what to do with board type %s\n", board_type);
-            exit (1);
+        if (ch == 's') {
+            size_mult = atol (optarg);
         }
     }
     bool * board;
     /*
-     * Initialize the board to a million booleans.
+     * Initialize the board to a billion booleans.
      */
-    if ((board = (bool *) malloc (SIZE * sizeof (bool))) == NULL) {
+    if ((board = (bool *) malloc (size_mult * SIZE * sizeof (bool))) == NULL) {
         perror ("Failed to malloc the board");
         exit (1);
     }
@@ -364,6 +376,11 @@ int main (int argc, char ** argv) {
         }
         else {
             printf ("Trapped on step %d (%d, %d)\n", steps, row, col);
+            break;
+        }
+
+        if (max_steps && steps >= max_steps * STEPS) {
+            printf ("Terminating search after %lld steps\n", max_steps * STEPS);
             break;
         }
     }
