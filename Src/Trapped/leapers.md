@@ -127,7 +127,8 @@ Some Compound Leapers combining two Basic Leapers have names:
 
 |====
 {class = 'leapers compound_leapers'}
-& Wizar & Ferz & Dabbaba & Knight & Alfil & Threeleaper & Camel & Zebra & Tripper \\
+& Wizar & Ferz & Dabbaba & Knight & Alfil
+        & Threeleaper & Camel & Zebra & Tripper \\
 Wizar       & &mdash;
             & [**King**](king.html)
             & [**War Machine**](war_machine.html)
@@ -219,4 +220,84 @@ Tripper     &
             & &mdash;
             \\
 
+====|
+
+Named compound leapers which combine the movements of three or more
+basic leapers:
+
+|====
+{class = 'leapers multi_compound_leapers'}
+{rs = 2} Name & {cs = 9} Basic Leapers           \\
+                         Wizar & Ferz & Dabbaba & Knight & Alfil &
+                         Threeleaper & Camel & Zebra & Tripper   \\
+[**Lioness**](lioness.html)   & [**Wazir**](wazir.html)
+                              & [**Ferz**](ferz.html)
+                              & [**Dabbaba**](dabbaba.html)
+                              & [**Knight**](knight.html)
+                              & [**Alfil**](alfil.html)
+                              &
+                              &
+                              &
+                              &
+                              \\
+[**Centaur**](centaur.html)   & [**Wazir**](wazir.html)
+                              & [**Ferz**](ferz.html)
+                              &
+                              & [**Knight**](knight.html)
+                              &
+                              &
+                              &
+                              &
+                              &
+                              \\
+[**Champion**](champion.html) & [**Wazir**](wazir.html)
+                              &
+                              & [**Dabbaba**](dabbaba.html)
+                              &
+                              & [**Alfil**](alfil.html)
+                              &
+                              &
+                              &
+                              &
+                              \\
+[**FAD**](fad.html)           &
+                              & [**Ferz**](ferz.html)
+                              & [**Dabbaba**](dabbaba.html)
+                              &
+                              & [**Alfil**](alfil.html)
+                              &
+                              &
+                              &
+                              &
+                              \\
+[**Squirrel**](Squirrel.html) &
+                              &
+                              & [**Dabbaba**](dabbaba.html)
+                              & [**Knight**](knight.html)
+                              & [**Alfil**](alfil.html)
+                              &
+                              &
+                              &
+                              &
+                              \\
+[**Hawk**](hawk.html)         &
+                              &
+                              & [**Dabbaba**](dabbaba.html)
+                              &
+                              & [**Alfil**](alfil.html)
+                              & [**Threeleaper**](threeleaper.html)
+                              &
+                              &
+                              & [**Tripper**](tripper.html)
+                              \\
+[**Buffalo**](buffalo.html)   &
+                              &
+                              &
+                              & [**Knight**](knight.html)
+                              &
+                              &
+                              & [**Camel**](camel.html)
+                              & [**Zebra**](zebra.html)
+                              &
+                              \\
 ====|
