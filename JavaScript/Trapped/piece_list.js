@@ -153,6 +153,11 @@ let pieces = {
         parent: "archbishop",
     },
 
+    bd: {
+        parent: "bede",
+        _name:  "BD",
+    },
+
     bears_eyes: {
         parent: "king",
         _name: "Bear's Eyes",
@@ -164,6 +169,15 @@ let pieces = {
             spiral:       "W", 
             folded_wedge: "FC", 
             flat_wedge:   "F*/100%",
+        },
+    },
+
+    bede: {
+        betza: "DB",
+        results: {
+            spiral:       "F/50%", 
+            folded_wedge: "F/50%",
+            flat_wedge:   "F/50%",
         },
     },
 
