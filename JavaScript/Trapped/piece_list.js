@@ -1583,7 +1583,7 @@ let pieces = {
         results: {
             spiral:       "W",
             folded_wedge: "FC", 
-            flat_wedge:   "",
+            flat_wedge:   "F/100%",
         },
     },
 
