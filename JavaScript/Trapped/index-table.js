@@ -92,8 +92,13 @@ function make_index_table () {
         if (piece . results) {
             ["spiral", "folded_wedge", "flat_wedge"] . forEach ((name) => {
                 let content = piece . results [name]
-                let class_name = css_class (content)
-                table += `<td class = '${class_name}'>${content}</td>`
+                if (content) {
+                    let class_name = css_class (content)
+                    table += `<td class = '${class_name}'>${content}</td>`
+                }
+                else {
+                    table += `<td></td>`
+                }
             })
         }
         table += "</tr>";
