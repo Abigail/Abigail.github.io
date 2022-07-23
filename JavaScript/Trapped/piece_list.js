@@ -142,6 +142,13 @@ let pieces = {
         parent: "dragon_king",
     },
 
+    barc: {
+        betza: "fsbN",
+        results: {
+            spiral:       "T/154", 
+        },
+    },
+
     baron: {
         parent: "archbishop",
     },
@@ -407,6 +414,15 @@ let pieces = {
 
     count: {
         parent: "archbishop",
+    },
+
+    crab: {
+        betza: "fbsN",
+        results: {
+            spiral:       "T/382", 
+            folded_wedge: "T/17",
+            flat_wedge:   "E*/12",
+        },
     },
 
     crane: {
