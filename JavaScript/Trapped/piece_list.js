@@ -82,7 +82,7 @@ let pieces = {
     },
 
     alibaba: {
-        betza:    "AD",
+        betza:    "DA",
         results: {
             spiral:       "F/50%",
             folded_wedge: "F/50%", 

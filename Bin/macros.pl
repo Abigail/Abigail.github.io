@@ -64,6 +64,12 @@ our %MACROS = (
         YARI_SHOGI     =>  '[Yari&nbsp;Sh&#x14d;gi](#wiki:Yari_shogi)',
 
         BASIC_LEAPERS  =>  '[*Basic Leapers*](leapers.html#basic_leapers)',
+        COMPOUND_LEAPER
+                       =>  '[*Compound Leaper*]' .
+                           '(leapers.html#compound_leapers)',
+        COMPOUND_LEAPERS
+                       =>  '[*Compound Leapers*]' .
+                           '(leapers.html#compound_leapers)',
         LEAPER         =>  '[*Leaper*](leapers.html)',
         LEAPERS        =>  '[*Leapers*](leapers.html)',
         RIDER          =>  '[*Rider*](#wiki:Fairy_chess_piece#Riders)',
