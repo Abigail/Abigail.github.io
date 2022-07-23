@@ -11,6 +11,8 @@ one orthogonal direction, and four in the other.
 &           \\
 ====|
 
+Link: [%%CHESS_V%%](#piece:antelope)
+
 ### Spiral
 
 The %%PIECE%% gets trapped after 1,887 steps.

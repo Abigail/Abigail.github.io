@@ -1,7 +1,9 @@
 # %%PIECE%%
 
 The %%PIECE%% either moves one square forward (either orthogonally
-or diagonally), or one square orthogonally backward.
+or diagonally), or one square orthogonally backward. Hence, it 
+combines the movements of a vertical [*Wazir*](wazir.html) and
+a forward [*Ferz*](ferz.html).
 
 |====
 %%PIECE_HEADERS%%
