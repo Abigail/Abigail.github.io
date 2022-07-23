@@ -255,6 +255,15 @@ let pieces = {
         parent:   "copper_general",
     },
 
+    buffalo: {
+        betza:    "NCZ",
+        results: {
+            spiral:       "?/1G",
+            folded_wedge: "?/1G",
+            flat_wedge:   "?/1G",
+        },
+    },
+
     //
     // C pieces
     //
@@ -343,7 +352,7 @@ let pieces = {
     },
 
     champion: {
-        betza:    "WAD",
+        betza:    "WDA",
         results: {
             spiral:       "W", 
             folded_wedge: "F/100%", 
@@ -1008,7 +1017,7 @@ let pieces = {
     },
 
     hawk: {
-        betza:    "ADGH",
+        betza:    "DAGH",
         results: {
             spiral:       "F*/100%", 
             folded_wedge: "F*/100%", 
@@ -1147,6 +1156,12 @@ let pieces = {
             flat_wedge:   "E*"
         },
         _index_name: "Knight (Chess)",
+    },
+
+    knight_cavalry: {
+        parent: "buffalo",
+        _name: "Knight",
+        _index_name: "Knight (Cavalry Chess)",
     },
 
     shogi_knight: {
@@ -1815,6 +1830,10 @@ let pieces = {
     //
     // V pieces
     //
+    valiant_knight: {
+        parent: "buffalo",
+    },
+
     vertical_mover: {
         betza: "sWvR",
         results: {
