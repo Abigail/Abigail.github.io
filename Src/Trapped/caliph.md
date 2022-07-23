@@ -3,11 +3,11 @@
 The %%PIECE%% either moves one square orthogonally (like the
 [*Wazir*](wazir.html)) or jumps to a square which is two
 away diagonally (like the [*Alfil*](alfil.html)).
-As such, it's a *compound leaper*.
+As such, it's a %%COMPOUND_LEAPER%%.
 
 |====
 %%PIECE_HEADERS%%
-  {th = 1}  Problemists
+  {th = 1}  Problemists; %%COMPOUND_LEAPERS%%
 & {cs = 2}  **Caliph**
 &           This is a different piece than the [*Caliph*](oec_caliph.html)
             from %%OVERKILL%% \\

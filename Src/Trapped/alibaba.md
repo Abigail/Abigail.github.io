@@ -1,8 +1,8 @@
 # %%PIECE%%
 
 The %%PIECE%% combines the movements of the [*Alfil*](alfil.html) and
-[*Dabbaba*](dabbaba.html). This makes it a *combined leaper*, as it
-combines the movements of two or more *basic leapers*.
+[*Dabbaba*](dabbaba.html). This makes it a %%COMPOUND_LEAPER%%, as it
+combines the movements of two or more %%BASIC_LEAPERS%%.
 
 The %%PIECE%% jumps to a square two squares away from its starting
 point, either orthogonally, or diagonally. It may jump over occupied squares. 
@@ -16,7 +16,7 @@ There are several pieces which move this way:
 
 |====
 %%PIECE_HEADERS%%
-  {th = 1}  *Combined Leapers*
+  {th = 1}  %%COMPOUND_LEAPERS%%
 & {cs = 2}  **Alibaba**
 &           \\
   {th = 1}  %%SCIROCCO%%; %%TYPHOON%%
