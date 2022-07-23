@@ -1,7 +1,10 @@
 # %%PIECE%%
 
-The %%PIECE%% combines the movements of the [*Knight*](knight.html)
-and [*Rook*](rook.html). This makes it a *Knighted Piece*.
+The %%PIECE%% either slides an unlimited number of unoccupied
+squares in any of the four orthogonal directions (like a 
+[*Rook*](rook.html)), or leaps to a square which is two away in
+one orthogonal direction, one one in the other (like a
+[*Knight*](knight.html)).
 
 The %%PIECE%% is a common Fairy Piece, and has a long history.
 It's known under many names, of which **Chancellor**, **Empress**
@@ -50,8 +53,7 @@ Less frequently used names for this piece include:
             [Bishop + Knight compound](archbishop.html?piece=princess)),
 *Samurai*, *Superrook*, *Tank*, and *Visier*.
 
-Links: [%%WIKI%%](#wiki:Empress_(chess)),
-       [%%CHESS_V%%](#chess-v:piececlopedia.dir/rook-knight.html)
+Links: [%%WIKI%%](#wiki:Empress_(chess)), [%%CHESS_V%%](#piece:rook-knight)
 
 ### Spiral
 
