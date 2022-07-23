@@ -15,6 +15,6 @@ table.leapers tr.row-0 td, table.leapers td.col-0 {
     font-weight:           bold;
 }
 
-table.compound_leapers td.col-0 {
+table.compound_leapers td.col-0, table.multi_compound_leapers td.col-0 {
     text-align:            left;
 }
