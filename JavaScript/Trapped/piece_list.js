@@ -327,6 +327,15 @@ let pieces = {
         parent: "archbishop"
     },
 
+    carpenter: {
+        betza:  "DN",
+        results: {
+            spiral:       "?/1G", 
+            folded_wedge: "F/100%", 
+            flat_wedge:   "F/100%",
+        },
+    },
+
     cavalier: {
         parent: "mao",
     },
@@ -531,6 +540,10 @@ let pieces = {
 
     dolphin: {
         parent:   "pawn",
+    },
+
+    doughnut: {
+        parent:   "carpenter",
     },
 
     dragon: {

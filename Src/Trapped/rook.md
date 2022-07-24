@@ -8,7 +8,7 @@ occupied square.
 |====
 %%PIECE_HEADERS%%
   {th = 1}  %%GRAND_CAVALIER%%
-& {cs = 2}  **Cannon**
+& {cs = 2}  **Cannon**<sup>[%%CHESS_V%%](#piece:cannon)
 &           %%CAPTURE%% \\
   {th = 1}  %%XIANGQI%%
 &           **Cannon** & &#x7832;/&#x70AE;
