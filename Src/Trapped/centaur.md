@@ -7,13 +7,43 @@ two away in one orthogonal direction and one in the other.
 
 |====
 %%PIECE_HEADERS%%
+  {th = 1}  [Jupiter](#chess-v:large.dir/jupiter.html)
+& {cs = 2; rs = 2}
+            **Centaur**
+&           \\
   {th = 1}  %%TYPHOON%%
-& {cs = 2}  **Centaur**
 &           %%PROMOTED%% [*Bishop's Dog*](bishops_dog.html) \\
+  {th = 1}  [Courier-Spiel](#chess-v:historic.dir/courierspiel.html)
+& {cs = 2}  **Councillor**
+&           \\
+  {th = 1}  [Royal Court](large.dir/contest/royalcourt.html)
+& {cs = 2}  **Crowned Knight**
+&           \\
+  {th = 1}  [Cobra Chess](large.dir/cobra.html)
+& {cs = 2}  **Duke**
+&           \\
   {th = 1}  %%GRAND_CAVALIER%%
-& {cs = 2}  **Eques Rex**
+& {cs = 2; rs = 2}  **Eques Rex**
 &           %%ROYAL%% \\
+  {th = 1}  [Thunder Chess](difftaking.dir/thunder.html)
+&           %%ROYAL%%; The *Eques Rex* is created when the [*King*](king.html)
+            moves to the same square as the [*Knight*](knight.html); it's
+            demoted to the [*King*](king.html) when capturing \\
+  {th = 1}  [Cavalier Chess](#chess-v:dpieces.dir/cavalier/index.html)
+& {cs = 2}  **Knight King**
+&           %%ROYAL%% \\
+  {th = 1}  [Renniassance Chess](#chess-v:large.dir/renaiss.html)
+& {cs = 2}  **Page**
+&           \\
+  {th = 1}  [Kung Fu Chess](large.dir/kungfuchess.html)
+& {cs = 2}  **Tiger**
+&           \\
 ====|
+
+Link: [%%CHESS_V%%](#piece:centaur)
+
+There is also the *Cavalier King*, which moves the same way as the
+%%PIECE%%, except that its [*Knight*](knight.html) move may be blocked.
 
 ### Spiral
 

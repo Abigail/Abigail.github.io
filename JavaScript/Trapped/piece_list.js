@@ -444,6 +444,10 @@ let pieces = {
         },
     },
 
+    councillor: {
+        parent: "centaur",
+    },
+
     count: {
         parent: "archbishop",
     },
@@ -468,6 +472,10 @@ let pieces = {
 
     crane_king: {
         parent: "king",
+    },
+
+    crowned_knight: {
+        parent: "centaur",
     },
 
     crusader: {
@@ -590,6 +598,12 @@ let pieces = {
         parent: "blind_monkey",
     },
 
+    duke_cobra: {
+        parent: "centaur",
+        _name:  "Duke",
+        _index_name: "Duke (Cobra Chess)",
+    },
+
     duke: {
         betza:    "W4N",
         results: {
@@ -597,6 +611,7 @@ let pieces = {
             folded_wedge: "F/100%", 
             flat_wedge:   "F/100%",
         },
+        _index_name: "Duke (Scirocco)",
     },
 
     //
@@ -1177,6 +1192,10 @@ let pieces = {
         _index_name: "Knight (Cavalry Chess)",
     },
 
+    knight_king: {
+        parent: "centaur",
+    },
+
     shogi_knight: {
         betza:  "fN",
         _name:  "Knight",
@@ -1421,6 +1440,10 @@ let pieces = {
     //
     // P pieces
     //
+    page: {
+        parent: "centaur"
+    },
+
     paladin: {
         parent: "archbishop",
     },
@@ -1790,8 +1813,15 @@ let pieces = {
         },
     },
 
-    tiger: {
+    tiger_kung_fu: {
+        parent: "centaur",
+        _name:  "Tiger",
+        _index_name: "Tiger (Kung Fu Chess)",
+    },
+
+    tiger_hunt: {
         parent: "amazon",
+        _index_name: "Tiger (Tiger Hunt)",
     },
 
     tiger_prince: {
