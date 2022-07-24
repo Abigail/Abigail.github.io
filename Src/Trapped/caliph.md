@@ -18,6 +18,8 @@ As such, it's a %%COMPOUND_LEAPER%%.
             %%TORI_SHOGI%% \\
 ====|
 
+Link: [%%CHESS_V%%](#piece:caliph)
+
 ### Spiral
 
 On the Spiral, the %%PIECE%% moves like the [*Wazir*](wazir.html),

@@ -152,7 +152,7 @@ Ferz        & [**King**](king.html)
 Dabbaba     & [**War Machine**](war_machine.html)
             & [**Goat**](goat.html)
             & &mdash;
-            &
+            & [**Carpenter**](carpenter.html)
             & [**Alibaba**](alibaba.html)
             &
             &
@@ -161,7 +161,7 @@ Dabbaba     & [**War Machine**](war_machine.html)
             \\
 Knight      & [**Marquis**](marquis.html)
             & [**Priest**](priest.html)
-            &
+            & [**Carpenter**](carpenter.html)
             & &mdash;
             &
             &
