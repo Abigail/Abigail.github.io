@@ -617,8 +617,12 @@ class Trapped {
     // Place the piece on the given value (defaults to 1)
     //
     place (args = {}) {
-        let value      = args . value || 1
-        let [row, col] = this . to_coordinates (value)
+        let [row, col, value] = [0, 0, 1]
+        if ("row" in args && "col" in args) {
+            row   = args . row
+            col   = args . col
+            value = this . to_value (row, col)
+        }
         //
         // If we want to visit a square which is outside
         // of the viewing box, adjust the viewbox box.
@@ -628,7 +632,8 @@ class Trapped {
             this . scale ()
         }
         this . visit_dot (row, col)
-        this . current = value
+        this . current_row     = row
+        this . current_col     = col
         this . visited [value] = 1
 
         //
@@ -712,8 +717,11 @@ class Trapped {
             return
         }
         let moves      = this . piece . moves ({step: this . steps + 1})
-        let [row, col] = this . to_coordinates (this . current)
+        let row        = this . current_row
+        let col        = this . current_col
         let best       = 0
+        let best_row   = 0
+        let best_col   = 0
         let info       = window [this . name]
         moves . forEach ((move) => {
             let dr        = move . dr
@@ -725,8 +733,10 @@ class Trapped {
             let min       = move . min      || ((or || oc) ? 0 : 1)
             let min_land  = move . min_land || 0
 
-            let move_best = 0    // Best value within this move
-            let prev_val  = 0    // Previous value within this move
+            let move_best     = 0    // Best value within this move
+            let move_best_row = 0    // Best row within this move
+            let move_best_col = 0    // Best col within this move
+            let prev_val      = 0    // Previous value within this move
 
             //
             // "Slide" along this move. (A step (or leap) is just
@@ -798,7 +808,9 @@ class Trapped {
                 }
 
                 if (move_best == 0 || value < move_best) {
-                    move_best = value  // Found a better square
+                    move_best     = value  // Found a better square
+                    move_best_row = new_row
+                    move_best_col = new_col
                 }
                 
                 prev_val = value
@@ -811,14 +823,15 @@ class Trapped {
             //         + Or we did not have a best score yet (best == 0)
             //
             if (move_best && (best == 0 || move_best < best)) {
-                best = move_best
+                best     = move_best
+                best_row = move_best_row
+                best_col = move_best_col
             }
         })
 
         if (best > 0) {
-            let [new_row, new_col] = this . to_coordinates (best)
-            this . new_line (row, col, new_row, new_col)
-            this . place ({value: best})
+            this . new_line (row, col, best_row, best_col)
+            this . place ({row: best_row, col: best_col})
             this . steps = this . steps + 1
             if (this . may_continue ()) {
                 if (this . max_speed) {
@@ -928,36 +941,6 @@ class Spiral extends Trapped {
     } 
 
     //
-    // Takes value, return its row and column
-    //
-    to_coordinates (value) { 
-        let base = Math . ceil  (Math . sqrt (value));
-        let ring = Math . floor (base / 2);
-        let left = value - Math . pow (2 * ring - 1, 2);
-
-        let col, row;
-
-        if (left <= 2 * ring) {
-            col =     ring;
-            row =     ring - left;
-        }
-        else if (left <= 4 * ring) {
-            col = 3 * ring - left;
-            row =   - ring;
-        }
-        else if (left <= 6 * ring) {
-            col =    - ring;
-            row = -5 * ring + left;
-        }
-        else if (left <= 8 * ring) {
-            col = -7 * ring + left;
-            row =      ring;
-        }
-
-        return [row, col];
-    }
-
-    //
     // The Spiral covers the entire plane, so we're always in range
     //
     in_range (row, col) {
@@ -1010,20 +993,6 @@ class Wedge_Folded extends Trapped {
         return value
     }
 
-    to_coordinates (value) {
-        let row = 0
-        let col = 0
-
-        let sqrt = Math . floor (Math . sqrt (value - 1))
-        let sq   = (1 + sqrt) ** 2
-        let diff = sq - value
-        row      = - sqrt
-        if (sq % 2 == 0) {col = sqrt - diff}
-        else             {col = diff - sqrt}
-
-        return [row, col]
-    }
-
     in_range (row, col) {
         return row <= 0 && Math . abs (col) <= Math . abs (row)
     }
@@ -1061,17 +1030,9 @@ class Wedge_Flat extends Wedge_Folded {
 
         return value
     }
-
-    to_coordinates (value) {
-        let row = 0
-        let col = 0
-
-        let sqrt = Math . floor (Math . sqrt (value - 1))
-        let sq   = (1 + sqrt) ** 2
-        row      =            - sqrt
-        col      = sq - value - sqrt
-
-        return [row, col]
-    }
 }
 
+
+
+    }
+}
