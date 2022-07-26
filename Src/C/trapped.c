@@ -33,7 +33,8 @@ move_part new_move_part () {
     return out;
 }
 
-size_t spiral_to_value (int row, int col) {
+
+size_t spiral_square (int row, int col) {
     int abs_row = abs (row);
     int abs_col = abs (col);
     int max     = abs_col > abs_row ? abs_col : abs_row;
@@ -48,7 +49,28 @@ size_t spiral_to_value (int row, int col) {
 }
 
 
-size_t folded_wedge_to_value (int row, int col) {
+size_t spiral_diamond (int row, int col) {
+    int abs_row = abs (row);
+    int abs_col = abs (col);
+    int ring    = abs_row + abs_col;
+    if (ring == 0) {
+        return 1;
+    }
+
+    int p_max   = ring * ring + (ring - 1) * (ring - 1);
+    int max     = ring * ring + (ring + 1) * (ring + 1);
+    int size    = max - p_max;
+    int e_size  = size / 4;
+
+    return row >  0 & col <= 0 ? max - 0 * e_size - abs_col
+         : row <= 0 & col <  0 ? max - 1 * e_size - abs_row
+         : row <  0 & col >= 0 ? max - 2 * e_size - abs_col
+         : row >= 0 & col >  0 ? max - 3 * e_size - abs_row
+         :                      -1;
+}
+
+
+size_t wedge_folded (int row, int col) {
     int abs_row = abs (row);
     int abs_col = abs (col);
 
@@ -69,7 +91,7 @@ size_t folded_wedge_to_value (int row, int col) {
     return (size_t) value;
 }
 
-size_t flat_wedge_to_value (int row, int col) {
+size_t wedge_flat (int row, int col) {
     int abs_row = abs (row);
     int abs_col = abs (col);
 
@@ -178,7 +200,7 @@ int main (int argc, char ** argv) {
     /*
      * Parse options, if any
      */
-    size_t (* to_value) (int, int) = &spiral_to_value;
+    size_t (* to_value) (int, int) = &spiral_square;
     int ch;
     int max_steps = 0;
     int size_mult = 1;
@@ -186,16 +208,24 @@ int main (int argc, char ** argv) {
         char * board_type = optarg;
         bool   match      = false;
         if (ch == 'b') {
-            if (!strcmp (board_type, "spiral")) {
-                to_value = &spiral_to_value;
+            if (!strcmp (board_type, "spiral_square") ||
+                !strcmp (board_type, "s_sq")) {
+                to_value = &spiral_square;
                 match    = true;
             }
-            if (!strcmp (board_type, "folded_wedge")) {
-                to_value = &folded_wedge_to_value;
+            if (!strcmp (board_type, "spiral_diamond") ||
+                !strcmp (board_type, "s_d")) {
+                to_value = &spiral_diamond;
                 match    = true;
             }
-            if (!strcmp (board_type, "flat_wedge")) {
-                to_value = &flat_wedge_to_value;
+            if (!strcmp (board_type, "wedge_folded") ||
+                !strcmp (board_type, "w_fo")) {
+                to_value = &wedge_folded;
+                match    = true;
+            }
+            if (!strcmp (board_type, "wedge_flat") ||
+                !strcmp (board_type, "w_fl")) {
+                to_value = &wedge_flat;
                 match    = true;
             }
             if (!match) {
