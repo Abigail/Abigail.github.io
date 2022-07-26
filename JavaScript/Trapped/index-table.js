@@ -69,10 +69,12 @@ function make_index_table () {
 
     let table  = "<table class = 'index'>"
         table += "<tr><th rowspan = 2>Piece</th>"  +
-                     "<th rowspan = 2>Spiral</th>" +
+                     "<th colspan = 2>Spiral</th>" +
                      "<th colspan = 2>Wedge</th>"  + 
                  "</tr>\n" 
-        table += "<tr><th>Folded</th>" +
+        table += "<tr><th>Square</th>" +
+                     "<th>Diamond</th>" +
+                     "<th>Folded</th>" +
                      "<th>Flat</th></tr>\n"
 
     Object . keys (pieces) . map ((piece_name) => {
@@ -90,7 +92,10 @@ function make_index_table () {
                  linkify ({name: name, href: piece . file ()}) + "</td>"
 
         if (piece . results) {
-            ["spiral", "folded_wedge", "flat_wedge"] . forEach ((name) => {
+            ["spiral_square",
+             "spiral_diamond",
+             "wedge_folded",
+             "wedge_flat"] . forEach ((name) => {
                 let content = piece . results [name]
                 if (content) {
                     let class_name = css_class (content)
