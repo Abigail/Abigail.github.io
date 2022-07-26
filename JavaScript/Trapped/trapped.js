@@ -66,7 +66,7 @@ function set_up (args = {}) {
 // Create an animation, but do not start it yet
 //
 function init_trapped (args = {}) {
-    let spiral  = args   . spiral || window . spiral_name || "spiral_square"
+    let scheme  = args   . scheme || window . scheme_name || "spiral_square"
     let piece   = args   . piece  || window . piece
     let name    = piece  . name ()
     let trapped = window . trapped
@@ -86,17 +86,17 @@ function init_trapped (args = {}) {
     //
     // There has to be a better way
     //
-    if (spiral == "spiral_square")  {trapped = new Spiral_Square  (c_args)} else
-    if (spiral == "spiral_diamond") {trapped = new Spiral_Diamond (c_args)} else
-    if (spiral == "wedge_flat")     {trapped = new Wedge_Flat     (c_args)} else
-    if (spiral == "wedge_folded")   {trapped = new Wedge_Folded   (c_args)}
+    if (scheme == "spiral_square")  {trapped = new Spiral_Square  (c_args)} else
+    if (scheme == "spiral_diamond") {trapped = new Spiral_Diamond (c_args)} else
+    if (scheme == "wedge_flat")     {trapped = new Wedge_Flat     (c_args)} else
+    if (scheme == "wedge_folded")   {trapped = new Wedge_Folded   (c_args)}
 
     trapped . create_board ()
             . place        ()
             . set_start    ()
 
     window . trapped     = trapped
-    window . spiral_name = spiral
+    window . scheme_name = scheme
 
     stop ()
 }
@@ -116,29 +116,29 @@ function set_up_info (args = {}) {
                           `disabled = 'disabled' `     +
                           `onclick  = 'pause ()'>Pause</button><br>`
 
-    let radio_spiral = ""
-    let spiral_types = ["spiral_square", "spiral_diamond",
+    let radio_scheme = ""
+    let scheme_types = ["spiral_square", "spiral_diamond",
                         "wedge_folded",  "wedge_flat"]
 
-    spiral_types . forEach ((type, index) => {
-        let spiral_name = radio_info [type] ["name"]
+    scheme_types . forEach ((type, index) => {
+        let scheme_name = radio_info [type] ["name"]
         let checked     = ""
         if (index == 0) {
             checked = "checked = 'checked'"
         }
         else {
-            radio_spiral += "<tr>"
+            radio_scheme += "<tr>"
         }
-        radio_spiral +=
+        radio_scheme +=
             `<td colspan = 3>
                  <input type     = "radio"
-                        name     = "spiral"
+                        name     = "scheme"
                         value    = "${type}"
-                        class    = "spiral"
+                        class    = "scheme"
                         id       = "input_${type}"
                         ${checked}
-                        onchange = "init_trapped ({spiral: '${type}'})">
-                 <label for = "input_${type}">${spiral_name}</label>
+                        onchange = "init_trapped ({scheme: '${type}'})">
+                 <label for = "input_${type}">${scheme_name}</label>
              </td></tr>`
     })
 
@@ -166,7 +166,7 @@ function set_up_info (args = {}) {
                      id      = 'density'></td></tr>
 
              <tr><td rowspan = 4>Spiral type</td>
-                 ${radio_spiral}
+                 ${radio_scheme}
 
              <tr><td>Colour scheme</td>
                  <td colspan = 3>
@@ -894,7 +894,7 @@ class Trapped {
         let button_start  = $(`#button-start`)
         let button_pause  = $(`#button-pause`)
         let colour_select = $(`#colour`)
-        let spiral_select = $(`.spiral`)
+        let scheme_select = $(`.scheme`)
 
         this . state   = state
 
@@ -919,12 +919,12 @@ class Trapped {
             button_pause  . html ("Pause")
             button_pause  . prop ("disabled", true)
             colour_select . prop ("disabled", false)
-            spiral_select . prop ("disabled", false)
+            scheme_select . prop ("disabled", false)
             this . clear_info ()
         }
         else {
             colour_select . prop ("disabled", true)
-            spiral_select . prop ("disabled", true)
+            scheme_select . prop ("disabled", true)
         }
     }
 
