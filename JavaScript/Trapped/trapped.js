@@ -161,10 +161,6 @@ function set_up_info (args = {}) {
                  <td colspan = 3
                      id      = 'box'></td></tr>
 
-             <tr><td>Density</td>
-                 <td colspan = 3
-                     id      = 'density'></td></tr>
-
              <tr><td rowspan = 4>Spiral type</td>
                  ${radio_scheme}
 
@@ -615,10 +611,6 @@ class Trapped {
 
         let area = (this . max_row - this . min_row + 1) *
                    (this . max_col - this . min_col + 1)
-
-        $(`#density`) . html (
-            `${(100 * this . steps / area) . toFixed (2)} %`
-        )
     }
 
     //
@@ -629,7 +621,6 @@ class Trapped {
         $(`#steps-${name}`)   . html ("")
         $(`#max-${name}`)     . html ("")
         $(`#box-${name}`)     . html ("")
-        $(`#density-${name}`) . html ("")
     }
 
     //
