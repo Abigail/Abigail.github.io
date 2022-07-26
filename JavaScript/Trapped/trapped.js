@@ -39,7 +39,7 @@ const DEAD    = 999
 // Populate the right div with some form elements.
 //
 let radio_info = {
-    spiral:         {name: "Spiral (Square)"},
+    spiral_square:  {name: "Spiral (Square)"},
     spiral_diamond: {name: "Spiral (Diamond)"},
     wedge_folded:   {name: "Wedge (Folded)"},
     wedge_flat:     {name: "Wedge (Flat)"},
@@ -66,7 +66,7 @@ function set_up (args = {}) {
 // Create an animation, but do not start it yet
 //
 function init_trapped (args = {}) {
-    let spiral  = args   . spiral || window . spiral_name || "spiral"
+    let spiral  = args   . spiral || window . spiral_name || "spiral_square"
     let piece   = args   . piece  || window . piece
     let name    = piece  . name ()
     let trapped = window . trapped
@@ -86,7 +86,7 @@ function init_trapped (args = {}) {
     //
     // There has to be a better way
     //
-    if (spiral == "spiral")         {trapped = new Spiral_Square  (c_args)} else
+    if (spiral == "spiral_square")  {trapped = new Spiral_Square  (c_args)} else
     if (spiral == "spiral_diamond") {trapped = new Spiral_Diamond (c_args)} else
     if (spiral == "wedge_flat")     {trapped = new Wedge_Flat     (c_args)} else
     if (spiral == "wedge_folded")   {trapped = new Wedge_Folded   (c_args)}
@@ -117,8 +117,8 @@ function set_up_info (args = {}) {
                           `onclick  = 'pause ()'>Pause</button><br>`
 
     let radio_spiral = ""
-    let spiral_types = ["spiral", "spiral_diamond",
-                        "wedge_folded", "wedge_flat"]
+    let spiral_types = ["spiral_square", "spiral_diamond",
+                        "wedge_folded",  "wedge_flat"]
 
     spiral_types . forEach ((type, index) => {
         let spiral_name = radio_info [type] ["name"]
