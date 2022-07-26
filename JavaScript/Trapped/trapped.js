@@ -42,6 +42,17 @@ function info_id   (name)       {return make_id ("info",   name)}
 function button_id (name)       {return make_id ("button", name)}
 function svg_id    (name)       {return make_id ("svg",    name)}
 
+
+//
+// Populate the right div with some form elements.
+//
+let radio_info = {
+    spiral:         {name: "Spiral (Square)"},
+    spiral_diamond: {name: "Spiral (Diamond)"},
+    wedge_folded:   {name: "Wedge (Folded)"},
+    wedge_flat:     {name: "Wedge (Flat)"},
+}
+
 //
 // Create the two responsive divs inside any "trapped" divs.
 //
@@ -85,9 +96,13 @@ function init_trapped (args = {}) {
 
     let trapped
 
-    if (spiral == "spiral")       {trapped = new Spiral       (c_args)} else
-    if (spiral == "wedge_flat")   {trapped = new Wedge_Flat   (c_args)} else
-    if (spiral == "wedge_folded") {trapped = new Wedge_Folded (c_args)}
+    //
+    // There has to be a better way
+    //
+    if (spiral == "spiral")         {trapped = new Spiral_Square  (c_args)} else
+    if (spiral == "spiral_diamond") {trapped = new Spiral_Diamond (c_args)} else
+    if (spiral == "wedge_flat")     {trapped = new Wedge_Flat     (c_args)} else
+    if (spiral == "wedge_folded")   {trapped = new Wedge_Folded   (c_args)}
 
     trapped . create_board ()
             . place        ()
@@ -99,14 +114,6 @@ function init_trapped (args = {}) {
     stop (name)
 }
 
-//
-// Populate the right div with some form elements.
-//
-let radio_info = {
-    spiral:       {name: "Spiral"},
-    wedge_folded: {name: "Wedge (Folded)"},
-    wedge_flat:   {name: "Wedge (Flat)"},
-}
 function set_up_info (name, piece) {
     let div     = $("div#" + info_id (name))
     let info    = window [name]
@@ -123,7 +130,8 @@ function set_up_info (name, piece) {
                   `Pause</button><br>`
 
     let radio_spiral = ""
-    let spiral_types = ["spiral", "wedge_folded", "wedge_flat"]
+    let spiral_types = ["spiral", "spiral_diamond",
+                        "wedge_folded", "wedge_flat"]
 
     spiral_types . forEach ((type, index) => {
         let spiral_name = radio_info [type] ["name"]
@@ -158,7 +166,7 @@ function set_up_info (name, piece) {
                  <td colspan = 3 id = 'box-${name}'></td></tr>
              <tr><td>Density</td>
                  <td colspan = 3 id = 'density-${name}'></td></tr>
-             <tr><td rowspan = 3>Spiral type</td>
+             <tr><td rowspan = 4>Spiral type</td>
                  ${radio_spiral}
 
              <tr><td>Colour scheme</td>
@@ -927,7 +935,7 @@ class Trapped {
 // coordinates to values, and from values to coordinates
 //
 
-class Spiral extends Trapped {
+class Spiral_Square extends Trapped {
     to_value (row, col) {
         let abs_col = Math . abs (col);
         let abs_row = Math . abs (row);
@@ -967,6 +975,43 @@ class Spiral extends Trapped {
         this . vb_max_col += delta
     }
 }
+
+
+class Spiral_Diamond extends Spiral_Square {
+    //
+    //         -4  -3  -2  -1   0   1   2   3   4
+    //
+    // -4:                     33
+    // -3:                 34  19  32
+    // -2:             35  20  09  18  31
+    // -1:         36  21  10  03  08  17  30
+    //  0:     37  22  11  04  01  02  07  16  29
+    //  1:         38  23  12  05  06  15  28
+    //  2:             39  24  13  14  27
+    //  3:                 40  25  26
+    //  4:                     41
+    //
+    to_value (row, col) {
+        let abs_row = Math . abs (row)
+        let abs_col = Math . abs (col)
+        let ring = abs_row + abs_col
+        if (ring == 0) {
+            return 1
+        }
+
+        let p_max  = ring ** 2 + (ring - 1) ** 2
+        let max    = ring ** 2 + (ring + 1) ** 2  // Max value in ring
+        let size   = max - p_max                  // Number of squares in ring
+        let e_size = size / 4                     // Squares on an edge
+
+        return row >  0 && col <= 0 ?  max - 0 * e_size - abs_col
+             : row <= 0 && col <  0 ?  max - 1 * e_size - abs_row
+             : row <  0 && col >= 0 ?  max - 2 * e_size - abs_col
+             : row >= 0 && col >  0 ?  max - 3 * e_size - abs_row
+             :                        -1
+    }
+}
+
 
 
 class Wedge_Folded extends Trapped {
@@ -1032,7 +1077,3 @@ class Wedge_Flat extends Wedge_Folded {
     }
 }
 
-
-
-    }
-}
