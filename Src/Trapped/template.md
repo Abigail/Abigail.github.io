@@ -11,6 +11,10 @@ The %%PIECE%% either moves as
 
 ### Spiral
 
+#### Square
+
+#### Diamond
+
 ### Wedge
 
 #### Folded
