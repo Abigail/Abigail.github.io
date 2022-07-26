@@ -34,16 +34,6 @@ const PAUSED  =   2
 const TRAPPED =   3
 const DEAD    = 999
 
-//
-// Helper functions to find ids of various elements based on
-// the name of the chess piece
-//
-function make_id   (type, name) {return `${type}-${name}`}
-function board_id  (name)       {return make_id ("board",  name)}
-function info_id   (name)       {return make_id ("info",   name)}
-function button_id (name)       {return make_id ("button", name)}
-function svg_id    (name)       {return make_id ("svg",    name)}
-
 
 //
 // Populate the right div with some form elements.
@@ -64,8 +54,8 @@ function set_up (args = {}) {
     let piece_name = piece . name ()
 
     $(element) . html (
-        `<div class = 'board' id = '${board_id (piece_name)}'></div>` +
-        `<div class = 'info'  id = '${info_id  (piece_name)}' ></div>`
+        `<div class = 'board' id = 'board'></div>` +
+        `<div class = 'info'  id = 'info' ></div>`
     )
 
     set_up_info  ({piece: piece})
@@ -82,10 +72,9 @@ function init_trapped (args = {}) {
     let trapped = window . trapped
 
     if (trapped) {
-        trapped . set_dead ()    // Make sure we do not continue
+        trapped . set_dead ()     // Make sure we do not continue
 
-        let board_id  = "board-"  + name
-        $(`div#${board_id}`) . empty () // Gets rid of any existing SVG
+        $("div#board") . empty () // Gets rid of any existing SVG
     }
 
     let c_args = {
@@ -118,7 +107,7 @@ function set_up_info (args = {}) {
     let piece   = args  . piece
     let name    = piece . name ()
 
-    let div     = $("div#" + info_id (name))
+    let div     = $("div#info")
     let id1     = `button-start`
     let id2     = `button-pause`
     let button1 = `<button type = 'button' id = '${id1}' `    +
@@ -380,8 +369,8 @@ class Trapped {
         this . colour_scheme = args . colour_scheme
         this . piece         = args . piece
 
-        this . add_to        = "div#" + board_id (this . name)
-        this . id            =          svg_id   (this . name)
+        this . add_to        = "div#board"
+        this . id            = "svg"
         this . size          =  5    // For an 11 x 11 grid
 
         this . visited       = {}    // Values piece has been
