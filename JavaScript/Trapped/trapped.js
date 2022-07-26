@@ -12,14 +12,16 @@ $(window) . on ("load", () => {
     let piece_name = url_params . get ('piece') || file
     let piece      = new Piece ({piece_name: piece_name})
 
+    window . piece = piece
+
     $("div.trapped") . each ((i, e) => {
-        set_up (e, piece)
+        set_up ({element: e, piece: piece})
     })
 
     let text = $("body") . html ()
         text = text . replaceAll (/%%PIECE%%/g,
                     `<span class = "piece">${piece . name ()}</span>`)
-    $("body") . html (text)
+    $("body")  . html (text)
     $("title") . html (piece . name ())
 })
 
@@ -56,33 +58,31 @@ let radio_info = {
 //
 // Create the two responsive divs inside any "trapped" divs.
 //
-function set_up (element, piece) {
-    let piece_name = piece . piece_name
+function set_up (args = {}) {
+    let element    = args  . element
+    let piece      = args  . piece
+    let piece_name = piece . name ()
 
     $(element) . html (
         `<div class = 'board' id = '${board_id (piece_name)}'></div>` +
         `<div class = 'info'  id = '${info_id  (piece_name)}' ></div>`
     )
 
-    window [piece_name] = {}
-    window [piece_name] . piece = piece
-
-    set_up_info (piece_name, piece)
-    init_trapped ({piece: piece, name: piece_name})
+    set_up_info  ({piece: piece})
+    init_trapped ({piece: piece})
 }
 
 //
 // Create an animation, but do not start it yet
 //
 function init_trapped (args = {}) {
-    let name   = args . name
-    let info   = window [name]
-    let spiral = args . spiral || info . spiral || "spiral"
+    let spiral  = args   . spiral || window . spiral_name || "spiral"
+    let piece   = args   . piece  || window . piece
+    let name    = piece  . name ()
+    let trapped = window . trapped
 
-    let piece = args . piece || info . piece
-
-    if (info . trapped) {
-        info . trapped . set_dead ()    // Make sure we do not continue
+    if (trapped) {
+        trapped . set_dead ()    // Make sure we do not continue
 
         let board_id  = "board-"  + name
         $(`div#${board_id}`) . empty () // Gets rid of any existing SVG
@@ -94,8 +94,6 @@ function init_trapped (args = {}) {
         colour_scheme: $(`#colour-${name}`) . val ()
     }
 
-    let trapped
-
     //
     // There has to be a better way
     //
@@ -104,19 +102,23 @@ function init_trapped (args = {}) {
     if (spiral == "wedge_flat")     {trapped = new Wedge_Flat     (c_args)} else
     if (spiral == "wedge_folded")   {trapped = new Wedge_Folded   (c_args)}
 
+    console . log (`spiral = ${spiral}`)
+
     trapped . create_board ()
             . place        ()
             . set_start    ()
 
-    window [name] . trapped = trapped
-    window [name] . spiral  = spiral
+    window . trapped     = trapped
+    window . spiral_name = spiral
 
     stop (name)
 }
 
-function set_up_info (name, piece) {
+function set_up_info (args = {}) {
+    let piece   = args  . piece
+    let name    = piece . name ()
+
     let div     = $("div#" + info_id (name))
-    let info    = window [name]
     let id1     = `button-start-${name}`
     let id2     = `button-pause-${name}`
     let button1 = `<button type = 'button' id = '${id1}' `    +
@@ -147,8 +149,7 @@ function set_up_info (name, piece) {
                  <input type     = "radio" name = "spiral" value = "${type}"
                         class    = "spiral-${name}"
                         id       = "input_${type}-${name}" ${checked}
-                        onchange = "init_trapped ({spiral: '${type}',
-                                                   name:   '${name}'})">
+                        onchange = "init_trapped ({spiral: '${type}'})">
                  <label for = "input_${type}-${name}">${spiral_name}</label>
              </td></tr>`
     })
@@ -217,11 +218,10 @@ function set_up_info (name, piece) {
 // pause/unpause ()
 //
 function pause (name) {
-    let info = window [name]
-    if (!info . trapped) {
+    let trapped = window . trapped
+    if (!trapped) {
         return
     }
-    let trapped = info . trapped
     if (trapped . state == RUNNING) {
         trapped . set_paused ()
         return
@@ -236,16 +236,21 @@ function pause (name) {
 // Start/Reset animation
 //
 function start (name) {
-    let info    = window [name] 
+    let trapped = window . trapped
 
-    let trapped = info . trapped
+    if (!trapped) {
+        return
+    }
 
     if (trapped . state == START) {
         trapped . colour_scheme = $(`#colour-${name}`) . val ()
         trapped . set_running ()
     }
     else {
-        init_trapped ({name: name})
+        //
+        // Resetting
+        //
+        init_trapped ({piece: window . piece})
     }
 }
 
@@ -255,9 +260,9 @@ function start (name) {
 // Has no effect when the animation has not started
 //
 function speed (what, name) {
-    let info = window [name]
-    if (info . trapped) {
-        info . trapped . set_speed (what)
+    let trapped = window . trapped
+    if (trapped) {
+        trapped . set_speed (what)
     }
 }
 
@@ -265,9 +270,9 @@ function speed (what, name) {
 // Called when changing a stopping criterium
 //
 function stop (name) {
-    let info = window [name]
-    if (info . trapped) {
-        info . trapped . set_stop ({
+    let trapped = window . trapped
+    if (trapped) {
+        trapped . set_stop ({
             step:  $(`#stop-step-${name}`)  . val (),
             value: $(`#stop-value-${name}`) . val (),
             box:   $(`#stop-box-${name}`)   . val ()
@@ -692,7 +697,6 @@ class Trapped {
     // Return true if we may continue
     //
     may_continue () {
-        let info = window [this . name]
         if (this . state != RUNNING) {return false}
 
         let out = true
@@ -730,7 +734,6 @@ class Trapped {
         let best       = 0
         let best_row   = 0
         let best_col   = 0
-        let info       = window [this . name]
         moves . forEach ((move) => {
             let dr        = move . dr
             let dc        = move . dc
