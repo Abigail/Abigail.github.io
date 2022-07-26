@@ -108,17 +108,15 @@ function set_up_info (args = {}) {
     let name    = piece . name ()
 
     let div     = $("div#info")
-    let id1     = `button-start`
-    let id2     = `button-pause`
-    let button1 = `<button type = 'button' id = '${id1}' `    +
-                  `class = 'run start' `                      +
-                  `onclick = 'start ()'>`            +
-                  `Start</button><br>`
-    let button2 = `<button type = 'button' id = '${id2}' `    +
-                  `class = 'run pause' `                      +
-                  `disabled = 'disabled' `                    +
-                  `onclick = 'pause ()'>`            +
-                  `Pause</button><br>`
+    let button1 = `<button type     = 'button' `       +
+                          `id       = 'button-start' ` +
+                          `class    = 'run start' `    +
+                          `onclick  = 'start ()'>Start</button><br>`
+    let button2 = `<button type     = 'button' `       +
+                          `id       = 'button-pause' ` +
+                          `class    = 'run pause' `    +
+                          `disabled = 'disabled' `     +
+                          `onclick  = 'pause ()'>Pause</button><br>`
 
     let radio_spiral = ""
     let spiral_types = ["spiral", "spiral_diamond",
@@ -135,9 +133,12 @@ function set_up_info (args = {}) {
         }
         radio_spiral +=
             `<td colspan = 3>
-                 <input type     = "radio" name = "spiral" value = "${type}"
+                 <input type     = "radio"
+                        name     = "spiral"
+                        value    = "${type}"
                         class    = "spiral"
-                        id       = "input_${type}" ${checked}
+                        id       = "input_${type}"
+                        ${checked}
                         onchange = "init_trapped ({spiral: '${type}'})">
                  <label for = "input_${type}">${spiral_name}</label>
              </td></tr>`
@@ -146,36 +147,54 @@ function set_up_info (args = {}) {
 
     let info_table = `
         <table class = 'info_table'>
-             <tr><th colspan = 4 id = 'title' class = 'title'>
-                 ${piece . name ()}</th></tr>
+             <tr><th colspan = 4
+                     id      = 'title'
+                     class   = 'title'>${piece . name ()}</th></tr>
+
              <tr><td>Step</td>
-                 <td colspan = 3 id = 'steps'></td></tr>
+                 <td colspan = 3
+                     id      = 'steps'></td></tr>
+
              <tr><td>Max value</td>
-                 <td colspan = 3 id = 'max'></td></tr>
+                 <td colspan = 3
+                     id      = 'max'></td></tr>
+
              <tr><td>Bounding box</td>
-                 <td colspan = 3 id = 'box'></td></tr>
+                 <td colspan = 3
+                     id      = 'box'></td></tr>
+
              <tr><td>Density</td>
-                 <td colspan = 3 id = 'density'></td></tr>
+                 <td colspan = 3
+                     id      = 'density'></td></tr>
+
              <tr><td rowspan = 4>Spiral type</td>
                  ${radio_spiral}
 
              <tr><td>Colour scheme</td>
                  <td colspan = 3>
                     <select id = 'colour'>
-                        <option value = 'none'>None</option>
-                        <option value = 'mono' selected>Monochrome</option>
-                        <option value = 'rainbow'>Directional</option>
+                        <option value = 'none'>         None       </option>
+                        <option value = 'mono' selected>Monochrome </option>
+                        <option value = 'rainbow'>      Directional</option>
                    </select></td>
                  </td>
+
              <tr><td>Speed</td>
-                 <td class = 'minus'><button type = 'button' class = 'speed' 
-                      onclick = 'speed ("-")'>-</button></td>
-                 <td class = 'plus'><button type = 'button' class = 'speed' 
-                      onclick = 'speed ("+")'>+</button>
-                 <td class = 'max'><button type = 'button' class = 'speed' 
-                      onclick = 'speed ("M")'>Max</button>
-                      </td>
-            </tr>
+                 <td class = 'minus'>
+                     <button type    = 'button'
+                             class   = 'speed' 
+                             onclick = 'speed ("-")'>-</button></td>
+
+                 <td class = 'plus'>
+                     <button type   = 'button'
+                             class   = 'speed' 
+                             onclick = 'speed ("+")'>+</button></td>
+
+                 <td class = 'max'>
+                     <button type    = 'button'
+                             class   = 'speed' 
+                             onclick = 'speed ("M")'>Max</button></td></tr>
+
              <tr><td>Stop on step</td>
                  <td colspan = 3><input type     = 'text'
                                         id       = 'stop-step'
