@@ -91,8 +91,6 @@ function init_trapped (args = {}) {
     if (spiral == "wedge_flat")     {trapped = new Wedge_Flat     (c_args)} else
     if (spiral == "wedge_folded")   {trapped = new Wedge_Folded   (c_args)}
 
-    console . log (`spiral = ${spiral}`)
-
     trapped . create_board ()
             . place        ()
             . set_start    ()
