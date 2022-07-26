@@ -617,10 +617,9 @@ class Trapped {
     // Clear the info fields
     //
     clear_info () {
-        let name = this . name
-        $(`#steps-${name}`)   . html ("")
-        $(`#max-${name}`)     . html ("")
-        $(`#box-${name}`)     . html ("")
+        $("#steps") . html ("")
+        $("#max")   . html ("")
+        $("#box")   . html ("")
     }
 
     //
