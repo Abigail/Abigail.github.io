@@ -20,10 +20,16 @@ This makes the %%PIECE%% a limited range [*Archbishop*](archbishop.html).
 
 ### Square
 
-On the Square, the %%PIECE%% gets trapped after 6,334 steps. This is 
+#### Square
+
+On the Spiral Square, the %%PIECE%% gets trapped after 6,334 steps. This is 
 only slightly sooner than the  [*Archbishop*](archbishop.html), which
 gets trapped after 6,386 steps.
 
+#### Diamond
+
+It takes much longer for the %%PIECE%% to get trapped on the Diamond Square,
+but eventually it does get trapped -- after 318,714 steps.
 
 ### Wedge
 
