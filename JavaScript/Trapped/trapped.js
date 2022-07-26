@@ -91,7 +91,7 @@ function init_trapped (args = {}) {
     let c_args = {
         name:          name,
         piece:         piece,
-        colour_scheme: $(`#colour-${name}`) . val ()
+        colour_scheme: $(`#colour`) . val ()
     }
 
     //
@@ -111,7 +111,7 @@ function init_trapped (args = {}) {
     window . trapped     = trapped
     window . spiral_name = spiral
 
-    stop (name)
+    stop ()
 }
 
 function set_up_info (args = {}) {
@@ -119,16 +119,16 @@ function set_up_info (args = {}) {
     let name    = piece . name ()
 
     let div     = $("div#" + info_id (name))
-    let id1     = `button-start-${name}`
-    let id2     = `button-pause-${name}`
+    let id1     = `button-start`
+    let id2     = `button-pause`
     let button1 = `<button type = 'button' id = '${id1}' `    +
                   `class = 'run start' `                      +
-                  `onclick = 'start ("${name}")'>`            +
+                  `onclick = 'start ()'>`            +
                   `Start</button><br>`
     let button2 = `<button type = 'button' id = '${id2}' `    +
                   `class = 'run pause' `                      +
                   `disabled = 'disabled' `                    +
-                  `onclick = 'pause ("${name}")'>`            +
+                  `onclick = 'pause ()'>`            +
                   `Pause</button><br>`
 
     let radio_spiral = ""
@@ -147,32 +147,32 @@ function set_up_info (args = {}) {
         radio_spiral +=
             `<td colspan = 3>
                  <input type     = "radio" name = "spiral" value = "${type}"
-                        class    = "spiral-${name}"
-                        id       = "input_${type}-${name}" ${checked}
+                        class    = "spiral"
+                        id       = "input_${type}" ${checked}
                         onchange = "init_trapped ({spiral: '${type}'})">
-                 <label for = "input_${type}-${name}">${spiral_name}</label>
+                 <label for = "input_${type}">${spiral_name}</label>
              </td></tr>`
     })
 
 
     let info_table = `
         <table class = 'info_table'>
-             <tr><th colspan = 4 id = 'title-${name}' class = 'title'>
+             <tr><th colspan = 4 id = 'title' class = 'title'>
                  ${piece . name ()}</th></tr>
              <tr><td>Step</td>
-                 <td colspan = 3 id = 'steps-${name}'></td></tr>
+                 <td colspan = 3 id = 'steps'></td></tr>
              <tr><td>Max value</td>
-                 <td colspan = 3 id = 'max-${name}'></td></tr>
+                 <td colspan = 3 id = 'max'></td></tr>
              <tr><td>Bounding box</td>
-                 <td colspan = 3 id = 'box-${name}'></td></tr>
+                 <td colspan = 3 id = 'box'></td></tr>
              <tr><td>Density</td>
-                 <td colspan = 3 id = 'density-${name}'></td></tr>
+                 <td colspan = 3 id = 'density'></td></tr>
              <tr><td rowspan = 4>Spiral type</td>
                  ${radio_spiral}
 
              <tr><td>Colour scheme</td>
                  <td colspan = 3>
-                    <select id = 'colour-${name}'>
+                    <select id = 'colour'>
                         <option value = 'none'>None</option>
                         <option value = 'mono' selected>Monochrome</option>
                         <option value = 'rainbow'>Directional</option>
@@ -180,30 +180,30 @@ function set_up_info (args = {}) {
                  </td>
              <tr><td>Speed</td>
                  <td class = 'minus'><button type = 'button' class = 'speed' 
-                      onclick = 'speed ("-", "${name}")'>-</button></td>
+                      onclick = 'speed ("-")'>-</button></td>
                  <td class = 'plus'><button type = 'button' class = 'speed' 
-                      onclick = 'speed ("+", "${name}")'>+</button>
+                      onclick = 'speed ("+")'>+</button>
                  <td class = 'max'><button type = 'button' class = 'speed' 
-                      onclick = 'speed ("M", "${name}")'>Max</button>
+                      onclick = 'speed ("M")'>Max</button>
                       </td>
             </tr>
              <tr><td>Stop on step</td>
-                 <td colspan = 3><input type = 'text'
-                                        id = 'stop-step-${name}'
-                                        class = 'stop'
-                                        onchange = 'stop ("${name}")'</td>
+                 <td colspan = 3><input type     = 'text'
+                                        id       = 'stop-step'
+                                        class    = 'stop'
+                                        onchange = 'stop ()'</td>
             </tr>
              <tr><td>Stop on value</td>
-                 <td colspan = 3><input type = 'text'
-                                        id = 'stop-value-${name}'
-                                        class = 'stop'
-                                        onchange = 'stop ("${name}")'</td>
+                 <td colspan = 3><input type     = 'text'
+                                        id       = 'stop-value'
+                                        class    = 'stop'
+                                        onchange = 'stop ()'</td>
             </tr>
              <tr><td>Stop on box size</td>
-                 <td colspan = 3><input type = 'text'
-                                        id = 'stop-box-${name}'
-                                        class = 'stop'
-                                        onchange = 'stop ("${name}")'</td>
+                 <td colspan = 3><input type     = 'text'
+                                        id       = 'stop-box'
+                                        class    = 'stop'
+                                        onchange = 'stop ()'</td>
             </tr>
              <tr><td colspan = 4>${button1}</td></tr>
              <tr><td colspan = 4>${button2}</td></tr>
@@ -217,7 +217,7 @@ function set_up_info (args = {}) {
 //
 // pause/unpause ()
 //
-function pause (name) {
+function pause () {
     let trapped = window . trapped
     if (!trapped) {
         return
@@ -235,7 +235,7 @@ function pause (name) {
 //
 // Start/Reset animation
 //
-function start (name) {
+function start () {
     let trapped = window . trapped
 
     if (!trapped) {
@@ -243,7 +243,7 @@ function start (name) {
     }
 
     if (trapped . state == START) {
-        trapped . colour_scheme = $(`#colour-${name}`) . val ()
+        trapped . colour_scheme = $(`#colour`) . val ()
         trapped . set_running ()
     }
     else {
@@ -259,7 +259,7 @@ function start (name) {
 // Increment or decrement the speed of the animation.
 // Has no effect when the animation has not started
 //
-function speed (what, name) {
+function speed (what) {
     let trapped = window . trapped
     if (trapped) {
         trapped . set_speed (what)
@@ -269,13 +269,13 @@ function speed (what, name) {
 //
 // Called when changing a stopping criterium
 //
-function stop (name) {
+function stop () {
     let trapped = window . trapped
     if (trapped) {
         trapped . set_stop ({
-            step:  $(`#stop-step-${name}`)  . val (),
-            value: $(`#stop-value-${name}`) . val (),
-            box:   $(`#stop-box-${name}`)   . val ()
+            step:  $(`#stop-step`)  . val (),
+            value: $(`#stop-value`) . val (),
+            box:   $(`#stop-box`)   . val ()
         })
     }
 }
@@ -600,9 +600,9 @@ class Trapped {
         if (this . state == TRAPPED) {
             step_val += "<span class = 'trapped'>Trapped!</span>"
         }
-        $(`#steps-${name}`) . html (step_val)
-        $(`#max-${name}`)   . html (this . max_value)
-        $(`#box-${name}`)   . html (
+        $(`#steps`) . html (step_val)
+        $(`#max`)   . html (this . max_value)
+        $(`#box`)   . html (
             `${this . max_row - this . min_row + 1} x ` +
             `${this . max_col - this . min_col + 1}`
         )
@@ -610,7 +610,7 @@ class Trapped {
         let area = (this . max_row - this . min_row + 1) *
                    (this . max_col - this . min_col + 1)
 
-        $(`#density-${name}`) . html (
+        $(`#density`) . html (
             `${(100 * this . steps / area) . toFixed (2)} %`
         )
     }
@@ -885,10 +885,10 @@ class Trapped {
     //
     set_state (state) {
         let name = this . name
-        let button_start  = $(`#button-start-${name}`)
-        let button_pause  = $(`#button-pause-${name}`)
-        let colour_select = $(`#colour-${name}`)
-        let spiral_select = $(`.spiral-${name}`)
+        let button_start  = $(`#button-start`)
+        let button_pause  = $(`#button-pause`)
+        let colour_select = $(`#colour`)
+        let spiral_select = $(`.spiral`)
 
         this . state   = state
 
