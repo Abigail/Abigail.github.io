@@ -13,9 +13,16 @@ the movements of the [*Knight*](knight.html) and [*Camel*](camel.html).)
 
 ### Spiral
 
+#### Square
+
 Since the %%PIECE%% can move as the [*Rook*](rook.html), and hence,
 as the [*Wazir*](wazir.html), the %%PIECE%% fills the entire 
 board by just following the Spiral.
+
+#### Diamond
+
+It takes a long time, but the %%PIECE%% does get trapped on the
+Diamond Spiral. After 4,487,928 steps.
 
 ### Wedge
 

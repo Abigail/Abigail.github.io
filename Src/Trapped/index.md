@@ -20,13 +20,15 @@ Each piece is classified to be one of:
 <dt class = 'unknown'>?/NNNN</dt>
 <dd>A piece which doesn't get trapped for at least NNNN steps, but
     for which it isn't clear it will get trapped or not.
-<dt class = 'boring'>W, FC</dt>
+<dt class = 'boring'>W, BM, FC</dt>
 <dd>This indicates the piece has the necessary movement options to follow
     all the squares in the same order as the values placed on the square.
     This results in a very boring pattern. <br>
-    For the Spiral, this happens if the piece can move as the
+    For the Square Spiral, this happens if the piece can move as the
     [Wazir](wazir.html) (being able to step one square in an orthogonal
-    direction). For the Folded Wedge, this happens if the piece can
+    direction). For the Diamond Square, this happens if the piece can
+    move like the [*Blind Monkey*](blind_monkey.html).
+    For the Folded Wedge, this happens if the piece can
     move as the [Flying Cock](flying_cock.html) (being able to step one
     square in sideways, or one square diagonally forward).<br>
     The piece may have additional move options available, but they will

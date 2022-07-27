@@ -29,7 +29,9 @@ combines the movements of two or more <a href="leapers.html#basic_leapers"><em>B
 
 <p>The %%PIECE%% jumps to a square two squares away from its starting
 point, either orthogonally, or diagonally. It may jump over occupied squares. 
-This makes the %%PIECE%% <span class = 'tooltip underline'>colourbound<span class = 'tooltiptext'>A colourbound piece will always stay on a square of the same colour: if it starts on a black square, it will always remain on a black square; if it starts on a white square, it will always remain on a white square</span></span>.</p>
+This makes the %%PIECE%% not only <span class = 'tooltip underline'>colourbound<span class = 'tooltiptext'>A colourbound piece will always stay on a square of the same colour: if it starts on a black square, it will always remain on a black square; if it starts on a white square, it will always remain on a white square</span></span>, it also means the
+%%PIECE%% can only reach the squares which are both on an even row
+and an even column. Only <span class = 'latex-inline'>\(25\%\)</span> of the squares are reachable.</p>
 
 <p>If one would remove all the odd rows and odd files (none of them 
 reachable by the %%PIECE%%) the %%PIECE%% moves like the 
@@ -64,9 +66,21 @@ reachable by the %%PIECE%%) the %%PIECE%% moves like the
 
 <h3 id = 'spiral'>Spiral</h3>
 
+<h4 id = 'square'>Square</h4>
+
 <div class = "section">
 <p>On the Spiral, the %%PIECE%% follows the Spiral, but then with
-its path blown up by a factor of two.</p>
+its path blown up by a factor of two. Hence, it visits <span class = 'latex-inline'>\(25\%\)</span>
+of the squares on the board.</p>
+</div>
+
+<h4 id = 'diamond'>Diamond</h4>
+
+<div class = "section">
+<p>On the Diamond, the %%PIECE%% follows same path the 
+<a href="blind_monkey.html"><em>Blind Monkey</em></a> does, but then with
+its path blown up by a factor of two. Hence, it visits <span class = 'latex-inline'>\(25\%\)</span>
+of the squares on the board.</p>
 </div>
 
 <h3 id = 'wedge'>Wedge</h3>
@@ -74,7 +88,8 @@ its path blown up by a factor of two.</p>
 <p>The %%PIECE%% visits the same squares on both the Flat and Folded
 Wedge, visiting the squares in the same order. It visits every other
 square of ever other rows. Mostly going right to left, and left to
-right, but with a small sidestep before reaching the left end of a row.</p>
+right, but with a small sidestep before reaching the left end of a row.
+Hence, <span class = 'latex-inline'>\(25\%\)</span> of the squares on the board will be visited.</p>
 
 <div class = 'trapped' data-piece = 'alibaba'></div>
 

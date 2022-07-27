@@ -15,9 +15,15 @@ the movements of the [*Knight*](knight.html) and [*Camel*](camel.html).)
 
 ### Spiral
 
-On the Spiral, the %%PIECE%% takes a long time to get trapped,
+#### Square
+
+On the Square Spiral, the %%PIECE%% takes a long time to get trapped,
 but eventually, it does get trapped after 3,700,894 steps.
 
+#### Diamond
+
+On the Diamond Spiral, it's not clear whether the %%PIECE%% will get
+trapped or not. It won't get trapped for its first billion steps.
 
 ### Wedge
 

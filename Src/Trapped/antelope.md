@@ -15,7 +15,15 @@ Link: [%%CHESS_V%%](#piece:antelope)
 
 ### Spiral
 
-The %%PIECE%% gets trapped after 1,887 steps.
+#### Square
+
+The %%PIECE%% gets trapped after 1,887 steps on the Square Spiral
+
+#### Diamond
+
+The %%PIECE%% does not get trapped in its first billion moves on
+the Diamond Spiral, but it's not clear whether it will never
+get trapped.
 
 ### Wedge
 

@@ -14,9 +14,17 @@ the movements of the [*Knight*](knight.html) and [*Camel*](camel.html).)
 
 ### Spiral
 
+#### Square
+
 Since the %%PIECE%% can move as the [*Queen*](queen.html), and hence,
 as the [*Wazir*](wazir.html), the **Actress** fills the entire 
-board by just following the Spiral.
+board by just following the Square Spiral.
+
+#### Diamond
+
+Since the %%PIECE%% can move as the [*Blind Monkey*](blind_monkey.html),
+the %%PIECE%% fills the entire 
+board by just following the Square Spiral.
 
 ### Wedge
 
