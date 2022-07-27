@@ -31,6 +31,9 @@ our %MACROS = (
                            '(&#x4E2D;&#x5C06;&#x68CB;)](#wiki:chu_shogi)',
         GRAND_CAVALIER =>  '[Grand&nbsp;Cavalier&nbsp;Chess]' .
                            '(#chess-v:large.dir/grandcavalier.html)',
+        DICKENS        =>   tooltip ("*A Guide To Fairy Chess*",
+                                     "Anothy Dickens, 1969",
+                                     "underline"),
         DOBUTSU        =>  '[D&#x14d;butsu sh&#x14d;gi](#wiki:Dobutsu_shogi)',
         FALCON_HUNTER  =>  '[Falcon-Hunter Chess](#wiki:Falcon-hunter_chess)',
         INTERDEPENDENT =>  '[Interdependent Chess]' .
