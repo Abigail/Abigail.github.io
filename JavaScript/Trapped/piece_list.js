@@ -1,3 +1,19 @@
+//
+// Function to typeset fractions of square roots
+//
+
+function sqrt (x, y = 1, z = 1) {
+    let formula = `\\sqrt{${x}}`
+    if (z != 1) {
+        formula = `${z} ${formula}`
+    }
+    if (y != 1) {
+        formula = `\\frac{${formula}}{${y}}`
+    }
+    return `E = \\(${formula}\\)`
+}
+
+
 let pieces = {
     //
     // A pieces
@@ -73,8 +89,8 @@ let pieces = {
         results: {
             spiral_square:  "F/12.5%",
             spiral_diamond: "F/12.5%",
-            wedge_folded:   "E", 
-            wedge_flat:     "E",
+            wedge_folded:   sqrt (2, 1, 2),
+            wedge_flat:     sqrt (2, 1, 2),
         },
     },
 
@@ -83,8 +99,8 @@ let pieces = {
         results: {
             spiral_square:  "F*/7.8125%",
             spiral_diamond: "F/12.5%",
-            wedge_folded:   "E", 
-            wedge_flat:     "E",
+            wedge_folded:   sqrt (2, 1, 2),
+            wedge_flat:     sqrt (2, 1, 2),
         },
     },
 
@@ -145,8 +161,9 @@ let pieces = {
         betza:    "fsW",
         results: {
             spiral_square:  "F/25%",
+            spiral_diamond: "E = 1",
             wedge_folded:   "F/100%", 
-            wedge_flat:     "E",
+            wedge_flat:     sqrt (2, 2),
         },
     },
 
@@ -378,7 +395,7 @@ let pieces = {
             wedge_flat:     "E/8",
         },
         _name: "Chameleon",
-        _index_name: "Chameleon (Rococo)",
+        _index_name: "Chameleon (Fairy)",
     },
 
     chameleon_rococo: {
@@ -484,7 +501,7 @@ let pieces = {
         results: {
             spiral_square:  "T/382", 
             wedge_folded:   "T/17",
-            wedge_flat:     "E*/12",
+            wedge_flat:     sqrt (2, 4),
         },
     },
 
@@ -787,8 +804,9 @@ let pieces = {
         betza:    "F",
         results: {
             spiral_square:  "F/50%", 
-            wedge_folded:   "E", 
-            wedge_flat:     "E",
+            spiral_diamond: "F/50%", 
+            wedge_folded:   sqrt (2, 3),
+            wedge_flat:     sqrt (2),
         },
     },
 
@@ -1547,6 +1565,7 @@ let pieces = {
         betza:  "Q",
         results: {
             spiral_square:  "W", 
+            spiral_diamond: "BM",
             wedge_folded:   "FC", 
             wedge_flat:     "F/100%",
         },

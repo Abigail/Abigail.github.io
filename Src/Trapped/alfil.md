@@ -49,4 +49,5 @@ Square Spiral, visiting \(12.5\%\) of the board.
 ### Wedge
 
 On both the Folded and Flat Wedge, the %%PIECE%% escapes to infinity
-by visiting the right most square of each second row.
+by visiting the right most square of each second row. This means an
+escape velocity of \(2 \sqrt{2}\).

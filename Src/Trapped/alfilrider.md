@@ -34,5 +34,7 @@ On the Diamond Spiral the %%PIECE%% moves in the same way as the
 ### Wedge
 
 On both the Folded Wedge and the Flat Wedge, the %%PIECE%% escapes
-to infinity in a straight line, hugging the right side of the Wedge.
+to infinity in a straight line, hugging the right side of the Wedge,
+visiting the right most square of every second row. This gives an
+escape velocity of \(2 \sqrt{2}\).
 

@@ -36,11 +36,20 @@ four diagonal directions. This makes the %%PIECE%% %%COLOUR_BOUND%%.
 
 ### Spiral
 
-On the Spiral the %%PIECE%% will not get trapped.
+#### Square
+
+On the Square Spiral the %%PIECE%% will not get trapped.
 It follows a regular path around
 the origin, creating spiral in the opposite direction of the 
 Spiral, and rotated 45&deg;. It will visited all the odd
-valued squares.
+valued squares, so \(50\%\) of the squares on the board.
+
+#### Diamond
+
+On the Diamond Square, the %%PIECE%% follows the same regular
+path around the origin as the Square Spiral, except that it
+rotates the other way around. Hence, the pieces visits
+\(50\%\) of the squares on the board.
 
 
 ### Wedge
@@ -48,9 +57,12 @@ valued squares.
 #### Folded
 
 On the Folded Wedge, the %%PIECE%% quickly escapes to infinity, using
-a zig-zag pattern on the right hand side of the Wedge.
+a zig-zag pattern on the right hand side of the Wedge. It takes
+three steps to move one square diagonally upward, giving it an 
+escape speed of \(\frac{\sqrt{2}}{3}\).
 
 #### Flat
 
 On the Flat Wedge, the %%PIECE%% sticks the the right hand side
-edge of the board, escaping to infinity.
+edge of the board, escaping to infinity. The escape speed is
+\(\sqrt{2}\).

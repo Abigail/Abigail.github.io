@@ -90,5 +90,10 @@ function make_index_table () {
     table += "</table>"
 
     $(div) . html (table)
+
+    //
+    // Typeset the Math again
+    //
+    MathJax . typeset ()
 }
 
