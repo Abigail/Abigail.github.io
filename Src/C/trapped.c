@@ -212,20 +212,24 @@ int main (int argc, char ** argv) {
                 !strcmp (board_type, "s_sq")) {
                 to_value = &spiral_square;
                 match    = true;
+                printf ("Type = spiral_square\n");
             }
             if (!strcmp (board_type, "spiral_diamond") ||
                 !strcmp (board_type, "s_d")) {
                 to_value = &spiral_diamond;
                 match    = true;
+                printf ("Type = spiral_diamond\n");
             }
             if (!strcmp (board_type, "wedge_folded") ||
                 !strcmp (board_type, "w_fo")) {
                 to_value = &wedge_folded;
+                printf ("Type = wedge_folded\n");
                 match    = true;
             }
             if (!strcmp (board_type, "wedge_flat") ||
                 !strcmp (board_type, "w_fl")) {
                 to_value = &wedge_flat;
+                printf ("Type = wedge_flat\n");
                 match    = true;
             }
             if (!match) {
@@ -236,9 +240,11 @@ int main (int argc, char ** argv) {
         }
         if (ch == 'm') {
             max_steps = atol (optarg);
+            printf ("Max steps = %dG\n", max_steps);
         }
         if (ch == 's') {
             size_mult = atol (optarg);
+            printf ("Size = %dG\n", size_mult);
         }
     }
     bool * board;
@@ -269,7 +275,7 @@ int main (int argc, char ** argv) {
     move_part * move_list = (move_part *) NULL;
     size_t nr_of_moves    = 0;
 
-    for (int i = 1; i < argc; i ++) {
+    for (int i = optind; i < argc; i ++) {
         int dr = 0;
         int dc = 0;
         switch (* argv [i]) {
@@ -283,6 +289,7 @@ int main (int argc, char ** argv) {
             case 'Z': dr = 3; dc = 2; break;  /* Zebra       */
             case 'T': dr = 3; dc = 3; break;  /* Tripper     */
         }
+        printf ("Parsing %s -> [%d, %d]\n", argv [i], dr, dc);
         if (dr > 0 || dc > 0) {
             int steps = 1;
             if (* (argv [i] + 1)) {
@@ -304,6 +311,12 @@ int main (int argc, char ** argv) {
                                            1);
             i ++;
         }
+    }
+
+    for (int i = 0; i < nr_of_moves; i ++) {
+        move_part this = move_list [i];
+        printf ("Move %2d: dr = %2d; dc = %2d; min = %2d; max = %2d\n",
+                 i, this . dr, this . dc, this . min, this . max);
     }
 
 
