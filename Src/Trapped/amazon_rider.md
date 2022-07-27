@@ -14,8 +14,15 @@ strong piece (even stronger than the [*Amazon*](amazon.html).
 
 ### Spiral
 
+#### Square
+
 The %%PIECE%% can move as the [*Wazir*](wazir.html), so it
-just follows the Spiral.
+just follows the Square Spiral.
+
+#### Diamond
+
+The %%PIECE%% can move as the [*Blind Monkey*](blind_monkey.html),
+the %%PIECE%% will fille the entire board by following the Diamond Spiral.
 
 ### Wedge
 

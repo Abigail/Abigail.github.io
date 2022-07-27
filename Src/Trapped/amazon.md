@@ -65,9 +65,16 @@ Other names include:
 
 ### Spiral
 
+#### Square
+
 On the Spiral, since the %%PIECE%% can move as the [*Queen*](queen.html),
 it can move like the [*Wazir*](wazir.html), and hence will follow the spiral,
 visiting all the squares on the board. 
+
+#### Diamond
+
+The %%PIECE%% can move as the [*Blind Monkey*](blind_monkey.html),
+the %%PIECE%% will fille the entire board by following the Diamond Spiral.
 
 ### Wedge
 

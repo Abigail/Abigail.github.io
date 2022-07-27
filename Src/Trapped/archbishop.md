@@ -101,9 +101,17 @@ Links: [%%WIKI%%](#wiki:Princess_(chess)),
 
 ### Spiral
 
-On the Spiral, the %%PIECE%% follows an irregular pattern
+#### Square
+
+On the Square Spiral, the %%PIECE%% follows an irregular pattern
 in a clockwise direction around the origin, getting trapped after
 6,386 steps.
+
+#### Diamond
+
+The %%PIECE%% does not get trapped in its first billion moves on
+the Diamond Spiral, but it's not clear whether it will never
+get trapped.
 
 ### Wedge
 

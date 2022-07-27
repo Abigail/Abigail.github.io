@@ -17,9 +17,16 @@ one orthogonal direction, and one square away in the other.
 
 ### Spiral
 
+#### Square
+
 Since the %%PIECE%% can move as the [*Queen*](queen.html), and hence,
 as the [*Wazir*](wazir.html), the %%PIECE%% fills the entire 
-board by just following the Spiral.
+board by just following the Square Spiral.
+
+#### Diamond
+
+The %%PIECE%% can move as the [*Blind Monkey*](blind_monkey.html),
+the %%PIECE%% will fille the entire board by following the Diamond Spiral.
 
 ### Wedge
 

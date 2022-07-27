@@ -34,10 +34,17 @@ Link: [%%CHESS_V%%](#chess-v:alfil)
 
 ### Spiral
 
-On the Spiral, the %%PIECE%% moves in a similar fashion as the
+#### Square
+
+On the Square Spiral, the %%PIECE%% moves in a similar fashion as the
 [*Ferz*](ferz.html), except that it's path is blown up by a factor two.
 It will visit all the squares of the board which satisfy the condition
 above. As such, the %%PIECE%% visits \(12.5\%\) of the board.
+
+#### Diamond
+
+On the Diamond Spiral, the %%PIECE%% moves in the same way as on the
+Square Spiral, visiting \(12.5\%\) of the board.
 
 ### Wedge
 

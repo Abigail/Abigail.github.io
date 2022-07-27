@@ -17,12 +17,19 @@ number of squares away from the starting position). The
 
 ### Spiral
 
-On the Spiral, the %%PIECE%% moves in a similar way as the
-[*Bishop*](bishop.html) does, but its path "blown up" by a factor
+#### Square
+
+On both the Square Spiral, the %%PIECE%% moves in a similar
+way as the [*Bishop*](bishop.html) does, but its path "blown up" by a factor
 of two. As such, it will visit
 \(\frac{1}{8} \cdot (\frac{1}{2} \cdot \frac{3}{4} + \frac{1}{4}) =
   \frac{5}{64} = 7.8125 \%\)
 of the squares on the board.
+
+#### Diamond
+
+On the Diamond Spiral the %%PIECE%% moves in the same way as the
+[*Alfil*](alfil.html), visiting \(12.5\%\) of the squares on the board.
 
 ### Wedge
 
