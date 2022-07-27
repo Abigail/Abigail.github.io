@@ -36,5 +36,6 @@ before it gets trapped.
 
 On the Flat Wedge, the %%PIECE%% uses an 8 step loop to move to
 a square which lies two to the upper right from where it started
-the loop. While escaping to the upper right, if visits the four
+the loop, giving an escape velocity of \(\frac{\sqrt{2}}{4}\).
+While escaping to the upper right, if visits the four
 right most squares of each row.

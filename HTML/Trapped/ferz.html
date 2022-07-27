@@ -79,12 +79,23 @@ four diagonal directions. This makes the %%PIECE%% <span class = 'tooltip underl
 
 <h3 id = 'spiral'>Spiral</h3>
 
+<h4 id = 'square'>Square</h4>
+
 <div class = "section">
-<p>On the Spiral the %%PIECE%% will not get trapped.
+<p>On the Square Spiral the %%PIECE%% will not get trapped.
 It follows a regular path around
 the origin, creating spiral in the opposite direction of the 
 Spiral, and rotated 45&deg;. It will visited all the odd
-valued squares.</p>
+valued squares, so <span class = 'latex-inline'>\(50\%\)</span> of the squares on the board.</p>
+</div>
+
+<h4 id = 'diamond'>Diamond</h4>
+
+<div class = "section">
+<p>On the Diamond Square, the %%PIECE%% follows the same regular
+path around the origin as the Square Spiral, except that it
+rotates the other way around. Hence, the pieces visits
+<span class = 'latex-inline'>\(50\%\)</span> of the squares on the board.</p>
 </div>
 
 <h3 id = 'wedge'>Wedge</h3>
@@ -93,13 +104,16 @@ valued squares.</p>
 
 <div class = "section">
 <p>On the Folded Wedge, the %%PIECE%% quickly escapes to infinity, using
-a zig-zag pattern on the right hand side of the Wedge.</p>
+a zig-zag pattern on the right hand side of the Wedge. It takes
+three steps to move one square diagonally upward, giving it an 
+escape speed of <span class = 'latex-inline'>\(\frac{\sqrt{2}}{3}\)</span>.</p>
 </div>
 
 <h4 id = 'flat'>Flat</h4>
 
 <p>On the Flat Wedge, the %%PIECE%% sticks the the right hand side
-edge of the board, escaping to infinity.</p>
+edge of the board, escaping to infinity. The escape speed is
+<span class = 'latex-inline'>\(\sqrt{2}\)</span>.</p>
 
 <div class = 'trapped' data-piece = 'ferz'></div>
 

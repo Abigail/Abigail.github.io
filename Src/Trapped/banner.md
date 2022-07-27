@@ -20,6 +20,8 @@ one square forward.
 
 ### Spiral
 
+#### Square
+
 On the Spiral, the %%PIECE%% moves over those rows of the Spiral,
 where the numbers increase from right to left, going to the next
 row where the Spiral turns downward (or comes up from below). If
@@ -27,6 +29,12 @@ you view the Spiral as a set of concentric squares, it %%PIECE%%
 moves of the top edge of each square.
 
 This makes the %%PIECE%% cover 25% of the board.
+
+#### Diamond
+
+On the Diamond Spiral, the %%PIECE%% escapes in the straight
+line to the right, moving one square each step. So, it's 
+escape speed is 1.
 
 ### Wedge
 
@@ -40,4 +48,6 @@ of the board.
 #### Flat
 
 On the Flat Wedge, the %%PIECE%% visits the two right most squares
-on each row, escaping to infinity in a step-wise pattern.
+on each row, escaping to infinity in a step-wise pattern. It uses
+a two step loop to move one square to the upper right, giving
+an escape speed of \(\frac{\sqrt{2}}{2}\).

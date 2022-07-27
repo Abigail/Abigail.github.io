@@ -58,9 +58,17 @@ Links: [%%WIKI%%](#wiki:Queen_(chess)),
 
 ### Spiral
 
+#### Square
+
 The %%PIECE%% can move like a [*Wazir*](wazir.html), and a *Wazir* 
 can follow the Spiral. Hence, the %%PIECE%% will fill the entire board,
 and not get trapped.
+
+#### Diamond
+
+The %%PIECE%% can move like a [*Blind Monkey*](blind_monkey.html),
+and a *Blind Monkey* can follow the Spiral. Hence, the %%PIECE%%
+will fill the entire board, and not get trapped.
 
 ### Wedge
 
