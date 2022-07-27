@@ -41,11 +41,20 @@ a limited <a href="bishop.html"><em>Bishop</em></a>.</p>
 
 <h3 id = 'spiral'>Spiral</h3>
 
+<h4 id = 'square'>Square</h4>
+
 <div class = "section">
 <p>The %%PIECE%%'s movement falls between the movement
 of the <a href="ferz.html"><em>Ferz</em></a>, and the <a href="bishop.html"><em>Bishop</em></a>, which
 both do not get trapped. Suprisingly, the %%PIECE%%, does
 get trapped, and it gets trapped after 129 steps.</p>
+</div>
+
+<h4 id = 'diamond'>Diamond</h4>
+
+<div class = "section">
+<p>On the Diamond Spiral, the %%PIECE%% moves as the <a href="ferz.html"><em>Ferz</em></a>,
+visiting <span class = 'latex-inline'>\(50%\)</span> of the squares on the board.</p>
 </div>
 
 <h3 id = 'wedge'>Wedge</h3>
@@ -54,13 +63,16 @@ get trapped, and it gets trapped after 129 steps.</p>
 
 <div class = "section">
 <p>On the Folded Wedge, the %%PIECE%% escapes to infinity
-using a stepwise pattern on the right hand side of the board.</p>
+using the same pattern as the <a href="ferz.html"><em>Ferz</em></a>. It
+escapes to the upper right, using a three step loop, giving
+it an escape velocity of <span class = 'latex-inline'>\(\frac{\sqrt{2}}{3}\)</span>.</p>
 </div>
 
 <h4 id = 'flat'>Flat</h4>
 
 <p>On the Flat Wedge, the %%PIECE%% escapes to infinity
-by visiting only the right most square of each row.</p>
+by visiting only the right most square of each row. This
+is an escape velocity of <span class = 'latex-inline'>\(\sqrt{2}\)</span>.</p>
 
 <div class = 'trapped' data-piece = 'bishops_dog'></div>
 

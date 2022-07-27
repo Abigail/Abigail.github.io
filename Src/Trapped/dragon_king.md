@@ -50,8 +50,15 @@ Link: [%%CHESS_V%%](#piece:dragonking)
 
 ### Spiral
 
+#### Square
+
 The %%PIECE%% can move as a [*Wazir*](wazir.html). Hence, it will not
 get stuck, filling the entire board by just following the spiral.
+
+#### Diamond
+
+The %%PIECE%% can move as the [*Blind Monkey*](blind_monkey.html).
+Hence, it will follow the spiral and visit all the squares on the board.
 
 ### Wedge
 

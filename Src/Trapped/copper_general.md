@@ -29,17 +29,31 @@ a forward [*Ferz*](ferz.html).
 
 ### Spiral
 
-On the Spiral, the %%PIECE%% circles the origin once,
-then escapes to bottom right.
+#### Square
+
+On the Square Spiral, the %%PIECE%% circles the origin once,
+then escapes to bottom right, using a three step loop to
+move one square to the bottom right. This gives it an 
+escape velocity of \(\frac{\sqrt{2}}{3}\).
+
+#### Diamond
+
+On the Diamond Spiral, the %%PIECE%% escapes straight upward,
+move one square up at each step. This gives it an escape 
+velocity of \(1\).
 
 ### Wedge
 
 #### Folded Wedge
 
 On the Folded Wedge, the %%PIECE%% visits the three right
-most squares of each row, escaping to infinity that way.
+most squares of each row, escaping to infinity to the upper
+right. It uses a six step loop to move two squares to the
+upper left, giving it an escape velocity of
+\(\frac{\sqrt{2}}{3}\).
 
 #### Flat Wedge
 
 On the Flat Wedge, the %%PIECE%% visits the right most
-square of the each row.
+square of the each row, giving it an escape velocity of
+\(\sqrt{2}\).

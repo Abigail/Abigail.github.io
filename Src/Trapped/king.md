@@ -118,10 +118,19 @@ Links: [%%WIKI%%](#wiki:King_(chess)),
 
 ### Spiral
 
+#### Square
+
 The %%PIECE%% can move as the [*Wazir*](wazir.html), and the
 [*Wazir*](wazir.html)
 will follow the Spiral. Hence, the %%PIECE%% will visit all the squares on
 the board.
+
+#### Diamond
+
+The %%PIECE%% can move as the [*Blind Monkey*](blind_monkey.html), and hence
+it will follow the Spiral. The %%PIECE%% will visit all the squares on
+the board.
+
 
 ### Wedge
 

@@ -23,8 +23,20 @@ as a [*King*](king.html), except for stepping straight forward or backward.
 
 ### Spiral
 
-On the Spiral, the %%PIECE%% visits all the squares, filling the
+#### Square
+
+On the Square Spiral, the %%PIECE%% visits all the squares, filling the
 squares in roughly a flattened hexagon.
+
+#### Diamond
+
+The %%PIECE%% is the canonical piece for following the the Diamond
+Spiral. You need five different movements (stepping one square in
+each of the four diagonal directions, and one step to the right).
+The %%PIECE%% can move to six different destinations -- one movement
+possibility is not used (stepping one square to the left). However,
+%%PIECE%% is the "smallest" piece to follow the Diamond Spiral whose
+movements are symmetric.
 
 ### Wedge
 

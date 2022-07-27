@@ -453,18 +453,7 @@ class Trapped {
 
          this . make_dots ()
 
-         this . set_title ()
-
          return this
-    }
-
-    //
-    // Set the title (name of piece) in the title field
-    //
-    set_title () {
-        let title = this . piece . name ()
-
-        $(`#title-${this . name}`) . html (title)
     }
 
     //

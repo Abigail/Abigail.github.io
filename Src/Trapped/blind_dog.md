@@ -15,8 +15,16 @@ or to a square which is one away diagonally forward
 
 ### Spiral
 
-On the Spiral, the %%PIECE%% fills the entire board, in a unique
+#### Square
+
+On the Square Spiral, the %%PIECE%% fills the entire board, in a unique
 pattern.
+
+#### Diamond
+
+On the Diamond Spiral, the %%PIECE%% escapes upward, using the two
+step loop to move to the square above it started the loop from.
+This means its escape velocity is \(\frac{1}{2}\).
 
 ### Wedge
 
