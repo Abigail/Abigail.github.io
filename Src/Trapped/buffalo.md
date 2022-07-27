@@ -28,9 +28,13 @@ Link: [%%CHESS_V%%](#piece:buffalo)
 
 ### Spiral
 
-On the Spiral, the %%PIECE%% does not get trapped for its first
+#### Square
+
+On the Square Spiral, the %%PIECE%% does not get trapped for its first
 one billion steps, but it's not clear whether it will never get
 trapped.
+
+#### Diamond
 
 ### Wedge
 

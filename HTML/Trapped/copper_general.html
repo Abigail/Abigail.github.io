@@ -69,9 +69,21 @@ a forward <a href="ferz.html"><em>Ferz</em></a>.</p>
 
 <h3 id = 'spiral'>Spiral</h3>
 
+<h4 id = 'square'>Square</h4>
+
 <div class = "section">
-<p>On the Spiral, the %%PIECE%% circles the origin once,
-then escapes to bottom right.</p>
+<p>On the Square Spiral, the %%PIECE%% circles the origin once,
+then escapes to bottom right, using a three step loop to
+move one square to the bottom right. This gives it an 
+escape velocity of <span class = 'latex-inline'>\(\frac{\sqrt{2}}{3}\)</span>.</p>
+</div>
+
+<h4 id = 'diamond'>Diamond</h4>
+
+<div class = "section">
+<p>On the Diamond Spiral, the %%PIECE%% escapes straight upward,
+move one square up at each step. This gives it an escape 
+velocity of <span class = 'latex-inline'>\(1\)</span>.</p>
 </div>
 
 <h3 id = 'wedge'>Wedge</h3>
@@ -80,13 +92,17 @@ then escapes to bottom right.</p>
 
 <div class = "section">
 <p>On the Folded Wedge, the %%PIECE%% visits the three right
-most squares of each row, escaping to infinity that way.</p>
+most squares of each row, escaping to infinity to the upper
+right. It uses a six step loop to move two squares to the
+upper left, giving it an escape velocity of
+<span class = 'latex-inline'>\(\frac{\sqrt{2}}{3}\)</span>.</p>
 </div>
 
 <h4 id = 'flat_wedge'>Flat Wedge</h4>
 
 <p>On the Flat Wedge, the %%PIECE%% visits the right most
-square of the each row.</p>
+square of the each row, giving it an escape velocity of
+<span class = 'latex-inline'>\(\sqrt{2}\)</span>.</p>
 
 <div class = 'trapped' data-piece = 'copper_general'></div>
 

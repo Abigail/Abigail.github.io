@@ -72,15 +72,25 @@ different names.</p>
   </tr>
 </table>
 
-<p>Link: <a href="https://www.chessvariants.com/piececlopedia.dir/silvergeneral.html">C&#x2C7D;</a></p>
+<p>Link: <a href="https://www.chessvariants.com/piececlopedia.dir/silvergeneral.html"><span class = 'chess_v_token'>C&#x2C7D;</span></a></p>
 
 <p>The <a href="humpback.html"><em>Humpback</em></a> mirrors the movements of the %%PIECE%%.</p>
 
 <h3 id = 'spiral'>Spiral</h3>
 
+<h4 id = 'square'>Square</h4>
+
 <div class = "section">
-<p>The %%PIECE%% visits all the squares of the Spiral, in
+<p>The %%PIECE%% visits all the squares of the Square Spiral, in
 a unique pattern, with a strong bias to the upper right.</p>
+</div>
+
+<h4 id = 'diamond'>Diamond</h4>
+
+<div class = "section">
+<p>On the Diamond Spiral, the %%PIECE%% circles the origin counter
+clockwise in a simple pattern. All squares on the board will
+be visited.</p>
 </div>
 
 <h3 id = 'wedge'>Wedge</h3>
@@ -88,14 +98,18 @@ a unique pattern, with a strong bias to the upper right.</p>
 <h4 id = 'folded'>Folded</h4>
 
 <div class = "section">
-<p>On the Folded Wedge, the %%PIECE%% follows a zig-zag
-pattern on the right of the Wedge, escaping to infinity.</p>
+<p>On the Folded Wedge, the %%PIECE%% follows the same pattern
+as the <a href="ferz.html"><em>Ferz</em></a>, visiting two squares on each row.
+It escapes to the upper right, using a three step loop to 
+move one square to the upper right. Its escape velocity is
+<span class = 'latex-inline'>\(\frac{\sqrt{2}}{3}\)</span>.</p>
 </div>
 
 <h4 id = 'flat'>Flat</h4>
 
 <p>On the Flat Wedge, the %%PIECE%% visits the right most
-square of each row, and not other rows.</p>
+square of each row, and no other squares. This gives it
+an escape velocity of <span class = 'latex-inline'>\(\sqrt{2}\)</span>.</p>
 
 <div class = 'trapped' data-piece = 'silver_general'></div>
 

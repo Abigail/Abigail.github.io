@@ -38,6 +38,8 @@ Links: [%%WIKI%%](#wiki:Bishop_(chess)),
 
 ### Spiral
 
+#### Square
+
 On the Spiral, the %%PIECE%% moves in a regular pattern. However, 
 despite the possible moves of the %%PIECE%% being four fold symmetric,
 the resulting pattern isn't, making the %%PIECE%% slightly interesting.
@@ -46,14 +48,22 @@ If we take the limit, we see that the %%PIECE%% will visit
 \(\frac{1}{2} \cdot (\frac{1}{2} \cdot \frac{3}{4} + \frac{1}{4}) =
   \frac{5}{16} = 31.25 \%\) of the squares on the board.
 
+#### Diamond
+
+On the Diamond Spiral, the %%PIECE%% moves in the same way as
+the [*Ferz*](ferz.html), visiting \(50\%\) of the squares
+on the board.
+
 ### Wedge
 
 #### Folded
 
-On the Folded Wedge, the %%PIECE%% quickly escapes to infinity, moving in
-a stepwise pattern.
+On the Folded Wedge, the %%PIECE%% escapes to infinity, using a 
+three step loop to move one square to the upper right. This gives
+the %%PIECE%% an escape velocity of \(\frac{\sqrt{2}}{3}\).
 
 #### Flat
 
 On the Flat Wedge, the %%PIECE%% escapes as well, keep to the right
-edge of the Wedge.
+edge of the Wedge, moving one square to the upper right in each step.
+This means an escape velocity of \(\sqrt{2}\).

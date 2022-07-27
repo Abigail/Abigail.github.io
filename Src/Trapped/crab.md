@@ -17,9 +17,16 @@ Link: [%%CHESS_V%%](#piece:crab)
 
 ### Spiral
 
+#### Square
+
 After visiting mostly squares above the origin, the %%PIECE%% gets
 trapped after 382 steps, which is more than double the number
 of steps the [*Barc*](barc.html) uses.
+
+#### Diamond
+
+On the Diamond Spiral, the %%PIECE%% gets trapped just a little sooner
+than on the Square Spiral: after 315 steps it's trapped.
 
 ### Wedge
 

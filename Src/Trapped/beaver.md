@@ -15,9 +15,17 @@ or an unlimited of unoccupied squares orthogonally backward
 
 ### Spiral
 
+#### Square
+
 Since the %%PIECE%% can move as the [*Wazir*](wazir.html), the
 %%PIECE%% will follow the Spiral, visiting every square on the
 board.
+
+#### Diamond
+
+On the Diamond Spiral, the %%PIECE%% escapes upward, using a 
+two step loop to move on square upward. This means an escape
+velocity of \(\frac{1}{2}\).
 
 ### Wedge
 

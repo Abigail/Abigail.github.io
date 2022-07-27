@@ -18,12 +18,20 @@ directions, except straight backwards.
 
 ### Spiral
 
+#### Square
+
 The %%PIECE%% fills the entire board, but it does so in an
 unusual manner. It fills up the board in an expanding, roughly triangle
 shaped pattern.
 It adds three rows at the bottom, for each row at the right and left
 side of the triangle. This is the mirror of the travel pattern
 of the [*Drunk Elephant*](drunk_elephant.html).
+
+#### Diamond
+
+The %%PIECE%% can move as the [*Blind Monkey*](blind_monkey.html).
+Hence, it will follow the Diamond Spiral, and visit all the squares
+on the board.
 
 ### Wedge
 

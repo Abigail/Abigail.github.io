@@ -13,6 +13,13 @@ function sqrt (x, y = 1, z = 1) {
     return `E = \\(${formula}\\)`
 }
 
+function frac (x, y = 1) {
+    if (y == 1) {
+        return `E = \\(${x}\\)`
+    }
+    return `E = \\(\\frac{${x}}{${y}}\\)`
+}
+
 
 let pieces = {
     //
@@ -89,8 +96,8 @@ let pieces = {
         results: {
             spiral_square:  "F/12.5%",
             spiral_diamond: "F/12.5%",
-            wedge_folded:   sqrt (2, 1, 2),
-            wedge_flat:     sqrt (2, 1, 2),
+            wedge_folded:    sqrt (2, 1, 2),
+            wedge_flat:      sqrt (2, 1, 2),
         },
     },
 
@@ -99,8 +106,8 @@ let pieces = {
         results: {
             spiral_square:  "F*/7.8125%",
             spiral_diamond: "F/12.5%",
-            wedge_folded:   sqrt (2, 1, 2),
-            wedge_flat:     sqrt (2, 1, 2),
+            wedge_folded:    sqrt (2, 1, 2),
+            wedge_flat:      sqrt (2, 1, 2),
         },
     },
 
@@ -163,7 +170,7 @@ let pieces = {
             spiral_square:  "F/25%",
             spiral_diamond: "E = 1",
             wedge_folded:   "F/100%", 
-            wedge_flat:     sqrt (2, 2),
+            wedge_flat:      sqrt (2, 2),
         },
     },
 
@@ -175,6 +182,7 @@ let pieces = {
         betza: "fsbN",
         results: {
             spiral_square:  "T/154", 
+            spiral_diamond: "T/325",
         },
     },
 
@@ -196,6 +204,7 @@ let pieces = {
         betza:    "fFfWsW4bW0",
         results: {
             spiral_square:  "W", 
+            spiral_diamond: frac (1, 2),
             wedge_folded:   "FC", 
             wedge_flat:     "F*/100%",
         },
@@ -219,8 +228,9 @@ let pieces = {
         betza:  "B",
         results: {
             spiral_square:  "F/31.25%", 
-            wedge_folded:   "E", 
-            wedge_flat:     "E",
+            spiral_diamond: "F/50%",
+            wedge_folded:    sqrt (2, 3),
+            wedge_flat:      sqrt (2),
         },
         _index_name: "Bishop (Chess)",
     },
@@ -235,8 +245,9 @@ let pieces = {
         betza:    "F3",
         results: {
             spiral_square:  "T/129", 
-            wedge_folded:   "E", 
-            wedge_flat:     "E",
+            spiral_diamond: "F/50%",
+            wedge_folded:    sqrt (2, 3),
+            wedge_flat:      sqrt (2),
         },
         _name:    "Bishop's Dog",
     },
@@ -245,8 +256,9 @@ let pieces = {
         betza:    "CZ",
         results: {
             spiral_square:  "T/844,094", 
+            spiral_diamond: "?/1G",
             wedge_folded:   "?/1G",
-            wedge_flat:     "?/784M",
+            wedge_flat:     "?/1G",
         },
     },
 
@@ -258,6 +270,7 @@ let pieces = {
         betza: "bsWfF",
         results: {
             spiral_square:  "F*/100%", 
+            spiral_diamond:  frac (1, 2),
             wedge_folded:   "FC", 
             wedge_flat:     "F/100%",
         },
@@ -267,6 +280,7 @@ let pieces = {
         betza:    "sWF",
         results: {
             spiral_square:  "F*/100%", 
+            spiral_diamond: "BM",
             wedge_folded:   "FC", 
             wedge_flat:     "F/100%",
         },
@@ -276,6 +290,7 @@ let pieces = {
         betza:    "sbWF",
         results: {
             spiral_square:  "F*/100%", 
+            spiral_diamond: "BM",
             wedge_folded:   "FC", 
             wedge_flat:     "F/100%",
         },
@@ -289,6 +304,7 @@ let pieces = {
         betza:    "NCZ",
         results: {
             spiral_square:  "?/1G",
+            spiral_diamond: "",
             wedge_folded:   "?/1G",
             wedge_flat:     "?/1G",
         },
@@ -482,9 +498,10 @@ let pieces = {
     copper_general: {
         betza:    "vWfF",
         results: {
-            spiral_square:  "E*", 
-            wedge_folded:   "E", 
-            wedge_flat:     "E",
+            spiral_square:   sqrt (2, 3),
+            spiral_diamond:  frac (1),
+            wedge_folded:    sqrt (2, 3),
+            wedge_flat:      sqrt (2),
         },
     },
 
@@ -500,8 +517,9 @@ let pieces = {
         betza: "fbsN",
         results: {
             spiral_square:  "T/382", 
+            spiral_diamond: "T/315",
             wedge_folded:   "T/17",
-            wedge_flat:     sqrt (2, 4),
+            wedge_flat:      sqrt (2, 4),
         },
     },
 
@@ -620,6 +638,7 @@ let pieces = {
         betza:   "FR",
         results: {
             spiral_square:  "W", 
+            spiral_diamond: "BM",
             wedge_folded:   "FC", 
             wedge_flat:     "F/100%",
         },
@@ -805,8 +824,8 @@ let pieces = {
         results: {
             spiral_square:  "F/50%", 
             spiral_diamond: "F/50%", 
-            wedge_folded:   sqrt (2, 3),
-            wedge_flat:     sqrt (2),
+            wedge_folded:    sqrt (2, 3),
+            wedge_flat:      sqrt (2),
         },
     },
 
@@ -1203,6 +1222,7 @@ let pieces = {
         betza:  "K",
         results: {
             spiral_square:  "W", 
+            spiral_diamond: "BM", 
             wedge_folded:   "FC", 
             wedge_flat:     "F/100%"
         },
@@ -1685,8 +1705,9 @@ let pieces = {
         betza:  "FfW",
         results: {
             spiral_square:  "F*/100%", 
-            wedge_folded:   "E", 
-            wedge_flat:     "E",
+            spiral_diamond: "F/100%",
+            wedge_folded:    sqrt (2, 3),
+            wedge_flat:      sqrt (2),
         },
     },
 

@@ -36,17 +36,29 @@ The [*Humpback*](humpback.html) mirrors the movements of the %%PIECE%%.
 
 ### Spiral
 
-The %%PIECE%% visits all the squares of the Spiral, in
+#### Square
+
+The %%PIECE%% visits all the squares of the Square Spiral, in
 a unique pattern, with a strong bias to the upper right.
+
+#### Diamond
+
+On the Diamond Spiral, the %%PIECE%% circles the origin counter
+clockwise in a simple pattern. All squares on the board will
+be visited.
 
 ### Wedge
 
 #### Folded
 
-On the Folded Wedge, the %%PIECE%% follows a zig-zag
-pattern on the right of the Wedge, escaping to infinity.
+On the Folded Wedge, the %%PIECE%% follows the same pattern
+as the [*Ferz*](ferz.html), visiting two squares on each row.
+It escapes to the upper right, using a three step loop to 
+move one square to the upper right. Its escape velocity is
+\(\frac{\sqrt{2}}{3}\).
 
 #### Flat
 
 On the Flat Wedge, the %%PIECE%% visits the right most
-square of each row, and not other rows.
+square of each row, and no other squares. This gives it
+an escape velocity of \(\sqrt{2}\).
