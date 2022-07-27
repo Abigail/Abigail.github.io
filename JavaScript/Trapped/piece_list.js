@@ -369,8 +369,22 @@ let pieces = {
         _index_name: "Centaur (Bishop + Knight)",
     },
 
-    chameleon: {
+    chameleon_dickins: {
+        betza_list: ["N", "B", "R", "BR"],
+        results: {
+            spiral_square:  "T/62", 
+            spiral_diamond: "T/98",
+            wedge_folded:   "T/16",
+            wedge_flat:     "E/8",
+        },
+        _name: "Chameleon",
+        _index_name: "Chameleon (Rococo)",
+    },
+
+    chameleon_rococo: {
         parent: "queen",
+        _name: "Chameleon",
+        _index_name: "Chameleon (Rococo)",
     },
 
     champion: {
@@ -2183,7 +2197,7 @@ let set_info = {
 
     rococo: {
         href: "https://www.chessvariants.com/other.dir/rococo.html",
-        pieces: ["king", "advancer", "chameleon", "immobilizer",
+        pieces: ["king", "advancer", "chameleon_rococo", "immobilizer",
                  "longleaper", "swapper", "withdrawer", "cannon_pawn"],
     },
 
