@@ -207,6 +207,7 @@ int main (int argc, char ** argv) {
     int max_steps = 0;
     int size_mult = 1;
     bool debug    = false;
+    long long size;
 
     while ((ch = getopt (argc, argv, "b:m:s:d")) != -1) {
         bool match = false;
@@ -257,19 +258,20 @@ int main (int argc, char ** argv) {
                  board_type, max_steps, size_mult);
     }
                   
+    size = (long) SIZE * size_mult;
 
     bool * board;
     /*
      * Initialize the board to a billion booleans.
      */
-    if ((board = (bool *) malloc (size_mult * SIZE * sizeof (bool))) == NULL) {
+    if ((board = (bool *) malloc (size * sizeof (bool))) == NULL) {
         perror ("Failed to malloc the board");
         exit (1);
     }
     /*
      * Initialize the board
      */
-    for (size_t i = 0; i < SIZE; i ++) {
+    for (size_t i = 0; i < size; i ++) {
         board [i] = false;
     }
     board [1] = true;
@@ -377,7 +379,7 @@ int main (int argc, char ** argv) {
                     break;   /* Out of bounds (some spirals only) */
                 }
 
-                if (value >= SIZE) {
+                if (value >= size) {
                     out_of_bounds = true;
                     break;   /* Too far way */
                 }
