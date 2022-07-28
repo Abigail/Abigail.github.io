@@ -135,7 +135,8 @@ move_part * add_move (move_part * move_list, size_t * n, int d_row, int d_col) {
  * full rotational symmetry.
  */
 move_part * add_leaper_moves (move_part * move_list, size_t * n,
-                             int d_row, int d_col, int steps) {
+                             int d_row, int d_col,
+                             int steps) {
 
     size_t m = * n + ((d_row == 0 || d_col == 0 ||
                        abs (d_row) == abs (d_col)) ? 4 : 8);
@@ -201,36 +202,38 @@ int main (int argc, char ** argv) {
      * Parse options, if any
      */
     size_t (* to_value) (int, int) = &spiral_square;
+    char * board_type = "spiral square";
     int ch;
     int max_steps = 0;
     int size_mult = 1;
-    while ((ch = getopt (argc, argv, "b:m:s:")) != -1) {
-        char * board_type = optarg;
-        bool   match      = false;
+    bool debug    = false;
+
+    while ((ch = getopt (argc, argv, "b:m:s:d")) != -1) {
+        bool match = false;
         if (ch == 'b') {
-            if (!strcmp (board_type, "spiral_square") ||
-                !strcmp (board_type, "s_sq")) {
-                to_value = &spiral_square;
-                match    = true;
-                printf ("Type = spiral_square\n");
+            if (!strcmp (optarg, "spiral_square") ||
+                !strcmp (optarg, "s_sq")) {
+                to_value   = &spiral_square;
+                board_type = "spiral square";
+                match      = true;
             }
-            if (!strcmp (board_type, "spiral_diamond") ||
-                !strcmp (board_type, "s_d")) {
-                to_value = &spiral_diamond;
-                match    = true;
-                printf ("Type = spiral_diamond\n");
+            if (!strcmp (optarg, "spiral_diamond") ||
+                !strcmp (optarg, "s_d")) {
+                to_value   = &spiral_diamond;
+                board_type = "spiral diamond";
+                match      = true;
             }
-            if (!strcmp (board_type, "wedge_folded") ||
-                !strcmp (board_type, "w_fo")) {
-                to_value = &wedge_folded;
-                printf ("Type = wedge_folded\n");
-                match    = true;
+            if (!strcmp (optarg, "wedge_folded") ||
+                !strcmp (optarg, "w_fo")) {
+                to_value   = &wedge_folded;
+                board_type = "wedge folded";
+                match      = true;
             }
-            if (!strcmp (board_type, "wedge_flat") ||
-                !strcmp (board_type, "w_fl")) {
-                to_value = &wedge_flat;
-                printf ("Type = wedge_flat\n");
-                match    = true;
+            if (!strcmp (optarg, "wedge_flat") ||
+                !strcmp (optarg, "w_fl")) {
+                to_value   = &wedge_flat;
+                board_type = "wedge flat";
+                match      = true;
             }
             if (!match) {
                 printf ("Do not know what to do with board type %s\n",
@@ -240,13 +243,21 @@ int main (int argc, char ** argv) {
         }
         if (ch == 'm') {
             max_steps = atol (optarg);
-            printf ("Max steps = %dG\n", max_steps);
         }
         if (ch == 's') {
             size_mult = atol (optarg);
-            printf ("Size = %dG\n", size_mult);
+        }
+        if (ch == 'd') {
+            debug = true;
         }
     }
+
+    if (debug) {
+        printf ("Board type = %s; max steps = %dG; size = %dG\n",
+                 board_type, max_steps, size_mult);
+    }
+                  
+
     bool * board;
     /*
      * Initialize the board to a billion booleans.
@@ -276,22 +287,24 @@ int main (int argc, char ** argv) {
     size_t nr_of_moves    = 0;
 
     for (int i = optind; i < argc; i ++) {
-        int dr = 0;
-        int dc = 0;
+        int dr    = 0;
+        int dc    = 0;
+        int steps = 1;
         switch (* argv [i]) {
-            case 'W': dr = 1; dc = 0; break;  /* Wazir       */
-            case 'F': dr = 1; dc = 1; break;  /* Ferz        */
-            case 'D': dr = 2; dc = 0; break;  /* Dabbaba     */
-            case 'N': dr = 2; dc = 1; break;  /* Knight      */
-            case 'A': dr = 2; dc = 2; break;  /* Alfil       */
-            case 'H': dr = 3; dc = 0; break;  /* Threeleaper */
-            case 'C': dr = 3; dc = 1; break;  /* Camel       */
-            case 'Z': dr = 3; dc = 2; break;  /* Zebra       */
-            case 'T': dr = 3; dc = 3; break;  /* Tripper     */
+            case 'W': dr = 1; dc = 0;            break;  /* Wazir       */
+            case 'F': dr = 1; dc = 1;            break;  /* Ferz        */
+            case 'D': dr = 2; dc = 0;            break;  /* Dabbaba     */
+            case 'N': dr = 2; dc = 1;            break;  /* Knight      */
+            case 'A': dr = 2; dc = 2;            break;  /* Alfil       */
+            case 'H': dr = 3; dc = 0;            break;  /* Threeleaper */
+            case 'C': dr = 3; dc = 1;            break;  /* Camel       */
+            case 'Z': dr = 3; dc = 2;            break;  /* Zebra       */
+            case 'T': dr = 3; dc = 3;            break;  /* Tripper     */
+
+            case 'B': dr = 1; dc = 1; steps = 0; break;  /* Bishop      */
+            case 'R': dr = 1; dc = 0; steps = 0; break;  /* Rook        */
         }
-        printf ("Parsing %s -> [%d, %d]\n", argv [i], dr, dc);
         if (dr > 0 || dc > 0) {
-            int steps = 1;
             if (* (argv [i] + 1)) {
                 steps = atoi (argv [i] + 1);
             }
@@ -313,12 +326,13 @@ int main (int argc, char ** argv) {
         }
     }
 
-    for (int i = 0; i < nr_of_moves; i ++) {
-        move_part this = move_list [i];
-        printf ("Move %2d: dr = %2d; dc = %2d; min = %2d; max = %2d\n",
-                 i, this . dr, this . dc, this . min, this . max);
+    if (debug) {
+        for (int i = 0; i < nr_of_moves; i ++) {
+            move_part this = move_list [i];
+            printf ("Move %2d: dr = %2d; dc = %2d; min = %2d; max = %2d\n",
+                     i, this . dr, this . dc, this . min, this . max);
+        }
     }
-
 
     while (1) {
         /*
@@ -425,6 +439,11 @@ int main (int argc, char ** argv) {
         if (max_steps && steps >= max_steps * STEPS) {
             printf ("Terminating search after %lld steps\n", max_steps * STEPS);
             break;
+        }
+
+        if (steps > 0 && steps % 1000000 == 0) {
+            printf (" %3dM steps\r", (int) (steps / 1000000));
+            fflush (NULL);
         }
     }
 
