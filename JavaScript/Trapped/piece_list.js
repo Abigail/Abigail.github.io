@@ -837,8 +837,9 @@ let pieces = {
         betza:    "fRbhN",
         results: {
             spiral_square:  "T/45", 
-            wedge_folded:   "E*", 
-            wedge_flat:     "E*",
+            spiral_diamond:  frac (1, 2),
+            wedge_folded:    sqrt (2, 4),
+            wedge_flat:      sqrt (2, 4),
         },
     },
 
@@ -868,8 +869,9 @@ let pieces = {
         betza: "fWB",
         results: {
             spiral_square:  "T/67", 
-            wedge_folded:   "E", 
-            wedge_flat:     "E",
+            spiral_diamond: "T/157",
+            wedge_folded:    sqrt (2, 3),
+            wedge_flat:      sqrt (2)
         },
     },
 
@@ -881,8 +883,9 @@ let pieces = {
         betza:    "BvR",
         results: {
             spiral_square:  "T/540", 
-            wedge_folded:   "E", 
-            wedge_flat:     "E",
+            spiral_diamond:  frac (1, 10),
+            wedge_folded:    sqrt (2, 3),
+            wedge_flat:      sqrt (2),
         },
     },
 
@@ -1247,7 +1250,7 @@ let pieces = {
             spiral_square:  "T/2,015", 
             spiral_diamond: "T/3,722",
             wedge_folded:   "T/50", 
-            wedge_flat:     "E*"
+            wedge_flat:      sqrt (2, 4),
         },
         _index_name: "Knight (Chess)",
     },
@@ -1521,9 +1524,10 @@ let pieces = {
     pawn: {
         betza:    "fW",
         results: {
-            spiral_square:  "E", 
-            wedge_folded:   "E", 
-            wedge_flat:     "E",
+            spiral_square:   frac (1),
+            spiral_diamond:  frac (1),
+            wedge_folded:    frac (1),
+            wedge_flat:      frac (1),
         },
     },
 
@@ -2007,8 +2011,9 @@ let pieces = {
         betza:    "W",
         results: {
             spiral_square:  "W", 
+            spiral_diamond: "F/100%",
             wedge_folded:   "T/6", 
-            wedge_flat:     "E",
+            wedge_flat:      sqrt (2, 2),
         },
     },
 

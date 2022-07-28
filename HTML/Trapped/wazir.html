@@ -75,6 +75,8 @@ the %%PIECE%%.</p>
 
 <h3 id = 'spiral'>Spiral</h3>
 
+<h4 id = 'square'>Square</h4>
+
 <div class = "section">
 <p>Because the %%PIECE%% can always make a step in each of the four orthogonal
 directions, it can follow the Spiral, visiting all the squares in order.
@@ -83,6 +85,16 @@ As such, if will fill the entire board in a boring pattern.</p>
 <p>It also means that any piece which can move as the %%PIECE%% (even when
 it has more moves available, like the Chess <a href="king.html"><em>King</em></a>), will
 follow the Spiral and fill the entire board.</p>
+</div>
+
+<h4 id = 'diamond'>Diamond</h4>
+
+<div class = "section">
+<p>The pattern the %%PIECE%% moves on the Diamond Spiral it the mirror
+image of the pattern the %%PIECE%% moves on the Square Spiral. Hence,
+it visits all the squares on the board. However, not all pieces whose
+movements are a superset of the movements of the %%PIECE%% will 
+follow this pattern on the Diamond Spiral.</p>
 </div>
 
 <h3 id = 'wedge'>Wedge</h3>
@@ -96,7 +108,8 @@ follow the Spiral and fill the entire board.</p>
 <h4 id = 'flat'>Flat</h4>
 
 <p>On the Flat Wedge, the %%PIECE%% escapes to infinity, following a zigzag
-pattern on the right edge of the Flat Wedge.</p>
+pattern on the right edge of the Flat Wedge. This gives it an 
+escape velocity of <span class = 'latex-inline'>\(\frac{\sqrt{2}}{2}\)</span>.</p>
 
 <div class = 'trapped' data-piece = 'wazir'></div>
 

@@ -42,9 +42,18 @@ one or more squares in the same direction as the %%PIECE%%.
 
 ### Spiral
 
+#### Square
+
 Of the traditional Chess pieces, this is the only piece which gets
-trapped on the Spiral. Circling the starting point in an irregular way in the
-opposite direction as the spiral, the %%PIECE%% gets trapped after 2,015 steps.
+trapped on the Square Spiral. Circling the starting point in an irregular
+way in the opposite direction as the spiral, the %%PIECE%% gets
+trapped after 2,015 steps.
+
+#### Diamond
+
+On the Diamond Spiral, the %%PIECE%% remains free for almost twice
+as long as it stays free on the Square Spiral, but it does get
+trapped after 3,722 steps.
 
 ### Wedge
 
@@ -55,4 +64,6 @@ On the Folded Wedge, the %%PIECE%% gets trapped quickly, after 50 steps.
 #### Flat
 
 On the Flat Wedge, the %%PIECE%% bounces around for the first 30 steps,
-then, making triangular shaped turns, escapes to infinity.
+then, making triangular shaped turns, escapes to infinity. It uses
+a four step cycle to move one square to the upper right, giving it
+an escape velocity of \(\frac{\sqrt{2}}{4}\).
