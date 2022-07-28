@@ -23,8 +23,16 @@ Link: [%%CHESS_V%%](#piece:carpentr)
 
 ### Spiral
 
-On the Spiral, the %%PIECE%% will not get trapped for its first
-billion steps, but it's unclear whether it will never get trapped.
+#### Square
+
+On the Square Spiral, the %%PIECE%% will not get trapped for quite
+a while, but it does get trapped on step 253,925,075.
+
+#### Diamond
+
+On the Diamond Spiral, the %%PIECE%% does not get trapped for its
+first billion steps. It's not clear whether it will always remain
+free, or whether it gets trapped.
 
 ### Wedge
 

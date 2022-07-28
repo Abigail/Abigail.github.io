@@ -21,9 +21,8 @@ The %%PIECE%% gets trapped after 1,887 steps on the Square Spiral
 
 #### Diamond
 
-The %%PIECE%% does not get trapped in its first billion moves on
-the Diamond Spiral, but it's not clear whether it will never
-get trapped.
+The %%PIECE%% takes much longer to get trapped on the Diamond Spiral,
+than it does on the Square Spiral: it gets trapped after 101,249 steps.
 
 ### Wedge
 
