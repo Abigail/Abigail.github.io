@@ -1,6 +1,6 @@
 <html>
 <head>
-<title>Fire Horse</title>
+<title>%%PIECE%%</title>
 <meta charset = "utf-8">
 <link rel  = 'preconnect' href = 'https://fonts.gstatic.com'>
 <link rel = 'stylesheet' href =      'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
@@ -17,24 +17,47 @@
 <script src = '../../JavaScript/Trapped/pages.js'></script>
 </head>
 
-<body><h1>Fire Horse</h1><div class = "byline">
+<body><h1>%%PIECE%%</h1><div class = "byline">
 by Abigail<br>
 <img src = "../../Images/jan_sluiters.jpg">
 </div>
 
 
-<p>The <strong>Fire Horse</strong> either moves an unlimited number of unoccupied
-squares forward (like the <a href="rook.html"><em>Rook</em></a>), or to a square
+<p>The %%PIECE%% either moves an unlimited number of unoccupied
+squares forward (like the forward <a href="rook.html"><em>Rook</em></a>), or to a square
 which is two backwards and one sideward, or one backward and two
 sideways (so, like a backward <a href="knight.html"><em>Knight</em></a>).</p>
 
-<p>In <a href="https://www.chessvariants.com/rules/typhoon-revised"><em>Typhoon</em></a>, the <strong>Fire Horse</strong>
-promotes to the <a href="flying_ox.html"><em>Flying Ox</em></a>.</p>
+<table class = piece_list>
+  <tr class = 'row-0' markdown = '1'>
+    <th class = 'cell-0-0 col-0 ' markdown = '1'>Game</td>
+    <th class = 'cell-0-1 col-1 ' markdown = '1' colspan = '2'>Piece</td>
+    <th class = 'cell-0-3 col-3 ' markdown = '1'>Info</td>
+  </tr>
+  <tr class = 'row-1' markdown = '1'>
+    <th class = 'cell-1-0 col-0 ' markdown = '1'><a href="https://www.chessvariants.com/rules/typhoon-revised">Typhoon</a></td>
+    <td class = 'cell-1-1 col-1 ' markdown = '1' colspan = '2'><strong>Fire Horse</strong></td>
+    <td class = 'cell-1-3 col-3 ' markdown = '1'><span class = 'tooltip'>&#x260A;<span class = 'tooltiptext'>Promotes to</span></span> <a href="flying_ox.html"><em>Flying Ox</em></a>
+</td>
+  </tr>
+</table>
 
 <h3 id = 'spiral'>Spiral</h3>
 
+<h4 id = 'square'>Square</h4>
+
 <div class = "section">
-<p>On the Spiral, the <strong>Fire Horse</strong> gets trapped quickly, after 45 steps.</p>
+<p>On the Square Spiral, the %%PIECE%% gets trapped quickly, after 45 steps.</p>
+</div>
+
+<h4 id = 'diamond'>Diamond</h4>
+
+<div class = "section">
+<p>On the Diamond Spiral, after bouncing around for 14 moves, the
+%%PIECE%% escapes downwards, visiting all the squares on the
+lines right and left of the line downward from the origin. It uses
+an eight step cycle to go four squares down, giving it an escape
+velocity of <span class = 'latex-inline'>\(\frac{1}{2}\)</span>.</p>
 </div>
 
 <h3 id = 'wedge'>Wedge</h3>
@@ -42,18 +65,19 @@ promotes to the <a href="flying_ox.html"><em>Flying Ox</em></a>.</p>
 <h4 id = 'folded'>Folded</h4>
 
 <div class = "section">
-<p>On the Folded Wedge, the <strong>Fire Horse</strong> escapes to infinity by visiting
+<p>On the Folded Wedge, the %%PIECE%% escapes to infinity by visiting
 the four left most squares of each row. The pattern consist of repeating
 the following four moves (starting from a right most square of a row):
 three times a step forward, then a Knight's move backward (to a square
 two back, and one to the right). This lands the piece on the right most
 square of the row one ahead of the starting row, so the pattern can
-repeat.</p>
+repeat. This four step cycle lepas to an escape velocity of
+<span class = 'latex-inline'>\(\frac{\sqrt{2}}{4}\)</span>.</p>
 </div>
 
 <h4 id = 'flat'>Flat</h4>
 
-<p>On the Flat Wedge, the <strong>Fire Horse</strong> travels using the same pattern
+<p>On the Flat Wedge, the %%PIECE%% travels using the same pattern
 as it does on the Folded Wedge, but mirrored along the vertical axis.
 Not many other pieces have this mirror like behaviour.</p>
 

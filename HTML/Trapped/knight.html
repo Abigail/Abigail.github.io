@@ -86,10 +86,21 @@ one or more squares in the same direction as the %%PIECE%%.</p>
 
 <h3 id = 'spiral'>Spiral</h3>
 
+<h4 id = 'square'>Square</h4>
+
 <div class = "section">
 <p>Of the traditional Chess pieces, this is the only piece which gets
-trapped on the Spiral. Circling the starting point in an irregular way in the
-opposite direction as the spiral, the %%PIECE%% gets trapped after 2,015 steps.</p>
+trapped on the Square Spiral. Circling the starting point in an irregular
+way in the opposite direction as the spiral, the %%PIECE%% gets
+trapped after 2,015 steps.</p>
+</div>
+
+<h4 id = 'diamond'>Diamond</h4>
+
+<div class = "section">
+<p>On the Diamond Spiral, the %%PIECE%% remains free for almost twice
+as long as it stays free on the Square Spiral, but it does get
+trapped after 3,722 steps.</p>
 </div>
 
 <h3 id = 'wedge'>Wedge</h3>
@@ -103,7 +114,9 @@ opposite direction as the spiral, the %%PIECE%% gets trapped after 2,015 steps.<
 <h4 id = 'flat'>Flat</h4>
 
 <p>On the Flat Wedge, the %%PIECE%% bounces around for the first 30 steps,
-then, making triangular shaped turns, escapes to infinity.</p>
+then, making triangular shaped turns, escapes to infinity. It uses
+a four step cycle to move one square to the upper right, giving it
+an escape velocity of <span class = 'latex-inline'>\(\frac{\sqrt{2}}{4}\)</span>.</p>
 
 <div class = 'trapped' data-piece = 'knight'></div>
 
