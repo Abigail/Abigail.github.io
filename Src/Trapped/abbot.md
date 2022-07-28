@@ -29,7 +29,7 @@ gets trapped after 6,386 steps.
 #### Diamond
 
 It takes much longer for the %%PIECE%% to get trapped on the Diamond Square,
-but eventually it does get trapped -- after 318,714 steps.
+but eventually it does get trapped -- after 48,675,360 steps.
 
 ### Wedge
 
