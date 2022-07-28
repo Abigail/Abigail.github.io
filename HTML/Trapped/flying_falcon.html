@@ -24,7 +24,7 @@ by Abigail<br>
 
 
 <p>The %%PIECE%% combines the movements of the <a href="bishop.html"><em>Bishop</em></a>,
-the <a href="pawn.html"><em>Pawn</em></a>. Thus, the %%PIECE%% moves a single square
+and the <a href="pawn.html"><em>Pawn</em></a>. Thus, the %%PIECE%% moves a single square
 orthogonally forward, or slides an unlimited number of unoccupied
 squares diagonally.</p>
 
@@ -47,8 +47,17 @@ squares diagonally.</p>
 
 <h3 id = 'spiral'>Spiral</h3>
 
+<h4 id = 'square'>Square</h4>
+
 <div class = "section">
-<p>The %%PIECE%% gets trapped quickly, after 67 steps.</p>
+<p>On the Square Spiral, the %%PIECE%% gets trapped quickly, after 67 steps.</p>
+</div>
+
+<h4 id = 'diamond'>Diamond</h4>
+
+<div class = "section">
+<p>On the Diamond Spiral, the %%PIECE%% survies a tiny bit longer, but
+after 157 steps, it's trapped.</p>
 </div>
 
 <h3 id = 'wedge'>Wedge</h3>
@@ -56,14 +65,16 @@ squares diagonally.</p>
 <h4 id = 'folded'>Folded</h4>
 
 <div class = "section">
-<p>On the Folded Wedge, the %%PIECE%% escapes to the upper right, by
-visiting the right most square and the square third from the right of each row.</p>
+<p>On the Folded Wedge, the %%PIECE%% escapes to the upper right, 
+use the same three step cycle the <a href="ferz.html"><em>Ferz</em></a> uses.
+Its escape velocity is <span class = 'latex-inline'>\(\frac{\sqrt{2}}{3}\)</span>.</p>
 </div>
 
 <h4 id = 'flat'>Flat</h4>
 
-<p>On the Flat Wedge, teh %%PIECE%% escapes by visiting the right most
-square on each row.</p>
+<p>On the Flat Wedge, the %%PIECE%% escapes by visiting the right most
+square on each row, resulting in an escape velocity of 
+<span class = 'latex-inline'>\(\sqrt{2}\)</span>.</p>
 
 <div class = 'trapped' data-piece = 'flying_falcon'></div>
 

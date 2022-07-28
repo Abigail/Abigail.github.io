@@ -1,4 +1,4 @@
-# Pawn
+# %%PIECE%%
 
 The **Pawn** appears in [Chess](#wiki), 
 [Sh&#x14d;gi (&#x5c06;&#x68cb;)](#wiki:Shogi), and many of their
@@ -142,5 +142,6 @@ captures differently than it moves.
 
 ### Spiral and Wedge
 
-On the Spiral and both the Folded and Flat Wedge, the **Pawn**
-escapes to infinity in a straight line forward.
+On the Square and Diamond Spiral and both the Folded and Flat Wedge,
+the %%PIECE%% escapes to infinity in a straight line forward. Its
+escape velocity is \(1\) on all the boards.
