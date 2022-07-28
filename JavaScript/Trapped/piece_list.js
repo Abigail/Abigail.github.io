@@ -145,7 +145,7 @@ let pieces = {
         betza:    "(3,4)",
         results: {
             spiral_square:  "T/1,887",
-            spiral_diamond: "?/1G",
+            spiral_diamond: "T/101,249",
             wedge_folded:   "T/128", 
             wedge_flat:     "T/416",
         },
@@ -155,7 +155,7 @@ let pieces = {
         betza:    "BN",
         results: {
             spiral_square:  "T/6,386",
-            spiral_diamond: "?/1G",
+            spiral_diamond: "?/318,714",
             wedge_folded:   "F*/100%", 
             wedge_flat:     "F*/100%",
         },
@@ -304,7 +304,7 @@ let pieces = {
         betza:    "NCZ",
         results: {
             spiral_square:  "?/1G",
-            spiral_diamond: "",
+            spiral_diamond: "?/1G",
             wedge_folded:   "?/1G",
             wedge_flat:     "?/1G",
         },
@@ -376,7 +376,8 @@ let pieces = {
     carpenter: {
         betza:  "DN",
         results: {
-            spiral_square:  "?/1G", 
+            spiral_square:  "T/253,925,075",
+            spiral_diamond: "?/1G",
             wedge_folded:   "F/100%", 
             wedge_flat:     "F/100%",
         },
@@ -929,6 +930,8 @@ let pieces = {
         },
         _index_name: "Frog (Ferz + Threeleaper)",
     },
+
+    // Checked above
 
     scirocco_frog: {
         betza:    "KGH",

@@ -109,9 +109,8 @@ in a clockwise direction around the origin, getting trapped after
 
 #### Diamond
 
-The %%PIECE%% does not get trapped in its first billion moves on
-the Diamond Spiral, but it's not clear whether it will never
-get trapped.
+The %%PIECE%% takes a lot longer to get trapped on
+the Diamond Spiral, but eventually, it gets trapped on step 318,714.
 
 ### Wedge
 
