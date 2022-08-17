@@ -4,12 +4,14 @@
 # include <unistd.h>
 # include <string.h>
 
-# define SIZE  ((long long) 1024 * 1024 * 1024)
-# define STEPS ((long long) 1000 * 1000 * 1000)
+# define SIZE    ((long long) 1024 * 1024 * 1024)
+# define STEPS   ((long long) 1000 * 1000 * 1000)
+# define MILLION             (1000 * 1000)
 
-typedef long value_t;
-typedef int  rowcol_t;
-typedef long step_t;
+typedef long    value_t;
+typedef int     rowcol_t;
+typedef long    step_t;
+typedef bool ** board_t;
 
 /*
  * A struct defining a "move part". A move part describes one direction
@@ -113,6 +115,50 @@ value_t wedge_flat (rowcol_t row, rowcol_t col) {
     return result;
 }
 
+/*
+ * Function acting on the board
+ */
+board_t board      = (board_t) NULL;
+int     board_size =              0;
+value_t max_value  =              0;
+
+void init_field (int index) {
+    if ((board [index] = (bool *) malloc (SIZE * sizeof (bool))) == NULL) {
+        perror ("Malloc failed");
+        exit (1);
+    }
+    for (size_t i = 0; i < SIZE; i ++) {
+        board [index] [i] = false;
+    }
+}
+
+void inc_board () {
+    if ((board = (board_t) realloc (board, (board_size + 1) * sizeof (bool *)))
+              == NULL) {
+        perror ("Realloc failed");
+        exit (1);
+    }
+    init_field (board_size);
+    board_size ++;
+}
+
+void set_value (value_t value) {
+    while (value / SIZE >= board_size) {
+        inc_board ();
+    }
+    board [value / SIZE] [value % SIZE] = true;
+    if (value > max_value) {
+        max_value = value;
+    }
+}
+
+bool has_value (value_t value) {
+    return value / SIZE >= board_size ? false
+                                      : board [value / SIZE] [value % SIZE];
+}
+
+
+
 
 /*
  * Add a single move (a leap) to a list of move parts
@@ -212,10 +258,9 @@ int main (int argc, char ** argv) {
     char * board_type = "spiral square";
     int ch;
     int max_steps = 1;
-    int size_mult = 1;
     bool debug    = false;
 
-    while ((ch = getopt (argc, argv, "b:m:s:d")) != -1) {
+    while ((ch = getopt (argc, argv, "b:m:d")) != -1) {
         bool match = false;
         if (ch == 'b') {
             if (!strcmp (optarg, "spiral_square") ||
@@ -251,38 +296,15 @@ int main (int argc, char ** argv) {
         if (ch == 'm') {
             max_steps = atol (optarg);
         }
-        if (ch == 's') {
-            size_mult = atol (optarg);
-        }
         if (ch == 'd') {
             debug = true;
         }
     }
 
-    bool ** board;
     /*
-     * Initialize the board to size_mult billion booleans.
+     * We start at the origin, value 1
      */
-    if ((board = (bool **) malloc (size_mult * sizeof (bool *))) == NULL) {
-        perror ("Failed to malloc the board");
-        exit (1);
-    }
-    for (size_t i = 0; i < size_mult; i ++) {
-        if ((board [i] = (bool *) malloc (SIZE * sizeof (bool))) == NULL) {
-            perror ("Failed to malloc the board");
-            exit (1);
-        }
-    }
-
-    /*
-     * Initialize the board
-     */
-    for (size_t i = 0; i < size_mult; i ++) {
-        for (size_t j = 0; j < SIZE; j ++) {
-            board [i] [j] = false;
-        }
-    }
-    board [0] [1] = true;
+    set_value (1);
 
     /*
      * Current position and value of the piece; we start at the origin.
@@ -390,6 +412,7 @@ int main (int argc, char ** argv) {
                     break;   /* Out of bounds (some spirals only) */
                 }
 
+                /*
                 if (value >= size_mult * SIZE) {
                     if (debug) {
                         out_of_bounds_value = value;
@@ -397,10 +420,11 @@ int main (int argc, char ** argv) {
                         out_of_bounds_col   = new_col;
                     }
                     out_of_bounds = true;
-                    break;   /* Too far way */
+                    break;
                 }
+                */
 
-                if (board [value / SIZE] [value % SIZE]) {
+                if (has_value (value)) {
                     break;   /* Square has been visited */
                 }
 
@@ -447,9 +471,9 @@ int main (int argc, char ** argv) {
 
         if (found) {
             steps ++;
-            row                                           = best_row;
-            col                                           = best_col;
-            board [best_value / SIZE] [best_value % SIZE] = true;
+            row      = best_row;
+            col      = best_col;
+            set_value (best_value);
             /* printf ("Step %d moves to [%d, %d] (val = %d)\n",
              * steps, row, col, (int) best_value);
              */
@@ -466,7 +490,9 @@ int main (int argc, char ** argv) {
         }
 
         if (steps > 0 && steps % 1000000 == 0) {
-            printf (" %3dM steps\r", (int) (steps / 1000000));
+            printf (" %3dM steps, max_value = %4dM\r",
+                                 (int) (steps     / MILLION),
+                                 (int) (max_value / MILLION));
             fflush (NULL);
         }
     }
