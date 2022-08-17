@@ -4,8 +4,12 @@
 # include <unistd.h>
 # include <string.h>
 
-# define SIZE  (long long) 1024 * 1024 * 1024
-# define STEPS (long long) 1000 * 1000 * 1000
+# define SIZE  ((long long) 1024 * 1024 * 1024)
+# define STEPS ((long long) 1000 * 1000 * 1000)
+
+typedef long value_t;
+typedef int  rowcol_t;
+typedef long step_t;
 
 /*
  * A struct defining a "move part". A move part describes one direction
@@ -34,45 +38,47 @@ move_part new_move_part () {
 }
 
 
-size_t spiral_square (int row, int col) {
-    int abs_row = abs (row);
-    int abs_col = abs (col);
-    int max     = abs_col > abs_row ? abs_col : abs_row;
-    int base    = (2 * max - 1) * (2 * max - 1);
+value_t spiral_square (rowcol_t row, rowcol_t col) {
+    rowcol_t abs_row = abs (row);
+    rowcol_t abs_col = abs (col);
+    rowcol_t max     = abs_col > abs_row ? abs_col : abs_row;
+    rowcol_t base    = (2 * max - 1) * (2 * max - 1);
 
-    int result = row ==   max ? base + 7 * max + col
-               : col == - max ? base + 5 * max + row
-               : row == - max ? base + 3 * max - col
-               :                base + 1 * max - row;
+    value_t result = row ==   max ? base + 7 * max + col
+                   : col == - max ? base + 5 * max + row
+                   : row == - max ? base + 3 * max - col
+                   :                base + 1 * max - row;
 
-    return (size_t) result;
+    return result;
 }
 
 
-size_t spiral_diamond (int row, int col) {
-    int abs_row = abs (row);
-    int abs_col = abs (col);
-    int ring    = abs_row + abs_col;
+value_t spiral_diamond (rowcol_t row, rowcol_t col) {
+    rowcol_t abs_row = abs (row);
+    rowcol_t abs_col = abs (col);
+    rowcol_t ring    = abs_row + abs_col;
     if (ring == 0) {
         return 1;
     }
 
-    int p_max   = ring * ring + (ring - 1) * (ring - 1);
-    int max     = ring * ring + (ring + 1) * (ring + 1);
-    int size    = max - p_max;
-    int e_size  = size / 4;
+    rowcol_t p_max   = ring * ring + (ring - 1) * (ring - 1);
+    rowcol_t max     = ring * ring + (ring + 1) * (ring + 1);
+    rowcol_t size    = max - p_max;
+    rowcol_t e_size  = size / 4;
 
-    return row >  0 & col <= 0 ? max - 0 * e_size - abs_col
-         : row <= 0 & col <  0 ? max - 1 * e_size - abs_row
-         : row <  0 & col >= 0 ? max - 2 * e_size - abs_col
-         : row >= 0 & col >  0 ? max - 3 * e_size - abs_row
-         :                      -1;
+    value_t result = row >  0 & col <= 0 ? max - 0 * e_size - abs_col
+                   : row <= 0 & col <  0 ? max - 1 * e_size - abs_row
+                   : row <  0 & col >= 0 ? max - 2 * e_size - abs_col
+                   : row >= 0 & col >  0 ? max - 3 * e_size - abs_row
+                   :                      -1;
+
+    return result;
 }
 
 
-size_t wedge_folded (int row, int col) {
-    int abs_row = abs (row);
-    int abs_col = abs (col);
+value_t wedge_folded (rowcol_t row, rowcol_t col) {
+    rowcol_t abs_row = abs (row);
+    rowcol_t abs_col = abs (col);
 
     /*
      * This ought not to happen
@@ -80,20 +86,20 @@ size_t wedge_folded (int row, int col) {
     if (row > 0)           {return 0;}
     if (abs_col > abs_row) {return 0;}
 
-    int value = (row - 1) * (row - 1);
-    if (value % 2 == 1) {
-        value += row - col;
+    value_t result = (row - 1) * (row - 1);
+    if (result % 2 == 1) {
+        result += row - col;
     }
     else {
-        value += row + col;
+        result += row + col;
     }
 
-    return (size_t) value;
+    return result;
 }
 
-size_t wedge_flat (int row, int col) {
-    int abs_row = abs (row);
-    int abs_col = abs (col);
+value_t wedge_flat (rowcol_t row, rowcol_t col) {
+    rowcol_t abs_row = abs (row);
+    rowcol_t abs_col = abs (col);
 
     /*
      * This ought not to happen
@@ -101,9 +107,10 @@ size_t wedge_flat (int row, int col) {
     if (row > 0)           {return 0;}
     if (abs_col > abs_row) {return 0;}
 
-    int value = (row - 1) * (row - 1) + row - col;
+    value_t result = (row - 1) * (row - 1) +
+                      row -       col;
 
-    return (size_t) value;
+    return result;
 }
 
 
@@ -201,13 +208,12 @@ int main (int argc, char ** argv) {
     /*
      * Parse options, if any
      */
-    size_t (* to_value) (int, int) = &spiral_square;
+    value_t (* to_value) (rowcol_t, rowcol_t) = &spiral_square;
     char * board_type = "spiral square";
     int ch;
-    int max_steps = 0;
+    int max_steps = 1;
     int size_mult = 1;
     bool debug    = false;
-    long long size;
 
     while ((ch = getopt (argc, argv, "b:m:s:d")) != -1) {
         bool match = false;
@@ -253,40 +259,45 @@ int main (int argc, char ** argv) {
         }
     }
 
-    if (debug) {
-        printf ("Board type = %s; max steps = %dG; size = %dG\n",
-                 board_type, max_steps, size_mult);
-    }
-                  
-    size = (long) SIZE * size_mult;
-
-    bool * board;
+    bool ** board;
     /*
-     * Initialize the board to a billion booleans.
+     * Initialize the board to size_mult billion booleans.
      */
-    if ((board = (bool *) malloc (size * sizeof (bool))) == NULL) {
+    if ((board = (bool **) malloc (size_mult * sizeof (bool *))) == NULL) {
         perror ("Failed to malloc the board");
         exit (1);
     }
+    for (size_t i = 0; i < size_mult; i ++) {
+        if ((board [i] = (bool *) malloc (SIZE * sizeof (bool))) == NULL) {
+            perror ("Failed to malloc the board");
+            exit (1);
+        }
+    }
+
     /*
      * Initialize the board
      */
-    for (size_t i = 0; i < size; i ++) {
-        board [i] = false;
+    for (size_t i = 0; i < size_mult; i ++) {
+        for (size_t j = 0; j < SIZE; j ++) {
+            board [i] [j] = false;
+        }
     }
-    board [1] = true;
+    board [0] [1] = true;
 
     /*
      * Current position and value of the piece; we start at the origin.
      */
-    int row               = 0;
-    int col               = 0;
-    size_t value          = to_value (row, col);
-    bool out_of_bounds    = false;
-    int steps             = 0;
+    rowcol_t row                 = 0;
+    rowcol_t col                 = 0;
+    value_t  value               = to_value (row, col);
+    bool     out_of_bounds       = false;
+    value_t  out_of_bounds_value = 0;
+    rowcol_t out_of_bounds_row   = 0;
+    rowcol_t out_of_bounds_col   = 0;
+    step_t   steps               = 0;
 
-    move_part * move_list = (move_part *) NULL;
-    size_t nr_of_moves    = 0;
+    move_part * move_list        = (move_part *) NULL;
+    size_t nr_of_moves           = 0;
 
     for (int i = optind; i < argc; i ++) {
         int dr    = 0;
@@ -340,18 +351,18 @@ int main (int argc, char ** argv) {
         /*
          * Repeat until we get trapped, or are moving out of bounds
          */
-        int best_row;
-        int best_col;
-        size_t best_value = 0;
-        bool found  = false;
+        rowcol_t best_row;
+        rowcol_t best_col;
+        value_t  best_value = 0;
+        bool     found      = false;
 
         for (int i = 0; i < nr_of_moves; i ++) {
             move_part this = move_list [i];
 
-            int move_best = 0;  /* Best value within this move     */
-            int move_row  = 0;
-            int move_col  = 0;
-            int prev_val  = 0;  /* Previous value within this move */
+            value_t  move_best = 0;  /* Best value within this move     */
+            rowcol_t move_row  = 0;
+            rowcol_t move_col  = 0;
+            value_t  prev_val  = 0;  /* Previous value within this move */
 
             /*
              * Slide along this move. A step (or leap) is just a slide
@@ -371,20 +382,25 @@ int main (int argc, char ** argv) {
                      slide <= this . max || this . max == 0;
                      slide ++) {
 
-                int new_row  = row + slide * this . dr;
-                int new_col  = col + slide * this . dc;
-                size_t value = to_value (new_row, new_col);
+                rowcol_t new_row = row + slide * this . dr;
+                rowcol_t new_col = col + slide * this . dc;
+                value_t value    = to_value (new_row, new_col);
 
                 if (value <= 0) {
                     break;   /* Out of bounds (some spirals only) */
                 }
 
-                if (value >= size) {
+                if (value >= size_mult * SIZE) {
+                    if (debug) {
+                        out_of_bounds_value = value;
+                        out_of_bounds_row   = new_row;
+                        out_of_bounds_col   = new_col;
+                    }
                     out_of_bounds = true;
                     break;   /* Too far way */
                 }
 
-                if (board [value]) {
+                if (board [value / SIZE] [value % SIZE]) {
                     break;   /* Square has been visited */
                 }
 
@@ -420,26 +436,32 @@ int main (int argc, char ** argv) {
         }
 
         if (out_of_bounds) {
-            printf ("Ran out of bounds on step %d\n", steps);
+            printf ("\nRan out of bounds on step %ld\n", steps);
+            if (debug) {
+                printf ("Tried to jump to point (%d, %d) value %lu = %lluG\n",
+                         out_of_bounds_row, out_of_bounds_col,
+                         out_of_bounds_value, out_of_bounds_value / SIZE);
+            }
             break;
         }
 
         if (found) {
             steps ++;
-            row                = best_row;
-            col                = best_col;
-            board [best_value] = true;
+            row                                           = best_row;
+            col                                           = best_col;
+            board [best_value / SIZE] [best_value % SIZE] = true;
             /* printf ("Step %d moves to [%d, %d] (val = %d)\n",
              * steps, row, col, (int) best_value);
              */
         }
         else {
-            printf ("Trapped on step %d (%d, %d)\n", steps, row, col);
+            printf ("\nTrapped on step %ld (%d, %d)\n", steps, row, col);
             break;
         }
 
         if (max_steps && steps >= max_steps * STEPS) {
-            printf ("Terminating search after %lld steps\n", max_steps * STEPS);
+            printf ("\nTerminating search after %lld steps\n",
+                       max_steps * STEPS);
             break;
         }
 
