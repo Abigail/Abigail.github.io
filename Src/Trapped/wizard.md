@@ -1,27 +1,40 @@
-# Wizard
+# %%PIECE%%
 
-The **Wizard** moves as either the [*Ferz*](ferz.html), or the 
-[*Camel*](camel.html). That is, the **Wizard** either steps to
+The %%PIECE%% either moves as the [*Ferz*](ferz.html) or as the
+[*Camel*](camel.html). That is, the %%PIECE%% either steps to
 a square one away in a diagonal direction, or to a square which
 is three away in one orthogonal direction, and one away in the other.
-This makes the **Wizard** a colour-bound piece.
+The %%PIECE%% is %%COLOUR_BOUND%%.
 
-The piece is found in [*Omega Chess*](#wiki).
+|====
+%%PIECE_HEADERS%%
+  {th = 1}  [Omega Chess](#wiki)
+& {cs = 2}  **Wizard**
+&           \\
+====|
 
 ### Spiral
 
-It is unclear whether the **Wizard** gets trapped on the Spiral. It does
-not get trapped for the first 20,000 steps, but its travelling pattern
-is irregular.
+#### Square
+
+It takes a long time for the %%PIECE%% to get trapped on the Square Spiral,
+but eventually, it does so on step 777,996,934.
+
+#### Diamond
+
+On the Diamond Spiral, the %%PIECE%% doesn't make any [*Camel*](camel.html)
+moves, just [*Ferz*](ferz.html) moves. Hence, the %%PIECE%% moves
+like the [*Ferz*](ferz.html), visiting 50% of the board in a simple
+pattern.
 
 ### Wedge
 
 #### Folded
 
-On the Folded Wedge, the **Wizard** follows a pretty pattern, visiting 50% 
+On the Folded Wedge, the %%PIECE%% follows a pretty pattern, visiting 50% 
 of the squares.
 
 #### Flat
 
-On the Flat Wedge, the **Wizard** follows a striped pattern, visiting 50%
+On the Flat Wedge, the %%PIECE%% follows a striped pattern, visiting 50%
 of the squares.
