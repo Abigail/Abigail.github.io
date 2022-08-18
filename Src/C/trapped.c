@@ -115,6 +115,32 @@ value_t wedge_flat (rowcol_t row, rowcol_t col) {
     return result;
 }
 
+
+/*
+ * Commify a number
+ */
+char * f (step_t steps) {
+    static char result [64];
+    char * result_p = result;
+    size_t tail;
+
+    snprintf (result, sizeof (result), "%ld", steps);
+    while (* result_p) {
+        result_p ++;
+    }
+
+    tail = result + sizeof (result) - result_p;
+
+    while (result_p - result > 3) {
+        result_p -= 3;
+        memmove (result_p + 1, result_p, tail);
+        * result_p = ',';
+        tail += 4;
+    }
+
+    return result;
+}
+
 /*
  * Function acting on the board
  */
@@ -479,13 +505,13 @@ int main (int argc, char ** argv) {
              */
         }
         else {
-            printf ("\nTrapped on step %ld (%d, %d)\n", steps, row, col);
+            printf ("\nTrapped on step %s (%d, %d)\n", f (steps), row, col);
             break;
         }
 
         if (max_steps && steps >= max_steps * STEPS) {
-            printf ("\nTerminating search after %lld steps\n",
-                       max_steps * STEPS);
+            printf ("\nTerminating search after %s steps\n",
+                       f (max_steps * STEPS));
             break;
         }
 
