@@ -28,7 +28,7 @@ let pieces = {
     abbot: {
         betza:    "F4N",
         results: {
-            spiral_square:  "T/6334",
+            spiral_square:  "T/6,334",
             spiral_diamond: "T/48,675,360",
             wedge_folded:   "F*/100%",
             wedge_flat:     "F*/100%",
@@ -63,7 +63,7 @@ let pieces = {
         betza:    "BNC",
         results: {
             spiral_square:  "T/3,700,894",
-            spiral_diamond: "?/944M",     // Checking
+            spiral_diamond: "?/1G",
             wedge_folded:   "F*/100%", 
             wedge_flat:     "F*/100%",
         },
@@ -155,7 +155,7 @@ let pieces = {
         betza:    "BN",
         results: {
             spiral_square:  "T/6,386",
-            spiral_diamond: "?/318,714",
+            spiral_diamond: "T/318,714",
             wedge_folded:   "F*/100%", 
             wedge_flat:     "F*/100%",
         },
@@ -931,8 +931,6 @@ let pieces = {
         _index_name: "Frog (Ferz + Threeleaper)",
     },
 
-    // Checked above
-
     scirocco_frog: {
         betza:    "KGH",
         results: {
@@ -1666,8 +1664,9 @@ let pieces = {
         betza:    "(5,5)(7,1)",
         results: {
             spiral_square:  "T/69,275,961",
+            spiral_diamond: "T/800,494",
             wedge_folded:   "T/84,355", 
-            wedge_flat:     "?/456M",
+            wedge_flat:     "T/915,395,734",
         },
     },
 
@@ -1779,7 +1778,7 @@ let pieces = {
     squirrel: {
         betza:    "DNA",
         results: {
-            spiral_square:  "?/918M",
+            spiral_square:  "?/1G",
             wedge_folded:   "F*/100%", 
             wedge_flat:     "?/1G",
         },
@@ -2057,7 +2056,8 @@ let pieces = {
     wizard: {
         betza:    "FC",
         results: {
-            spiral_square:  "?/1G",
+            spiral_square:  "T/777,996,934",
+            spiral_diamond: "F/50%",
             wedge_folded:   "F*/50%", 
             wedge_flat:     "F/50%",
         },
