@@ -48,6 +48,9 @@ If we take the limit, we see that the %%PIECE%% will visit
 \(\frac{1}{2} \cdot (\frac{1}{2} \cdot \frac{3}{4} + \frac{1}{4}) =
   \frac{5}{16} = 31.25 \%\) of the squares on the board.
 
+The movement of %%PIECE%% on the Square Spiral is similar, but rotated
+45&deg; of the [*Rook*](rook.html) on the Diamond Spiral.
+
 #### Diamond
 
 On the Diamond Spiral, the %%PIECE%% moves in the same way as
