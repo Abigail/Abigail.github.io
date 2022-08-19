@@ -19,8 +19,19 @@ two squares orthogonally,
 
 ### Spiral
 
+#### Square
+
 Since the %%PIECE%% can move as the [*Wazir*](wazir.html), it
 will follow the Spiral, visiting all squares on the board.
+
+#### Diamond
+
+The %%PIECE%% visits all the squares on the board, in a pretty unique
+way. While most pieces which don't get trapped soon either circle the
+origin mainly clockwise or mainly counterclockwise, the %%PIECE%% makes
+alternates making a single, full clockwise rotation and making a single, full
+counterclockwise rotation, switching directions directly below the origin.
+The %%PIECE%% is tracing out an expanding square, with sharp edges.
 
 ### Wedge
 

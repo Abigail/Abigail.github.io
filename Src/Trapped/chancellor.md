@@ -57,8 +57,15 @@ Links: [%%WIKI%%](#wiki:Empress_(chess)), [%%CHESS_V%%](#piece:rook-knight)
 
 ### Spiral
 
-One the Spiral, the %%PIECE%% can move as the [*Wazir*](wazir.html),
+#### Square
+
+One the Square Spiral, the %%PIECE%% can move as the [*Wazir*](wazir.html),
 and hence visits all the squares by following the Spiral.
+
+#### Diamond
+
+On the Diamond Spiral, the %%PIECE%% doesn't move in a regular way, and
+gets trapped after 1,563 steps.
 
 ### Wedge
 
