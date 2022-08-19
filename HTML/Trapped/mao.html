@@ -60,9 +60,18 @@ be unoccupied), then one square diagonally outward.</p>
 
 <h3 id = 'spiral'>Spiral</h3>
 
+<h4 id = 'square'>Square</h4>
+
 <div class = "section">
-<p>On the Spiral, the %%PIECE%% gets trapped quickly, after
+<p>On the Square Spiral, the %%PIECE%% gets trapped quickly, after
 no more than 28 steps.</p>
+</div>
+
+<h4 id = 'diamond'>Diamond</h4>
+
+<div class = "section">
+<p>On the Diamond Spiral, the %%PIECE%% gets trapped quickly as well;
+this time after 64 steps.</p>
 </div>
 
 <h3 id = 'wedge'>Wedge</h3>
@@ -72,13 +81,14 @@ no more than 28 steps.</p>
 <div class = "section">
 <p>On the Folded Wedge, the %%PIECE%% uses a six step loop
 to move two squares to the upper left. It escapes to
-infinity by repeating this loop forever.</p>
+infinity by repeating this loop forever, giving it an 
+escape velocity of <span class = 'latex-inline'>\(\frac{\sqrt{2}}{3}\)</span>.</p>
 </div>
 
 <h4 id = 'flat'>Flat</h4>
 
 <p>On the Flat Wedge, the %%PIECE%% gets trapped even sooner
-than on the Spiral. 12 steps, and it is trapped.</p>
+than on the Square Spiral. 12 steps, and it is trapped.</p>
 
 <div class = 'trapped' data-piece = 'mao'></div>
 

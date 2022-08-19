@@ -368,6 +368,7 @@ let pieces = {
         betza:    "RC",
         results: {
             spiral_square:  "W", 
+            spiral_diamond: "?/1G",
             wedge_folded:   "F*/100%", 
             wedge_flat:     "F*/100%",
         },
@@ -395,6 +396,7 @@ let pieces = {
         betza:    "WFN",
         results: {
             spiral_square:  "W", 
+            spiral_diamond: "BM",
             wedge_folded:   "FC", 
             wedge_flat:     "F/100%",
         },
@@ -1368,7 +1370,8 @@ let pieces = {
         betza: "t[WF]",
         results: {
             spiral_square:  "T/28", 
-            wedge_folded:   "E*", 
+            spiral_diamond: "T/64", 
+            wedge_folded:    sqrt (2, 3),
             wedge_flat:     "T/12"
         },
         move_list: [
