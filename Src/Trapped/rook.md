@@ -66,9 +66,18 @@ Links: [%%WIKI%%](#wiki:Rook_(chess)),
 
 ### Spiral
 
+#### Square
+
 Since the %%PIECE%%'s movement is a superset of the movement of the
 [*Wazir*](wazir.html), it follows the Spiral, visiting all squares
 on the board.
+
+#### Diamond
+
+On the Diamond Spiral, the %%PIECE%% uses a regular pattern to fill
+\(\frac{5}{8} = 62.5\%\) of the board. This pattern is similar, but
+rotated 45&deg; of the pattern the [*Bishop*](bishop.html) uses on
+the Square Spiral.
 
 ### Wedge
 
@@ -82,4 +91,5 @@ are visited.
 #### Flat
 
 On the Flat Wedge the %%PIECE%% quickly escapes to infinity by alternating make 
-a step forward, and a step to the right.
+a step forward, and a step to the right. This gives it an escape
+velocity of \(\frac{\sqrt{2}}{2}\) .
