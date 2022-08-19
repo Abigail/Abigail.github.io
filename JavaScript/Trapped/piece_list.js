@@ -317,7 +317,7 @@ let pieces = {
         betza:    "WA",
         results: {
             spiral_square:  "W", 
-            spiral_diamond: "",
+            spiral_diamond: "?/1G",
             wedge_folded:   "F*/100%", 
             wedge_flat:      sqrt (2, 2),
         },
@@ -411,7 +411,7 @@ let pieces = {
             spiral_square:  "T/62", 
             spiral_diamond: "T/98",
             wedge_folded:   "T/16",
-            wedge_flat:     "E/8",
+            wedge_flat:      sqrt (2, 4),
         },
         _name: "Chameleon",
         _index_name: "Chameleon (Fairy)",
