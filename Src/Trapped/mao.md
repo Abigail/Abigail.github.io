@@ -23,8 +23,15 @@ be unoccupied), then one square diagonally outward.
 
 ### Spiral
 
-On the Spiral, the %%PIECE%% gets trapped quickly, after
+#### Square
+
+On the Square Spiral, the %%PIECE%% gets trapped quickly, after
 no more than 28 steps.
+
+#### Diamond
+
+On the Diamond Spiral, the %%PIECE%% gets trapped quickly as well;
+this time after 64 steps.
 
 ### Wedge
 
@@ -32,9 +39,10 @@ no more than 28 steps.
 
 On the Folded Wedge, the %%PIECE%% uses a six step loop
 to move two squares to the upper left. It escapes to
-infinity by repeating this loop forever.
+infinity by repeating this loop forever, giving it an 
+escape velocity of \(\frac{\sqrt{2}}{3}\).
 
 #### Flat
 
 On the Flat Wedge, the %%PIECE%% gets trapped even sooner
-than on the Spiral. 12 steps, and it is trapped.
+than on the Square Spiral. 12 steps, and it is trapped.

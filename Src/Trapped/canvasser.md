@@ -16,9 +16,16 @@ Link: [%%CHESS_V%%](#piece:canvassr)
 
 ### Spiral
 
+#### Square
+
 Since the %%PIECE%% can move as the [*Rook*](rook.html), it
 can also move as the [*Wazir*](wazir.html), which means it can
 follow the Spiral, filling the entire board in a boring pattern.
+
+#### Diamond
+
+It's not clear whether the %%PIECE%% gets trapped on the Diamond
+Spiral. It does not get trapped for its first billion moves.
 
 ### Wedge
 

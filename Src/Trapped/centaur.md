@@ -47,8 +47,15 @@ There is also the *Cavalier King*, which moves the same way as the
 
 ### Spiral
 
+#### Square
+
 The %%PIECE%% can move like the [*Wazir*](wazir.html), so it will
 just follow the Spiral and visit all the squares on the board.
+
+#### Diamond
+
+The %%PIECE%% can move like the [*Blind Monkey*](blind_monkey.html),
+so it will just follow the Spiral and visit all the squares on the board.
 
 ### Wedge
 
