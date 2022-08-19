@@ -317,8 +317,9 @@ let pieces = {
         betza:    "WA",
         results: {
             spiral_square:  "W", 
+            spiral_diamond: "",
             wedge_folded:   "F*/100%", 
-            wedge_flat:     "E",
+            wedge_flat:      sqrt (2, 2),
         },
         _index_name: "Caliph (Wazir + Alfil)",
     },
@@ -329,6 +330,7 @@ let pieces = {
         _index_name: "Caliph (Bishop + Camel)",
         results:    {
             spiral_square:  "T/1,563", 
+            spiral_diamond: "F/50%",
             wedge_folded:   "F*/50%", 
             wedge_flat:     "F*/50%",
         },

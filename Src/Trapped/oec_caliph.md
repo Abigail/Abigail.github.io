@@ -16,7 +16,15 @@ This makes the %%PIECE%% %%COLOUR_BOUND%%.
 
 ### Spiral
 
-On the Spiral, the %%PIECE%% gets trapped after 1563 steps.
+#### Square
+
+On the Square Spiral, the %%PIECE%% gets trapped after 1,563 steps.
+
+#### Diamond
+
+On the Diamond Spiral, the %%PIECE%% moves like the [*Ferz*](ferz.html),
+never making a [*Camel*](camel.html) jump. Hence, it will visit
+50% of the squares on the board, in a simple pattern.
 
 ### Wedge
 
