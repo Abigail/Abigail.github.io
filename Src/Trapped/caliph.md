@@ -22,8 +22,15 @@ Link: [%%CHESS_V%%](#piece:caliph)
 
 ### Spiral
 
-On the Spiral, the %%PIECE%% moves like the [*Wazir*](wazir.html),
+#### Square
+
+On the Square Spiral, the %%PIECE%% moves like the [*Wazir*](wazir.html),
 following the Spiral, visiting all the squares on the board.
+
+#### Diamond
+
+On the Diamond Spiral, it is not clear whether %%PIECE%% gets trapped
+or not. It does not get trapped for its first billion steps.
 
 ### Wedge
 
@@ -39,4 +46,5 @@ the Wedge.
 
 On the Flat Wedge, the %%PIECE%% follows a step wise pattern
 on the right edge of the Wedge, escaping to infinity, visiting
-only the two right most squares of each row.
+only the two right most squares of each row. This gives it an
+escape velocity of \(\frac{\sqrt{2}}{2}\).
