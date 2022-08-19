@@ -16,9 +16,17 @@ other orthogonal direction. The %%PIECE%% is %%COLOUR_BOUND%%.
 
 ### Spiral
 
+#### Square
+
 On the Spiral, the %%PIECE%% gets trapped after 1,697 steps, which
-is a lot sooner than the [Camel](camel.html), which gets trapped
+is a lot sooner than the [*Camel*](camel.html), which gets trapped
 after 3,722 steps.
+
+#### Diamond
+
+On the Diamon Spiral, the %%PIECE%% gets trapped after 509 steps,
+which is sooner than the [*Camel*](camel.html), which gets trapped
+after 2,015 steps.
 
 ### Wedge
 

@@ -24,9 +24,16 @@ Links: [%%WIKI%%](#wiki:Camel_(chess)),
 
 ### Spiral
 
+#### Square
+
 The %%PIECE%% will circle in an irregular way around the origin, in
 the opposite direction from the Spiral; roughly tracing out a square.
 The %%PIECE%% will get trapped after 3,722 steps.
+
+#### Diamond
+
+Surprisingly, the %%PIECE%% will get trapped in as many steps as
+the [*Knight*](knight.html) on the Square Spiral: 2,015 steps!
 
 ### Wedge
 
