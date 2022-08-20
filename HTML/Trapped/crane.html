@@ -55,9 +55,19 @@ or straight backwards, combining the moves of the
 
 <h3 id = 'spiral'>Spiral</h3>
 
+<h4 id = 'square'>Square</h4>
+
 <div class = "section">
 <p>The %%PIECE%% visits all the squares on the Spiral. The squares visited
 form an expanding hexagon, which is kind of unusual.</p>
+</div>
+
+<h4 id = 'diamond'>Diamond</h4>
+
+<div class = "section">
+<p>On the Diamond Spiral, the %%PIECE%% circles the origin in a direction
+opposite ot the direction of the Spiral, visiting all squares, and
+tracing a path which does not intersect itself.</p>
 </div>
 
 <h3 id = 'wedge'>Wedge</h3>
@@ -66,13 +76,16 @@ form an expanding hexagon, which is kind of unusual.</p>
 
 <div class = "section">
 <p>On the Folded Wedge, the %%PIECE%% visits the right most three squares
-of each row, escaping to infinity.</p>
+of each row, escaping to infinity. It uses a six step loop to move
+two squares to the upper left, giving it an escape speed of
+<span class = 'latex-inline'>\(\frac{\sqrt{2}}{3}\)</span>.</p>
 </div>
 
 <h4 id = 'flat'>Flat</h4>
 
 <p>On the Flat Wedge, the %%PIECE%% only visits the right most square
-of each row, escaping to infinity quickly.</p>
+of each row, escaping to infinity quickly. Its escape speed is
+<span class = 'latex-inline'>\(\sqrt{2}\)</span>.</p>
 
 <div class = 'trapped' data-piece = 'crane'></div>
 

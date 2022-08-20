@@ -455,11 +455,12 @@ let pieces = {
     },
 
     chariot: {
-        betza:    "R4",
+        betza:    "W4",
         results: {
             spiral_square:  "W", 
+            spiral_diamond: "T/112",
             wedge_folded:   "T/6", 
-            wedge_flat:     "E",
+            wedge_flat:      sqrt (2, 2),
         },
     },
 
@@ -486,6 +487,7 @@ let pieces = {
         betza: "fbRfB3K",
         results: {
             spiral_square:  "W",
+            spiral_diamond: "BM",
             wedge_folded:   "FC",
             wedge_flat:     "F/100%",
         },
@@ -499,8 +501,9 @@ let pieces = {
         betza:    "(4,4)",
         results: {
             spiral_square:  "F/3.125%", 
-            wedge_folded:   "E", 
-            wedge_flat:     "E",
+            spiral_diamond: "F/3.125%", 
+            wedge_folded:    sqrt (2, 1, 4),
+            wedge_flat:      sqrt (2, 1, 4),
         },
     },
 
@@ -536,8 +539,9 @@ let pieces = {
         betza:  "vWF",
         results: {
             spiral_square:  "F*/100%", 
-            wedge_folded:   "E*", 
-            wedge_flat:     "F/100%",
+            spiral_diamond: "F/100%",
+            wedge_folded:    sqrt (2, 3),
+            wedge_flat:      sqrt (2),
         },
     },
 
@@ -557,8 +561,9 @@ let pieces = {
         betza:    "sWfD",
         results: {
             spiral_square:  "F/12.5%", 
-            wedge_folded:   "E", 
-            wedge_flat:     "E",
+            spiral_diamond:  frac (1),
+            wedge_folded:    sqrt (2, 3, 2),
+            wedge_flat:      sqrt (2, 3, 2),
         },
     },
 

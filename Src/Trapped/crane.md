@@ -20,17 +20,28 @@ or straight backwards, combining the moves of the
 
 ### Spiral
 
+#### Square
+
 The %%PIECE%% visits all the squares on the Spiral. The squares visited
 form an expanding hexagon, which is kind of unusual.
+
+#### Diamond
+
+On the Diamond Spiral, the %%PIECE%% circles the origin in a direction
+opposite ot the direction of the Spiral, visiting all squares, and
+tracing a path which does not intersect itself.
 
 ### Wedge
 
 #### Folded
 
 On the Folded Wedge, the %%PIECE%% visits the right most three squares
-of each row, escaping to infinity.
+of each row, escaping to infinity. It uses a six step loop to move
+two squares to the upper left, giving it an escape speed of
+\(\frac{\sqrt{2}}{3}\).
 
 #### Flat
 
 On the Flat Wedge, the %%PIECE%% only visits the right most square
-of each row, escaping to infinity quickly.
+of each row, escaping to infinity quickly. Its escape speed is
+\(\sqrt{2}\).
