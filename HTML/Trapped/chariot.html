@@ -43,9 +43,22 @@ slides up to four unoccupied squares in any orthogonal direction.</p>
 
 <h3 id = 'spiral'>Spiral</h3>
 
+<h4 id = 'square'>Square</h4>
+
 <div class = "section">
-<p>On the Spiral, the %%PIECE%% can move as the <a href="wazir.html"><em>Wazir</em></a>,
+<p>On the Square Spiral, the %%PIECE%% can move as the <a href="wazir.html"><em>Wazir</em></a>,
 hence it fills the board by following the spiral.</p>
+</div>
+
+<h4 id = 'diamond'>Diamond</h4>
+
+<div class = "section">
+<p>On the Diamond Spiral, the movements of the %%PIECE%% start out in the
+same way as the <a href="rook.html"><em>Rook</em></a> moves on the Diamond Spiral, until
+the point where the <a href="rook.html"><em>Rook</em></a> slides more than four squares
+&mdash; which the %%PIECE%% cannot for. From that point on, the %%PIECE%%
+makes a wrong turn, and gets trapped a few steps later. From the beginning,
+it takes 112 steps for the %%PIECE%% to get trapped.</p>
 </div>
 
 <h3 id = 'wedge'>Wedge</h3>
@@ -61,7 +74,8 @@ six steps.</p>
 
 <p>On the Flat Wedge, the %%PIECE%% escapes. It visits the two right
 most squares of each row; the travel pattern for the %%PIECE%%
-is the same as for the <a href="rook.html"><em>Rook</em></a>.</p>
+is the same as for the <a href="rook.html"><em>Rook</em></a>. This gives an escape
+velocity of <span class = 'latex-inline'>\(\frac{\sqrt{2}}{2}\)</span>.</p>
 
 <div class = 'trapped' data-piece = 'chariot'></div>
 

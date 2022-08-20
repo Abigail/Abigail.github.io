@@ -18,8 +18,16 @@ a backward [*Ferz*](ferz.html).
 
 ### Spiral
 
+#### Square
+
 The %%PIECE%% can move as a [*Wazir*](wazir.html), so it will
 follow the Spiral and visit all the squares.
+
+#### Diamond
+
+On the Diamond Spiral, the %%PIECE%% can moves as the
+[*Blind Monkey*](blind_monkey.html), so it will just follow
+the Spiral.
 
 ### Wedge
 
