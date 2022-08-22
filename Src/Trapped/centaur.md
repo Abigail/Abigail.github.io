@@ -16,16 +16,17 @@ two away in one orthogonal direction and one in the other.
   {th = 1}  [Courier-Spiel](#chess-v:historic.dir/courierspiel.html)
 & {cs = 2}  **Councillor**
 &           \\
-  {th = 1}  [Royal Court](large.dir/contest/royalcourt.html)
+  {th = 1}  [Royal Court](#chess-v:large.dir/contest/royalcourt.html)
 & {cs = 2}  **Crowned Knight**
 &           \\
-  {th = 1}  [Cobra Chess](large.dir/cobra.html)
+  {th = 1}  [Cobra Chess](#chess-v:large.dir/cobra.html)
 & {cs = 2}  **Duke**
-&           \\
+&           The [limited range *Chancellor*](duke.html) from %%SCIROCCO%% and
+            %%TYPHOON%% is also named *Duke*. \\
   {th = 1}  %%GRAND_CAVALIER%%
 & {cs = 2; rs = 2}  **Eques Rex**
 &           %%ROYAL%% \\
-  {th = 1}  [Thunder Chess](difftaking.dir/thunder.html)
+  {th = 1}  [Thunder Chess](#chess-v:difftaking.dir/thunder.html)
 &           %%ROYAL%%; The *Eques Rex* is created when the [*King*](king.html)
             moves to the same square as the [*Knight*](knight.html); it's
             demoted to the [*King*](king.html) when capturing \\
@@ -35,7 +36,7 @@ two away in one orthogonal direction and one in the other.
   {th = 1}  [Renniassance Chess](#chess-v:large.dir/renaiss.html)
 & {cs = 2}  **Page**
 &           \\
-  {th = 1}  [Kung Fu Chess](large.dir/kungfuchess.html)
+  {th = 1}  [Kung Fu Chess](#chess-v:large.dir/kungfuchess.html)
 & {cs = 2}  **Tiger**
 &           \\
 ====|
