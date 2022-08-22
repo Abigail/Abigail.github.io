@@ -1,6 +1,6 @@
 <html>
 <head>
-<title>Dabbabarider</title>
+<title>%%PIECE%%</title>
 <meta charset = "utf-8">
 <link rel  = 'preconnect' href = 'https://fonts.gstatic.com'>
 <link rel = 'stylesheet' href =      'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
@@ -17,33 +17,49 @@
 <script src = '../../JavaScript/Trapped/pages.js'></script>
 </head>
 
-<body><h1>Dabbabarider</h1><div class = "byline">
+<body><h1>%%PIECE%%</h1><div class = "byline">
 by Abigail<br>
 <img src = "../../Images/jan_sluiters.jpg">
 </div>
 
 
-<p>The Dabbabarider moves like the <a href="dabbaba.html">Dabbaba</a>, but it
+<p>The %%PIECE%% moves like the <a href="dabbaba.html"><em>Dabbaba</em></a>, but it
 can move an unlimited amount of steps at each move. That is, at
 each move, it can move 2, 4, 6, etc squares away from the
 starting square in each of the four orthogonal directions, 
-providing each second square is unoccupied.</p>
+providing each second square is unoccupied. (It can jump over
+occupied odd squares).</p>
 
-<p>Because of this, the Dabbabarider is <em>colour-bound</em>, always staying
-on a square of the same colour.</p>
+<p>Because of this, the %%PIECE%% is <span class = 'tooltip underline'>colourbound<span class = 'tooltiptext'>A colourbound piece will always stay on a square of the same colour: if it starts on a black square, it will always remain on a black square; if it starts on a white square, it will always remain on a white square</span></span>.</p>
+
+<table class = piece_list>
+  <tr class = 'row-0' markdown = '1'>
+    <th class = 'cell-0-0 col-0 ' markdown = '1'>Game</td>
+    <th class = 'cell-0-1 col-1 ' markdown = '1' colspan = '2'>Piece</td>
+    <th class = 'cell-0-3 col-3 ' markdown = '1'>Info</td>
+  </tr>
+  <tr class = 'row-1' markdown = '1'>
+    <th class = 'cell-1-0 col-0 ' markdown = '1'><a href="https://en.wikipedia.org/wiki/Fairy_chess_piece#Riders"><em>Riders</em></a></td>
+    <td class = 'cell-1-1 col-1 ' markdown = '1' colspan = '2'><strong>Dabbabarider</strong></td>
+    <td class = 'cell-1-3 col-3 ' markdown = '1'></td>
+  </tr>
+</table>
 
 <h3 id = 'spiral'>Spiral</h3>
 
 <div class = "section">
-<p>The Dabbabarider moves exactly as the <a href="dabbaba.html">Dabbaba</a> does, 
+<p>On both the Square and Diamond Spirals, the %%PIECE%% moves exactly
+as the <a href="dabbaba.html">Dabbaba</a> does, 
 visiting 25% of all the squares.</p>
 </div>
 
 <h3 id = 'wedge'>Wedge</h3>
 
-<p>Just like the Spiral, the Dabbabarider moves exactly as the
-<a href="dabbaba.html">Dabbaba</a> does, on both the Folded and Flat Wedge,
-quickly escaping to infinity in a step wise pattern.</p>
+<p>Just like the Spiral, the %%PIECE%% moves exactly as the
+<a href="dabbaba.html"><em>Dabbaba</em></a> does, on both the Folded and Flat Wedge,
+quickly escaping to infinity in a step wise pattern: in a two step
+loop, it moves to a square two away to the upper right. This gives
+it an escape velocity of <span class = 'latex-inline'>\(\sqrt{2}\)</span>.</p>
 
 <div class = 'trapped' data-piece = 'dabbabarider'></div>
 
