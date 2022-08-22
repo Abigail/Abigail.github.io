@@ -28,11 +28,18 @@ which moves one square in any direction except forwards.
      
 ### Spiral
 
+#### Square
+
 The %%PIECE%% fills the entire board, but it does so in an
 unusual manner. It fills up the board in an expanding, roughly triangle
 shaped pattern.
 It adds three rows at the top, for each row at the right and left
 side of the triangle.
+
+#### Diamond
+
+The %%PIECE%% can move as the %%BM%%. Hence, it visits all the squares
+on the board by just following the Spiral.
 
 ### Wedge
 

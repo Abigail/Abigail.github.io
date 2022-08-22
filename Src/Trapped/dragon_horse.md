@@ -47,8 +47,15 @@ Link: [%%CHESS_V%%](#piece:dragonhorse)
 
 ### Spiral
 
+#### Square
+
 The %%PIECE%% can move as the [*Wazir*](wazir.html), and
 hence just follow the Spiral.
+
+#### Spiral
+
+The %%PIECE%% can move as the %%BM%%, and hence, just follows
+the Spiral.
 
 ### Wedge
 
