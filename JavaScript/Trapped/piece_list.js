@@ -1020,8 +1020,9 @@ let pieces = {
         betza_list: ["fWF", "B"],
         results:    {
             spiral_square:  "T/80", 
-            wedge_folded:   "E", 
-            wedge_flat:     "E",
+            spiral_diamond: "T/84",
+            wedge_folded:    sqrt (2, 2),
+            wedge_flat:      sqrt (2),
         },
     },
 
