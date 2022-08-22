@@ -24,6 +24,9 @@ my sub uni_name ($text) {
 
 our %MACROS = (
     our $TYPE_TRAPPED => {
+        #
+        # Chess Variants
+        #
         CHESS          =>  '[Chess](#wiki)',
         CAGLIOSTRO     =>  "[Cagliostro's Chess]" .
                            '(#chess-v:large.dir/cagliostro.html)',
@@ -66,6 +69,9 @@ our %MACROS = (
         XIANGQI        =>  '[Xiangqi (&#x8C61;&#x68CB;)](#wiki:xiangqi)',
         YARI_SHOGI     =>  '[Yari&nbsp;Sh&#x14d;gi](#wiki:Yari_shogi)',
 
+        #
+        # Move classes
+        #
         BASIC_LEAPERS  =>  '[*Basic Leapers*](leapers.html#basic_leapers)',
         COMPOUND_LEAPER
                        =>  '[*Compound Leaper*]' .
@@ -78,6 +84,22 @@ our %MACROS = (
         RIDER          =>  '[*Rider*](#wiki:Fairy_chess_piece#Riders)',
         RIDERS         =>  '[*Riders*](#wiki:Fairy_chess_piece#Riders)',
 
+        #
+        # Common referred to pieces
+        #
+        BISHOP         =>  "[*Bishop*](bishop.html)",
+        BM             =>  "[*Blind Monkey*](blind_monkey.html)",
+        FC             =>  "[*Flying Cock*](flying_cock.html)",
+        FERZ           =>  "[*Ferz*](ferz.html)",
+        KING           =>  "[*King*](king.html)",
+        KNIGHT         =>  "[*Knight*](knight.html)",
+        QUEEN          =>  "[*Queen*](queen.html)",
+        ROOK           =>  "[*Rook*](rook.html)",
+        WAZIR          =>  "[*Wazir*](wazir.html)",
+
+        #
+        # Piece name table
+        #
         PIECE_HEADERS  =>  "{class = piece_list}\n"            .
                            "{th = 1} Game & {th = 1; cs = 2} Piece & " .
                            "{th = 1} Info \\\\",
@@ -99,6 +121,10 @@ our %MACROS = (
                                                  "can ignore here"),
         PROMOTES_TO    =>  tooltip ("&#x260A;",  "Promotes to"),
         PROMOTED       =>  tooltip ("&#x260B;",  "Is promoted"),
+
+        #
+        # Other
+        #
         COLOUR_BOUND   =>  tooltip ("colourbound", 
                                     "A colourbound piece will always stay "   .
                                     "on a square of the same colour: if it "  .
