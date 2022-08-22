@@ -1,6 +1,6 @@
 <html>
 <head>
-<title>Genie</title>
+<title>%%PIECE%%</title>
 <meta charset = "utf-8">
 <link rel  = 'preconnect' href = 'https://fonts.gstatic.com'>
 <link rel = 'stylesheet' href =      'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
@@ -17,38 +17,58 @@
 <script src = '../../JavaScript/Trapped/pages.js'></script>
 </head>
 
-<body><h1>Genie</h1><div class = "byline">
+<body><h1>%%PIECE%%</h1><div class = "byline">
 by Abigail<br>
 <img src = "../../Images/jan_sluiters.jpg">
 </div>
 
 
-<p>The <strong>Genie</strong> moves as the <a href="queen.html"><em>Queen</em></a>, but only up
-to three squares. That is, the <strong>Genie</strong> can slide up to three
+<p>The %%PIECE%% moves as the <a href="queen.html"><em>Queen</em></a>, but only up
+to three squares. That is, the %%PIECE%% can slide up to three
 unoccupied squares in any orthogonal or diagonal direction.</p>
 
-<p>In <a href="https://www.chessvariants.com/rules/scirocco">Scirocco</a>, the <strong>Genie</strong> is the
-promoted <a href="dabbaba.html"><em>Dabbaba</em></a>. In
-<a href="https://www.chessvariants.com/rules/typhoon-revised">Typhoon</a>, the <strong>Genie</strong> is
-the promoted <a href="king.html?piece=salamander"><em>Salamander</em></a>.</p>
-
-<p>The <em>Harpy</em> in <a href="https://www.chessvariants.com/rules/scirocco">Scirocco</a> and
-<a href="https://www.chessvariants.com/rules/typhoon-revised">Typhoon</a> (to which the
-<a href="alibaba.html?piece=harpy"><em>Dervish</em></a> promotes) moves in the same
-way as the <strong>Genie</strong>. In addition, the <em>Harpy</em> gives some addtional
-movement powers to friendly which are in reach, but we can ignore
-that in our setup. The <strong>Harpy</strong> cannot capture.</p>
-
-<p>The <em>Typhoon</em>, as found in <a href="https://www.chessvariants.com/rules/typhoon-revised">Typhoon</a>
-moves in the same way as the <strong>Genie</strong>. In addition, it may capture
-any enemy piece (so, up to three) it finds in its path (but we ignore
-captures). The <a href="king.html?piece=cicada"><em>Cicada</em></a> promotes to the
-<em>Typhoon</em>.</p>
+<table class = piece_list>
+  <tr class = 'row-0' markdown = '1'>
+    <th class = 'cell-0-0 col-0 ' markdown = '1'>Game</td>
+    <th class = 'cell-0-1 col-1 ' markdown = '1' colspan = '2'>Piece</td>
+    <th class = 'cell-0-3 col-3 ' markdown = '1'>Info</td>
+  </tr>
+  <tr class = 'row-1' markdown = '1'>
+    <th class = 'cell-1-0 col-0 ' markdown = '1'><a href="https://www.chessvariants.com/rules/scirocco">Scirocco</a></td>
+    <td class = 'cell-1-1 col-1 ' markdown = '1' rowspan = '2' colspan = '2'><strong>Genie</strong></td>
+    <td class = 'cell-1-3 col-3 ' markdown = '1'><span class = 'tooltip'>&#x260B;<span class = 'tooltiptext'>Is promoted</span></span> <a href="dabbaba.html"><em>Dabbaba</em></a></td>
+  </tr>
+  <tr class = 'row-2' markdown = '1'>
+    <th class = 'cell-2-0 col-0 ' markdown = '1'><a href="https://www.chessvariants.com/rules/typhoon-revised">Typhoon</a></td>
+    <td class = 'cell-2-3 col-3 ' markdown = '1'><span class = 'tooltip'>&#x260B;<span class = 'tooltiptext'>Is promoted</span></span> <a href="king.html?piece=salamander"><em>Salamander</em></a></td>
+  </tr>
+  <tr class = 'row-3' markdown = '1'>
+    <th class = 'cell-3-0 col-0 ' markdown = '1'><a href="https://www.chessvariants.com/rules/scirocco">Scirocco</a>; <a href="https://www.chessvariants.com/rules/typhoon-revised">Typhoon</a></td>
+    <td class = 'cell-3-1 col-1 ' markdown = '1' colspan = '2'><strong>Harpy</strong></td>
+    <td class = 'cell-3-3 col-3 ' markdown = '1'><span class = 'tooltip'>&#x260B;<span class = 'tooltiptext'>Is promoted</span></span> <a href="alibaba.html?piece=dervish"><em>Dervish</em></a>;
+            <span class = 'tooltip'>&#x1F3A9;<span class = 'tooltiptext'>This piece has additional abilities,<br>which we can ignore here</span></span></td>
+  </tr>
+  <tr class = 'row-4' markdown = '1'>
+    <th class = 'cell-4-0 col-0 ' markdown = '1'><a href="https://www.chessvariants.com/rules/typhoon-revised">Typhoon</a></td>
+    <td class = 'cell-4-1 col-1 ' markdown = '1' colspan = '2'><strong>Typhoon</strong></td>
+    <td class = 'cell-4-3 col-3 ' markdown = '1'><span class = 'tooltip'>&#x260B;<span class = 'tooltiptext'>Is promoted</span></span> <a href="king.html?piece=cicada"><em>Cicada</em></a>
+            <span class = 'tooltip'>&#x1F3A9;<span class = 'tooltiptext'>This piece has additional abilities,<br>which we can ignore here</span></span></td>
+  </tr>
+</table>
 
 <h3 id = 'spiral'>Spiral</h3>
 
+<h4 id = 'square'>Square</h4>
+
 <div class = "section">
-<p>On the Spiral, the <strong>Genie</strong> can move as the <a href="wizar.html"><em>Wizar</em></a>,
+<p>On the Square Spiral, the %%PIECE%% can move as the <a href="wizar.html"><em>Wizar</em></a>,
+so it will fill the board by following the Spiral.</p>
+</div>
+
+<h4 id = 'diamond'>Diamond</h4>
+
+<div class = "section">
+<p>On the Square Spiral, the %%PIECE%% can move as the <a href="blind_monkey.html"><em>Blind Monkey</em></a>,
 so it will fill the board by following the Spiral.</p>
 </div>
 
@@ -57,14 +77,14 @@ so it will fill the board by following the Spiral.</p>
 <h4 id = 'folded'>Folded</h4>
 
 <div class = "section">
-<p>On the Folded Wedge, the <strong>Genie</strong> can move as the
+<p>On the Folded Wedge, the %%PIECE%% can move as the
 <a href="flying_cock.html"><em>Flying Cock</em></a>,
 so it will fill the board by following the Wedge.</p>
 </div>
 
 <h4 id = 'flat'>Flat</h4>
 
-<p>On the Flat Wedge, the <strong>Genie</strong> fills the board by following
+<p>On the Flat Wedge, the %%PIECE%% fills the board by following
 a slightly slanted pattern.</p>
 
 <div class = 'trapped' data-piece = 'genie'></div>

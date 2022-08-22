@@ -1,6 +1,6 @@
 <html>
 <head>
-<title>Ghost Warrior</title>
+<title>%%PIECE%%</title>
 <meta charset = "utf-8">
 <link rel  = 'preconnect' href = 'https://fonts.gstatic.com'>
 <link rel = 'stylesheet' href =      'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
@@ -17,24 +17,46 @@
 <script src = '../../JavaScript/Trapped/pages.js'></script>
 </head>
 
-<body><h1>Ghost Warrior</h1><div class = "byline">
+<body><h1>%%PIECE%%</h1><div class = "byline">
 by Abigail<br>
 <img src = "../../Images/jan_sluiters.jpg">
 </div>
 
 
-<p>The <strong>Ghost Warrior</strong> either moves an unlimited number of unoccupied
+<p>The %%PIECE%% either moves an unlimited number of unoccupied
 squares forward (like the <a href="lance.html"><em>Lance</em></a>), or a one square
 diagonally backward.</p>
 
-<p>In <a href="https://www.chessvariants.com/rules/typhoon-revised">Typhoon</a>, the <strong>Ghost Warrior</strong>
-promotes to the <a href="free_boar.html"><em>Free Boar</em></a>.</p>
+<table class = piece_list>
+  <tr class = 'row-0' markdown = '1'>
+    <th class = 'cell-0-0 col-0 ' markdown = '1'>Game</td>
+    <th class = 'cell-0-1 col-1 ' markdown = '1' colspan = '2'>Piece</td>
+    <th class = 'cell-0-3 col-3 ' markdown = '1'>Info</td>
+  </tr>
+  <tr class = 'row-1' markdown = '1'>
+    <th class = 'cell-1-0 col-0 ' markdown = '1'><a href="https://www.chessvariants.com/rules/typhoon-revised">Typhoon</a></td>
+    <td class = 'cell-1-1 col-1 ' markdown = '1' colspan = '2'><strong>Ghost Warrior</strong></td>
+    <td class = 'cell-1-3 col-3 ' markdown = '1'><span class = 'tooltip'>&#x260A;<span class = 'tooltiptext'>Promotes to</span></span> <a href="free_boar.html"><em>Free Boar</em></a></td>
+  </tr>
+</table>
 
 <h3 id = 'spiral'>Spiral</h3>
 
+<h4 id = 'square'>Square</h4>
+
 <div class = "section">
-<p>On the Spiral, the <strong>Ghost Warrior</strong> visits all the squares in
-the left quadrant of the board, when divided along the diagonals.</p>
+<p>On the Spiral, the %%PIECE%% visits all the squares in
+the left quadrant of the board, when divided along the diagonals.
+THus, the %%PIECE%% visits <span class = 'latex-inline'>\(25\%\)</span> of the squares on the board.</p>
+</div>
+
+<h4 id = 'diamond'>Diamond</h4>
+
+<div class = "section">
+<p>On the Diamond Square, the uses an eight step loop to move four
+square straight down, giving it an escape velocity of
+<span class = 'latex-inline'>\(\frac{1}{2}\)</span>. Only two files will be visited, and all but
+two of the visited squares are below the origin.</p>
 </div>
 
 <h3 id = 'wedge'>Wedge</h3>
@@ -42,14 +64,20 @@ the left quadrant of the board, when divided along the diagonals.</p>
 <h4 id = 'folded'>Folded</h4>
 
 <div class = "section">
-<p>On the Folded Wedge, the <strong>Ghost Warrior</strong> escapes to infinity
-by visiting only the three left most squares of each row.</p>
+<p>On the Folded Wedge, the %%PIECE%% escapes to infinity
+by visiting only the three left most squares of each row.
+In a three step loop, the %%PIECE%% moves one square
+upwards and to the left, giving it an escape velocity
+of <span class = 'latex-inline'>\(\frac{\sqrt{2}}{3}\)</span>.</p>
 </div>
 
 <h4 id = 'flat'>Flat</h4>
 
-<p>On the Flat Wedge, the <strong>Ghost Warrior</strong> escapes to infinity
-by visiting only the three right most squares of each row.</p>
+<p>On the Flat Wedge, the %%PIECE%% escapes to infinity
+by visiting only the three right most squares of each row.
+In a three step loop, the %%PIECE%% moves one square
+upwards and to the right, giving it an escape velocity
+of <span class = 'latex-inline'>\(\frac{\sqrt{2}}{3}\)</span>.</p>
 
 <div class = 'trapped' data-piece = 'ghost_warrior'></div>
 

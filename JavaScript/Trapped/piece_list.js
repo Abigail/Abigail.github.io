@@ -1002,6 +1002,7 @@ let pieces = {
         betza:    "W3F3",
         results: {
             spiral_square:  "W", 
+            spiral_diamond: "BM",
             wedge_folded:   "FC", 
             wedge_flat:     "F*/100%",
         },
@@ -1011,8 +1012,9 @@ let pieces = {
         betza:    "bFfR",
         results: {
             spiral_square:  "F*/25%", 
-            wedge_folded:   "E", 
-            wedge_flat:     "E",
+            spiral_diamond:  frac (1, 2),
+            wedge_folded:    sqrt (2, 3),
+            wedge_flat:      sqrt (2, 3),
         },
     },
 
