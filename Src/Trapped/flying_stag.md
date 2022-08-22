@@ -14,8 +14,15 @@ squares orthogonally forward or backward (like a vertical [*Rook*](rook.html)).
 
 ### Spiral
 
+#### Square
+
 The %%PIECE%% can move as the [*Wazir*](wazir.html), and hence,
 will visit all the squares by following the Spiral.
+
+#### Diamond
+
+The %%PIECE%% can moves as the %%BM%%, visiting all the squares
+on the board by following the Spiral.
 
 ### Wedge
 

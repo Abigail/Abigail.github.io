@@ -16,14 +16,21 @@ square.
 
 ### Spiral
 
-The %%PIECE%% can move like the [*Wazir*](wazir.html), and hence,
-will follow the Spiral.
+#### Square
+
+The %%PIECE%% can move like the %%WAZIR%%, and hence,
+will follow the Square Spiral.
+
+#### Diamond
+
+The %%PIECE%% can move like the %%BM%%, and hence,
+will follow the Diamond Spiral.
 
 ### Wedge
 
 #### Folded
 
-The %%PIECE%% can move like the [*Flying Cock*](flying_cock.html), and hence,
+The %%PIECE%% can move like the %%FC%% and hence,
 will follow the Wedge.
 
 #### Flat
