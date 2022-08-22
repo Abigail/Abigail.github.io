@@ -17,9 +17,17 @@ The piece is also known as the *Sidewinder*.
 
 ### Spiral
 
-On the Spiral, the %%PIECE%% escapes to infinity on a 45&deg; angle,
+#### Square
+
+On the Square Spiral, the %%PIECE%% escapes to infinity on a 45&deg; angle,
 visiting three squares on each row, before moving one row up and
-one column back.
+one column back. This four step loop to move one square to the
+upper right means an escape velocity of \(\frac{\sqrt{2}}{4}\).
+
+#### Diamond
+
+On the Diamond Spiral, the %%PIECE%% uses a two step loop to move
+one square upwards. This gives in an escape velocity of \(\frac{1}{2}\).
 
 ### Wedge
 

@@ -17,9 +17,15 @@ blocked).
 
 ### Spiral
 
-On the Spiral, the %%PIECE%% gets trapped quickly, after no more
+#### Square
+
+On the Square Spiral, the %%PIECE%% gets trapped quickly, after no more
 than 55 steps.
 
+#### Diamond
+
+On the Diamond Spirla, the %%PIECE%% remains free for only slightly 
+longer: it gets trapped after 60 steps.
 
 ### Wedge
 
