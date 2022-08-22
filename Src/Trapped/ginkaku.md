@@ -15,7 +15,14 @@ moves, it slides over an unlimited number of unoccupied squares diagonally.
 
 ### Spiral
 
-On the Spiral, the %%PIECE%% gets trapped after 80 steps.
+#### Square
+
+On the Square Spiral, the %%PIECE%% gets trapped, quickly after 80 steps.
+
+#### Diamond
+
+On the Diamond Square, the %%PIECE%% gets trapped quickly as well,
+after 84 steps.
 
 ### Wedge
 
@@ -23,9 +30,12 @@ On the Spiral, the %%PIECE%% gets trapped after 80 steps.
 
 On the Folded Wedge, the %%PIECE%% escapes to the upper right
 by visiting two squares on each row: the right most, and the 
-third square from the right.
+third square from the right. It's four step loop to move two
+squares to the upper right, giving it an escape velocity of
+\(\frac{\sqrt{2}}{2}\).
 
 #### Flat
 
 On the Flat Wedge, the %%PIECE%% escapes by keeping to the 
-right edge of the Wedge.
+right edge of the Wedge. This results in an escape velocity
+of \(\sqrt{2}\).

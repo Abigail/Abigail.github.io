@@ -44,8 +44,17 @@ moves, it slides over an unlimited number of unoccupied squares diagonally.</p>
 
 <h3 id = 'spiral'>Spiral</h3>
 
+<h4 id = 'square'>Square</h4>
+
 <div class = "section">
-<p>On the Spiral, the %%PIECE%% gets trapped after 80 steps.</p>
+<p>On the Square Spiral, the %%PIECE%% gets trapped, quickly after 80 steps.</p>
+</div>
+
+<h4 id = 'diamond'>Diamond</h4>
+
+<div class = "section">
+<p>On the Diamond Square, the %%PIECE%% gets trapped quickly as well,
+after 84 steps.</p>
 </div>
 
 <h3 id = 'wedge'>Wedge</h3>
@@ -55,13 +64,16 @@ moves, it slides over an unlimited number of unoccupied squares diagonally.</p>
 <div class = "section">
 <p>On the Folded Wedge, the %%PIECE%% escapes to the upper right
 by visiting two squares on each row: the right most, and the 
-third square from the right.</p>
+third square from the right. It's four step loop to move two
+squares to the upper right, giving it an escape velocity of
+<span class = 'latex-inline'>\(\frac{\sqrt{2}}{2}\)</span>.</p>
 </div>
 
 <h4 id = 'flat'>Flat</h4>
 
 <p>On the Flat Wedge, the %%PIECE%% escapes by keeping to the 
-right edge of the Wedge.</p>
+right edge of the Wedge. This results in an escape velocity
+of <span class = 'latex-inline'>\(\sqrt{2}\)</span>.</p>
 
 <div class = 'trapped' data-piece = 'ginkaku'></div>
 
