@@ -1,6 +1,6 @@
 <html>
 <head>
-<title>Giraffe</title>
+<title>%%PIECE%%</title>
 <meta charset = "utf-8">
 <link rel  = 'preconnect' href = 'https://fonts.gstatic.com'>
 <link rel = 'stylesheet' href =      'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
@@ -17,25 +17,47 @@
 <script src = '../../JavaScript/Trapped/pages.js'></script>
 </head>
 
-<body><h1>Giraffe</h1><div class = "byline">
+<body><h1>%%PIECE%%</h1><div class = "byline">
 by Abigail<br>
 <img src = "../../Images/jan_sluiters.jpg">
 </div>
 
 
-<p>The <strong>Giraffe</strong> is a (4, 1)-leaper. That is, from its starting square,
+<p>The %%PIECE%% is a (4,1)-<a href="leapers.html"><em>Leaper</em></a>. That is, from its starting square,
 it jumps to a square which is four away in one orthogonal direction,
 and one in the other.</p>
 
-<p>There is also a piece called <em>Giraffe</em> in
-<a href="https://en.wikipedia.org/wiki/Dobutsu_shogi">D&#x14d;butsu sh&#x14d;gi</a>, but it moves
-like the <a href="wazir.html?piece=dobutsu_giraffe"><em>Wazir</em></a>.</p>
+<table class = piece_list>
+  <tr class = 'row-0' markdown = '1'>
+    <th class = 'cell-0-0 col-0 ' markdown = '1'>Game</td>
+    <th class = 'cell-0-1 col-1 ' markdown = '1' colspan = '2'>Piece</td>
+    <th class = 'cell-0-3 col-3 ' markdown = '1'>Info</td>
+  </tr>
+  <tr class = 'row-1' markdown = '1'>
+    <th class = 'cell-1-0 col-0 ' markdown = '1'><a href="leapers.html"><em>Leapers</em></a></td>
+    <td class = 'cell-1-1 col-1 ' markdown = '1' colspan = '2'><strong>Giraffe</strong></td>
+    <td class = 'cell-1-3 col-3 ' markdown = '1'>Do not confuse this with the
+            <a href="wazir.html?piece=dobutsu_giraffe"><em>Giraffe</em></a> from
+            <a href="https://en.wikipedia.org/wiki/Dobutsu_shogi">D&#x14d;butsu sh&#x14d;gi</a> or the <a href="amazon.html?piece=giraffe_tgc"><em>Giraffe</em></a>
+            from <a href="https://www.chessvariants.com/historic.dir/indiangr1.html">Turkish Great Chess</a>
+            and <a href="https://www.chessvariants.com/large.dir/ericgr.html">Eric's Great Chess</a></td>
+  </tr>
+</table>
 
 <h3 id = 'spiral'>Spiral</h3>
 
+<h4 id = 'square'>Square</h4>
+
 <div class = "section">
-<p>The <strong>Giraffe</strong> moves irregular on the Spiral, eventually getting
+<p>The %%PIECE%% moves irregular on the Square Spiral, eventually getting
 trapped. This, however, only happens on step 13,102.</p>
+</div>
+
+<h4 id = 'diamond'>Diamond</h4>
+
+<div class = "section">
+<p>The %%PIECE%% gets trapped faster on the Diamond Square; after
+1.322 steps, it is trapped.</p>
 </div>
 
 <h3 id = 'wedge'>Wedge</h3>
@@ -43,13 +65,13 @@ trapped. This, however, only happens on step 13,102.</p>
 <h4 id = 'folded'>Folded</h4>
 
 <div class = "section">
-<p>On the Folded Wedge, the <strong>Giraff</strong> gets trapped much faster than
-on the Spiral: after a mere 114 steps, it gets trapped.</p>
+<p>On the Folded Wedge, the %%PIECE%% gets trapped much faster than
+on either Spiral: after a mere 114 steps, it gets trapped.</p>
 </div>
 
 <h4 id = 'flat'>Flat</h4>
 
-<p>On the Flat Wedge, the <strong>Giraff</strong> gets trapped even after; it makes
+<p>On the Flat Wedge, the %%PIECE%% gets trapped even faster; it makes
 94 steps, and gets trapped.</p>
 
 <div class = 'trapped' data-piece = 'giraffe'></div>

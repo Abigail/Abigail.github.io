@@ -36,7 +36,7 @@ it's known under various names, including:
             [Turkish Chess](#chess-v:large.dir/turkishchess.html)
 & {cs = 2}  **General**
 &           \\
-  {th = 1}  [Eric's Great Chess](large.dir/ericgr.html);
+  {th = 1}  [Eric's Great Chess](#chess-v:large.dir/ericgr.html);
             [Turkish Great Chess](#chess-v:historic.dir/indiangr1.html)
 & {cs = 2}  **Giraffe**
 &           Not to be confused with the (4,1)-leaper [*Giraffe*](giraffe.html),
