@@ -620,6 +620,7 @@ let pieces = {
         betza:    "W4fFA",
         results: {
             spiral_square:  "W", 
+            spiral_diamond: "F*/100%",
             wedge_folded:   "FC", 
             wedge_flat:     "F/100%",
         },

@@ -16,14 +16,21 @@ one square in one of the two diagonal forward directions.
 
 ### Spiral
 
-The %%PIECE%% can move as the [*Wazir*](wazir.html), so it
+#### Square
+
+The %%PIECE%% can move as the %%WAZIR%%, so it
 will just follow the Spiral.
+
+#### Diamond
+
+On the Diamond Spiral, the %%PIECE%% uses a complicated pattern
+to fill the entire board.
 
 ### Wedge
 
 #### Folded
 
-The %%PIECE%% can move as the [*Flying Cock*](flying_cock.html),
+The %%PIECE%% can move as the %%FC%%
 so it will just follow the Folded Wedge.
 
 #### Flat
