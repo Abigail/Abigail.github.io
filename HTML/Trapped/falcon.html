@@ -1,6 +1,6 @@
 <html>
 <head>
-<title>Falcon</title>
+<title>%%PIECE%%</title>
 <meta charset = "utf-8">
 <link rel  = 'preconnect' href = 'https://fonts.gstatic.com'>
 <link rel = 'stylesheet' href =      'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
@@ -17,26 +17,68 @@
 <script src = '../../JavaScript/Trapped/pages.js'></script>
 </head>
 
-<body><h1>Falcon</h1><div class = "byline">
+<body><h1>%%PIECE%%</h1><div class = "byline">
 by Abigail<br>
 <img src = "../../Images/jan_sluiters.jpg">
 </div>
 
 
-<p><a href="https://en.wikipedia.org/wiki/Falcon-hunter_chess">Falcon-Hunter Chess</a> is a chess variant
-invented by Karl Schultz in 1943.</p>
+<p>The %%PIECE%% either slides an unlimited amount of unoccupied squares
+diagonally forward (like a forward <a href="bishop.html"><em>Bishop</em></a>), or an unlimited
+amount of unoccupied squares orthogonally backward (like a 
+backward <a href="rook.html"><em>Rook</em></a>).</p>
 
-<p>It introduces two new pieces, the Falcon, and the <a href="hunter.html">Hunter</a>.</p>
+<p>This mirrors the movements of the <a href="hunter.html"><em>Hunter</em></a>.</p>
 
-<p>The Falcon moves forward like the Chess <a href="bishop.html">Bishop</a>,
-and backwards like a Chess <a href="rook.html">Rook</a>.</p>
+<table class = piece_list>
+  <tr class = 'row-0' markdown = '1'>
+    <th class = 'cell-0-0 col-0 ' markdown = '1'>Game</td>
+    <th class = 'cell-0-1 col-1 ' markdown = '1' colspan = '2'>Piece</td>
+    <th class = 'cell-0-3 col-3 ' markdown = '1'>Info</td>
+  </tr>
+  <tr class = 'row-1' markdown = '1'>
+    <th class = 'cell-1-0 col-0 ' markdown = '1'><a href="https://en.wikipedia.org/wiki/Falcon-hunter_chess">Falcon-Hunter Chess</a></td>
+    <td class = 'cell-1-1 col-1 ' markdown = '1' colspan = '2'><strong>Falcon</strong></td>
+    <td class = 'cell-1-3 col-3 ' markdown = '1'><a href="https://en.wikipedia.org/wiki/Tori_Shogi">Tori&nbsp;Sh&#x14d;gi</a> also has a piece name 
+            <a href="drunk_elephant.html?piece=tori_falcon"><em>Falcon</em></a>, with
+            a different movement.</td>
+  </tr>
+</table>
 
-<p>Despite its moves being a mirror image of the Hunter, the Falcon
-doesn't get trapped. It will visit 25% of the squares, in a 
-somewhat interesting pattern.</p>
+<h3 id = 'spiral'>Spiral</h3>
 
-<p>In <a href="https://en.wikipedia.org/wiki/Tori_Shogi"><em>Tori Sh&#x14d;gi</em></a>, there is a 
-<a href="drunk_elephant.html?piece=tori_falcon">different piece with the same name</a>.</p>
+<h4 id = 'square'>Square</h4>
+
+<div class = "section">
+<p>The %%PIECE%% visits almost all the squares in a wedge to the right
+of origin in a somewhat interesting pattern. <span class = 'latex-inline'>\(25\%\)</span> of the squares
+on the board will be visited. Its mirror image, the <a href="hunter.html"><em>Hunter</em></a>
+however, will get trapped (after 146 steps).</p>
+</div>
+
+<h4 id = 'diamond'>Diamond</h4>
+
+<div class = "section">
+<p>On the Diamond Spiral, the %%PIECE%% uses an eight step loop to move
+four square upward, for an escape velocity of <span class = 'latex-inline'>\(\frac{1}{2}\)</span>. Only
+squares on two files will be visited, all but two of them above the
+origin.</p>
+</div>
+
+<h3 id = 'wedge'>Wedge</h3>
+
+<h4 id = 'folded'>Folded</h4>
+
+<div class = "section">
+<p>On the Folded Wedge, the %%PIECE%% uses a six step loop to move
+two squares to the upper right. The three right most squares of
+each row are visited, for an escape velocity of <span class = 'latex-inline'>\(\frac{\sqrt{2}}{3}\)</span>.</p>
+</div>
+
+<h4 id = 'flat'>Flat</h4>
+
+<p>On the Flat Wedge, the %%PIECE%% visits the right most square
+of each row, for an escape velocity of <span class = 'latex-inline'>\(\sqrt{2}\)</span>.</p>
 
 <div class = 'trapped' data-piece = 'falcon'></div>
 

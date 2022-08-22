@@ -1,6 +1,6 @@
 <html>
 <head>
-<title>Flamingo</title>
+<title>%%PIECE%%</title>
 <meta charset = "utf-8">
 <link rel  = 'preconnect' href = 'https://fonts.gstatic.com'>
 <link rel = 'stylesheet' href =      'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
@@ -17,18 +17,56 @@
 <script src = '../../JavaScript/Trapped/pages.js'></script>
 </head>
 
-<body><h1>Flamingo</h1><div class = "byline">
+<body><h1>%%PIECE%%</h1><div class = "byline">
 by Abigail<br>
 <img src = "../../Images/jan_sluiters.jpg">
 </div>
 
 
-<p>The Flamingo is a (1,6)-leaper. </p>
+<p>The %%PIECE%% is a (1,6)-<a href="leapers.html"><em>Leaper</em></a>. That is, on each step, it leaps to
+a square which is six squares away in one orthogonal direction, and one
+away in the other orthogonal direction.</p>
 
-<p>This may, or may not, get trapped. On the Spiral, it doesn't get trapped
-in the first 20,000 steps, but it doesn't follow a regular path either.</p>
+<table class = piece_list>
+  <tr class = 'row-0' markdown = '1'>
+    <th class = 'cell-0-0 col-0 ' markdown = '1'>Game</td>
+    <th class = 'cell-0-1 col-1 ' markdown = '1' colspan = '2'>Piece</td>
+    <th class = 'cell-0-3 col-3 ' markdown = '1'>Info</td>
+  </tr>
+  <tr class = 'row-1' markdown = '1'>
+    <th class = 'cell-1-0 col-0 ' markdown = '1'>Problemists; <a href="leapers.html"><em>Leapers</em></a></td>
+    <td class = 'cell-1-1 col-1 ' markdown = '1' colspan = '2'><strong>Flamingo</strong></td>
+    <td class = 'cell-1-3 col-3 ' markdown = '1'></td>
+  </tr>
+</table>
 
-<p>On the Wedge, it get trapped after 90 steps.</p>
+<h3 id = 'spiral'>Spiral</h3>
+
+<h4 id = 'square'>Square</h4>
+
+<div class = "section">
+<p>On the Square Spiral, the %%PIECE%% bounces around wildly, before getting
+trapped on step 26,966.</p>
+</div>
+
+<h4 id = 'diamond'>Diamond</h4>
+
+<div class = "section">
+<p>On the Diamond Spiral, the %%PIECE%% bounces around as wildly as on the
+Square Spiral, but gets trapped much sooner, on step 1,1810.</p>
+</div>
+
+<h3 id = 'wedge'>Wedge</h3>
+
+<h4 id = 'folded'>Folded</h4>
+
+<div class = "section">
+<p>On the Folded Wedge, the %%PIECE%% gets trapped after 90 steps.</p>
+</div>
+
+<h4 id = 'flat'>Flat</h4>
+
+<p>On the Flat Wedge, the %%PIECE%% gets trapped after 260 steps.</p>
 
 <div class = 'trapped' data-piece = 'flamingo'></div>
 

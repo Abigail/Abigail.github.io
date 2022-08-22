@@ -37,6 +37,7 @@ our %MACROS = (
         DICKENS        =>   tooltip ("*A Guide To Fairy Chess*",
                                      "Anothy Dickens, 1969",
                                      "underline"),
+        DIFFERENT      =>  '[Chess with different armies](#wiki)',
         DOBUTSU        =>  '[D&#x14d;butsu sh&#x14d;gi](#wiki:Dobutsu_shogi)',
         FALCON_HUNTER  =>  '[Falcon-Hunter Chess](#wiki:Falcon-hunter_chess)',
         INTERDEPENDENT =>  '[Interdependent Chess]' .

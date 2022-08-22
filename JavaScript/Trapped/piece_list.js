@@ -770,6 +770,7 @@ let pieces = {
         betza: "W2F2N",
         results: {
             spiral_square:  "W", 
+            spiral_diamond: "BM",
             wedge_folded:   "FC", 
             wedge_flat:     "F/100%",
         },
@@ -805,6 +806,7 @@ let pieces = {
         betza:    "FDA",
         results: {
             spiral_square:  "F/50%", 
+            spiral_diamond: "F/50%",
             wedge_folded:   "F/50%", 
             wedge_flat:     "F/50%",
         },
@@ -813,10 +815,12 @@ let pieces = {
 
     falcon: {
         betza:    "fBbR",
+        _index_name: "Falcon (Falcon-Hunter Chess)",
         results: {
             spiral_square:  "F*/25%", 
-            wedge_folded:   "E", 
-            wedge_flat:     "E",
+            spiral_diamond:  frac (1, 2),
+            wedge_folded:    sqrt (2, 3),
+            wedge_flat:      sqrt (2),
         },
     },
 
@@ -824,11 +828,6 @@ let pieces = {
         parent: "drunk_elephant",
         _name:  "Falcon",
         _index_name: "Falcon (Tori Sh&#x14d;gi)",
-        results: {
-            spiral_square:  "F*/100%", 
-            wedge_folded:   "FC", 
-            wedge_flat:     "F/100%",
-        },
     },
 
     ferese: {
@@ -875,6 +874,7 @@ let pieces = {
         betza:    "(1,6)",
         results: {
             spiral_square:  "T/26,966", 
+            spiral_diamond: "T/1810",
             wedge_folded:   "T/90", 
             wedge_flat:     "T/260",
         },
@@ -918,6 +918,7 @@ let pieces = {
         betza: "sWFvR",
         results: {
             spiral_square:  "W",
+            spiral_diamond: "BM",
             wedge_folded:   "FC", 
             wedge_flat:     "F/100%",
         },
@@ -927,8 +928,9 @@ let pieces = {
         betza:    "(0,4)",
         results: {
             spiral_square:  "F/6.25%", 
-            wedge_folded:   "E", 
-            wedge_flat:     "E",
+            spiral_diamond: "F/6.25%", 
+            wedge_folded:    sqrt (2, 1, 2),
+            wedge_flat:      sqrt (2, 1, 2),
         },
     },
 
@@ -940,6 +942,7 @@ let pieces = {
         betza:    "BsR",
         results: {
             spiral_square:  "T/251", 
+            spiral_diamond: "BM",
             wedge_folded:   "FC", 
             wedge_flat:     "F/100%",
         },
@@ -947,11 +950,7 @@ let pieces = {
 
     frog: {
         betza: "FH",
-        results: {
-            spiral_square:  "?/1G",
-            wedge_folded:   "F*/100%", 
-            wedge_flat:     "F*/100%",
-        },
+        parent: "tadpole",
         _index_name: "Frog (Ferz + Threeleaper)",
     },
 
@@ -959,6 +958,7 @@ let pieces = {
         betza:    "KGH",
         results: {
             spiral_square:  "W", 
+            spiral_diamond: "BM",
             wedge_folded:   "FC", 
             wedge_flat:     "F/100%",
         },
@@ -1259,9 +1259,10 @@ let pieces = {
     kinkei: {
         betza_list: ["WfF", "fN"],
         results: {
-            spiral_square:  "E", 
-            wedge_folded:   "E*", 
-            wedge_flat:     "E"
+            spiral_square:   sqrt (2, 2),
+            spiral_diamond:  frac (1, 2),
+            wedge_folded:    frac (1, 2),
+            wedge_flat:      sqrt (2, 2),
         },
     },
 
@@ -1867,6 +1868,7 @@ let pieces = {
         betza: "FH",
         results: {
             spiral_square:  "?/1G",
+            spiral_diamond: "T/50,279",
             wedge_folded:   "T/8,619,774", 
             wedge_flat:     "T/4,637,261",
         },

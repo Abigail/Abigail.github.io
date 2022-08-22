@@ -19,12 +19,19 @@ movements, rotated 90&deg;.
 
 ### Spiral
 
+#### Square
+
 Despite the [*Bishop*](bishop.html) and the sidewards
 [*Rook*](rook.html) not getting trapped, nor the [*Queen*](queen.html)
 (which combines the [*Bishop*](bishop.html) and full [*Rook*](rook.html)),
 the %%PIECE%% does get trapped, after 251 steps. This is less than
 half the steps the [*Flying Ox*](flying_ox.html) takes before getting
 trapped.
+
+#### Diamond
+
+THe %%PIECE%% can move as the %%BM%%, so it visits all the squares
+by just following the Spiral.
 
 ### Wedge
 
