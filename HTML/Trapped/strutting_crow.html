@@ -47,9 +47,23 @@ one square diagonally backward.</p>
 
 <h3 id = 'spiral'>Spiral</h3>
 
+<h4 id = 'square'>Square</h4>
+
 <div class = "section">
-<p>THe %%PIECE%% circles around the origin once, then escapes to the
-upper left by visiting three squares of reach row and column.</p>
+<p>The %%PIECE%% circles around the origin once, then escapes to the
+upper left by visiting three squares of reach row and column. This
+three step loop to move one square to the upper left implies an
+escape velocity of <span class = 'latex-inline'>\(\frac{\sqrt{2}}{3}\)</span>.</p>
+</div>
+
+<h4 id = 'diamond'>Diamond</h4>
+
+<div class = "section">
+<p>On the Diamond Spiral, the %%PIECE%% uses an eight step loop
+(two four step parts which are mirror images of each other), to
+move four squares downward. Only visited squares are restricted
+to two files, and only the two visited squares to lie below the origin.
+The escape velocity is <span class = 'latex-inline'>\(\frac{1}{2}\)</span>.</p>
 </div>
 
 <h3 id = 'wedge'>Wedge</h3>
@@ -58,13 +72,15 @@ upper left by visiting three squares of reach row and column.</p>
 
 <div class = "section">
 <p>The %%PIECE%% escapes to the upper left by visiting three squares of reach
-row and column.</p>
+row and column. It uses the same three step loop as it uses on the
+Square Spiral, with an escape velocity of <span class = 'latex-inline'>\(\frac{\sqrt{2}}{3}\)</span>.</p>
 </div>
 
 <h4 id = 'flat'>Flat</h4>
 
 <p>The %%PIECE%% escapes to the upper right by visiting three squares of reach
-row and column.</p>
+row and column. This is a mirror image of how %%PIECE%% moves on the
+Folded Wedge &mdash; hence the escape velocity is also <span class = 'latex-inline'>\(\frac{\sqrt{2}}{3}\)</span>.</p>
 
 <div class = 'trapped' data-piece = 'strutting_crow'></div>
 

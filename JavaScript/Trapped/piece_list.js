@@ -706,6 +706,7 @@ let pieces = {
         betza:  "fBbRfsWbB2",
         results: {
             spiral_square:  "W", 
+            spiral_diamond: "BM",
             wedge_folded:   "FC", 
             wedge_flat:     "F/100%",
         },
@@ -725,6 +726,7 @@ let pieces = {
         betza: "",
         results: {
             spiral_square:  "T/55", 
+            spiral_diamond: "T/60",
             wedge_folded:   "T/47", 
             wedge_flat:     "T/18",
         },
@@ -881,7 +883,8 @@ let pieces = {
     flying_cock: {
         betza:    "fFsW",
         results: {
-            spiral_square:  "E*", 
+            spiral_square:   sqrt (2, 4),
+            spiral_diamond:  frac (1, 2),
             wedge_folded:   "FC", 
             wedge_flat:     "F*/100%",
         },
@@ -1430,8 +1433,9 @@ let pieces = {
         betza:    "F2",
         results: {
             spiral_square:  "F/40.625%", 
-            wedge_folded:   "E", 
-            wedge_flat:     "E"
+            spiral_diamond: "F/50%",
+            wedge_folded:    sqrt (2, 2),
+            wedge_flat:      sqrt (2),
         },
     },
 
@@ -1827,9 +1831,10 @@ let pieces = {
     strutting_crow: {
         betza: "fWbF",
         results: {
-            spiral_square:  "E*",
-            wedge_folded:   "E",
-            wedge_flat:     "E",
+            spiral_square:   sqrt (2, 3),
+            spiral_diamond:  frac (1, 2),
+            wedge_folded:    sqrt (2, 3),
+            wedge_flat:      sqrt (2, 3),
         },
     },
 
