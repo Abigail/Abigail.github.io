@@ -1436,6 +1436,7 @@ let pieces = {
         betza:    "WN",
         results: {
             spiral_square:  "W", 
+            spiral_diamond: "?/1G",
             wedge_folded:   "F/100%", 
             wedge_flat:     "F/100%"
         },
