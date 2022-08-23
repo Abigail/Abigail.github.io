@@ -1119,7 +1119,7 @@ let pieces = {
         results: {
             spiral_square:  "T/67", 
             spiral_diamond: "T/157",
-            wedge_folded:    sqrt (2, 3),
+            wedge_folded:    sqrt (2, 2),
             wedge_flat:      sqrt (2),
         },
     },
@@ -1149,9 +1149,10 @@ let pieces = {
     hawk: {
         betza:    "DAGH",
         results: {
-            spiral_square:  "F*/100%", 
-            wedge_folded:   "F*/100%", 
-            wedge_flat:     "F*/100%"
+            spiral_square:  "?/1G",
+            spiral_diamond: "?/1G",
+            wedge_folded:   "?/1G",
+            wedge_flat:     "?/1G",
         },
     },
 
