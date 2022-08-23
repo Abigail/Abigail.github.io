@@ -360,7 +360,7 @@ int main (int argc, char ** argv) {
             case 'H': dr = 3; dc = 0;            break;  /* Threeleaper */
             case 'C': dr = 3; dc = 1;            break;  /* Camel       */
             case 'Z': dr = 3; dc = 2;            break;  /* Zebra       */
-            case 'T': dr = 3; dc = 3;            break;  /* Tripper     */
+            case 'G': dr = 3; dc = 3;            break;  /* Tripper     */
 
             case 'B': dr = 1; dc = 1; steps = 0; break;  /* Bishop      */
             case 'R': dr = 1; dc = 0; steps = 0; break;  /* Rook        */
