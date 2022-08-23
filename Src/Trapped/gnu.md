@@ -1,7 +1,10 @@
 # %%PIECE%%
 
 The %%PIECE%% moves either as the [*Knight*](knight.html) or
-the [*Camel*](camel.html), making it a *Knighted Piece*.
+the [*Camel*](camel.html), making it both a *Knighted Piece*
+and a %%COMPOUND_LEAPER%%. The %%PIECE%% jumps to a square which
+is one away in one orthogonal direction, and two or three in the
+other orthogonal direction.
 
 |====
 %%PIECE_HEADERS%%
@@ -21,9 +24,16 @@ Link: [%%CHESS_V%%](#piece:gnus)
 
 ### Spiral
 
-On the Spiral, the %%PIECE%% circles the origin clockwise, in an
-irregular pattern. It doesn't get trapped in the first 1,067,426,464
+#### Square
+
+On the Square Spiral, the %%PIECE%% circles the origin clockwise, in an
+irregular pattern. It doesn't get trapped in the first billion
 steps, but it is not clear whether it will never get trapped.
+
+#### Diamond
+
+On the Diamond Square, it takes a long time for the %%PIECE%% to
+get trapped, but it does so on step 136,022,083.
 
 ### Wedge
 
@@ -32,7 +42,7 @@ steps, but it is not clear whether it will never get trapped.
 On the Folded Wedge, the travelling pattern of the %%PIECE%% is less
 irregular than the pattern on the Spiral, but it doesn't seem to
 complete stabalize into something regular. The %%PIECE%% does not
-get trapped for its first 1,056,869,405 steps.
+get trapped for its first billion steps.
 
 #### Flat
 

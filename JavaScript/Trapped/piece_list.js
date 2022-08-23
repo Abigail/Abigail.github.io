@@ -1059,17 +1059,9 @@ let pieces = {
         betza:    "NC",
         results: {
             spiral_square:  "?/1G",
+            spiral_diamond: "T/136,022,083",
             wedge_folded:   "?/1G",
             wedge_flat:     "F*/100%",
-        },
-    },
-
-    goat: {
-        betza:    "FD",
-        results: {
-            spiral_square:  "F/50%", 
-            wedge_folded:   "F/50%", 
-            wedge_flat:     "F/50%"
         },
     },
 
@@ -1077,9 +1069,20 @@ let pieces = {
         betza: "vW",
         _name: "Go-Between",
         results: {
-            spiral_square:  "E", 
-            wedge_folded:   "E", 
-            wedge_flat:     "E",
+            spiral_square:   frac (1),
+            spiral_diamond:  frac (1),
+            wedge_folded:    frac (1),
+            wedge_flat:      frac (1),
+        },
+    },
+
+    goat: {
+        betza:    "FD",
+        results: {
+            spiral_square:  "F/50%", 
+            spiral_diamond: "F/50%",
+            wedge_folded:   "F/50%", 
+            wedge_flat:     "F/50%",
         },
     },
 
@@ -1087,6 +1090,7 @@ let pieces = {
         betza:  "WfF",
         results: {
             spiral_square:  "W", 
+            spiral_diamond:  frac (1, 2),
             wedge_folded:   "FC", 
             wedge_flat:     "F/100%"
         },
@@ -1099,9 +1103,10 @@ let pieces = {
     goose: {
         betza:  "fAbD",
         results: {
-            spiral_square:  "E*", 
-            wedge_folded:   "E", 
-            wedge_flat:     "E"
+            spiral_square:   sqrt (2, 3),
+            spiral_diamond:  frac (1),
+            wedge_folded:    sqrt (2, 1, 2),
+            wedge_flat:      sqrt (2, 1, 2),
         },
     },
 
@@ -1112,9 +1117,10 @@ let pieces = {
     gryphon: {
         betza:  "BfW",
         results: {
-            spiral_square:  "T/47", 
-            wedge_folded:   "E", 
-            wedge_flat:     "E"
+            spiral_square:  "T/67", 
+            spiral_diamond: "T/157",
+            wedge_folded:    sqrt (2, 3),
+            wedge_flat:      sqrt (2),
         },
     },
 
@@ -1220,8 +1226,9 @@ let pieces = {
         betza:    "fRbB",
         results: {
             spiral_square:  "T/146", 
-            wedge_folded:   "E", 
-            wedge_flat:     "E"
+            spiral_diamond:  frac (1, 2),
+            wedge_folded:    sqrt (2, 3),
+            wedge_flat:      sqrt (2, 3),
         },
     },
 

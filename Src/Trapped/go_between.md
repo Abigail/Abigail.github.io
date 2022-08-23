@@ -12,9 +12,11 @@ The %%PIECE%% moves one square orthogonally forward or backward
 
 ### Spiral
 
-The %%PIECE%% will escape straight forward.
+On both the Square and Diamond Spiral, the %%PIECE%% will escape
+straight forward with an escape velocity of 1.
 
 ### Wedge
 
-On both the Folded and Flat Wedge, the %%PIECE%% will escape straight forward.
+On both the Folded and Flat Wedge, the %%PIECE%% will escape straight forward
+with an escape velocity of 1.
 
