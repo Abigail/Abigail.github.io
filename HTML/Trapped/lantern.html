@@ -1,6 +1,6 @@
 <html>
 <head>
-<title>Lantern</title>
+<title>%%PIECE%%</title>
 <meta charset = "utf-8">
 <link rel  = 'preconnect' href = 'https://fonts.gstatic.com'>
 <link rel = 'stylesheet' href =      'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
@@ -17,22 +17,42 @@
 <script src = '../../JavaScript/Trapped/pages.js'></script>
 </head>
 
-<body><h1>Lantern</h1><div class = "byline">
+<body><h1>%%PIECE%%</h1><div class = "byline">
 by Abigail<br>
 <img src = "../../Images/jan_sluiters.jpg">
 </div>
 
 
-<p>The <strong>Lantern</strong> moves one square diagonally forward.</p>
+<p>The %%PIECE%% moves one square diagonally forward.</p>
 
-<p>In <a href="https://www.chessvariants.com/rules/typhoon-revised">Typhoon</a>, the <strong>Lantern</strong>
-promotes to the <a href="war_machine.html?piece=parrot"><em>Parrot</em></a>.</p>
+<table class = piece_list>
+  <tr class = 'row-0' markdown = '1'>
+    <th class = 'cell-0-0 col-0 ' markdown = '1'>Game</td>
+    <th class = 'cell-0-1 col-1 ' markdown = '1' colspan = '2'>Piece</td>
+    <th class = 'cell-0-3 col-3 ' markdown = '1'>Info</td>
+  </tr>
+  <tr class = 'row-1' markdown = '1'>
+    <th class = 'cell-1-0 col-0 ' markdown = '1'><a href="https://www.chessvariants.com/rules/typhoon-revised">Typhoon</a></td>
+    <td class = 'cell-1-1 col-1 ' markdown = '1' colspan = '2'><strong>Lanterns</strong></td>
+    <td class = 'cell-1-3 col-3 ' markdown = '1'><span class = 'tooltip'>&#x260A;<span class = 'tooltiptext'>Promotes to</span></span> <a href="war_machine.html?piece=parrot"><em>Parrot</em></a></td>
+  </tr>
+</table>
 
 <h3 id = 'spiral'>Spiral</h3>
 
+<h4 id = 'square'>Square</h4>
+
 <div class = "section">
-<p>On the Spiral, the <strong>Lantern</strong> escapes diagonally upwards in a
-straight line.</p>
+<p>On the Square Spiral, the %%PIECE%% escapes diagonally upwards in a
+straight line, with an escape velocity of <span class = 'latex-inline'>\(\sqrt{2}\)</span>.</p>
+</div>
+
+<h4 id = 'diamond'>Diamond</h4>
+
+<div class = "section">
+<p>On the Diamond Spiral, the %%PIECE%% escapes upward, bouncing in a
+two step loop between two files, moving two squares up in each loop,
+for an escape velocity of <span class = 'latex-inline'>\(1\)</span>.</p>
 </div>
 
 <h3 id = 'wedge'>Wedge</h3>
@@ -40,13 +60,15 @@ straight line.</p>
 <h4 id = 'folded'>Folded</h4>
 
 <div class = "section">
-<p>On the Folded Wedge, the <strong>Lantern</strong> escapes zigzagging upward.</p>
+<p>On the Diamond Spiral, the %%PIECE%% escapes upward, bouncing in a
+two step loop between two files, moving two squares up in each loop,
+for an escape velocity of <span class = 'latex-inline'>\(1\)</span>.</p>
 </div>
 
 <h4 id = 'flat'>Flat</h4>
 
-<p>On the Flat Wedge, the <strong>Lantern</strong> escapes diagonally upward,
-hugging the right edge of the Wedge.</p>
+<p>On the Flat Wedge, the %%PIECE%% escapes diagonally upward,
+hugging the right edge of the Wedge, for an escape velocity of <span class = 'latex-inline'>\(\sqrt{2}\)</span>.</p>
 
 <div class = 'trapped' data-piece = 'lantern'></div>
 
