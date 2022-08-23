@@ -1,6 +1,6 @@
 <html>
 <head>
-<title>Hummingbird</title>
+<title>%%PIECE%%</title>
 <meta charset = "utf-8">
 <link rel  = 'preconnect' href = 'https://fonts.gstatic.com'>
 <link rel = 'stylesheet' href =      'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
@@ -17,17 +17,17 @@
 <script src = '../../JavaScript/Trapped/pages.js'></script>
 </head>
 
-<body><h1>Hummingbird</h1><div class = "byline">
+<body><h1>%%PIECE%%</h1><div class = "byline">
 by Abigail<br>
 <img src = "../../Images/jan_sluiters.jpg">
 </div>
 
 
-<p>The <strong>Hummingbird</strong> may move to a square one way orthogonally sidewards
+<p>The %%PIECE%% may move to a square one way orthogonally sidewards
 or backwards (like a sidewards/backwards <a href="wazir.html"><em>Wazir</em></a>), or
 two steps forward (like a forward <a href="dabbaba.html"><em>Dabbaba</em></a>).</p>
 
-<p>Pieces which can move like the <strong>Hummingbird</strong> can be found in
+<p>Pieces which can move like the %%PIECE%% can be found in
 several games:</p>
 
 <table class = piece_list>
@@ -50,8 +50,17 @@ several games:</p>
 
 <h3 id = 'spiral'>Spiral</h3>
 
+<h4 id = 'square'>Square</h4>
+
 <div class = "section">
-<p>On the Spiral, the <strong>Hummingbird</strong> gets trapped after 172 steps.</p>
+<p>On the Square Spiral, the %%PIECE%% gets trapped after 172 steps.</p>
+</div>
+
+<h4 id = 'diamond'>Diamond</h4>
+
+<div class = "section">
+<p>After 13 steps, the %%PIECE%% escapes to the left, moving one
+square each step, for an escape velocity of <span class = 'latex-inline'>\(1\)</span>.</p>
 </div>
 
 <h3 id = 'wedge'>Wedge</h3>
@@ -59,16 +68,18 @@ several games:</p>
 <h4 id = 'folded'>Folded</h4>
 
 <div class = "section">
-<p>On the Folded Wedge, the <strong>Hummingbird</strong> escapes to infinity by repeating
+<p>On the Folded Wedge, the %%PIECE%% escapes to infinity by repeating
 a three step pattern: two squares forward, one square backwards, and
 one square to the left. This way, the three left most squares of each
-row will be visited.</p>
+row will be visited. This three step loop to move one square to the
+upper left means an escape velocity of <span class = 'latex-inline'>\(\frac{\sqrt{2}}{3}\)</span>.</p>
 </div>
 
 <h4 id = 'flat'>Flat</h4>
 
-<p>On the Flat Wedge, the <strong>Hummingbird</strong> follows the same pattern as on
-the Folded Wedge, but mirrorred along the vertical axis.</p>
+<p>On the Flat Wedge, the %%PIECE%% follows the same pattern as on
+the Folded Wedge, but mirrorred along the vertical axis. So, its
+escape velocity will also be <span class = 'latex-inline'>\(\frac{\sqrt{2}}{3}\)</span>.</p>
 
 <div class = 'trapped' data-piece = 'hummingbird'></div>
 

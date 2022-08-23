@@ -24,7 +24,8 @@ by Abigail<br>
 
 
 <p>The %%PIECE%% leaps to a square which is two squares away forward or
-backward, and one away to the right or left. </p>
+backward, and one away to the right or left. This is equivalent to
+half the moves of the <a href="knight.html"><em>Knight</em></a>.</p>
 
 <table class = piece_list>
   <tr class = 'row-0' markdown = '1'>
@@ -42,15 +43,28 @@ backward, and one away to the right or left. </p>
 
 <h3 id = 'spiral'>Spiral</h3>
 
+<h4 id = 'square'>Square</h4>
+
 <div class = "section">
-<p>On the Spiral, the %%PIECE%% visits 25% of the squares, in a 
-diamond shaped pattern.</p>
+<p>On the Square Spiral, the %%PIECE%% visits <span class = 'latex-inline'>\(25\%\)</span> of the squares, in a 
+diamond shaped pattern. The path it traces never intersects itself.</p>
+</div>
+
+<h4 id = 'diamond'>Diamond</h4>
+
+<div class = "section">
+<p>On the Diamond Spiral, the %%PIECE%% traces the same path as on the
+Square Spiral, but flipped horizontally. <span class = 'latex-inline'>\(25\%\)</span> of the squares
+will be visited.</p>
 </div>
 
 <h3 id = 'wedge'>Wedge</h3>
 
 <p>On both the Folded and Flat Wedge, the %%PIECE%% quickly escapes
-to the upper right.</p>
+to the upper right. It uses a four step loop to move four squares
+to the upper right, giving it an escape velocity of 
+<span class = 'latex-inline'>\(\sqrt{2}\)</span>. This is somewhat remarkable, as all the steps the
+%%PIECE%% takes move to a square <span class = 'latex-inline'>\(\sqrt{5}\)</span> away.</p>
 
 <div class = 'trapped' data-piece = 'heavenly_horse'></div>
 

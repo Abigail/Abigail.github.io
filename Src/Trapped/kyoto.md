@@ -17,8 +17,18 @@ squares orthogonally forward.
 
 ### Spiral
 
-On the Spiral, the %%PIECE%% escapes to the upper right using
-a step wise pattern.
+#### Square
+
+On the Square Spiral, the %%PIECE%% escapes to the upper right using
+a step wise pattern. Its using a two step loop to move to a square
+one away to the upper right. Which results in an escape velocity
+of \(\frac{2}{2}\).
+
+#### Diamond
+
+On the Diamond Spiral, the %%PIECE%% escapes upward, using a four
+step loop to move two square upward. This means an escape velocity 
+of \(\frac{1}{2}\).
 
 ### Wedge
 
@@ -27,9 +37,10 @@ a step wise pattern.
 On the Folded Wedge, the %%PIECE%% escape upwards, byt visiting
 all the squares (but one) of the file the origin is on, and
 the file just left of it. It uses a block like pattern to do so.
+This results in an escape velocity of \(\frac{1}{2}\).
 
 #### Flat
 
 On the Flat Wedge, the %%PIECE%% escapes to the upper right
 by visiting the two right most squares of each row (except
-the first two).
+the first two). This is an escape velocity of \(\frac{\sqrt{2}}{2}\).

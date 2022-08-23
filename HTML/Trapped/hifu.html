@@ -44,9 +44,19 @@ orthogonally.</p>
 
 <h3 id = 'spiral'>Spiral</h3>
 
+<h4 id = 'square'>Square</h4>
+
 <div class = "section">
-<p>On the Spiral, the %%PIECE%% escapes to the upper right, using
-a stepwise pattern.</p>
+<p>On the Square Spiral, the %%PIECE%% escapes to the upper right, using
+a stepwise pattern: a two step loop which moves the piece one square
+to the upper right, for an escape velocity of <span class = 'latex-inline'>\(\frac{\sqrt{2}}{2}\)</span>.</p>
+</div>
+
+<h4 id = 'diamond'>Diamond</h4>
+
+<div class = "section">
+<p>On the Diamond Spiral, the %%PIECE%% escapes upward, using a four step
+loop to move two squares up, for an escape velocity of <span class = 'latex-inline'>\(\frac{1}{2}\)</span>.</p>
 </div>
 
 <h3 id = 'wedge'>Wedge</h3>
@@ -61,12 +71,17 @@ this between rows). This makes that the %%PIECE%% visits, in the limit,
 0% of the squares, but travels over 100% of them.</p>
 
 <p>This makes the pieces sit somewhere between an escaper and a filler.</p>
+
+<p>Its escape velocity is <span class = 'latex-inline'>\(\frac{\sqrt{2}}{2}\)</span> as it uses a four
+step loop to move two squares up and either to the left or right.</p>
 </div>
 
 <h4 id = 'flat'>Flat</h4>
 
 <p>On the Flat Wedge, the %%PIECE%% visits the two right most squares
-of each row, escaping to the upper right.</p>
+of each row, escaping to the upper right. It uses a two step loop
+to move one square to the upper right, for an escape velocity
+of <span class = 'latex-inline'>\(\frac{\sqrt{2}}{2}\)</span>.</p>
 
 <div class = 'trapped' data-piece = 'hifu'></div>
 

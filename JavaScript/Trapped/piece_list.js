@@ -1159,9 +1159,10 @@ let pieces = {
     heavenly_horse: {
         betza: "fbN",
         results:    {
-            spiral_square:  "F*/25%", 
-            wedge_folded:   "E", 
-            wedge_flat:     "E"
+            spiral_square:  "F/25%", 
+            spiral_diamond: "F/25%", 
+            wedge_folded:    sqrt (2),
+            wedge_flat:      sqrt (2),
         },
     },
 
@@ -1177,9 +1178,10 @@ let pieces = {
     hifu: {
         betza_list: ["fW", "R"],
         results:    {
-            spiral_square:  "E", 
-            wedge_folded:   "E*", 
-            wedge_flat:     "E"
+            spiral_square:   sqrt (2, 2),
+            spiral_diamond:  frac (1, 2),
+            wedge_folded:    sqrt (2, 2),
+            wedge_flat:      sqrt (2, 2),
         },
     },
 
@@ -1187,6 +1189,7 @@ let pieces = {
         betza: "fWfDBsbR",
         results: {
             spiral_square:  "W",
+            spiral_diamond: "BM",
             wedge_folded:   "FC",
             wedge_flat:     "F/100%",
         },
@@ -1196,8 +1199,9 @@ let pieces = {
         betza:    "F4DfW",
         results: {
             spiral_square:  "?/1G",
+            spiral_diamond: "F/100%",
             wedge_folded:   "F/50%", 
-            wedge_flat:     "F*/100%"
+            wedge_flat:     "F/100%"
         },
     },
 
@@ -1209,17 +1213,19 @@ let pieces = {
         betza:    "sbWfD",
         results: {
             spiral_square:  "T/172", 
-            wedge_folded:   "E", 
-            wedge_flat:     "E"
+            spiral_diamond:  frac (1),
+            wedge_folded:    sqrt (2, 3),
+            wedge_flat:      sqrt (2, 3),
         },
     },
 
     humpback: {
         betza:    "bWF",
         results: {
-            spiral_square:  "E*", 
-            wedge_folded:   "E", 
-            wedge_flat:     "E"
+            spiral_square:   sqrt (2, 3),
+            spiral_diamond: "F*/100%",
+            wedge_folded:    sqrt (2, 3),
+            wedge_flat:      sqrt (2),
         },
     },
 
@@ -1308,9 +1314,10 @@ let pieces = {
         _name:  "Knight",
         _index_name: "Knight (Sh&#x14d;gi)",
         results: {
-            spiral_square:  "E", 
-            wedge_folded:   "E", 
-            wedge_flat:     "E"
+            spiral_square:   sqrt (5),
+            spiral_diamond:  frac (2),
+            wedge_folded:    sqrt (5),
+            wedge_flat:      sqrt (5),
         },
     },
 
@@ -1322,9 +1329,10 @@ let pieces = {
     kyoto: {
         betza_list: ["WfF", "fR"],
         results: {
-            spiral_square:  "E", 
-            wedge_folded:   "E*", 
-            wedge_flat:     "E"
+            spiral_square:   sqrt (2, 2),
+            spiral_diamond:  frac (1, 2),
+            wedge_folded:    frac (1, 2),
+            wedge_flat:      sqrt (2, 2),
         },
         _name: "Ky&#x014D;to",
     },
@@ -1781,6 +1789,7 @@ let pieces = {
         betza:    "W2F2",
         results: {
             spiral_square:  "W", 
+            spiral_diamond: "BM",
             wedge_folded:   "FC", 
             wedge_flat:     "F/100%",
         },
