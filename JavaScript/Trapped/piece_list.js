@@ -1343,18 +1343,20 @@ let pieces = {
     lance: {
         betza:  "fR",
         results: {
-            spiral_square:  "E", 
-            wedge_folded:   "E", 
-            wedge_flat:     "E"
+            spiral_square:   frac (1),
+            spiral_diamond:  frac (1),
+            wedge_folded:    frac (1),
+            wedge_flat:      frac (1),
         },
     },
 
     lantern: {
         betza:    "fF",
         results: {
-            spiral_square:  "E", 
-            wedge_folded:   "E", 
-            wedge_flat:     "E"
+            spiral_square:   sqrt (2),
+            spiral_diamond:  frac (1),
+            wedge_folded:    frac (1),
+            wedge_flat:      sqrt (2),
         },
     },
 
@@ -1362,35 +1364,40 @@ let pieces = {
         betza:  "fRbrBblF",
         results: {
             spiral_square:  "T/146", 
-            wedge_folded:   "E", 
-            wedge_flat:     "E"
-        },
-    },
-
-    dobutsu_lion: {
-        parent: "king",
-        _name: "Lion",
-    },
-
-    lion: {
-        parent: "lioness",
-    },
-
-    lioness: {
-        betza: "WFDNA",
-        results: {
-            spiral_square:  "W", 
-            wedge_folded:   "FC", 
-            wedge_flat:     "F/100%"
+            spiral_diamond:  frac (1, 2),
+            wedge_folded:    sqrt (2, 3),
+            wedge_flat:      sqrt (2, 3),
         },
     },
 
     liberated_horse: {
         betza: "bW2fW0",
         results: {
-            spiral_square:  "E",
-            wedge_folded:   "E",
-            wedge_flat:     "E",
+            spiral_square:   frac (1),
+            spiral_diamond:  frac (1),
+            wedge_folded:    frac (1),
+            wedge_flat:      frac (1),
+        },
+    },
+
+    lion: {
+        parent: "lioness",
+        _index_name: "Lion (Chu&nbsp;Sh&#x014d;gi)",
+    },
+
+    dobutsu_lion: {
+        parent: "king",
+        _name: "Lion",
+        _index_name: "Lion (D&#x14d;butsu sh&#x14d;gi)",
+    },
+
+    lioness: {
+        betza: "WFDNA",
+        results: {
+            spiral_square:  "W", 
+            spiral_diamond: "BM",
+            wedge_folded:   "FC", 
+            wedge_flat:     "F/100%"
         },
     },
 

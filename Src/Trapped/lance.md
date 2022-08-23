@@ -21,9 +21,11 @@ Link: [%%CHESS_V%%](#piece:lance)
 
 ### Spiral
 
-The %%PIECE%% escapes in a straight line to infinity.
+On either Spriral the %%PIECE%% escapes in a straight line to
+infinity with an escape velocity of \(1\).
 
 ### Wedge
 
 On both the Folded and the Flat Wedge, the %%PIECE%% 
-escapes to infinity using the same line as the Spiral.
+escapes to infinity using the same line as the Spiral, hence
+its escape velocity is \(1\) as well.

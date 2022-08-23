@@ -19,7 +19,14 @@ around the starting position (but it can't jump to the starting square).
 
 ### Spiral
 
+#### Square
+
 The %%PIECE%% can move as the [*Wazir*](wazir.html), so it will
+follow the Spiral.
+
+#### Diamond
+
+The %%PIECE%% can move as the %%BM%% so it will
 follow the Spiral.
 
 ### Wedge
