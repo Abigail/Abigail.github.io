@@ -24,10 +24,18 @@ Links: [%%WIKI%%](#wiki:Nightrider_(chess)),
 
 ### Spiral
 
+#### Square
+
 Surpringly, despite the %%PIECE%% having more squares to move to in
 each steps, the %%PIECE%% gets trapped sooner than the
 [*Knight*](knight.html). Where the [*Knight*](knight.html) gets trapped
 in 2,015 steps, the %%PIECE%% gets trapped after 509 steps!
+
+#### Diamond
+
+On the Diamond Spiral, the %%PIECE%% gets trapped after 1,687 steps.
+This is less than half the number of steps the %%KNIGHT%% makes
+before getting trapped (3,722).
 
 ### Wedge
 

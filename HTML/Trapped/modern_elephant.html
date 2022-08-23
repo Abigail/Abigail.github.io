@@ -1,6 +1,6 @@
 <html>
 <head>
-<title>Modern Elephant</title>
+<title>%%PIECE%%</title>
 <meta charset = "utf-8">
 <link rel  = 'preconnect' href = 'https://fonts.gstatic.com'>
 <link rel = 'stylesheet' href =      'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
@@ -17,38 +17,57 @@
 <script src = '../../JavaScript/Trapped/pages.js'></script>
 </head>
 
-<body><h1>Modern Elephant</h1><div class = "byline">
+<body><h1>%%PIECE%%</h1><div class = "byline">
 by Abigail<br>
 <img src = "../../Images/jan_sluiters.jpg">
 </div>
 
 
-<p>The <strong>Modern Elephant</strong> moves as either the <a href="ferz.html"><em>Ferz</em></a> or
-the <a href="alfil.html"><em>Alfil</em></a>. The <strong>Modern Elephant</strong> jumps to a
-square which is one or two away diagonally.</p>
+<p>The %%PIECE%% moves as either the <a href="ferz.html"><em>Ferz</em></a> or
+the <a href="alfil.html"><em>Alfil</em></a>. The %%PIECE%% jumps to a
+square which is one or two away diagonally. This makes
+%%PIECE%% <span class = 'tooltip underline'>colourbound<span class = 'tooltiptext'>A colourbound piece will always stay on a square of the same colour: if it starts on a black square, it will always remain on a black square; if it starts on a white square, it will always remain on a white square</span></span>.</p>
 
-<p>The <em>Zag</em> from <a href="https://www.chessvariants.com/rules/scirocco"><em>Scirocco</em></a>, and
-<a href="https://www.chessvariants.com/rules/typhoon-revised">Typhoon</a> moves as
-the <strong>Modern Elephant</strong>. The <em>Zag</em> can additionally capture
-as the <a href="wazir.html"><em>Wazir</em></a>, but we ignore capture moves. The
-<em>Zag</em> is the promoted <a href="wazir.html"><em>Wazir</em></a>.</p>
+<table class = piece_list>
+  <tr class = 'row-0' markdown = '1'>
+    <th class = 'cell-0-0 col-0 ' markdown = '1'>Game</td>
+    <th class = 'cell-0-1 col-1 ' markdown = '1' colspan = '2'>Piece</td>
+    <th class = 'cell-0-3 col-3 ' markdown = '1'>Info</td>
+  </tr>
+  <tr class = 'row-1' markdown = '1'>
+    <th class = 'cell-1-0 col-0 ' markdown = '1'><a href="leapers.html#compound_leapers"><em>Compound Leapers</em></a></td>
+    <td class = 'cell-1-1 col-1 ' markdown = '1' colspan = '2'><strong>Modern Elephant</strong></td>
+    <td class = 'cell-1-3 col-3 ' markdown = '1'></td>
+  </tr>
+  <tr class = 'row-2' markdown = '1'>
+    <th class = 'cell-2-0 col-0 ' markdown = '1'><a href="https://www.chessvariants.com/rules/typhoon-revised">Typhoon</a></td>
+    <td class = 'cell-2-1 col-1 ' markdown = '1' colspan = '2'><strong>Raven</strong></td>
+    <td class = 'cell-2-3 col-3 ' markdown = '1'><span class = 'tooltip'>&#x260B;<span class = 'tooltiptext'>Is promoted</span></span> <a href="banner.html"><em>Banner</em></a>; <span class = 'tooltip'>&#x238B;<span class = 'tooltiptext'>This piece has additional capture moves,<br>which we can ignore here</span></span></td>
+  </tr>
+  <tr class = 'row-3' markdown = '1'>
+    <th class = 'cell-3-0 col-0 ' markdown = '1'><a href="https://www.chessvariants.com/rules/scirocco">Scirocco</a>; <a href="https://www.chessvariants.com/rules/typhoon-revised">Typhoon</a></td>
+    <td class = 'cell-3-1 col-1 ' markdown = '1' colspan = '2'><strong>Zag</strong></td>
+    <td class = 'cell-3-3 col-3 ' markdown = '1'><span class = 'tooltip'>&#x260B;<span class = 'tooltiptext'>Is promoted</span></span> <a href="wazir.html"><em>Wazir</em></a>; <span class = 'tooltip'>&#x238B;<span class = 'tooltiptext'>This piece has additional capture moves,<br>which we can ignore here</span></span></td>
+  </tr>
+</table>
 
-<p>The <em>Raven</em> moves as the <strong>Modern Elephant</strong>, but has additional
-capture moves (which we ignore here). In
-<a href="https://www.chessvariants.com/rules/typhoon-revised">Typhoon</a>, the <a href="banner.html"><em>Banner</em></a>
-promotes to the <em>Raven</em>.</p>
-
-<p>Since the <strong>Modern Elephant</strong> only makes diagonal moves, it is
-<em>colourbound</em>.</p>
-
-<p>Other names for the <strong>Modern Elephant</strong> include: <em>Archer</em>, 
-<em>Falafel</em>, and <em>Ferfil</em>.</p>
+<p>Other names for the %%PIECE%% include: <em>Archer</em>, <em>Falafel</em>, and <em>Ferfil</em>.</p>
 
 <h3 id = 'spiral'>Spiral</h3>
 
+<h4 id = 'square'>Square</h4>
+
 <div class = "section">
-<p>On the Spiral, the <strong>Modern Elephant</strong> visits every second square 
-from each row, travelling on a pattern not used by other pieces.</p>
+<p>On the Square Spiral, the %%PIECE%% visits every second square 
+from each row, travelling on a pattern not used by other pieces.
+This way, it visits <span class = 'latex-inline'>\(50\%\)</span> of the squares on the board.</p>
+</div>
+
+<h4 id = 'diamond'>Diamond</h4>
+
+<div class = "section">
+<p>On the Diamond Spiral, the %%PIECE%% moves like the <a href="ferz.html"><em>Ferz</em></a>, visiting
+<span class = 'latex-inline'>\(50\%\)</span> of the squares on the board.</p>
 </div>
 
 <h3 id = 'wedge'>Wedge</h3>
@@ -56,14 +75,17 @@ from each row, travelling on a pattern not used by other pieces.</p>
 <h4 id = 'folded'>Folded</h4>
 
 <div class = "section">
-<p>On the Folded Wedge, the <strong>Modern Elephant</strong> escapes to infinity
-using a step wise pattern on the right hand side of the board.</p>
+<p>On the Folded Wedge, the %%PIECE%% escapes to infinity
+using a step wise pattern on the right hand side of the board.
+The four step loop to move to a square two forward and to the right
+results in an escape velocity of <span class = 'latex-inline'>\(\frac{\sqrt{2}}{2}\)</span>.</p>
 </div>
 
 <h4 id = 'flat'>Flat</h4>
 
-<p>On the Folded Wedge, the <strong>Modern Elephant</strong> escapes to infinity
-by visiting just the right most square of each row.</p>
+<p>On the Folded Wedge, the %%PIECE%% escapes to infinity
+by visiting just the right most square of each row. This gives
+an escape velocity of <span class = 'latex-inline'>\(\sqrt{2}\)</span>.</p>
 
 <div class = 'trapped' data-piece = 'modern_elephant'></div>
 

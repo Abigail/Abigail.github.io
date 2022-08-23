@@ -1472,8 +1472,9 @@ let pieces = {
         betza:    "FA",
         results: {
             spiral_square:  "F*/50%", 
-            wedge_folded:   "E", 
-            wedge_flat:     "E"
+            spiral_diamond: "F/50%",
+            wedge_folded:    sqrt (2, 2),
+            wedge_flat:      sqrt (2),
         },
     },
 
@@ -1501,6 +1502,7 @@ let pieces = {
         betza:    "NN",
         results: {
             spiral_square:  "T/509", 
+            spiral_diamond: "T/1,697",
             wedge_folded:   "T/60", 
             wedge_flat:     "T/22"
         },
@@ -1520,9 +1522,10 @@ let pieces = {
     octopus: {
         betza:      "t[FR]",
         results:   {
-            spiral_square:  "E*", 
+            spiral_square:   sqrt (2, 20, 7),
+            spiral_diamond: "T/52",
             wedge_folded:   "T/7", 
-            wedge_flat:     "E"
+            wedge_flat:      sqrt (2),
         },
         move_list: [
             {dr: -1, dc:  0, or: -1, oc:  1},
@@ -1540,8 +1543,9 @@ let pieces = {
         betza:    "NZ",
         results: {
             spiral_square:  "T/947,668", 
+            spiral_diamond: "?/1G",
             wedge_folded:   "?/1G",
-            wedge_flat:     "E*"
+            wedge_flat:      sqrt (2, 4),
         },
     },
 
