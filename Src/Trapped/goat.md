@@ -17,7 +17,15 @@ The %%PIECE%% either jumps to a square one away diagonally
 
 ### Spiral
 
+#### Square
+
 The %%PIECE%% follows the spiral, but it visits only every second square.
+Hence, it visits \(50\%\) of the squares on the board.
+
+#### Diamond
+
+The %%PIECE%% moves exactly as the %%FERZ%% does on the Diamond Spiral,
+visiting half the squares on the board.
 
 ### Wedge
 

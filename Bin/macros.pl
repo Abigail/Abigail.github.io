@@ -94,6 +94,7 @@ our %MACROS = (
         FERZ           =>  "[*Ferz*](ferz.html)",
         KING           =>  "[*King*](king.html)",
         KNIGHT         =>  "[*Knight*](knight.html)",
+        PAWN           =>  "[*Pawn*](pawn.html)",
         QUEEN          =>  "[*Queen*](queen.html)",
         ROOK           =>  "[*Rook*](rook.html)",
         WAZIR          =>  "[*Wazir*](wazir.html)",

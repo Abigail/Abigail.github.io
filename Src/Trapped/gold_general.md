@@ -40,8 +40,17 @@ Link: [%%CHESS_V%%](#piece:goldgeneral)
 
 ### Spiral
 
+#### Square
+
 Since the %%PIECE%% can move like the [*Wazir*](wazir.html),
 it does so, filling the board by following the Spiral.
+
+#### Diamond
+
+On the Diamond Spiral, the %%PIECE%% escapes using a two step loop,
+moving one square upward per loop iteration. This gives it an escape
+speed of \(\frac{1}{2}\). Only two files will be visited, and no
+squares below the origin will.
 
 ### Wedge
 

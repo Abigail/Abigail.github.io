@@ -1,30 +1,48 @@
-# Hunter
+# %%PIECE%%
 
-The **Hunter** either slides an unlimited amount of unoccupied squares
-orthogonally forward (like the [*Rook*](rook.html)), or an unlimited
+The %%PIECE%% either slides an unlimited amount of unoccupied squares
+orthogonally forward (like a forward %%ROOK%%) or an unlimited
 amount of unoccupied squares diagonally backward (like the
-[*Bishop*](bishop.html)).
+backward %%BISHOP%%).
 
-The **Hunter** is found in [Falcon-Hunter Chess](#wiki:Falcon-hunter_chess);
-a chess variant invented by Karl Schultz in 1943.
+This mirrors the movements of the [*Falcon*](falcon.html).
 
-In %%WHALE_SHOGI%%, the *Gray Whale* moves in the same way.
-
-Compare this with the [*Falcon*](falcon.html), which mirrors the
-movements of the **Hunter**.
+|====
+%%PIECE_HEADERS%%
+  {th = 1}  %%WHALE_SHOGI%%
+& {cs = 2}  **Grey Whale**
+&           \\
+  {th = 1}  %%FALCON_HUNTER%%
+& {cs = 2}  **Hunter**
+&           \\
+====|
 
 ### Spiral
 
-On the Spiral, the **Hunter** gets trapped surprisingly fast, after 146 steps.
+#### Square
+
+On the Spiral, the %%PIECE%% gets trapped surprisingly fast, after 146 steps.
+Compare this with the [*Falcon*](falcon.html) which will visit \(25\%\)
+of the squares on the board.
+
+#### Diamond
+
+On the Diamond Spiral, the %%PIECE%% uses an eight step loop to move 
+four squares down, giving it an escape velocity of \(\frac{1}{2}\).
+It moves mirrorred as the [*Falcon*](falcon.html) moves.
 
 ### Wedge
 
 #### Folded
 
-On the Folded Wedge, the **Hunter** visits the three left most
-squares of each row.
+On the Folded Wedge, the %%PIECE%% visits the three left most
+squares of each row, moving one square to the upper left every
+three steps. This gives it an escape velocity of 
+\(\frac{\sqrt{2}}{3}\).
 
 #### Flat
 
-On the Flat Wedge, the **Hunter** visits the three right most
-squares of each row.
+On the Flat Wedge, the %%PIECE%% visits the three right most
+squares of each row, moving one square to the upper right every
+three steps. This gives it an escape velocity of 
+\(\frac{\sqrt{2}}{3}\).
