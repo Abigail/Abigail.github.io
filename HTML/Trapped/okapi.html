@@ -1,6 +1,6 @@
 <html>
 <head>
-<title>Okapi</title>
+<title>%%PIECE%%</title>
 <meta charset = "utf-8">
 <link rel  = 'preconnect' href = 'https://fonts.gstatic.com'>
 <link rel = 'stylesheet' href =      'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
@@ -17,17 +17,60 @@
 <script src = '../../JavaScript/Trapped/pages.js'></script>
 </head>
 
-<body><h1>Okapi</h1><div class = "byline">
+<body><h1>%%PIECE%%</h1><div class = "byline">
 by Abigail<br>
 <img src = "../../Images/jan_sluiters.jpg">
 </div>
 
 
-<p>The Okapi moves like either the <a href="knight.html">Knight</a>
-or the <a href="zebra.html">Zebra</a>.</p>
+<p>The %%PIECE%% moves like either the <a href="knight.html"><em>Knight</em></a>
+or the <a href="zebra.html"><em>Zebra</em></a>. That is, the %%PIECE%% jumps to
+a square which is two away in one orthogonal direction, and
+one or three away in the other.</p>
 
-<p>Neither on the Spiral, nor on the Wedge, does the Okapi get trapped in
-the first 20,000 steps.</p>
+<table class = piece_list>
+  <tr class = 'row-0' markdown = '1'>
+    <th class = 'cell-0-0 col-0 ' markdown = '1'>Game</td>
+    <th class = 'cell-0-1 col-1 ' markdown = '1' colspan = '2'>Piece</td>
+    <th class = 'cell-0-3 col-3 ' markdown = '1'>Info</td>
+  </tr>
+  <tr class = 'row-1' markdown = '1'>
+    <th class = 'cell-1-0 col-0 ' markdown = '1'><a href="leapers.html#compound_leapers"><em>Compound Leapers</em></a></td>
+    <td class = 'cell-1-1 col-1 ' markdown = '1' colspan = '2'><strong>Okapi</strong></td>
+    <td class = 'cell-1-3 col-3 ' markdown = '1'></td>
+  </tr>
+</table>
+
+<h3 id = 'spiral'>Spiral</h3>
+
+<h4 id = 'square'>Square</h4>
+
+<div class = "section">
+<p>It takes almost a million steps, but the %%PIECE%% gets trapped
+after 947,668 steps.</p>
+</div>
+
+<h4 id = 'diamond'>Diamond</h4>
+
+<div class = "section">
+<p>On the Diamond Spiral, it's not clear whether the %%PIECE%% gets
+trapped or not. It does not get trapped for its first billion steps.</p>
+</div>
+
+<h3 id = 'wedge'>Wedge</h3>
+
+<h4 id = 'folded'>Folded</h4>
+
+<div class = "section">
+<p>On the Folded Wedge, it's not clear whether the %%PIECE%% gets
+trapped or not. It does not get trapped for its first billion steps.</p>
+</div>
+
+<h4 id = 'flat'>Flat</h4>
+
+<p>After almost 300 steps, the %%PIECE%% enters a four step loop which
+brings it one square forward and to the right. This gives it an
+escape velocity of <span class = 'latex-inline'>\(\frac{\sqrt{2}}{4}\)</span>.</p>
 
 <div class = 'trapped' data-piece = 'okapi'></div>
 
