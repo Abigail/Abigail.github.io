@@ -1,6 +1,6 @@
 <html>
 <head>
-<title>Horned Owl</title>
+<title>%%PIECE%%</title>
 <meta charset = "utf-8">
 <link rel  = 'preconnect' href = 'https://fonts.gstatic.com'>
 <link rel = 'stylesheet' href =      'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
@@ -17,28 +17,45 @@
 <script src = '../../JavaScript/Trapped/pages.js'></script>
 </head>
 
-<body><h1>Horned Owl</h1><div class = "byline">
+<body><h1>%%PIECE%%</h1><div class = "byline">
 by Abigail<br>
 <img src = "../../Images/jan_sluiters.jpg">
 </div>
 
 
-<p>The <strong>Horned Owl</strong> either moves up to four unoccupied squares diagonally
+<p>The %%PIECE%% either moves up to four unoccupied squares diagonally
 (like a restricted <a href="bishop.html"><em>Bishop</em></a>), jumps to a square two away
-in a orthogonal direction, or one square orthogonally forward.
-Additionally, the <strong>Horned Owl</strong> has some hopping capture moves and 
-some non-moving captures available, as well as the option to pass. 
-But we can ignore those.</p>
+in any orthogonal direction (like a <a href="dabbaba.html"><em>Dabbaba</em></a>),
+or one square orthogonally forward (like a forward <a href="wazir.html"><em>Wazir</em></a>).</p>
 
-<p>In <a href="https://www.chessvariants.com/rules/typhoon-revised">Typhoon</a>, the
-<a href="gold_general.html"><em>Gold General</em></a> promotes to the <strong>Horned Owl</strong>.</p>
+<table class = piece_list>
+  <tr class = 'row-0' markdown = '1'>
+    <th class = 'cell-0-0 col-0 ' markdown = '1'>Game</td>
+    <th class = 'cell-0-1 col-1 ' markdown = '1' colspan = '2'>Piece</td>
+    <th class = 'cell-0-3 col-3 ' markdown = '1'>Info</td>
+  </tr>
+  <tr class = 'row-1' markdown = '1'>
+    <th class = 'cell-1-0 col-0 ' markdown = '1'><a href="https://www.chessvariants.com/rules/typhoon-revised">Typhoon</a></td>
+    <td class = 'cell-1-1 col-1 ' markdown = '1' colspan = '2'><strong>Horned Owl</strong></td>
+    <td class = 'cell-1-3 col-3 ' markdown = '1'><span class = 'tooltip'>&#x260B;<span class = 'tooltiptext'>Is promoted</span></span> <a href="gold_general.html"><em>Gold General</em></a></td>
+  </tr>
+</table>
 
 <h3 id = 'spiral'>Spiral</h3>
 
+<h4 id = 'square'>Square</h4>
+
 <div class = "section">
-<p>On the Spiral, the <strong>Horned Owl</strong> doesn't get trapped for its first
-20,000 steps. It doesn't quite settle into a repeating pattern, so
+<p>On the Square Spiral, the %%PIECE%% doesn't get trapped for its first
+billion steps. It doesn't quite settle into a repeating pattern, so
 while it looks like it doesn't get trapped, we don't know for sure.</p>
+</div>
+
+<h4 id = 'diamond'>Diamond</h4>
+
+<div class = "section">
+<p>On the Diamond Spiral, the %%PIECE%% will visit all the squares on
+the board.</p>
 </div>
 
 <h3 id = 'wedge'>Wedge</h3>
@@ -46,13 +63,13 @@ while it looks like it doesn't get trapped, we don't know for sure.</p>
 <h4 id = 'folded'>Folded</h4>
 
 <div class = "section">
-<p>On the Folded Wedge, the <strong>Horned Owl</strong> visits very odd square of each
-row, so in the limit, it will visit half of the squares on the board.</p>
+<p>On the Folded Wedge, the %%PIECE%% visits very odd square of each
+row, so in the limit, it will visit <span class = 'latex-inline'>\(50\%\)</span> of the squares on the board.</p>
 </div>
 
 <h4 id = 'flat'>Flat</h4>
 
-<p>On the Flat Wedge, the <strong>Horned Owl</strong> uses an interesting pattern making
+<p>On the Flat Wedge, the %%PIECE%% uses an interesting pattern making
 multiple sweeps over each row to visit all the squares.</p>
 
 <div class = 'trapped' data-piece = 'horned_owl'></div>

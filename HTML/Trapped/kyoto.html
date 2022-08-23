@@ -46,9 +46,21 @@ squares orthogonally forward.</p>
 
 <h3 id = 'spiral'>Spiral</h3>
 
+<h4 id = 'square'>Square</h4>
+
 <div class = "section">
-<p>On the Spiral, the %%PIECE%% escapes to the upper right using
-a step wise pattern.</p>
+<p>On the Square Spiral, the %%PIECE%% escapes to the upper right using
+a step wise pattern. Its using a two step loop to move to a square
+one away to the upper right. Which results in an escape velocity
+of <span class = 'latex-inline'>\(\frac{2}{2}\)</span>.</p>
+</div>
+
+<h4 id = 'diamond'>Diamond</h4>
+
+<div class = "section">
+<p>On the Diamond Spiral, the %%PIECE%% escapes upward, using a four
+step loop to move two square upward. This means an escape velocity 
+of <span class = 'latex-inline'>\(\frac{1}{2}\)</span>.</p>
 </div>
 
 <h3 id = 'wedge'>Wedge</h3>
@@ -58,14 +70,15 @@ a step wise pattern.</p>
 <div class = "section">
 <p>On the Folded Wedge, the %%PIECE%% escape upwards, byt visiting
 all the squares (but one) of the file the origin is on, and
-the file just left of it. It uses a block like pattern to do so.</p>
+the file just left of it. It uses a block like pattern to do so.
+This results in an escape velocity of <span class = 'latex-inline'>\(\frac{1}{2}\)</span>.</p>
 </div>
 
 <h4 id = 'flat'>Flat</h4>
 
 <p>On the Flat Wedge, the %%PIECE%% escapes to the upper right
 by visiting the two right most squares of each row (except
-the first two).</p>
+the first two). This is an escape velocity of <span class = 'latex-inline'>\(\frac{\sqrt{2}}{2}\)</span>.</p>
 
 <div class = 'trapped' data-piece = 'kyoto'></div>
 

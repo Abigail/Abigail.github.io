@@ -17,8 +17,15 @@ in each orthogonal and diagonal direction, except straight forward
 
 ### Spiral
 
+#### Square
+
 On the Spiral, the %%PIECE%% can move as the [*Wazir*](wazir.html),
-so it visit all the squares by following the Spiral.
+so it visits all the squares by following the Spiral.
+
+#### Diamond
+
+On the Spiral, the %%PIECE%% can move as the %%BM%%
+so it visits all the squares by following the Spiral.
 
 ### Wedge
 
@@ -26,7 +33,7 @@ so it visit all the squares by following the Spiral.
 
 On the Folded Wedge, the %%PIECE%% can move as the
 [*Flying Cock*](flying_cock.html),
-so it visit all the squares by following the Wedge.
+so it visits all the squares by following the Wedge.
 
 #### Flat
 

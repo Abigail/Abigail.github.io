@@ -15,7 +15,14 @@ eight main directions.
 
 ### Spiral
 
+#### Square
+
 The %%PIECE%% can move as the [*Wazir*](wazir.html), and as such,
+if will follow the Spiral.
+
+#### Diamond
+
+The %%PIECE%% can move as the %%BM%%, and as such,
 if will follow the Spiral.
 
 ### Wedge

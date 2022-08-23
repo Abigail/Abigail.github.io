@@ -15,8 +15,16 @@ orthogonally.
 
 ### Spiral
 
-On the Spiral, the %%PIECE%% escapes to the upper right, using
-a stepwise pattern.
+#### Square
+
+On the Square Spiral, the %%PIECE%% escapes to the upper right, using
+a stepwise pattern: a two step loop which moves the piece one square
+to the upper right, for an escape velocity of \(\frac{\sqrt{2}}{2}\).
+
+#### Diamond
+
+On the Diamond Spiral, the %%PIECE%% escapes upward, using a four step
+loop to move two squares up, for an escape velocity of \(\frac{1}{2}\).
 
 ### Wedge
 
@@ -30,7 +38,12 @@ this between rows). This makes that the %%PIECE%% visits, in the limit,
 
 This makes the pieces sit somewhere between an escaper and a filler.
 
+Its escape velocity is \(\frac{\sqrt{2}}{2}\) as it uses a four
+step loop to move two squares up and either to the left or right.
+
 #### Flat
 
 On the Flat Wedge, the %%PIECE%% visits the two right most squares
-of each row, escaping to the upper right.
+of each row, escaping to the upper right. It uses a two step loop
+to move one square to the upper right, for an escape velocity
+of \(\frac{\sqrt{2}}{2}\).

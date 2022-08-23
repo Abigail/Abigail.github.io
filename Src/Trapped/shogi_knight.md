@@ -17,9 +17,18 @@ and one square sideways.
 
 ### Spiral
 
-The %%PIECE%% escapes in a straight, slanted, line to infinity.
+#### Square
+
+The %%PIECE%% escapes in a straight, slanted, line to infinity, with
+an escape velocity of \(\sqrt{5}\).
+
+#### Diamond
+
+The %%PIECE%% escapes straight ahead, bouncing between two files.
+In two steps, it moves four squares ahead, for an escape velocity of \(2\).
 
 ### Wedge
 
 On both the Folded and the Flat Wedge, the %%PIECE%%
-escapes to infinity using the same line as the Spiral.
+escapes to infinity using the same line as the Square Spiral.
+The escape velocity is \(\sqrt{5}\).
