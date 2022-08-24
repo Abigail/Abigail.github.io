@@ -24,7 +24,8 @@ movement pattern is regular, but then it gets trapped after only 146 steps!
 
 On the Diamond Spiral, the %%PIECE%% uses an eight step loop, bouncing
 between two files, to move four squares backward. This gives it an
-escape velocity of \(\frac{1}{2}\).
+escape velocity of \(\frac{1}{2}\). This is exactly how the
+[*Right Quail*](right_quail.html) moves on the Diamond Spiral.
 
 ### Wedge
 

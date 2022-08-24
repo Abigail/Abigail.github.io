@@ -1,6 +1,6 @@
 <html>
 <head>
-<title>Otter</title>
+<title>%%PIECE%%</title>
 <meta charset = "utf-8">
 <link rel  = 'preconnect' href = 'https://fonts.gstatic.com'>
 <link rel = 'stylesheet' href =      'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
@@ -17,24 +17,43 @@
 <script src = '../../JavaScript/Trapped/pages.js'></script>
 </head>
 
-<body><h1>Otter</h1><div class = "byline">
+<body><h1>%%PIECE%%</h1><div class = "byline">
 by Abigail<br>
 <img src = "../../Images/jan_sluiters.jpg">
 </div>
 
 
-<p>The <strong>Otter</strong> either moves one square diagonally (as a <a href="ferz.html"><em>Ferz</em></a>),
+<p>The %%PIECE%% either moves one square diagonally (as a <a href="ferz.html"><em>Ferz</em></a>),
 or one square orthogonally forward (as a forward <a href="wazir.html"><em>Wazir</em></a>),
 or up to four unoccupied squares sideways (as a limited sideways
 <a href="rook.html"><em>Rook</em></a>).</p>
 
-<p>In <a href="https://www.chessvariants.com/rules/typhoon-revised">Typhoon</a>, the <strong>Otter</strong> promotes to
-the <a href="missionary.html"><em>Missionary</em></a>.</p>
+<table class = piece_list>
+  <tr class = 'row-0' markdown = '1'>
+    <th class = 'cell-0-0 col-0 ' markdown = '1'>Game</td>
+    <th class = 'cell-0-1 col-1 ' markdown = '1' colspan = '2'>Piece</td>
+    <th class = 'cell-0-3 col-3 ' markdown = '1'>Info</td>
+  </tr>
+  <tr class = 'row-1' markdown = '1'>
+    <th class = 'cell-1-0 col-0 ' markdown = '1'><a href="https://www.chessvariants.com/rules/typhoon-revised">Typhoon</a></td>
+    <td class = 'cell-1-1 col-1 ' markdown = '1' colspan = '2'><strong>Otter</strong></td>
+    <td class = 'cell-1-3 col-3 ' markdown = '1'><span class = 'tooltip'>&#x260A;<span class = 'tooltiptext'>Promotes to</span></span> <a href="missionary.html"><em>Missionary</em></a></td>
+  </tr>
+</table>
 
 <h3 id = 'spiral'>Spiral</h3>
 
+<h4 id = 'square'>Square</h4>
+
 <div class = "section">
-<p>On the Spiral, the <strong>Otter</strong> gets trapped after 321 steps.</p>
+<p>On the Square Spiral, the %%PIECE%% gets trapped after 321 steps.</p>
+</div>
+
+<h4 id = 'diamond'>Diamond</h4>
+
+<div class = "section">
+<p>On the Diamond Spiral, the %%PIECE%% can move as the <a href="blind_monkey.html"><em>Blind Monkey</em></a>, hence
+it will visit all the squares in order.</p>
 </div>
 
 <h3 id = 'wedge'>Wedge</h3>
@@ -42,14 +61,14 @@ the <a href="missionary.html"><em>Missionary</em></a>.</p>
 <h4 id = 'folded'>Folded</h4>
 
 <div class = "section">
-<p>On the Folded Wedge, the <strong>Otter</strong> can move as the
+<p>On the Folded Wedge, the %%PIECE%% can move as the
 <a href="flying_cock.html"><em>Flying Cock</em></a>, and hence, will follow
 the Folded Wedge, visiting all the squares.</p>
 </div>
 
 <h4 id = 'flat'>Flat</h4>
 
-<p>On the Flat Wedge, the <strong>Otter</strong> visits all the squares by
+<p>On the Flat Wedge, the %%PIECE%% visits all the squares by
 using a pattern biased to the right hand side.</p>
 
 <div class = 'trapped' data-piece = 'otter'></div>

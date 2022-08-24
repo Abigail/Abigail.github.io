@@ -15,8 +15,16 @@ number of unoccupied squares orthogonally forward or backward
 
 ### Spiral
 
-On the Spiral, the %%PIECE%% can move as the [*Wazir*](wazir.html),
+#### Square
+
+On the Square Spiral, the %%PIECE%% can move as the [*Wazir*](wazir.html),
 so it follows the Spiral, visiting all the squares.
+
+#### Diamond
+
+On the Diamond Spiral, the %%PIECE%% uses a simple two step loop
+to move one square forward. This way, it escapes with an escape
+velocity of \(\frac{1}{2}\).
 
 ### Wedge
 

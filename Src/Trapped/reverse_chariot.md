@@ -12,9 +12,10 @@ orthogonally forward or backward (like a vertical [*Rook*](rook.html)).
 
 ### Spiral
 
-On the Spiral, the %%PIECE%% escapes in a straight line forward.
+On either Spiral, the %%PIECE%% escapes in a straight line forward,
+with an escape velocity of \(1\).
 
 ### Wedge
 
 On both the Folded and Flat Wedge, the %%PIECE%% escapes in a
-straight line forward.
+straight line forward, with an escape velocity of \(1\).

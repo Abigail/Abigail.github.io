@@ -1,17 +1,22 @@
-# Porpoise
+# %%PIECE%%
 
-The **Porpoise** moves one square either to the left or right.
+The %%PIECE%% moves one square either to the left or right.
 This means, the **Porpoise** will always stay on the same row.
 
-In %%WHALE_SHOGI%%, if the **Porpoise** gets captured, it turns
-into a [*Killer Whale*](dragon_king.html?piece=killer_whale),
-which can be dropped by the capturing player.
+|====
+%%PIECE_HEADERS%%
+  {th = 1}  %%WHALE_SHOGI%%
+& {cs = 2}  **Porpoise**
+&           On capture, the **Porpoise** turn into the 
+            [*Killer Whale*](dragon_king.html?piece=killer_whale),
+            which can be dropped by the capturing player. \\
+====|
 
 ### Spiral
 
-On the Spiral, the **Porpoise** escapes to the right, by stepping
-right on each step.
+On either Spiral, the %%PIECE%% escapes to the right, with an escape
+velocity of \(1\), by stepping right on each step.
 
 ### Wedge
 
-The **Porpoise** cannot move on either Wedge.
+The %%PIECE%% cannot move on either Wedge.
