@@ -1553,6 +1553,7 @@ let pieces = {
         betza:    "FfWsW4",
         results: {
             spiral_square:  "T/321", 
+            spiral_diamond: "BM",
             wedge_folded:   "FC", 
             wedge_flat:     "F/100%",
         },
@@ -1594,9 +1595,10 @@ let pieces = {
     pheasant: {
         betza:  "fDbF",
         results: {
-            spiral_square:  "E", 
-            wedge_folded:   "E", 
-            wedge_flat:     "E",
+            spiral_square:   sqrt (2, 2),
+            spiral_diamond: "F*/25%",
+            wedge_folded:    sqrt (2, 2),
+            wedge_flat:      sqrt (2, 2),
         },
     },
 
@@ -1619,7 +1621,8 @@ let pieces = {
     porpoise: {
         betza:    "sW",
         results: {
-            spiral_square:  "E", 
+            spiral_square:   frac (1),
+            spiral_diamond:  frac (1),
             wedge_folded:   "", 
             wedge_flat:     "",
         },
@@ -1629,6 +1632,7 @@ let pieces = {
         betza:    "FN",
         results: {
             spiral_square:  "T/1,050", 
+            spiral_diamond: "F/100%",
             wedge_folded:   "F*/100%", 
             wedge_flat:     "F/100%",
         },
@@ -1673,6 +1677,7 @@ let pieces = {
         betza: "sWfFvR",
         results: {
             spiral_square:  "W",
+            spiral_diamond:  frac (1, 2),
             wedge_folded:   "FC", 
             wedge_flat:     "F/100%",
         },
@@ -1681,9 +1686,10 @@ let pieces = {
     reverse_chariot: {
         betza: "vR",
         results: {
-            spiral_square:  "E",
-            wedge_folded:   "E", 
-            wedge_flat:     "E",
+            spiral_square:   frac (1),
+            spiral_diamond:  frac (1),
+            wedge_folded:    frac (1),
+            wedge_flat:      frac (1),
         },
     },
 
@@ -1692,8 +1698,9 @@ let pieces = {
         betza:  "fRblBbrF",
         results: {
             spiral_square:  "F*/25%", 
-            wedge_folded:   "E", 
-            wedge_flat:     "E",
+            spiral_diamond:  frac (1, 2),
+            wedge_folded:    sqrt (2, 3),
+            wedge_flat:      sqrt (2, 3),
         },
     },
 
@@ -2060,6 +2067,7 @@ let pieces = {
         betza:   "WD",
         results: {
             spiral_square:  "W", 
+            spiral_diamond: "F/100%",
             wedge_folded:   "F/100%", 
             wedge_flat:     "F/100%",
         },
@@ -2128,6 +2136,10 @@ let pieces = {
 
     wolf: {
         parent: "chancellor",
+    },
+
+    woody_rook: {
+        parent: "war_machine",
     },
 
     //

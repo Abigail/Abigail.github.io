@@ -1,6 +1,6 @@
 <html>
 <head>
-<title>War Machine</title>
+<title>%%PIECE%%</title>
 <meta charset = "utf-8">
 <link rel  = 'preconnect' href = 'https://fonts.gstatic.com'>
 <link rel = 'stylesheet' href =      'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
@@ -17,36 +17,58 @@
 <script src = '../../JavaScript/Trapped/pages.js'></script>
 </head>
 
-<body><h1>War Machine</h1><div class = "byline">
+<body><h1>%%PIECE%%</h1><div class = "byline">
 by Abigail<br>
 <img src = "../../Images/jan_sluiters.jpg">
 </div>
 
 
-<p>The <strong>War Machine</strong> moves like either the <a href="wazir.html"><em>Wazir</em></a>
+<p>The %%PIECE%% moves like either the <a href="wazir.html"><em>Wazir</em></a>
 or the <a href="dabbaba.html"><em>Dabbaba</em></a>. That is, it jumps either one or
 two squares in an orthogonal direction. It may jump over an 
 occupied square.</p>
 
-<p>The <em>Zig</em> from <a href="https://www.chessvariants.com/rules/scirocco">Scirocco</a> and
-<a href="https://www.chessvariants.com/rules/typhoon-revised">Typhoon</a> (the promoted
-<a href="ferz.html?piece=firzan"><em>Firzan</em></a>) moves in exactly the same way,
-although it may hop over an enemy piece diagnonally to capture it.
-But here, we ignore captures.</p>
+<table class = piece_list>
+  <tr class = 'row-0' markdown = '1'>
+    <th class = 'cell-0-0 col-0 ' markdown = '1'>Game</td>
+    <th class = 'cell-0-1 col-1 ' markdown = '1' colspan = '2'>Piece</td>
+    <th class = 'cell-0-3 col-3 ' markdown = '1'>Info</td>
+  </tr>
+  <tr class = 'row-1' markdown = '1'>
+    <th class = 'cell-1-0 col-0 ' markdown = '1'><a href="https://www.chessvariants.com/rules/typhoon-revised">Typhoon</a></td>
+    <td class = 'cell-1-1 col-1 ' markdown = '1' colspan = '2'><strong>Parrot</strong></td>
+    <td class = 'cell-1-3 col-3 ' markdown = '1'><span class = 'tooltip'>&#x260B;<span class = 'tooltiptext'>Is promoted</span></span> <a href="lantern.html"><em>Lantern</em></a>;
+            <span class = 'tooltip'>&#x238B;<span class = 'tooltiptext'>This piece has additional capture moves,<br>which we can ignore here</span></span>; <span class = 'tooltip'>&#x1F3A9;<span class = 'tooltiptext'>This piece has additional abilities,<br>which we can ignore here</span></span></td>
+  </tr>
+  <tr class = 'row-2' markdown = '1'>
+    <th class = 'cell-2-0 col-0 ' markdown = '1'><a href="https://en.wikipedia.org/wiki/Chess_with_different_armies"><em>Chess with different armies</em></a></td>
+    <td class = 'cell-2-1 col-1 ' markdown = '1' colspan = '2'><strong>Woody Rook</strong></td>
+    <td class = 'cell-2-3 col-3 ' markdown = '1'></td>
+  </tr>
+  <tr class = 'row-3' markdown = '1'>
+    <th class = 'cell-3-0 col-0 ' markdown = '1'><a href="https://www.chessvariants.com/rules/typhoon-revised">Typhoon</a>; <a href="https://www.chessvariants.com/rules/scirocco">Scirocco</a></td>
+    <td class = 'cell-3-1 col-1 ' markdown = '1' colspan = '2'><strong>Zig</strong></td>
+    <td class = 'cell-3-3 col-3 ' markdown = '1'><span class = 'tooltip'>&#x260B;<span class = 'tooltiptext'>Is promoted</span></span> <a href="ferz.html?piece=firzan"><em>Firzan</em></a>;
+            <span class = 'tooltip'>&#x238B;<span class = 'tooltiptext'>This piece has additional capture moves,<br>which we can ignore here</span></span>;</td>
+  </tr>
+</table>
 
-<p>The <em>Parrot</em> from <a href="https://www.chessvariants.com/rules/typhoon-revised">Typhoon</a> (which
-is what the <a href="lantern.html"><em>Lantern</em></a> promotes to) moves in the way
-as the <strong>War Machine</strong>, although it has additional capture moves
-(and can pass). But we ignore capture moves.</p>
-
-<p>Other names for the <strong>War Machine</strong> include: <em>Machine</em>, <em>Wazaba</em>, 
-and <em>Woody Rook</em> (<a href="https://en.wikipedia.org/wiki/Chess_with_different_armies"><em>Chess with different armies</em></a>).</p>
+<p>Other names for the %%PIECE%% include: <em>Machine</em>, and <em>Wazaba</em>. </p>
 
 <h3 id = 'spiral'>Spiral</h3>
 
+<h4 id = 'square'>Square</h4>
+
 <div class = "section">
-<p>Since the <strong>War Machine</strong> can move as the <a href="wazir.html"><em>Wazir</em></a>,
+<p>Since the %%PIECE%% can move as the <a href="wazir.html"><em>Wazir</em></a>,
 it will just follow the Spiral, filling the entire board.</p>
+</div>
+
+<h4 id = 'diamond'>Diamond</h4>
+
+<div class = "section">
+<p>The %%PIECE%% will visit all the squares using an interesting
+pattern.</p>
 </div>
 
 <h3 id = 'wedge'>Wedge</h3>
@@ -54,13 +76,13 @@ it will just follow the Spiral, filling the entire board.</p>
 <h4 id = 'folded'>Folded</h4>
 
 <div class = "section">
-<p>The <strong>War Machine</strong> fills the Folded Wedge row by row, going left
+<p>The %%PIECE%% fills the Folded Wedge row by row, going left
 to right on even rows, and right to left on odd rows.</p>
 </div>
 
 <h4 id = 'flat'>Flat</h4>
 
-<p>On the Flat Wedge, the <strong>War Machine</strong> fills the board row by row
+<p>On the Flat Wedge, the %%PIECE%% fills the board row by row
 as well, but each row requires two passes: a left to right sweep visiting
 the even squares, and a right to left sweep visiting the odd squares.</p>
 

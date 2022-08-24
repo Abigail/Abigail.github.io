@@ -1,6 +1,6 @@
 <html>
 <head>
-<title>Right Quail (&#x9d89;)</title>
+<title>%%PIECE%%</title>
 <meta charset = "utf-8">
 <link rel  = 'preconnect' href = 'https://fonts.gstatic.com'>
 <link rel = 'stylesheet' href =      'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
@@ -17,28 +17,51 @@
 <script src = '../../JavaScript/Trapped/pages.js'></script>
 </head>
 
-<body><h1>Right Quail (&#x9d89;)</h1><div class = "byline">
+<body><h1>%%PIECE%%</h1><div class = "byline">
 by Abigail<br>
 <img src = "../../Images/jan_sluiters.jpg">
 </div>
 
 
-<p>The <strong>Right Quail</strong> either slides an unlimited amount of unoccupied squares 
+<p>The %%PIECE%% either slides an unlimited amount of unoccupied squares 
 orthogonally forward, or slides an unlimited amount of unoccupied squares
 diagonally left-backward, or steps one square right-backward.</p>
 
-<p>THe <strong>Right Quail</strong> is a piece from <a href="https://en.wikipedia.org/wiki/Tori_Shogi"><em>Tori Sh&#x14d;gi</em></a>.
-Its mirror image (mirrored around a vertical line) is the
-<a href="right_quail.html"><em>Left Quail</em></a>.</p>
+<p>This mirrors how the <a href="left_quail.html"><em>Left Quail</em></a> moves.</p>
+
+<table class = piece_list>
+  <tr class = 'row-0' markdown = '1'>
+    <th class = 'cell-0-0 col-0 ' markdown = '1'>Game</td>
+    <th class = 'cell-0-1 col-1 ' markdown = '1' colspan = '2'>Piece</td>
+    <th class = 'cell-0-3 col-3 ' markdown = '1'>Info</td>
+  </tr>
+  <tr class = 'row-1' markdown = '1'>
+    <th class = 'cell-1-0 col-0 ' markdown = '1'><a href="https://en.wikipedia.org/wiki/Tori_Shogi">Tori&nbsp;Sh&#x14d;gi</a></td>
+    <td class = 'cell-1-1 col-1 ' markdown = '1'><strong>Right Quail</strong></td>
+    <td class = 'cell-1-2 col-2 ' markdown = '1'>&#x9d89;</td>
+    <td class = 'cell-1-3 col-3 ' markdown = '1'></td>
+  </tr>
+</table>
 
 <h3 id = 'spiral'>Spiral</h3>
 
+<h4 id = 'square'>Square</h4>
+
 <div class = "section">
-<p>On the Spiral, the <strong>Right Quail</strong> visits 25% of the squares on the
+<p>On the Square Spiral, the %%PIECE%% visits 25% of the squares on the
 board. If we draw two diagonals through the origin, dividing the
 board into four quadrants, the <strong>Right Quail</strong> visits all the 
 squares in the left quadrant. This is different from the <strong>Left Quail</strong>,
 which gets trapped after 146 steps.</p>
+</div>
+
+<h4 id = 'diamond'>Diamond</h4>
+
+<div class = "section">
+<p>On the Diamond Spiral, the %%PIECE%% uses an eight step loop, bouncing
+between two files, to move four squares backward. This gives it an
+escape velocity of <span class = 'latex-inline'>\(\frac{1}{2}\)</span>. This is exactly how the
+<a href="left_quail.html"><em>Left Quail</em></a> moves on the Diamond Spiral.</p>
 </div>
 
 <h3 id = 'wedge'>Wedge</h3>
@@ -46,20 +69,21 @@ which gets trapped after 146 steps.</p>
 <h4 id = 'folded'>Folded</h4>
 
 <div class = "section">
-<p>On the Folded Wedge, the <strong>Right Quail</strong> will only visit the three
+<p>On the Folded Wedge, the %%PIECE%% will only visit the three
 left most squares of each row (except the bottom two), escaping
 to infinity by sticking to the left side of the board. This is
 exactly the same pattern the <a href="left_quail.html"><em>Left Quail</em></a> leaves
-behind.</p>
+behind. The escape velocity is <span class = 'latex-inline'>\(\frac{\sqrt{2}}{3}\)</span>.</p>
 </div>
 
 <h4 id = 'flat'>Flat</h4>
 
-<p>The movement of the <strong>Right Quail</strong> on the Flat Wedge is a mirror
+<p>The movement of the %%PIECE%% on the Flat Wedge is a mirror
 image of the movement on the Folded Wedge: the three right most
 squares of each row are visited while the <strong>Left Quail</strong> escapes
 to infinity. This is exactly the same pattern the
-<a href="left_quail.html"><em>Left Quail</em></a> leaves behind.</p>
+<a href="left_quail.html"><em>Left Quail</em></a> leaves behind.
+The escape velocity is <span class = 'latex-inline'>\(\frac{\sqrt{2}}{3}\)</span>.</p>
 
 <div class = 'trapped' data-piece = 'right_quail'></div>
 

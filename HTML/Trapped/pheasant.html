@@ -1,6 +1,6 @@
 <html>
 <head>
-<title>Pheasant (&#x96c9;)</title>
+<title>%%PIECE%%</title>
 <meta charset = "utf-8">
 <link rel  = 'preconnect' href = 'https://fonts.gstatic.com'>
 <link rel = 'stylesheet' href =      'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
@@ -17,26 +17,48 @@
 <script src = '../../JavaScript/Trapped/pages.js'></script>
 </head>
 
-<body><h1>Pheasant (&#x96c9;)</h1><div class = "byline">
+<body><h1>%%PIECE%%</h1><div class = "byline">
 by Abigail<br>
 <img src = "../../Images/jan_sluiters.jpg">
 </div>
 
 
-<p>The <strong>Pheasant</strong> either jumps two squares forward, or steps one
-square diagonally backwards. The <strong>Pheasant</strong> is
-<a href="https://en.wikipedia.org/wiki/Glossary_of_chess#Colorbound">colourbound</a>: if it
-starts a move on a dark square, it ends the move on a dark square.
-And if it starts on a light square, it ends on a light square. As such,
-the <strong>Pheasant</strong> can only reach half the squares of the board.</p>
+<p>The %%PIECE%% either jumps two squares forward, or steps one
+square diagonally backwards. This makes the %%PIECE%% <span class = 'tooltip underline'>colourbound<span class = 'tooltiptext'>A colourbound piece will always stay on a square of the same colour: if it starts on a black square, it will always remain on a black square; if it starts on a white square, it will always remain on a white square</span></span>.</p>
 
-<p>The <strong>Pheasant</strong> is a piece found in <a href="https://en.wikipedia.org/wiki/Tori_Shogi"><em>Tori Sh&#x14d;gi</em></a>.</p>
+<table class = piece_list>
+  <tr class = 'row-0' markdown = '1'>
+    <th class = 'cell-0-0 col-0 ' markdown = '1'>Game</td>
+    <th class = 'cell-0-1 col-1 ' markdown = '1' colspan = '2'>Piece</td>
+    <th class = 'cell-0-3 col-3 ' markdown = '1'>Info</td>
+  </tr>
+  <tr class = 'row-1' markdown = '1'>
+    <th class = 'cell-1-0 col-0 ' markdown = '1'><a href="https://en.wikipedia.org/wiki/Tori_Shogi">Tori&nbsp;Sh&#x14d;gi</a></td>
+    <td class = 'cell-1-1 col-1 ' markdown = '1'><strong>Pheasant</strong></td>
+    <td class = 'cell-1-2 col-2 ' markdown = '1'>&#x96c9;</td>
+    <td class = 'cell-1-3 col-3 ' markdown = '1'></td>
+  </tr>
+</table>
 
 <h3 id = 'spiral'>Spiral</h3>
 
+<h4 id = 'square'>Square</h4>
+
 <div class = "section">
-<p>On the Spiral, the <strong>Pheasant</strong> escapes to infinity in a zig-zag
-pattern, heading forward-left.</p>
+<p>On the Square Spiral, the %%PIECE%% escapes to infinity in a zig-zag
+pattern, heading forward-left. The two step loop which moves the
+piece one square forward-left means an escape velocity of
+<span class = 'latex-inline'>\(\frac{\sqrt{2}}{2}\)</span>.</p>
+</div>
+
+<h4 id = 'diamond'>Diamond</h4>
+
+<div class = "section">
+<p>On the Diamond Spiral, the %%PIECE%% visits half the squares which
+are below the origin (or on the same row), and less than half the
+squares on the two rows above the origin. No squares further forward
+will be visited, hence, in the limit, the %%PIECE%% vists <span class = 'latex-inline'>\(25\%\)</span>
+of the squares on the board.</p>
 </div>
 
 <h3 id = 'wedge'>Wedge</h3>
@@ -44,15 +66,17 @@ pattern, heading forward-left.</p>
 <h4 id = 'folded'>Folded</h4>
 
 <div class = "section">
-<p>On the Folded Wedge, the <strong>Pheasant</strong> escapes to infinity in the
-same way as on the Spiral.</p>
+<p>On the Folded Wedge, the %%PIECE%% escapes to infinity in the
+same way as on the Spiral, hence, with an escape velocity of
+<span class = 'latex-inline'>\(\frac{\sqrt{2}}{2}\)</span>.</p>
 </div>
 
 <h4 id = 'flat'>Flat</h4>
 
-<p>On the Flat Wedge, the <strong>Pheasant</strong> escapes to infinity in a zig-zag
+<p>On the Flat Wedge, the %%PIECE%% escapes to infinity in a zig-zag
 pattern, heading forward-left. This pattern is a mirror image
-from the pattern formed on the Folded Wedge.</p>
+from the pattern formed on the Folded Wedge. Hence, the escape
+velocity is <span class = 'latex-inline'>\(\frac{\sqrt{2}}{2}\)</span>.</p>
 
 <div class = 'trapped' data-piece = 'pheasant'></div>
 
