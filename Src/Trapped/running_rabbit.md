@@ -15,17 +15,28 @@ of unoccupied squares orthogonally forward (like a forward
 
 ### Spiral
 
-On the Spiral, the %%PIECE%% visits every square on the board
+#### Square
+
+On the Square Spiral, the %%PIECE%% visits every square on the board
 using a pattern which vaguely resembles a Pacman.
+
+#### Diamond
+
+The %%PIECE%% slowly spirals outward, visiting all squares on the board.
+On each revolution, the %%PIECE%% moves only %%FERZ%% moves, except for
+a single %%WAZIR%% move, moving the piece one step outward.
 
 ### Wedge
 
 #### Folded
 
 On the Folded Wedge, the %%PIECE%% escapes to the upper right
-by visiting the three right most squares on each row.
+by visiting the three right most squares on each row. A six step
+loop moves the piece two squares forward and to the right, resulting
+in an escape velocity of \(\frac{\sqrt{2}}{3}\).
 
 #### Flat
 
 On the Flat Wedge, the %%PIECE%% escapes to the upper right by
-visiting the right most square on each row.
+visiting the right most square on each row. This gives an escape
+velocity of \(\sqrt{2}\).

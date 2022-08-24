@@ -1722,6 +1722,7 @@ let pieces = {
         betza:    "(3,4)(5,0)",
         results: {
             spiral_square:  "T/800,494", 
+            spiral_diamond: "T/69,275,961",
             wedge_folded:   "T/644,454", 
             wedge_flat:     "T/80,152",
         },
@@ -1741,8 +1742,9 @@ let pieces = {
         betza:   "bWFfR",
         results: {
             spiral_square:  "F*/100%",
-            wedge_folded:   "E",
-            wedge_flat:     "E",
+            spiral_diamond: "F/100%",
+            wedge_folded:    sqrt (2, 3),
+            wedge_flat:      sqrt (2),
         },
     },
 
@@ -1764,9 +1766,10 @@ let pieces = {
     sergeant: {
         betza: "fWfF",
         results: {
-            spiral_square:  "E", 
-            wedge_folded:   "E", 
-            wedge_flat:     "E",
+            spiral_square:   sqrt (2),
+            spiral_diamond:  frac (1),
+            wedge_folded:    frac (1),
+            wedge_flat:      sqrt (2),
         },
     },
 
@@ -1887,8 +1890,9 @@ let pieces = {
         betza: "vWsR",
         results: {
             spiral_square:  "W",
+            spiral_diamond: "F*/87.5%",
             wedge_folded:   "T/6",
-            wedge_flat:     "E",
+            wedge_flat:      sqrt (2, 2),
         },
         _name: "Swallow's Wings",
     },

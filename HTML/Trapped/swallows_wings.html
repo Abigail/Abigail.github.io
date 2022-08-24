@@ -58,9 +58,19 @@ vertical <a href="wazir.html"><em>Wazir</em></a>).</p>
 
 <h3 id = 'spiral'>Spiral</h3>
 
+<h4 id = 'square'>Square</h4>
+
 <div class = "section">
-<p>On the Spiral, the %%PIECE%% moves as the <a href="wazir.html"><em>Wazir</em></a>,
+<p>On the Square Spiral, the %%PIECE%% moves as the <a href="wazir.html"><em>Wazir</em></a>,
 and hence, will follow the Spiral, visiting all the squares.</p>
+</div>
+
+<h4 id = 'diamond'>Diamond</h4>
+
+<div class = "section">
+<p>On the Diamond Spiral, the %%PIECE%% will visit all the squares,
+except the squares of half a quadrant. Hence <span class = 'latex-inline'>\(87.5\%\)</span> of the
+squares will be visited.</p>
 </div>
 
 <h3 id = 'wedge'>Wedge</h3>
@@ -75,7 +85,9 @@ as quickly has the <a href="wazir.html"><em>Wazir</em></a> and <a href="rook.htm
 <h4 id = 'flat'>Flat</h4>
 
 <p>On the Flat Wedge, the %%PIECE%% escapes to the upper right,
-using a step wise pattern.</p>
+using a step wise pattern. It uses a two-step loop to move
+one square forward and to the right; hence, an escape velocity
+of <span class = 'latex-inline'>\(\frac{\sqrt{2}}{2}\)</span>.</p>
 
 <div class = 'trapped' data-piece = 'swallows_wings'></div>
 

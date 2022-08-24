@@ -25,8 +25,16 @@ vertical [*Wazir*](wazir.html)).
 
 ### Spiral
 
-On the Spiral, the %%PIECE%% moves as the [*Wazir*](wazir.html),
+#### Square
+
+On the Square Spiral, the %%PIECE%% moves as the [*Wazir*](wazir.html),
 and hence, will follow the Spiral, visiting all the squares.
+
+#### Diamond
+
+On the Diamond Spiral, the %%PIECE%% will visit all the squares,
+except the squares of half a quadrant. Hence \(87.5\%\) of the
+squares will be visited.
 
 ### Wedge
 
@@ -38,4 +46,6 @@ as quickly has the [*Wazir*](wazir.html) and [*Rook*](rook.html).
 #### Flat
 
 On the Flat Wedge, the %%PIECE%% escapes to the upper right,
-using a step wise pattern.
+using a step wise pattern. It uses a two-step loop to move
+one square forward and to the right; hence, an escape velocity
+of \(\frac{\sqrt{2}}{2}\).
