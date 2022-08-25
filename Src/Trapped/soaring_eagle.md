@@ -16,7 +16,14 @@ a forward [*Alfil*](alfil.html)).
 
 ### Spiral
 
+#### Square
+
 On the Spiral, the %%PIECE%% can move as the [*Wazir*](wazir.html),
+so it visit all the squares by following the Spiral.
+
+#### Diamond
+
+On the Spiral, the %%PIECE%% can move as the %%BM%%,
 so it visit all the squares by following the Spiral.
 
 ### Wedge
