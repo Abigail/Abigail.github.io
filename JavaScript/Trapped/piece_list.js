@@ -1852,6 +1852,7 @@ let pieces = {
         betza:    "DNA",
         results: {
             spiral_square:  "?/1G",
+            spiral_diamond: "F*/100%",
             wedge_folded:   "F*/100%", 
             wedge_flat:     "?/1G",
         },
@@ -1861,8 +1862,9 @@ let pieces = {
         betza:    "(2,4)",
         results: {
             spiral_square:  "T/2,015", 
-            wedge_folded:   "E*", 
-            wedge_flat:     "E*",
+            spiral_diamond: "T/3,722",
+            wedge_folded:    sqrt (2, 2),
+            wedge_flat:      sqrt (2, 2),
         },
     },
 
@@ -1928,6 +1930,7 @@ let pieces = {
         betza: "sWvRB",
         results: {
             spiral_square:  "W",
+            spiral_diamond: "BM",
             wedge_folded:   "FC",
             wedge_flat:     "F/100%",
         },

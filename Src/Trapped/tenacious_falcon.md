@@ -14,7 +14,14 @@ square to the right or left (like a sideways [*Wazir*](wazir.html)).
 
 ### Spiral
 
+#### Square
+
 The %%PIECE%% can moves as the [*Wazir*](wazir.html), so it will
+just follow the Spiral.
+
+#### Diamond
+
+The %%PIECE%% can moves as the %%BM%% so it will
 just follow the Spiral.
 
 ### Wedge
