@@ -1,6 +1,6 @@
 <html>
 <head>
-<title>Threeleaperrider</title>
+<title>%%PIECE%%</title>
 <meta charset = "utf-8">
 <link rel  = 'preconnect' href = 'https://fonts.gstatic.com'>
 <link rel = 'stylesheet' href =      'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
@@ -17,28 +17,52 @@
 <script src = '../../JavaScript/Trapped/pages.js'></script>
 </head>
 
-<body><h1>Threeleaperrider</h1><div class = "byline">
+<body><h1>%%PIECE%%</h1><div class = "byline">
 by Abigail<br>
 <img src = "../../Images/jan_sluiters.jpg">
 </div>
 
 
-<p>At each move, the Threeleaperrider makes one or more steps as the
-<a href="threeleaper.html">Threeleaper</a> does, provided all the steps are
+<p>At each move, the %%PIECE%% makes one or more steps as the
+<a href="threeleaper.html"><em>Threeleaperr</em></a> does, provided all the steps are
 in the same direction, and all squares it steps over are unoccupied.</p>
 
 <p>That is, it moves 3, 6, 9, 12, etc squares in an orthogonal direction,
 as long as each 3<sup>rd</sup> square is unoccupied. (It may leap
 over any other occupied squares).</p>
 
-<p>The Threeleaperrider moves in a similar way as the <a href="rook.html">Rook</a>,
+<p>The %%PIECE%% moves in a similar way as the <a href="rook.html">Rook</a>,
 except the path is blown up by a factor of 3.</p>
+
+<table class = piece_list>
+  <tr class = 'row-0' markdown = '1'>
+    <th class = 'cell-0-0 col-0 ' markdown = '1'>Game</td>
+    <th class = 'cell-0-1 col-1 ' markdown = '1' colspan = '2'>Piece</td>
+    <th class = 'cell-0-3 col-3 ' markdown = '1'>Info</td>
+  </tr>
+  <tr class = 'row-1' markdown = '1'>
+    <th class = 'cell-1-0 col-0 ' markdown = '1'><a href="https://en.wikipedia.org/wiki/Fairy_chess_piece#Riders"><em>Riders</em></a></td>
+    <td class = 'cell-1-1 col-1 ' markdown = '1' colspan = '2'><strong>Threeleaperrider</strong></td>
+    <td class = 'cell-1-3 col-3 ' markdown = '1'></td>
+  </tr>
+</table>
 
 <h3 id = 'spiral'>Spiral</h3>
 
+<h4 id = 'square'>Square</h4>
+
 <div class = "section">
-<p>On the Spiral, the Threeleaperrider spirals outward, visiting
+<p>On the Spiral, the %%PIECE%% spirals outward, visiting
 <span class = 'latex-inline'>\(\frac{1}{9} = 11.\overline{1} \%\)</span> of the squares.</p>
+</div>
+
+<h4 id = 'diamond'>Diamond</h4>
+
+<div class = "section">
+<p>On the Diamond Spiral, the %%PIECE%% uses a regular pattern to fill
+<span class = 'latex-inline'>\(\frac{5}{8 * 9} = 6.9\overline{4}\%\)</span> of the board.
+This is the same pattern the <a href="rook.html"><em>Rook</em></a> uses, but blown up by a factor
+of three.</p>
 </div>
 
 <h3 id = 'wedge'>Wedge</h3>
@@ -46,13 +70,14 @@ except the path is blown up by a factor of 3.</p>
 <h4 id = 'folded'>Folded</h4>
 
 <div class = "section">
-<p>On the Folded Wedge, the Threeleaperrider gets trapped after 6 steps.</p>
+<p>On the Folded Wedge, the %%PIECE%% gets trapped after 6 steps.</p>
 </div>
 
 <h4 id = 'flat'>Flat</h4>
 
-<p>On the Flat Wedge, the Threeleaperrider escapes to infinity in a stepwise
-pattern.</p>
+<p>On the Flat Wedge, the %%PIECE%% vists two squares on
+every third row, and hence, quickly escapes to infinity, with
+an escape velocity of <span class = 'latex-inline'>\(\frac{3 \sqrt{2}}{2}\)</span>.</p>
 
 <div class = 'trapped' data-piece = 'threeleaperrider'></div>
 

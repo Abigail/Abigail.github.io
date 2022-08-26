@@ -1951,9 +1951,10 @@ let pieces = {
     threeleaper: {  // (3, 0)-leaper
         betza:    "H",
         results: {
-            spiral_square:  "F/11.1", 
+            spiral_square:  "F/11.1&#x0305;%", 
+            spiral_diamond: "F/11.1&#x0305;%",
             wedge_folded:   "T/6", 
-            wedge_flat:     "E",
+            wedge_flat:      sqrt (2, 2, 3),
         },
     },
 
@@ -1961,8 +1962,9 @@ let pieces = {
         betza:    "HH",
         results: {
             spiral_square:  "F/11.1&#x0305;%", 
-            wedge_folded:   "E", 
-            wedge_flat:     "E",
+            spiral_diamond: "F/6.94&#x0305;%",
+            wedge_folded:   "T/6", 
+            wedge_flat:      sqrt (2, 2, 3),
         },
     },
 
