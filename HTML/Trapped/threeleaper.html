@@ -1,6 +1,6 @@
 <html>
 <head>
-<title>Threeleaper</title>
+<title>%%PIECE%%</title>
 <meta charset = "utf-8">
 <link rel  = 'preconnect' href = 'https://fonts.gstatic.com'>
 <link rel = 'stylesheet' href =      'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
@@ -17,29 +17,52 @@
 <script src = '../../JavaScript/Trapped/pages.js'></script>
 </head>
 
-<body><h1>Threeleaper</h1><div class = "byline">
+<body><h1>%%PIECE%%</h1><div class = "byline">
 by Abigail<br>
 <img src = "../../Images/jan_sluiters.jpg">
 </div>
 
 
-<p>The <strong>Threeleaper</strong> is a (3,0)-leaper, that is, it can jump
+<p>The %%PIECE%% is a (3,0)-leaper, that is, it can jump
 to a square which is three away in an orthogonal direction.
 It can jump over occupied squares.</p>
 
-<p>The <strong>Threeleaper</strong> can only reach a small subset of the square
-on a chessboard. If the starting square of the <strong>Threeleaper</strong>
+<p>The %%PIECE%% can only reach a small subset of the square
+on a chessboard. If the starting square of the %%PIECE%%
 is the square <span class = 'latex-inline'>\((0, 0)\)</span>, then the only squares is can reach
 are the squares <span class = 'latex-inline'>\((3x, 3y)\)</span>, some some integers <span class = 'latex-inline'>\(x, y\)</span>. Hence,
-the <strong>Threeleaper</strong> can only reach <span class = 'latex-inline'>\(11.1\%\)</span> of the board.</p>
+the %%PIECE%% can only reach <span class = 'latex-inline'>\(11.\overline{1}\%\)</span> of the board.</p>
+
+<table class = piece_list>
+  <tr class = 'row-0' markdown = '1'>
+    <th class = 'cell-0-0 col-0 ' markdown = '1'>Game</td>
+    <th class = 'cell-0-1 col-1 ' markdown = '1' colspan = '2'>Piece</td>
+    <th class = 'cell-0-3 col-3 ' markdown = '1'>Info</td>
+  </tr>
+  <tr class = 'row-1' markdown = '1'>
+    <th class = 'cell-1-0 col-0 ' markdown = '1'><a href="leapers.html"><em>Leapers</em></a></td>
+    <td class = 'cell-1-1 col-1 ' markdown = '1' colspan = '2'><strong>Threeleaper</strong></td>
+    <td class = 'cell-1-3 col-3 ' markdown = '1'></td>
+  </tr>
+</table>
 
 <h3 id = 'spiral'>Spiral</h3>
 
+<h4 id = 'square'>Square</h4>
+
 <div class = "section">
-<p>On the Spiral, the <strong>Threeleaper</strong> visits all the squares which
-satisfy the considition above. (So, <span class = 'latex-inline'>\(11.1\%\)</span> of the board).
+<p>On the Square Spiral, the %%PIECE%% visits all the squares which
+satisfy the considition above. (So, <span class = 'latex-inline'>\(11.\overline{1}\%\)</span> of the board).
 The pattern is the same as the <a href="wazir.html"><em>Wazir</em></a>, except
 blown up by a factor of 3.</p>
+</div>
+
+<h4 id = 'diamond'>Diamond</h4>
+
+<div class = "section">
+<p>On the Diamond Spiral, the %%PIECE%% follows the same pattern as
+on the Square Spiral, except flipped horizontally. So, 
+<span class = 'latex-inline'>\(11.\overline{1}\%\)</span> of the board) is visited.</p>
 </div>
 
 <h3 id = 'wedge'>Wedge</h3>
@@ -48,13 +71,14 @@ blown up by a factor of 3.</p>
 
 <div class = "section">
 <p>Just like the <a href="wazir.html"><em>Wazir</em></a> and <a href="rook.html"><em>Rook</em></a>,
-the <strong>Threeleaper</strong> gets trapped after 6 step.s</p>
+the %%PIECE%% gets trapped after 6 steps.</p>
 </div>
 
 <h4 id = 'flat'>Flat</h4>
 
-<p>On the Flat Wedge, the <strong>Threeleaper</strong> vists two squares on
-every third row, and hence, quickly escapes to infinity.</p>
+<p>On the Flat Wedge, the %%PIECE%% vists two squares on
+every third row, and hence, quickly escapes to infinity, with
+an escape velocity of <span class = 'latex-inline'>\(\frac{3 \sqrt{2}}{2}\)</span>.</p>
 
 <div class = 'trapped' data-piece = 'threeleaper'></div>
 
