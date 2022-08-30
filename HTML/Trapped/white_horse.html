@@ -47,6 +47,8 @@ movements of the <a href="whale.html"><em>Whale</em></a>.</p>
 
 <h3 id = 'spiral'>Spiral</h3>
 
+<h4 id = 'square'>Square</h4>
+
 <div class = "section">
 <p>The %%PIECE%% will visit almost all squares in a wedge to the
 right of the origin. As such, in the limit, the %%PIECE%% will
@@ -55,19 +57,29 @@ visit 25% of the squares on the board.</p>
 <p>This mirrors the squares visited by the <a href="whale.html"><em>Whale</em></a>.</p>
 </div>
 
+<h4 id = 'diamond'>Diamond</h4>
+
+<div class = "section">
+<p>On the Diamond Spiral, the %%PIECE%% escapes straight forward,
+with an escape velocity of <span class = 'latex-inline'>\(1\)</span>.</p>
+</div>
+
 <h3 id = 'wedge'>Wedge</h3>
 
 <h4 id = 'folded'>Folded</h4>
 
 <div class = "section">
 <p>On the Folded Wedge, the %%PIECE%% escapes to the upper right, 
-by visiting the three right most squares of each row.</p>
+by visiting the three right most squares of each row. The six
+step loop to move the piece to a square two forward-right results
+in an escape velocity of <span class = 'latex-inline'>\(\frac{\sqrt{2}}{3}\)</span>.</p>
 </div>
 
 <h4 id = 'flat'>Flat</h4>
 
 <p>On the Flat Wedge, the %%PIECE%% escapes by clinging to the
-right edge of the Wedge.</p>
+right edge of the Wedge, with an escape velocity of
+<span class = 'latex-inline'>\(\sqrt{2}\)</span>.</p>
 
 <div class = 'trapped' data-piece = 'white_horse'></div>
 

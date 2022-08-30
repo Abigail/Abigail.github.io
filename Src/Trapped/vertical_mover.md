@@ -17,8 +17,16 @@ amount of unoccupied squares orthogonally forward or backward
 
 ### Spiral
 
+#### Square
+
 The %%PIECE%% can move as the [*Wazir*](wazir.html) so it visits
 all the squares by following the Spiral.
+
+#### Diamond
+
+The %%PIECE%% follows a clockwise square spiral, skipping half the
+square on each vertical leg. This means \(\frac{3}{4} = 75\%\) of
+the squares on the board are visited.
 
 ### Wedge
 
@@ -30,4 +38,6 @@ on the Folded Wedge after 6 steps.
 #### Flat
 
 On the Flat Wedge, the %%PIECE%% escapes to the upper right 
-using a step wise pattern.
+using a step wise pattern. In a two step loop, the piece
+moves one square forward and to the right, for an escape velocity
+of \(\sqrt{2}\).

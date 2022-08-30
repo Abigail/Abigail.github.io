@@ -41,9 +41,21 @@ That is, it may slide an unlimited number of squares sideways or forward.</p>
 
 <h3 id = 'spiral'>Spiral</h3>
 
+<h4 id = 'square'>Square</h4>
+
 <div class = "section">
-<p>On the Spiral, the %%PIECE%% escapes to the upper right, by
-visiting four squares on each row above the origin.</p>
+<p>On the Square Spiral, the %%PIECE%% escapes to the forward right, by
+visiting four squares on each row forward from the origin. A five step
+loop moves the piece one square forward and to the right, resulting
+in an escape velocity of <span class = 'latex-inline'>\(\frac{\sqrt{2}}{5}\)</span>.</p>
+</div>
+
+<h4 id = 'diamond'>Diamond</h4>
+
+<div class = "section">
+<p>On the Diamond Spiral, the %%PIECE%% steps one square to the right
+on each step, escaping in the straight line with an escape velocity
+of <span class = 'latex-inline'>\(1\)</span>.</p>
 </div>
 
 <h3 id = 'wedge'>Wedge</h3>
@@ -58,7 +70,8 @@ each row, alternating the right most and left most half of each row.</p>
 <h4 id = 'flat'>Flat</h4>
 
 <p>On the Flat Wedge, the %%PIECE%% escapes to the upper right, using
-a step wise pattern to visit the two right most squares on each row.</p>
+a step wise pattern to visit the two right most squares on each row.
+The escape velocity is <span class = 'latex-inline'>\(\frac{\sqrt{2}}{2}\)</span>.</p>
 
 <div class = 'trapped' data-piece = 'yari_rook'></div>
 
