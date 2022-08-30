@@ -42,9 +42,18 @@ squares orthogonally backward.</p>
 
 <h3 id = 'spiral'>Spiral</h3>
 
+<h4 id = 'square'>Square</h4>
+
 <div class = "section">
-<p>On the Spiral, the %%PIECE%% fills 25% of the squares: a wedge to
+<p>On the Square Spiral, the %%PIECE%% fills 25% of the squares: a wedge to
 the right of the origin, with mostly vertical movements.</p>
+</div>
+
+<h4 id = 'diamond'>Diamond</h4>
+
+<div class = "section">
+<p>On the Diamond Spiral, the %%PIECE%% moves straight forward, one square
+per step. This gives an escape velocity of <span class = 'latex-inline'>\(1\)</span>.</p>
 </div>
 
 <h3 id = 'wedge'>Wedge</h3>
@@ -53,13 +62,15 @@ the right of the origin, with mostly vertical movements.</p>
 
 <div class = "section">
 <p>On the Folded Wedge, the %%PIECE%% visits the three right most
-squares of each row, escaping to the upper right.</p>
+squares of each row, escaping to the upper right. A six step loop
+moves the pieces two squares forward and to the right. The escape
+velocity is <span class = 'latex-inline'>\(\frac{\sqrt{2}}{3}\)</span>.</p>
 </div>
 
 <h4 id = 'flat'>Flat</h4>
 
 <p>On the Flat Wedge, the %%PIECE%% escapes by visiting the right most
-square of each row.</p>
+square of each row, with an escape velocity of <span class = 'latex-inline'>\(\sqrt{2}\)</span>.</p>
 
 <div class = 'trapped' data-piece = 'yari_silver'></div>
 

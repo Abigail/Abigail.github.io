@@ -1986,9 +1986,10 @@ let pieces = {
     treacherous_fox: {
         betza: "vWFvDA",
         results: {
-            spiral_square:  "F/100%",
-            wedge_folded:   "E", 
-            wedge_flat:     "E",
+            spiral_square:  "F*/100%",
+            spiral_diamond: "F*/100%",
+            wedge_folded:    sqrt (2, 3),
+            wedge_flat:      sqrt (2),
         },
     },
 
@@ -2036,8 +2037,9 @@ let pieces = {
         betza: "sWvR",
         results: {
             spiral_square:  "W",
+            spiral_diamond: "F/75%",
             wedge_folded:   "T/6",
-            wedge_flat:     "E",
+            wedge_flat:      sqrt (2),
         },
     },
 
@@ -2109,8 +2111,9 @@ let pieces = {
         betza: "vRbB",
         results: {
             spiral_square:  "F*/25%",
-            wedge_folded:   "E",
-            wedge_flat:     "E",
+            spiral_diamond:  frac (1),
+            wedge_folded:    sqrt (2, 3),
+            wedge_flat:      sqrt (2, 3),
         },
     },
 
@@ -2118,8 +2121,9 @@ let pieces = {
         betza: "vRfB",
         results: {
             spiral_square:  "F*/25%",
-            wedge_folded:   "E",
-            wedge_flat:     "E",
+            spiral_diamond:  frac (1),
+            wedge_folded:    sqrt (2, 3),
+            wedge_flat:      sqrt (2),
         },
     },
 
@@ -2160,9 +2164,10 @@ let pieces = {
     yari_bishop: {
         betza: "fFfR",
         results: {
-            spiral_square:  "E", 
-            wedge_folded:   "E", 
-            wedge_flat:     "E",
+            spiral_square:   sqrt (2),
+            spiral_diamond:  frac (1),
+            wedge_folded:    frac (1),
+            wedge_flat:      sqrt (2),
         },
     },
 
@@ -2170,6 +2175,7 @@ let pieces = {
         betza: "WfFbR",
         results: {
             spiral_square:  "W", 
+            spiral_diamond:  frac (1, 2),
             wedge_folded:   "FC", 
             wedge_flat:     "F/100%",
         },
@@ -2178,18 +2184,20 @@ let pieces = {
     yari_knight: {
         betza: "fNfR",
         results: {
-            spiral_square:  "E", 
-            wedge_folded:   "E", 
-            wedge_flat:     "E",
+            spiral_square:   frac (1),
+            spiral_diamond:  frac (1),
+            wedge_folded:    frac (1),
+            wedge_flat:      frac (1),
         },
     },
 
     yari_rook: {
         betza: "frlR",
         results: {
-            spiral_square:  "E", 
+            spiral_square:   sqrt (2, 5),
+            spiral_diamond:  frac (1),
             wedge_folded:   "F*/50%", 
-            wedge_flat:     "E",
+            wedge_flat:      sqrt (2, 2),
         },
     },
 
@@ -2197,8 +2205,9 @@ let pieces = {
         betza: "fWfFbR",
         results: {
             spiral_square:  "F*/25%", 
-            wedge_folded:   "E", 
-            wedge_flat:     "E",
+            spiral_diamond:  frac (1),
+            wedge_folded:    sqrt (2, 3),
+            wedge_flat:      sqrt (2),
         },
     },
 

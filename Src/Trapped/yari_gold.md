@@ -17,8 +17,15 @@ unoccupied squares backward.
 
 ### Spiral
 
+#### Square
+
 On the Spiral, the %%PIECE%% can move like the [*Wazir*](wazir.html),
 so it will just follow the spiral.
+
+#### Diamond
+
+The %%PIECE%% uses a two step loop to move one square forward,
+with an escape velocity of \(\frac{1}{2}\).
 
 ### Wedge
 

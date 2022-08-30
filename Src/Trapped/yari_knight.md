@@ -14,9 +14,10 @@ slides an unlimited number of squares forward.
 
 ### Spiral
 
-On the Spiral, the %%PIECE%% escapes in a straight line forward.
+On either Spiral, the %%PIECE%% escapes in a straight line forward,
+by moving one square forward each step. The escape velocity is \(1\).
 
 ### Wedge
 
 On both the Folded and Flat Wedge, the %%PIECE%% escapes in a
-straight line forward.
+straight line forward. The escape velocity is \(1\).

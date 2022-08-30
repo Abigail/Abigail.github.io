@@ -15,17 +15,26 @@ backward or forward.
 
 ### Spiral
 
-The %%PIECE%% visits all the squares on the Spiral, using a pretty
+#### Square
+
+The %%PIECE%% visits all the squares on the board, using a pretty
 unique pattern. 
+
+#### Diamond
+
+The %%PIECE%% visits all the squares on the board, using a pretty
+unique pattern -- a different pattern than is used on the Square Spiral. 
 
 ### Wedge
 
 #### Folded
 
 On the Folded Wedge, the %%PIECE%% escapes to the upper right, by
-visiting the three right most squares of each row.
+visiting the three right most squares of each row. A six step loop
+brings to piece two square forward and to the right, for an
+escape velocity of \(\frac{\sqrt{2}}{3}\).
 
 #### Flat
 
-On the Flat Wedge, teh %%PIECE%% escapes by visiting the right most
-square on each row.
+On the Flat Wedge, the %%PIECE%% escapes by visiting the right most
+square on each row, for an escape velocity of \(\sqrt{2}\).
