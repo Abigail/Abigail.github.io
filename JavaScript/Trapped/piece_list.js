@@ -1468,6 +1468,27 @@ let pieces = {
         },
     },
 
+    moa: {
+        betza: "t[FW]",
+        results: {
+            spiral_square:  "T/21", 
+            spiral_diamond: "T/35", 
+            wedge_folded:    sqrt (2),
+            wedge_flat:      sqrt (2),
+        },
+        move_list: [
+            {dr: -1, dc:  2, us: [[-1,  1]], max: 1},
+            {dr: -1, dc: -2, us: [[-1, -1]], max: 1},
+            {dr:  1, dc:  2, us: [[ 1,  1]], max: 1},
+            {dr:  1, dc: -2, us: [[ 1, -1]], max: 1},
+            {dr: -2, dc: -1, us: [[-1, -1]], max: 1},
+            {dr: -2, dc: -1, us: [[-1, -1]], max: 1},
+            {dr:  2, dc:  1, us: [[ 1,  1]], max: 1},
+            {dr:  2, dc:  1, us: [[ 1,  1]], max: 1},
+        ],
+    },
+
+
     modern_elephant: {
         betza:    "FA",
         results: {
