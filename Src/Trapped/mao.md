@@ -4,6 +4,9 @@ The %%PIECE%% moves as the [*Knight*](knight.html), but it
 may not jump. It moves one square orthogonally (which must
 be unoccupied), then one square diagonally outward.
 
+Compare this to the [*Moa*](moa.html) which reaches the same
+squares, but first moves diagonally, then orthogonally.
+
 |====
 %%PIECE_HEADERS%%
   {th = 1}  %%GRAND_CAVALIER%%
@@ -20,6 +23,8 @@ be unoccupied), then one square diagonally outward.
 &           **Mao**
 &           \\
 ====|
+
+Link: [%%CHESS_V%%](#piece:mao)
 
 ### Spiral
 
