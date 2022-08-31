@@ -1,6 +1,6 @@
 <html>
 <head>
-<title>Tripperrider</title>
+<title>%%PIECE%%</title>
 <meta charset = "utf-8">
 <link rel  = 'preconnect' href = 'https://fonts.gstatic.com'>
 <link rel = 'stylesheet' href =      'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
@@ -17,27 +17,51 @@
 <script src = '../../JavaScript/Trapped/pages.js'></script>
 </head>
 
-<body><h1>Tripperrider</h1><div class = "byline">
+<body><h1>%%PIECE%%</h1><div class = "byline">
 by Abigail<br>
 <img src = "../../Images/jan_sluiters.jpg">
 </div>
 
 
-<p>On each move the Tripperrider moves one or more steps the
-<a href="tripper.html">Tripper</a> makes, provided it doesn't turn
+<p>On each move the %%PIECE%% moves one or more steps the
+<a href="tripper.html"><em>Tripper</em></a> makes, provided it doesn't turn
 and each square it moves over is unoccupied. (So, it can
 move six squares diagonally if the third square is unoccupied,
 but the first, second, fourth or fifth square may be occupied).</p>
 
+<table class = piece_list>
+  <tr class = 'row-0' markdown = '1'>
+    <th class = 'cell-0-0 col-0 ' markdown = '1'>Game</td>
+    <th class = 'cell-0-1 col-1 ' markdown = '1' colspan = '2'>Piece</td>
+    <th class = 'cell-0-3 col-3 ' markdown = '1'>Info</td>
+  </tr>
+  <tr class = 'row-1' markdown = '1'>
+    <th class = 'cell-1-0 col-0 ' markdown = '1'><a href="https://en.wikipedia.org/wiki/Fairy_chess_piece#Riders"><em>Riders</em></a></td>
+    <td class = 'cell-1-1 col-1 ' markdown = '1' colspan = '2'><strong>Tripperrider</strong></td>
+    <td class = 'cell-1-3 col-3 ' markdown = '1'></td>
+  </tr>
+</table>
+
 <h3 id = 'spiral'>Spiral</h3>
 
+<h4 id = 'square'>Square</h4>
+
 <div class = "section">
-<p>On the Spiral, the Tripperrider moves in a similar way as the
-<a href="bishop.html">Bishop</a> does, but its path "blown up" by a factor
+<p>On the Square Spiral, the %%PIECE%% moves in a similar way as the
+<a href="bishop.html"><em>Bishop</em></a> does, but its path "blown up" by a factor
 of three. As such, it will visit
 \(\frac{1}{18} \cdot (\frac{1}{2} \cdot \frac{3}{4} + \frac{1}{4}) =
   \frac{5}{144} = 3.47\overline{2}\%\)
 of the squares on the board.</p>
+</div>
+
+<h4 id = 'diamond'>Diamond</h4>
+
+<div class = "section">
+<p>On the Diamond Spiral, the %%PIECE%% moves as the <a href="tripper.html"><em>Tripper</em></a>,
+visiting
+<span class = 'latex-inline'>\(\frac{1}{2} \cdot \frac{1}{3^2} = \frac{1}{18} = 5.\overline{5}\%\)</span>
+of the squares.</p>
 </div>
 
 <h3 id = 'wedge'>Wedge</h3>
@@ -45,14 +69,16 @@ of the squares on the board.</p>
 <h4 id = 'folded'>Folded</h4>
 
 <div class = "section">
-<p>On the Folded Wedge, the Tripperrider escapes to infinity, using
-a zigzag pattern on the right hand side of the Wedge.</p>
+<p>On the Folded Wedge, the %%PIECE%% escapes to infinity, using
+a zigzag pattern on the right hand side of the Wedge.
+The escape velocity is <span class = 'latex-inline'>\(\frac{3 \sqrt{2}}{2}\)</span>.</p>
 </div>
 
 <h4 id = 'flat'>Flat</h4>
 
-<p>On Flat Wedge, the Tripperrider escapes
-to infinity in a straight line, hugging the right side of the Wedge.</p>
+<p>On Flat Wedge, the %%PIECE%% escapes
+to infinity in a straight line, hugging the right side of the Wedge.
+The escape velocity is <span class = 'latex-inline'>\(3 \sqrt{2}\)</span>.</p>
 
 <div class = 'trapped' data-piece = 'tripperrider'></div>
 

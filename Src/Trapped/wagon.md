@@ -1,24 +1,36 @@
-# Wagon
+# %%PIECE%%
 
-The **Wagon** slides an unlimited amout of unoccupied squares
+The %%PIECE%% slides an unlimited amout of unoccupied squares
 in any orthogonal direction, but it may not land on a square
 next to the starting square (but the square must be unoccupied
-if the **Wagon** wants to move in that direction).
+if the %%PIECE%% wants to move in that direction).
 
-The **Wagon** in [Scirocco](#chess-v:rules/scirocco),
-and [Typhoon](#chess-v:rules/typhoon-revised)promotes
-to the [*Spider*](spider.html).
+|====
+%%PIECE_HEADERS%%
+  {th = 1}  %%SCIROCCO%%; %%TYPHOON%%
+& {cs = 2}  **Wagon**
+&           %%PROMOTES_TO%% [*Spider*](spider.html) \\
+====|
 
 ### Spiral
 
-On the Spiral, the **Wagon** moves in the same way as
+#### Square
+
+On the Square Spiral, the %%PIECE%% moves in the same way as
 the [*Dabbaba*](dabbaba.html), visiting only those
 squares which are both on even rows and even files.
 This follows the Spiral, blown up by a factor of two,
 visiting 25% of the board.
 
+#### Diamond
+
+On the Diamond Spiral, the %%PIECE%% gets trapped remarkably
+quickly, after no more than 32 steps. 
+
 ### Wedge
 
-On both the Folded Wedge and Flat Wedge, on each even row the **Wagon**
+On both the Folded Wedge and Flat Wedge, on each even row the %%PIECE%%
 visits the third square from the right, and the right most square,
-before jumping up two rows, escaping to infinity.
+before jumping up two rows, escaping to infinity. This two step loop
+brings the piece to a square which is two forward and two to the right,
+giving in an escape velocity of \(\sqrt{2}\).

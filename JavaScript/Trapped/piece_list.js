@@ -1996,9 +1996,10 @@ let pieces = {
     tripper:   {    // (3, 3)-leaper
         betza:    "G",
         results: {
-            spiral_square:  "F/5.56%", 
-            wedge_folded:   "E", 
-            wedge_flat:     "E",
+            spiral_square:  "F/5.55&#x0305;%", 
+            spiral_diamond: "F/5.55&#x0305;%",
+            wedge_folded:    sqrt (2, 3, 2),
+            wedge_flat:      sqrt (2, 1, 3),
         },
     },
 
@@ -2010,8 +2011,9 @@ let pieces = {
         betza:    "GG",
         results: {
             spiral_square:  "F*/3.472&#x0305;%", 
-            wedge_folded:   "E", 
-            wedge_flat:     "E",
+            spiral_diamond: "F/5.55&#x0305;%",
+            wedge_folded:    sqrt (2, 3, 2),
+            wedge_flat:      sqrt (2, 1, 3),
         },
     },
 
@@ -2065,8 +2067,9 @@ let pieces = {
     wagon: {
         results: {
             spiral_square:  "F/25%", 
-            wedge_folded:   "E", 
-            wedge_flat:     "E",
+            spiral_diamond: "T/32",
+            wedge_folded:    sqrt (2),
+            wedge_flat:      sqrt (2),
         },
         move_list: [
             {dr: -1, dc:  0, min_land: 2},
@@ -2222,6 +2225,7 @@ let pieces = {
         betza:    "Z",
         results: {
             spiral_square:  "T/4,633", 
+            spiral_diamond: "T/14,569",
             wedge_folded:   "T/80", 
             wedge_flat:     "T/286",
         },
@@ -2231,6 +2235,7 @@ let pieces = {
         betza:    "ZZ",
         results: {
             spiral_square:  "T/266", 
+            spiral_diamond: "T/1,613",
             wedge_folded:   "T/72", 
             wedge_flat:     "T/57",
         },
@@ -2240,6 +2245,7 @@ let pieces = {
         betza:    "C(1,4)",
         results: {
             spiral_square:  "?/1G",
+            spiral_diamond: "T/46,359",
             wedge_folded:   "?/1G",
             wedge_flat:     "?/1G",
         },
