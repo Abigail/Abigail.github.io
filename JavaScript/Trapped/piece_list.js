@@ -300,6 +300,34 @@ let pieces = {
         parent:   "copper_general",
     },
 
+    bowman: {
+        betza: "t[FW]t[WF]",
+        results: {
+            spiral_square:  "T/78", 
+            spiral_diamond: "T/55", 
+            wedge_folded:   "T/10",
+            wedge_flat:     "T/10",
+        },
+        move_list: [
+            {dr: -1, dc:  2, us: [[-1,  1]], max: 1},
+            {dr: -1, dc: -2, us: [[-1, -1]], max: 1},
+            {dr:  1, dc:  2, us: [[ 1,  1]], max: 1},
+            {dr:  1, dc: -2, us: [[ 1, -1]], max: 1},
+            {dr: -2, dc: -1, us: [[-1, -1]], max: 1},
+            {dr: -2, dc: -1, us: [[-1, -1]], max: 1},
+            {dr:  2, dc:  1, us: [[ 1,  1]], max: 1},
+            {dr:  2, dc:  1, us: [[ 1,  1]], max: 1},
+            {dr: -1, dc:  2, us: [[ 0,  1]], max: 1},
+            {dr: -1, dc: -2, us: [[ 0, -1]], max: 1},
+            {dr:  1, dc:  2, us: [[ 0,  1]], max: 1},
+            {dr:  1, dc: -2, us: [[ 0, -1]], max: 1},
+            {dr: -2, dc: -1, us: [[-1,  0]], max: 1},
+            {dr: -2, dc: -1, us: [[-1,  0]], max: 1},
+            {dr:  2, dc:  1, us: [[ 1,  0]], max: 1},
+            {dr:  2, dc:  1, us: [[ 1,  0]], max: 1},
+        ],
+    },
+
     buffalo: {
         betza:    "NCZ",
         results: {
@@ -1487,7 +1515,6 @@ let pieces = {
             {dr:  2, dc:  1, us: [[ 1,  1]], max: 1},
         ],
     },
-
 
     modern_elephant: {
         betza:    "FA",
