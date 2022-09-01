@@ -1538,6 +1538,17 @@ let pieces = {
         parent: "pawn",
     },
 
+    mini_rose: {
+        betza: "qK",
+        results: {
+            spiral_square:  "", 
+            spiral_diamond: "",
+            wedge_folded:   "", 
+            wedge_flat:     "",
+        },
+        _name: "Mini-Rose",
+    },
+
     minister: {
         parent: "archbishop",
     },
@@ -1726,6 +1737,10 @@ let pieces = {
         parent: "king",
         _name: "Phoenix",
         _index_name: "Phoenix (Tori&nbsp;Sh&#x014d;gi)",
+    },
+
+    pikeman: {
+        parent: "flying_ox",
     },
 
     plodding_ox: {
@@ -1964,6 +1979,16 @@ let pieces = {
 
     sparrow_pawn: {
         parent: "pawn",
+    },
+
+    spearman: {
+        betza_list: ["vR", "frblB", "flbrB"],
+        results: {
+            spiral_square:   sqrt (2, 3),
+            spiral_diamond: "T/18",
+            wedge_folded:    sqrt (2, 3),
+            wedge_flat:      sqrt (2, 3),
+        },
     },
 
     spider: {
@@ -2465,9 +2490,10 @@ let set_info = {
     ganymede_chess: {
         href: "https://www.chessvariants.com/large.dir/ganymede.html",
         pieces: ["king", "queen", "rook", "bishop", "knight",
-                 "cardinal_bwh", "empress_qn",
+                 "cardinal_bwh", "dragon_a2c", "empress_qn",
                  "flying_dragon", "fort", "frog_wfh", "gnu",
-                 "griffon", "moonrider", "nightrider", "roc",
+                 "griffon", "moonrider", "mini_rose", "nightrider", "pikeman",
+                 "roc", "spearman", "!!Wall",
                  "pawn",
         ],
     },

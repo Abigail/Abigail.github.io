@@ -15,6 +15,9 @@ movements, rotated 90&deg;.
   {th = 1}  %%CHU_SHOGI%%
 &           **Flying Ox** & &#x98DB;&#x725B;
 &           %%PROMOTED%% [*Vertical Mover*](vertical_mover.html) \\
+  {th = 1}  %%GANYMEDE%%
+& {cs = 2}  **Pikeman**
+&           %%PROMOTED%% [*Spearman*](spearman.html) \\
 ====|
 
 ### Spiral
