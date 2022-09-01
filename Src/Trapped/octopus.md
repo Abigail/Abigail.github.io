@@ -1,11 +1,14 @@
 # %%PIECE%%
 
 The %%PIECE%% first steps one square diagonally (like the
-[*Ferz*](ferz.html), then slides zero or more squares 
+[*Ferz*](ferz.html)), then slides zero or more squares 
 orthogonally outward (like the [*Rook*](rook.html)).
 
 |====
 %%PIECE_HEADERS%%
+  {th = 1}  %%GANYMEDE%%
+& {cs = 2}  **Griffon**
+&           %%PROMOTES_TO%% [*Roc*](roc.html) \\
   {th = 1}  %%SCIROCCO%%
 & {cs = 2}  **Octopus**
 &           %%PROMOTED%% [*Chariot*](chariot.html) \\
@@ -16,7 +19,7 @@ orthogonally outward (like the [*Rook*](rook.html)).
 #### Square
 
 After bouncing around for the first couple of steps, all 
-squares the %%PIECE%% vists on the two main diagonals.
+squares the %%PIECE%% vists are on the two main diagonals.
 This makes it an escaping piece, but one which escapes 
 in multiple directions; a feat not many pieces share.
 The %%PIECE%% uses a 20 step loop (5 revolutions around

@@ -8,7 +8,7 @@ occupied square.
 |====
 %%PIECE_HEADERS%%
   {th = 1}  %%GRAND_CAVALIER%%
-& {cs = 2}  **Cannon**<sup>[%%CHESS_V%%](#piece:cannon)
+& {cs = 2}  **Cannon**<sup>[%%CHESS_V%%](#piece:cannon)</sup>
 &           %%CAPTURE%% \\
   {th = 1}  %%XIANGQI%%
 &           **Cannon** & &#x7832;/&#x70AE;
@@ -33,8 +33,10 @@ occupied square.
 &           %%PROMOTED%% [*Knight*](knight.html) \\
   {th = 1}  %%CHESS%%; %%CAGLIOSTRO%%; %%FALCON_HUNTER%%;
             %%WILDEBEEST%%; %%WOLF%%; Other Chess variants
-&           **Rook** & &#x2656;
+& {rs = 2}  **Rook** & {rs = 2} &#x2656;
 &           \\
+  {th = 1}  %%GANYMEDE%%
+&           %%PROMOTES_TO%% [*Fort*](fort.html) \\
   {th = 1}  %%SHOGI%%
 &           {rs = 3} **Rook** & {rs = 3} &#x98DB;&#x8ECA;
 &           &#x98db;&#x8eca; meaning *Flying Chariot*;

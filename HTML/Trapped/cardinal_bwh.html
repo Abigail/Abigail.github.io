@@ -23,9 +23,9 @@ by Abigail<br>
 </div>
 
 
-<p>The %%PIECE%% first steps one square diagonally (like the
-<a href="ferz.html"><em>Ferz</em></a>), then slides zero or more squares 
-orthogonally outward (like the <a href="rook.html"><em>Rook</em></a>).</p>
+<p>The %%PIECE%% either slides an unlimited number of unoccupied squares
+diagonally (like a <a href="bishop.html"><em>Bishop</em></a>), or jumps one or three
+squares orthogonally (like a <a href="wazir.html"><em>Wazir</em></a> or <a href="threeleaper.html"><em>Threeleaper</em></a>.</p>
 
 <table class = piece_list>
   <tr class = 'row-0' markdown = '1'>
@@ -35,13 +35,8 @@ orthogonally outward (like the <a href="rook.html"><em>Rook</em></a>).</p>
   </tr>
   <tr class = 'row-1' markdown = '1'>
     <th class = 'cell-1-0 col-0 ' markdown = '1'><a href="https://www.chessvariants.com/large.dir/ganymede.html">Ganymede Chess</a></td>
-    <td class = 'cell-1-1 col-1 ' markdown = '1' colspan = '2'><strong>Griffon</strong></td>
-    <td class = 'cell-1-3 col-3 ' markdown = '1'><span class = 'tooltip'>&#x260A;<span class = 'tooltiptext'>Promotes to</span></span> <a href="roc.html"><em>Roc</em></a></td>
-  </tr>
-  <tr class = 'row-2' markdown = '1'>
-    <th class = 'cell-2-0 col-0 ' markdown = '1'><a href="https://www.chessvariants.com/rules/scirocco">Scirocco</a></td>
-    <td class = 'cell-2-1 col-1 ' markdown = '1' colspan = '2'><strong>Octopus</strong></td>
-    <td class = 'cell-2-3 col-3 ' markdown = '1'><span class = 'tooltip'>&#x260B;<span class = 'tooltiptext'>Is promoted</span></span> <a href="chariot.html"><em>Chariot</em></a></td>
+    <td class = 'cell-1-1 col-1 ' markdown = '1' colspan = '2'><strong>Cardinal</strong></td>
+    <td class = 'cell-1-3 col-3 ' markdown = '1'><span class = 'tooltip'>&#x260B;<span class = 'tooltiptext'>Is promoted</span></span> <a href="bishop.html"><em>Bishop</em></a></td>
   </tr>
 </table>
 
@@ -50,20 +45,15 @@ orthogonally outward (like the <a href="rook.html"><em>Rook</em></a>).</p>
 <h4 id = 'square'>Square</h4>
 
 <div class = "section">
-<p>After bouncing around for the first couple of steps, all 
-squares the %%PIECE%% vists are on the two main diagonals.
-This makes it an escaping piece, but one which escapes 
-in multiple directions; a feat not many pieces share.
-The %%PIECE%% uses a 20 step loop (5 revolutions around
-the origin) to move 7 squares diagonally outward (on all
-diagonals). This means an escape velocity of 
-<span class = 'latex-inline'>\(\frac{7 \sqrt{2}}{20}\)</span>.</p>
+<p>The %%PIECE%% can move like the <a href="wazir.html"><em>Wazir</em></a> and fills the board, visiting
+the squares in order.</p>
 </div>
 
 <h4 id = 'diamond'>Diamond</h4>
 
 <div class = "section">
-<p>On the Diamond Spiral, the %%PIECE%% gets trapped after 52 steps.</p>
+<p>The %%PIECE%% can move like the <a href="blind_monkey.html"><em>Blind Monkey</em></a> and fills the board, visiting
+the squares in order.</p>
 </div>
 
 <h3 id = 'wedge'>Wedge</h3>
@@ -71,18 +61,18 @@ diagonals). This means an escape velocity of
 <h4 id = 'folded'>Folded</h4>
 
 <div class = "section">
-<p>On the Folded Wedge, the %%PIECE%% gets trapped on step 7!</p>
+<p>The %%PIECE%% can move like the <a href="flying_cock.html"><em>Flying Cock</em></a> and fills the board, visiting
+the squares in order.</p>
 </div>
 
 <h4 id = 'flat'>Flat</h4>
 
-<p>On the Flat Wedge, the %%PIECE%% only visits the right most
-square of each row, escaping by sticking to the boundary.
-The escape velocity is <span class = 'latex-inline'>\(\sqrt{2}\)</span>.</p>
+<p>The %%PIECE%% uses a simple pattern, visiting all the squares in a 
+row before moving to the next one.</p>
 
-<div class = 'trapped' data-piece = 'octopus'></div>
+<div class = 'trapped' data-piece = 'cardinal_bwh'></div>
 
-<div class = 'boxset' data-piece = 'octopus'></div>
+<div class = 'boxset' data-piece = 'cardinal_bwh'></div>
 
 <hr id = 'last-line'>
 <div class = 'trailer'>

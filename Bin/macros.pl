@@ -32,6 +32,7 @@ our %MACROS = (
                            '(#chess-v:large.dir/cagliostro.html)',
         CHU_SHOGI      =>  '[Chu&nbsp;Sh&#x014d;gi ' .
                            '(&#x4E2D;&#x5C06;&#x68CB;)](#wiki:chu_shogi)',
+        GANYMEDE       =>  '[Ganymede Chess](#chess-v:large.dir/ganymede.html)',
         GRAND_CAVALIER =>  '[Grand&nbsp;Cavalier&nbsp;Chess]' .
                            '(#chess-v:large.dir/grandcavalier.html)',
         DICKENS        =>   tooltip ("*A Guide To Fairy Chess*",
