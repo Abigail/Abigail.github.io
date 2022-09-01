@@ -23,12 +23,12 @@ by Abigail<br>
 </div>
 
 
-<p>On each move, the %%PIECE%% makes one or more steps as a 
-<a href="zebra.html"><em>Zebra</em></a>, provided it doesn't turn, and each
-step lands on an unoccupied square. The <a href="zebra.html"><em>Zebra</em></a>
-is a (3,2)-<a href="leapers.html"><em>Leaper</em></a>, that is, each move it moves to a square
-three away in one orthogonal direction, and two away in the
-other orthogonal direction.</p>
+<p>The %%PIECE%% either moves as the <a href="octopus.html?piece=griffon"><em>Griffon</em></a>,
+or as a <a href="dabbabarider.html"><em>Dabbabarider</em></a>. That is, it either moves
+one square diagonally (like a <a href="ferz.html"><em>Ferz</em></a>) followed by sliding zero or
+more unoccupied squares orthogonally outward (like a <a href="rook.html"><em>Rook</em></a>), or
+it moves an even number of squares orthogonally, where the even squares
+is moves over must be unoccupied (but the odd squares may be occupied).</p>
 
 <table class = piece_list>
   <tr class = 'row-0' markdown = '1'>
@@ -37,9 +37,9 @@ other orthogonal direction.</p>
     <th class = 'cell-0-3 col-3 ' markdown = '1'>Info</td>
   </tr>
   <tr class = 'row-1' markdown = '1'>
-    <th class = 'cell-1-0 col-0 ' markdown = '1'><a href="https://en.wikipedia.org/wiki/Fairy_chess_piece#Riders"><em>Riders</em></a></td>
-    <td class = 'cell-1-1 col-1 ' markdown = '1' colspan = '2'><strong>Zebrarider</strong></td>
-    <td class = 'cell-1-3 col-3 ' markdown = '1'></td>
+    <th class = 'cell-1-0 col-0 ' markdown = '1'><a href="https://www.chessvariants.com/large.dir/ganymede.html">Ganymede Chess</a></td>
+    <td class = 'cell-1-1 col-1 ' markdown = '1' colspan = '2'><strong>Roc</strong></td>
+    <td class = 'cell-1-3 col-3 ' markdown = '1'><span class = 'tooltip'>&#x260B;<span class = 'tooltiptext'>Is promoted</span></span> <a href="octopus.html?piece=griffon"><em>Griffon</em></a></td>
   </tr>
 </table>
 
@@ -48,17 +48,16 @@ other orthogonal direction.</p>
 <h4 id = 'square'>Square</h4>
 
 <div class = "section">
-<p>On the Square Spiral, the %%PIECE%% gets trapped after 266 moves, which
-is a lot quicker than the <a href="zebra.html"><em>Zebra</em></a>, which doesn't get
-trapped until step 4,633.</p>
+<p>The %%PIECE%% uses a simple square spiralling pattern to visit half
+the squares on each row and file.</p>
 </div>
 
 <h4 id = 'diamond'>Diamond</h4>
 
 <div class = "section">
-<p>On the Diamond Spiral, the %%PIECE%% gets trapped after 1,613 steps,
-which is a lot sooner than the <a href="zebra.html"><em>Zebra</em></a>, which takes
-14,569 steps before it gets trapped.</p>
+<p>The %%PIECE%% uses a simple pattern in the form of a dented diamond,
+spiralling outward to visit every square on the board. For each
+revolution, all steps made are <a href="ferz.html"><em>Ferz</em></a> moves, except one.</p>
 </div>
 
 <h3 id = 'wedge'>Wedge</h3>
@@ -66,19 +65,21 @@ which is a lot sooner than the <a href="zebra.html"><em>Zebra</em></a>, which ta
 <h4 id = 'folded'>Folded</h4>
 
 <div class = "section">
-<p>On the Folded Wedge, the %%PIECE%% gets trapped after 72 steps;
-compare the <a href="zebra.html"><em>Zebra</em></a>, which gets trapped on move 80.</p>
+<p>The %%PIECE%% visits all odd squares on each row. The board is
+travelled on row by row. Half the squares on the board will be
+visited.</p>
 </div>
 
 <h4 id = 'flat'>Flat</h4>
 
-<p>On the Flat Wedge, the %%PIECE%% gets trapped after 57 steps.
-This is a lot sooner than the <a href="zebra.html"><em>Zebra</em></a>, which doesn't
-get trapped until move 286.</p>
+<p>The %%PIECE%% visits all odd squares on each row. The board is
+travelled on row by row. Half the squares on the board will be
+visited. The pattern of visited squares is different from the
+pattern used on the Folded Wedge.</p>
 
-<div class = 'trapped' data-piece = 'zebrarider'></div>
+<div class = 'trapped' data-piece = 'roc'></div>
 
-<div class = 'boxset' data-piece = 'zebrarider'></div>
+<div class = 'boxset' data-piece = 'roc'></div>
 
 <hr id = 'last-line'>
 <div class = 'trailer'>

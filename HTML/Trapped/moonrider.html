@@ -23,12 +23,12 @@ by Abigail<br>
 </div>
 
 
-<p>On each move, the %%PIECE%% makes one or more steps as a 
-<a href="zebra.html"><em>Zebra</em></a>, provided it doesn't turn, and each
-step lands on an unoccupied square. The <a href="zebra.html"><em>Zebra</em></a>
-is a (3,2)-<a href="leapers.html"><em>Leaper</em></a>, that is, each move it moves to a square
-three away in one orthogonal direction, and two away in the
-other orthogonal direction.</p>
+<p>The %%PIECE%% either moves as the <a href="zebra.html"><em>Zebra</em></a>, or as
+the <a href="nightrider.html"><em>Nightrider</em></a>. That is, it either jumps
+to a square which is two away in one orthogonal direction,
+and three in the other, or it makes one or more <a href="knight.html"><em>Knight</em></a> jumps,
+provided they are all in the same direction, and each intermediate
+jump lands on an unoccupied square.</p>
 
 <table class = piece_list>
   <tr class = 'row-0' markdown = '1'>
@@ -37,9 +37,9 @@ other orthogonal direction.</p>
     <th class = 'cell-0-3 col-3 ' markdown = '1'>Info</td>
   </tr>
   <tr class = 'row-1' markdown = '1'>
-    <th class = 'cell-1-0 col-0 ' markdown = '1'><a href="https://en.wikipedia.org/wiki/Fairy_chess_piece#Riders"><em>Riders</em></a></td>
-    <td class = 'cell-1-1 col-1 ' markdown = '1' colspan = '2'><strong>Zebrarider</strong></td>
-    <td class = 'cell-1-3 col-3 ' markdown = '1'></td>
+    <th class = 'cell-1-0 col-0 ' markdown = '1'><a href="https://www.chessvariants.com/large.dir/ganymede.html">Ganymede Chess</a></td>
+    <td class = 'cell-1-1 col-1 ' markdown = '1' colspan = '2'><strong>Moonrider</strong></td>
+    <td class = 'cell-1-3 col-3 ' markdown = '1'><span class = 'tooltip'>&#x260B;<span class = 'tooltiptext'>Is promoted</span></span> <a href="nightrider.html"><em>Nightrider</em></a></td>
   </tr>
 </table>
 
@@ -48,17 +48,15 @@ other orthogonal direction.</p>
 <h4 id = 'square'>Square</h4>
 
 <div class = "section">
-<p>On the Square Spiral, the %%PIECE%% gets trapped after 266 moves, which
-is a lot quicker than the <a href="zebra.html"><em>Zebra</em></a>, which doesn't get
-trapped until step 4,633.</p>
+<p>The %%PIECE%% bounces around for some time, only to get trapped
+on step 26,637.</p>
 </div>
 
 <h4 id = 'diamond'>Diamond</h4>
 
 <div class = "section">
-<p>On the Diamond Spiral, the %%PIECE%% gets trapped after 1,613 steps,
-which is a lot sooner than the <a href="zebra.html"><em>Zebra</em></a>, which takes
-14,569 steps before it gets trapped.</p>
+<p>On the Diamond Spiral, it takes longer for the %%PIECE%% to get
+trapped &mdash; it does get trapped on step 44,236.</p>
 </div>
 
 <h3 id = 'wedge'>Wedge</h3>
@@ -66,19 +64,18 @@ which is a lot sooner than the <a href="zebra.html"><em>Zebra</em></a>, which ta
 <h4 id = 'folded'>Folded</h4>
 
 <div class = "section">
-<p>On the Folded Wedge, the %%PIECE%% gets trapped after 72 steps;
-compare the <a href="zebra.html"><em>Zebra</em></a>, which gets trapped on move 80.</p>
+<p>The %%PIECE%% does not get trapped on its first billion moves,
+but it's not clear whether it remain free for ever.</p>
 </div>
 
 <h4 id = 'flat'>Flat</h4>
 
-<p>On the Flat Wedge, the %%PIECE%% gets trapped after 57 steps.
-This is a lot sooner than the <a href="zebra.html"><em>Zebra</em></a>, which doesn't
-get trapped until move 286.</p>
+<p>It takes a long time for %%PIECE%% to get trapped, but eventually
+it does, on step 21,401,163.</p>
 
-<div class = 'trapped' data-piece = 'zebrarider'></div>
+<div class = 'trapped' data-piece = 'moonrider'></div>
 
-<div class = 'boxset' data-piece = 'zebrarider'></div>
+<div class = 'boxset' data-piece = 'moonrider'></div>
 
 <hr id = 'last-line'>
 <div class = 'trailer'>

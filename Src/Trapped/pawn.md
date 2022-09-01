@@ -43,9 +43,14 @@ captures differently than it moves.
 {th = 1} Promotes to &
 {th = 1} MS &
 {th = 1} Cap. \\
-{rs = 3} **Pawn** & {rs = 3} &#x2659;
+{rs = 4} **Pawn** & {rs = 4} &#x2659;
              &  %%CHESS%%; many Chess variants
              &  Player's choice
+             &  %%YES%% 
+             &  %%YES%%                                                      \\
+
+                %%GANYMEDE%%
+             &  [*Frog*](frog_wfh.html)
              &  %%YES%% 
              &  %%YES%%                                                      \\
 

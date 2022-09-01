@@ -36,8 +36,10 @@ It's common in many Chess variant, using different names:
 &           %%PROMOTED%% [*Stork*](alfil.html?piece=stork) \\
   {th = 1}  %%CHESS%%; %%CAGLIOSTRO%%; %%FALCON_HUNTER%%;
             %%WOLF%%; Other chess variants
-& {rs = 2}  **Queen** & {rs = 2} &#x2655;
+& {rs = 3}  **Queen** & {rs = 3} &#x2655;
 &           \\
+  {th = 1}  %%GANYMEDE%%
+&           %%PROMOTES_TO%% [*Empress*](amazon.html?piece=empress) \\
   {th = 1}  %%WILDEBEEST%%
 &           The *Queen* is one of two pieces a [*Pawn*](pawn.html)
             may promote to \\

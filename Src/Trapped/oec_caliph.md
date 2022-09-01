@@ -8,10 +8,13 @@ This makes the %%PIECE%% %%COLOUR_BOUND%%.
 
 |====
 %%PIECE_HEADERS%%
-  {th = 1} %%OVERKILL%%
-& {cs = 2} **Caliph**
-&          The [*Wazir*](wazir.html)-[*Alfil*](alfil.html) compound
-           is also called [*Caliph*](caliph.html) \\
+  {th = 1}  %%OVERKILL%%
+& {cs = 2}  **Caliph**
+&           The [*Wazir*](wazir.html)-[*Alfil*](alfil.html) compound
+            is also called [*Caliph*](caliph.html) \\
+  {th = 1}  %%GANYMEDE%%
+& {cs = 2}  **Flying Dragon**
+&           %%PROMOTED%% [*Dragon*](dragon_a2c.html) \\
 ====|
 
 ### Spiral

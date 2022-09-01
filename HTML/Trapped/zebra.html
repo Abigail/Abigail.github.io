@@ -1,6 +1,6 @@
 <html>
 <head>
-<title>Zebra &#x1F993;</title>
+<title>%%PIECE%%</title>
 <meta charset = "utf-8">
 <link rel  = 'preconnect' href = 'https://fonts.gstatic.com'>
 <link rel = 'stylesheet' href =      'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
@@ -17,27 +17,51 @@
 <script src = '../../JavaScript/Trapped/pages.js'></script>
 </head>
 
-<body><h1>Zebra &#x1F993;</h1><div class = "byline">
+<body><h1>%%PIECE%%</h1><div class = "byline">
 by Abigail<br>
 <img src = "../../Images/jan_sluiters.jpg">
 </div>
 
 
-<p>The <strong>Zebra</strong> is one of the basic leapers, a (3, 2)-leaper. This means
-that the <strong>Zebra</strong> jumps to a square which is three squares away in
+<p>The %%PIECE%% is a (3,2)-<a href="leapers.html"><em>Leaper</em></a>. This means
+that the %%PIECE%% jumps to a square which is three squares away in
 an orthogonal direction, and two squares away into a direction
 perpendicular to the first direction.</p>
 
-<p>In <a href="https://www.chessvariants.com/rules/scirocco">Scirocco</a>, and
-<a href="https://www.chessvariants.com/rules/typhoon-revised">Typhoon</a>, the <a href="guard.html"><em>Guard</em></a>
-promotes to the <strong>Zebra</strong>.</p>
+<table class = piece_list>
+  <tr class = 'row-0' markdown = '1'>
+    <th class = 'cell-0-0 col-0 ' markdown = '1'>Game</td>
+    <th class = 'cell-0-1 col-1 ' markdown = '1' colspan = '2'>Piece</td>
+    <th class = 'cell-0-3 col-3 ' markdown = '1'>Info</td>
+  </tr>
+  <tr class = 'row-1' markdown = '1'>
+    <th class = 'cell-1-0 col-0 ' markdown = '1'><a href="leapers.html"><em>Leapers</em></a></td>
+    <td class = 'cell-1-1 col-1 ' markdown = '1' rowspan = '2' colspan = '2'><strong>Zebra</strong></td>
+    <td class = 'cell-1-3 col-3 ' markdown = '1'></td>
+  </tr>
+  <tr class = 'row-2' markdown = '1'>
+    <th class = 'cell-2-0 col-0 ' markdown = '1'><a href="https://www.chessvariants.com/rules/scirocco">Scirocco</a>; <a href="https://www.chessvariants.com/rules/typhoon-revised">Typhoon</a></td>
+    <td class = 'cell-2-3 col-3 ' markdown = '1'><span class = 'tooltip'>&#x260B;<span class = 'tooltiptext'>Is promoted</span></span> <a href="guard.html"><em>Guard</em></a>
+</td>
+  </tr>
+</table>
 
 <h3 id = 'spiral'>Spiral</h3>
 
+<h4 id = 'square'>Square</h4>
+
 <div class = "section">
-<p>The <strong>Zebra</strong> will circle in an irregular way around the origin, with
+<p>The %%PIECE%% will circle in an irregular way around the origin, with
 some focus of activity on the diagonals.
 The Zebra will get trapped after 4,633 steps.</p>
+</div>
+
+<h4 id = 'diamond'>Diamond</h4>
+
+<div class = "section">
+<p>The %%PIECE%% bounces around the origin, visiting squares in roughly
+diamond shaped area around the origin, only to get trapped after 14,569
+steps.</p>
 </div>
 
 <h3 id = 'wedge'>Wedge</h3>
@@ -45,13 +69,13 @@ The Zebra will get trapped after 4,633 steps.</p>
 <h4 id = 'folded'>Folded</h4>
 
 <div class = "section">
-<p>On the Folded Wedge, the <strong>Zebra</strong> bounces around for 80 steps, then
+<p>On the Folded Wedge, the %%PIECE%% bounces around for 80 steps, then
 it gets trapped.</p>
 </div>
 
 <h4 id = 'flat'>Flat</h4>
 
-<p>On the Flat Wedge, the <strong>Zebra</strong> has a strong bias to the right hand
+<p>On the Flat Wedge, the %%PIECE%% has a strong bias to the right hand
 side of the board. It gets trapped after 286 steps.</p>
 
 <div class = 'trapped' data-piece = 'zebra'></div>

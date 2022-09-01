@@ -15,10 +15,12 @@ be blocked.
 &           %%PROMOTES_TO%% [*Rook*](rook.html) \\
   {th = 1}  %%CHESS%%; %%CAGLIOSTRO%%; %%FALCON_HUNTER%%; %%WILDEBEEST%%;
             %%BASIC_LEAPERS%%
-& {rs = 2}  **Knight** & {rs = 2} &#x2658;
+& {rs = 3}  **Knight** & {rs = 3} &#x2658;
 &           \\
   {th = 1}  %%INTERDEPENDENT%%
 &           %%CAPTURE%%  \\
+  {th = 1}  %%GANYMEDE%%
+&           %%PROMOTES_TO%% [*Gnu*](gnu.html) \\
   {th = 1}  %%MAKRUK%%
 &           **Knight** & &#x0E21;
 &           \\

@@ -23,12 +23,14 @@ by Abigail<br>
 </div>
 
 
-<p>On each move, the %%PIECE%% makes one or more steps as a 
-<a href="zebra.html"><em>Zebra</em></a>, provided it doesn't turn, and each
-step lands on an unoccupied square. The <a href="zebra.html"><em>Zebra</em></a>
-is a (3,2)-<a href="leapers.html"><em>Leaper</em></a>, that is, each move it moves to a square
-three away in one orthogonal direction, and two away in the
-other orthogonal direction.</p>
+<p>The %%PIECE%% either makes a single or double <a href="alfil.html"><em>Alfi</em></a>
+step (that is it jumps to a square two away diagonally, and if this
+square is unoccupied, it optionally jumps to a square another
+two away in the same direction &mdash; so, like a very limited
+<a href="alfilrider.html"><em>Alfilrider</em></a>), or it jumps to a square three
+away in one orthogonal direction, and one away in the other
+(like a <a href="camel.html"><em>Camel</em></a>).
+This makes the %%PIECE%% <span class = 'tooltip underline'>colourbound<span class = 'tooltiptext'>A colourbound piece will always stay on a square of the same colour: if it starts on a black square, it will always remain on a black square; if it starts on a white square, it will always remain on a white square</span></span>.</p>
 
 <table class = piece_list>
   <tr class = 'row-0' markdown = '1'>
@@ -37,9 +39,9 @@ other orthogonal direction.</p>
     <th class = 'cell-0-3 col-3 ' markdown = '1'>Info</td>
   </tr>
   <tr class = 'row-1' markdown = '1'>
-    <th class = 'cell-1-0 col-0 ' markdown = '1'><a href="https://en.wikipedia.org/wiki/Fairy_chess_piece#Riders"><em>Riders</em></a></td>
-    <td class = 'cell-1-1 col-1 ' markdown = '1' colspan = '2'><strong>Zebrarider</strong></td>
-    <td class = 'cell-1-3 col-3 ' markdown = '1'></td>
+    <th class = 'cell-1-0 col-0 ' markdown = '1'><a href="https://www.chessvariants.com/large.dir/ganymede.html">Ganymede Chess</a></td>
+    <td class = 'cell-1-1 col-1 ' markdown = '1' colspan = '2'><strong>Dragon</strong></td>
+    <td class = 'cell-1-3 col-3 ' markdown = '1'><span class = 'tooltip'>&#x260A;<span class = 'tooltiptext'>Promotes to</span></span> <a href="flying_dragon.html"><em>Flying Dragon</em></a></td>
   </tr>
 </table>
 
@@ -48,17 +50,16 @@ other orthogonal direction.</p>
 <h4 id = 'square'>Square</h4>
 
 <div class = "section">
-<p>On the Square Spiral, the %%PIECE%% gets trapped after 266 moves, which
-is a lot quicker than the <a href="zebra.html"><em>Zebra</em></a>, which doesn't get
-trapped until step 4,633.</p>
+<p>The %%PIECE%% circles around the origin in a clockwise manner, until
+it gets trapped on step 14,582.</p>
 </div>
 
 <h4 id = 'diamond'>Diamond</h4>
 
 <div class = "section">
-<p>On the Diamond Spiral, the %%PIECE%% gets trapped after 1,613 steps,
-which is a lot sooner than the <a href="zebra.html"><em>Zebra</em></a>, which takes
-14,569 steps before it gets trapped.</p>
+<p>It takes about ten times as long for the %%PIECE%% to get trapped on
+the Diamond Spiral: after circling the origin in a clockwise manner,
+it does get trapped on step 149,823.</p>
 </div>
 
 <h3 id = 'wedge'>Wedge</h3>
@@ -66,19 +67,18 @@ which is a lot sooner than the <a href="zebra.html"><em>Zebra</em></a>, which ta
 <h4 id = 'folded'>Folded</h4>
 
 <div class = "section">
-<p>On the Folded Wedge, the %%PIECE%% gets trapped after 72 steps;
-compare the <a href="zebra.html"><em>Zebra</em></a>, which gets trapped on move 80.</p>
+<p>The %%PIECE%% does not get trapped for its first billion steps.
+But it's not clear whether it remains free forever.</p>
 </div>
 
 <h4 id = 'flat'>Flat</h4>
 
-<p>On the Flat Wedge, the %%PIECE%% gets trapped after 57 steps.
-This is a lot sooner than the <a href="zebra.html"><em>Zebra</em></a>, which doesn't
-get trapped until move 286.</p>
+<p>It takes a long time for the %%PIECE%% to get trapped on the
+Flat Wedge, but eventually it does, on step 734,298,797.</p>
 
-<div class = 'trapped' data-piece = 'zebrarider'></div>
+<div class = 'trapped' data-piece = 'dragon_a2c'></div>
 
-<div class = 'boxset' data-piece = 'zebrarider'></div>
+<div class = 'boxset' data-piece = 'dragon_a2c'></div>
 
 <hr id = 'last-line'>
 <div class = 'trailer'>
