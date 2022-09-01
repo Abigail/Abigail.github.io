@@ -403,7 +403,20 @@ let pieces = {
     },
 
     cardinal: {
-        parent: "archbishop"
+        parent: "archbishop",
+        _index_name: "Cardinal (Bishop + Knight)",
+    },
+
+    cardinal_bwh: {
+        betza: "BWH",
+        results: {
+            spiral_square:  "W", 
+            spiral_diamond: "BM",
+            wedge_folded:   "FC", 
+            wedge_flat:     "F/100%",
+        },
+        _name: "Cardinal",
+        _index_name: "Cardinal (Bishop + Wazir + Threeleaper)",
     },
 
     carpenter: {
@@ -670,6 +683,19 @@ let pieces = {
             wedge_folded:   "T/42", 
             wedge_flat:     "F*/100%",
         },
+        _index_name: "Dragon (Knight + Pawn)",
+    },
+
+    dragon_a2c: {
+        betza:  "A2C",
+        results: {
+            spiral_square:  "T/14,582", 
+            spiral_diamond: "T/149,823",
+            wedge_folded:   "?/1G",
+            wedge_flat:     "T/734,298,797",
+        },
+        _name: "Dragon",
+        _index_name: "Dragon (Alfil) + Camel)",
     },
 
     dragon_horse: {
@@ -918,6 +944,10 @@ let pieces = {
         },
     },
 
+    flying_dragon: {
+        parent: "oec_caliph",
+    },
+
     flying_falcon: {
         betza: "fWB",
         results: {
@@ -944,6 +974,16 @@ let pieces = {
 
     flying_stag: {
         betza: "sWFvR",
+        results: {
+            spiral_square:  "W",
+            spiral_diamond: "BM",
+            wedge_folded:   "FC", 
+            wedge_flat:     "F/100%",
+        },
+    },
+
+    fort: {
+        betza: "FWWG",
         results: {
             spiral_square:  "W",
             spiral_diamond: "BM",
@@ -980,6 +1020,18 @@ let pieces = {
         betza: "FH",
         parent: "tadpole",
         _index_name: "Frog (Ferz + Threeleaper)",
+    },
+
+    frog_wfh: {
+        betza: "WFH",
+        results: {
+            spiral_square:  "W",
+            spiral_diamond: "BM",
+            wedge_folded:   "FC", 
+            wedge_flat:     "F/100%",
+        },
+        _name: "Frog",
+        _index_name: "Frog (King + Threeleaper)",
     },
 
     scirocco_frog: {
@@ -1140,6 +1192,10 @@ let pieces = {
 
     grey_whale: {
         parent:   "hunter",
+    },
+
+    griffon: {
+        parent: "octopus",
     },
 
     gryphon: {
@@ -1526,6 +1582,16 @@ let pieces = {
         },
     },
 
+    moonrider: {
+        betza:    "NNZ",
+        results: {
+            spiral_square:  "T/26,637",
+            spiral_diamond: "T/44,236",
+            wedge_folded:   "?/1G",
+            wedge_flat:     "T/21,401,163",
+        },
+    },
+
     mori: {
         parent: "knight",
     },
@@ -1754,6 +1820,36 @@ let pieces = {
 
     roaming_bear: {
         parent: "drunk_elephant",
+    },
+
+    roc: {
+        betza: "D0t[FR]",
+        move_list: [
+            //
+            // t[FR]
+            //
+            {dr: -1, dc:  0, or: -1, oc:  1},
+            {dr:  0, dc:  1, or: -1, oc:  1},
+            {dr: -1, dc:  0, or: -1, oc: -1},
+            {dr:  0, dc: -1, or: -1, oc: -1},
+            {dr:  1, dc:  0, or:  1, oc:  1},
+            {dr:  0, dc:  1, or:  1, oc:  1},
+            {dr:  1, dc:  0, or:  1, oc: -1},
+            {dr:  0, dc: -1, or:  1, oc: -1},
+            //
+            // D0
+            //
+            {dr:  2, dc:  0, max: 0},
+            {dr: -2, dc:  0, max: 0},
+            {dr:  0, dc: -2, max: 0},
+            {dr:  0, dc:  2, max: 0},
+        ],
+        results:   {
+            spiral_square:  "F/50%",
+            spiral_diamond: "F/100%",
+            wedge_folded:   "F/50%",
+            wedge_flat:     "F/50%",
+        },
     },
 
     rook: {
@@ -2364,6 +2460,16 @@ let set_info = {
         name: "Falcon-Hunter Chess",
         pieces: ["king", "queen", "rook", "bishop", "knight",
                  "falcon", "hunter", "pawn"],
+    },
+
+    ganymede_chess: {
+        href: "https://www.chessvariants.com/large.dir/ganymede.html",
+        pieces: ["king", "queen", "rook", "bishop", "knight",
+                 "cardinal_bwh", "empress_qn",
+                 "flying_dragon", "fort", "frog_wfh", "gnu",
+                 "griffon", "moonrider", "nightrider", "roc",
+                 "pawn",
+        ],
     },
 
     grand_cavalier_chess: {

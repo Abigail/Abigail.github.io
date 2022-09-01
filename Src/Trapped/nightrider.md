@@ -6,9 +6,11 @@ first, and each square may not be occupied.
 
 |====
 %%PIECE_HEADERS%%
-  {th = 1}  %%GRAND_CAVALIER%%
-& {rs = 3; cs = 2}
+  {th = 1}  %%GANYMEDE%%
+& {rs = 4; cs = 2}
             **Nightrider**
+&           %%PROMOTES_TO%% [*Moonrider*](moonrider.html) \\
+  {th = 1}  %%GRAND_CAVALIER%%
 &           \\
   {th = 1}  %%TYPHOON%%
 &           %%PROMOTED%% [*Overtaker*](king.html?piece=overtaker) \\

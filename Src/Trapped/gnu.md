@@ -8,8 +8,11 @@ other orthogonal direction.
 
 |====
 %%PIECE_HEADERS%%
+  {th = 1}  %%GANYMEDE%%
+& {cs = 2; rs = 2}
+            **Gnu**
+&           %%PROMOTED%% %%KNIGHT%% \\
   {th = 1}  %%OVERKILL%%; Problemists
-& {cs = 2}  **Gnu**
 &           \\
   {th = 1}  %%SCIROCCO%%; %%TYPHOON%%
 & {cs = 2; rs = 2}

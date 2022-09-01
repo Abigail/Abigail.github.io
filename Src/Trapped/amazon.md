@@ -26,9 +26,11 @@ it's known under various names, including:
 &           \\
   {th = 1}  [Beau Monde Chess](#chess-v:large.dir/beaumonde.html);
             [Millenial Chess](#chess-v:large.dir/contest/milchess.html)
-& {cs = 2}  **Empress**
-&           The [Rook-Knight compound](chancellor.html?piece=empress) is
-            also known as the *Empress* \\
+& {cs = 2; rs = 2}
+            **Empress**<sup>1</sup>
+&           \\
+  {th = 1}  %%GANYMEDE%%
+&           %%PROMOTED%% %%QUEEN%% \\
   {th = 1}  %%CAGLIOSTRO%%;
             [The Emperor's Game](#chess-v:large.dir/emperor.html);
             [Giant Chess](#chess-v:large.dir/giantchess.html);
@@ -56,6 +58,9 @@ it's known under various names, including:
 & {cs = 2}  **Sorceror**
             & %%PROMOTED%% [*Pawn*](pawn.html) or *Jester* \\
 ====|
+
+<sup>1</sup> The [Rook-Knight compound](chancellor.html?piece=empress)
+             is also known as the *Empress*.
 
 Other names include:
 *Angel*, *Ayanu*, *Commander*, *Crown Prince*, *Elephant*,

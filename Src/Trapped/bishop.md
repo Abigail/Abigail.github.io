@@ -18,8 +18,10 @@ Due to its diagonal movement, the %%PIECE%% is %%COLOUR_BOUND%%.
 &           %%PROMOTED%% [*Guard*](guard.html) \\
   {th = 1}  %%CHESS%%; %%CAGLIOSTRO%%; %%FALCON_HUNTER%%;
             %%WILDEBEEST%%; %%WOLF%%; Other Chess variants
-&           **Bishop**  & &#x2657;
+& {rs = 2}  **Bishop**  & {rs = 2} &#x2657;
 &           \\
+  {th = 1}  %%GANYMEDE%%
+&           %%PROMOTES_TO%% [*Cardinal*](cardinal_bwh.html) \\
   {th = 1}  %%SHOGI%%; %%CHU_SHOGI%%
 &           **Bishop**  & &#x89D2;&#x884C;
 &           &#x89D2;&#x884C; meaning *Angle Mover*;
