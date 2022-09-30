@@ -190,6 +190,38 @@ let pieces = {
         parent: "archbishop",
     },
 
+    barron: {
+        betza: "t[FW]t[WF]B",
+        results: {
+            spiral_square:  "T/160", 
+            spiral_diamond: "T/45", 
+            wedge_folded:   "T/19",
+            wedge_flat:     "T/105",
+        },
+        move_list: [
+            {dr: -1, dc:  2, us: [[-1,  1]], max: 1},
+            {dr: -1, dc: -2, us: [[-1, -1]], max: 1},
+            {dr:  1, dc:  2, us: [[ 1,  1]], max: 1},
+            {dr:  1, dc: -2, us: [[ 1, -1]], max: 1},
+            {dr: -2, dc: -1, us: [[-1, -1]], max: 1},
+            {dr: -2, dc: -1, us: [[-1, -1]], max: 1},
+            {dr:  2, dc:  1, us: [[ 1,  1]], max: 1},
+            {dr:  2, dc:  1, us: [[ 1,  1]], max: 1},
+            {dr: -1, dc:  2, us: [[ 0,  1]], max: 1},
+            {dr: -1, dc: -2, us: [[ 0, -1]], max: 1},
+            {dr:  1, dc:  2, us: [[ 0,  1]], max: 1},
+            {dr:  1, dc: -2, us: [[ 0, -1]], max: 1},
+            {dr: -2, dc: -1, us: [[-1,  0]], max: 1},
+            {dr: -2, dc: -1, us: [[-1,  0]], max: 1},
+            {dr:  2, dc:  1, us: [[ 1,  0]], max: 1},
+            {dr:  2, dc:  1, us: [[ 1,  0]], max: 1},
+            {dr:  1, dc:  1,                 max: 0},
+            {dr: -1, dc:  1,                 max: 0},
+            {dr: -1, dc: -1,                 max: 0},
+            {dr:  1, dc: -1,                 max: 0},
+        ],
+    },
+
     bd: {
         parent: "bede",
         _name:  "BD",
@@ -742,6 +774,12 @@ let pieces = {
         _index_name: "Duke (Cobra Chess)",
     },
 
+    duke_q: {
+        parent: "queen",
+        _name: "Duke",
+        _index_name: "Duke (Quantum Chess)",
+    },
+
     duke: {
         betza:    "W4N",
         results: {
@@ -765,6 +803,39 @@ let pieces = {
             wedge_flat:     "F/100%",
         },
     },
+
+    earl: {
+        betza: "t[FW]t[WF]R",
+        results: {
+            spiral_square:  "W", 
+            spiral_diamond: "T/1,431", 
+            wedge_folded:   "F/100%",
+            wedge_flat:     "F/100%",
+        },
+        move_list: [
+            {dr: -1, dc:  2, us: [[-1,  1]], max: 1},
+            {dr: -1, dc: -2, us: [[-1, -1]], max: 1},
+            {dr:  1, dc:  2, us: [[ 1,  1]], max: 1},
+            {dr:  1, dc: -2, us: [[ 1, -1]], max: 1},
+            {dr: -2, dc: -1, us: [[-1, -1]], max: 1},
+            {dr: -2, dc: -1, us: [[-1, -1]], max: 1},
+            {dr:  2, dc:  1, us: [[ 1,  1]], max: 1},
+            {dr:  2, dc:  1, us: [[ 1,  1]], max: 1},
+            {dr: -1, dc:  2, us: [[ 0,  1]], max: 1},
+            {dr: -1, dc: -2, us: [[ 0, -1]], max: 1},
+            {dr:  1, dc:  2, us: [[ 0,  1]], max: 1},
+            {dr:  1, dc: -2, us: [[ 0, -1]], max: 1},
+            {dr: -2, dc: -1, us: [[-1,  0]], max: 1},
+            {dr: -2, dc: -1, us: [[-1,  0]], max: 1},
+            {dr:  2, dc:  1, us: [[ 1,  0]], max: 1},
+            {dr:  2, dc:  1, us: [[ 1,  0]], max: 1},
+            {dr:  1, dc:  0,                 max: 0},
+            {dr: -1, dc:  0,                 max: 0},
+            {dr:  0, dc:  1,                 max: 0},
+            {dr:  0, dc: -1,                 max: 0},
+        ],
+    },
+
 
     elder: {
         parent: "amazon"
@@ -1524,6 +1595,13 @@ let pieces = {
             wedge_folded:   "F/100%", 
             wedge_flat:     "F/100%"
         },
+        _index_name: "Marquis (Wazir + Knight)",
+    },
+
+    marquis_rn: {
+        parent: "chancellor",
+        _name: "Marquis",
+        _index_name: "Marquis (Rook + Knight)",
     },
 
     marshal: {
@@ -2214,6 +2292,10 @@ let pieces = {
         },
     },
 
+    viscount: {
+        parent: "archbishop",
+    },
+
     violent_stag: {
         parent: "silver_general",
     },
@@ -2429,7 +2511,6 @@ let pieces = {
 // General order of pieces:
 //   - Royal pieces first
 //   - Main (regular) chess pieces, except pawn
-//   - Basic Leapers
 //   - Other (non-pawn) pieces either in alphabetical order, or
 //     in order of strenght, or in order of mobility
 //   - Pawn and pawn like pieces
@@ -2522,6 +2603,14 @@ let set_info = {
         pieces: ["king", "queen", "ace", "acme", "acropolis", "actor",
                  "actress", "oec_caliph", "canvasser", "cardinal", "gnu",
                  "marshal", "pawn"],
+    },
+
+    quantum_chess: {
+        href:    "https://web.archive.org/web/" +
+                         "20090602051546/http://www.quantumchess.com/",
+        pieces: ["king", "rook", "bishop", "knight",
+                 "barron", "bowman", "duke_q", "earl",
+                 "marquis", "viscount" ],
     },
 
     rococo: {

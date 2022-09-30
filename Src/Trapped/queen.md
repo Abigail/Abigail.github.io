@@ -15,12 +15,16 @@ It's common in many Chess variant, using different names:
   {th = 1}  %%HIASHATAR%%
 & {cs = 2}  **Bers**
 &           \\
-  {th = 1; rs = 2}  %%ROCOCO%%
+  {th = 1}  %%ROCOCO%%
 & {cs = 2}  **Chameleon**
 &           %%CAPTURE%%; %%ABILITIES%% \\
-  
-  {cs = 2; rs = 2}
-            **Immobilizer**
+  {th = 1}  %%QUANTUM%%
+& {cs = 2}  **Duke**
+&           Not to be confused with the [*Duke*](centaur.html?piece=duke_cobra)
+            from [Cobra Chess](#chess-v:large.dir/cobra.html),
+            or the [*Duke*](duke.html) from %%SCIROCCO%%. \\
+  {th = 1}  %%ROCOCO%%
+& {cs = 2; rs = 2}  **Immobilizer**
 &           %%CAPTURE%%; %%ABILITIES%% \\
   {th = 1}  %%TYPHOON%%
 &           %%PROMOTED%% [*Hummingbird*](hummingbird.html);
