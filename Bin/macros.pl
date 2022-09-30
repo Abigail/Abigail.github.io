@@ -50,6 +50,8 @@ our %MACROS = (
         MICRO_SHOGI    =>  '[Micro&nbsp;Sh&#x14d;gi](#wiki:Micro_shogi)',
         OVERKILL       =>  '[Overkill&nbsp;Ecumenical&nbsp;Chess]' .
                            '(#chess-v:rules/overkill-ecumenical-chess)',
+        QUANTUM        =>  '[Quantum Chess](https://web.archive.org/web/' .
+                           '20090602051546/http://www.quantumchess.com/)',
         ROCOCO         =>  '[Rococo](#chess-v:other.dir/rococo.html)',
         SCIROCCO       =>  '[Scirocco](#chess-v:rules/scirocco)',
         SENTEREJ       =>  "[Senterej](#wiki) [[$CHESS_V_TOKEN](#chess-v:" .

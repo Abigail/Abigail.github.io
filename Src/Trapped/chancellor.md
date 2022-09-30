@@ -29,6 +29,9 @@ and **Marshal(l)** are the most frequently used.
   {th = 1}  Problemists
 & {cs = 2}  **Empress**
 &           \\
+  {th = 1}  %%QUANTUM%%
+& {cs = 2}  **Marquis**
+&           \\
   {th = 1}  %%OVERKILL%%
 & {cs = 2}  **Marshal**
 &           \\

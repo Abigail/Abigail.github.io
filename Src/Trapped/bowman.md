@@ -11,7 +11,7 @@ This combines the movement of the [*Mao*](mao.html) and the
 
 |====
 %%PIECE_HEADERS%%
-  {th = 1}  [Quantum Chess][link]
+  {th = 1}  %%QUANTUM%%
 & {cs = 2}  **Bowman**
 &           %%CAPTURE%% \\
 ====|
