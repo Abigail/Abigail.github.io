@@ -36,9 +36,11 @@ function shuffle (array) {
 
 const HL_CLASS         = "highlight"
 const RENBAN_CLASS     = "renban"
+const GERMAN_CLASS     = "german"
 const ODD_CLASS        = "odd_clue"
 const EVEN_CLASS       = "even_clue"
 const BATTENBURG_CLASS = "battenburg"
+const THERMO_CLASS     = "thermo"
 const NRC              = ["R2C2", "R2C3", "R2C4",    "R2C6", "R2C7", "R2C8",
                           "R3C2", "R3C3", "R3C4",    "R3C6", "R3C7", "R3C8",
                           "R4C2", "R4C3", "R4C4",    "R4C6", "R4C7", "R4C8",
@@ -55,7 +57,8 @@ const CENTER_DOT       = ["R2C2", "R2C5", "R2C8",
                           "R5C2", "R5C5", "R5C8",
                           "R8C2", "R8C5", "R8C8"]
 
-const BATTENBURG_SIZE  = 0.5    // Relative to the size of square.
+const BATTENBURG_SIZE  = 0.5    // Relative to the size of a square.
+const QUADRUPLE_SIZE   = 0.75   // Relative to the size of a square.
 
 class Sudoku {
     //
@@ -171,7 +174,9 @@ class Sudoku {
                                      . cx         ((col + 0.5) * rect_size)
                                      . cy         ((row + 0.5) * rect_size)
                                      . id         (id)
-                                     . addClass   (class_name)
+            class_name . split (/,/) . forEach ((name) => {
+                rect . addClass (name)
+            })
         })
 
         return this
@@ -287,10 +292,24 @@ class Sudoku {
         this . draw_renban (args)
 
         //
+        // Draw the thermos (if any)
+        //
+        this . draw_thermos (args)
+
+        //
         // Draw Battenburgs, if any
         //
         this . draw_battenburgs (args)
 
+        //
+        // Draw German Whispers lines
+        //
+        this . draw_german_whispers (args)
+
+        //
+        // Draw Quadruples
+        //
+        this . draw_all_quadruples (args)
         return this
     }
 
@@ -400,6 +419,15 @@ class Sudoku {
 
 
     //
+    // Return true if the given cell is a clue
+    //
+    is_clue (args = {}) {
+        let cell = args ["cell"];
+        return cell && cell in this . clues
+    }
+
+
+    //
     // Set a set of solutions
     //
     set_solution (args = {}) {
@@ -432,16 +460,27 @@ class Sudoku {
         let row   = args ["row"]
         let col   = args ["col"]
         let text  = args ["text"]
-        let dy    = args ["dy"] || 0.2
+        let type  = args ["type"] || ""
+        let dy    = args ["dy"]   || 0.2
+
+        let off_x = 0
+        let off_y = 0
+        if (type == "quadruple") {
+            off_x = 0.5
+            off_y = 0.42
+        }
 
         let rect_size = this . rect_size
 
         let plain = this . sudoku
                          . plain (text)
-                         . attr  ({x: (col + 0.5)      * rect_size,
-                                   y: (row + 0.5 + dy) * rect_size,
+                         . attr  ({x: (off_x + col + 0.5)      * rect_size,
+                                   y: (off_y + row + 0.5 + dy) * rect_size,
                                    "text-anchor": "middle"})
 
+        if (args ["class"]) {
+            plain . addClass (args ["class"])
+        }
         return (plain)
     }
 
@@ -593,6 +632,19 @@ class Sudoku {
 
 
     //
+    // Draw all cell numbers
+    //
+    draw_cell_numbers (args = {}) {
+        for (let row = 1; row <= this . size; row ++) {
+            for (let col = 1; col <= this . size; col ++) {
+                this . draw_cell_number ({row: row, col: col})
+            }
+        }
+        return this
+    }
+
+
+    //
     // Unhighlight any of the houses, and stop the loop
     //
     clear_highlights () {
@@ -647,6 +699,19 @@ class Sudoku {
     }
 
     //
+    // Set a thermo
+    //
+    set_thermo (args = {}) {
+        if (args ["thermo"]) {
+            if (!this . thermos) {
+                this . thermos = []
+            }
+            this . thermos . push (... args ["thermo"])
+        }
+        return this
+    }
+
+    //
     // Set a renban line
     //
     set_renban (args = {}) {
@@ -655,6 +720,19 @@ class Sudoku {
                 this . renbans = []
             }
             this . renbans . push (args ["renban"])
+        }
+        return this
+    }
+
+    //
+    // Set a German Whisper line
+    //
+    set_german_whisper (args = {}) {
+        if (args ["german_whisper"]) {
+            if (!this . german_whispers) {
+                this . german_whispers = []
+            }
+            this . german_whispers . push (args ["german_whisper"])
         }
         return this
     }
@@ -678,6 +756,73 @@ class Sudoku {
         return this
     }
 
+    draw_diagonal (args = {}) {
+        let rect_size = this . rect_size
+        let [r1, c1] =  Sudoku . id_to_coord (args ["from"])
+        let [r2, c2] =  Sudoku . id_to_coord (args ["to"])
+
+        let desc = 0
+        if (r1 <= r2 && c1 <= c2) {desc = 1} else
+        if (r1 <= r2 && c1 >= c2) {desc = 0} else
+        if (r1 >= r2 && c1 <= c2) {desc = 0} else
+        if (r1 >= r2 && c1 >= c2) {desc = 1}
+
+        if (desc == 1) {
+            r2 += 1
+            c2 += 1
+        }
+        else {
+            r1 += 1
+            c2 += 1
+        }
+
+        console . log (`desc = ${desc} [${r1}, ${c1}] - [${r2}, ${c2}]`)
+
+        r1 *= rect_size
+        c1 *= rect_size
+        r2 *= rect_size
+        c2 *= rect_size
+
+        let diagonal = this . sudoku . line (r1, c1, r2, c2)
+            diagonal . addClass ("diagonal")
+
+        if (args ["class"]) {
+            diagonal . addClass (args ["class"])
+        }
+        return this
+    }
+
+    //
+    // Draw main diagonals
+    //
+    draw_main_diagonals (args = {}) {
+        let size         = this . size
+        let top_left     = Sudoku . coord_to_id (1,    1)
+        let top_right    = Sudoku . coord_to_id (1,    size)
+        let bottom_left  = Sudoku . coord_to_id (size, 1)
+        let bottom_right = Sudoku . coord_to_id (size, size)
+
+        this . draw_diagonal ({from: top_left,  to: bottom_right})
+        this . draw_diagonal ({from: bottom_left, to: top_right})
+
+        return this
+    }
+
+    draw_argyle (args = {}) {
+        if (this . size == 9) {
+            this . draw_diagonal ({from: "R2C1", to: "R9C8"})
+                 . draw_diagonal ({from: "R1C2", to: "R8C9"})
+                 . draw_diagonal ({from: "R8C1", to: "R1C8"})
+                 . draw_diagonal ({from: "R9C2", to: "R2C9"})
+                 . draw_diagonal ({from: "R5C1", to: "R1C5"})
+                 . draw_diagonal ({from: "R1C5", to: "R5C9"})
+                 . draw_diagonal ({from: "R5C1", to: "R9C5"})
+                 . draw_diagonal ({from: "R9C5", to: "R5C9"})
+        }
+
+        return this
+    }
+
     //
     // Draw renban lines
     //
@@ -688,6 +833,94 @@ class Sudoku {
                                        class:    RENBAN_CLASS})
             })
         }
+        return this
+    }
+
+    //
+    // Draw the thermos
+    //
+    draw_thermos (args = {}) {
+        if (this . thermos) {
+            let rect_size = this . rect_size
+            let list      = this . thermos
+            console . log (list [0])
+            let [row, col] = Sudoku . id_to_coord (list [0])
+            this . sudoku . circle   (0.7         * rect_size)
+                          . cx       ((col + 0.5) * rect_size)
+                          . cy       ((row + 0.5) * rect_size)
+                          . addClass (THERMO_CLASS)
+            this . draw_polyline ({polyline: this . thermos,
+                                   class:    THERMO_CLASS})
+        }
+        return this
+    }
+
+    //
+    // Draw German Whisper lines
+    //
+    draw_german_whispers (args = {}) {
+        if (this . german_whispers) {
+            this . german_whispers . forEach ((german_whisper) => {
+                this . draw_polyline ({polyline: german_whisper,
+                                       class:    GERMAN_CLASS})
+            })
+        }
+        return this
+    }
+
+    //
+    // Set a Quadruple constraint. Each constraint is given by its
+    // upper left cell ("cell"), and a list of values.
+    //
+    set_quadruple (args = {}) {
+        if (args ["cell"] && args ["values"]) {
+            if (!this . quadruples) {
+                this . quadruples = {}
+            }
+            this . quadruples [args ["cell"]] = args ["values"]
+        }
+        return this
+    }
+
+    //
+    // Draw all quadruple constraints
+    //
+    draw_all_quadruples (args = {}) {
+        if (this . quadruples) {
+            for (const cell in this . quadruples) {
+                this . draw_quadruple (cell, this . quadruples [cell], args)
+            }
+        }
+        return this
+    }
+
+    //
+    // Draw a single quadruple constraint. 
+    //
+    draw_quadruple (cell, values, args = {}) {
+        //
+        // First, draw the circle
+        //
+        let q_size     = QUADRUPLE_SIZE
+        let [r, c]     = Sudoku . id_to_coord (cell)
+        let rect_size  = this . rect_size
+        let class_name = "quadruple"
+        let circle     = this . sudoku . circle (q_size * rect_size)
+                                       . cx ((c + 1) * rect_size)
+                                       . cy ((r + 1) * rect_size)
+                                       . fill ("black")
+                                       . addClass (class_name)
+
+        //
+        // Draw the clues
+        //
+        let clues = values . join ("")
+        this . place_text ({row:    r,
+                            col:    c,
+                            text:   clues,
+                            type:  "quadruple",
+                            class: "quadruple"})
+
         return this
     }
 

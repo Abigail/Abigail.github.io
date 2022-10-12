@@ -7,5 +7,5 @@
 
 {class = skip} \\
 
-!!pattern!! `[1-9]*\g{R5C6}\g{R4C6}[1-9]*`
+!!pattern!! `[1-9]*\g{cell1}\g{cell2}[1-9]*`
 ====|
