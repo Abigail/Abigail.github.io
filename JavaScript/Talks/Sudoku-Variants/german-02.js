@@ -1,4 +1,4 @@
-let pattern = "(?:[1-9][1-9])*\\g{cell1}\\g{cell2}[1-9]*;"
+let pattern = "(?:[1-9][1-9])*\\g{$cell1}\\g{$cell2}[1-9]*;"
 
 $(document) . ready (function () {
     let text = "<span class = 'subject'>";
@@ -14,30 +14,22 @@ $(document) . ready (function () {
     text = text + "</span>";
     $("code") . html (text)
 
-    add_todo (() => remove_duplicate ())
-    add_todo (() => remove_too_wide  ())
+    add_todo (() => remove_too_close ())
     add_todo (() => squash           ())
     add_todo (() => display_pattern  ())
 })
 
 
-function remove_duplicate () {
-    for (let r = 1; r <= 9; r ++) {
-        $(`.pair-${r}${r}`) . addClass ("go-away")
-        setTimeout (() => {$(`.pair-${r}${r}`) . addClass ("focus")}, r * 200)
-    }
-}
 
-
-function remove_too_wide () {
+function remove_too_close () {
     let count = 0
     for (let r = 1; r <= 9; r ++) {
         for (let c = 1; c <= 9; c ++) {
-            if (Math . abs (r - c) >= 4) {
+            if (Math . abs (r - c) < 5) {
                 $(`.pair-${r}${c}`) . addClass ("go-away")
                 count ++
                 setTimeout (() => {$(`.pair-${r}${c}`) . addClass ("focus")},
-                            count * 100)
+                            count * 25)
             }
         }
     }
@@ -47,7 +39,7 @@ function remove_too_wide () {
 
 function squash () {
     $(".go-away") .html ("  ")
-    setTimeout (() => squash2 (), 3000)
+    setTimeout (() => squash2 (), 1000)
 }
 
 
@@ -56,7 +48,7 @@ function squash2 () {
     let text = $(".subject") . html ()
     text = text . replaceAll (" ", "")
     $(".subject") . html (text)
-    setTimeout (() => {squash3 ()}, 3000)
+    setTimeout (() => {squash3 ()}, 1000)
 }
 
 
@@ -65,7 +57,6 @@ function squash3 () {
     let text = $(".subject") . html ()
     text = text . replaceAll (/<[^>]*>/g, "")
     text = text . replaceAll ("\n", "")
-    text = text . replaceAll (/.{38}/g, "$&\n")
     text = text + "<span class = 'focus'>;</span>"
     $(".subject") . html (text)
     let code_text = $("code") . html ()

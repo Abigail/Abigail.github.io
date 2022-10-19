@@ -57,6 +57,9 @@ function navigation (pagename, pages) {
     else {
         $("p.next") . css ("visibility", "hidden")
     }
+
+    urls ["t"] = "title.html"
+    urls ["i"] = urls ["t"]
 }
 
 
