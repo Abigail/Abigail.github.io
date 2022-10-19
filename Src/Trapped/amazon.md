@@ -21,6 +21,9 @@ it's known under various names, including:
             [Tutti-Frutti Chess](#chess-v:dpieces.dir/tuttifr.html)
 & {cs = 2}  **Amazon**
 &           \\
+  {th = 1}  %%QUANTUM%%
+& {cs = 2}  **Archbishop**
+&           \\
   {th = 1}  [Fantasy Grand Chess](#chess-v:large.dir/contest/fantasygrand.html)
 & {cs = 2}  **Elder**
 &           \\

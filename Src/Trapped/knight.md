@@ -10,9 +10,18 @@ be blocked.
 
 |====
 %%PIECE_HEADERS%%
+  {th = 1}  %%SENTEREJ%%
+& {cs = 2}  **Ferese**
+&           *Ferese* meaning *Horse* \\
   {th = 1}  %%SCIROCCO%%; %%TYPHOON%%
-& {cs = 2}  **Knight**
+& {cs = 2; rs = 2}
+            **Knight**
 &           %%PROMOTES_TO%% [*Rook*](rook.html) \\
+  {th = 1; rs = 2}
+            %%QUANTUM%%
+&           <span style = "visibility: hidden">I</span> \\
+  {cs = 2}  **Squire**
+&           %%CAPTURE%% \\
   {th = 1}  %%CHESS%%; %%CAGLIOSTRO%%; %%FALCON_HUNTER%%; %%WILDEBEEST%%;
             %%BASIC_LEAPERS%%
 & {rs = 3}  **Knight** & {rs = 3} &#x2658;
@@ -24,9 +33,6 @@ be blocked.
   {th = 1}  %%MAKRUK%%
 &           **Knight** & &#x0E21;
 &           \\
-  {th = 1}  %%SENTEREJ%%
-& {cs = 2}  **Ferese**
-&           *Ferese* meaning *Horse* \\
   {th = 1}  %%HIASHATAR%%
 & {cs = 2}  **Mori**
 &           \\

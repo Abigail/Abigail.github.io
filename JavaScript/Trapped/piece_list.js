@@ -159,6 +159,13 @@ let pieces = {
             wedge_folded:   "F*/100%", 
             wedge_flat:     "F*/100%",
         },
+        _index_name: "Archbishop (Bishop + Knight)",
+    },
+
+    archbishop_rbn: {
+        parent: "amazon",
+        _name: "Archbishop",
+        _index_name: "Archbishop (Queen + Knight)",
     },
 
     //
@@ -2095,6 +2102,10 @@ let pieces = {
         _index_name: "Spider (Interdependent Chess)",
     },
 
+    squire: {
+        parent: "knight",
+    },
+
     squirrel: {
         betza:    "DNA",
         results: {
@@ -2609,8 +2620,8 @@ let set_info = {
         href:    "https://web.archive.org/web/" +
                          "20090602051546/http://www.quantumchess.com/",
         pieces: ["king", "rook", "bishop", "knight",
-                 "barron", "bowman", "duke_q", "earl",
-                 "marquis", "viscount" ],
+                 "archbishop_rbn", "barron", "bowman", "duke_q", "earl",
+                 "marquis", "squire", "viscount" ],
     },
 
     rococo: {
