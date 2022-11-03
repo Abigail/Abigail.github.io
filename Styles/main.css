@@ -42,7 +42,7 @@ h1:first-of-type {
     margin-left:                        -2rem;
     margin-right:                       -1rem;
     padding-bottom:                       5px;
-    border-bottom:          solid black 0.7px;
+    border-block-end:       solid black 0.7px;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -195,7 +195,7 @@ span.qed:hover::after {
     z-index:                                1;
 }
 .tooltip.underline {
-    border-bottom:           black dotted 1px;
+    border-block-end:        black dotted 1px;
 }
 
 .tooltip:hover .tooltiptext {
