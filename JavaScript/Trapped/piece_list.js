@@ -557,6 +557,16 @@ let pieces = {
         },
     },
 
+    counsellor: {
+        betza: "RBt[WF]t[FW]",
+        results: {
+            spiral_square:   "",
+            spiral_diamond:  "",
+            wedge_folded:    "",
+            wedge_flat:      "",
+        },
+    },
+
     councillor: {
         parent: "centaur",
     },
@@ -2498,7 +2508,8 @@ let set_info = {
         href:    "https://web.archive.org/web/" +
                          "20090602051546/http://www.quantumchess.com/",
         pieces: ["king", "rook", "bishop", "knight",
-                 "archbishop_rbn", "barron", "bowman", "duke_q", "earl",
+                 "archbishop_rbn", "barron", "bowman", "counsellor",
+                 "duke_q", "earl",
                  "marquis", "squire", "viscount" ],
     },
 
