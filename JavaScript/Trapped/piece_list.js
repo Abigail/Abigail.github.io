@@ -205,28 +205,6 @@ let pieces = {
             wedge_folded:   "T/19",
             wedge_flat:     "T/105",
         },
-        move_list: [
-            {dr: -1, dc:  2, us: [[-1,  1]], max: 1},
-            {dr: -1, dc: -2, us: [[-1, -1]], max: 1},
-            {dr:  1, dc:  2, us: [[ 1,  1]], max: 1},
-            {dr:  1, dc: -2, us: [[ 1, -1]], max: 1},
-            {dr: -2, dc: -1, us: [[-1, -1]], max: 1},
-            {dr: -2, dc: -1, us: [[-1, -1]], max: 1},
-            {dr:  2, dc:  1, us: [[ 1,  1]], max: 1},
-            {dr:  2, dc:  1, us: [[ 1,  1]], max: 1},
-            {dr: -1, dc:  2, us: [[ 0,  1]], max: 1},
-            {dr: -1, dc: -2, us: [[ 0, -1]], max: 1},
-            {dr:  1, dc:  2, us: [[ 0,  1]], max: 1},
-            {dr:  1, dc: -2, us: [[ 0, -1]], max: 1},
-            {dr: -2, dc: -1, us: [[-1,  0]], max: 1},
-            {dr: -2, dc: -1, us: [[-1,  0]], max: 1},
-            {dr:  2, dc:  1, us: [[ 1,  0]], max: 1},
-            {dr:  2, dc:  1, us: [[ 1,  0]], max: 1},
-            {dr:  1, dc:  1,                 max: 0},
-            {dr: -1, dc:  1,                 max: 0},
-            {dr: -1, dc: -1,                 max: 0},
-            {dr:  1, dc: -1,                 max: 0},
-        ],
     },
 
     bd: {
@@ -347,24 +325,6 @@ let pieces = {
             wedge_folded:   "T/10",
             wedge_flat:     "T/10",
         },
-        move_list: [
-            {dr: -1, dc:  2, us: [[-1,  1]], max: 1},
-            {dr: -1, dc: -2, us: [[-1, -1]], max: 1},
-            {dr:  1, dc:  2, us: [[ 1,  1]], max: 1},
-            {dr:  1, dc: -2, us: [[ 1, -1]], max: 1},
-            {dr: -2, dc: -1, us: [[-1, -1]], max: 1},
-            {dr: -2, dc: -1, us: [[-1, -1]], max: 1},
-            {dr:  2, dc:  1, us: [[ 1,  1]], max: 1},
-            {dr:  2, dc:  1, us: [[ 1,  1]], max: 1},
-            {dr: -1, dc:  2, us: [[ 0,  1]], max: 1},
-            {dr: -1, dc: -2, us: [[ 0, -1]], max: 1},
-            {dr:  1, dc:  2, us: [[ 0,  1]], max: 1},
-            {dr:  1, dc: -2, us: [[ 0, -1]], max: 1},
-            {dr: -2, dc: -1, us: [[-1,  0]], max: 1},
-            {dr: -2, dc: -1, us: [[-1,  0]], max: 1},
-            {dr:  2, dc:  1, us: [[ 1,  0]], max: 1},
-            {dr:  2, dc:  1, us: [[ 1,  0]], max: 1},
-        ],
     },
 
     buffalo: {
@@ -819,28 +779,6 @@ let pieces = {
             wedge_folded:   "F/100%",
             wedge_flat:     "F/100%",
         },
-        move_list: [
-            {dr: -1, dc:  2, us: [[-1,  1]], max: 1},
-            {dr: -1, dc: -2, us: [[-1, -1]], max: 1},
-            {dr:  1, dc:  2, us: [[ 1,  1]], max: 1},
-            {dr:  1, dc: -2, us: [[ 1, -1]], max: 1},
-            {dr: -2, dc: -1, us: [[-1, -1]], max: 1},
-            {dr: -2, dc: -1, us: [[-1, -1]], max: 1},
-            {dr:  2, dc:  1, us: [[ 1,  1]], max: 1},
-            {dr:  2, dc:  1, us: [[ 1,  1]], max: 1},
-            {dr: -1, dc:  2, us: [[ 0,  1]], max: 1},
-            {dr: -1, dc: -2, us: [[ 0, -1]], max: 1},
-            {dr:  1, dc:  2, us: [[ 0,  1]], max: 1},
-            {dr:  1, dc: -2, us: [[ 0, -1]], max: 1},
-            {dr: -2, dc: -1, us: [[-1,  0]], max: 1},
-            {dr: -2, dc: -1, us: [[-1,  0]], max: 1},
-            {dr:  2, dc:  1, us: [[ 1,  0]], max: 1},
-            {dr:  2, dc:  1, us: [[ 1,  0]], max: 1},
-            {dr:  1, dc:  0,                 max: 0},
-            {dr: -1, dc:  0,                 max: 0},
-            {dr:  0, dc:  1,                 max: 0},
-            {dr:  0, dc: -1,                 max: 0},
-        ],
     },
 
 
@@ -1582,16 +1520,6 @@ let pieces = {
             wedge_folded:    sqrt (2, 3),
             wedge_flat:     "T/12"
         },
-        move_list: [
-            {dr: -1, dc:  2, us: [[ 0,  1]], max: 1},
-            {dr: -1, dc: -2, us: [[ 0, -1]], max: 1},
-            {dr:  1, dc:  2, us: [[ 0,  1]], max: 1},
-            {dr:  1, dc: -2, us: [[ 0, -1]], max: 1},
-            {dr: -2, dc: -1, us: [[-1,  0]], max: 1},
-            {dr: -2, dc: -1, us: [[-1,  0]], max: 1},
-            {dr:  2, dc:  1, us: [[ 1,  0]], max: 1},
-            {dr:  2, dc:  1, us: [[ 1,  0]], max: 1},
-        ],
     },
 
     marquis: {
@@ -1656,16 +1584,6 @@ let pieces = {
             wedge_folded:    sqrt (2),
             wedge_flat:      sqrt (2),
         },
-        move_list: [
-            {dr: -1, dc:  2, us: [[-1,  1]], max: 1},
-            {dr: -1, dc: -2, us: [[-1, -1]], max: 1},
-            {dr:  1, dc:  2, us: [[ 1,  1]], max: 1},
-            {dr:  1, dc: -2, us: [[ 1, -1]], max: 1},
-            {dr: -2, dc: -1, us: [[-1, -1]], max: 1},
-            {dr: -2, dc: -1, us: [[-1, -1]], max: 1},
-            {dr:  2, dc:  1, us: [[ 1,  1]], max: 1},
-            {dr:  2, dc:  1, us: [[ 1,  1]], max: 1},
-        ],
     },
 
     modern_elephant: {
@@ -1737,16 +1655,6 @@ let pieces = {
             wedge_folded:   "T/7", 
             wedge_flat:      sqrt (2),
         },
-        move_list: [
-            {dr: -1, dc:  0, or: -1, oc:  1},
-            {dr:  0, dc:  1, or: -1, oc:  1},
-            {dr: -1, dc:  0, or: -1, oc: -1},
-            {dr:  0, dc: -1, or: -1, oc: -1},
-            {dr:  1, dc:  0, or:  1, oc:  1},
-            {dr:  0, dc:  1, or:  1, oc:  1},
-            {dr:  1, dc:  0, or:  1, oc: -1},
-            {dr:  0, dc: -1, or:  1, oc: -1},
-        ]
     },
 
     okapi: {
@@ -1924,26 +1832,6 @@ let pieces = {
 
     roc: {
         betza: "D0t[FR]",
-        move_list: [
-            //
-            // t[FR]
-            //
-            {dr: -1, dc:  0, or: -1, oc:  1},
-            {dr:  0, dc:  1, or: -1, oc:  1},
-            {dr: -1, dc:  0, or: -1, oc: -1},
-            {dr:  0, dc: -1, or: -1, oc: -1},
-            {dr:  1, dc:  0, or:  1, oc:  1},
-            {dr:  0, dc:  1, or:  1, oc:  1},
-            {dr:  1, dc:  0, or:  1, oc: -1},
-            {dr:  0, dc: -1, or:  1, oc: -1},
-            //
-            // D0
-            //
-            {dr:  2, dc:  0, max: 0},
-            {dr: -2, dc:  0, max: 0},
-            {dr:  0, dc: -2, max: 0},
-            {dr:  0, dc:  2, max: 0},
-        ],
         results:   {
             spiral_square:  "F/50%",
             spiral_diamond: "F/100%",
@@ -2084,16 +1972,6 @@ let pieces = {
             wedge_folded:   "T/10",
             wedge_flat:      sqrt (2, 2),
         },
-        move_list: [
-            {dr: -1, dc:  1, or: -1, oc:  0},
-            {dr: -1, dc: -1, or: -1, oc:  0},
-            {dr:  1, dc:  1, or:  1, oc:  0},
-            {dr:  1, dc: -1, or:  1, oc:  0},
-            {dr: -1, dc: -1, or:  0, oc: -1},
-            {dr: -1, dc: -1, or:  0, oc: -1},
-            {dr:  1, dc:  1, or:  0, oc:  1},
-            {dr:  1, dc:  1, or:  0, oc:  1},
-        ],
     },
 
     spider_interdependent: {
