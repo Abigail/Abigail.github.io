@@ -82,10 +82,11 @@ most frequently used.
 &           \\
   {th = 1}  [Tutti-Frutti Chess](#chess-v:dpieces.dir/tuttifr.html);
             Problemists
-& {cs = 2}  **Princess**
+& {cs = 2; rs = 2}  **Princess**
 &           \\
-  {th = 1}  %%QUANTUM%%
-& {cs = 2}  **Viscount**
+  {th = 1; rs = 2}  %%QUANTUM%%
+&           %%CAPTURE%% \\
+  {cs = 2}  **Viscount**
 &           \\
   {th = 1}  [Cobra Chess](#chess-v:large.dir/cobra.html);
             [Eric's Great Chess](large.dir/ericgr.html);

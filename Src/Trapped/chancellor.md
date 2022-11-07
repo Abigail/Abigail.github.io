@@ -3,7 +3,7 @@
 The %%PIECE%% either slides an unlimited number of unoccupied
 squares in any of the four orthogonal directions (like a 
 [*Rook*](rook.html)), or leaps to a square which is two away in
-one orthogonal direction, one one in the other (like a
+one orthogonal direction, and one in the other (like a
 [*Knight*](knight.html)).
 
 The %%PIECE%% is a common Fairy Piece, and has a long history.
@@ -19,6 +19,9 @@ and **Marshal(l)** are the most frequently used.
             [Chancellor Chess](#wiki)
 & {cs = 2}  **Chancellor**
 &           \\
+  {th = 1}  %%QUANTUM%%
+& {cs = 2}  **Crown Prince**
+&           %%CAPTURE%% \\
   {th = 1; rs = 2}
             [Turkish Great Chess](#chess-v:historic.dir/indiangr1.html)
 & {cs = 2}  **Dabbabah** or

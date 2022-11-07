@@ -599,6 +599,10 @@ let pieces = {
         parent: "king",
     },
 
+    crown_prince: {
+        parent: "chancellor",
+    },
+
     crowned_knight: {
         parent: "centaur",
     },
@@ -2509,8 +2513,8 @@ let set_info = {
                          "20090602051546/http://www.quantumchess.com/",
         pieces: ["king", "rook", "bishop", "knight",
                  "archbishop_rbn", "barron", "bowman", "counsellor",
-                 "duke_q", "earl",
-                 "marquis", "squire", "viscount" ],
+                 "crown_prince", "duke_q", "earl", "marquis", "princess",
+                 "squire", "viscount" ],
     },
 
     rococo: {
