@@ -722,12 +722,13 @@ class Trapped {
         moves . forEach ((move) => {
             let dr        = move . dr
             let dc        = move . dc
-            let or        = move . or       || 0  // Offset
-            let oc        = move . oc       || 0  // Offset
-            let us        = move . us       || []
-            let max       = move . max      || 0
-            let min       = move . min      || ((or || oc) ? 0 : 1)
-            let min_land  = move . min_land || 0
+            let or        = move . or        || 0  // Offset
+            let oc        = move . oc        || 0  // Offset
+            let us        = move . us        || []
+            let max       = move . max       || 0
+            let min       = move . min       || ((or || oc) ? 0 : 1)
+            let min_land  = move . min_land  || 0
+            let max_jumps = move . max_jumps || 0
 
             let move_best     = 0    // Best value within this move
             let move_best_row = 0    // Best row within this move
@@ -741,6 +742,7 @@ class Trapped {
             //
             //    - We exceed the max step size (max reach)
             //    - We reach a visited square (move is blocked)
+            //      and max_jumps <= 0
             //    - The value of square is higher than the value
             //      of the previous square (too far away from center;
             //      we cannot improve)
@@ -776,7 +778,18 @@ class Trapped {
                     break    // Out of bounds (only on some "spirals")
                 }
 
+                //
+                // If the value has been visited before, we cannot visit
+                // it, unless we have some free jumps.
+                //
                 if (value in this . visited) {
+                    if (max_jumps > 0) {
+                        max_jumps = max_jumps - 1
+                        continue
+                    }
+                    else {
+                        break
+                    }
                     break    // Square is occupied
                 }
 

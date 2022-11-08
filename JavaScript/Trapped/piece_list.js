@@ -1796,6 +1796,28 @@ let pieces = {
         _index_name: "Queen (Chess)",
     },
 
+    queen_jump: {
+        betza:  "",
+        move_list: [
+            {dr: -1, dc: -1, max_jumps: 1},
+            {dr: -1, dc:  0, max_jumps: 1},
+            {dr: -1, dc:  1, max_jumps: 1},
+            {dr:  0, dc: -1, max_jumps: 1},
+            {dr:  0, dc:  1, max_jumps: 1},
+            {dr:  1, dc: -1, max_jumps: 1},
+            {dr:  1, dc:  0, max_jumps: 1},
+            {dr:  1, dc:  1, max_jumps: 1},
+        ],
+        results: {
+            spiral_square:  "", 
+            spiral_diamond: "",
+            wedge_folded:   "", 
+            wedge_flat:     "",
+        },
+        _index_name: "Queen (Jumping)",
+        _name:       "Queen",
+    },
+
     queen_makruk: {
         parent: "ferz",
         _name: "Queen",
@@ -2514,7 +2536,7 @@ let set_info = {
         pieces: ["king", "rook", "bishop", "knight",
                  "archbishop_rbn", "barron", "bowman", "counsellor",
                  "crown_prince", "duke_q", "earl", "marquis", "princess",
-                 "squire", "viscount" ],
+                 "queen_jump", "squire", "viscount" ],
     },
 
     rococo: {
