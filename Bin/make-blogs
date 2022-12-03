@@ -989,6 +989,12 @@ foreach my $arg (@ARGV) {
 
         die "Don't know what to do with $arg" unless $type && $base;
     }
+    if ($type == $TYPE_ADVENT) {
+        my $year = substr $base, 0, 4;
+        $$TYPE_INFO {$type} {$INFO_NAV} = "AdventOfCode/$year/pages"
+                                                     if $year > 2021;
+    }
+
     $base =~ s/\.md$//;
     push @todo => [$type, $$TYPE_INFO {$type} {$INFO_DIR}, $base];
 }
