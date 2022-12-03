@@ -1,0 +1,18 @@
+code {
+    color:                                red;
+    background:                       inherit;
+    font-style:                       initial;
+    font-family:                    monospace;
+    font-size:                           100%;
+}
+
+pre code {
+    font-family: 'Source Code Pro', monospace;
+    font-size:                            95%;
+    color:                         lightgreen;
+}
+
+span.answer {
+    font-size:                            95%;
+    background:                       inherit;
+}
