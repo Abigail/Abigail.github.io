@@ -393,6 +393,9 @@ sub make_link (%args) {
             elsif ($link =~ /doc:/p) {
                 $url = $PERLDOC_URL . "/" . ${^POSTMATCH}
             }
+            elsif ($link =~ /^func:/p) {
+                $url = $PERLFUNC_URL . "#" . ${^POSTMATCH}
+            }
         }
         elsif ($language eq "GNU AWK" || $language eq "AWK") {
             $url = $GAWK_URL . "#" . ($link || $LINK_GROUP {AWK} {$clean_anchor}
