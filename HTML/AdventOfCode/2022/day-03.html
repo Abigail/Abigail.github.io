@@ -1,0 +1,277 @@
+<html>
+<head>
+<title>Advent Of Code 2022, Day 3: Rucksack Reorganization</title>
+<meta charset = "utf-8">
+<link rel  = 'preconnect' href = 'https://fonts.gstatic.com'>
+<link rel = 'stylesheet' href =      'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
+<link rel = 'stylesheet' href = '../../../Styles/main.css'>
+<link rel = 'stylesheet' href = '../../../Styles/AdventOfCode/main.css'>
+<link rel = 'stylesheet' href = '../../../Styles/AdventOfCode/2022/main.css'>
+<script src = "../../../JavaScript/jquery.js"></script>
+<script id  = 'MathJax-script' async src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.js'></script>
+<script src = '../../../JavaScript/AdventOfCode/main-header.js'></script>
+<script src = '../../../JavaScript/navigation.js'></script>
+<script src = '../../../JavaScript/AdventOfCode/2022/pages.js'></script>
+</head>
+
+<body><h1>Advent Of Code 2022, Day 3: Rucksack Reorganization</h1><div class = "byline">
+by Abigail<br>
+<img src = "../../../Images/jan_sluiters.jpg">
+</div>
+
+
+<h2><a href="https://adventofcode.com/2022/day/3">Challenge</a></h2>
+
+<div class = "section">
+<p>In todays puzzle, we need to organize rucksacks. Each Elf has a 
+rucksack, with two compartments. Our input file contains the 
+content of all the rucksacks, where each line contains the content
+of a single rucksack. The content is represented by upper and lower
+case (ASCII) letters. The first half of the characters represent
+the content of the first compartment, while the second half of the
+characters represent the content of the first compartment.</p>
+
+<p>An example of an input file looks like:</p>
+
+<pre><code>vJrwpWtwJgWrhcsFMMfFFhFp
+jqHRNqRjqzjGDLGLrsFMfFZSrLrFZsSL
+PmmdzqPrVvPwwTWBwg
+wMqvLMZHhHMvwLHjbvcjnnSBnvTQFn
+ttgJtRGJQctTZtZT
+CrZsJsPPZsGzwwsLwLmpwMDw
+</code></pre>
+
+<p>The first rucksack contains <code>vJrwpWtwJgWrhcsFMMfFFhFp</code>, of which
+<code>vJrwpWtwJgWr</code> is the content of the first compartment, and 
+<code>hcsFMMfFFhFp</code> is the content of the second compartment.</p>
+
+<p>Items also have a priority. Items <code>a</code> to <code>z</code> (the lowercase ASCII
+letters) have priorities <code>1</code> to <code>26</code>. Items <code>A</code> to <code>Z</code> (the uppercase
+ASCII letters) have priorities <code>27</code> to <code>52</code>.</p>
+</div>
+
+<h4 id = 'part_1'>Part 1</h4>
+
+<div class = "section">
+<p>For part 1, we need to inspect each rucksack and locate the item
+which is common to both compartments. We need to get the priority
+of each common item, and sum those priorities.</p>
+
+<p>For instance, the common item of the first rucksack is <code>p</code>, as it
+appears in both compartments, and its priority is <code>16</code>.</p>
+</div>
+
+<h5 id = 'notes'>Notes</h5>
+
+<ul>
+<li>Each rucksack will have exactly one item which is common between
+both compartments.</li>
+<li>The common item may be appear more than once in a compartment though.</li>
+</ul>
+
+<h4 id = 'part_2'>Part 2</h4>
+
+<div class = "section">
+<p>For part 2, we have to group the rucksacks in groups of three (so, the
+first three rucksacks are a group, the fourth to sixth rucksack form
+the next group, etc), and locate the one common item between each rucksack
+in a group. Just as in part 1, we need to take the priority of each 
+common item, and sum those priorities.</p>
+
+<p>In the example file, the content of the first three rucksacks (the
+first group) is <code>vJrwpWtwJgWrhcsFMMfFFhFp</code>, <code>jqHRNqRjqzjGDLGLrsFMfFZSrLrFZsSL</code>,
+and <code>PmmdzqPrVvPwwTWBwg</code>, and the common element between them is <code>r</code>,
+with priority <code>18</code>.</p>
+</div>
+
+<h5 id = 'notes'>Notes</h5>
+
+<ul>
+<li>Each group of rucksacks will have exactly one item which is common between
+the rucksacks.</li>
+<li>The common item may be appear more than once in a particular rucksack.</li>
+</ul>
+
+<h2 id = 'solution'>Solution</h2>
+
+<div class = "section">
+<p>We start with defining a helper method which takes an item, and
+return its priority:</p>
+
+<pre><code>sub prio ($item) {
+    $item =~ /\p{Ll}/ ?  1 + ord ($item) - ord ('a')
+                      : 27 + ord ($item) - ord ('A');
+}
+</code></pre>
+
+<p>This one is pretty straightforward: if the item is a lower case
+letter (<a href="https://perldoc.perl.org/perluniprops"><code>/\p{Ll}/</code></a>),
+we return <code>1</code> plus the difference between its code point
+(<a href="https://perldoc.perl.org/perlfunc#ord"><code>ord</code></a>) and the code point of the letter <code>a</code>. Otherwise,
+the item item is an upper case letter, and we return <code>27</code> plus
+the difference between its code point and the code point of
+the letter <code>A</code>.</p>
+
+<p>To process the rucksacks, we iterate over the input line by line,
+using <code>while (&lt;&gt;) {...}</code>, which puts each line into the variable
+<code>$_</code>. We start the block with a <a href="https://perldoc.perl.org/perlfunc#chomp"><code>chomp</code></a> which removes the newline.</p>
+
+<p>For part 1, we split the line into two parts; the
+first part, we split into characters and store those characters
+in the hash <code>%first</code>:</p>
+
+<pre><code>my %first = map {$_ =&gt; 1} split // =&gt; substr $_, 0, length ($_) / 2;
+</code></pre>
+
+<p>Here, <a href="https://perldoc.perl.org/perlfunc#length"><code>length ($_)</code></a> returns the length of the line.
+<a href="https://perldoc.perl.org/perlfunc#substr"><code>substr ($_, 0, length ($_) / 2)</code></a> returns the first
+half of the line. Using <a href="https://perldoc.perl.org/perlfunc#split"><code>split</code></a> with an empty pattern (<code>//</code>),
+splits this first half of the line into a list of characters.
+We use a <a href="https://perldoc.perl.org/perlfunc#map"><code>map</code></a> to put the characters in the hash <code>%first</code>.</p>
+
+<p>This means that an item <code>$x</code> is in the first compartment of the
+rucksack if, and only if, <code>$first {$x}</code> is true.</p>
+
+<p>The second half (that is, the second compartment of the rucksack),
+we process as follows:</p>
+
+<pre><code>my ($common) = grep {$first {$_}} split // =&gt; substr $_, length ($_) / 2;
+</code></pre>
+
+<p>We use <a href="https://perldoc.perl.org/perlfunc#substr"><code>substr</code></a> again to get the second half of the line of input,
+and again, we <a href="https://perldoc.perl.org/perlfunc#split"><code>split</code></a> it into individual character. Then we use
+<a href="https://perldoc.perl.org/perlfunc#grep"><code>grep</code></a> to only keep those characters which are in <code>%first</code>. 
+That is, only those items from the second compartment which are also
+in the first compartment make it through the <code>grep</code>. This may be more
+than one, but if that is the case, those items will be the same.
+By assigning the result of <code>grep</code> to a list (of one element), we get
+the common item in <code>$common</code>.</p>
+
+<p>Now we can increment the score for part 1. We have initialized 
+<code>$score1</code> to <code>0</code> outside of the main loop.</p>
+
+<pre><code>$score1 += 1;
+</code></pre>
+
+<p>For part 2, we count elves. And, we keep track of how often we see
+an item, but for each rucksack, we remove duplicates. (So, if one
+rucksack contains the item <code>$x</code> twice, we only count if for that
+rucksack once). Once we have processed the rucksacks of three elves,
+we look which item appear twice &mdash; this is the common item of the
+group. We then reset the elf count and item count.</p>
+
+<p>Outside the loop, we have initialized <code>$elves = 0</code> and <code>%group = ()</code>.
+The former counts elves, the latter counts items. Then, in the loop
+we have:</p>
+
+<pre><code>my %seen;
+$group {$_} ++ for grep {!$seen {$_} ++} split //;
+</code></pre>
+
+<p>We split the input line in characters (<a href="https://perldoc.perl.org/perlfunc#split"><code>split //</code></a>),
+then use the <a href="https://perldoc.perl.org/perlfunc#grep"><code>grep</code></a> block to remove duplicates. The return
+value of <code>grep</code> is a list of characters (representing items),
+with duplicates removed. Foreach of those characters, we increment
+its count in <code>%group</code> by one.</p>
+
+<p>After having processed three rucksacks, we can search for the common
+item:</p>
+
+<pre><code>if (++ $elves == 3) {
+    $score2 += prio grep {$group {$_} == 3} keys %group;
+
+    %group = ();
+    $elves = 0;
+}
+</code></pre>
+
+<p>We increment the elf count, and when it hits <code>3</code>, we get the list
+of all the items which appear in the three rucksacks
+(<a href="https://perldoc.perl.org/perlfunc#keys"><code>keys %group</code></a>). Using 
+<a href="https://perldoc.perl.org/perlfunc#grep"><code>grep {$group {$_} == 3}</code></a>, we filter out the
+items whose count is <code>3</code> &mdash; these are the items common to all
+three rucksacks. Due to the nature of the puzzle, this must be
+a single item. We calculate its priority and add this to the score.
+Finally, we reset the item and elf count.</p>
+
+<p>Once we have processed the entire input, we can print out
+the solution:</p>
+
+<pre><code>say "Solution 1: ", $score1;
+say "Solution 2: ", $score2;
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/AdventofCode2022/blob/master/Day_03/solution.pl">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3 id = 'regex_solution'>Regex Solution</h3>
+
+<p>We also have an alternative, regexp based solution. We use the same
+<code>prio</code> function as above, and we also process the input line by line.
+We do <strong>not</strong> remove the trailing newline.</p>
+
+<p>For part 1, we first split the line into halves, then join them again
+with a newline in between:</p>
+
+<pre><code>my  $ruck = substr ($_, 0, length ($_) / 2) . "\n" .
+            substr ($_,    length ($_) / 2);
+</code></pre>
+
+<p>This is using the same <a href="https://perldoc.perl.org/perlfunc#split"><code>split</code>s</a> we used above to
+split the line into two equal parts.</p>
+
+<p>We can now use a regexp to find the common item between the two
+halves:</p>
+
+<pre><code>my ($c) = $ruck =~ /(.).*\n.*\1/;
+$score1 += prio $c;
+</code></pre>
+
+<p>The pattern selects a single non-newline character (<code>(.)</code>), skips
+till the newline (<code>.*</code> &mdash; remember that by default a dot matches
+any character, except a newline), matches the newline, then tries
+to find the same character after the newline (<code>/.*\1/</code>). This pattern
+must succeed because it's given there's a common item.</p>
+
+<p><code>$c</code> will be that common item, so we gets its priority, and we
+add the priority to the score.</p>
+
+<p>To answer part 2, the join the input lines till we have joined
+three lines:</p>
+
+<pre><code>$group .= $_;
+$elves ++;
+</code></pre>
+
+<p>If we have joined three lines, we use a pattern to select the
+common item between the three:</p>
+
+<pre><code>if ($elves == 3) {
+    my ($c) = $group =~ /(.).*\n.*\1.*\n.*\1/;
+    $score2 += prio $c;
+    $elves = 0;
+    $group = "";
+}
+</code></pre>
+
+<p>The pattern we use is similar to the pattern we used above, except
+a bit longer because we have three parts where we have to find a
+common item.</p>
+
+<p>After finding the common element and adding its priority to the
+score, we reset the elf count (<code>$elves = 0</code>) and the set of
+three lines (<code>$group = ""</code>).</p>
+
+<p>Find the <a href="https://github.com/Abigail/AdventofCode2022/blob/master/Day_03/solution-2.pl">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+
+<hr id = 'last-line'>
+<div class = 'trailer'>
+<p class = 'prev'><a class = "prev" href = "">&#x261C;</a></p>
+<p class = 'issue'>Please leave any comments as a
+  <a href = 'https://github.com/Abigail/Abigail.github.io/issues'
+     title = 'GitHub issue'>GitHub issue</a>.
+<p class = 'next'><a class = "next" href = "">&#x261E;</a></p>
+</div>
+
+</body>
+</html>
