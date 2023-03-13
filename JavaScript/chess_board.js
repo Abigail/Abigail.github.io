@@ -10,12 +10,23 @@ window . addEventListener ("load", all_chess_boards)
 // long division.
 //
 function chess_board (element) {
-    let size = $(element) . attr ("data-size")
-    let fen  = $(element) . attr ("data-fen")
-    let [position, active_color, castling, en_passant,
-         half_move_clock, fullmove_number] = fen . split (" ")
-    console.log ("Doing fen: " + fen)
-    console.log ("Doing position: " + position)
+    let position = $(element)  . html  ()
+    let board    = position . split  ("\n")                      .
+                              filter (line => line . length > 0) .
+                              map    (row  => row  . split (/\s+/))
+
+    let table = "<table class = 'chess-board'>"
+    board . forEach (row => {
+        table += "<tr>"
+        row . forEach (cell => {
+            table += "<td>" + cell + "</td>"
+        })
+        table += "</tr>"
+    })
+    table += "</table>"
+
+    $(element) . html (table)
+
 }
 
 //

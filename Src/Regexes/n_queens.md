@@ -29,8 +29,15 @@ For the standard *8 x 8* board, there are 96 different solutions,
 
 Here is an example solution for an *8 x 8* board:
 
-<div class    = "chess-board" date-size = 8 
-     data-fen = "4Q3/1Q6/3Q4/6Q1/2Q5/7Q/5Q2/Q7 w - - 0 1">
+<div class = "chess-board">
+. . . . Q . . .
+. Q . . . . . .
+. . . Q . . . .
+. . . . . . Q .
+. . Q . . . . .
+. . . . . . . Q
+. . . . . Q . .
+Q . . . . . . .
 </div>
 
 
