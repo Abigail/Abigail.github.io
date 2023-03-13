@@ -5,8 +5,10 @@
 <link rel  = 'preconnect' href = 'https://fonts.gstatic.com'>
 <link rel = 'stylesheet' href =      'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
 <link rel = 'stylesheet' href = '../../Styles/main.css'>
+<link rel = 'stylesheet' href = '../../Styles/chess_board.css'>
 <script src = "../../JavaScript/jquery.js"></script>
 <script id  = 'MathJax-script' async src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.js'></script>
+<script src = '../../JavaScript/chess_board.js'></script>
 <script src = '../../JavaScript/navigation.js'></script>
 <script src = '../../JavaScript/nav_regexes.js'></script>
 </head>
@@ -26,9 +28,65 @@ using a regular expression.</p>
 
 <h3 id = 'the_n_queens_puzzle'>The N Queens Puzzle</h3>
 
+<div class = "section">
+<p>The <a href="https://en.wikipedia.org/wiki/Eight_queens_puzzle">N Queens Puzzle</a> asks you to place
+<em>N</em> Queens on an <em>N x N</em> chess board such that no pair of Queens
+attack each other. A Queen can move an unlimited number of squares
+horizontally, vertically or disagonally. So, we're asked to place
+<em>N</em> Queens on the board such that no rank (row), file (column), or 
+diagonal contain more then one Queen. Since we have to place as many
+Queens as there are ranks and files, any solution will have exactly
+one Queen on each rank, and exactly one Queen on each file. But some
+diagonals will not have a Queen.</p>
+
+<p>It is known there is a solution for any board size, except for the
+<em>2 x 2</em> and <em>3 x 3</em> boards. Other than the <em>1 x 1</em> board, solutions
+are not unique, although if we disgard rotations and reflections,
+the solutions for the <em>4 x 4</em> and <em>6 x 6</em> boards are unique.</p>
+
+<p>For the standard <em>8 x 8</em> board, there are 96 different solutions,
+12 different solutions if you disgard rotations and reflections.</p>
+
+<p>Here is an example solution for an <em>8 x 8</em> board:</p>
+
+<div class    = "chess-board" date-size = 8 
+     data-fen = "4Q3/1Q6/3Q4/6Q1/2Q5/7Q/5Q2/Q7 w - - 0 1">
+</div>
+</div>
+
 <h3 id = 'solving_it_with_a_regular_expression'>Solving it with a regular expression</h3>
 
-<p>What do we mean when we say <em>solve it with a regular expression</em>?</p>
+<p>What do we mean when we say <em>solve it with a regular expression</em>?
+What we will do, given the input (the size of the chess board), is
+create a string and a pattern, then match the pattern against the
+string &mdash; which we from now on, we will call the <em>subject</em>.
+The pattern should match, if and only if, there is a solution
+for a chess board of the size. Furthermore, we should be able to
+find the solution from the captures made by the pattern.</p>
+
+<p>We do have some restrictions:</p>
+
+<ul>
+<li><p>Both the subject and pattern should be small, for some value of small.
+To be precise, the size of both subject and pattern should should be
+at most polynomial in the size of the chess board (so we cannot just
+enumerate all possible placements of N Queens on the chess board, then
+use a pattern for a correct placement).</p></li>
+<li><p>No breaking out of the regex engine and have the main interpreter do
+work (so, no <code>(?{ })</code> or <code>(??{ })</code> constructs).</p></li>
+<li><p>In fact, no <em>modern</em> constructs. All constructs we use are from the
+<a href="https://en.wikipedia.org/wiki/Regular_expression#POSIX_extended">POSIX Extended Regular
+Expressions</a> (ERE)
+with the addition of backreferences, which are found in the
+<a href="https://en.wikipedia.org/wiki/Regular_expression#POSIX_basic_and_extended">POSIX Basic Regular
+Expressions</a> (BRE),
+but not in the ERE.</p>
+
+<p>We do however make use of named captures, as found in 
+<a href="Perl_Compatible_Regular_Expressions">PCRE</a>. This however does not
+add any functionality &mdash; with a straightforward renaming, numbered
+backreferences can be used.</p></li>
+</ul>
 
 <hr id = 'last-line'>
 <div class = 'trailer'>
