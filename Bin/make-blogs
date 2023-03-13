@@ -29,12 +29,14 @@ my  $DIR_FC         = "Feature-Compare";
 my  $DIR_ADVENT     = "AdventOfCode";
 my  $DIR_TALK       = "Talks";
 my  $DIR_TRAPPED    = "Trapped";
+my  $DIR_REGEXES    = "Regexes";
 
 our $TYPE_PWC       = 1;
-our $TYPE_FC        = $TYPE_PWC    + 1;
-our $TYPE_ADVENT    = $TYPE_FC     + 1;
-our $TYPE_TALK      = $TYPE_ADVENT + 1;
-our $TYPE_TRAPPED   = $TYPE_TALK   + 1;
+our $TYPE_FC        = $TYPE_PWC     + 1;
+our $TYPE_ADVENT    = $TYPE_FC      + 1;
+our $TYPE_TALK      = $TYPE_ADVENT  + 1;
+our $TYPE_TRAPPED   = $TYPE_TALK    + 1;
+our $TYPE_REGEXES   = $TYPE_TRAPPED + 1;
 
 my  $INFO_DIR       = 0;
 my  $INFO_NAV       = 1;
@@ -69,6 +71,11 @@ my $TYPE_INFO = {
         $INFO_NAV      =>  "Trapped/pages",
         $INFO_UP       =>  "../..",
         $INFO_JS       =>  ["piece_list", "trapped", "pieces", "boxset"],
+    },
+    $TYPE_REGEXES =>   {
+        $INFO_DIR      =>  $DIR_REGEXES,
+        $INFO_NAV      =>  "nav_regexes",
+        $INFO_UP       =>  "../..",
     },
 };
 
@@ -949,6 +956,7 @@ sub init_link_group () {
 #
 GetOptions  "sv"   =>  \my $sudoku_variants,
             "tr"   =>  \my $trapped,
+            "reg"  =>  \my $regexes,
 ;
 
 die "$0 source-file ..." unless @ARGV;
@@ -961,6 +969,10 @@ foreach my $arg (@ARGV) {
     }
     elsif ($trapped) {
         $type = $TYPE_TRAPPED;
+        $base = $arg;
+    }
+    elsif ($regexes) {
+        $type = $TYPE_REGEXES;
         $base = $arg;
     }
     elsif ($arg =~ /^[0-9]{3}-[0-9]$/) {
