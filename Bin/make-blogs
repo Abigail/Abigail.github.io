@@ -177,12 +177,13 @@ sub header ($title, $directives) {
     #
     # Return the header of the HTML page
     #
-    my $dir     = $$directives {dir};
-    my $base    = $$directives {base};
-    my $type    = $$directives {type};
+    my $dir           = $$directives {dir};
+    my $base          = $$directives {base};
+    my $type          = $$directives {type};
+    my $include_files = $$directives {include} || [];
 
-    my $up      = $$TYPE_INFO {$type} {$INFO_UP};
-    my $is_talk = $$TYPE_INFO {$type} {$INFO_IS_TALK};
+    my $up            = $$TYPE_INFO {$type} {$INFO_UP};
+    my $is_talk       = $$TYPE_INFO {$type} {$INFO_IS_TALK};
 
     #
     # Create a list of files (without extension) to check for
@@ -209,7 +210,7 @@ sub header ($title, $directives) {
             push @files => map {s!^/+!!r} map {"$_/svg-grid"} @dirs;
         }
 
-        (@files, "$dir/$base", "$dir/$base-*")
+        (@files, "$dir/$base", "$dir/$base-*", @$include_files)
     };
 
     my @style_files  = @files;
