@@ -140,7 +140,7 @@ chess board), and \((N, N)\) is the square at the top right
 
 Since this is the constraint which sets the content of a square
 (either a Queen or empty), we capture the content using a named
-capture. For the square with coordinates `$x, $y`, we use the
+capture. For the square with coordinates `($x, $y)`, we use the
 capture name `Q_${x}_${y}`.
 
 We will use a subject segment of !!subject!!`Q;` and a pattern segment of
@@ -148,4 +148,21 @@ We will use a subject segment of !!subject!!`Q;` and a pattern segment of
 match exactly one `Q`, and there are only two ways to do this:
 either the `Q` inside the capture matches, or the `Q` outside does.
 In the former case, we treat this as if a Queen was placed on this
-square, else we consider this to be an empty square.
+square, else we consider this to be an empty square. Hence, this pattern
+segment results in the capture `Q_${x}_${y}` either being the empty
+string (no Queen on the square), or being the string `Q` (a Queen on
+the square).
+
+Since we have such a segment pair for each square of the board, in
+total we will have \(N^2\) such segments.
+
+#### Non Attacking Pairs
+
+For each pair of squares on the board where we can move between using
+a Queens move, at most one of those squares can contain a Queen. That
+is, pairs of squares which are either on the same rank, same file, or
+same diagonal.
+
+Assume we have two such squares, whose content are captured by
+capture groups `Q_1` and `Q_2`. We will then have as subject segment
+!!subject!!`Q;`, and as pattern segment !!pattern!!`\g{Q_1}\g{Q_2}Q?;`.

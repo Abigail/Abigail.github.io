@@ -159,6 +159,7 @@ we do need the latter contraint.</p>
 
 <h4 id = 'queen_or_empty'>Queen or Empty</h4>
 
+<div class = "section">
 <p>In the first constraint, for each of the squares of the board,
 we need to determine whether it contains a Queen or not. </p>
 
@@ -171,7 +172,7 @@ chess board), and <span class = 'latex-inline'>\((N, N)\)</span> is the square a
 
 <p>Since this is the constraint which sets the content of a square
 (either a Queen or empty), we capture the content using a named
-capture. For the square with coordinates <code>$x, $y</code>, we use the
+capture. For the square with coordinates <code>($x, $y)</code>, we use the
 capture name <code>Q_${x}_${y}</code>.</p>
 
 <p>We will use a subject segment of <code class = "subject">Q;</code> and a pattern segment of
@@ -179,7 +180,25 @@ capture name <code>Q_${x}_${y}</code>.</p>
 match exactly one <code>Q</code>, and there are only two ways to do this:
 either the <code>Q</code> inside the capture matches, or the <code>Q</code> outside does.
 In the former case, we treat this as if a Queen was placed on this
-square, else we consider this to be an empty square.</p>
+square, else we consider this to be an empty square. Hence, this pattern
+segment results in the capture <code>Q_${x}_${y}</code> either being the empty
+string (no Queen on the square), or being the string <code>Q</code> (a Queen on
+the square).</p>
+
+<p>Since we have such a segment pair for each square of the board, in
+total we will have <span class = 'latex-inline'>\(N^2\)</span> such segments.</p>
+</div>
+
+<h4 id = 'non_attacking_pairs'>Non Attacking Pairs</h4>
+
+<p>For each pair of squares on the board where we can move between using
+a Queens move, at most one of those squares can contain a Queen. That
+is, pairs of squares which are either on the same rank, same file, or
+same diagonal.</p>
+
+<p>Assume we have two such squares, whose content are captured by
+capture groups <code>Q_1</code> and <code>Q_2</code>. We will then have as subject segment
+<code class = "subject">Q;</code>, and as pattern segment <code class = "pattern">\g{Q_1}\g{Q_2}Q?;</code>.</p>
 
 <hr id = 'last-line'>
 <div class = 'trailer'>
