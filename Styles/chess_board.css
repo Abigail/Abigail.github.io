@@ -1,1 +1,15 @@
 /* chess board */
+
+table.chess-board {
+    font-size: 125%;
+}
+
+table.chess-board tr:nth-child(odd)  td:nth-child(odd),
+table.chess-board tr:nth-child(even) td:nth-child(even) {
+    background-color: blanchedalmond;
+}
+
+table.chess-board tr:nth-child(odd)  td:nth-child(even),
+table.chess-board tr:nth-child(even) td:nth-child(odd) {
+    background-color: burlywood;
+}

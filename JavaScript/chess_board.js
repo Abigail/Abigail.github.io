@@ -5,9 +5,29 @@
 window . addEventListener ("load", all_chess_boards)
 
 //
-// Perform long division. The dividend may exceed the maximum 
-// integer value. Replace the text of the element with the
-// long division.
+// Map a character (or short string) to a chess piece
+//
+function char_to_piece (char) {
+    if (char == "K") {return "&#x2654;"}
+    if (char == "Q") {return "&#x2655;"}
+    if (char == "R") {return "&#x2656;"}
+    if (char == "B") {return "&#x2657;"}
+    if (char == "N") {return "&#x2658;"}
+    if (char == "P") {return "&#x2659;"}
+    if (char == "k") {return "&#x265A;"}
+    if (char == "q") {return "&#x265B;"}
+    if (char == "r") {return "&#x265C;"}
+    if (char == "b") {return "&#x265D;"}
+    if (char == "n") {return "&#x265E;"}
+    if (char == "p") {return "&#x265F;"}
+    //
+    // Default
+    //
+    return "&nbsp;"
+}
+
+//
+// Create a chess board diagram
 //
 function chess_board (element) {
     let position = $(element)  . html  ()
@@ -19,7 +39,8 @@ function chess_board (element) {
     board . forEach (row => {
         table += "<tr>"
         row . forEach (cell => {
-            table += "<td>" + cell + "</td>"
+            table += "<td><span class = 'chess-piece'>" +
+                      char_to_piece (cell) + "</span></td>"
         })
         table += "</tr>"
     })
