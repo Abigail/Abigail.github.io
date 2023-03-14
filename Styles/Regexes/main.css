@@ -1,0 +1,13 @@
+code.subject, code.pattern {
+    background:    black;
+    padding-left:    2px;
+    padding-right:   2px;
+}
+
+code.subject {
+    color:        orange;
+}
+
+code.pattern {
+    color:    lightgreen;
+}

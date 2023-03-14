@@ -5,6 +5,7 @@
 <link rel  = 'preconnect' href = 'https://fonts.gstatic.com'>
 <link rel = 'stylesheet' href =      'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
 <link rel = 'stylesheet' href = '../../Styles/main.css'>
+<link rel = 'stylesheet' href = '../../Styles/Regexes/main.css'>
 <link rel = 'stylesheet' href = '../../Styles/chess_board.css'>
 <script src = "../../JavaScript/jquery.js"></script>
 <script id  = 'MathJax-script' async src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.js'></script>
@@ -63,6 +64,7 @@ Q . . . . . . .
 
 <h3 id = 'solving_it_with_a_regular_expression'>Solving it with a regular expression</h3>
 
+<div class = "section">
 <p>What do we mean when we say <em>solve it with a regular expression</em>?
 What we will do, given the input (the size of the chess board), is
 create a string and a pattern, then match the pattern against the
@@ -94,6 +96,90 @@ but not in the ERE.</p>
 add any functionality &mdash; with a straightforward renaming, numbered
 backreferences can be used.</p></li>
 </ul>
+</div>
+
+<h2 id = 'building_the_subject_and_pattern'>Building the Subject and Pattern</h2>
+
+<div class = "section">
+<p>To create our solution, we will create the subject and pattern
+piecewise. That is, we create little segments of the subject and
+pair them with little segments of the pattern, in such a way that
+the subject segment can only be matched by the corresponding 
+pattern segment.</p>
+
+<p>In order to get the right patterns segments to line up with the
+subject segments, we do the following:</p>
+
+<ol>
+<li>Each segment, both in the pattern and subject ends with a <code>;</code>. </li>
+<li><code>;</code> does not appear elsewhere in any subject segment.</li>
+<li>The pattern segments will not be able to match a <code>;</code>, other 
+than an exact match of that final <code>;</code>. (So, we will not have
+things like <code>.*</code> in our pattern).</li>
+<li>The pattern segments appear in the same order as the corresponding
+subject segments.</li>
+</ol>
+
+<p>Below, we will display subject segments like this: <code class = "subject">subject</code>,
+and pattern segments like this: <code class = "pattern">pattern</code>.</p>
+</div>
+
+<h3 id = 'constraints'>Constraints</h3>
+
+<div class = "section">
+<p>We will need different types of segment pairs. We can look at the
+N Queens problem, break it down in various <em>constraints</em>, and create
+a segment pair for each constraint. If we break down the problem in
+such a way that there is a solution if and only if all constraints
+are satisfied, the problem will have a solution if and only if the
+complete pattern matches the complete subject.</p>
+
+<p>We will use the following constraints:</p>
+
+<ul>
+<li>Each square of the board contains either a Queen, or is empty.</li>
+<li>Each pair of squares which share a rank, file, or diagonal contain
+at most one Queen. (Otherwise, we would a pair of Queens which attack
+each other).</li>
+<li>We have exactly N Queens on the board.</li>
+</ul>
+
+<p>We can rephrase the latter constraint a bit. We already know that in
+a valid position, each rank will have exactly Queen. So, we can rephrase
+the latter constraint as:</p>
+
+<ul>
+<li>Each row has exactly 1 Queen.</li>
+</ul>
+
+<p>Now, the first two constraints already prevent having more than one Queen
+on a row, but those contraints by themselves allow for empty rows, so
+we do need the latter contraint.</p>
+</div>
+
+<h4 id = 'queen_or_empty'>Queen or Empty</h4>
+
+<p>In the first constraint, for each of the squares of the board,
+we need to determine whether it contains a Queen or not. </p>
+
+<p>To make it easier to refer to a square, we give all the squares
+coordinates; each square has coordinates <span class = 'latex-inline'>\((x, y)\)</span>, with
+<span class = 'latex-inline'>\(1 \le x \le N\)</span>, and <span class = 'latex-inline'>\(1 \le y \le N\)</span>. The square <span class = 'latex-inline'>\((1, 1)\)</span>
+is the square in the bottom left (<em>a1</em> on a traditional <em>8 x 8</em>
+chess board), and <span class = 'latex-inline'>\((N, N)\)</span> is the square at the top right
+(<em>h8</em> on a traditional <em>8 x 8</em> chess board).</p>
+
+<p>Since this is the constraint which sets the content of a square
+(either a Queen or empty), we capture the content using a named
+capture. For the square with coordinates <code>$x, $y</code>, we use the
+capture name <code>Q_${x}_${y}</code>.</p>
+
+<p>We will use a subject segment of <code class = "subject">Q;</code> and a pattern segment of
+<code class = "pattern">(?&lt;Q_${x}_${y}&gt;Q?)Q?;</code>. This means the pattern segment must
+match exactly one <code>Q</code>, and there are only two ways to do this:
+either the <code>Q</code> inside the capture matches, or the <code>Q</code> outside does.
+In the former case, we treat this as if a Queen was placed on this
+square, else we consider this to be an empty square.</p>
 
 <hr id = 'last-line'>
 <div class = 'trailer'>

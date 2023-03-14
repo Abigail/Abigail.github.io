@@ -74,3 +74,78 @@ We do have some restrictions:
    [PCRE](Perl_Compatible_Regular_Expressions). This however does not
    add any functionality -- with a straightforward renaming, numbered
    backreferences can be used.
+
+
+## Building the Subject and Pattern
+
+To create our solution, we will create the subject and pattern
+piecewise. That is, we create little segments of the subject and
+pair them with little segments of the pattern, in such a way that
+the subject segment can only be matched by the corresponding 
+pattern segment.
+
+In order to get the right patterns segments to line up with the
+subject segments, we do the following:
+
+1. Each segment, both in the pattern and subject ends with a `;`. 
+2. `;` does not appear elsewhere in any subject segment.
+3. The pattern segments will not be able to match a `;`, other 
+   than an exact match of that final `;`. (So, we will not have
+   things like `.*` in our pattern).
+4. The pattern segments appear in the same order as the corresponding
+   subject segments.
+
+Below, we will display subject segments like this: !!subject!!`subject`,
+and pattern segments like this: !!pattern!!`pattern`.
+
+### Constraints
+
+We will need different types of segment pairs. We can look at the
+N Queens problem, break it down in various *constraints*, and create
+a segment pair for each constraint. If we break down the problem in
+such a way that there is a solution if and only if all constraints
+are satisfied, the problem will have a solution if and only if the
+complete pattern matches the complete subject.
+
+We will use the following constraints:
+
+* Each square of the board contains either a Queen, or is empty.
+* Each pair of squares which share a rank, file, or diagonal contain
+  at most one Queen. (Otherwise, we would a pair of Queens which attack
+  each other).
+* We have exactly N Queens on the board.
+
+We can rephrase the latter constraint a bit. We already know that in
+a valid position, each rank will have exactly Queen. So, we can rephrase
+the latter constraint as:
+
+* Each row has exactly 1 Queen.
+
+Now, the first two constraints already prevent having more than one Queen
+on a row, but those contraints by themselves allow for empty rows, so
+we do need the latter contraint.
+
+
+#### Queen or Empty
+
+In the first constraint, for each of the squares of the board,
+we need to determine whether it contains a Queen or not. 
+
+To make it easier to refer to a square, we give all the squares
+coordinates; each square has coordinates \((x, y)\), with
+\(1 \le x \le N\), and \(1 \le y \le N\). The square \((1, 1)\)
+is the square in the bottom left (*a1* on a traditional *8 x 8*
+chess board), and \((N, N)\) is the square at the top right
+(*h8* on a traditional *8 x 8* chess board).
+
+Since this is the constraint which sets the content of a square
+(either a Queen or empty), we capture the content using a named
+capture. For the square with coordinates `$x, $y`, we use the
+capture name `Q_${x}_${y}`.
+
+We will use a subject segment of !!subject!!`Q;` and a pattern segment of
+!!pattern!!`(?<Q_${x}_${y}>Q?)Q?;`. This means the pattern segment must
+match exactly one `Q`, and there are only two ways to do this:
+either the `Q` inside the capture matches, or the `Q` outside does.
+In the former case, we treat this as if a Queen was placed on this
+square, else we consider this to be an empty square.
