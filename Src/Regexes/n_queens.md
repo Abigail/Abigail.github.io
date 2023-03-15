@@ -166,3 +166,63 @@ same diagonal.
 Assume we have two such squares, whose content are captured by
 capture groups `Q_1` and `Q_2`. We will then have as subject segment
 !!subject!!`Q;`, and as pattern segment !!pattern!!`\g{Q_1}\g{Q_2}Q?;`.
+
+To see whether this matches only if at most one Queen is on the pair
+of squares, we can simple consider three cases:
+
+1. If both squares are empty, the pattern segment effectively becomes
+   !!pattern!!`Q?;`, which obviously matches the subject segment
+   !!subject!!`Q;`.
+2. If only one square is empty, and the other contains a Queen, the
+   pattern effectively becomes !!pattern!!`QQ?;`. It's also easy to
+   see this matches !!subject!!`Q;`.
+3. Finally, when both squares contain a Queen, the pattern segment
+   effectively becomes !!pattern!!`QQQ?;`. There is no way for it
+   to match !!subject!!`Q;`, as the pattern segment must match at
+   least two `Q`s, while there is only one `Q` in the subject segment.
+
+
+How many of these constraints do we have? For that, we need to count
+the number of pairs of squares which either share a rank, a file
+or a diagonal.
+
+Counting the number of pairs of squares on a single rank or file is
+easy: each rank and file is the same size (\(N\)), so the number of
+pairs of square on a given rank or file is \(\frac{N (N - 1)}{2}\).
+Given that we have \(N\) ranks, and \(N\) files, the number of pairs
+of squares on the same rank or file equals \(2 N \frac{N (N - 1)}{2}\),
+which simplifies to \(N^3 - N^2\).
+
+To count the number of pairs on the same diagonal, we need to do a bit
+more work, as we have diagonals of different sizes. We have diagonals
+ranging in length \(1\) till length \(N\). We have \(2\) diagonals of
+length \(N\), and \(4\) diagonals of each of shorther lengths. Given
+that the number of pairs on a diagonal of length \(m\) is 
+\(\frac{m (m - 1)}{2}\), the number of all pairs sharing a diagonal is
+
+\[
+   \begin{array}{cc}
+   4 \sum\limits_{m = 1}^{N - 1} \left(\frac{m (m - 1)}{2}\right) +
+   2 \frac{N (N - 1)} {2} & = \\\\
+   2 \sum\limits_{m = 1}^{N - 1} \left(m^2 - m\right) + N^2 - N & = \\\\
+   2 \sum\limits_{m = 1}^{N - 1} m^2 -
+   2 \sum\limits_{m = 1}^{N - 1} m + N^2 - N & = \\\\
+   2 \frac{(N - 1) N (2 N - 1)}{6} - 2 \frac{(N - 1) N}{2} + N^2 - N & = \\\\
+   \frac{2N^3 - 3N^2 + N}{3} - (N^2 - N) + N^2 - N & = \\\\
+   \frac{2N^3 - 3N^2 + N}{3} \\\\
+   \end{array}
+\]
+
+Adding this to the number of pairs sharing either a rank of file, 
+the total number of pairs of squares which are a Queens move away
+equals
+
+\[ \frac{5 N^3 - 6 N^2 + N}{3} \]
+
+which is also the number constraints/subject segments/pattern segments
+of this type.
+
+For a standard, *8 x 8* sized chess board, we have \(728\) pairs of
+squares which are a Queens move away, so we will have \(728\) segment
+pairs implementing the non-attacking constraints.
+

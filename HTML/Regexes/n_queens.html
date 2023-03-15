@@ -200,6 +200,66 @@ same diagonal.</p>
 capture groups <code>Q_1</code> and <code>Q_2</code>. We will then have as subject segment
 <code class = "subject">Q;</code>, and as pattern segment <code class = "pattern">\g{Q_1}\g{Q_2}Q?;</code>.</p>
 
+<p>To see whether this matches only if at most one Queen is on the pair
+of squares, we can simple consider three cases:</p>
+
+<ol>
+<li>If both squares are empty, the pattern segment effectively becomes
+<code class = "pattern">Q?;</code>, which obviously matches the subject segment
+<code class = "subject">Q;</code>.</li>
+<li>If only one square is empty, and the other contains a Queen, the
+pattern effectively becomes <code class = "pattern">QQ?;</code>. It's also easy to
+see this matches <code class = "subject">Q;</code>.</li>
+<li>Finally, when both squares contain a Queen, the pattern segment
+effectively becomes <code class = "pattern">QQQ?;</code>. There is no way for it
+to match <code class = "subject">Q;</code>, as the pattern segment must match at
+least two <code>Q</code>s, while there is only one <code>Q</code> in the subject segment.</li>
+</ol>
+
+<p>How many of these constraints do we have? For that, we need to count
+the number of pairs of squares which either share a rank, a file
+or a diagonal.</p>
+
+<p>Counting the number of pairs of squares on a single rank or file is
+easy: each rank and file is the same size (<span class = 'latex-inline'>\(N\)</span>), so the number of
+pairs of square on a given rank or file is <span class = 'latex-inline'>\(\frac{N (N - 1)}{2}\)</span>.
+Given that we have <span class = 'latex-inline'>\(N\)</span> ranks, and <span class = 'latex-inline'>\(N\)</span> files, the number of pairs
+of squares on the same rank or file equals <span class = 'latex-inline'>\(2 N \frac{N (N - 1)}{2}\)</span>,
+which simplifies to <span class = 'latex-inline'>\(N^3 - N^2\)</span>.</p>
+
+<p>To count the number of pairs on the same diagonal, we need to do a bit
+more work, as we have diagonals of different sizes. We have diagonals
+ranging in length <span class = 'latex-inline'>\(1\)</span> till length <span class = 'latex-inline'>\(N\)</span>. We have <span class = 'latex-inline'>\(2\)</span> diagonals of
+length <span class = 'latex-inline'>\(N\)</span>, and <span class = 'latex-inline'>\(4\)</span> diagonals of each of shorther lengths. Given
+that the number of pairs on a diagonal of length <span class = 'latex-inline'>\(m\)</span> is 
+<span class = 'latex-inline'>\(\frac{m (m - 1)}{2}\)</span>, the number of all pairs sharing a diagonal is</p>
+
+<p>\[
+   \begin{array}{cc}
+   4 \sum\limits_{m = 1}^{N - 1} \left(\frac{m (m - 1)}{2}\right) +
+   2 \frac{N (N - 1)} {2} &amp; = \\
+   2 \sum\limits_{m = 1}^{N - 1} \left(m^2 - m\right) + N^2 - N &amp; = \\
+   2 \sum\limits_{m = 1}^{N - 1} m^2 -
+   2 \sum\limits_{m = 1}^{N - 1} m + N^2 - N &amp; = \\
+   2 \frac{(N - 1) N (2 N - 1)}{6} - 2 \frac{(N - 1) N}{2} + N^2 - N &amp; = \\
+   \frac{2N^3 - 3N^2 + N}{3} - (N^2 - N) + N^2 - N &amp; = \\
+   \frac{2N^3 - 3N^2 + N}{3} \\
+   \end{array}
+\]</p>
+
+<p>Adding this to the number of pairs sharing either a rank of file, 
+the total number of pairs of squares which are a Queens move away
+equals</p>
+
+<p><span class = 'latex-display'>\[ \frac{5 N^3 - 6 N^2 + N}{3} \]</span></p>
+
+<p>which is also the number constraints/subject segments/pattern segments
+of this type.</p>
+
+<p>For a standard, <em>8 x 8</em> sized chess board, we have <span class = 'latex-inline'>\(728\)</span> pairs of
+squares which are a Queens move away, so we will have <span class = 'latex-inline'>\(728\)</span> segment
+pairs implementing the non-attacking constraints.</p>
+
 <hr id = 'last-line'>
 <div class = 'trailer'>
 <p class = 'prev'><a class = "prev" href = "">&#x261C;</a></p>
