@@ -191,6 +191,7 @@ total we will have <span class = 'latex-inline'>\(N^2\)</span> such segments.</p
 
 <h4 id = 'non_attacking_pairs'>Non Attacking Pairs</h4>
 
+<div class = "section">
 <p>For each pair of squares on the board where we can move between using
 a Queens move, at most one of those squares can contain a Queen. That
 is, pairs of squares which are either on the same rank, same file, or
@@ -251,7 +252,7 @@ that the number of pairs on a diagonal of length <span class = 'latex-inline'>\(
 the total number of pairs of squares which are a Queens move away
 equals</p>
 
-<p><span class = 'latex-display'>\[ \frac{5 N^3 - 6 N^2 + N}{3} \]</span></p>
+<p><span class = 'latex-display'>\[ \frac{5 N^3 - 6 N^2 + N}{3} = \frac{5 N^3 + N}{3} - 2 N^2 \]</span></p>
 
 <p>which is also the number constraints/subject segments/pattern segments
 of this type.</p>
@@ -259,6 +260,30 @@ of this type.</p>
 <p>For a standard, <em>8 x 8</em> sized chess board, we have <span class = 'latex-inline'>\(728\)</span> pairs of
 squares which are a Queens move away, so we will have <span class = 'latex-inline'>\(728\)</span> segment
 pairs implementing the non-attacking constraints.</p>
+</div>
+
+<h4 id = 'one_queen_per_row'>One Queen per row</h4>
+
+<p>In order to get the right amount of Queens, we need a constraint
+which places one Queen per rank. As an example, we use the constraint
+for the first rank of an <em>8 x 8</em> board. </p>
+
+<p>The subject segment will be <code class = "subject">Q;</code>. The pattern segment will be
+<code class = "pattern">\g{Q_1_1}\g{Q_1_2}\g{Q_1_3}\g{Q_1_4}(\g{Q_1_5}\g{Q_1_6}\g{Q_1_7}\g{Q_1_8};</code>
+This pattern segment lists all the references to the squares on the
+rank. Hence, this pair will match if, and only if, there is exactly
+reference containing a <code>Q</code>.</p>
+
+<p>There will be <span class = 'latex-inline'>\(N\)</span> of these types of constraints.</p>
+
+<p>The total number of constraints, and hence the number of subject segments
+and pattern segments is</p>
+
+<p><span class = 'latex-display'>\[ N^2 + \frac{5 N^3 + N}{3} - 2 N^2 + N \]</span></p>
+
+<p>which we can write as</p>
+
+<p><span class = 'latex-display'>\[ \frac{5 N^3 + 4 N}{3} - N^2 \]</span></p>
 
 <hr id = 'last-line'>
 <div class = 'trailer'>

@@ -217,7 +217,7 @@ Adding this to the number of pairs sharing either a rank of file,
 the total number of pairs of squares which are a Queens move away
 equals
 
-\[ \frac{5 N^3 - 6 N^2 + N}{3} \]
+\[ \frac{5 N^3 - 6 N^2 + N}{3} = \frac{5 N^3 + N}{3} - 2 N^2 \]
 
 which is also the number constraints/subject segments/pattern segments
 of this type.
@@ -226,3 +226,27 @@ For a standard, *8 x 8* sized chess board, we have \(728\) pairs of
 squares which are a Queens move away, so we will have \(728\) segment
 pairs implementing the non-attacking constraints.
 
+
+#### One Queen per row
+
+In order to get the right amount of Queens, we need a constraint
+which places one Queen per rank. As an example, we use the constraint
+for the first rank of an *8 x 8* board. 
+
+The subject segment will be !!subject!!`Q;`. The pattern segment will be
+!!pattern!!
+`\g{Q_1_1}\g{Q_1_2}\g{Q_1_3}\g{Q_1_4}(\g{Q_1_5}\g{Q_1_6}\g{Q_1_7}\g{Q_1_8};`
+This pattern segment lists all the references to the squares on the
+rank. Hence, this pair will match if, and only if, there is exactly
+reference containing a `Q`.
+
+There will be \(N\) of these types of constraints.
+
+The total number of constraints, and hence the number of subject segments
+and pattern segments is
+
+\[ N^2 + \frac{5 N^3 + N}{3} - 2 N^2 + N \]
+
+which we can write as
+
+\[ \frac{5 N^3 + 4 N}{3} - N^2 \]
