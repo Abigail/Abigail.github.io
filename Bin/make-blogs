@@ -194,6 +194,9 @@ sub header ($title, $directives) {
         if ($base =~ /Sudoku/) {
             push @files => "sudoku";
         }
+        if ($base =~ /N-Queen/) {
+            push @files => "chess_board";
+        }
 
         #
         # Add specific files depending on directives
@@ -949,6 +952,7 @@ sub init_link_group () {
 #
 GetOptions  "sv"   =>  \my $sudoku_variants,
             "tr"   =>  \my $trapped,
+            "nq"   =>  \my $n_queens,
 ;
 
 die "$0 source-file ..." unless @ARGV;
@@ -958,6 +962,10 @@ foreach my $arg (@ARGV) {
     if ($sudoku_variants) {
         $type = $TYPE_TALK;
         $base = "Sudoku-Variants/$arg";
+    }
+    elsif ($n_queens) {
+        $type = $TYPE_TALK;
+        $base = "N-Queens/$arg";
     }
     elsif ($trapped) {
         $type = $TYPE_TRAPPED;

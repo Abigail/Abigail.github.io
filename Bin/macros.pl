@@ -145,4 +145,10 @@ our %MACROS = (
         WIKI           =>  $WIKI_TOKEN,
         CHESS_V        =>  $CHESS_V_TOKEN,
     },
+
+    our $TYPE_TALK => {
+        WQ             => "&#x2655;",
+        BQ             => "&#x265B;",
+    },
+
 );
