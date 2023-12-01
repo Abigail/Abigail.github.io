@@ -95,8 +95,8 @@ regular expression).
 
 To find the match for part two, we use `/([0-9] | @words)/`. This interpolates
 the array `@words`, with its elements separated by the contain of the
-variable `$"`. This is by default a space, but we set it to `|`. In
-effect, it turns the regular expression into:
+variable [`$"`](#var:$LIST_SEPARATOR). This is by default a space, but we
+set it to `|`. In effect, it turns the regular expression into:
 
     /([0-9] | one | two | three | four | five | six | seven | eight | nine)/x
 

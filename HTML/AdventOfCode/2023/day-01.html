@@ -118,8 +118,8 @@ regular expression).</p>
 
 <p>To find the match for part two, we use <code>/([0-9] | @words)/</code>. This interpolates
 the array <code>@words</code>, with its elements separated by the contain of the
-variable <code>$"</code>. This is by default a space, but we set it to <code>|</code>. In
-effect, it turns the regular expression into:</p>
+variable <a href="https://perldoc.perl.org/perlvar#$LIST_SEPARATOR"><code>$"</code></a>. This is by default a space, but we
+set it to <code>|</code>. In effect, it turns the regular expression into:</p>
 
 <pre><code>/([0-9] | one | two | three | four | five | six | seven | eight | nine)/x
 </code></pre>
