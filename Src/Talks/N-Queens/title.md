@@ -7,6 +7,6 @@
 {cs = 3} Abigail  \\
 
 July 12, 2023 & YAPC::NA & Toronto    \\
-August 14, 2023 & YAPC::EU & Helsinki
+August 16, 2023 & YAPC::EU & Helsinki
 
 ====|

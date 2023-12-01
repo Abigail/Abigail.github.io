@@ -94,6 +94,9 @@ class Chess_Board {
         if (text == "o") {
             text = "\u03BF"
         }
+        if (text == "bullet") {
+            text = "\u29BF";
+        }
 
         let plain = this . board
                          . plain (text)
