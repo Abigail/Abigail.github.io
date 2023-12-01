@@ -979,6 +979,10 @@ foreach my $arg (@ARGV) {
         $type = $TYPE_ADVENT;
         $base = "$1/day-$2";
     }
+    elsif ($arg =~ /^(20[0-9]{2})$/) {
+        $type = $TYPE_ADVENT;
+        $base = "$1/index";
+    }
     elsif ($arg =~ /^fc-(.*)/) {
         $type = $TYPE_FC;
         $base = "$1";
