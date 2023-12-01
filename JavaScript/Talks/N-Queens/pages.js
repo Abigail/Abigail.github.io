@@ -3,6 +3,7 @@ let dir = "Talks/N-Queens"
 let pages = [
     ["title",             "Title"],
     ["abigail",           "Me"],
+    ["yapc",              "YAPC"],
     ["intro-01",          "Introduction"],
     ["intro-02",          "Introduction"],
     ["intro-03",          "Introduction"],
@@ -45,6 +46,16 @@ let pages = [
     ["count-02",          "Count"],
     ["count-03",          "Count"],
     ["demo",              "Demo"],
+    ["stats-01",          "Statistics"],
+    ["stats-03",          "Statistics"],
+    ["toast-01",          "The Toast Problem"],
+    ["toast-02",          "The Toast Problem"],
+    ["toast-03",          "The Toast Problem"],
+    ["toast-04",          "The Toast Problem"],
+    ["toast-05",          "The Toast Problem"],
+    ["toast-06",          "The Toast Problem"],
+    ["demo2",             "Demo"],
+    ["stats-02",          "Statistics"],
     ["questions",         "Questions"],
 ]
 
