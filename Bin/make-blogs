@@ -94,6 +94,7 @@ my $LCD_FONT_URL      = "https://fontlibrary.org//face/segment7";
 
 my $PERLFUNC_URL      = "https://perldoc.perl.org/perlfunc";
 my $PERLVAR_URL       = "https://perldoc.perl.org/perlvar";
+my $PERLSYN_URL       = "https://perldoc.perl.org/perlsyn";
 my $PERLDOC_URL       = "https://perldoc.perl.org";
 my $METACPAN_URL      = "https://metacpan.org/pod";
 my $GAWK_URL          = "https://www.gnu.org/software/gawk/manual/gawk.html";
@@ -402,6 +403,9 @@ sub make_link (%args) {
             }
             elsif ($link =~ /^var:/p) {
                 $url = $PERLVAR_URL . "#" . ${^POSTMATCH}
+            }
+            elsif ($link =~ /^syn:/p) {
+                $url = $PERLSYN_URL . "#" . ${^POSTMATCH}
             }
         }
         elsif ($language eq "GNU AWK" || $language eq "AWK") {
