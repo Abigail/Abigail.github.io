@@ -1,0 +1,179 @@
+<html>
+<head>
+<title>Advent Of Code 2023, Day 4: Scratchcards</title>
+<meta charset = "utf-8">
+<link rel  = 'preconnect' href = 'https://fonts.gstatic.com'>
+<link rel = 'stylesheet' href =      'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
+<link rel = 'stylesheet' href = '../../../Styles/main.css'>
+<link rel = 'stylesheet' href = '../../../Styles/AdventOfCode/main.css'>
+<script src = "../../../JavaScript/jquery.js"></script>
+<script id  = 'MathJax-script' async src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.js'></script>
+<script src = '../../../JavaScript/AdventOfCode/main-header.js'></script>
+<script src = '../../../JavaScript/navigation.js'></script>
+<script src = '../../../JavaScript/AdventOfCode/2023/pages.js'></script>
+</head>
+
+<body><h1>Advent Of Code 2023, Day 4: Scratchcards</h1><div class = "byline">
+by Abigail<br>
+<img src = "../../../Images/jan_sluiters.jpg">
+</div>
+
+
+<h2><a href="https://adventofcode.com/2023/day/4">Challenge</a></h2>
+
+<div class = "section">
+<p>In this challenge, we given scratchcards, and drawings for those
+scratchcard, in a format like this:</p>
+
+<pre><code>Card 1: 41 48 83 86 17 | 83 86  6 31 17  9 48 53
+Card 2: 13 32 20 16 61 | 61 30 68 82 17 32 24 19
+Card 3:  1 21 53 59 44 | 69 82 63 72 16 21 14  1
+Card 4: 41 92 73 84 69 | 59 84 76 51 58  5 54 83
+Card 5: 87 83 26 28 32 | 88 30 70 12 93 22 82 36
+Card 6: 31 18 13 56 72 | 74 77 10 23 35 67 36 11
+</code></pre>
+
+<p>Here, the first set of numbers of each game indicate which numbers
+have been drawn for that game. The second set of numbers are the 
+numbers of on the card.</p>
+
+<p>For instance, for first card, the drawn numbers are 
+<code>41</code>, <code>48</code>, <code>83</code>, <code>86</code>, and <code>17</code>. The numbers of the card are
+<code>83</code>, <code>86</code>, <code>6</code>, <code>31</code>, <code>17</code>, <code>9</code>, <code>48</code>, and <code>53</code>.</p>
+</div>
+
+<h4 id = 'part_1'>Part 1</h4>
+
+<div class = "section">
+<p>For the first part, we are interested in how many draw numbers
+appear on the cards. We score points for that: for the first
+drawn number which is on the card, we score <code>1</code> point, and we
+double the score for each subsequent drawn number on the card.
+So, we'd score <code>2</code> for two correct numbers, <code>4</code> for three correct
+numbers etc.</p>
+
+<p>We then need to sum the scores for all the cards.</p>
+
+<p>For instance, for the first card, the numbers <code>48</code>, <code>83</code>, <code>86</code> and
+<code>17</code> appear on the card, for a score of <code>1 * 2 * 2 * 2 = 8</code>. 
+Card 2 has two matches, for a score of <code>2</code>. The other cards score
+<code>2</code>, <code>1</code>, <code>0</code>, and <code>0</code>. The total score will
+be <span class = "answer">13</span>.</p>
+</div>
+
+<h4 id = 'part_2'>Part 2</h4>
+
+<div class = "section">
+<p>In part 2, we need to deal with a new rule. For each card, we check
+how many drawn numbers match. Then we get a copy of the next cards &mdash;
+as many cards as there are matches.</p>
+
+<p>For instance, for the example above, the first card has four matches.
+We then get additional copies of cards 2, 3, 4, and 5. So,
+we now have two instances (one original, and one for the matches on the
+first card) of the second card. We have two matches on each instances of
+the second card, so we get two additional copies of cards 3 and 4.
+We then have four instances of card 3 (the original one, one earned 
+from card 1, and two earned from card 2). The two matches gives
+us <code>4</code> additional copies of both card 4 and card 5.</p>
+
+<p>Playing this out till the end will leave use with <code>1</code> instance of card 1, 
+<code>2</code> instances of card 2, <code>4</code> instances of card 3, <code>8</code> instances of card 4,
+<code>14</code> instances of card 5, and <code>1</code> instance of 6.</p>
+
+<p>The wanted answer will be the total number of cards we will end up
+with. In this example this will be <code>1 + 2 + 4 + 8 + 14 + 1</code> for a
+total of <span class = "answer">30</span>.</p>
+
+<p>For the challenge, we may assume we should never copy cards not
+in the input. (So, for instance, we will never have winning
+numbers on the last card).</p>
+</div>
+
+<h2 id = 'solution'>Solution</h2>
+
+<p>We can solve this by a single pass over the input. The input contains
+some redundant information &mdash; we will not the use the card number.</p>
+
+<p>For part 1, we can just determine the score of each game, and keep
+a running score. </p>
+
+<p>For part 2, we keep an array of the number of instances of the next
+cards we have already collected. And we keep a running total of 
+instances of cards we already have processed. We can do this, because
+we only get copies of cards we have not processed; never of cards
+we aleady processed.</p>
+
+<p>We start off with a couple of initializations:</p>
+
+<pre><code>my $solution_1 = 0;
+my $solution_2 = 0;
+my @cards;
+</code></pre>
+
+<p><code>$solution_1</code> and <code>$solution_2</code> are some accumulators where we collect
+the scores for both parts. <code>@cards</code> will be an array were we track
+how may instances of the next cards we have.</p>
+
+<p>We then loop over the input. In the loop, we start with parsing a
+line of input:</p>
+
+<pre><code>(undef, my ($drawn, $card)) = split /[:|]/;
+my %drawn = map {$_ =&gt; 1}      $drawn =~ /[0-9]+/g;
+my $match = grep {$drawn {$_}} $card  =~ /[0-9]+/g;
+</code></pre>
+
+<p>We <a href="https://perldoc.perl.org/perlfunc#split"><code>split</code></a> the input into three parts, and do the following:</p>
+
+<ul>
+<li>We ditch the part before the colon, as it does not contain
+information we need.</li>
+<li>We extract the numbers between the colon and semi-colon, and
+put those numbers (which are the drawn numbers) in a hash
+(<code>%drawn</code>) so we can quickly check whether a number was drawn.</li>
+<li>We extract the numbers from the part of the line after the
+vertical bar (these numbers are the numbers on the card), and
+count how many of those numbers were drawn. <code>$match</code> will be
+the number of numbers on the card which were drawn.</li>
+</ul>
+
+<p>We can now update our bookkeeping.</p>
+
+<pre><code>$solution_2 += my $instances = 1 + (shift (@cards) // 0);
+
+if ($match) {
+    $solution_1 += 2 ** ($match - 1);
+    $cards [$_] += $instances for 0 .. $match - 1;
+}
+</code></pre>
+
+<p>First, we get the number of previous collected copies of the current 
+card. This is the first item in <code>@cards</code>, so we can just <a href="https://perldoc.perl.org/perlfunc#shift"><code>shift</code></a>
+this number out of the array. (If the array is empty, we use <code>0</code> here).
+We add one, and we get the number of instances of the current card.
+We add this amount of <code>$solution_2</code>.</p>
+
+<p>If the current card didn't have matches, we're done (for this card).
+Else, we calculate the score for part 1, and create copies of the
+next cards for part 2.</p>
+
+<p>Once we have processed all the cards, all that is left to do is to
+print out the solution:</p>
+
+<pre><code>say "Solution 1: $solution_1";
+say "Solution 2: $solution_2";
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/AdventofCode2023/blob/master/Day_04/solution.pl">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+
+<hr id = 'last-line'>
+<div class = 'trailer'>
+<p class = 'prev'><a class = "prev" href = "">&#x261C;</a></p>
+<p class = 'issue'>Please leave any comments as a
+  <a href = 'https://github.com/Abigail/Abigail.github.io/issues'
+     title = 'GitHub issue'>GitHub issue</a>.
+<p class = 'next'><a class = "next" href = "">&#x261E;</a></p>
+</div>
+
+</body>
+</html>
