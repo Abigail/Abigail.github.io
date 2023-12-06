@@ -26,15 +26,11 @@ The second race lasts 15 milliseconds, and has a record of distance
 of 40 millimeters. The final race lasts 30 milliseconds, and has a
 record distance of 200 millimeters.
 
-#### Part 1
+How far the boat travels depends on how long we press the button. If
+the race lasts \(T\) milliseconds, we have \(T + 1\) options to play
+the game, pressing the button \(0, 1, \ldots, T - 1, T\) times.
 
-For part 1, for each race, we want to know the number of ways 
-to beat the record distance. That is, how many ways there are to
-press the button for \(X\) milliseconds and beat the record distance.
-(It is assumed we hold the button for a non-negative integer number of
-milliseconds, not exceeding the length of the race).
-
-Consider the first race. The following options to play the race:
+Consider the first race; we have the following options to play the race:
 
 * Press the button for 0 milliseconds. The boat will then move
   0 millimeters per milliseconds, for 7 milliseconds. Thus,
@@ -60,6 +56,19 @@ Consider the first race. The following options to play the race:
 * Press the button for 7 milliseconds. The boat will then move
   7 millimeters per milliseconds, for 0 milliseconds. Thus,
   it will not move at all, covering a distance of 0 millimeters.
+
+For the third race, we have plotted the distance the boat travels
+compared to how long the button was pressed:
+
+<div id = 'race-3-wrapper'>
+<canvas id = 'race-3'></canvas>
+</div>
+
+#### Part 1
+
+For part 1, for each race, we want to know the number of ways 
+to beat the record distance. That is, how many ways there are to
+press the button for \(X\) milliseconds and beat the record distance.
 
 So, holding the button for 2, 3, 4, or 5 milliseconds will beat
 the record for the first race. Thus, there are 4 ways in total to do so.
@@ -162,3 +171,4 @@ Had the race times be (much) longer, we would have used binary
 search to find the flip over point between not breaking the record
 and breaking the record. But this approach only takes 2 seconds to
 run -- not worth implementing the binary search.
+
