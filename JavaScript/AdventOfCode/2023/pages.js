@@ -8,6 +8,7 @@ let pages = [
     ["day-01", "Trebuchet?!"],
     ["day-02", "Cube Conundrum"],
     ["day-04", "Scratchcards"],
+    ["day-06", "Wait For It"],
 ]
 
 pages . forEach (entry => {

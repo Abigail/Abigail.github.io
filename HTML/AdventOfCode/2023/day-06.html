@@ -1,0 +1,198 @@
+<html>
+<head>
+<title>Advent Of Code 2023, Day 6:</title>
+<meta charset = "utf-8">
+<link rel  = 'preconnect' href = 'https://fonts.gstatic.com'>
+<link rel = 'stylesheet' href =      'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
+<link rel = 'stylesheet' href = '../../../Styles/main.css'>
+<link rel = 'stylesheet' href = '../../../Styles/AdventOfCode/main.css'>
+<script src = "../../../JavaScript/jquery.js"></script>
+<script id  = 'MathJax-script' async src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.js'></script>
+<script src = '../../../JavaScript/AdventOfCode/main-header.js'></script>
+<script src = '../../../JavaScript/navigation.js'></script>
+<script src = '../../../JavaScript/AdventOfCode/2023/pages.js'></script>
+</head>
+
+<body><h1>Advent Of Code 2023, Day 6:</h1><div class = "byline">
+by Abigail<br>
+<img src = "../../../Images/jan_sluiters.jpg">
+</div>
+
+
+<h2><a href="https://adventofcode.com/2023/day/6">Challenge</a></h2>
+
+<div class = "section">
+<p>Today, we are asked in how many ways we can beat a record
+in a boat race. </p>
+
+<p>The race is simple. It will last for a certain amount of time. 
+Boats have a button. When the race starts, you press the button
+for <span class = 'latex-inline'>\(X\)</span> milliseconds, then when you release the button, the boat
+will move <span class = 'latex-inline'>\(X\)</span> millimeters per millisecond till the race ends.
+The boat which goes furthest wins.</p>
+
+<p>As input, we're given a number of races; for each race, we're
+given the duration of the race, and the record achieved for
+that race:</p>
+
+<pre><code>Time:      7  15   30
+Distance:  9  40  200
+</code></pre>
+
+<p>This indicates three races. The first race lasts 9 milliseconds, and
+the record distance was 9 millimeters.
+The second race lasts 15 milliseconds, and has a record of distance
+of 40 millimeters. The final race lasts 30 milliseconds, and has a
+record distance of 200 millimeters.</p>
+</div>
+
+<h4 id = 'part_1'>Part 1</h4>
+
+<div class = "section">
+<p>For part 1, for each race, we want to know the number of ways 
+to beat the record distance. That is, how many ways there are to
+press the button for <span class = 'latex-inline'>\(X\)</span> milliseconds and beat the record distance.
+(It is assumed we hold the button for a non-negative integer number of
+milliseconds, not exceeding the length of the race).</p>
+
+<p>Consider the first race. The following options to play the race:</p>
+
+<ul>
+<li>Press the button for 0 milliseconds. The boat will then move
+0 millimeters per milliseconds, for 7 milliseconds. Thus,
+it will not move at all, covering a distance of 0 millimeters.</li>
+<li>Press the button for 1 millisecond. The boat will then move
+1 millimeters per milliseconds, for 6 milliseconds. 
+It will cover a distance of 6 millimeters.</li>
+<li>Press the button for 2 millisecond. The boat will then move
+2 millimeters per milliseconds, for 5 milliseconds. 
+It will cover a distance of 10 millimeters.</li>
+<li>Press the button for 3 millisecond. The boat will then move
+3 millimeters per milliseconds, for 4 milliseconds. 
+It will cover a distance of 12 millimeters.</li>
+<li>Press the button for 4 millisecond. The boat will then move
+4 millimeters per milliseconds, for 3 milliseconds. 
+It will cover a distance of 12 millimeters.</li>
+<li>Press the button for 5 millisecond. The boat will then move
+5 millimeters per milliseconds, for 2 milliseconds. 
+It will cover a distance of 10 millimeters.</li>
+<li>Press the button for 6 millisecond. The boat will then move
+6 millimeters per milliseconds, for 1 milliseconds. 
+It will cover a distance of 6 millimeters.</li>
+<li>Press the button for 7 milliseconds. The boat will then move
+7 millimeters per milliseconds, for 0 milliseconds. Thus,
+it will not move at all, covering a distance of 0 millimeters.</li>
+</ul>
+
+<p>So, holding the button for 2, 3, 4, or 5 milliseconds will beat
+the record for the first race. Thus, there are 4 ways in total to do so.</p>
+
+<p>The final answer will be the product of all the ways each of the
+races can be won. As there are 8 ways to win the second race,
+and 9 ways to win the final race, the answer will be
+<code>4 * 8 * 9 ==</code> <span class = "answer">288</span>.</p>
+</div>
+
+<h4 id = 'part_2'>Part 2</h4>
+
+<div class = "section">
+<p>In part 2, we have to consider just one race. We have to ignore the
+spaces between the race time and record distances. So, for the
+example, he have a race time of 71530 milliseconds, with a record
+distances of 940200 millimeters. Pushing the button for at least
+14 milliseconds, and at most 71516 milliseconds beats the record.
+Hence, the answer is <span class = 'answer'>71503</span>.</p>
+</div>
+
+<h2 id = 'solution'>Solution</h2>
+
+<div class = "section">
+<p>Our first observation is that the distances covered by the boat
+is symmetric. That is, if the race lasts for <span class = 'latex-inline'>\(T\)</span> milliseconds,
+and we push the button for <span class = 'latex-inline'>\(X\)</span> milliseconds, with
+<span class = 'latex-inline'>\(0 \leq X \leq T\)</span>, we cover as much distance as if we would
+have pressed the button for <span class = 'latex-inline'>\(T - X\)</span> milliseconds.
+Hence, under the assumption we are able to break the record,
+we only do not break the record if we push the button not long
+enough, or too long. Furthermore, the times were we break the
+record are all continuous. (That is, we will not have times
+<span class = 'latex-inline'>\(T_1 &lt; T_2 &lt; T_3\)</span> were pressing the button for <span class = 'latex-inline'>\(T_1\)</span> or
+<span class = 'latex-inline'>\(T_3\)</span> milliseconds breaks the record, but pressing it for
+<span class = 'latex-inline'>\(T_2\)</span> milliseconds does not.)</p>
+
+<p>So, what we will do is start counting from <span class = 'latex-inline'>\(0\)</span> upwards, until we
+find the shortest time that will break the record. For each time
+we do not break the record, we subtract <span class = 'latex-inline'>\(2\)</span> from the number
+of possible wins &mdash; a number we initialized as one more than the
+number of milliseconds the game lasts for.</p>
+
+<p>We start off with reading in the input, and doing some
+initializations:</p>
+
+<pre><code>my $solution_1 = 1;
+my $solution_2 = 0;
+
+my @times     = &lt;&gt; =~ /\d+/ga;
+my @distances = &lt;&gt; =~ /\d+/ga;
+
+push @times     =&gt; join "" =&gt; @times;
+push @distances =&gt; join "" =&gt; @distances;
+</code></pre>
+
+<p>This just reads in the times into the array <code>@times</code>, and the distances
+in the array <code>@distances</code>. We then push the values for part 2 to those
+arrays &mdash; we get the values by just <a href="https://perldoc.perl.org/perlfunc#join"><code>join</code></a>ing the other values
+together.</p>
+
+<p>Next step is a small helper sub to determine the distance the
+boat moves, given a length of time we press its button, and the
+race length:</p>
+
+<pre><code>sub distance ($pressed, $race_length) {
+    ($race_length - $pressed) * $pressed;
+}
+</code></pre>
+
+<p>Now, we just loop over the different races, iterate upwards from
+<span class = 'latex-inline'>\(0\)</span> until we break the record, and do some bookkeeping to get
+the wanted answers:</p>
+
+<pre><code>foreach my $race (keys @times) {
+    my $time     = $times     [$race];
+    my $distance = $distances [$race];
+    my $wins     = $time + 1;
+    foreach my $t (0 .. $time) {
+        $distance &lt; distance ($t, $time) ? last : ($wins -= 2);
+    }
+    $solution_1 *= $wins if $race != $#times;
+    $solution_2  = $wins if $race == $#times;
+}
+</code></pre>
+
+<p>All that is left to do is to print out the solution:</p>
+
+<pre><code>say "Solution 1: $solution_1";
+say "Solution 2: $solution_2";
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/AdventofCode2023/blob/master/Day_06/solution.pl">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3 id = 'binary_search'>Binary Search</h3>
+
+<p>Had the race times be (much) longer, we would have used binary
+search to find the flip over point between not breaking the record
+and breaking the record. But this approach only takes 2 seconds to
+run &mdash; not worth implementing the binary search.</p>
+
+<hr id = 'last-line'>
+<div class = 'trailer'>
+<p class = 'prev'><a class = "prev" href = "">&#x261C;</a></p>
+<p class = 'issue'>Please leave any comments as a
+  <a href = 'https://github.com/Abigail/Abigail.github.io/issues'
+     title = 'GitHub issue'>GitHub issue</a>.
+<p class = 'next'><a class = "next" href = "">&#x261E;</a></p>
+</div>
+
+</body>
+</html>
