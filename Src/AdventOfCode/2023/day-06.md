@@ -1,4 +1,4 @@
-# Advent Of Code 2023, Day 6:
+# Advent Of Code 2023, Day 6: Wait For It
 
 ## [Challenge](https://adventofcode.com/2023/day/6)
 
