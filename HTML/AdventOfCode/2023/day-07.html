@@ -1,0 +1,262 @@
+<html>
+<head>
+<title>Advent Of Code 2023, Day 7: Camel Cards</title>
+<meta charset = "utf-8">
+<link rel  = 'preconnect' href = 'https://fonts.gstatic.com'>
+<link rel = 'stylesheet' href =      'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
+<link rel = 'stylesheet' href = '../../../Styles/main.css'>
+<link rel = 'stylesheet' href = '../../../Styles/AdventOfCode/main.css'>
+<script src = "../../../JavaScript/jquery.js"></script>
+<script id  = 'MathJax-script' async src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.js'></script>
+<script src = '../../../JavaScript/AdventOfCode/main-header.js'></script>
+<script src = '../../../JavaScript/navigation.js'></script>
+<script src = '../../../JavaScript/AdventOfCode/2023/pages.js'></script>
+</head>
+
+<body><h1>Advent Of Code 2023, Day 7: Camel Cards</h1><div class = "byline">
+by Abigail<br>
+<img src = "../../../Images/jan_sluiters.jpg">
+</div>
+
+
+<h2><a href="https://adventofcode.com/2023/day/7">Challenge</a></h2>
+
+<div class = "section">
+<p>Today we are going to play a game of Camel Cards, which looks
+like a simplified version of <a href="https://en.wikipedia.org/wiki/Poker">Poker</a>.</p>
+
+<p>Our main task will be ordering a set of hands, based on their
+strength. Hands consists of five cards, each one of <code>A</code>, <code>K</code>, <code>Q</code>, <code>J</code>, <code>T</code>,
+<code>9</code>, <code>8</code>, <code>7</code>, <code>6</code>, <code>5</code>, <code>4</code>, <code>3</code>, or <code>2</code>, where <code>A</code> is the strongest,
+and <code>2</code> the weakest.</p>
+
+<p>Each hand is of a specific type. The types are, from strongest to
+weakest:</p>
+
+<ul>
+<li><em>Five of a Kind</em>: All cards are the same.</li>
+<li><em>Four of a Kind</em>: Four cards are the same; the fifths is different.</li>
+<li><em>Full House</em>: Three cards are the same. The other two are identical,
+but different from the first three.</li>
+<li><em>Three of a Kind</em>: Three cards are the same. The other two are different
+from the other cards in the hand.</li>
+<li><em>Two Pair</em>: Two cards are the same. Two other cards are also the
+same (and different from the first pair). The fifth card is different
+from all the others.</li>
+<li><em>One Pair</em>: Two cars are the same, the remaining three are all different
+from all other cards.</li>
+<li><em>High Card</em>: All cards are different.</li>
+</ul>
+
+<p>This is the same order hands in <a href="https://en.wikipedia.org/wiki/Poker">Poker</a> are ordered, except that
+we do not consider flushes and straights.</p>
+
+<p>When comparing two hands, we first compare their types. If they are different,
+the hand with the strongest type "wins". If they are equal, we compare
+their cards, <em>in the order they are given</em>, until we get a pair of cards
+which are different: the hand with the highest card wins.</p>
+
+<p>Some examples:
+* The hand <code>KK677</code> wins from hand <code>32T3K</code>, as the
+  former is of type <em>Two pair</em>, and the latter <em>One Pair</em>.
+* The hand <code>KK677</code> wins from <code>KTJJT</code>. They are both of type
+  <em>Two Pair</em>. Their first card (<code>K</code>) is equal, but the former
+  hand has a better second card than the latter (<code>K</code> vs <code>T</code>).
+* The hand <code>QQQJA</code> wins from hand <code>T55J5</code>. They are both <em>Three of a Kind</em>,
+  but the <code>Q</code> wins over the <code>T</code>.</p>
+
+<p>Our input consists of hands and their bids, like this:</p>
+
+<pre><code>32T3K 765
+T55J5 684
+KK677 28
+KTJJT 220
+QQQJA 483
+</code></pre>
+</div>
+
+<h4 id = 'part_1'>Part 1</h4>
+
+<div class = "section">
+<p>In part 1, we are asked to rank the cards based on their strength. This gives
+each hand a rank, starting from <code>1</code> for the weakest hand, counting upwards.
+The score of each hand is product of their rank, and their bid. The
+solution to the excercise is the sum of these products.</p>
+
+<p>For the example above, the hands are ranked as:</p>
+
+<ol>
+<li><code>32T3K</code>, for a score of <code>1 * 765 ==  765</code>.</li>
+<li><code>KTJJT</code>, for a score of <code>2 * 220 ==  440</code>.</li>
+<li><code>KK677</code>, for a score of <code>3 *  28 ==   84</code>.</li>
+<li><code>T55J5</code>, for a score of <code>4 * 684 == 2736</code>.</li>
+<li><code>QQQJA</code>, for a score of <code>5 * 483 == 2415</code>.</li>
+</ol>
+
+<p>The answer is then
+<code>765 + 440 + 84 + 2736 + 2415 ==</code> <span class = 'answer'>6440</span>.</p>
+</div>
+
+<h4 id = 'part_2'>Part 2</h4>
+
+<div class = "section">
+<p>In part 2, we need to do more or less the same, except that Jacks
+(the cards <code>J</code>) act as jokers: for determining their type, a <code>J</code>
+can be substituted for anything.</p>
+
+<p>When comparing cards though, a <code>J</code> is weaker than any other card.</p>
+
+<p>This changes a few things:</p>
+
+<ul>
+<li><code>32T3K</code> remains the weakest card. It doesn't contain any jokers.</li>
+<li>The hand <code>KK677</code> no longer wins from <code>KTJJT</code>. The former is still of
+type <em>Two Pair</em>, but the latter is now of type <em>Four of a Kind</em>.</li>
+<li><code>KTJJT</code> is now the strongest hand. All of <code>T55J5</code>, <code>KK677</code> and <code>QQQJA</code>
+are <em>Four of a Kind</em>, but <code>KK677</code> has the highest first card.</li>
+</ul>
+
+<p>The hands are now ranked as:</p>
+
+<ol>
+<li><code>32T3K</code>, for a score of <code>1 * 765 ==  765</code>.</li>
+<li><code>KK677</code>, for a score of <code>2 *  28 ==   56</code>.</li>
+<li><code>T55J5</code>, for a score of <code>3 * 684 == 2052</code>.</li>
+<li><code>QQQJA</code>, for a score of <code>4 * 483 == 1932</code>.</li>
+<li><code>KTJJT</code>, for a score of <code>5 * 220 == 1100</code>.</li>
+</ol>
+
+<p>This leads to a score of <span class = 'answer'>5905</span>.</p>
+</div>
+
+<h2 id = 'solution'>Solution</h2>
+
+<p>We start off with defining a subroutine which classifies a hand.
+We define a bunch of constants to be returned:</p>
+
+<pre><code>my $HIGH_CARD       = 0;
+my $ONE_PAIR        = $NOTHING         + 1;
+my $TWO_PAIR        = $ONE_PAIR        + 1;
+my $THREE_OF_A_KIND = $TWO_PAIR        + 1;
+my $FULL_HOUSE      = $THREE_OF_A_KIND + 1;
+my $FOUR_OF_A_KIND  = $FULL_HOUSE      + 1;
+my $FIVE_OF_A_KIND  = $FOUR_OF_A_KIND  + 1;
+</code></pre>
+
+<p>The classification sub takes two parameters, a hand to be classified,
+and a wild card option. If the latter parameter is true, we consider
+the <code>J</code> cards to be jokers.</p>
+
+<pre><code>sub classify ($hand, $wild = 0) {
+    my %cards;
+    $cards {$_} ++ for split // =&gt; $hand;
+
+    my $jokers = $wild &amp;&amp; $cards {J} ? delete $cards {J} : 0;
+
+    my @count = sort {$b &lt;=&gt; $a} values %cards;
+
+    #
+    # Add jokers to the cards appearing most frequently
+    #
+    $count [0] += $jokers;
+
+    return $FIVE_OF_A_KIND  if $count [0] == 5;
+    return $FOUR_OF_A_KIND  if $count [0] == 4;
+    return $FULL_HOUSE      if $count [0] == 3 &amp;&amp; $count [1] == 2;
+    return $THREE_OF_A_KIND if $count [0] == 3 &amp;&amp; $count [1] == 1;
+    return $TWO_PAIR        if $count [0] == 2 &amp;&amp; $count [1] == 2;
+    return $ONE_PAIR        if $count [0] == 2 &amp;&amp; $count [1] == 1;
+    return $HIGH_CARD       if $count [0] == 1;
+    die "Huh? ($hand)";
+}
+</code></pre>
+
+<p>We count the occurrences of each card. If we need to consider any
+jokers, we set aside the jokers. We sort the number of occurrences,
+then add the number of jokers to the most frequent occurring card.
+We can then classify the type of the based purely based on how often
+the most and second most frequently occurring cards appear.</p>
+
+<p>To break ties when comparing hands, we want to quickly compare
+them. To do this, we replace <code>A</code>, <code>K</code>, <code>Q</code>, <code>J</code>, and <code>T</code> with characters
+which sort in the order we need. For part 1, this will be <code>E</code>, <code>D</code>, <code>C</code>,
+<code>B</code> and <code>A</code> (they all sort before the digits). For part 2, this will 
+be <code>E</code>, <code>D</code>, <code>C</code>, <code>*</code>, and <code>A</code>. <code>*</code> sorts before any capital letter or
+digit. This way, ties can be broken by just comparing hands with 
+<code>cmp</code>.</p>
+
+<p>We are now going to read in the input. For each hand, we store its
+bid, the classification with and without jokers, and with the two
+replacements mentioned above:</p>
+
+<pre><code>my %hands;
+while (&lt;&gt;) {
+    my ($hand, $bid) = split;
+    $hands {$hand} = [$bid, classify ($hand, 0), $hand =~ y/AKQJT/EDCBA/r,
+                            classify ($hand, 1), $hand =~ y/AKQJT/EDC*A/r];
+}
+</code></pre>
+
+<p>For instance, the example input would result in:</p>
+
+<pre><code>%hands = (
+    32T3K =&gt; [765, $ONE_PAIR,        "32A3D", $ONE_PAIR,       "32A3D"],
+    T55J5 =&gt; [684, $THREE_OF_A_KIND, "A55B5", $FOUR_OF_A_KIND, "A55*5"],
+    KK677 =&gt; [ 28, $TWO_PAIR,        "DD677", $TWO_PAIR,       "DD677"],
+    KTJJT =&gt; [220, $TWO_PAIR,        "DABBA", $FOUR_OF_A_KIND, "DA**A"],
+    QQQJA =&gt; [483, $THREE_OF_A_KIND, "CCCBE", $FOUR_OF_A_KIND, "CCC*E"],
+);
+</code></pre>
+
+<p>We can now easily sort the hands, for part 1 and part 2:</p>
+
+<pre><code>my @hands_1 = sort {$hands {$a} [1] &lt;=&gt; $hands {$b} [1] ||
+                    $hands {$a} [2] cmp $hands {$b} [2]}
+              keys %hands;
+my @hands_2 = sort {$hands {$a} [3] &lt;=&gt; $hands {$b} [3] ||
+                    $hands {$a} [4] cmp $hands {$b} [4]}
+              keys %hands;
+</code></pre>
+
+<p>And calculate the score:</p>
+
+<pre><code>while (my ($index, $hand) = each @hands_1) {
+    $solution_1 += ($index + 1) * $hands {$hand} [0];
+}
+while (my ($index, $hand) = each @hands_2) {
+    $solution_2 += ($index + 1) * $hands {$hand} [0];
+}
+</code></pre>
+
+<p>Or, to not repeat ourselves, we can combine this as:</p>
+
+<pre><code>foreach my ($solution =&gt; $offset) ($solution_1 =&gt; 1, $solution_2 =&gt; 3) {
+    my @hands = sort {$hands {$a} [$offset]     &lt;=&gt; $hands {$b} [$offset] ||
+                      $hands {$a} [$offset + 1] cmp $hands {$b} [$offset + 1]}
+                keys %hands;
+
+    while (my ($index, $hand) = each @hands) {
+        $solution += ($index + 1) * $hands {$hand} [0];
+    }
+}
+</code></pre>
+
+<p>All that is left to do is to print out the solution:</p>
+
+<pre><code>say "Solution 1: $solution_1";
+say "Solution 2: $solution_2";
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/AdventofCode2023/blob/master/Day_07/solution.pl">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+
+<hr id = 'last-line'>
+<div class = 'trailer'>
+<p class = 'prev'><a class = "prev" href = "">&#x261C;</a></p>
+<p class = 'issue'>Please leave any comments as a
+  <a href = 'https://github.com/Abigail/Abigail.github.io/issues'
+     title = 'GitHub issue'>GitHub issue</a>.
+<p class = 'next'><a class = "next" href = "">&#x261E;</a></p>
+</div>
+
+</body>
+</html>
