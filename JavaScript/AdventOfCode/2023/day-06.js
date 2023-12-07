@@ -1,25 +1,41 @@
 const title_font_size = 16;
 
-const time = 30;
+const time   =  30;
+const record = 200;
+
 const data_race_3 =
     [...Array (time + 1) . keys ()]
                          . map (i => {return {x: i, y: i * (time - i)}});
+const data_race_record_3 =
+    [{x: 0,    y: record},
+     {x: time, y: record}];
+
+const point_color = function (context) {
+    const index = context . dataIndex;
+    const value = context . dataset . data [index] . y;
+    console . log (value);
+    return value <= record ? 'red' : 'green'
+};
 
 const dataset_race_3 = {
-    backgroundColor: 'red',
-    borderColor:     'red',
-    data: data_race_3,
-    parsing: {
-        xAxisKey: 'x',
-        yAxisKey: 'y'
-    }
+    type:            'scatter',
+    data:             data_race_3,
+    backgroundColor:  point_color,
+    borderColor:      point_color,
+};
+
+const dataset_race_3_record = {
+    type:            'line',
+    data:             data_race_record_3,
+    borderColor:     'purple',
+    pointStyle:       false,
 };
 
 
 const race_3_config = {
-    type: 'scatter',
     data: {
-        datasets: [dataset_race_3]
+        datasets: [dataset_race_3,
+                   dataset_race_3_record]
     },
     options: {
         scales: {

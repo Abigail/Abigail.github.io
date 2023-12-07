@@ -58,7 +58,9 @@ Consider the first race; we have the following options to play the race:
   it will not move at all, covering a distance of 0 millimeters.
 
 For the third race, we have plotted the distance the boat travels
-compared to how long the button was pressed:
+compared to how long the button was pressed. The record it drawn
+in purple. Green points indicate boats moving past the record,
+while red points indicate boats not breaking the record.
 
 <div id = 'race-3-wrapper'>
 <canvas id = 'race-3'></canvas>
