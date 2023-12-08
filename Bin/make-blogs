@@ -29,12 +29,14 @@ my  $DIR_FC         = "Feature-Compare";
 my  $DIR_ADVENT     = "AdventOfCode";
 my  $DIR_TALK       = "Talks";
 my  $DIR_TRAPPED    = "Trapped";
+my  $DIR_SKATING    = "Sports/Speedskating";
 
 our $TYPE_PWC       = 1;
-our $TYPE_FC        = $TYPE_PWC    + 1;
-our $TYPE_ADVENT    = $TYPE_FC     + 1;
-our $TYPE_TALK      = $TYPE_ADVENT + 1;
-our $TYPE_TRAPPED   = $TYPE_TALK   + 1;
+our $TYPE_FC        = $TYPE_PWC     + 1;
+our $TYPE_ADVENT    = $TYPE_FC      + 1;
+our $TYPE_TALK      = $TYPE_ADVENT  + 1;
+our $TYPE_TRAPPED   = $TYPE_TALK    + 1;
+our $TYPE_SKATING   = $TYPE_TRAPPED + 1;
 
 my  $INFO_DIR       = 0;
 my  $INFO_NAV       = 1;
@@ -69,6 +71,12 @@ my $TYPE_INFO = {
         $INFO_NAV      =>  "Trapped/pages",
         $INFO_UP       =>  "../..",
         $INFO_JS       =>  ["piece_list", "trapped", "pieces", "boxset"],
+    },
+    $TYPE_SKATING  => {
+        $INFO_DIR      =>  $DIR_SKATING,
+        $INFO_UP       => "../../..",
+        $INFO_NAV      => "Sports/Speedskating/pages",
+        $INFO_JS       =>  ["skaters"],
     },
 };
 
@@ -207,7 +215,7 @@ sub header ($title, $directives) {
             push @files => map {s!^/+!!r} map {"$_/svg-grid"} @dirs;
         }
 
-        (@files, "$dir/$base", "$dir/$base-*")
+        (@files, "$dir/$base", "$dir/$base-*", @extra)
     };
 
     my @style_files  = @files;
