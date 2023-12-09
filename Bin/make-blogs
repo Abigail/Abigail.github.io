@@ -76,7 +76,7 @@ my $TYPE_INFO = {
         $INFO_DIR      =>  $DIR_SKATING,
         $INFO_UP       => "../../..",
         $INFO_NAV      => "Sports/Speedskating/pages",
-        $INFO_JS       =>  ["skaters"],
+        $INFO_JS       =>  ["skaters", "rinks", "progression"],
     },
 };
 
@@ -215,7 +215,7 @@ sub header ($title, $directives) {
             push @files => map {s!^/+!!r} map {"$_/svg-grid"} @dirs;
         }
 
-        (@files, "$dir/$base", "$dir/$base-*", @extra)
+        (@files, "$dir/$base", "$dir/$base-*")
     };
 
     my @style_files  = @files;

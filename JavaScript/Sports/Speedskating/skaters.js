@@ -1,7 +1,6 @@
 let skaters = {}
 
 function add_skater (key, name, nation) {
-    console . log ("add_skater (" + key + ", " + name + ", " + nation + ")")
     skaters [key]          = {}
     skaters [key] . name   = name;
     skaters [key] . nation = nation;
@@ -16,7 +15,7 @@ add_skater ("eden",        "Jaap Eden",            "Norway")
 add_skater ("ericson",     "Frithiof Ericson",     "Sweden")
 add_skater ("fish",        "Graeme Fish",          "Canada")
 add_skater ("gustafson",   "Thomas Gustafson",     "Sweden")
-add_skater ("guttormsen",  "Per Willy Guttormsen", "Norway"
+add_skater ("guttormsen",  "Per Willy Guttormsen", "Norway")
 add_skater ("hedrick",     "Chad Hedrick",         "USA")
 add_skater ("heiden",      "Eric Heiden",          "USA")
 add_skater ("johannesen",  "Knut Johannesen",      "Norway")
