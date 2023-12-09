@@ -1,0 +1,159 @@
+<html>
+<head>
+<title>Advent Of Code 2023, Day 9: Mirage Maintenance</title>
+<meta charset = "utf-8">
+<link rel  = 'preconnect' href = 'https://fonts.gstatic.com'>
+<link rel = 'stylesheet' href =      'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
+<link rel = 'stylesheet' href = '../../../Styles/main.css'>
+<link rel = 'stylesheet' href = '../../../Styles/AdventOfCode/main.css'>
+<script src = "../../../JavaScript/jquery.js"></script>
+<script id  = 'MathJax-script' async src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.js'></script>
+<script src = '../../../JavaScript/AdventOfCode/main-header.js'></script>
+<script src = '../../../JavaScript/navigation.js'></script>
+<script src = '../../../JavaScript/AdventOfCode/2023/pages.js'></script>
+</head>
+
+<body><h1>Advent Of Code 2023, Day 9: Mirage Maintenance</h1><div class = "byline">
+by Abigail<br>
+<img src = "../../../Images/jan_sluiters.jpg">
+</div>
+
+
+<h2><a href="https://adventofcode.com/2023/day/9">Challenge</a></h2>
+
+<div class = "section">
+<p>Today, we need to predict numbers given a sequence.</p>
+
+<p>Our input will be sets of numbers, like this:</p>
+
+<pre><code>0 3 6 9 12 15
+1 3 6 10 15 21
+10 13 16 21 30 45
+</code></pre>
+
+<p>We are going to make predictions for each line.</p>
+
+<p>Consider the following sequence of numbers (third line of the example):</p>
+
+<pre><code>10 13 16 21 30 45
+</code></pre>
+
+<p>We can calculate a next sequence by looking at the differences of
+subsequent numbers:</p>
+
+<pre><code>10  13  16  21  30  45
+   3   3   5   9  15
+</code></pre>
+
+<p>Repeat this until we reach only <code>0</code>s:</p>
+
+<pre><code>10  13  16  21  30  45
+   3   3   5   9  15
+     0   2   4   6
+       2   2   2
+         0   0
+</code></pre>
+</div>
+
+<h4 id = 'part_1'>Part 1</h4>
+
+<div class = "section">
+<p>For part 1, we add a <code>0</code> at the end of the bottom row, and work
+backwards to the top, to see which value should be added there
+to get a <code>0</code> at the bottom:</p>
+
+<pre><code>10  13  16  21  30  45  <span class = "focus">68</span>
+   3   3   5   9  15  <span class = "focus">23</span>
+     0   2   4   6   <span class = "focus">8</span>
+       2   2   2   <span class = "focus">2</span>
+         0   0   <span class = "focus">0</span>
+</code></pre>
+
+<p>The score for this row will the value at the end of the top row,
+hence <code>68</code>. The solution for part 1 will be the sum of the scores
+of each line of the input. For the example input, this will be
+<span class = 'answer'>114</span>.</p>
+</div>
+
+<h4 id = 'part_2'>Part 2</h4>
+
+<div class = "section">
+<p>For part 2, we do the same, except we want to predict a <em>previous</em>
+number. So, we prepend a <code>0</code> before the last line, and calculate the
+numbers up to the top:</p>
+
+<pre><code><span class = "focus">5</span>  10  13  16  21  30  45
+  <span class = "focus">5</span>   3   3   5   9  15
+   <span class = "focus">-2</span>   0   2   4   6
+      <span class = "focus">2</span>   2   2   2
+        <span class = "focus">0</span>   0   0
+</code></pre>
+
+<p>The score for this line will the value in the top left, <code>5</code>.
+Just like in part 1, we need to sum the scores of each line.
+For the example input, the answer will be <span class = 'answer'>2</span>.</p>
+</div>
+
+<h2 id = 'solution'>Solution</h2>
+
+<p>It turns out that this is a really simple challenge. We don't need to
+calculate all the intermediate predicted values. The predicted
+value at the end of the top row will be the sum of the values of
+the calculated rows. The predicted value at the beginning of the
+top row can be found by alternating adding and subtracting the
+first values of the calculated row.</p>
+
+<p>Take this example again:</p>
+
+<pre><code>10  13  16  21  30  45
+   3   3   5   9  15
+     0   2   4   6
+       2   2   2
+         0   0
+</code></pre>
+
+<p>The sum of the last values is <code>45 + 15 + 6 + 2 + 0 == 68</code>, which
+is what we calculated above. Alternating adding and subtracting
+the first values gives us: <code>10 - 3 + 0 - 2 + 0 == 5</code>, also
+the number we calculated.</p>
+
+<p>We can just loop over the input, and for each line, split on white
+space, so we have the set of numbers, repeatedly subtract subsequent
+numbers until we reach all <code>0</code>s, and then adding/subtracting the
+first and last values of each row:</p>
+
+<pre><code>while (&lt;&gt;) {
+    my @numbers  = split;
+    my $sign     = 1;
+    $solution_1 += $numbers [-1];
+    $solution_2 += $numbers  [0] * $sign;  
+    while (grep {$_} @numbers) {
+        @numbers     = map {$numbers [$_] - $numbers [$_ - 1]} 1 .. $#numbers;
+        $solution_1 += $numbers [-1];
+        $solution_2 += $numbers  [0] * ($sign *= -1);  
+    }
+}
+</code></pre>
+
+<p>Note that we assume enough numbers are given so reach all <code>0</code>s before running
+out of numbers.</p>
+
+<p>All that is left to do is to print out the solution:</p>
+
+<pre><code>say "Solution 1: $solution_1";
+say "Solution 2: $solution_2";
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/AdventofCode2023/blob/master/Day_09/solution.pl">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+
+<hr id = 'last-line'>
+<div class = 'trailer'>
+<p class = 'prev'><a class = "prev" href = "">&#x261C;</a></p>
+<p class = 'issue'>Please leave any comments as a
+  <a href = 'https://github.com/Abigail/Abigail.github.io/issues'
+     title = 'GitHub issue'>GitHub issue</a>.
+<p class = 'next'><a class = "next" href = "">&#x261E;</a></p>
+</div>
+
+</body>
+</html>

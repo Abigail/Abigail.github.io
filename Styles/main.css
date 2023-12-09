@@ -35,6 +35,10 @@ pre {
     color:                         lightgreen;
 }
 
+pre code span.focus {
+    color:                                red;
+}
+
 h1:first-of-type {
     text-align:                        center;
     font-size:                           250%;

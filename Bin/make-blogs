@@ -813,6 +813,11 @@ sub post_process ($text, $directives) {
     $text =~ s/!!(\w+)!!\s*<(\w+)/<$2 class = "$1"/g;
 
     #
+    # Handle %F%...%% to become a focus span
+    #
+    $text =~ s {%F%([^%]+)%%} {<span class = "focus">$1</span>}g;
+
+    #
     # Create ref links not processed
     #
     $text = create_ref_links ($text);
