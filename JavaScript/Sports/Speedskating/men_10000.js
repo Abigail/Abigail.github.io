@@ -43,6 +43,43 @@ function date2value (yyyymmdd) {
     return year + diy / (365 + is_leap)
 }
 
+//
+// format_rink (context)
+//
+// Given a tooltip context, format the rink
+//
+function format_rink (context) {
+    const rinks = window . rinks
+    const rink  = context . raw . rink
+    const info  = rinks [rink]
+    const name  = info . name
+    const city  = info . city
+
+    return name + " -- " + city
+}
+
+//
+// format_record (context)
+//
+// Given a tooltip context, format the time and skater
+//
+function format_record (context) {
+    const skaters = window . skaters
+    const skater  = context . raw . skater
+    const time    = context . raw . time
+    const info    = skaters [skater]
+    if (!info == undefined) {
+        console . log (skater)
+        return ""
+    }
+    const name    = info . name
+    const nation  = info . nation
+
+    return time + " " + name + ", " + nation
+}
+
+
+
 function make_config (gender, distance) {
     const progression = window . progression [gender] [distance]
 
@@ -51,8 +88,12 @@ function make_config (gender, distance) {
     //
     const time_data   = progression . map ((item) => {
         return {
-            x: date2value (item . date),
-            y: time2sec   (item . time)
+            x:      date2value (item . date),
+            y:      time2sec   (item . time),
+            date:   item . date,
+            time:   item . time,
+            skater: item . skater,
+            rink:   item . rink,
         }
     })
 
@@ -91,6 +132,21 @@ function make_config (gender, distance) {
                         }
                     }
                 },
+            },
+            plugins: {
+                tooltip: {
+                    callbacks: {
+                        title: function (context) {
+                            return ""
+                        },
+                        beforeLabel: function (context) {
+                            const raw = context . raw
+                            return raw . date
+                        },
+                        label:      format_record,
+                        afterLabel: format_rink,
+                    }
+                }
             }
         }
     }

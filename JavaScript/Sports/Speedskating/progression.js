@@ -3,14 +3,14 @@ let progression = {}
 let sex      = ""
 let distance =  0
 
-function add_record (name, time, date, venue, city) {
+function add_record (skater, time, date, rink, city) {
     progression [sex]            ||= {}
     progression [sex] [distance] ||= []
     progression [sex] [distance] . push ({
-        name:  name,
-        time:  time,
-        date:  date,
-        venue: venue,
+        skater: skater,
+        time:   time,
+        date:   date,
+        rink:   rink,
     })
 }
 
@@ -31,8 +31,8 @@ add_record ("ballangrud", "17:14.4",  "1938-02-06", "davos")
 add_record ("mathiesen",  "17:01.5",  "1940-03-03", "hamar stadion")
 add_record ("andersen",   "16:57.4",  "1949-02-06", "davos")
 add_record ("andersen",   "16:51.4",  "1952-01-27", "gjovik")
-add_record ("andersen",   "16:32.6",  "1952-02-10", "hamar_station")
-add_record ("johannesen", "15:46.6",  "1960-02-27", "squaw_valley")
+add_record ("andersen",   "16:32.6",  "1952-02-10", "hamar stadion")
+add_record ("johannesen", "15:46.6",  "1960-02-27", "squaw valley")
 add_record ("nilsson",    "15:33.0",  "1963-02-24", "karuizawa")
 add_record ("maier",      "15:32.2",  "1966-02-06", "bislett")
 add_record ("maier",      "15:31.8",  "1967-02-28", "inzell")
@@ -46,7 +46,7 @@ add_record ("varlamov",   "14:52.73", "1975-03-25", "medeo")
 add_record ("stensen",    "14:50.31", "1976-01-25", "bislett")
 add_record ("kleine",     "14:43.92", "1976-03-13", "inzell")
 add_record ("stensen",    "14:38.08", "1976-03-21", "medeo")
-add_record ("lyoskin",    "14:34.33", "1977-04-03", "medeo")
+add_record ("lyoshkin",   "14:34.33", "1977-04-03", "medeo")
 add_record ("heiden",     "14:28.13", "1980-02-23", "lake placid")
 add_record ("ogloblin",   "14:26.71", "1980-03-29", "medeo")
 add_record ("gustafson",  "14:23.59", "1982-01-31", "bislett")
