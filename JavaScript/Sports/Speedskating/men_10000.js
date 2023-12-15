@@ -190,6 +190,6 @@ function make_config (gender, distance) {
 window . addEventListener ("load", function () {
     const chart = new Chart (
         document . getElementById ('men_10000'),
-        make_config ("M", 10000)
+        make_config ("men", 10000)
     );
 })
