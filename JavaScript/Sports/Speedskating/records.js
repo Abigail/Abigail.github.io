@@ -188,8 +188,16 @@ function make_config (gender, distance) {
 }
 
 window . addEventListener ("load", function () {
+    const params   = new URLSearchParams (window . location . search)
+    const sex      = params . get ('sex')
+    const distance = params . get ('distance')
+    let   title    = sex + " " + distance + "m"
+          title    = title [0] . toUpperCase () + title . slice (1)
+
+    $("h1") . html (title)
+
     const chart = new Chart (
-        document . getElementById ('men_10000'),
+        document . getElementById ('record_chart'),
         make_config ("men", 10000)
     );
 })
