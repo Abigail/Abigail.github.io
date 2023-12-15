@@ -17,7 +17,7 @@ function add_record (skater, time, date, rink, city) {
 sex      = "M"
 distance = "10000"
 
-add_record ("fredrikson", "20:21.4",  "1893-01-14", "museumplein")
+add_record ("fredriksen", "20:21.4",  "1893-01-14", "museumplein")
 add_record ("nielsen",    "19:47.4",  "1893-02-13", "neglingeviken")
 add_record ("ericsson",   "19:22.8",  "1894-01-07", "neglingeviken")
 add_record ("eden",       "19:12.4",  "1894-02-10", "neglingeviken")
@@ -70,7 +70,3 @@ add_record ("bloemen",    "12:36.30", "2015-11-21", "salt lake city")
 add_record ("fish",       "12:33.86", "2020-02-14", "salt lake city")
 add_record ("poel",       "12:32.95", "2021-02-14", "thialf")
 add_record ("poel",       "12:30.74", "2022-02-11", "beijing")
-
-
-
-window . progression = progression

@@ -1,9 +1,13 @@
 let rinks = {}
 
-let NATURAL    = 1    //  Outdoor - Natural
-let ARTIFICIAL = 2    //  Outdoor - Artificial
-let INDOOR     = 3    //  Indoor  - Artificial
+let NATURAL       = 1    //  Outdoor - Natural
+let ARTIFICIAL    = 2    //  Outdoor - Artificial
+let INDOOR        = 3    //  Indoor  - Artificial
 
+let HIGH_COLOUR   = '#832A0D'  // Smokey topaz
+let MIDDLE_COLOUR = '#DAA06D'  // Buff
+let LOW_COLOUR    = '#EDC9AF'  // Desert sand
+// let LOW_COLOUR    = '#F5DEB3'  // Wheat
 
 function add_rink (key, name, city, country, type, height) {
     rinks [key] = {
@@ -82,4 +86,3 @@ add_rink ("beijing",         "National Speed Skating Oval",
           "Beijing",         "CHN",      INDOOR,        0)
 
 
-window . rinks = rinks

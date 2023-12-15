@@ -14,6 +14,7 @@ add_skater ("carlsen",     "Armand Carlsen",       "NOR")
 add_skater ("eden",        "Jaap Eden",            "NOR")
 add_skater ("ericson",     "Frithiof Ericson",     "SWE")
 add_skater ("fish",        "Graeme Fish",          "CAN")
+add_skater ("fredriksen",  "Oskar Fredriksen",     "NOR")
 add_skater ("gustafson",   "Thomas Gustafson",     "SWE")
 add_skater ("guttormsen",  "Per Willy Guttormsen", "NOR")
 add_skater ("hedrick",     "Chad Hedrick",         "USA")
@@ -40,5 +41,3 @@ add_skater ("uytdehaage",  "Jochem Uytdehaage",    "NED")
 add_skater ("varlamov",    "Viktor Varlamov",      "USR")
 add_skater ("verheijen",   "Carl Verheijen",       "NED")
 add_skater ("verkerk",     "Kees Verkerk",         "NED")
-
-window . skaters = skaters

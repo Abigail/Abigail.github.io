@@ -1,9 +1,3 @@
-//window . addEventListener ("load", function () {
-//    console . log (window . skaters)
-//    console . log (window . rinks)
-//    console . log (window . progression)
-//})
-
 //
 // sec2time
 //
@@ -49,13 +43,12 @@ function date2value (yyyymmdd) {
 // Given a tooltip context, format the rink
 //
 function format_rink (context) {
-    const rinks = window . rinks
     const rink  = context . raw . rink
     const info  = rinks [rink]
     const name  = info . name
     const city  = info . city
 
-    return name + " -- " + city
+    return name + " \u{2014} " + city
 }
 
 //
@@ -64,7 +57,6 @@ function format_rink (context) {
 // Given a tooltip context, format the time and skater
 //
 function format_record (context) {
-    const skaters = window . skaters
     const skater  = context . raw . skater
     const time    = context . raw . time
     const info    = skaters [skater]
@@ -79,14 +71,36 @@ function format_record (context) {
 }
 
 
+function point_style (context) {
+    const rink  = context . raw . rink
+    const info  = rinks [rink]
+    const type  = info . type
+
+    return type == NATURAL    ? 'rect' 
+         : type == ARTIFICIAL ? 'triangle'
+         : type == INDOOR     ? 'circle'
+         :                      'star'
+}
+
+
+function point_colour (context) {
+    const rink   = context . raw . rink
+    const info   = rinks [rink]
+    const height = info . height
+
+    return height < 200 ? LOW_COLOUR
+         : height < 500 ? MIDDLE_COLOUR
+         :                HIGH_COLOUR
+}
+
 
 function make_config (gender, distance) {
-    const progression = window . progression [gender] [distance]
+    const my_progression = progression [gender] [distance]
 
     //
     // Get the data points
     //
-    const time_data   = progression . map ((item) => {
+    const time_data   = my_progression . map ((item) => {
         return {
             x:      date2value (item . date),
             y:      time2sec   (item . time),
@@ -101,9 +115,12 @@ function make_config (gender, distance) {
     // Wrap this into a set
     //
     const time_data_set = {
-        data:    time_data,
-        stepped: 1,
-        type:   'line',
+        data:             time_data,
+        type:            'scatter',
+        pointStyle:       point_style,
+        pointRadius:      5,
+        backgroundColor:  point_colour,
+        borderColor:      point_colour,
     }
 
     //
@@ -123,22 +140,38 @@ function make_config (gender, distance) {
                             return value
                         }
                     },
+                    min: 1890,
+                    max: 2025,
                 },
                 y: {
                     type: 'linear',
                     ticks: {
                         callback: function (value, index, ticks) {
                             return sec2time (value)
-                        }
-                    }
+                        },
+                        stepSize: 30,
+                        autoSkip: false,
+                    },
+                    min: 12 * 60,
                 },
             },
             plugins: {
+                legend: {
+                    display: false
+                },
+                title: {
+                    display: true,
+                    text:   "Men 10000m",
+                    font: {
+                        size: 16
+                    },
+                },
                 tooltip: {
+                    usePointStyle: true,
+                    bodyFont: {
+                        size: 14,
+                    },
                     callbacks: {
-                        title: function (context) {
-                            return ""
-                        },
                         beforeLabel: function (context) {
                             const raw = context . raw
                             return raw . date
