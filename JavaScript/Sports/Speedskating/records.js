@@ -45,6 +45,9 @@ function date2value (yyyymmdd) {
 function format_rink (context) {
     const rink  = context . raw . rink
     const info  = rinks [rink]
+    if (!info) {
+        return rink
+    }
     const name  = info . name
     const city  = info . city
 
@@ -60,9 +63,8 @@ function format_record (context) {
     const skater  = context . raw . skater
     const time    = context . raw . time
     const info    = skaters [skater]
-    if (!info == undefined) {
-        console . log (skater)
-        return ""
+    if (!info) {
+        return time + " " + skater
     }
     const name    = info . name
     const nation  = info . nation
@@ -74,6 +76,9 @@ function format_record (context) {
 function point_style (context) {
     const rink  = context . raw . rink
     const info  = rinks [rink]
+    if (!info) {
+        return 'star'
+    }
     const type  = info . type
 
     return type == NATURAL    ? 'rect' 
@@ -86,6 +91,9 @@ function point_style (context) {
 function point_colour (context) {
     const rink   = context . raw . rink
     const info   = rinks [rink]
+    if (!info) {
+        return 'red'
+    }
     const height = info . height
 
     return height < 200 ? LOW_COLOUR
