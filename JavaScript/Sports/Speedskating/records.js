@@ -221,6 +221,52 @@ function make_config (gender, distance, start_year = 0) {
     return wr_config
 }
 
+function item_to_row (item) {
+    const time   = item . time
+    const date   = item . date
+    const skater = item . skater
+    const rink   = item . rink
+
+    const skater_info = skaters [skater]
+    let name   = skater
+    let nation = ""
+    if (skater_info) {
+        name   = skater_info . name
+        nation = skater_info . nation
+    }
+
+    const rink_info = rinks [rink]
+    let stadion = rink
+    let city    = ""
+    if (rink_info) {
+        stadion = rink_info . name
+        city    = rink_info . city
+    }
+
+    return "<tr>" +
+           "<td class = 'date'>"    + date    + "</td>" +
+           "<td class = 'time'>"    + time    + "</td>" +
+           "<td class = 'name'>"    + name    + "</td>" +
+           "<td class = 'nation'>"  + nation  + "</td>" +
+           "<td class = 'city'>"    + city    + "</td>" +
+           "<td class = 'stadion'>" + stadion + "</td>" +
+          "</tr>"
+}
+
+
+function build_table (sex, distance) {
+    const my_progression = progression [sex] [distance]
+    console . log (my_progression)
+    const table = "<table id = 'records'>" +
+                    my_progression . map  (item => item_to_row (item))
+                                   . join ("\n") +
+                  "</table>";
+
+    $("#record_table") . html (table)
+}
+
+
+
 window . addEventListener ("load", function () {
     const params   = new URLSearchParams (window . location . search)
     const sex      = params . get ('sex')
@@ -229,6 +275,8 @@ window . addEventListener ("load", function () {
           title    = title [0] . toUpperCase () + title . slice (1)
 
     $("h1") . html (title)
+
+    build_table (sex, distance)
 
     const chart_config = make_config (sex, distance)
     chart_config . options . plugins . title . text = title

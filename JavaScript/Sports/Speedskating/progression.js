@@ -91,7 +91,7 @@ add_record (M,  5000, "poel",        "6:01.56", "2021-12-03", "salt lake city")
 //
 add_record (M, 10000, "fredriksen", "20:21.4",  "1893-01-14", "museumplein")
 add_record (M, 10000, "nielsen",    "19:47.4",  "1893-02-13", "neglingeviken")
-add_record (M, 10000, "ericsson",   "19:22.8",  "1894-01-07", "neglingeviken")
+add_record (M, 10000, "ericson",    "19:22.8",  "1894-01-07", "neglingeviken")
 add_record (M, 10000, "eden",       "19:12.4",  "1894-02-10", "neglingeviken")
 add_record (M, 10000, "eden",       "17:56.0",  "1895-02-23", "hamar mjosen")
 add_record (M, 10000, "ostlund",    "17:50.6",  "1900-02-11", "davos")

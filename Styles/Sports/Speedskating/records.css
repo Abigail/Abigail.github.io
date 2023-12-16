@@ -1,0 +1,15 @@
+table#records,
+table#records td,
+table#records th {
+        border: 1px solid black;
+        border-collapse: collapse;
+}
+
+table#records td {
+        padding-left:  .5em;
+        padding-right: .5em;
+}
+
+td.time {
+        padding-left: 1em;
+}
