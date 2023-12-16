@@ -1,3 +1,16 @@
+const config_config = {
+    men: {
+        10000: {
+            stepSize:         30,
+            scale_y_min: 12 * 60,
+        },
+         5000: {
+            stepSize:         15,
+            scale_y_min:  6 * 60,
+         }
+    }
+}
+
 //
 // sec2time
 //
@@ -102,22 +115,24 @@ function point_colour (context) {
 }
 
 
-function make_config (gender, distance) {
+function make_config (gender, distance, start_year = 0) {
     const my_progression = progression [gender] [distance]
 
     //
     // Get the data points
     //
-    const time_data   = my_progression . map ((item) => {
+    const time_data = my_progression . map ((item) => {
+        let [year, month, day] = item . date . split ("-") . map (x => +x)
         return {
             x:      date2value (item . date),
             y:      time2sec   (item . time),
             date:   item . date,
+            year:   year,
             time:   item . time,
             skater: item . skater,
             rink:   item . rink,
         }
-    })
+    }) . filter (item => item . year >= start_year)
 
     //
     // Wrap this into a set
@@ -132,8 +147,20 @@ function make_config (gender, distance) {
     }
 
     //
+    // Calculate the first and last years
+    //
+    const years = time_data . map (item => item . year)
+    let first_year  = Math . min (... years)
+        first_year -= first_year % 5
+    let last_year   = Math . max (... years)
+        last_year  -= last_year  % 5
+        last_year  += 5
+        
+    //
     // Create the configuration
     //
+    const my_config_config = config_config [gender] [distance]
+
     const wr_config = {
         type: 'scatter',
         data: {
@@ -148,8 +175,8 @@ function make_config (gender, distance) {
                             return value
                         }
                     },
-                    min: 1890,
-                    max: 2025,
+                    min: first_year,
+                    max: last_year,
                 },
                 y: {
                     type: 'linear',
@@ -157,10 +184,10 @@ function make_config (gender, distance) {
                         callback: function (value, index, ticks) {
                             return sec2time (value)
                         },
-                        stepSize: 30,
+                        stepSize: my_config_config . stepSize,
                         autoSkip: false,
                     },
-                    min: 12 * 60,
+                    min: my_config_config . scale_y_min,
                 },
             },
             plugins: {
@@ -169,8 +196,7 @@ function make_config (gender, distance) {
                 },
                 title: {
                     display: true,
-                    text:   "Men 10000m",
-                    font: {
+                    nt: {
                         size: 16
                     },
                 },
@@ -204,8 +230,11 @@ window . addEventListener ("load", function () {
 
     $("h1") . html (title)
 
+    const chart_config = make_config (sex, distance)
+    chart_config . options . plugins . title . text = title
+
     const chart = new Chart (
         document . getElementById ('record_chart'),
-        make_config ("men", 10000)
+        chart_config
     );
 })
