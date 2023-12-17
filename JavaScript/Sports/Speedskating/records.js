@@ -56,15 +56,8 @@ function date2value (yyyymmdd) {
 // Given a tooltip context, format the rink
 //
 function format_rink (context) {
-    const rink  = context . raw . rink
-    const info  = rinks [rink]
-    if (!info) {
-        return rink
-    }
-    const name  = info . name
-    const city  = info . city
-
-    return name + " \u{2014} " + city
+    const  rink = Rink . rink (context . raw . rink)
+    return rink . name () + " \u{2014} " + rink . city ()
 }
 
 //
@@ -87,31 +80,12 @@ function format_record (context) {
 
 
 function point_style (context) {
-    const rink  = context . raw . rink
-    const info  = rinks [rink]
-    if (!info) {
-        return 'star'
-    }
-    const type  = info . type
-
-    return type == NATURAL    ? 'rect' 
-         : type == ARTIFICIAL ? 'triangle'
-         : type == INDOOR     ? 'circle'
-         :                      'star'
+    return Rink . rink (context . raw . rink) . point_style ()
 }
 
 
 function point_colour (context) {
-    const rink   = context . raw . rink
-    const info   = rinks [rink]
-    if (!info) {
-        return 'red'
-    }
-    const height = info . height
-
-    return height < 200 ? LOW_COLOUR
-         : height < 500 ? MIDDLE_COLOUR
-         :                HIGH_COLOUR
+    return Rink . rink (context . raw . rink) . point_colour ()
 }
 
 
@@ -222,10 +196,10 @@ function make_config (gender, distance, start_year = 0) {
 }
 
 function item_to_row (item) {
-    const time   = item . time
-    const date   = item . date
-    const skater = item . skater
-    const rink   = item . rink
+    const time     = item . time
+    const date     = item . date
+    const skater   = item . skater
+    const rink_key = item . rink
 
     const skater_info = skaters [skater]
     let name   = skater
@@ -235,21 +209,15 @@ function item_to_row (item) {
         nation = skater_info . nation
     }
 
-    const rink_info = rinks [rink]
-    let stadion = rink
-    let city    = ""
-    if (rink_info) {
-        stadion = rink_info . name
-        city    = rink_info . city
-    }
+    const rink = Rink . rink (rink_key)
 
     return "<tr>" +
            "<td class = 'date'>"    + date    + "</td>" +
            "<td class = 'time'>"    + time    + "</td>" +
            "<td class = 'name'>"    + name    + "</td>" +
            "<td class = 'nation'>"  + nation  + "</td>" +
-           "<td class = 'city'>"    + city    + "</td>" +
-           "<td class = 'stadion'>" + stadion + "</td>" +
+           "<td class = 'city'>"    + rink . city () + "</td>" +
+           "<td class = 'stadion'>" + rink . name () + "</td>" +
           "</tr>"
 }
 
