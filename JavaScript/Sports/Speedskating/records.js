@@ -7,7 +7,11 @@ const config_config = {
          5000: {
             stepSize:         15,
             scale_y_min:  6 * 60,
-         }
+         },
+         3000: {
+            stepSize:         10,
+            scale_y_min:  3 * 60 + 30,
+         },
     }
 }
 

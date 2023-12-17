@@ -24,6 +24,43 @@ function add_record (sex, distance, skater, time, date, rink, city) {
 }
 
 //
+// Men  3000m
+//
+add_record (M,  3000, "thunberg",    "5:19.2",  "1932-01-08", "davos")
+add_record (M,  3000, "staksrud",    "4:59.1",  "1933-02-25", "hamar stadion")
+add_record (M,  3000, "ballangrud",  "4:49.6",  "1935-01-29", "davos")
+add_record (M,  3000, "seyffarth",   "4:45.6",  "1942-02-03", "davos")
+add_record (M,  3000, "huiskes",     "4:40.2",  "1953-01-24", "davos")
+add_record (M,  3000, "johannesen",  "4:33.9",  "1963-01-12", "tonsberg")
+add_record (M,  3000, "eriksen",     "4:33.0",  "1963-02-28", "bislett")
+add_record (M,  3000, "nilsson",     "4:27.6",  "1963-03-23", "tolga")
+add_record (M,  3000, "antson",      "4:27.3",  "1964-02-11", "bislett")
+add_record (M,  3000, "liebrechts",  "4:26.8",  "1965-02-25", "bislett")
+add_record (M,  3000, "schenk",      "4:26.2",  "1966-01-29", "inzell")
+add_record (M,  3000, "schenk",      "4:18.4",  "1967-02-25", "inzell")
+add_record (M,  3000, "maier",       "4:17.5",  "1968-03-07", "inzell")
+add_record (M,  3000, "fornaess",    "4:17.4",  "1969-01-28", "cortina")
+add_record (M,  3000, "bols",        "4:16.4",  "1970-01-27", "cortina")
+add_record (M,  3000, "schenk",      "4:12.6",  "1971-01-25", "davos")
+add_record (M,  3000, "schenk",      "4:08.3",  "1972-03-02", "inzell")
+add_record (M,  3000, "heiden_eric", "4:07.01", "1978-03-02", "inzell")
+add_record (M,  3000, "heiden_eric", "4:06.91", "1979-03-18", "savalen")
+add_record (M,  3000, "ogloblin",    "4:04.06", "1979-03-28", "medeo")
+add_record (M,  3000, "hoffmann",    "4:03.31", "1985-01-12", "davos")
+add_record (M,  3000, "shasherin",   "4:03.22", "1986-01-18", "davos")
+add_record (M,  3000, "visser",      "3:59.27", "1987-03-19", "thialf")
+add_record (M,  3000, "koss",        "3:57.52", "1990-03-13", "thialf")
+add_record (M,  3000, "bos",         "3:56.16", "1992-04-03", "calgary")
+add_record (M,  3000, "jong",        "3:53.06", "1996-03-08", "calgary")
+add_record (M,  3000, "beulenkamp",  "3:52.67", "1998-02-25", "thialf")
+add_record (M,  3000, "veldkamp",    "3:48.91", "1998-03-20", "calgary")
+add_record (M,  3000, "elm",         "3:45.23", "1999-03-19", "calgary")
+add_record (M,  3000, "elm",         "3:43.76", "2000-03-17", "calgary")
+add_record (M,  3000, "romme",       "3:42.75", "2000-08-11", "calgary")
+add_record (M,  3000, "hedrick",     "3:39.02", "2005-03-10", "calgary")
+add_record (M,  3000, "ervik",       "3:37.28", "2005-11-05", "calgary")
+
+//
 // Men  5000m
 //
 add_record (M,  5000, "fredriksen",  "9:29.8",  "1890-03-02", "neglingeviken")
