@@ -85,6 +85,9 @@ Rink . add_rink ("bislett",         "Bislett Stadium",
 Rink . add_rink ("calgary",         "Olympic Oval",
                  "Calgary",         "CAN",      Rink . INDOOR,     1034)
 
+Rink . add_rink ("cortina",         "Pista Fiames",
+                 "Cortina d'Ampezzo", "ITA",    Rink . NATURAL,    1401)
+
 Rink . add_rink ("davos",           "Eisstadion",
                  "Davos",           "SUI",      Rink . NATURAL,    1560)
 
@@ -142,11 +145,20 @@ Rink . add_rink ("notodden",        "Notodden Sportsplass",
 Rink . add_rink ("salt lake city",  "Utah Olympic Oval",
                  "Salt Lake City",  "USA",      Rink . INDOOR,     1423)
 
+Rink . add_rink ("savalen",         "Idrettsplass",
+                 "Savalen",         "NOR",      Rink . NATURAL,     724)
+
 Rink . add_rink ("squaw valley",    "Olympic Skating Ring",
                  "Squaw Valley",    "USA",      Rink . ARTIFICIAL, 1876)
 
 Rink . add_rink ("thialf",          "Thialf",
                  "Heerenveen",      "NED",      Rink . INDOOR,        0)
+
+Rink . add_rink ("tolga",           "Tolga Idrettsplass",
+                 "Tolga",           "NOR",      Rink . NATURAL,     543)
+
+Rink . add_rink ("tonsberg",        "T\u{F8}nsberg Stadion",
+                 "T\u{F8}nsberg",   "NOR",      Rink . NATURAL,      66)
 
 Rink . add_rink ("trondheim",       "\u{D8}ya Stadion",
                  "Trondheim",       "NOR",      Rink . NATURAL,       5)
