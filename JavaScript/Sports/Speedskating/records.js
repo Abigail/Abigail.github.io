@@ -66,16 +66,10 @@ function format_rink (context) {
 // Given a tooltip context, format the time and skater
 //
 function format_record (context) {
-    const skater  = context . raw . skater
+    const skater  = Skater . skater (context . raw . skater)
     const time    = context . raw . time
-    const info    = skaters [skater]
-    if (!info) {
-        return time + " " + skater
-    }
-    const name    = info . name
-    const nation  = info . nation
 
-    return time + " " + name + ", " + nation
+    return time + " " + skater . name () + ", " + skater . nationality ()
 }
 
 
@@ -195,29 +189,22 @@ function make_config (gender, distance, start_year = 0) {
     return wr_config
 }
 
+//
+// Given a record, return the HTML table row representing it
+//
 function item_to_row (item) {
-    const time     = item . time
-    const date     = item . date
-    const skater   = item . skater
-    const rink_key = item . rink
-
-    const skater_info = skaters [skater]
-    let name   = skater
-    let nation = ""
-    if (skater_info) {
-        name   = skater_info . name
-        nation = skater_info . nation
-    }
-
-    const rink = Rink . rink (rink_key)
+    const time   = item . time
+    const date   = item . date
+    const skater = Skater . skater (item . skater)
+    const rink   = Rink   . rink   (item . rink)
 
     return "<tr>" +
-           "<td class = 'date'>"    + date    + "</td>" +
-           "<td class = 'time'>"    + time    + "</td>" +
-           "<td class = 'name'>"    + name    + "</td>" +
-           "<td class = 'nation'>"  + nation  + "</td>" +
-           "<td class = 'city'>"    + rink . city () + "</td>" +
-           "<td class = 'stadion'>" + rink . name () + "</td>" +
+           "<td class = 'date'>"    + date                    + "</td>" +
+           "<td class = 'time'>"    + time                    + "</td>" +
+           "<td class = 'name'>"    + skater . name        () + "</td>" +
+           "<td class = 'nation'>"  + skater . nationality () + "</td>" +
+           "<td class = 'city'>"    + rink   . city        () + "</td>" +
+           "<td class = 'stadion'>" + rink   . name        () + "</td>" +
           "</tr>"
 }
 
