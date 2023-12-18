@@ -79,6 +79,9 @@ class Rink {
 Rink . add_rink ("beijing",         "National Speed Skating Oval",
                  "Beijing",         "CHN",      Rink . INDOOR,       49)
 
+Rink . add_rink ("berlin",          "Sportforum Hohensch\u{F6}nhausen",
+                 "Berlin",          "GER",      Rink . INDOOR,       34)
+
 Rink . add_rink ("bislett",         "Bislett Stadium",
                  "Oslo",            "NOR",      Rink . NATURAL,      37)
 
@@ -130,6 +133,9 @@ Rink . add_rink ("lake placid",     "James B. Sheffield Olympic Skating Rink",
 Rink . add_rink ("medeo",           "Kompleks Medeo",
                  "Medeo",           "KAZ",      Rink . ARTIFICIAL, 1691)
 
+Rink . add_rink ("misurina",        "Lagua Misurina",
+                 "Misurina",        "ITA",      Rink . NATURAL,    1756)
+
 Rink . add_rink ("museumplein",     "Museumplein",
                  "Amsterdam",       "NED",      Rink . NATURAL,       0)
 
@@ -142,6 +148,9 @@ Rink . add_rink ("neglingeviken",   "Saltsj\u{F6}banen",
 Rink . add_rink ("notodden",        "Notodden Sportsplass",
                  "Notodden",        "NOR",      Rink . NATURAL,     103)
 
+Rink . add_rink ("paterswolde",     "Paterswoldsche Meer",
+                 "Paterswolde",     "NED",      Rink . NATURAL,       0)
+                 
 Rink . add_rink ("salt lake city",  "Utah Olympic Oval",
                  "Salt Lake City",  "USA",      Rink . INDOOR,     1423)
 

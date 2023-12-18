@@ -13,3 +13,21 @@ table#records td {
 td.time {
         padding-left: 1em;
 }
+
+
+table#nav_bar,
+table#nav_bar td,
+table#nav_bar th {
+        border: 1px solid black;
+        border-collapse: collapse;
+}
+
+table#nav_bar td,
+table#nav_bar th {
+        padding-left:  1em;
+        padding-right: 1em;
+}
+
+table#nav_bar {
+        margin-bottom: 3ex;
+}

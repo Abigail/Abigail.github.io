@@ -12,6 +12,18 @@ const config_config = {
             stepSize:         10,
             scale_y_min:  3 * 60 + 30,
          },
+         1500: {
+            stepSize:          5,
+            scale_y_min:  1 * 60 + 35,
+         },
+         1000: {
+            stepSize:          3,
+            scale_y_min:  1 * 60,
+         },
+          500: {
+            stepSize:          1,
+            scale_y_min:      30,
+         },
     }
 }
 
@@ -225,6 +237,32 @@ function build_table (sex, distance) {
 }
 
 
+//
+// Build the navigation table
+//
+function build_navigation (this_sex, this_distance) {
+    let table_str = "<table id = 'nav_bar'>";
+    ["men", "women"] . forEach ((sex) => {
+        table_str += "<tr><th>" + sex + "</th>";
+        [500, 1000, 1500, 3000, 5000, 10000] . forEach ((distance) => {
+            table_str += "<td>"
+            if (sex == this_sex && +distance == +this_distance) {
+                table_str += "<b>" + distance + "</b>"
+            }
+            else {
+                table_str += "<a href = 'records.html?sex=" + sex +
+                                "&distance=" + distance + "'>" +
+                                distance + "</a>"
+            }
+        })
+        table_str += "</tr>"
+    })
+    table_str += "</table>"
+
+    $("div#navigation") . html (table_str)
+}
+
+
 
 window . addEventListener ("load", function () {
     const params   = new URLSearchParams (window . location . search)
@@ -235,7 +273,8 @@ window . addEventListener ("load", function () {
 
     $("h1") . html (title)
 
-    build_table (sex, distance)
+    build_navigation (sex, distance)
+    build_table      (sex, distance)
 
     const chart_config = make_config (sex, distance)
     chart_config . options . plugins . title . text = title
