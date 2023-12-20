@@ -97,6 +97,12 @@ Rink . add_rink ("davos",           "Eisstadion",
 Rink . add_rink ("deventer",        "IJsselstadion",
                  "Deventer",        "NED",      Rink . ARTIFICIAL,    5)
 
+Rink . add_rink ("frogner",         "Frogner Stadion",
+                 "Oslo",            "NOR",      Rink . NATURAL,      42)
+
+Rink . add_rink ("gamle",           "Gamle Frogner Stadion",
+                 "Oslo",            "NOR",      Rink . NATURAL,      42)
+
 Rink . add_rink ("gjovik",          "Gj\u{F8}vik Stadion",
                  "Gj\u{F8}vik",     "NOR",      Rink . NATURAL,     149)
 
@@ -123,9 +129,6 @@ Rink . add_rink ("inzell",          "Ludwig Schwabl Stadion",
 
 Rink . add_rink ("karuizawa",       "Skating Center",
                  "Karuizawa",       "JPN",      Rink . ARTIFICIAL,  980)
-
-Rink . add_rink ("kristiana",       "Gamie Frogner Stadion",
-                 "Oslo",            "NOR",      Rink . NATURAL,      42)
 
 Rink . add_rink ("lake placid",     "James B. Sheffield Olympic Skating Rink",
                  "Lake Placid",     "USA",      Rink . ARTIFICIAL,  568)
@@ -159,6 +162,9 @@ Rink . add_rink ("savalen",         "Idrettsplass",
 
 Rink . add_rink ("squaw valley",    "Olympic Skating Ring",
                  "Squaw Valley",    "USA",      Rink . ARTIFICIAL, 1876)
+
+Rink . add_rink ("st. moritz",      "Badrutss Park",
+                 "St. Moritz",      "SUI",      Rink . NATURAL,    1856)
 
 Rink . add_rink ("thialf",          "Thialf",
                  "Heerenveen",      "NED",      Rink . INDOOR,        0)
