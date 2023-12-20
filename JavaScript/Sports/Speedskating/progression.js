@@ -23,6 +23,15 @@ function add_record (sex, distance, skater, time, date, rink, city) {
     })
 }
 
+
+//
+// Men   500m
+//
+add_record (M,   500, "grunden",     "0:50.8",  "1891-02-28", "neglingeviken")
+add_record (M,   500, "mey",         "0:36.45", "1988-02-14", "calgary")
+add_record (M,   500, "mey",         "0:36.43", "1992-01-19", "davos")
+add_record (M,   500, "kulizhnikov", "0:33.61", "2019-03-09", "salt lake city")
+
 //
 // Men  1000m
 //
@@ -110,7 +119,7 @@ add_record (M,  1500, "storholt",    "1:55.18", "1977-03-23", "medeo")
 add_record (M,  1500, "heiden_eric", "1:54.79", "1980-01-19", "davos")
 add_record (M,  1500, "zhelezovsky", "1:54.26", "1983-03-26", "medeo")
 add_record (M,  1500, "bozhyev",     "1:53.26", "1984-03-24", "medeo")
-add_record (M,  1500, "gulyayev",    "1:52.70", "1987-02-15", "thialf")
+add_record (M,  1500, "gulyayev_nikolay","1:52.70","1987-02-15","thialf")
 add_record (M,  1500, "zhelezovsky", "1:52.50", "1987-12-05", "calgary")
 add_record (M,  1500, "hoffmann",    "1:52.06", "1988-02-20", "calgary")
 add_record (M,  1500, "ritsma",      "1:51.60", "1994-01-08", "hamar")

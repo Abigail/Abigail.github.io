@@ -84,8 +84,10 @@ function format_rink (context) {
 function format_record (context) {
     const skater  = Skater . skater (context . raw . skater)
     const time    = context . raw . time
+    const date    = context . raw . date
 
-    return time + " " + skater . name () + ", " + skater . nationality ()
+    return time + " " + skater . name        (date) + ", "
+                      + skater . nationality (date)
 }
 
 
@@ -215,19 +217,18 @@ function item_to_row (item) {
     const rink   = Rink   . rink   (item . rink)
 
     return "<tr>" +
-           "<td class = 'date'>"    + date                    + "</td>" +
-           "<td class = 'time'>"    + time                    + "</td>" +
-           "<td class = 'name'>"    + skater . name        () + "</td>" +
-           "<td class = 'nation'>"  + skater . nationality () + "</td>" +
-           "<td class = 'city'>"    + rink   . city        () + "</td>" +
-           "<td class = 'stadion'>" + rink   . name        () + "</td>" +
+           "<td class = 'date'>"    + date                        + "</td>" +
+           "<td class = 'time'>"    + time                        + "</td>" +
+           "<td class = 'name'>"    + skater . name        (date) + "</td>" +
+           "<td class = 'nation'>"  + skater . nationality (date) + "</td>" +
+           "<td class = 'city'>"    + rink   . city        ()     + "</td>" +
+           "<td class = 'stadion'>" + rink   . name        ()     + "</td>" +
           "</tr>"
 }
 
 
 function build_table (sex, distance) {
     const my_progression = progression [sex] [distance]
-    console . log (my_progression)
     const table = "<table id = 'records'>" +
                     my_progression . map  (item => item_to_row (item))
                                    . join ("\n") +
