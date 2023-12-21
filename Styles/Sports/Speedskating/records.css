@@ -10,8 +10,8 @@ table#records td {
         padding-right: .5em;
 }
 
-td.time {
-        padding-left: 1em;
+table#records td.rinktype {
+        text-align: center;
 }
 
 
@@ -31,3 +31,4 @@ table#nav_bar th {
 table#nav_bar {
         margin-bottom: 3ex;
 }
+

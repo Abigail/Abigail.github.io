@@ -216,6 +216,14 @@ function item_to_row (item) {
     const skater = Skater . skater (item . skater)
     const rink   = Rink   . rink   (item . rink)
 
+    const rink_symbol = rink . is_natural    () ? "\u{25A0}"
+                      : rink . is_artificial () ? "\u{25B2}"
+                      : rink . is_indoor     () ? "\u{25CF}"
+                      :                           ""
+    const rink_span   = "<span style = 'color: " + rink . point_colour () +
+                        "'>" + rink_symbol + "</span>"
+
+
     return "<tr>" +
            "<td class = 'date'>"    + date                        + "</td>" +
            "<td class = 'time'>"    + time                        + "</td>" +
@@ -223,6 +231,7 @@ function item_to_row (item) {
            "<td class = 'nation'>"  + skater . nationality (date) + "</td>" +
            "<td class = 'city'>"    + rink   . city        ()     + "</td>" +
            "<td class = 'stadion'>" + rink   . name        ()     + "</td>" +
+           "<td class = 'rinktype'>"+ rink_span                   + "</td>" +
           "</tr>"
 }
 
