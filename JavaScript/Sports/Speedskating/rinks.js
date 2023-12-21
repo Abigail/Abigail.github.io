@@ -175,7 +175,10 @@ Rink . add_rink ("tolga",           "Tolga Idrettsplass",
 Rink . add_rink ("tonsberg",        "T\u{F8}nsberg Stadion",
                  "T\u{F8}nsberg",   "NOR",      Rink . NATURAL,      66)
 
-Rink . add_rink ("trondheim",       "\u{D8}ya Stadion",
+Rink . add_rink ("trondheim_kal",   "Kalvskindet",
+                 "Trondheim",       "NOR",      Rink . NATURAL,       0)
+
+Rink . add_rink ("trondheim_oya",   "\u{D8}ya Stadion",
                  "Trondheim",       "NOR",      Rink . NATURAL,       5)
 
 
