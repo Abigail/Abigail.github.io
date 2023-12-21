@@ -223,12 +223,14 @@ function item_to_row (item) {
     const rink_span   = "<span style = 'color: " + rink . point_colour () +
                         "'>" + rink_symbol + "</span>"
 
+    let nationality = skater . nationality (date)
+    let img = Flags . img (nationality, date)
 
     return "<tr>" +
            "<td class = 'date'>"    + date                        + "</td>" +
            "<td class = 'time'>"    + time                        + "</td>" +
            "<td class = 'name'>"    + skater . name        (date) + "</td>" +
-           "<td class = 'nation'>"  + skater . nationality (date) + "</td>" +
+           "<td class = 'nation'>"  + img                         + "</td>" +
            "<td class = 'city'>"    + rink   . city        ()     + "</td>" +
            "<td class = 'stadion'>" + rink   . name        ()     + "</td>" +
            "<td class = 'rinktype'>"+ rink_span                   + "</td>" +
