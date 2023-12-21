@@ -22,7 +22,7 @@ const config_config = {
          },
           500: {
             stepSize:          1,
-            scale_y_min:      30,
+            scale_y_min:      33,
          },
     }
 }

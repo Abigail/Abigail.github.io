@@ -28,8 +28,91 @@ function add_record (sex, distance, skater, time, date, rink, city) {
 // Men   500m
 //
 add_record (M,   500, "grunden",     "0:50.8",  "1891-02-28", "neglingeviken")
+add_record (M,   500, "halvorsen",   "0:50.2",  "1892-02-28", "hamar mjosen")
+add_record (M,   500, "naess",       "0:49.4",  "1893-02-05", "hamar mjosen")
+add_record (M,   500, "halvorsen",   "0:48.0",  "1893-02-26", "hamar mjosen")
+add_record (M,   500, "fredriksen",  "0:47.8",  "1894-01-21", "gamle")
+
+add_record (M,   500, "halvorsen",   "0:47.0",  "1894-02-24", "hamar mjosen")
+add_record (M,   500, "mauseth",     "0:46.8",  "1895-02-03", "trondheim")
+add_record (M,   500, "ostlund",     "0:46.6",  "1897-02-07", "trondheim")
+add_record (M,   500, "ostlund",     "0:45.2",  "1900-02-10", "davos")
+add_record (M,   500, "gundersen",   "0:44.8",  "1906-01-27", "davos")
+
+add_record (M,   500, "vikander",    "0:44.4",  "1908-02-09", "davos")
+add_record (M,   500, "mathisen",    "0:44.2",  "1912-02-17", "gamle")
+add_record (M,   500, "mathisen",    "0:44.0",  "1913-03-16", "hamar mjosen")
+add_record (M,   500, "mathisen",    "0:43.7",  "1914-01-10", "gamle")
+add_record (M,   500, "mathisen",    "0:43.4",  "1914-01-17", "davos")
+
+add_record (M,   500, "larsen",      "0:43.1",  "1928-02-04", "davos")
+add_record (M,   500, "thunberg",    "0:42.8",  "1929-01-19", "davos")
+add_record (M,   500, "thunberg",    "0:42.6",  "1931-01-13", "st. moritz")
+add_record (M,   500, "engnestangen","0:42.5",  "1933-01-21", "davos")
+add_record (M,   500, "potts",       "0:42.4",  "1936-01-18", "bislett")
+
+add_record (M,   500, "engnestangen","0:42.3",  "1937-01-30", "davos")
+add_record (M,   500, "engnestangen","0:41.8",  "1938-02-05", "davos")
+add_record (M,   500, "sergeyev",    "0:41.7",  "1952-01-06", "medeo")
+add_record (M,   500, "sergeyev",    "0:41.2",  "1952-01-19", "medeo")
+add_record (M,   500, "sergeyev",    "0:40.9",  "1953-01-25", "medeo")
+
+add_record (M,   500, "sergeyev",    "0:40.8",  "1955-01-19", "medeo")
+add_record (M,   500, "grishin",     "0:40.2",  "1956-01-22", "misurina")
+add_record (M,   500, "grishin",     "0:40.2",  "1956-01-28", "misurina")
+add_record (M,   500, "grishin",     "0:39.6",  "1963-01-27", "medeo")
+add_record (M,   500, "grishin",     "0:39.5",  "1963-01-28", "medeo")
+
+add_record (M,   500, "keller",      "0:39.2",  "1968-01-28", "inzell")
+add_record (M,   500, "suzuki",      "0:39.2",  "1969-03-01", "inzell")
+add_record (M,   500, "muratov",     "0:39.09", "1970-01-09", "medeo")
+add_record (M,   500, "gulyayev_boris","0:39.03","1970-01-13","medeo")
+add_record (M,   500, "borjes",      "0:38.9",  "1970-01-18", "davos")
+
+add_record (M,   500, "muratov",     "0:38.99", "1970-01-24", "medeo")
+add_record (M,   500, "borjes",      "0:38.87", "1970-01-25", "medeo")
+add_record (M,   500, "muratov",     "0:38.73", "1970-01-29", "medeo")
+add_record (M,   500, "suzuki",      "0:38.71", "1970-03-07", "inzell")
+add_record (M,   500, "borjes",      "0:38.46", "1970-03-08", "inzell")
+
+add_record (M,   500, "keller",      "0:38.42", "1971-03-14", "inzell")
+add_record (M,   500, "keller",      "0:38.30", "1972-01-02", "inzell")
+add_record (M,   500, "linkovesi",   "0:38.0",  "1972-01-08", "davos")
+add_record (M,   500, "keller",      "0:38.0",  "1972-03-04", "inzell")
+add_record (M,   500, "efskind",     "0:38.0",  "1973-01-13", "davos")
+
+add_record (M,   500, "kulikov",     "0:37.99", "1975-03-15", "medeo")
+add_record (M,   500, "kulikov",     "0:37.97", "1975-03-16", "medeo")
+add_record (M,   500, "muratov",     "0:37.85", "1975-03-18", "medeo")
+add_record (M,   500, "kulikov",     "0:37.20", "1975-03-28", "medeo")
+add_record (M,   500, "kulikov",     "0:37.00", "1975-03-29", "medeo")
+
+add_record (M,   500, "kulikov",     "0:36.91", "1981-03-28", "medeo")
+add_record (M,   500, "pegov",       "0:36.68", "1983-03-25", "medeo")
+add_record (M,   500, "pegov",       "0:36.57", "1983-03-26", "medeo")
+add_record (M,   500, "thometz",     "0:36.55", "1987-03-19", "thialf")
 add_record (M,   500, "mey",         "0:36.45", "1988-02-14", "calgary")
+
 add_record (M,   500, "mey",         "0:36.43", "1992-01-19", "davos")
+add_record (M,   500, "jansen",      "0:36.41", "1992-01-25", "davos")
+add_record (M,   500, "jansen",      "0:36.41", "1993-03-19", "calgary")
+add_record (M,   500, "jansen",      "0:36.02", "1993-03-20", "calgary")
+add_record (M,   500, "jansen",      "0:35.92", "1993-12-04", "hamar")
+
+add_record (M,   500, "jansen",      "0:35.76", "1994-01-30", "calgary")
+add_record (M,   500, "shimizu",     "0:35.39", "1996-03-02", "calgary")
+add_record (M,   500, "shimizu",     "0:35.36", "1998-03-28", "calgary")
+add_record (M,   500, "shimizu",     "0:34.82", "1998-03-28", "calgary")
+add_record (M,   500, "wotherspoon", "0:34.76", "1999-02-20", "calgary")
+
+add_record (M,   500, "wotherspoon", "0:34.63", "2000-01-29", "calgary")
+add_record (M,   500, "shimizu",     "0:34.32", "2001-03-10", "salt lake city")
+add_record (M,   500, "kato",        "0:34.30", "2005-11-19", "salt lake city")
+add_record (M,   500, "kang-seok",   "0:34.25", "2007-03-09", "salt lake city")
+add_record (M,   500, "wotherspoon", "0:34.03", "2007-11-09", "salt lake city")
+
+add_record (M,   500, "kulizhnikov", "0:34.00", "2015-11-15", "calgary")
+add_record (M,   500, "kulizhnikov", "0:33.98", "2015-11-20", "salt lake city")
 add_record (M,   500, "kulizhnikov", "0:33.61", "2019-03-09", "salt lake city")
 
 //
