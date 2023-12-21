@@ -2,37 +2,38 @@
 class Flags {
     static info = {
         FIN: [
-            "1918-05-28", "finland-1918.svg",
+            "1918-05-28", "FIN-1918.svg",
         ],
         NED: [
-            "0",          "netherlands.svg",
+            "1570",       "NED-1570.svg",
+            "1596",       "NED-1596.svg",
         ],
         NOR: [
-            "1818",       "sweden-1818.svg",
-            "1844",       "norway-1844.svg",
-            "1900",       "norway-1900.svg",
+            "1818",       "SWE-1818.svg",
+            "1844",       "NOR-1844.svg",
+            "1900",       "NOR-1900.svg",
         ],
         RUS: [
-            "1696",       "russia-1696.svg",
-            "1858-06-23", "russia-1858.svg",
-            "1883-05-08", "russia-1696.svg",
+            "1696",       "RUS-1696.svg",
+            "1858-06-23", "RUS-1858.svg",
+            "1883-05-08", "RUS-1696.svg",
             "1922-12-30",  undefined,
-            "1991-12-21", "russia-1991.svg",
-            "1993",       "russia-1696.svg",
+            "1991-12-21", "RUS-1991.svg",
+            "1993",       "RUS-1696.svg",
         ],
 
         SWE: [
-            "1818",       "sweden-1818.svg",
-            "1844",       "sweden-1844.svg",
-            "1905-11-01", "sweden-1905.svg",
-            "1906-06-22", "sweden-1906.svg",
+            "1818",       "SWE-1818.svg",
+            "1844",       "SWE-1844.svg",
+            "1905-11-01", "SWE-1905.svg",
+            "1906-06-22", "SWE-1906.svg",
         ],
         URS: [
-            "1922-12-30", "ussr-1922.svg",
-            "1923-11-12", "ussr-1923.svg",
-            "1924-04-18", "ussr-1924.svg",
-            "1936-12-05", "ussr-1936.svg",
-            "1955-08-19", "ussr-1955.svg",
+            "1922-12-30", "URS-1922.svg",
+            "1923-11-12", "URS-1923.svg",
+            "1924-04-18", "URS-1924.svg",
+            "1936-12-05", "URS-1936.svg",
+            "1955-08-19", "URS-1955.svg",
             "1991-12-26",  undefined,
         ],
     }
@@ -60,36 +61,36 @@ class Flags {
 //
 const url = "https://commons.wikimedia.org/w/index.php"
 const attributions = {
-    "finland-1918.svg": `Sebastian Koppehel, Public Domain, ` +
-                        `$[url}?curid=343054`,
+    "FIN-1918.svg": `Sebastian Koppehel, Public Domain, $[url}?curid=343054`,
 
-    "netherlands.svg": `By Zscout370 - Own work, Public Domain, `        +
-                       `${url}?curid=363168`,
+    "NED-1570.svg": `By Miyamaki, Oren neu dag, Artem Karimov, Golradir, ` +
+                    `Public Domain, ${url}?curid=816789`,
+    "NED-1596.svg": `By Zscout370 - Own work, Public Domain, ` +
+                    `${url}?curid=363168`,
 
-    "norway-1844.svg": `By -xfi- - Own work, Public Domain, `            +
-                       `${url}?curid=533397`,
-    "norway-1900.svg": `By Gutten p\u{E5} Hemsen - Own work, Public Domain,` +
-                       `${url}curid=388300`,
 
-    "russia-1696.svg": `By Zscout370, Public Domain, ${url}?curid=33285605`,
-    "russia-1858.svg": `Public Domain, ${url}?curid=480250`,
-    "russia-1991.svg": `By Pianist, Public Domain, ${url}?curid=132537456`,
+    "NOR-1844.svg": `By -xfi- - Own work, Public Domain, ${url}?curid=533397`,
+    "NOR-1900.svg": `By Gutten p\u{E5} Hemsen - Own work, Public Domain,` +
+                    `${url}curid=388300`,
 
-    "sweden-1818.svg": `By Lokal_Profil, Public Domain, ${url}?curid=5838046`,
-    "sweden-1844.svg": `By Jeltz - Own work, Public Domain, ` +
-                       `${url}?curid=486863`,
-    "sweden-1905.svg": `By Liggliluff, Jon Harald Søby and others.` +
-                       `Public Domain, ${url}?curid=86776520`,
-    "sweden-1906.svg": `Public Domain, ${url}?curid=33285365`,
+    "RUS-1696.svg": `By Zscout370, Public Domain, ${url}?curid=33285605`,
+    "RUS-1858.svg": `Public Domain, ${url}?curid=480250`,
+    "RUS-1991.svg": `By Pianist, Public Domain, ${url}?curid=132537456`,
 
-    "ussr-1922.svg":   `Public Domain, ${url}?curid=19822358`,
-    "ussr-1923.svg":   `By Supreme Dragon - Own work, [2], Public Domain, ` +
-                       `${url}?curid=57069825`,
-    "ussr-1924.svg":   `By Supreme Dragon - Own work, [2], Public Domain, ` +
-                       `${url}?curid=57069822`,
-    "ussr-1936.svg":   `By created by rotemliss, Public Domain, ` +
-                       `${url}?curid=549904`,
-    "ussr-1955.svg":   `By СССР - http://pravo.levonevsky.or` +
-                       `Public Domain, ${url}?curid=343687`,
+    "SWE-1818.svg": `By Lokal_Profil, Public Domain, ${url}?curid=5838046`,
+    "SWE-1844.svg": `By Jeltz - Own work, Public Domain, ${url}?curid=486863`,
+    "SWE-1905.svg": `By Liggliluff, Jon Harald Søby and others.` +
+                    `Public Domain, ${url}?curid=86776520`,
+    "SWE-1906.svg": `Public Domain, ${url}?curid=33285365`,
+
+    "URS-1922.svg": `Public Domain, ${url}?curid=19822358`,
+    "URS-1923.svg": `By Supreme Dragon - Own work, [2], Public Domain, ` +
+                    `${url}?curid=57069825`,
+    "URS-1924.svg": `By Supreme Dragon - Own work, [2], Public Domain, ` +
+                    `${url}?curid=57069822`,
+    "URS-1936.svg": `By created by rotemliss, Public Domain, ` +
+                    `${url}?curid=549904`,
+    "URS-1955.svg": `By СССР - http://pravo.levonevsky.or` +
+                    `Public Domain, ${url}?curid=343687`,
 }
 
