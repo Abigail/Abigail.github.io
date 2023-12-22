@@ -34,6 +34,10 @@ class Flags {
             "1956-11-12", "HUN-1946.svg",
             "1957-05-23", "HUN-1957.svg",
         ],
+        ITA: [
+            "1861-03-17", "ITA-1861.svg",
+            "1946-06-18", "ITA-1946.svg",
+        ],
         JPN: [
             "1870-02-27", "JPN-1870.svg",
             "1999-08-13", "JPN-1999.svg",
@@ -128,6 +132,9 @@ const attributions = {
     "HUN-1946.svg": `Thommy. Public Domain. ${url}?curid=2960235`,
     "HUN-1949.svg": `Thommy. Public Domain. ${url}?curid=2039045`,
     "HUN-1957.svg": `Denelson83. Public Domain. ${url}?curid=580205`,
+
+    "ITA-1861.svg": `F l a n k e r. CC BY-SA 2.5. ${url}?curid=1155686`,
+    "ITA-1946.svg": `Public Domain. ${url}?curid=33285604`,
 
     "JPN-1870.svg": `Kahusi. Public Domain. ${url}?curid=7552269`,
     "JPN-1999.svg": `Public Domain. ${url}?curid=33285241`,
