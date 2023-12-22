@@ -17,6 +17,21 @@ class Flags {
             "1918-05-28", "FIN-1918.svg",
         ],
         HUN: [
+            "1804-08-11", "AUT-1804.svg",
+            "1848-04-11", "HUN-1848.svg",
+            "1849-04-00", "AUT-1804.svg",
+            "1867-07-28", "HUN-1848.svg",
+            "1869-00-00", "HUN-1869.svg",
+            "1874-02-09", "HUN-1874.svg",
+            "1896-01-12", "HUN-1896.svg",
+            "1915-11-06", "HUN-1915.svg",
+            "1918-11-29", "HUN-1918.svg",
+            "1919-03-21", "HUN-1919.svg",
+            "1919-08-02", "HUN-1918.svg",
+            "1919-08-08", "HUN-1915.svg",
+            "1946-09-00", "HUN-1946.svg",  // From mid-to-late 1946
+            "1949-08-20", "HUN-1949.svg",
+            "1956-11-12", "HUN-1946.svg",
             "1957-05-23", "HUN-1957.svg",
         ],
         JPN: [
@@ -103,6 +118,15 @@ const attributions = {
 
     "FIN-1918.svg": `Sebastian Koppehel. Public Domain. $[url}?curid=343054`,
 
+    "HUN-1848.svg": `Thommy. Public Domain. ${url}?curid=57905765`,
+    "HUN-1869.svg": `Thommy. Public Domain. ${url}?curid=57905869`,
+    "HUN-1874.svg": `Thommy. Public Domain. ${url}?curid=57905982`,
+    "HUN-1896.svg": `Thommy. Public Domain. ${url}?curid=50882761`,
+    "HUN-1915.svg": `Thommy. Public Domain. ${url}?curid=29968090`,
+    "HUN-1918.svg": `Thommy. Public Domain. ${url}?curid=29943564`,
+    "HUN-1919.svg": `Thommy. Public Domain. ${url}?curid=52443381`,
+    "HUN-1946.svg": `Thommy. Public Domain. ${url}?curid=2960235`,
+    "HUN-1949.svg": `Thommy. Public Domain. ${url}?curid=2039045`,
     "HUN-1957.svg": `Denelson83. Public Domain. ${url}?curid=580205`,
 
     "JPN-1870.svg": `Kahusi. Public Domain. ${url}?curid=7552269`,
