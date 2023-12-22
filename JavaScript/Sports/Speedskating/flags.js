@@ -10,6 +10,10 @@ class Flags {
             "1938-03-13", "GER-1935.svg",  // Ansluss
             "1945-04-27", "AUT-1945.svg",  // Second Austrian Republic
         ],
+        BEL: [
+            "1830-10-04", "BEL-1830.svg",
+            "1831-01-23", "BEL-1831.svg",
+        ],
         CAN: [
             "1965-02-15", "CAN-1965.svg",
         ],
@@ -41,6 +45,13 @@ class Flags {
         JPN: [
             "1870-02-27", "JPN-1870.svg",
             "1999-08-13", "JPN-1999.svg",
+        ],
+        KOR: [
+            "1948-08-15", "KOR-1948.svg",
+            "1949-10-15", "KOR-1949.svg",
+            "1984-02-21", "KOR-1984.svg",
+            "1997-10-15", "KOR-1997.svg",
+            "2011-05-30", "KOR-2011.svg",
         ],
         NED: [
             "1570",       "NED-1570.svg",
@@ -116,6 +127,9 @@ const attributions = {
     "AUT-1934.svg": `David Liuzzo. CC BY-SA 3.0. ${url}?curid=21198668`,
     "AUT-1945.svg": `Public Domain. ${url}?curid=342954`,
 
+    "BEL-1830.svg": `Public Domain. ${url}?curid=867196`,
+    "BEL-1831.svg": `Dbenbenn and others. Public Domain. ${url}?curid=342972`,
+
     "CAN-1965.svg": `Public Domain. ${url}?curid=32276527`,
     
     "GER-1935.svg": `Public Domain. ${url}?curid=4713270`,
@@ -138,6 +152,12 @@ const attributions = {
 
     "JPN-1870.svg": `Kahusi. Public Domain. ${url}?curid=7552269`,
     "JPN-1999.svg": `Public Domain. ${url}?curid=33285241`,
+
+    "KOR-1948.svg": `Public Domain. ${url}?curid=38524597`,
+    "KOR-1949.svg": `Xfigpower. Public Domain. ${url}?curid=75217531`,
+    "KOR-1984.svg": `Public Domain. ${url}?curid=38525283`,
+    "KOR-1997.svg": `Public Domain. ${url}?curid=611164141`,
+    "KOR-2011.svg": `Various. Public Domain. ${url}?curid=343752`,
 
     "NED-1570.svg": `Miyamaki, Oren neu dag, Artem Karimov, Golradir. ` +
                     `Public Domain, ${url}?curid=816789`,
