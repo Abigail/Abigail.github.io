@@ -20,6 +20,24 @@ class Flags {
         FIN: [
             "1918-05-28", "FIN-1918.svg",
         ],
+        GER: [
+            "1867-04-16", "GER-1867.svg",
+            "1919-07-03", "GER-1919.svg",
+            "1933-03-12", "GER-1933.svg",
+            "1935-09-15", "GER-1935.svg",
+            "1945-05-09",  undefined,
+            "1990-10-03", "GER-1949.svg",
+        ],
+        GDR: [
+            "1949-10-07", "GER-1949.svg",
+            "1959-10-01", "GER-1959.svg",
+            "1990-10-03",  undefined,
+        ],
+        FRG: [
+            "1949-05-23", "GER-1949.svg",
+            "1990-10-03",  undefined,
+        ],
+
         HUN: [
             "1804-08-11", "AUT-1804.svg",
             "1848-04-11", "HUN-1848.svg",
@@ -132,7 +150,12 @@ const attributions = {
 
     "CAN-1965.svg": `Public Domain. ${url}?curid=32276527`,
     
+    "GER-1867.svg": `B1mbo, and Madden. Public Domain. ${url}?curid=503938`,
+    "GER-1919.svg": `Mmxx. Public Domain. ${url}?curid=6250745`,
+    "GER-1933.svg": `SeNeKa. Public Domain. ${url}?curid=4844163`,
     "GER-1935.svg": `Public Domain. ${url}?curid=4713270`,
+    "GER-1949.svg": `Public Domain, ${url}?curid=33285421`,
+    "GER-1959.svg": `Flaggenentwurf. Public Domain. ${url}?curid=535824671`,
 
     "FIN-1918.svg": `Sebastian Koppehel. Public Domain. $[url}?curid=343054`,
 
