@@ -80,6 +80,11 @@ class Flags {
             "1844",       "NOR-1844.svg",
             "1900",       "NOR-1900.svg",
         ],
+        POL: [
+            "1919-06-28", "POL-1919.svg",  // Date??, using Treaty of Versailles
+            "1927-12-13", "POL-1927.svg",
+            "1980-01-31", "POL-1980.svg",
+        ],
         RUS: [
             "1696",       "RUS-1696.svg",
             "1858-06-23", "RUS-1858.svg",
@@ -189,6 +194,10 @@ const attributions = {
 
     "NOR-1844.svg": `-xfi-. Public Domain. ${url}?curid=533397`,
     "NOR-1900.svg": `Gutten p\u{E5} Hemsen. Public Domain. ${url}curid=388300`,
+
+    "POL-1919.svg": `Arvedui89. Public Domain. ${url}?curid=27721509`,
+    "POL-1927.svg": `Arvedui89. Public Domain. ${url}?curid=27721508`,
+    "POL-1980.svg": `Arvedui89. Public Domain, ${url}?curid=27721508`,
 
     "RUS-1696.svg": `Zscout370. Public Domain. ${url}?curid=33285605`,
     "RUS-1858.svg": `Public Domain. ${url}?curid=480250`,
