@@ -92,7 +92,9 @@ function format_record (context) {
 
 
 function point_style (context) {
-    return Rink . rink (context . raw . rink) . point_style ()
+    const date = context . raw . date
+    const rink = context . raw . rink
+    return Rink . rink (rink) . point_style (date)
 }
 
 
@@ -216,10 +218,10 @@ function item_to_row (item) {
     const skater = Skater . skater (item . skater)
     const rink   = Rink   . rink   (item . rink)
 
-    const rink_symbol = rink . is_natural    () ? "\u{25A0}"
-                      : rink . is_artificial () ? "\u{25B2}"
-                      : rink . is_indoor     () ? "\u{25CF}"
-                      :                           ""
+    const rink_symbol = rink . is_natural    (date) ? "\u{25A0}"
+                      : rink . is_artificial (date) ? "\u{25B2}"
+                      : rink . is_indoor     (date) ? "\u{25CF}"
+                      :                               ""
     const rink_span   = "<span style = 'color: " + rink . point_colour () +
                         "'>" + rink_symbol + "</span>"
 

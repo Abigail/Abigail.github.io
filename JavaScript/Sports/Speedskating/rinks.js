@@ -35,11 +35,26 @@ class Rink {
     //
     // Types
     //
-    is_natural    () {return this . #type      == Rink . NATURAL}
-    is_artificial () {return this . #type      == Rink . ARTIFICIAL}
-    is_indoor     () {return this . #type      == Rink . INDOOR}
-    is_sea_level  () {return this . #elevation <= 200}
-    is_high_land  () {return this . #elevation >= 500}
+    type          (date) {
+        if (typeof (this . #type) === "object") {
+            // For now, assume array
+            let typ = "???"
+            for (let i = 0; i < this . #type . length; i += 2) {
+                if (this . #type [i] < date) {
+                    typ = this . #type [i + 1]
+                }
+            }
+            return typ
+        }
+        return this . #type
+    }
+
+
+    is_natural    (date) {return this . type (date) == Rink . NATURAL}
+    is_artificial (date) {return this . type (date) == Rink . ARTIFICIAL}
+    is_indoor     (date) {return this . type (date) == Rink . INDOOR}
+    is_sea_level  () {return this . #elevation      <= 200}
+    is_high_land  () {return this . #elevation      >= 500}
 
     //
     // Derived values
@@ -51,11 +66,11 @@ class Rink {
              :                                  Rink . MIDDLE_COLOUR
     }
 
-    point_style () {
+    point_style (date) {
         return this . city          () == ""  ? 'star'
-             : this . is_natural    ()        ? 'rect' 
-             : this . is_artificial ()        ? 'triangle'
-             : this . is_indoor     ()        ? 'circle'
+             : this . is_natural    (date)    ? 'rect' 
+             : this . is_artificial (date)    ? 'triangle'
+             : this . is_indoor     (date)    ? 'circle'
              :                                  'star'
     }
 
@@ -76,6 +91,9 @@ class Rink {
 }
 
 
+Rink . add_rink ("alkmaar",         "IJsstadion De Meent",
+                 "Alkmaar",         "NED",      Rink . ARTIFICIAL,    0)
+
 Rink . add_rink ("beijing",         "National Speed Skating Oval",
                  "Beijing",         "CHN",      Rink . INDOOR,       49)
 
@@ -84,6 +102,9 @@ Rink . add_rink ("berlin",          "Sportforum Hohensch\u{F6}nhausen",
 
 Rink . add_rink ("bislett",         "Bislett Stadium",
                  "Oslo",            "NOR",      Rink . NATURAL,      37)
+
+Rink . add_rink ("brandbu",         "Rosendalbanen",
+                 "Brandbu",         "NOR",      Rink . NATURAL,     178)
 
 Rink . add_rink ("calgary",         "Olympic Oval",
                  "Calgary",         "CAN",      Rink . INDOOR,     1034)
@@ -97,11 +118,17 @@ Rink . add_rink ("davos",           "Eisstadion",
 Rink . add_rink ("deventer",        "IJsselstadion",
                  "Deventer",        "NED",      Rink . ARTIFICIAL,    5)
 
+Rink . add_rink ("engelberg",       "Eisbahn",
+                 "Engelberg",       "SUI",      Rink . NATURAL,    1138)
+
 Rink . add_rink ("frogner",         "Frogner Stadion",
                  "Oslo",            "NOR",      Rink . NATURAL,      42)
 
 Rink . add_rink ("gamle",           "Gamle Frogner Stadion",
                  "Oslo",            "NOR",      Rink . NATURAL,      42)
+
+Rink . add_rink ("geithus",         "Farumo Stadion",
+                 "Geithus",         "NOR",      Rink . ARTICIAL,    116)
 
 Rink . add_rink ("gjovik",          "Gj\u{F8}vik Stadion",
                  "Gj\u{F8}vik",     "NOR",      Rink . NATURAL,     149)
@@ -109,8 +136,14 @@ Rink . add_rink ("gjovik",          "Gj\u{F8}vik Stadion",
 Rink . add_rink ("grenoble",        "Parc Paul Mistral",
                  "Grenoble",        "FRA",      Rink . ARTIFICIAL,  220)
 
+Rink . add_rink ("groningen",       "IJsstadion Stadspark",
+                 "Groningen",       "NED",      Rink . ARTIFICIAL,    1)
+
 Rink . add_rink ("goteborg",        "Nya Ullevi",
                  "G\u{F6}teborg",   "SWE",      Rink . ARTIFICIAL,   10)
+
+Rink . add_rink ("haarlem",         "Kennemerland",
+                 "Haarlem",         "NED",      Rink . ARTIFICIAL,    0)
 
 Rink . add_rink ("hamar",           "Olympia Hall",
                  "Hamar",           "NOR",      Rink . INDOOR,      125)
@@ -121,14 +154,30 @@ Rink . add_rink ("hamar mjosen",    "Mj\u{F8}sen",
 Rink . add_rink ("hamar stadion",   "Hamar Stadion",
                  "Hamar",           "NOR",      Rink . NATURAL,     113)
 
+Rink . add_rink ("helsinki",        "T\u{F6}\u{F6}l\u{F6}n Pallokentt\u{E4}",
+                 "Helsinki",        "FIN",      Rink . NATURAL,      10)
+
 Rink . add_rink ("horten",          "Lystlunden Gressbane",
                  "Horten",          "NOR",      Rink . NATURAL,       2)
 
 Rink . add_rink ("inzell",          "Ludwig Schwabl Stadion",
                  "Inzell",          "GER",      Rink . ARTIFICIAL,  690)
 
+Rink . add_rink ("jaap eden",       "Jaap Edenbaan",
+                 "Amsterdam",       "NED",      Rink . ARTIFICIAL,    0)
+
 Rink . add_rink ("karuizawa",       "Skating Center",
                  "Karuizawa",       "JPN",      Rink . ARTIFICIAL,  980)
+
+Rink . add_rink ("kirov",           "Dinamo",
+                 "Kirov",           "URS",      Rink . NATURAL,     166)
+
+Rink . add_rink ("kongsberg",       "Idr\u{E6}tsplassen",
+                 "Kongsberg",       "NOR",      Rink . NATURAL,     233)
+
+// Chemnitz after 1990
+Rink . add_rink ("kuchwald",        "K\u{F6}chwald",
+                 "Karl-Marx-Stadt", "GDR",      Rink . ARTIFICIAL,  410)
 
 Rink . add_rink ("lake placid",     "James B. Sheffield Olympic Skating Rink",
                  "Lake Placid",     "USA",      Rink . ARTIFICIAL,  568)
@@ -157,6 +206,9 @@ Rink . add_rink ("paterswolde",     "Paterswoldsche Meer",
 Rink . add_rink ("salt lake city",  "Utah Olympic Oval",
                  "Salt Lake City",  "USA",      Rink . INDOOR,     1423)
 
+Rink . add_rink ("sarajevo",        "Zetra",
+                 "Sarajevo",        "YUG",      Rink . ARTIFICIAL,  564)
+
 Rink . add_rink ("savalen",         "Idrettsplass",
                  "Savalen",         "NOR",      Rink . NATURAL,     724)
 
@@ -166,8 +218,12 @@ Rink . add_rink ("squaw valley",    "Olympic Skating Ring",
 Rink . add_rink ("st. moritz",      "Badrutss Park",
                  "St. Moritz",      "SUI",      Rink . NATURAL,    1856)
 
+Rink . add_rink ("stockholm",       "Stockholm Stadion",
+                 "Stockholm",       "SWE",      Rink . NATURAL,      25)
+
 Rink . add_rink ("thialf",          "Thialf",
-                 "Heerenveen",      "NED",      Rink . INDOOR,        0)
+                 "Heerenveen",      "NED",  ["1967-10-14", Rink . ARTIFICIAL,
+                                             "1986-10-00", Rink . INDOOR], 0)
 
 Rink . add_rink ("tolga",           "Tolga Idrettsplass",
                  "Tolga",           "NOR",      Rink . NATURAL,     543)
@@ -181,4 +237,12 @@ Rink . add_rink ("trondheim_kal",   "Kalvskindet",
 Rink . add_rink ("trondheim_oya",   "\u{D8}ya Stadion",
                  "Trondheim",       "NOR",      Rink . NATURAL,       5)
 
+Rink . add_rink ("vienna",          "WEV-Eisbahn",
+                 "Vienna",          "AUT",      Rink . NATURAL,     172)
+
+Rink . add_rink ("warsaw",          "Tor Polonii",
+                 "Warsaw",          "POL",      Rink . NATURAL,     188)
+
+Rink . add_rink ("zakopane",        "Toporowy Staw Nizni",
+                 "Zakopane",        "POL",      Rink . NATURAL,    1110)
 
