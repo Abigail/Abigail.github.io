@@ -24,6 +24,12 @@ const config_config = {
             stepSize:          1,
             scale_y_min:      33,
          },
+    },
+    women: {
+        10000: {
+            stepSize:         30,
+            scale_y_min: 13 * 60 + 30,
+        },
     }
 }
 

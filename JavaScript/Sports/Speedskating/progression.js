@@ -385,3 +385,21 @@ add_record (M, 10000, "bloemen",    "12:36.30", "2015-11-21", "salt lake city")
 add_record (M, 10000, "fish",       "12:33.86", "2020-02-14", "salt lake city")
 add_record (M, 10000, "poel",       "12:32.95", "2021-02-14", "thialf")
 add_record (M, 10000, "poel",       "12:30.74", "2022-02-11", "beijing")
+
+//
+// Women 10000m
+//
+add_record (W, 10000, "nehringowa", "23:48.5",  "1935-12-30", "vienna")
+add_record (W, 10000, "niemczyk",   "22:46.4",  "1953-02-10", "zakopane")
+add_record (W, 10000, "donker",     "21:52.1",  "1972-01-27", "jaap eden")
+add_record (W, 10000, "pasveer",    "19:48.3",  "1980-03-04", "groningen")
+add_record (W, 10000, "swider",     "17:37.35", "1980-03-16", "savalen")
+add_record (W, 10000, "stam",       "17:20.0",  "1984-03-11", "alkmaar")
+add_record (W, 10000, "kooiman",    "16:56.8",  "1984-03-16", "haarlem")
+add_record (W, 10000, "jensen",     "16:49.82", "1985-03-07", "savalen")
+add_record (W, 10000, "mitscherlich","16:49.82","1987-03-11", "kuchwald")
+add_record (W, 10000, "mulder",     "15:56.81", "1988-03-16", "thialf")
+add_record (W, 10000, "gennip",     "15:25.25", "1988-03-19", "thialf")
+add_record (W, 10000, "niemann",    "14:22.60", "1994-03-27", "calgary")
+add_record (W, 10000, "sablikova",  "14:08.28", "2006-03-23", "calgary")
+add_record (W, 10000, "sablikova",  "13:48.33", "2007-03-15", "calgary")
