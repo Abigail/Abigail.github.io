@@ -17,6 +17,9 @@ class Flags {
         CAN: [
             "1965-02-15", "CAN-1965.svg",
         ],
+        CZE: [
+            "1920-03-30", "CZE-1920.svg",
+        ],
         FIN: [
             "1918-05-28", "FIN-1918.svg",
         ],
@@ -154,6 +157,8 @@ const attributions = {
     "BEL-1831.svg": `Dbenbenn and others. Public Domain. ${url}?curid=342972`,
 
     "CAN-1965.svg": `Public Domain. ${url}?curid=32276527`,
+
+    "CZE-1920.svg": `-xfi-. Public Domain. ${url}?curid=432452`,
     
     "GER-1867.svg": `B1mbo, and Madden. Public Domain. ${url}?curid=503938`,
     "GER-1919.svg": `Mmxx. Public Domain. ${url}?curid=6250745`,
