@@ -1,3 +1,15 @@
+function value_by_date (value, date) {
+    if (typeof (value) === "object") {
+        for (let i = value . length - 2; i >= 0; i -= 2) {
+            if (value [i] < date) {
+                return value [i + 1]
+            }
+        }
+        return "???"
+    }
+    return value
+}
+
 class Skater {
     #name
     #nationality
@@ -12,29 +24,22 @@ class Skater {
     }
 
     name (date = 0) {
-        return this . #name
+        return value_by_date (this . #name, date)
     }
 
+
     nationality (date = 0) {
-        if (typeof (this . #nationality) === "object") {
-            // For now, assume array
-            let nat = "???"
-            for (let i = 0; i < this . #nationality . length; i += 2) {
-                if (this . #nationality [i] < date) {
-                    nat = this . #nationality [i + 1]
-                }
-            }
-            return nat
-        }
+        const nat = value_by_date (this . #nationality, date)
+
         //
         // Special case GDR & FRG
         //
-        if ((this . #nationality == "GDR" || this . #nationality == "FRG") &&
+        if ((nat == "GDR" || nat == "FRG") &&
              date >= Skater . GERMAN_REUNIFICATION_DATE) {
             return "GER"
         }
 
-        return this . #nationality
+        return nat
     }
 
     static add_skater (key, name, nationality) {
@@ -137,7 +142,10 @@ Skater . add_skater ("mathisen",       "Oscar Mathisen",                 "NOR")
 Skater . add_skater ("marshall",       "Neal Marshall",                  "CAN")
 Skater . add_skater ("mauseth",        "Wilhelm Mauseth",                "NOR")
 Skater . add_skater ("mey",            "Uwe-Jens Mey",                   "GDR")
-Skater . add_skater ("mitscherlich",   "Andrea Ehrig-Mitscherlich",      "GDR")
+Skater . add_skater ("mitscherlich",
+                    ["1960-12-01",     "Andrea Mitscherlich",
+                     "1980-07-00",     "Andrea Sch\u{F6}ne-Mitscherlich",
+                     "1986-07-00",     "Andrea Ehrig-Mitscherlich",],    "GDR")
 Skater . add_skater ("miyabe",         "Yasunori Miyabe",                "JPN")
 Skater . add_skater ("morrison",       "Denny Morrison",                 "CAN")
 Skater . add_skater ("mikhaylov",      "Yury Mikhaylov",                 "URS")
