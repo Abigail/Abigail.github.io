@@ -36,17 +36,7 @@ class Rink {
     // Types
     //
     type          (date) {
-        if (typeof (this . #type) === "object") {
-            // For now, assume array
-            let typ = "???"
-            for (let i = 0; i < this . #type . length; i += 2) {
-                if (this . #type [i] < date) {
-                    typ = this . #type [i + 1]
-                }
-            }
-            return typ
-        }
-        return this . #type
+        return value_by_date (this . #type, date)
     }
 
 

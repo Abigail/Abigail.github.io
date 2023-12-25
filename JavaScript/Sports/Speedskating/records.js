@@ -30,6 +30,10 @@ const config_config = {
             stepSize:         30,
             scale_y_min: 13 * 60 + 30,
         },
+         5000: {
+            stepSize:         15,
+            scale_y_min:  6 * 60 + 30,
+        },
     }
 }
 
@@ -218,8 +222,8 @@ function make_config (gender, distance, start_year = 0) {
 //
 // Given a record, return the HTML table row representing it
 //
-function item_to_row (item) {
-    const time   = item . time
+function item_to_row (item, sex, distance) {
+    let   time   = item . time
     const date   = item . date
     const skater = Skater . skater (item . skater)
     const rink   = Rink   . rink   (item . rink)
@@ -233,6 +237,17 @@ function item_to_row (item) {
 
     let nationality = skater . nationality (date)
     let img = Flags . img (nationality, date)
+
+    //
+    // Cases where the fastest time is "shorter" than the longest time.
+    // In that case, we prepad with an invisible 0.
+    //
+    if (sex == "women" && distance == "5000") {
+        let [minute] = time . split (':')
+        if (+minute < 10) {
+            time = "<span style = 'visibility: hidden'>0</span>" + time
+        }
+    }
 
     return "<tr>" +
            "<td class = 'date'>"    + date                        + "</td>" +
@@ -249,7 +264,8 @@ function item_to_row (item) {
 function build_table (sex, distance) {
     const my_progression = progression [sex] [distance]
     const table = "<table id = 'records'>" +
-                    my_progression . map  (item => item_to_row (item))
+                    my_progression . map  (item => item_to_row (item, sex,
+                                                                distance))
                                    . join ("\n") +
                   "</table>";
 
