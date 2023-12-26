@@ -178,6 +178,9 @@ Rink . add_rink ("medeo",           "Kompleks Medeo",
 Rink . add_rink ("misurina",        "Lagua Misurina",
                  "Misurina",        "ITA",      Rink . NATURAL,    1756)
 
+Rink . add_rink ("moscow",          "Dinamo",
+                 "Moscow",          "URS",      Rink . NATURAL,     167)
+
 Rink . add_rink ("museumplein",     "Museumplein",
                  "Amsterdam",       "NED",      Rink . NATURAL,       0)
 
