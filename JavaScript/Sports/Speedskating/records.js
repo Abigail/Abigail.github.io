@@ -112,6 +112,10 @@ function make_config (gender, distance, start_year = 0) {
         }
     }) . filter (item => item . year >= start_year)
 
+    if (!time_data . length) {
+        return;
+    }
+
     //
     // Wrap this into a set
     //
@@ -279,6 +283,39 @@ function build_navigation (this_sex, this_distance) {
 }
 
 
+function build_chart (sex, distance, title, start_year = 0) {
+    const chart_config = make_config (sex, distance, start_year)
+
+    if (!chart_config) {
+        return
+    }
+
+    chart_config . options . plugins . title . text = title
+
+    if (start_year) {
+        chart_config . options . plugins . title . text +=
+                                         ` since ${start_year}`
+    }
+
+    if (window . __private . chart) {
+        window . __private . chart . destroy ()
+    }
+
+    const chart = new Chart (
+        document . getElementById ('record_chart'),
+        chart_config
+    );
+    
+    window . __private . chart = chart
+}
+
+function load_chart () {
+    const start_year = + $("#start_year") . val ();
+    const sex        = window . __private . sex
+    const distance   = window . __private . distance
+    const title      = window . __private . title
+    build_chart (sex, distance, title, start_year)
+}
 
 window . addEventListener ("load", function () {
     const params   = new URLSearchParams (window . location . search)
@@ -287,16 +324,20 @@ window . addEventListener ("load", function () {
     let   title    = sex + " " + distance + "m"
           title    = title [0] . toUpperCase () + title . slice (1)
 
+    window . __private = {sex: sex, distance: distance, title: title}
+
     $("h1") . html (title)
 
     build_navigation (sex, distance)
     build_table      (sex, distance)
+    build_chart      (sex, distance, title)
 
-    const chart_config = make_config (sex, distance)
-    chart_config . options . plugins . title . text = title
+    const years = progression [sex] [distance] . map ((item) => {
+        return item . date . split ("-") . map (x => +x) [0]
+    })
+    const start_year = Math . min (... years)
+    $("#start_year_span") . html (`<input id = 'start_year' type = 'number' ` +
+                                  `value = '1960' ` +
+                                  `min = '${start_year}' max = '2025'>`)
 
-    const chart = new Chart (
-        document . getElementById ('record_chart'),
-        chart_config
-    );
 })
