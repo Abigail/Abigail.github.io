@@ -132,11 +132,14 @@ function make_config (gender, distance, start_year = 0) {
     // Calculate the first and last years
     //
     const years = time_data . map (item => item . year)
-    let first_year  = Math . min (... years)
-        first_year -= first_year % 5
-    let last_year   = Math . max (... years)
-        last_year  -= last_year  % 5
-        last_year  += 5
+    let first_year = Math . min (... years)
+    if (start_year) {
+        first_year = start_year == first_year ? first_year - 1 : start_year
+    }
+    else {
+        first_year -= 1
+    }
+    let last_year   = new Date () . getFullYear () + 1
         
     //
     // Create the configuration
