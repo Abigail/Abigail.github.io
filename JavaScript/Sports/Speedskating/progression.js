@@ -394,6 +394,64 @@ add_record (M, 10000, "poel",       "12:30.74", "2022-02-11", "beijing")
 //
 // Women  1000m
 //
+add_record (W,  1000, "nehringowa",  "2:26.4",  "1929-01-26", "warsaw")
+add_record (W,  1000, "landbeck",    "2:08.8",  "1932-01-10", "davos")
+add_record (W,  1000, "nehringowa",  "2:03.4",  "1932-01-17", "engelberg")
+add_record (W,  1000, "lie",         "1:51.2",  "1932-03-20", "brandbu")
+add_record (W,  1000, "landbeck",    "1:48.5",  "1933-01-22", "davos")
+
+add_record (W,  1000, "lie",         "1:48.1",  "1934-01-14", "davos")
+add_record (W,  1000, "lesche",      "1:45.7",  "1934-02-11", "frogner")
+add_record (W,  1000, "klein",       "1:42.3",  "1935-03-01", "kongsberg")
+add_record (W,  1000, "nilsen",      "1:38.8",  "1937-01-31", "davos")
+add_record (W,  1000, "kondakova",   "1:36.8",  "1951-02-05", "medeo")
+
+add_record (W,  1000, "zhukova",     "1:36.6",  "1952-01-22", "medeo")
+add_record (W,  1000, "selikhova",   "1:36.4",  "1953-01-30", "medeo")
+add_record (W,  1000, "rylova",      "1:33.4",  "1955-01-12", "medeo")
+add_record (W,  1000, "skoblikova",  "1:31.8",  "1963-02-22", "karuizawa")
+add_record (W,  1000, "kaiser",      "1:31.0",  "1968-03-03", "inzell")
+
+add_record (W,  1000, "brom",        "1:30.0",  "1969-02-09", "davos")
+add_record (W,  1000, "titova",      "1:29.5",  "1970-01-09", "medeo")
+add_record (W,  1000, "fechina",     "1:29.0",  "1970-01-10", "medeo")
+add_record (W,  1000, "kaiser",      "1:29.0",  "1971-01-16", "davos")
+add_record (W,  1000, "titova",      "1:29.0",  "1971-02-20", "inzell")
+
+add_record (W,  1000, "titova",      "1:27.7",  "1971-02-21", "inzell")
+add_record (W,  1000, "henning",     "1:27.3",  "1972-01-08", "davos")
+add_record (W,  1000, "averina",     "1:26.40", "1974-04-02", "medeo")
+add_record (W,  1000, "averina",     "1:26.12", "1975-03-12", "medeo")
+add_record (W,  1000, "averina",     "1:25.28", "1975-03-22", "medeo")
+
+add_record (W,  1000, "averina",     "1:23.46", "1975-03-29", "medeo")
+add_record (W,  1000, "petrusyova",  "1:23.01", "1980-03-27", "medeo")
+add_record (W,  1000, "rothenburger","1:20.95", "1981-03-27", "medeo")
+add_record (W,  1000, "petrusyova",  "1:20.81", "1980-03-28", "medeo")
+add_record (W,  1000, "petrusyova",  "1:19.31", "1983-03-26", "medeo")
+
+add_record (W,  1000, "enke",        "1:18.84", "1986-02-22", "karuizawa")
+add_record (W,  1000, "enke",        "1:18.11", "1987-12-05", "calgary")
+add_record (W,  1000, "rothenburger","1:17.65", "1988-02-26", "calgary")
+add_record (W,  1000, "le may",      "1:16.07", "1997-11-22", "calgary")
+add_record (W,  1000, "witty",       "1:15.43", "1997-11-23", "calgary")
+
+add_record (W,  1000, "witty",       "1:14.96", "1998-03-28", "calgary")
+add_record (W,  1000, "garbrecht",   "1:14.61", "1999-02-21", "calgary")
+add_record (W,  1000, "witty",       "1:14.58", "2001-03-03", "calgary")
+add_record (W,  1000, "garbrecht",   "1:14.13", "2001-03-10", "salt lake city")
+add_record (W,  1000, "volker",      "1:14.06", "2001-12-02", "salt lake city")
+
+add_record (W,  1000, "witty",       "1:13.83", "2002-02-17", "salt lake city")
+add_record (W,  1000, "klassen",     "1:13.46", "2006-03-24", "calgary")
+add_record (W,  1000, "klassen",     "1:13.11", "2006-03-25", "calgary")
+add_record (W,  1000, "nesbitt",     "1:12.68", "2012-01-28", "calgary")
+add_record (W,  1000, "bowe",        "1:12.58", "2013-11-17", "salt lake city")
+
+add_record (W,  1000, "richardson",  "1:12.51", "2015-11-14", "calgary")
+add_record (W,  1000, "bowe",        "1:12.18", "2015-11-22", "salt lake city")
+add_record (W,  1000, "kodaira",     "1:12.09", "2017-12-09", "salt lake city")
+add_record (W,  1000, "bowe",        "1:11.61", "2019-03-09", "salt lake city")
 
 //
 // Women  1500m
