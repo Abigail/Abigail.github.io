@@ -17,6 +17,9 @@ class Flags {
         CAN: [
             "1965-02-15", "CAN-1965.svg",
         ],
+        CHN: [
+            "1949-10-01", "CHN-1949.svg",
+        ],
         CZE: [
             "1920-03-30", "CZE-1920.svg",
         ],
@@ -157,6 +160,8 @@ const attributions = {
     "BEL-1831.svg": `Dbenbenn and others. Public Domain. ${url}?curid=342972`,
 
     "CAN-1965.svg": `Public Domain. ${url}?curid=32276527`,
+
+    "CHN-1949.svg": `SKopp. Public Domain. ${url}?curid=436175`,
 
     "CZE-1920.svg": `-xfi-. Public Domain. ${url}?curid=432452`,
     
