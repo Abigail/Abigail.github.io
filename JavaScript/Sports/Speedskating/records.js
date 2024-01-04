@@ -231,17 +231,20 @@ function item_to_row (item, gender, distance) {
     }
 
     return "<tr>" +
-           "<td class = 'date'>"    + date                        + "</td>" +
-           "<td class = 'time'>"    + time                        + "</td>" +
-           "<td class = 'name'>"    + skater . name        (date) + "</td>" +
-           "<td class = 'nation'>"  + img                         + "</td>" +
-           "<td class = 'city'>"    + rink   . city        ()     + "</td>" +
-           "<td class = 'stadion'>" + rink   . name        ()     + "</td>" +
-           "<td class = 'rinktype'>"+ rink_span                   + "</td>" +
+           "<td class = 'date'>"    + date                 + "</td>" +
+           "<td class = 'time'>"    + time                 + "</td>" +
+           "<td class = 'name'>"    + skater . name (date) + "</td>" +
+           "<td class = 'nation'>"  + img                  + "</td>" +
+           "<td class = 'city'>"    + rink   . city ()     + "</td>" +
+           "<td class = 'stadion'>" + rink   . name ()     + "</td>" +
+           "<td class = 'rinktype'>"+ rink_span            + "</td>" +
           "</tr>"
 }
 
 
+//
+// Build the table with records
+//
 function build_table (gender, distance, season = 0) {
     const my_progression = progression ({gender:   gender,
                                          distance: distance,
@@ -314,6 +317,7 @@ function load_chart () {
     const distance   = window . __private . distance
     const title      = window . __private . title
     build_chart (gender, distance, title, start_year)
+    build_table (gender, distance, start_year)
 }
 
 window . addEventListener ("load", function () {
