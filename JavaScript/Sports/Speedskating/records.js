@@ -1,19 +1,19 @@
 const config_config = {
     men: {
-        10000: {stepSize: 30, scale_y_min: 12 * 60,     },
-         5000: {stepSize: 15, scale_y_min:  6 * 60,     },
-         3000: {stepSize: 10, scale_y_min:  3 * 60 + 30,},
-         1500: {stepSize:  5, scale_y_min:  1 * 60 + 35,},
-         1000: {stepSize:  3, scale_y_min:  1 * 60,     },
-          500: {stepSize:  1, scale_y_min:      33,     },
+        10000: {step_size: 30, scale_y_min: 12 * 60,     },
+         5000: {step_size: 15, scale_y_min:  6 * 60,     },
+         3000: {step_size: 10, scale_y_min:  3 * 60 + 30,},
+         1500: {step_size:  5, scale_y_min:  1 * 60 + 35,},
+         1000: {step_size:  3, scale_y_min:  1 * 60,     },
+          500: {step_size:  1, scale_y_min:      33,     },
     },
     women: {
-        10000: {stepSize: 30, scale_y_min: 13 * 60 + 30,},
-         5000: {stepSize: 15, scale_y_min:  6 * 60 + 30,},
-         3000: {stepSize: 10, scale_y_min:  3 * 60 + 40,},
-         1500: {stepSize:  5, scale_y_min:  1 * 60 + 40,},
-         1000: {stepSize:  3, scale_y_min:  1 * 60 + 10,},
-          500: {stepSize:  1, scale_y_min:      36,     },
+        10000: {step_size: 30, scale_y_min: 13 * 60 + 30,},
+         5000: {step_size: 15, scale_y_min:  6 * 60 + 30,},
+         3000: {step_size: 10, scale_y_min:  3 * 60 + 40,},
+         1500: {step_size:  5, scale_y_min:  1 * 60 + 40,},
+         1000: {step_size:  3, scale_y_min:  1 * 60 + 10,},
+          500: {step_size:  1, scale_y_min:      36,     },
     }
 }
 
@@ -169,7 +169,7 @@ function make_config (gender, distance, start_year = 0) {
                         callback: function (value, index, ticks) {
                             return sec2time (value)
                         },
-                        stepSize: my_config_config . stepSize,
+                        stepSize: my_config_config . step_size,
                         autoSkip: false,
                     },
                     min: my_config_config . scale_y_min,
