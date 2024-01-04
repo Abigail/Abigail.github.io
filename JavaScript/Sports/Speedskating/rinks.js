@@ -1,9 +1,9 @@
 class Rink {
-    #name
-    #city
-    #country
-    #type
-    #elevation
+    // #name
+    // #city
+    // #country
+    // #type
+    // #elevation
 
     static NO_RINK_COLOUR = 'red'
     static HIGH_COLOUR    = '#832A0D'  // Smokey topaz
@@ -17,34 +17,34 @@ class Rink {
     static rinks = {}
 
     constructor (name, city, country, type, elevation) {
-        this . #name       = name
-        this . #city       = city
-        this . #country    = country
-        this . #type       = type
-        this . #elevation  = elevation
+        this . __name       = name
+        this . __city       = city
+        this . __country    = country
+        this . __type       = type
+        this . __elevation  = elevation
     }
 
     //
     // Simple getters
     //
-    name      () {return this . #name}
-    city      () {return this . #city}
-    country   () {return this . #country}
-    elevation () {return this . #elevation}
+    name      () {return this . __name}
+    city      () {return this . __city}
+    country   () {return this . __country}
+    elevation () {return this . __elevation}
 
     //
     // Types
     //
     type          (date) {
-        return value_by_date (this . #type, date)
+        return value_by_date (this . __type, date)
     }
 
 
     is_natural    (date) {return this . type (date) == Rink . NATURAL}
     is_artificial (date) {return this . type (date) == Rink . ARTIFICIAL}
     is_indoor     (date) {return this . type (date) == Rink . INDOOR}
-    is_sea_level  () {return this . #elevation      <= 200}
-    is_high_land  () {return this . #elevation      >= 500}
+    is_sea_level  () {return this . __elevation     <= 200}
+    is_high_land  () {return this . __elevation     >= 500}
 
     //
     // Derived values

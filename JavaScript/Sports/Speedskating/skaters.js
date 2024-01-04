@@ -11,25 +11,25 @@ function value_by_date (value, date) {
 }
 
 class Skater {
-    #name
-    #nationality
+    // #name
+    // #nationality
 
     static GERMAN_REUNIFICATION_DATE = "1990-10-03"
 
     static skaters = {}
 
     constructor (name, nationality) {
-        this . #name        = name
-        this . #nationality = nationality
+        this . __name        = name
+        this . __nationality = nationality
     }
 
     name (date = 0) {
-        return value_by_date (this . #name, date)
+        return value_by_date (this . __name, date)
     }
 
 
     nationality (date = 0) {
-        const nat = value_by_date (this . #nationality, date)
+        const nat = value_by_date (this . __nationality, date)
 
         //
         // Special case GDR & FRG
