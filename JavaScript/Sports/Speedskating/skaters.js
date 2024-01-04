@@ -231,6 +231,7 @@ Skater . add_skater ("sadchikova",           "Lyubov Sadchikova",        "URS")
 Skater . add_skater ("safronov",             "Aleksandr Safronov",       "URS")
 Skater . add_skater ("sang-hwa",             "Lee Sang-hwa",             "KOR")
 Skater . add_skater ("schenk",               "Ard Schenk",               "NED")
+Skater . add_skater ("schleiermacher",       "Ruth Schleiermacher",      "GDR")
 Skater . add_skater ("schonbrunn",
                               ["1961-06-01", "Gabi Sch\u{F6}nbrunn",
                                "1987-07-00", "Gabi Zange",],             "GDR")
