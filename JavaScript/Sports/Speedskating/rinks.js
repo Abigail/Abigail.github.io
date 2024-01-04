@@ -105,6 +105,9 @@ Rink . add_rink ("cortina",         "Pista Fiames",
 Rink . add_rink ("davos",           "Eisstadion",
                  "Davos",           "SUI",      Rink . NATURAL,    1560)
 
+Rink . add_rink ("eskilstuna",      "Isstadion",
+                 "Eskilstuna",      "SWE",      Rink . ARTIFICIAL,   16)
+
 Rink . add_rink ("deventer",        "IJsselstadion",
                  "Deventer",        "NED",      Rink . ARTIFICIAL,    5)
 
@@ -158,6 +161,9 @@ Rink . add_rink ("jaap eden",       "Jaap Edenbaan",
 
 Rink . add_rink ("karuizawa",       "Skating Center",
                  "Karuizawa",       "JPN",      Rink . ARTIFICIAL,  980)
+
+Rink . add_rink ("kvarnsveden",     "Idrottsplatsen",
+                 "Kvarnsveden",     "SWE",      Rink . NATURAL,     165)
 
 Rink . add_rink ("kirov",           "Dinamo",
                  "Kirov",           "URS",      Rink . NATURAL,     166)
@@ -216,6 +222,9 @@ Rink . add_rink ("st. moritz",      "Badrutss Park",
 
 Rink . add_rink ("stockholm",       "Stockholm Stadion",
                  "Stockholm",       "SWE",      Rink . NATURAL,      25)
+
+Rink . add_rink ("sverdlovsk",      "Tsentrainyu",
+                 "Sverdlovsk",      "URS",      Rink . NATURAL,     292)
 
 Rink . add_rink ("thialf",          "Thialf",
                  "Heerenveen",      "NED",  ["1967-10-14", Rink . ARTIFICIAL,
