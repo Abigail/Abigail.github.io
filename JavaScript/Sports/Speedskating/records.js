@@ -209,7 +209,7 @@ function make_config (gender, distance, start_year = 0) {
 //
 // Given a record, return the HTML table row representing it
 //
-function item_to_row (item, sex, distance) {
+function item_to_row (item, gender, distance) {
     let   time   = item . time
     const date   = item . date
     const skater = Skater . skater (item . skater)
@@ -229,7 +229,7 @@ function item_to_row (item, sex, distance) {
     // Cases where the fastest time is "shorter" than the longest time.
     // In that case, we prepad with an invisible 0.
     //
-    if (sex == "women" && distance == "5000") {
+    if (gender == "women" && distance == "5000") {
         let [minute] = time . split (':')
         if (+minute < 10) {
             time = "<span style = 'visibility: hidden'>0</span>" + time
@@ -248,10 +248,10 @@ function item_to_row (item, sex, distance) {
 }
 
 
-function build_table (sex, distance) {
-    const my_progression = progression (sex, distance)
+function build_table (gender, distance) {
+    const my_progression = progression (gender, distance)
     const table = "<table id = 'records'>" +
-                    my_progression . map  (item => item_to_row (item, sex,
+                    my_progression . map  (item => item_to_row (item, gender,
                                                                 distance))
                                    . join ("\n") +
                   "</table>";
@@ -263,17 +263,17 @@ function build_table (sex, distance) {
 //
 // Build the navigation table
 //
-function build_navigation (this_sex, this_distance) {
+function build_navigation (this_gender, this_distance) {
     let table_str = "<table id = 'nav_bar'>";
-    ["men", "women"] . forEach ((sex) => {
-        table_str += "<tr><th>" + sex + "</th>";
+    ["men", "women"] . forEach ((gender) => {
+        table_str += "<tr><th>" + gender + "</th>";
         [500, 1000, 1500, 3000, 5000, 10000] . forEach ((distance) => {
             table_str += "<td>"
-            if (sex == this_sex && +distance == +this_distance) {
+            if (gender == this_gender && +distance == +this_distance) {
                 table_str += "<b>" + distance + "</b>"
             }
             else {
-                table_str += "<a href = 'records.html?sex=" + sex +
+                table_str += "<a href = 'records.html?gender=" + gender +
                                 "&distance=" + distance + "'>" +
                                 distance + "</a>"
             }
@@ -286,8 +286,8 @@ function build_navigation (this_sex, this_distance) {
 }
 
 
-function build_chart (sex, distance, title, start_year = 0) {
-    const chart_config = make_config (sex, distance, start_year)
+function build_chart (gender, distance, title, start_year = 0) {
+    const chart_config = make_config (gender, distance, start_year)
 
     if (!chart_config) {
         return
@@ -314,28 +314,28 @@ function build_chart (sex, distance, title, start_year = 0) {
 
 function load_chart () {
     const start_year = + $("#start_year") . val ();
-    const sex        = window . __private . sex
+    const gender     = window . __private . gender
     const distance   = window . __private . distance
     const title      = window . __private . title
-    build_chart (sex, distance, title, start_year)
+    build_chart (gender, distance, title, start_year)
 }
 
 window . addEventListener ("load", function () {
     const params   = new URLSearchParams (window . location . search)
-    const sex      = params . get ('sex')
+    const gender   = params . get ('gender')
     const distance = params . get ('distance')
-    let   title    = sex + " " + distance + "m"
+    let   title    = gender + " " + distance + "m"
           title    = title [0] . toUpperCase () + title . slice (1)
 
-    window . __private = {sex: sex, distance: distance, title: title}
+    window . __private = {gender: gender, distance: distance, title: title}
 
     $("h1") . html (title)
 
-    build_navigation (sex, distance)
-    build_table      (sex, distance)
-    build_chart      (sex, distance, title)
+    build_navigation (gender, distance)
+    build_table      (gender, distance)
+    build_chart      (gender, distance, title)
 
-    const years = progression (sex, distance) . map ((item) => {
+    const years = progression (gender, distance) . map ((item) => {
         return item . date . split ("-") . map (x => +x) [0]
     })
     const start_year = Math . min (... years)
