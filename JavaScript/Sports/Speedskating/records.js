@@ -94,7 +94,7 @@ function point_colour (context) {
 
 
 function make_config (gender, distance, start_year = 0) {
-    const my_progression = progression [gender] [distance]
+    const my_progression = progression (gender, distance)
 
     //
     // Get the data points
@@ -249,7 +249,7 @@ function item_to_row (item, sex, distance) {
 
 
 function build_table (sex, distance) {
-    const my_progression = progression [sex] [distance]
+    const my_progression = progression (sex, distance)
     const table = "<table id = 'records'>" +
                     my_progression . map  (item => item_to_row (item, sex,
                                                                 distance))
@@ -335,7 +335,7 @@ window . addEventListener ("load", function () {
     build_table      (sex, distance)
     build_chart      (sex, distance, title)
 
-    const years = progression [sex] [distance] . map ((item) => {
+    const years = progression (sex, distance) . map ((item) => {
         return item . date . split ("-") . map (x => +x) [0]
     })
     const start_year = Math . min (... years)

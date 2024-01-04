@@ -1,4 +1,4 @@
-let progression = {}
+let __progression = []
 
 const M   = "men"
 const W   = "women"
@@ -6,23 +6,26 @@ const W   = "women"
 const sexes     = [M, W]
 const distances = [500, 1000, 1500, 3000, 5000, 10000];
 
-sexes . forEach ((sex) => {
-    progression [sex] = {}
-    distances . forEach ((distance) => {
-        progression [sex] [distance] = []
-    })
-})
-
-
 function add_record (sex, distance, skater, time, date, rink, city) {
-    progression [sex] [distance] . push ({
-        skater: skater,
-        time:   time,
-        date:   date,
-        rink:   rink,
+    __progression . push ({
+        sex:       sex,
+        distance:  distance,
+        skater:    skater,
+        time:      time,
+        date:      date,
+        rink:      rink,
     })
 }
 
+//
+// Return a progression list based on gender and distance
+//
+function progression (sex = 0, distance = 0) {
+    return __progression . filter (item => 
+        (!sex      || item . sex      ==  sex)       &&
+        (!distance || item . distance == +distance)
+    )
+}
 
 //
 // Men   500m
