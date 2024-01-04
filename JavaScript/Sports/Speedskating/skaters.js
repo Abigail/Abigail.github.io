@@ -81,7 +81,7 @@ Skater . add_skater ("chaykin",              "Valetin Chaykin",          "URS")
 Skater . add_skater ("davis",                "Shani Davis",              "USA")
 Skater . add_skater ("donker",               "Gr\u{E9} Donker",          "NED")
 
-Skater . add_skater ("eden",                 "Jaap Eden",                "NOR")
+Skater . add_skater ("eden",                 "Jaap Eden",                "NED")
 Skater . add_skater ("efskind",              "Lasse Efskind",            "NOR")
 Skater . add_skater ("elm",                  "Steven Elm",               "CAN")
 Skater . add_skater ("engnestangen",         "Hans Engnestangen",        "NOR")
