@@ -4,7 +4,7 @@ const config_config = {
          5000: {step_size: 15, scale_y_min:  6 * 60,     },
          3000: {step_size: 10, scale_y_min:  3 * 60 + 30,},
          1500: {step_size:  5, scale_y_min:  1 * 60 + 35,},
-         1000: {step_size:  3, scale_y_min:  1 * 60,     },
+         1000: {step_size:  3, scale_y_min:  1 * 60 +  3,},
           500: {step_size:  1, scale_y_min:      33,     },
     },
     women: {
@@ -12,7 +12,7 @@ const config_config = {
          5000: {step_size: 15, scale_y_min:  6 * 60 + 30,},
          3000: {step_size: 10, scale_y_min:  3 * 60 + 40,},
          1500: {step_size:  5, scale_y_min:  1 * 60 + 40,},
-         1000: {step_size:  3, scale_y_min:  1 * 60 + 10,},
+         1000: {step_size:  3, scale_y_min:  1 * 60 +  9,},
           500: {step_size:  1, scale_y_min:      36,     },
     }
 }
