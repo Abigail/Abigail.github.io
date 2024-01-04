@@ -7,26 +7,42 @@ const genders   = [M, W]
 const distances = [500, 1000, 1500, 3000, 5000, 10000];
 
 function add_record (gender, distance, skater, time, date, rink, city) {
+    const [year, month, mday] = date . split ("-") . map (x => +x)
+    const  season = month >= 8 ? year - 1 : year
     __progression . push ({
         gender:    gender,
         distance:  distance,
         skater:    skater,
         time:      time,
         date:      date,
+        year:      year,
+        month:     month,
+        mday:      mday,
+        season:    season,
         rink:      rink,
     })
 }
 
 //
-// Return a progression list based on gender and distance
+// Return the progression list based on filters:
 //
-function progression (gender = 0, distance = 0) {
-    return __progression . filter (item => 
-        (!gender   || item . gender   ==  gender)       &&
-        (!distance || item . distance == +distance)
-    )
+//
+function progression (filters) {
+    let result = __progression
+    Object . keys (filters)
+           . forEach ((key) => {
+        if (filters [key]) {
+            if (key == "season") {
+                result = result . filter (item => item [key] >= filters [key])
+            }
+            else {
+                result = result . filter (item => item [key] == filters [key])
+            }
+        }
+    })
+    return result
 }
-
+           
 //
 // Men   500m
 //

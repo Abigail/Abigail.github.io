@@ -93,28 +93,28 @@ function point_colour (context) {
 }
 
 
-function make_config (gender, distance, start_year = 0) {
-    const my_progression = progression (gender, distance)
+function make_config (gender, distance, season = 0) {
+    const my_progression = progression ({gender:   gender,
+                                         distance: distance,
+                                         season:   season})
+    if (!my_progression . length) {
+        return
+    }
 
     //
     // Get the data points
     //
     const time_data = my_progression . map ((item) => {
-        let [year, month, day] = item . date . split ("-") . map (x => +x)
         return {
             x:      date2value (item . date),
             y:      time2sec   (item . time),
             date:   item . date,
-            year:   year,
+            year:   item . year,
             time:   item . time,
             skater: item . skater,
             rink:   item . rink,
         }
-    }) . filter (item => item . year >= start_year)
-
-    if (!time_data . length) {
-        return;
-    }
+    })
 
     //
     // Wrap this into a set
@@ -131,15 +131,9 @@ function make_config (gender, distance, start_year = 0) {
     //
     // Calculate the first and last years
     //
-    const years = time_data . map (item => item . year)
-    let first_year = Math . min (... years)
-    if (start_year) {
-        first_year = start_year == first_year ? first_year - 1 : start_year
-    }
-    else {
-        first_year -= 1
-    }
-    let last_year   = new Date () . getFullYear () + 1
+    const years    = time_data . map (item => item . year)
+    let first_year = Math . min (... years) - 1
+    let last_year  = new Date () . getFullYear () + 1
         
     //
     // Create the configuration
@@ -248,8 +242,10 @@ function item_to_row (item, gender, distance) {
 }
 
 
-function build_table (gender, distance) {
-    const my_progression = progression (gender, distance)
+function build_table (gender, distance, season = 0) {
+    const my_progression = progression ({gender:   gender,
+                                         distance: distance,
+                                         season:   season})
     const table = "<table id = 'records'>" +
                     my_progression . map  (item => item_to_row (item, gender,
                                                                 distance))
@@ -335,12 +331,8 @@ window . addEventListener ("load", function () {
     build_table      (gender, distance)
     build_chart      (gender, distance, title)
 
-    const years = progression (gender, distance) . map ((item) => {
-        return item . date . split ("-") . map (x => +x) [0]
-    })
-    const start_year = Math . min (... years)
     $("#start_year_span") . html (`<input id = 'start_year' type = 'number' ` +
-                                  `value = '1960' ` +
-                                  `min = '${start_year}' max = '2025'>`)
+                                  `value = '1960'>`)
+                                  
 
 })
