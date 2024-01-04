@@ -4,7 +4,8 @@ const M   = "men"
 const W   = "women"
 
 const genders   = [M, W]
-const distances = [500, 1000, 1500, 3000, 5000, 10000];
+const distances = [500, 1000, 1500, 3000, 5000, 10000,
+                  "big", "small", "mini", "sprint", "2x500"];
 
 function add_record (gender, distance, skater, time, date, rink, city) {
     const [year, month, mday] = date . split ("-") . map (x => +x)
@@ -407,6 +408,11 @@ add_record (M, 10000, "poel",       "12:30.74", "2022-02-11", "beijing")
 
 
 //
+// Men big combination
+//
+
+
+//
 // Women   500m
 //
 add_record (W,   500, "nehringowa",  "1:02.0",  "1931-02-15", "warsaw")
@@ -685,7 +691,7 @@ add_record (W, 10000, "stam",       "17:20.0",  "1984-03-11", "alkmaar")
 add_record (W, 10000, "kooiman",    "16:56.8",  "1984-03-16", "haarlem")
 add_record (W, 10000, "jensen",     "16:49.82", "1985-03-07", "savalen")
 add_record (W, 10000, "mitscherlich","16:49.82","1987-03-11", "kuchwald")
-add_record (W, 10000, "mulder",     "15:56.81", "1988-03-16", "thialf")
+add_record (W, 10000, "mulder_grietje","15:56.81","1988-03-16","thialf")
 
 add_record (W, 10000, "gennip",     "15:25.25", "1988-03-19", "thialf")
 add_record (W, 10000, "niemann",    "14:22.60", "1994-03-27", "calgary")

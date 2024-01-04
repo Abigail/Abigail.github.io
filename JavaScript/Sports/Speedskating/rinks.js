@@ -172,6 +172,9 @@ Rink . add_rink ("kuchwald",        "K\u{F6}chwald",
 Rink . add_rink ("lake placid",     "James B. Sheffield Olympic Skating Rink",
                  "Lake Placid",     "USA",      Rink . ARTIFICIAL,  568)
 
+Rink . add_rink ("madonna",         "Pista Olimpica",
+                 "Madonna di Campiglio", "ITA", Rink . NATURAL,    1450)
+
 Rink . add_rink ("medeo",           "Kompleks Medeo",
                  "Medeo",           "KAZ",      Rink . ARTIFICIAL, 1691)
 
