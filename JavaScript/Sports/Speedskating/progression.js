@@ -1,16 +1,22 @@
 let __progression = []
 
-const M   = "men"
-const W   = "women"
+const M     = "men"
+const W     = "women"
+
+const BIG   = -1
+const SMALL = -2
+const MINI  = -3
+const SPR   = -4
+const D500  = -5
 
 const genders   = [M, W]
 const distances = [500, 1000, 1500, 3000, 5000, 10000,
-                  "big", "small", "mini", "sprint", "2x500"];
+                   BIG, SMALL, MINI, SPR, D500]
 
-function add_record (gender, distance, skater, time, date, rink, city) {
+function add_record (gender, distance, skater, time, date, rink, city,
+                     extra = {}) {
     const [year, month, mday] = date . split ("-") . map (x => +x)
-    const  season = month >= 8 ? year - 1 : year
-    __progression . push ({
+    let new_entry = {
         gender:    gender,
         distance:  distance,
         skater:    skater,
@@ -19,9 +25,13 @@ function add_record (gender, distance, skater, time, date, rink, city) {
         year:      year,
         month:     month,
         mday:      mday,
-        season:    season,
+        season:    month >= 8 ? year - 1 : year,
         rink:      rink,
+    }
+    Object . keys (extra) . forEach ((key) => {
+        new_entry [key] = extra [key]
     })
+    __progression . push (new_entry)
 }
 
 //
@@ -410,6 +420,57 @@ add_record (M, 10000, "poel",       "12:30.74", "2022-02-11", "beijing")
 //
 // Men big combination
 //
+add_record (M,   BIG, "farstad",     "188.958", "1949-02-06", "davos")
+add_record (M,   BIG, "sakunenko",   "184.638", "1955-01-10", "medeo")
+add_record (M,   BIG, "traub",       "184.490", "1963-01-20", "madonna")
+add_record (M,   BIG, "johannesen",  "183.055", "1963-01-20", "hamar")
+add_record (M,   BIG, "aaness",      "180.560", "1963-01-27", "bislett")
+
+add_record (M,   BIG, "nilsson",     "178.447", "1963-02-24", "karuizawa")
+add_record (M,   BIG, "maier",       "178.253", "1966-02-06", "bislett")
+add_record (M,   BIG, "verkerk",     "178.058", "1967-02-12", "bislett")
+add_record (M,   BIG, "stiansen",    "176.982", "1968-01-14", "madonna")
+add_record (M,   BIG, "traub",       "176.717", "1968-01-21", "inzell")
+
+add_record (M,   BIG, "maier",       "176.340", "1968-02-25", "goteborg")
+add_record (M,   BIG, "verkerk",     "172.058", "1968-03-10", "inzell")
+add_record (M,   BIG, "claeson",     "171.758", "1969-03-02", "inzell")
+add_record (M,   BIG, "bols",        "171.512", "1970-03-08", "inzell")
+add_record (M,   BIG, "schenk",      "171.317", "1971-01-10", "bislett")
+
+add_record (M,   BIG, "schenk",      "171.130", "1971-02-14", "goteborg")
+add_record (M,   BIG, "schenk",      "168.248", "1971-03-14", "inzell")
+add_record (M,   BIG, "schenk",      "167.420", "1972-03-05", "inzell")
+add_record (M,   BIG, "kleine",      "165.884", "1976-03-13", "inzell")
+add_record (M,   BIG, "storholt",    "163.221", "1977-03-20", "medeo")
+
+add_record (M,   BIG, "heiden_eric", "162.973", "1979-02-11", "bislett")
+add_record (M,   BIG, "shasherin",   "161.550", "1983-03-26", "medeo")
+add_record (M,   BIG, "shasherin",   "160.807", "1984-03-24", "medeo")
+add_record (M,   BIG, "gulyayev_nikolay",
+                                     "159.356", "1987-02-15", "thialf")
+add_record (M,   BIG, "koss",        "157.396", "1991-02-10", "thialf")
+
+add_record (M,   BIG, "sighel",      "157.150", "1992-03-22", "calgary")
+add_record (M,   BIG, "zandstra",    "156.882", "1993-01-23", "thialf")
+add_record (M,   BIG, "ritsma",      "156.201", "1994-01-09", "hamar",
+                                                              {weekend: 3})
+add_record (M,   BIG, "shirahata",   "155.966", "1998-01-03", "nagano")
+add_record (M,   BIG, "postma",      "153.367", "1998-03-15", "thialf",
+                                                              {weekend: 3})
+
+add_record (M,   BIG, "ritsma",      "152.651", "1999-02-07", "hamar")
+add_record (M,   BIG, "uytdehaage",  "152.482", "2002-03-17", "thialf",
+                                                              {weekend: 3})
+add_record (M,   BIG, "tuitert",     "151.691", "2004-01-11", "thialf",
+                                                              {weekend: 3})
+add_record (M,   BIG, "hedrick",     "150.478", "2004-02-08", "hamar")
+add_record (M,   BIG, "davis",       "149.359", "2005-01-09", "salt lake city")
+
+add_record (M,   BIG, "hedrick",     "148.799", "2006-01-22", "calgary")
+add_record (M,   BIG, "davis",       "145.742", "2006-03-19", "calgary")
+add_record (M,   BIG, "roest",       "145.561", "2019-03-02", "calgary")
+
 
 
 //

@@ -52,6 +52,7 @@ class Skater {
 }
 
 
+Skater . add_skater ("aaness",               "Nils Aaness",              "NOR")
 Skater . add_skater ("akifyeva",             "Olga Akifyeva",            "URS")
 Skater . add_skater ("andersen",             "Hjalmar Andersen",         "NOR")
 Skater . add_skater ("antson",               "Ants Antson",              "URS")
