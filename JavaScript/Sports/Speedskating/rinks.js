@@ -121,7 +121,7 @@ Rink . add_rink ("gamle",           "Gamle Frogner Stadion",
                  "Oslo",            "NOR",      Rink . NATURAL,      42)
 
 Rink . add_rink ("geithus",         "Farumo Stadion",
-                 "Geithus",         "NOR",      Rink . ARTICIAL,    116)
+                 "Geithus",         "NOR",      Rink . ARTIFICIAL,  116)
 
 Rink . add_rink ("gjovik",          "Gj\u{F8}vik Stadion",
                  "Gj\u{F8}vik",     "NOR",      Rink . NATURAL,     149)
