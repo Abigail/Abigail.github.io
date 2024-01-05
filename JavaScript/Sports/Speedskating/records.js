@@ -25,6 +25,25 @@ function config_config () {
 }
 
 //
+// Given a gender and a distance, return the title;
+// the title is used both on top of the page, and the
+// top of the graph.
+//
+function make_title (gender, distance) {
+    let title = gender [0] . toUpperCase () + gender . slice (1) + ", "
+    if (distance > 0) {
+        title += distance + "m"
+    }
+    else if (distance == D500) {
+        title += "2 x 500m"
+    }
+    else {
+        title += dist_names [distance] + " Combination"
+    }
+    return title
+}
+
+//
 // sec2time
 //
 // Given a number of seconds, format them as a time
@@ -276,7 +295,6 @@ function build_navigation (this_gender, this_distance) {
         table_str += "<tr><th>" + gender + "</th>";
         distances . forEach ((distance) => {
             let td   = "";
-            console . log (dist_names)
             let name = dist_names [distance] || distance
             if (gender == "women" && distance == BIG ||
                 gender == "men"   && distance == MINI) {
@@ -338,8 +356,7 @@ window . addEventListener ("load", function () {
     const params   = new URLSearchParams (window . location . search)
     const gender   = params . get ('gender')
     const distance = params . get ('distance')
-    let   title    = gender + " " + distance + "m"
-          title    = title [0] . toUpperCase () + title . slice (1)
+    const title    = make_title (gender, distance)
 
     window . __private = {gender: gender, distance: distance, title: title}
 
