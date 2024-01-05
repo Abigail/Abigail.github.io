@@ -165,7 +165,9 @@ function make_config (gender, distance, season = 0) {
     //
     // Create the configuration
     //
-    const my_config_config = config_config () [gender] [distance]
+    const my_config_config       = config_config () [gender] [distance]
+    const scale_title_font_size  = 16;
+    const legend_title_font_size = 16;
 
     const wr_config = {
         type: 'scatter',
@@ -183,6 +185,13 @@ function make_config (gender, distance, season = 0) {
                     },
                     min: first_year,
                     max: last_year,
+                    title: {
+                        text: "Year",
+                        display: true,
+                        font: {
+                            size: scale_title_font_size,
+                        },
+                    },
                 },
                 y: {
                     type: 'linear',
@@ -195,6 +204,13 @@ function make_config (gender, distance, season = 0) {
                         autoSkip: false,
                     },
                     min: my_config_config . scale_y_min,
+                    title: {
+                        text: distance < 0 ? "Points" : "Time",
+                        display: true,
+                        font: {
+                            size: scale_title_font_size,
+                        },
+                    },
                 },
             },
             plugins: {
@@ -203,8 +219,8 @@ function make_config (gender, distance, season = 0) {
                 },
                 title: {
                     display: true,
-                    nt: {
-                        size: 16
+                    font: {
+                        size: legend_title_font_size,
                     },
                 },
                 tooltip: {
