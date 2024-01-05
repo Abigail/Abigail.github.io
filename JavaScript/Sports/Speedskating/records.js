@@ -408,7 +408,7 @@ window . addEventListener ("load", function () {
     build_chart      (gender, distance, title)
 
     $("#start_year_span") . html (`<input id = 'start_year' type = 'number' ` +
-                                  `value = '1960'>`)
+                                  `value = '1960' size = '5'>`)
                                   
 
 })
