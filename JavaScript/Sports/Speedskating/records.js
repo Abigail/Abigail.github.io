@@ -336,7 +336,7 @@ function build_navigation (this_gender, this_distance) {
         table_str += "<tr><th>" + gender + "</th>";
         distances . forEach ((distance) => {
             let td   = "";
-            let name = dist_names [distance] || distance
+            let name = dist_names [distance] || distance + "m"
             if (gender == "women" && distance == BIG ||
                 gender == "men"   && distance == MINI) {
                 td = ""

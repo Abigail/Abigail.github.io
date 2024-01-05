@@ -17,7 +17,7 @@ const dist_names = {
     [SMALL]:  "Small",
     [MINI]:   "Mini",
     [SPR]:    "Sprint",
-    [D500]:   "2 x 500",
+    [D500]:   "2 x 500m",
 }
 const W3         = {weekend: 3}
 
