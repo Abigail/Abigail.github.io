@@ -105,11 +105,11 @@ Rink . add_rink ("cortina",         "Pista Fiames",
 Rink . add_rink ("davos",           "Eisstadion",
                  "Davos",           "SUI",      Rink . NATURAL,    1560)
 
-Rink . add_rink ("eskilstuna",      "Isstadion",
-                 "Eskilstuna",      "SWE",      Rink . ARTIFICIAL,   16)
-
 Rink . add_rink ("deventer",        "IJsselstadion",
                  "Deventer",        "NED",      Rink . ARTIFICIAL,    5)
+
+Rink . add_rink ("eskilstuna",      "Isstadion",
+                 "Eskilstuna",      "SWE",      Rink . ARTIFICIAL,   16)
 
 Rink . add_rink ("engelberg",       "Eisbahn",
                  "Engelberg",       "SUI",      Rink . NATURAL,    1138)

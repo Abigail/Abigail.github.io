@@ -19,6 +19,7 @@ const dist_names = {
     [SPR]:    "Sprint",
     [D500]:   "2 x 500m",
 }
+const W1         = {weekend: 1}
 const W3         = {weekend: 3}
 
 function add_record (gender, distance, skater, time, date, rink, city,
@@ -821,7 +822,8 @@ add_record (W, 10000, "stam",       "17:20.0",  "1984-03-11", "alkmaar")
 add_record (W, 10000, "kooiman",    "16:56.8",  "1984-03-16", "haarlem")
 add_record (W, 10000, "jensen",     "16:49.82", "1985-03-07", "savalen")
 add_record (W, 10000, "mitscherlich","16:49.82","1987-03-11", "kuchwald")
-add_record (W, 10000, "mulder_grietje","15:56.81","1988-03-16","thialf")
+add_record (W, 10000, "mulder_grietje",
+                                    "15:56.81", "1988-03-16", "thialf")
 
 add_record (W, 10000, "gennip",     "15:25.25", "1988-03-19", "thialf")
 add_record (W, 10000, "niemann",    "14:22.60", "1994-03-27", "calgary")
@@ -829,3 +831,106 @@ add_record (W, 10000, "sablikova",  "14:08.28", "2006-03-23", "calgary")
 add_record (W, 10000, "sablikova",  "13:48.33", "2007-03-15", "calgary")
 
 
+//
+// Women small combination
+//
+add_record (W, SMALL, "mitscherlich","177.669", "1983-01-23", "thialf")
+add_record (W, SMALL, "schonbrunn",  "174.710", "1984-01-15", "medeo")
+add_record (W, SMALL, "mitscherlich","171.760", "1984-03-24", "medeo")
+add_record (W, SMALL, "enke",        "168.271", "1986-03-22", "medeo")
+add_record (W, SMALL, "niemann",     "167.282", "1994-01-09", "hamar", W3)
+
+add_record (W, SMALL, "niemann",     "165.708", "1997-02-16", "nagano", W3)
+add_record (W, SMALL, "niemann",     "163.020", "1998-03-15", "thialf", W3)
+add_record (W, SMALL, "niemann",     "161.479", "1999-02-07", "hamar")
+add_record (W, SMALL, "klassen",     "159.723", "2003-01-26", "salt lake city")
+add_record (W, SMALL, "klassen",     "159.605", "2005-01-09", "salt lake city")
+
+add_record (W, SMALL, "klassen",     "157.177", "2006-01-22", "calgary")
+add_record (W, SMALL, "klassen",     "154.580", "2006-03-19", "calgary")
+
+
+//
+// Women mini combination
+//
+add_record (W,  MINI, "kondakova",   "207.484", "1956-02-05", "kvarnsveden")
+add_record (W,  MINI, "artamonova",  "206.016", "1956-02-06", "sverdlovsk")
+add_record (W,  MINI, "romanova",    "203.299", "1958-01-27", "medeo")
+add_record (W,  MINI, "haase",       "202.834", "1960-01-20", "davos")
+add_record (W,  MINI, "rylova",      "196.416", "1960-01-21", "medeo")
+
+add_record (W,  MINI, "voronina artamonova",
+                                     "189.033", "1962-01-28", "medeo")
+add_record (W,  MINI, "kaiser",      "188.634", "1967-03-05", "inzell")
+add_record (W,  MINI, "schut",       "185.500", "1969-02-23", "inzell")
+add_record (W,  MINI, "statkevich",  "184.053", "1970-01-18", "medeo")
+add_record (W,  MINI, "kaiser",      "182.817", "1971-01-16", "davos")
+
+add_record (W,  MINI, "keulen deelstra",
+                                     "182.805", "1972-01-16", "inzell")
+add_record (W,  MINI, "averina",     "180.090", "1974-04-02", "medeo")
+add_record (W,  MINI, "averina",     "176.930", "1975-03-12", "medeo")
+add_record (W,  MINI, "burka",       "176.468", "1976-03-13", "inzell")
+add_record (W,  MINI, "stepanskaya", "173.810", "1976-03-23", "medeo")
+
+add_record (W,  MINI, "petrusyova",  "173.434", "1980-03-27", "medeo")
+add_record (W,  MINI, "petrusyova",  "171.149", "1981-01-03", "medeo")
+add_record (W,  MINI, "petrusyova",  "168.387", "1981-03-28", "medeo")
+add_record (W,  MINI, "enke",        "168.271", "1982-02-14", "inzell")
+add_record (W,  MINI, "petrusyova",  "166.682", "1983-03-26", "medeo")
+
+add_record (W,  MINI, "hunyady",     "164.658", "1994-03-27", "calgary")
+add_record (W,  MINI, "thomas",      "163.901", "1996-03-23", "calgary")
+add_record (W,  MINI, "timmer",      "163.315", "1997-03-16", "calgary")
+add_record (W,  MINI, "tabata",      "162.731", "1998-08-16", "calgary")
+add_record (W,  MINI, "sundstrom",   "161.439", "1998-11-29", "calgary", W3)
+
+add_record (W,  MINI, "thomas",      "158.183", "1999-03-21", "calgary")
+add_record (W,  MINI, "klassen",     "155.576", "2001-03-17", "calgary", W3)
+add_record (W,  MINI, "klassen",     "155.456", "2006-12-30", "calgary", W3)
+add_record (W,  MINI, "nesbitt",     "153.856", "2007-11-11", "salt lake city",
+                                                               W3)
+add_record (W,  MINI, "beune",       "153.776", "2018-03-10", "salt lake city")
+
+
+
+//
+// Women sprint combination
+//
+add_record (W,   SPR, "pflug",       "183.085", "1972-02-27", "eskilstuna")
+add_record (W,   SPR, "burka",       "175.050", "1973-01-14", "davos")
+add_record (W,   SPR, "young",       "173.450", "1973-01-20", "davos")
+add_record (W,   SPR, "averina",     "168.285", "1975-03-29", "medeo")
+add_record (W,   SPR, "young",       "166.210", "1976-03-13", "inzell")
+
+add_record (W,   SPR, "rothenburger","162.275", "1981-03-28", "medeo")
+add_record (W,   SPR, "rothenburger","161.120", "1983-03-26", "medeo")
+add_record (W,   SPR, "enke",        "160.060", "1986-02-23", "karuizawa")
+add_record (W,   SPR, "blair",       "159.435", "1989-02-26", "thialf")
+add_record (W,   SPR, "blair",       "159.390", "1992-01-19", "davos")
+
+add_record (W,   SPR, "blair",       "157.405", "1994-01-30", "calgary")
+add_record (W,   SPR, "blair",       "156.505", "1994-03-26", "calgary")
+add_record (W,   SPR, "blair",       "156.435", "1995-02-11", "calgary", W1)
+add_record (W,   SPR, "le may",      "151.690", "1997-11-23", "calgary")
+add_record (W,   SPR, "garbrecht",   "151.605", "1999-02-21", "calgary")
+
+add_record (W,   SPR, "le may",      "150.085", "2001-01-07", "calgary")
+add_record (W,   SPR, "volker",      "149.915", "2001-12-02", "salt lake city")
+add_record (W,   SPR, "garbrecht",   "149.305", "2003-01-12", "salt lake city")
+add_record (W,   SPR, "klassen",     "149.305", "2006-03-25", "calgary")
+add_record (W,   SPR, "jing",        "148.610", "2012-01-29", "calgary")
+
+add_record (W,   SPR, "richardson",  "147.735", "2013-01-20", "calgary")
+add_record (W,   SPR, "kodaira",     "146.390", "2017-02-26", "calgary")
+
+
+//
+// Women 2x500m
+//
+add_record (W,  D500, "le may",       "74.720", "2001-03-09", "salt lake city")
+add_record (W,  D500, "wolf",         "74.420", "2007-03-10", "salt lake city")
+add_record (W,  D500, "richardson",   "74.190", "2013-12-28", "salt lake city")
+
+
+// 3.34.22  WR Team Pursuit
