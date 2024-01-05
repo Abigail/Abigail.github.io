@@ -6,6 +6,7 @@ const config_config = {
          1500: {step_size:  5, scale_y_min:  1 * 60 + 35,},
          1000: {step_size:  3, scale_y_min:  1 * 60 +  3,},
           500: {step_size:  1, scale_y_min:      33,     },
+         [-1]: {step_size:  5, scale_y_min:     140      },
     },
     women: {
         10000: {step_size: 30, scale_y_min: 13 * 60 + 30,},
@@ -107,7 +108,7 @@ function make_config (gender, distance, season = 0) {
     const time_data = my_progression . map ((item) => {
         return {
             x:      date2value (item . date),
-            y:      time2sec   (item . time),
+            y:      item . distance > 0 ? time2sec (item . time) : item . time,
             date:   item . date,
             year:   item . year,
             time:   item . time,
@@ -161,7 +162,8 @@ function make_config (gender, distance, season = 0) {
                     type: 'linear',
                     ticks: {
                         callback: function (value, index, ticks) {
-                            return sec2time (value)
+                            return distance < 0 ? value + ".000"
+                                                : sec2time (value)
                         },
                         stepSize: my_config_config . step_size,
                         autoSkip: false,
