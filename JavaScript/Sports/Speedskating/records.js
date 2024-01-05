@@ -1,21 +1,27 @@
-const config_config = {
-    men: {
-        10000: {step_size: 30, scale_y_min: 12 * 60,     },
-         5000: {step_size: 15, scale_y_min:  6 * 60,     },
-         3000: {step_size: 10, scale_y_min:  3 * 60 + 30,},
-         1500: {step_size:  5, scale_y_min:  1 * 60 + 35,},
-         1000: {step_size:  3, scale_y_min:  1 * 60 +  3,},
-          500: {step_size:  1, scale_y_min:      33,     },
-         [-1]: {step_size:  5, scale_y_min:     140      },
-    },
-    women: {
-        10000: {step_size: 30, scale_y_min: 13 * 60 + 30,},
-         5000: {step_size: 15, scale_y_min:  6 * 60 + 30,},
-         3000: {step_size: 10, scale_y_min:  3 * 60 + 40,},
-         1500: {step_size:  5, scale_y_min:  1 * 60 + 40,},
-         1000: {step_size:  3, scale_y_min:  1 * 60 +  9,},
-          500: {step_size:  1, scale_y_min:      36,     },
+//
+// Return the config for the config
+//
+function config_config () {
+    const config = {
+        men: {
+            10000: {step_size: 30, scale_y_min: 12 * 60,     },
+             5000: {step_size: 15, scale_y_min:  6 * 60,     },
+             3000: {step_size: 10, scale_y_min:  3 * 60 + 30,},
+             1500: {step_size:  5, scale_y_min:  1 * 60 + 35,},
+             1000: {step_size:  3, scale_y_min:  1 * 60 +  3,},
+              500: {step_size:  1, scale_y_min:      33,     },
+            [BIG]: {step_size:  5, scale_y_min:     140      },
+        },
+        women: {
+            10000: {step_size: 30, scale_y_min: 13 * 60 + 30,},
+             5000: {step_size: 15, scale_y_min:  6 * 60 + 30,},
+             3000: {step_size: 10, scale_y_min:  3 * 60 + 40,},
+             1500: {step_size:  5, scale_y_min:  1 * 60 + 40,},
+             1000: {step_size:  3, scale_y_min:  1 * 60 +  9,},
+              500: {step_size:  1, scale_y_min:      36,     },
+        }
     }
+    return config
 }
 
 //
@@ -139,7 +145,7 @@ function make_config (gender, distance, season = 0) {
     //
     // Create the configuration
     //
-    const my_config_config = config_config [gender] [distance]
+    const my_config_config = config_config () [gender] [distance]
 
     const wr_config = {
         type: 'scatter',
