@@ -11,6 +11,7 @@ function config_config () {
              1000: {step_size:  3, scale_y_min:  1 * 60 +  3,},
               500: {step_size:  1, scale_y_min:      33,     },
             [BIG]: {step_size:  5, scale_y_min:     140      },
+          [SMALL]: {step_size:  5, scale_y_min:     140      },
         },
         women: {
             10000: {step_size: 30, scale_y_min: 13 * 60 + 30,},

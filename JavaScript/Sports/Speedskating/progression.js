@@ -478,6 +478,31 @@ add_record (M,   BIG, "hedrick",     "148.799", "2006-01-22", "calgary")
 add_record (M,   BIG, "davis",       "145.742", "2006-03-19", "calgary")
 add_record (M,   BIG, "roest",       "145.561", "2019-03-02", "calgary")
 
+//
+// Men small combination
+//
+add_record (M, SMALL, "dietel",      "163.244", "1981-01-17", "davos")
+add_record (M, SMALL, "falk-larssen","162.734", "1982-01-17", "davos")
+add_record (M, SMALL, "falk-larssen","161.758", "1983-01-23", "davos")
+add_record (M, SMALL, "hoffmann",    "161.158", "1985-01-13", "davos")
+add_record (M, SMALL, "kemkers",     "160.454", "1990-03-17", "inzell")
+
+add_record (M, SMALL, "zandstra",    "159.753", "1991-02-17", "thialf")
+add_record (M, SMALL, "zandstra",    "156.059", "1991-03-01", "calgary",
+                                                              {weekend: 3})
+add_record (M, SMALL, "boutiette",   "154.103", "1997-03-15", "calgary")
+add_record (M, SMALL, "verheijen",   "153.767", "1998-03-21", "calgary")
+add_record (M, SMALL, "wennemars",   "153.583", "1998-08-16", "calgary")
+
+add_record (M, SMALL, "elm",         "152.043", "1998-11-29", "calgary",
+                                                              {weekend: 3})
+add_record (M, SMALL, "breuer",      "149.283", "1999-03-20", "calgary")
+add_record (M, SMALL, "wennemars",   "149.188", "1999-08-15", "calgary")
+add_record (M, SMALL, "uytdehaage",  "147.665", "2001-03-15", "calgary",
+                                                              {weekend: 3})
+add_record (M, SMALL, "wennemars",   "146.365", "2005-08-13", "calgary")
+
+
 
 
 //
