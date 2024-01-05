@@ -4,22 +4,28 @@
 function config_config () {
     const config = {
         men: {
-            10000: {step_size: 30, scale_y_min: 12 * 60,     },
-             5000: {step_size: 15, scale_y_min:  6 * 60,     },
-             3000: {step_size: 10, scale_y_min:  3 * 60 + 30,},
-             1500: {step_size:  5, scale_y_min:  1 * 60 + 35,},
-             1000: {step_size:  3, scale_y_min:  1 * 60 +  3,},
-              500: {step_size:  1, scale_y_min:      33,     },
-            [BIG]: {step_size:  5, scale_y_min:     140      },
-          [SMALL]: {step_size:  5, scale_y_min:     140      },
+            10000: {step_size: 30,    scale_y_min: 12 * 60,     },
+             5000: {step_size: 15,    scale_y_min:  6 * 60,     },
+             3000: {step_size: 10,    scale_y_min:  3 * 60 + 30,},
+             1500: {step_size:  5,    scale_y_min:  1 * 60 + 35,},
+             1000: {step_size:  3,    scale_y_min:  1 * 60 +  3,},
+              500: {step_size:  1,    scale_y_min:      33,     },
+            [BIG]: {step_size:  5,    scale_y_min:     140      },
+          [SMALL]: {step_size:  5,    scale_y_min:     140      },
+            [SPR]: {step_size:  5,    scale_y_min:     135      },
+           [D500]: {step_size:  0.25, scale_y_min:      68      },
         },
         women: {
-            10000: {step_size: 30, scale_y_min: 13 * 60 + 30,},
-             5000: {step_size: 15, scale_y_min:  6 * 60 + 30,},
-             3000: {step_size: 10, scale_y_min:  3 * 60 + 40,},
-             1500: {step_size:  5, scale_y_min:  1 * 60 + 40,},
-             1000: {step_size:  3, scale_y_min:  1 * 60 +  9,},
-              500: {step_size:  1, scale_y_min:      36,     },
+            10000: {step_size: 30,    scale_y_min: 13 * 60 + 30,},
+             5000: {step_size: 15,    scale_y_min:  6 * 60 + 30,},
+             3000: {step_size: 10,    scale_y_min:  3 * 60 + 40,},
+             1500: {step_size:  5,    scale_y_min:  1 * 60 + 40,},
+             1000: {step_size:  3,    scale_y_min:  1 * 60 +  9,},
+              500: {step_size:  1,    scale_y_min:      36,     },
+          [SMALL]: {step_size:  5,    scale_y_min:     150      },
+           [MINI]: {step_size:  5,    scale_y_min:     150      },
+            [SPR]: {step_size:  5,    scale_y_min:     140      },
+           [D500]: {step_size:  0.25, scale_y_min:      74      },
         }
     }
     return config
@@ -106,6 +112,24 @@ function format_record (context) {
     return time + " " + skater . name        (date) + ", "
                       + skater . nationality (date)
 }
+
+//
+// format_point_value (value)
+//
+// Format a value to show 3 decimals
+//
+function format_point_value (value) {
+    let out     = value . toString ()
+    const index = out . indexOf (".")
+    if (index < 0) {
+        return out + ".000"
+    }
+    while (out . length <= index + 3) {
+        out += "0"
+    }
+    return out
+}
+
 
 
 function point_style (context) {
@@ -197,7 +221,7 @@ function make_config (gender, distance, season = 0) {
                     type: 'linear',
                     ticks: {
                         callback: function (value, index, ticks) {
-                            return distance < 0 ? value + ".000"
+                            return distance < 0 ? format_point_value (value)
                                                 : sec2time (value)
                         },
                         stepSize: my_config_config . step_size,

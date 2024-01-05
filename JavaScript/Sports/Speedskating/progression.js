@@ -19,6 +19,7 @@ const dist_names = {
     [SPR]:    "Sprint",
     [D500]:   "2 x 500",
 }
+const W3         = {weekend: 3}
 
 function add_record (gender, distance, skater, time, date, rink, city,
                      extra = {}) {
@@ -460,23 +461,20 @@ add_record (M,   BIG, "koss",        "157.396", "1991-02-10", "thialf")
 
 add_record (M,   BIG, "sighel",      "157.150", "1992-03-22", "calgary")
 add_record (M,   BIG, "zandstra",    "156.882", "1993-01-23", "thialf")
-add_record (M,   BIG, "ritsma",      "156.201", "1994-01-09", "hamar",
-                                                              {weekend: 3})
+add_record (M,   BIG, "ritsma",      "156.201", "1994-01-09", "hamar", W3)
 add_record (M,   BIG, "shirahata",   "155.966", "1998-01-03", "nagano")
-add_record (M,   BIG, "postma",      "153.367", "1998-03-15", "thialf",
-                                                              {weekend: 3})
+add_record (M,   BIG, "postma",      "153.367", "1998-03-15", "thialf", W3)
 
 add_record (M,   BIG, "ritsma",      "152.651", "1999-02-07", "hamar")
-add_record (M,   BIG, "uytdehaage",  "152.482", "2002-03-17", "thialf",
-                                                              {weekend: 3})
-add_record (M,   BIG, "tuitert",     "151.691", "2004-01-11", "thialf",
-                                                              {weekend: 3})
+add_record (M,   BIG, "uytdehaage",  "152.482", "2002-03-17", "thialf", W3)
+add_record (M,   BIG, "tuitert",     "151.691", "2004-01-11", "thialf", W3)
 add_record (M,   BIG, "hedrick",     "150.478", "2004-02-08", "hamar")
 add_record (M,   BIG, "davis",       "149.359", "2005-01-09", "salt lake city")
 
 add_record (M,   BIG, "hedrick",     "148.799", "2006-01-22", "calgary")
 add_record (M,   BIG, "davis",       "145.742", "2006-03-19", "calgary")
 add_record (M,   BIG, "roest",       "145.561", "2019-03-02", "calgary")
+
 
 //
 // Men small combination
@@ -488,21 +486,60 @@ add_record (M, SMALL, "hoffmann",    "161.158", "1985-01-13", "davos")
 add_record (M, SMALL, "kemkers",     "160.454", "1990-03-17", "inzell")
 
 add_record (M, SMALL, "zandstra",    "159.753", "1991-02-17", "thialf")
-add_record (M, SMALL, "zandstra",    "156.059", "1991-03-01", "calgary",
-                                                              {weekend: 3})
+add_record (M, SMALL, "zandstra",    "156.059", "1991-03-01", "calgary", W3)
 add_record (M, SMALL, "boutiette",   "154.103", "1997-03-15", "calgary")
 add_record (M, SMALL, "verheijen",   "153.767", "1998-03-21", "calgary")
 add_record (M, SMALL, "wennemars",   "153.583", "1998-08-16", "calgary")
 
-add_record (M, SMALL, "elm",         "152.043", "1998-11-29", "calgary",
-                                                              {weekend: 3})
+add_record (M, SMALL, "elm",         "152.043", "1998-11-29", "calgary", W3)
 add_record (M, SMALL, "breuer",      "149.283", "1999-03-20", "calgary")
 add_record (M, SMALL, "wennemars",   "149.188", "1999-08-15", "calgary")
-add_record (M, SMALL, "uytdehaage",  "147.665", "2001-03-15", "calgary",
-                                                              {weekend: 3})
+add_record (M, SMALL, "uytdehaage",  "147.665", "2001-03-15", "calgary", W3)
 add_record (M, SMALL, "wennemars",   "146.365", "2005-08-13", "calgary")
 
 
+
+//
+// Men sprint combination
+//
+add_record (M,   SPR, "borjes",      "163.300", "1971-12-12", "kongsberg")
+add_record (M,   SPR, "linkovesi",   "156.500", "1972-01-08", "davos")
+add_record (M,   SPR, "keller",      "155.800", "1972-03-05", "inzell")
+add_record (M,   SPR, "efskind",     "154.400", "1973-01-14", "davos")
+add_record (M,   SPR, "muratov",     "153.390", "1975-03-18", "medeo")
+
+add_record (M,   SPR, "kulikov",     "153.250", "1975-03-29", "medeo")
+add_record (M,   SPR, "kulikov",     "151.190", "1976-03-21", "medeo")
+add_record (M,   SPR, "heiden_eric", "150.250", "1980-01-13", "davos")
+add_record (M,   SPR, "boucher",     "148.785", "1981-01-31", "davos")
+add_record (M,   SPR, "pegov",       "146.955", "1983-03-26", "medeo")
+
+add_record (M,   SPR, "zhelezovsky", "145.945", "1989-02-26", "thialf")
+add_record (M,   SPR, "jansen",      "145.580", "1993-03-20", "calgary")
+add_record (M,   SPR, "jansen",      "144.815", "1994-01-30", "calgary")
+add_record (M,   SPR, "miyabe",      "144.445", "1994-03-26", "calgary")
+add_record (M,   SPR, "horii",       "143.425", "1996-03-03", "calgary")
+
+add_record (M,   SPR, "wotherspoon", "141.995", "1997-11-23", "calgary")
+add_record (M,   SPR, "wotherspoon", "140.050", "1999-01-16", "calgary")
+add_record (M,   SPR, "wotherspoon", "138.310", "1999-02-21", "calgary")
+add_record (M,   SPR, "wotherspoon", "137.285", "2002-12-02", "salt lake city")
+add_record (M,   SPR, "wotherspoon", "137.270", "2003-01-12", "salt lake city")
+
+add_record (M,   SPR, "wotherspoon", "137.230", "2003-01-19", "calgary")
+add_record (M,   SPR, "groothuis",   "136.810", "2012-01-29", "calgary")
+add_record (M,   SPR, "mulder_michel",
+                                     "136.790", "2013-01-27", "salt lake city")
+add_record (M,   SPR, "verbij",      "136.065", "2017-02-26", "calgary")
+
+
+
+//
+// Men   2x500m
+//
+add_record (M,  D500, "shimizu",      "68.960", "2001-03-10", "salt lake city")
+add_record (M,  D500, "kang-seok",    "68.690", "2007-03-09", "salt lake city")
+add_record (M,  D500, "wotherspoon",  "68.310", "2008-03-15", "calgary")
 
 
 //
