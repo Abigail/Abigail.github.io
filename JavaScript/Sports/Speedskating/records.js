@@ -272,18 +272,24 @@ function build_table (gender, distance, season = 0) {
 //
 function build_navigation (this_gender, this_distance) {
     let table_str = "<table id = 'nav_bar'>";
-    ["men", "women"] . forEach ((gender) => {
+    genders . forEach ((gender) => {
         table_str += "<tr><th>" + gender + "</th>";
-        [500, 1000, 1500, 3000, 5000, 10000] . forEach ((distance) => {
-            table_str += "<td>"
-            if (gender == this_gender && +distance == +this_distance) {
-                table_str += "<b>" + distance + "</b>"
+        distances . forEach ((distance) => {
+            let td   = "";
+            console . log (dist_names)
+            let name = dist_names [distance] || distance
+            if (gender == "women" && distance == BIG ||
+                gender == "men"   && distance == MINI) {
+                td = ""
+            }
+            else if (gender == this_gender && +distance == +this_distance) {
+                td = "<b>" + name + "</b>"
             }
             else {
-                table_str += "<a href = 'records.html?gender=" + gender +
-                                "&distance=" + distance + "'>" +
-                                distance + "</a>"
+                td = "<a href = 'records.html?gender=" + gender +
+                       "&distance=" + distance + "'>" + name + "</a>"
             }
+            table_str += `<td>${td}</td>`
         })
         table_str += "</tr>"
     })

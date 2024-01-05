@@ -36,6 +36,11 @@ table#nav_bar th {
         padding-right: 1em;
 }
 
+table#nav_bar th {
+        text-align: left;
+        text-transform: capitalize;
+}
+
 table#nav_bar {
         margin-bottom: 3ex;
 }

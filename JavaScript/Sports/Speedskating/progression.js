@@ -9,9 +9,16 @@ const MINI  = -3
 const SPR   = -4
 const D500  = -5
 
-const genders   = [M, W]
-const distances = [500, 1000, 1500, 3000, 5000, 10000,
-                   BIG, SMALL, MINI, SPR, D500]
+const genders    = [M, W]
+const distances  = [500, 1000, 1500, 3000, 5000, 10000,
+                    BIG, SMALL, MINI, SPR, D500]
+const dist_names = {
+    [BIG]:    "Big",
+    [SMALL]:  "Small",
+    [MINI]:   "Mini",
+    [SPR]:    "Sprint",
+    [D500]:   "2 x 500",
+}
 
 function add_record (gender, distance, skater, time, date, rink, city,
                      extra = {}) {
