@@ -76,8 +76,9 @@ function time2sec (time) {
 //
 // Given a date in YYYY-MM-DD, return the fractional year value.
 // 
-function date2value (yyyymmdd) {
-    const date = new Date (yyyymmdd + "T12:00:00")  // Noon
+function date2value (yyyymmdd = 0) {
+    const date = yyyymmdd ? new Date (yyyymmdd + "T12:00:00")  // Noon
+                          : new Date ()
     const year = date . getFullYear ()
     const jan1 = new Date (year, 0, 1, 12, 0, 0)
     const diy  = Math . round ((date - jan1) / (1000 * 60 * 60 * 24))
@@ -177,6 +178,37 @@ function make_config (gender, distance, season = 0) {
         pointRadius:      5,
         backgroundColor:  point_colour,
         borderColor:      point_colour,
+        tooltip: {
+            usePointStyle: true,
+            bodyFont: {
+                size: 14,
+            },
+            callbacks: {
+                beforeLabel: function (context) {
+                    const raw = context . raw
+                    return raw . date
+                },
+                label:      format_record,
+                afterLabel: format_rink,
+            }
+        }
+    }
+
+    const line_data_set = {
+        data:             time_data . concat ([{
+                              x: date2value (),   // Today
+                              y: time_data [time_data . length - 1] . y
+                          }]),
+        type:            'line',
+        stepped:          1,
+        borderColor:     'black',
+        borderWidth:      1,
+        tooltip: {
+            enabled: 1,
+            callbacks: {
+                label: "",
+            }
+        }
     }
 
     //
@@ -196,7 +228,7 @@ function make_config (gender, distance, season = 0) {
     const wr_config = {
         type: 'scatter',
         data: {
-            datasets: [time_data_set]
+            datasets: [time_data_set, line_data_set]
         },
         options: {
             scales: {
@@ -247,20 +279,6 @@ function make_config (gender, distance, season = 0) {
                         size: legend_title_font_size,
                     },
                 },
-                tooltip: {
-                    usePointStyle: true,
-                    bodyFont: {
-                        size: 14,
-                    },
-                    callbacks: {
-                        beforeLabel: function (context) {
-                            const raw = context . raw
-                            return raw . date
-                        },
-                        label:      format_record,
-                        afterLabel: format_rink,
-                    }
-                }
             }
         }
     }
@@ -299,13 +317,13 @@ function item_to_row (item, gender, distance) {
     }
 
     return "<tr>" +
-           "<td class = 'date'>"    + date                 + "</td>" +
-           "<td class = 'time'>"    + time                 + "</td>" +
-           "<td class = 'name'>"    + skater . name (date) + "</td>" +
-           "<td class = 'nation'>"  + img                  + "</td>" +
-           "<td class = 'city'>"    + rink   . city ()     + "</td>" +
-           "<td class = 'stadion'>" + rink   . name ()     + "</td>" +
-           "<td class = 'rinktype'>"+ rink_span            + "</td>" +
+           "<td class = 'date'>"     + date                 + "</td>" +
+           "<td class = 'time'>"     + time                 + "</td>" +
+           "<td class = 'name'>"     + skater . name (date) + "</td>" +
+           "<td class = 'nation'>"   + img                  + "</td>" +
+           "<td class = 'city'>"     + rink   . city ()     + "</td>" +
+           "<td class = 'stadion'>"  + rink   . name ()     + "</td>" +
+           "<td class = 'rinktype'>" + rink_span            + "</td>" +
           "</tr>"
 }
 
