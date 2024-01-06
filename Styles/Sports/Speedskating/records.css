@@ -1,6 +1,6 @@
-table#records,
-table#records td,
-table#records th {
+table,
+table td,
+table th {
         border: 1px solid black;
         border-collapse: collapse;
 }
@@ -23,13 +23,6 @@ table#records td.nation img {
 }
 
 
-table#nav_bar,
-table#nav_bar td,
-table#nav_bar th {
-        border: 1px solid black;
-        border-collapse: collapse;
-}
-
 table#nav_bar td,
 table#nav_bar th {
         padding-left:  .5em;
@@ -45,3 +38,21 @@ table#nav_bar {
         margin-bottom: 3ex;
 }
 
+table#rink_type td {
+        text-align: center;
+}
+
+table#rink_type td.symbol {
+        padding-left:  1em;
+        padding-right: 1em;
+}
+
+tr.low    td.symbol {
+        color: #EDC9AF;
+}
+tr.middle td.symbol {
+        color: #DAA06D;
+}
+tr.high   td.symbol {
+        color: #832A0D;
+}
