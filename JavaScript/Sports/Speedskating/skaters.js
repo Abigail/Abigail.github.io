@@ -1,5 +1,8 @@
 function value_by_date (value, date) {
     if (typeof (value) === "object") {
+        if (date == "now" || date == "today") {
+            return value [value . length - 1]  // Most recent value
+        }
         for (let i = value . length - 2; i >= 0; i -= 2) {
             if (value [i] < date) {
                 return value [i + 1]

@@ -1,33 +1,26 @@
 table,
 table td,
 table th {
-        border: 1px solid black;
+        border:          1px solid black;
         border-collapse: collapse;
-}
-
-table#records td {
-        padding-left:  .5em;
-        padding-right: .5em;
+        padding-left:   .5em;
+        padding-right:  .5em;
 }
 
 table#records td.rinktype {
         text-align: center;
 }
 
-table#records td.nation {
+td.nation {
         width: 2em;
+        padding-left:   0;
+        padding-right:  0;
 }
 
-table#records td.nation img {
+td.nation img {
         width: 100%
 }
 
-
-table#nav_bar td,
-table#nav_bar th {
-        padding-left:  .5em;
-        padding-right: .5em;
-}
 
 table#nav_bar th {
         text-align: left;
@@ -55,4 +48,11 @@ tr.middle td.symbol {
 }
 tr.high   td.symbol {
         color: #832A0D;
+}
+
+
+table.count td.count {
+        padding-right: .5em;
+        padding-left: .5em;
+        text-align: right;
 }

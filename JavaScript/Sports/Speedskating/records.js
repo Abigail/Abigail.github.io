@@ -289,7 +289,7 @@ function make_config (gender, distance, season = 0) {
 //
 // Given a record, return the HTML table row representing it
 //
-function item_to_row (item, gender, distance) {
+function item_to_row (item) {
     let   time   = item . time
     const date   = item . date
     const skater = Skater . skater (item . skater)
@@ -309,7 +309,7 @@ function item_to_row (item, gender, distance) {
     // Cases where the fastest time is "shorter" than the longest time.
     // In that case, we prepad with an invisible 0.
     //
-    if (gender == "women" && distance == "5000") {
+    if (item . gender == "women" && item . distance == "5000") {
         let [minute] = time . split (':')
         if (+minute < 10) {
             time = "<span style = 'visibility: hidden'>0</span>" + time
@@ -327,21 +327,85 @@ function item_to_row (item, gender, distance) {
           "</tr>"
 }
 
+//
+// function count_records
+//
+// Count the number of records by skater, and rink
+//
+function count_records (progression) {
+    let skater_count = {}
+    let rink_count   = {}
+
+    progression . forEach ((item) => {
+        skater_count [item . skater] ||= 0
+        skater_count [item . skater] ++
+        rink_count   [item . rink]   ||= 0
+        rink_count   [item . rink]   ++
+    })
+
+    return [skater_count, rink_count]
+}
 
 //
-// Build the table with records
+// function make_count_table 
 //
-function build_table (gender, distance, season = 0) {
+// Given a list of skater or rinks with their number of records, 
+// create a table showing them.
+//
+function make_count_table (type, count, distance) {
+    let table = `<table id = '${type}s' class = 'count'>`
+
+    let count_count = {}
+    Object . values (count) . map ((count) => {count_count [count] ||= 0
+                                               count_count [count] ++})
+
+    const list = Object . keys (count) .
+                          sort ((a, b) => count [b] - count [a])
+
+    for (let i = 0; i < list . length; i ++) {
+        table += "<tr>";
+        if (i == 0 || count [list [i]] != count [list [i - 1]]) {
+            table += `<td rowspan = '${count_count [count [list [i]]]}' ` +
+                      "class = 'count'>" + count [list [i]] + "</td>"
+        }
+        if (type == "skater") {
+            const skater = Skater . skater (list [i])
+            const date   = date_of_last_record (list [i], distance)
+            const img    = Flags . img (skater . nationality (date), date)
+            table += "<td class = 'name'>"   + skater . name ("now") + "</td>"
+                  +  "<td class = 'nation'>" + img                   + "</td>"
+        }
+        else {
+            const rink = Rink . rink (list [i])
+            table += "<td class = 'city'>"    + rink . city () + "</td>"
+                  +  "<td class = 'stadion'>" + rink . name () + "</td>"
+        }
+        table += "</tr>"
+    }
+    table += "</table>"
+
+    const class_name = `${type}_count`
+    $("#" + class_name) . html (table)
+}
+
+//
+// Build the tables with records
+//
+function build_tables (gender, distance, season = 0) {
     const my_progression = progression ({gender:   gender,
                                          distance: distance,
                                          season:   season})
+
+    const [skater_count, rink_count] = count_records (my_progression)
+
     const table = "<table id = 'records'>" +
-                    my_progression . map  (item => item_to_row (item, gender,
-                                                                distance))
+                    my_progression . map  (item => item_to_row (item))
                                    . join ("\n") +
                   "</table>";
 
     $("#record_table") . html (table)
+
+    make_count_table ("skater", skater_count, distance)
 }
 
 
@@ -407,8 +471,8 @@ function load_chart () {
     const gender     = window . __private . gender
     const distance   = window . __private . distance
     const title      = window . __private . title
-    build_chart (gender, distance, title, start_year)
-    build_table (gender, distance, start_year)
+    build_chart  (gender, distance, title, start_year)
+    build_tables (gender, distance, start_year)
 }
 
 window . addEventListener ("load", function () {
@@ -422,7 +486,7 @@ window . addEventListener ("load", function () {
     $("h1") . html (title)
 
     build_navigation (gender, distance)
-    build_table      (gender, distance)
+    build_tables     (gender, distance)
     build_chart      (gender, distance, title)
 
     $("#start_year_span") . html (`<input id = 'start_year' type = 'number' ` +

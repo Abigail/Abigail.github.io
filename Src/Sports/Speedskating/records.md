@@ -39,3 +39,13 @@
 
 Start year: <span id = 'start_year_span'></span>
 <button type = 'button' onclick = 'load_chart ()'>Apply</button>
+
+### Number of records
+
+#### By Skater
+
+<div id = "skater_count"></div>
+
+#### By Rink
+
+<div id = "rink_count"></div>
