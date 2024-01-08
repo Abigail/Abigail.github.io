@@ -144,8 +144,9 @@ class Flags {
             }
         }
         if (flag) {
+            const title = Country . name (nation)
             return `<img src = '../../../Images/Flags/${flag}' ` +
-                        `title = '${nation}'>`
+                        `title = '${title}'>`
         }
         return nation
     }
