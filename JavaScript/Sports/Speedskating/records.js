@@ -337,9 +337,13 @@ function count_records (progression) {
     let rink_count   = {}
 
     progression . forEach ((item) => {
-        skater_count [item . skater] ||= 0
+        if (!skater_count [item . skater]) {
+            skater_count [item . skater] = 0
+        }
+        if (!rink_count [item . rink]) {
+            rink_count [item . rink] = 0
+        }
         skater_count [item . skater] ++
-        rink_count   [item . rink]   ||= 0
         rink_count   [item . rink]   ++
     })
 
@@ -356,8 +360,12 @@ function make_count_table (type, count, distance) {
     let table = `<table id = '${type}s' class = 'count'>`
 
     let count_count = {}
-    Object . values (count) . map ((count) => {count_count [count] ||= 0
-                                               count_count [count] ++})
+    Object . values (count) . map ((count) => {
+        if (!count_count [count]) {
+            count_count [count] = 0
+        }
+        count_count [count] ++
+    })
 
     const list = Object . keys (count) .
                           sort ((a, b) => count [b] - count [a])
