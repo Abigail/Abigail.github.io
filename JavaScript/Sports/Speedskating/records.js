@@ -382,10 +382,16 @@ function build_tables (gender, distance, season = 0) {
                                          distance: distance,
                                          season:   season})
 
+    const type = distance < 0 ? "Points" : "Time"
     const [skater_count, rink_count, country_count] =
                               count_records (my_progression)
 
     const table = "<table id = 'records'>" +
+                  "<tr><th>Date</th>"                 +
+                      `<th>${type}</th>`              +
+                      "<th colspan = '2'>Skater</th>" +
+                      "<th colspan = '3'>Rink</th>"   +
+                      "<th>Duration</th></tr>"        +
                     my_progression . map  (item => item_to_row (item))
                                    . join ("\n") +
                   "</table>";
