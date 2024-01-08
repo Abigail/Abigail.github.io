@@ -91,11 +91,15 @@ class Flags {
             "1927-12-13", "POL-1927.svg",
             "1980-01-31", "POL-1980.svg",
         ],
-        RUS: [
+
+        RU1: [ // Russian Empire
             "1696",       "RUS-1696.svg",
             "1858-06-23", "RUS-1858.svg",
             "1883-05-08", "RUS-1696.svg",
             "1922-12-30",  undefined,
+        ],
+
+        RUS: [ // Post Soviet Era
             "1991-12-21", "RUS-1991.svg",
             "1993",       "RUS-1696.svg",
         ],
