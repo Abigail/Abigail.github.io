@@ -49,3 +49,7 @@ Start year: <span id = 'start_year_span'></span>
 #### By Rink
 
 <div id = "rink_count"></div>
+
+#### By Country
+
+<div id = "country_count"></div>

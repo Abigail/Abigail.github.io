@@ -76,7 +76,8 @@ my $TYPE_INFO = {
         $INFO_DIR      =>  $DIR_SKATING,
         $INFO_UP       => "../../..",
         $INFO_NAV      => "Sports/Speedskating/pages",
-        $INFO_JS       =>  ["skaters", "rinks", "progression", "flags"],
+        $INFO_JS       =>  ["skaters", "rinks", "progression", "flags",
+                            "countries"],
     },
 };
 
