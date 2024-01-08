@@ -414,6 +414,7 @@ function build_tables (gender, distance, season = 0) {
     $("#record_table") . html (table)
 
     make_count_table ("skater", skater_count, distance)
+    make_count_table ("rink",   rink_count,   distance)
 }
 
 
