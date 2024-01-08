@@ -56,3 +56,18 @@ table.count td.count {
         padding-left: .5em;
         text-align: right;
 }
+
+
+/*
+ * Three column layout
+ */
+h3.number-of-records-header {
+        text-align: center;
+}
+.number-of-records {
+        display:         flex;
+        justify-content: space-between;
+}
+.number-of-records h4 {
+        text-align: center;
+}
