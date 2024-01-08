@@ -22,6 +22,37 @@ const dist_names = {
 const W1         = {weekend: 1}
 const W3         = {weekend: 3}
 
+
+//
+// time2sec
+//
+// Given a time (in mm:ss.ss format), and return the number of seconds
+//
+function time2sec (time) {
+    let [min, sec] = time . split (':') . map (x => +x)
+    return 60 * min + sec
+}
+
+
+//
+// date2value
+//
+// Given a date in YYYY-MM-DD, return the fractional year value.
+// 
+function date2value (yyyymmdd = 0) {
+    const date = yyyymmdd ? new Date (yyyymmdd + "T12:00:00")  // Noon
+                          : new Date ()
+    const year = date . getFullYear ()
+    const jan1 = new Date (year, 0, 1, 12, 0, 0)
+    const diy  = Math . round ((date - jan1) / (1000 * 60 * 60 * 24))
+
+    const is_leap = year % 400 == 0 ? 1
+                  : year % 100 == 0 ? 0
+                  : year %   4 == 0 ? 1 : 0
+
+    return year + diy / (365 + is_leap)
+}
+
 function add_record (gender, distance, skater, time, date, rink, city,
                      extra = {}) {
     const [year, month, mday] = date . split ("-") . map (x => +x)
@@ -36,6 +67,8 @@ function add_record (gender, distance, skater, time, date, rink, city,
         mday:      mday,
         season:    month >= 8 ? year - 1 : year,
         rink:      rink,
+        x:         date2value (date),
+        y:         distance < 0 ? +time : time2sec (time),
     }
     Object . keys (extra) . forEach ((key) => {
         new_entry [key] = extra [key]
@@ -952,3 +985,45 @@ add_record (W,  D500, "richardson",   "74.190", "2013-12-28", "salt lake city")
 
 
 // 3.34.22  WR Team Pursuit
+
+
+//
+// Calculate the number of days each record stands. *Must* be calculated
+// *after* all the records have been added
+//
+for (let i = 0; i < __progression . length; i ++) {
+    let end;
+    let entry_i = __progression [i]
+    for (j = i + 1; j < __progression . length; j ++) {
+        const entry_j = __progression [j];
+        if (entry_j . gender   != entry_i . gender ||
+            entry_j . distance != entry_i . distance) {
+                break
+        }
+        if (entry_j . y < entry_i . y) { // Better record
+            end = entry_j . date
+            break
+        }
+    }
+    if (!end) {
+        //
+        // Use today, at noon
+        //
+        end = new Date ()
+        end . setHours (12, 0, 0, 0)
+        //
+        // This also means it is the current record
+        //
+        entry_i . current = 1
+    }
+    else {
+        //
+        // End date, at noon
+        //
+        end = new Date (end + "T12:00:00")
+    }
+    begin = new Date (entry_i . date + "T12:00:00")
+    entry_i . duration = Math . round ((end - begin) / (24 * 60 * 60 * 1000))
+}
+
+

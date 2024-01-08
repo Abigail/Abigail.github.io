@@ -62,35 +62,6 @@ function sec2time (seconds) {
 }
 
 //
-// time2sec
-//
-// Given a time (in mm:ss.ss format), and return the number of seconds
-//
-function time2sec (time) {
-    let [min, sec] = time . split (':') . map (x => +x)
-    return 60 * min + sec
-}
-
-//
-// date2value
-//
-// Given a date in YYYY-MM-DD, return the fractional year value.
-// 
-function date2value (yyyymmdd = 0) {
-    const date = yyyymmdd ? new Date (yyyymmdd + "T12:00:00")  // Noon
-                          : new Date ()
-    const year = date . getFullYear ()
-    const jan1 = new Date (year, 0, 1, 12, 0, 0)
-    const diy  = Math . round ((date - jan1) / (1000 * 60 * 60 * 24))
-
-    const is_leap = year % 400 == 0 ? 1
-                  : year % 100 == 0 ? 0
-                  : year %   4 == 0 ? 1 : 0
-
-    return year + diy / (365 + is_leap)
-}
-
-//
 // format_rink (context)
 //
 // Given a tooltip context, format the rink
@@ -154,25 +125,10 @@ function make_config (gender, distance, season = 0) {
     }
 
     //
-    // Get the data points
-    //
-    const time_data = my_progression . map ((item) => {
-        return {
-            x:      date2value (item . date),
-            y:      item . distance > 0 ? time2sec (item . time) : item . time,
-            date:   item . date,
-            year:   item . year,
-            time:   item . time,
-            skater: item . skater,
-            rink:   item . rink,
-        }
-    })
-
-    //
     // Wrap this into a set
     //
     const time_data_set = {
-        data:             time_data,
+        data:             my_progression,
         type:            'scatter',
         pointStyle:       point_style,
         pointRadius:      5,
@@ -195,9 +151,10 @@ function make_config (gender, distance, season = 0) {
     }
 
     const line_data_set = {
-        data:             time_data . concat ([{
+        data:             my_progression . concat ([{
                               x: date2value (),   // Today
-                              y: time_data [time_data . length - 1] . y
+                              y: my_progression [my_progression . length - 1]
+                                                . y
                           }]),
         type:            'line',
         stepped:          1,
@@ -214,7 +171,7 @@ function make_config (gender, distance, season = 0) {
     //
     // Calculate the first and last years
     //
-    const years    = time_data . map (item => item . year)
+    const years    = my_progression . map (item => item . year)
     let first_year = Math . min (... years) - 1
     let last_year  = new Date () . getFullYear () + 1
         
@@ -290,10 +247,11 @@ function make_config (gender, distance, season = 0) {
 // Given a record, return the HTML table row representing it
 //
 function item_to_row (item) {
-    let   time   = item . time
-    const date   = item . date
-    const skater = Skater . skater (item . skater)
-    const rink   = Rink   . rink   (item . rink)
+    let   time     = item . time
+    const date     = item . date
+    let   duration = item . duration
+    const skater   = Skater . skater (item . skater)
+    const rink     = Rink   . rink   (item . rink)
 
     const rink_symbol = rink . is_natural    (date) ? "\u{25A0}"
                       : rink . is_artificial (date) ? "\u{25B2}"
@@ -316,6 +274,10 @@ function item_to_row (item) {
         }
     }
 
+    if (item . current) {
+        duration = `<span class = 'current'>${duration}</span>`
+    }
+
     return "<tr>" +
            "<td class = 'date'>"     + date                 + "</td>" +
            "<td class = 'time'>"     + time                 + "</td>" +
@@ -324,6 +286,7 @@ function item_to_row (item) {
            "<td class = 'city'>"     + rink   . city ()     + "</td>" +
            "<td class = 'stadion'>"  + rink   . name ()     + "</td>" +
            "<td class = 'rinktype'>" + rink_span            + "</td>" +
+           "<td class = 'duration'>" + duration             + "</td>" +
           "</tr>"
 }
 

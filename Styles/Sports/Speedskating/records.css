@@ -21,6 +21,13 @@ td.nation img {
         width: 100%
 }
 
+td.duration {
+        text-align: right;
+}
+td.duration span.current {
+        color: red;
+}
+
 
 table#nav_bar th {
         text-align: left;
