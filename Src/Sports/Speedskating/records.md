@@ -44,17 +44,22 @@ Start year: <span id = 'start_year_span'></span>
 
 <div class = "number-of-records">
 
-<div class = "col-left">
+<div class = "col-1">
 <h4> By Skater </h4>
 <div id = "skater_count" class = "padded"></div>
 </div>
 
-<div class = "col-mid">
+<div class = "col-2">
+<h4> By Duration </h4>
+<div id = "duration_count" class = "padded"></div>
+</div>
+
+<div class = "col-3">
 <h4> By Rink </h4>
 <div id = "rink_count" class = "padded"></div>
 </div>
 
-<div class = "col-right">
+<div class = "col-4">
 <h4> By Country </h4>
 <div id = "country_count" class = "padded"></div>
 </div>

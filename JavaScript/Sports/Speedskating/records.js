@@ -302,9 +302,11 @@ function item_to_row (item) {
 // Count the number of records by skater, and rink
 //
 function count_records (progression) {
-    let skater_count  = {}
-    let rink_count    = {}
-    let country_count = {}
+    let skater_count   = {}
+    let rink_count     = {}
+    let country_count  = {}
+    let duration_count = {}
+    let current        = {}
 
     progression . forEach ((item) => {
         const country = Skater . skater      (item . skater)
@@ -319,13 +321,21 @@ function count_records (progression) {
         if (!country_count [country]) {
             country_count [country] = 0
         }
+        if (!duration_count [item . skater]) {
+            duration_count [item . skater] = 0
+        }
+        if (item . current) {
+            current [item . skater] = 1
+        }
 
-        skater_count  [item . skater] ++
-        rink_count    [item . rink]   ++
-        country_count [country]       ++
+        skater_count   [item . skater] ++
+        rink_count     [item . rink]   ++
+        country_count  [country]       ++
+        duration_count [item . skater] += item . duration
     })
 
-    return [skater_count, rink_count, country_count]
+    return [skater_count, rink_count, country_count, duration_count,
+            current]
 }
 
 //
@@ -334,7 +344,7 @@ function count_records (progression) {
 // Given a list of skater or rinks with their number of records, 
 // create a table showing them.
 //
-function make_count_table (type, count, distance) {
+function make_count_table (type, count, distance, current) {
     let table = `<table id = '${type}s' class = 'count'>`
 
     let count_count = {}
@@ -351,10 +361,16 @@ function make_count_table (type, count, distance) {
     for (let i = 0; i < list . length; i ++) {
         table += "<tr>";
         if (i == 0 || count [list [i]] != count [list [i - 1]]) {
+            let value = count [list [i]]
+            if (type == "duration") {
+                if (current [list [i]]) {
+                    value = `<span class = 'current'>${value}</span>`
+                }
+            }
             table += `<td rowspan = '${count_count [count [list [i]]]}' ` +
-                      "class = 'count'>" + count [list [i]] + "</td>"
+                      "class = 'count'>" + value + "</td>"
         }
-        if (type == "skater") {
+        if (type == "skater" || type == "duration") {
             const skater = Skater . skater (list [i])
             const date   = date_of_last_record (list [i], distance)
             const img    = Flags . img (skater . nationality (date), date)
@@ -389,8 +405,8 @@ function build_tables (gender, distance, season = 0) {
                                          season:   season})
 
     const type = distance < 0 ? "Points" : "Time"
-    const [skater_count, rink_count, country_count] =
-                              count_records (my_progression)
+    const [skater_count, rink_count, country_count, duration_count,
+           current] = count_records (my_progression)
 
     const table = "<table id = 'records'>" +
                   "<tr><th colspan = '3'>Record</th>" +
@@ -414,9 +430,10 @@ function build_tables (gender, distance, season = 0) {
 
     $("#record_table") . html (table)
 
-    make_count_table ("skater",  skater_count,  distance)
-    make_count_table ("rink",    rink_count,    distance)
-    make_count_table ("country", country_count, distance)
+    make_count_table ("skater",   skater_count,   distance, current)
+    make_count_table ("duration", duration_count, distance, current)
+    make_count_table ("rink",     rink_count,     distance, current)
+    make_count_table ("country",  country_count,  distance, current)
 }
 
 
