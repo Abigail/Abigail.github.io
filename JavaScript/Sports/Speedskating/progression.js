@@ -57,22 +57,57 @@ function add_record (gender, distance, skater, time, date, rink, city,
                      extra = {}) {
     const [year, month, mday] = date . split ("-") . map (x => +x)
     let new_entry = {
-        gender:    gender,
-        distance:  distance,
-        skater:    skater,
-        time:      time,
-        date:      date,
-        year:      year,
-        month:     month,
-        mday:      mday,
-        season:    month >= 8 ? year - 1 : year,
-        rink:      rink,
-        x:         date2value (date),
-        y:         distance < 0 ? +time : time2sec (time),
+        gender:      gender,
+        distance:    distance,
+        skater:      skater,
+        time:        time,
+        date:        date,
+        year:        year,
+        month:       month,
+        mday:        mday,
+        season:      month >= 8 ? year - 1 : year,
+        rink:        rink,
+        improvement: 0,
+        x:           date2value (date),
+        y:           distance < 0 ? +time : time2sec (time),
     }
     Object . keys (extra) . forEach ((key) => {
         new_entry [key] = extra [key]
     })
+
+    if (__progression . length) {
+        const last = __progression [__progression . length - 1]
+        if (last . distance == new_entry . distance &&
+            last . gender   == new_entry . gender) {
+            const improvement = last . y - new_entry . y
+            if (improvement > 0) {
+                //
+                // To handle the Borjes/Muratov oddity, where Muratov
+                // "equalled" Borjes 38.9 with 38.99
+                //
+
+                if (distance < 0) {
+                    //
+                    // It's points
+                    //
+                    new_entry . improvement = improvement . toFixed (3)
+                }
+                else {
+                    //
+                    // Determine the precision. If both the old and new
+                    // use hundreds of a second, use 2 decimals, else 1
+                    //
+                    const old_dot   = last      . time . indexOf (".")
+                    const new_dot   = new_entry . time . indexOf (".")
+                    const precision =
+                        last      . time . length == old_dot + 3 &&
+                        new_entry . time . length == new_dot + 3 ? 2 : 1;
+
+                    new_entry . improvement = sec2time (improvement, precision)
+                }
+            }
+        }
+    }
     __progression . push (new_entry)
 }
 

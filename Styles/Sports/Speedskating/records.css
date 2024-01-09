@@ -28,6 +28,10 @@ td.duration span.current {
         color: red;
 }
 
+table#records td.time, table#records td.name {
+        font-weight: bold;
+}
+
 
 table#nav_bar th {
         text-align: left;

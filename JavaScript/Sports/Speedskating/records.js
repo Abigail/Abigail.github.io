@@ -55,9 +55,13 @@ function make_title (gender, distance) {
 //
 // Given a number of seconds, format them as a time
 //
-function sec2time (seconds) {
+function sec2time (seconds, precision = 0) {
     const min = Math . floor (seconds / 60)
-    const sec = seconds - min * 60
+    let   sec = seconds - min * 60
+    if (precision) {
+        sec = sec . toFixed (precision)
+    }
+
     return min + ":" + (sec < 10 ? "0" : "") + sec
 }
 
@@ -277,16 +281,18 @@ function item_to_row (item) {
     if (item . current) {
         duration = `<span class = 'current'>${duration}</span>`
     }
+    const improvement = item . improvement || ""
 
     return "<tr>" +
-           "<td class = 'date'>"     + date                 + "</td>" +
-           "<td class = 'time'>"     + time                 + "</td>" +
-           "<td class = 'name'>"     + skater . name (date) + "</td>" +
-           "<td class = 'nation'>"   + img                  + "</td>" +
-           "<td class = 'city'>"     + rink   . city ()     + "</td>" +
-           "<td class = 'stadion'>"  + rink   . name ()     + "</td>" +
-           "<td class = 'rinktype'>" + rink_span            + "</td>" +
-           "<td class = 'duration'>" + duration             + "</td>" +
+           "<td class = 'date'>"        + date                 + "</td>" +
+           "<td class = 'time'>"        + time                 + "</td>" +
+           "<td class = 'improvement'>" + improvement          + "</td>" +
+           "<td class = 'name'>"        + skater . name (date) + "</td>" +
+           "<td class = 'nation'>"      + img                  + "</td>" +
+           "<td class = 'city'>"        + rink   . city ()     + "</td>" +
+           "<td class = 'stadion'>"     + rink   . name ()     + "</td>" +
+           "<td class = 'rinktype'>"    + rink_span            + "</td>" +
+           "<td class = 'duration'>"    + duration             + "</td>" +
           "</tr>"
 }
 
@@ -387,11 +393,21 @@ function build_tables (gender, distance, season = 0) {
                               count_records (my_progression)
 
     const table = "<table id = 'records'>" +
-                  "<tr><th>Date</th>"                 +
-                      `<th>${type}</th>`              +
+                  "<tr><th colspan = '3'>Record</th>" +
                       "<th colspan = '2'>Skater</th>" +
                       "<th colspan = '3'>Rink</th>"   +
-                      "<th>Duration</th></tr>"        +
+                      "<th rowspan = '2'>Duration<br>(Days)</th></tr>"
+                                                      +
+
+                  "<tr><th>Date</th>"                 +
+                      `<th>${type}</th>`              +
+                      "<th>Diff.</th>"                +
+                      "<th>Name</th>"                 +
+                      "<th>Nat</th>"                  +
+                      "<th>City</th>"                 +
+                      "<th>Name</th>"                 +
+                      "<th>Type</th></tr>"            +
+
                     my_progression . map  (item => item_to_row (item))
                                    . join ("\n") +
                   "</table>";
