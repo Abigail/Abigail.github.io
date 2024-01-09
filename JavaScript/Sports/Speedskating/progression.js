@@ -907,7 +907,8 @@ add_record (W, 10000, "swider",     "17:37.35", "1980-03-16", "savalen")
 add_record (W, 10000, "stam",       "17:20.0",  "1984-03-11", "alkmaar")
 add_record (W, 10000, "kooiman",    "16:56.8",  "1984-03-16", "haarlem")
 add_record (W, 10000, "jensen",     "16:49.82", "1985-03-07", "savalen")
-add_record (W, 10000, "mitscherlich","16:49.82","1987-03-11", "kuchwald")
+add_record (W, 10000, "mitscherlich",
+                                    "16:27.8",  "1987-03-11", "kuchwald")
 add_record (W, 10000, "mulder_grietje",
                                     "15:56.81", "1988-03-16", "thialf")
 
