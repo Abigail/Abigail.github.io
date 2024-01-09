@@ -40,27 +40,27 @@
 Start year: <span id = 'start_year_span'></span>
 <button type = 'button' onclick = 'load_chart ()'>Apply</button>
 
-<h3 class = "number-of-records-header">Number of Records</h3>
+<h3 class = "records-header">Lists of Records</h3>
 
 <div class = "number-of-records">
 
-<div class = "col-1">
+<section>
 <h4> By Skater </h4>
 <div id = "skater_count" class = "padded"></div>
-</div>
+</section>
 
-<div class = "col-2">
+<section>
 <h4> By Duration </h4>
 <div id = "duration_count" class = "padded"></div>
-</div>
+</section>
 
-<div class = "col-3">
-<h4> By Rink </h4>
-<div id = "rink_count" class = "padded"></div>
-</div>
-
-<div class = "col-4">
+<section>
 <h4> By Country </h4>
 <div id = "country_count" class = "padded"></div>
-</div>
+</section>
+
+<section>
+<h4> By Rink </h4>
+<div id = "rink_count" class = "padded"></div>
+</section>
 </div>

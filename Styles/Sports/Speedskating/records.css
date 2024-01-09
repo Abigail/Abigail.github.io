@@ -70,13 +70,14 @@ table.count td.count {
 
 
 /*
- * Three column layout
+ * Multi-column layout
  */
-h3.number-of-records-header {
+h3.records-header {
         text-align: center;
 }
 .number-of-records {
         display:         flex;
+        flex-wrap:       wrap;
         justify-content: space-between;
 }
 .number-of-records h4 {
