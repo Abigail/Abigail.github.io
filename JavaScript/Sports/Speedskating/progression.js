@@ -29,6 +29,9 @@ const W3         = {weekend: 3}
 // Given a time (in mm:ss.ss format), and return the number of seconds
 //
 function time2sec (time) {
+    if (!time) {
+        return undefined
+    }
     let [min, sec] = time . split (':') . map (x => +x)
     return 60 * min + sec
 }
@@ -53,7 +56,7 @@ function date2value (yyyymmdd = 0) {
     return year + diy / (365 + is_leap)
 }
 
-function add_record (gender, distance, skater, time, date, rink, city,
+function add_record (gender, distance, skater, time, date, rink,
                      extra = {}) {
     const [year, month, mday] = date . split ("-") . map (x => +x)
     let new_entry = {
@@ -69,11 +72,15 @@ function add_record (gender, distance, skater, time, date, rink, city,
         rink:        rink,
         improvement: 0,
         x:           date2value (date),
-        y:           distance < 0 ? +time : time2sec (time),
+        y:           time ? distance < 0 ? +time : time2sec (time) : undefined,
     }
     Object . keys (extra) . forEach ((key) => {
         new_entry [key] = extra [key]
     })
+
+    if (skater == "SUSPENDED") {
+        new_entry . suspended = 1
+    }
 
     if (__progression . length) {
         const last = __progression [__progression . length - 1]
@@ -869,6 +876,9 @@ add_record (W,  5000, "lesche",      "9:26.8",  "1949-02-13", "kongsberg")
 add_record (W,  5000, "zhukova",     "9:22.3",  "1950-03-17", "kirov")
 add_record (W,  5000, "karelina",    "9:10.7",  "1951-02-12", "medeo")
 add_record (W,  5000, "zhukova",     "9:01.6",  "1953-01-24", "medeo")
+add_record (W,  5000, "SUSPENDED",   undefined, "1955-01-01", "",
+                   {suspended_from: "the ISU Congress of 1955",
+                    suspended_till: "the ISU Congress of 1982"})
 add_record (W,  5000, "mitscherlich","7:40.97", "1983-01-23", "thialf")
 add_record (W,  5000, "schonbrunn",  "7:39.44", "1984-01-15", "medeo")
 
@@ -1037,6 +1047,10 @@ for (let i = 0; i < __progression . length; i ++) {
                 break
         }
         if (entry_j . y < entry_i . y) { // Better record
+            end = entry_j . date
+            break
+        }
+        if (entry_j . suspended) {
             end = entry_j . date
             break
         }

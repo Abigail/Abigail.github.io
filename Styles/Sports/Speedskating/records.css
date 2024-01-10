@@ -11,6 +11,11 @@ table#records td.rinktype {
         text-align: center;
 }
 
+table#records td.suspended {
+        text-align: center;
+        font-style: italic;
+}
+
 td.nation {
         width: 2em;
         padding-left:   0;

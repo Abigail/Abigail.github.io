@@ -251,6 +251,15 @@ function make_config (gender, distance, season = 0) {
 // Given a record, return the HTML table row representing it
 //
 function item_to_row (item) {
+    //
+    // Special case for suspended records
+    //
+    if (item . skater == "SUSPENDED") {
+        return `<tr><td class = 'suspended' colspan = '9'>Record suspended ` +
+               `from ${item . suspended_from} till ${item . suspended_till}` +
+               `</td></tr>`
+    }
+
     let   time     = item . time
     const date     = item . date
     let   duration = item . duration
@@ -309,6 +318,9 @@ function count_records (progression) {
     let current        = {}
 
     progression . forEach ((item) => {
+        if (item . skater == "SUSPENDED") {
+            return;
+        }
         const country = Skater . skater      (item . skater)
                                . nationality (item . date)
 
