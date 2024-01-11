@@ -255,9 +255,8 @@ function item_to_row (item) {
     // Special case for suspended records
     //
     if (item . skater == "SUSPENDED") {
-        return `<tr><td class = 'suspended' colspan = '9'>Record suspended ` +
-               `from ${item . suspended_from} till ${item . suspended_till}` +
-               `</td></tr>`
+        return `<tr><td class = 'suspended' colspan = '9'>` +
+                 item . suspended_message + `</td></tr>`
     }
 
     let   time     = item . time

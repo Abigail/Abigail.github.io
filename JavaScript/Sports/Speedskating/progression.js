@@ -877,8 +877,9 @@ add_record (W,  5000, "zhukova",     "9:22.3",  "1950-03-17", "kirov")
 add_record (W,  5000, "karelina",    "9:10.7",  "1951-02-12", "medeo")
 add_record (W,  5000, "zhukova",     "9:01.6",  "1953-01-24", "medeo")
 add_record (W,  5000, "SUSPENDED",   undefined, "1955-01-01", "",
-                   {suspended_from: "the ISU Congress of 1955",
-                    suspended_till: "the ISU Congress of 1982"})
+           {suspended_message: "Record suspended from the ISU " +
+                               "Congress of 1955 till " +
+                              "the ISU Congress of 1982"})
 add_record (W,  5000, "mitscherlich","7:40.97", "1983-01-23", "thialf")
 add_record (W,  5000, "schonbrunn",  "7:39.44", "1984-01-15", "medeo")
 
@@ -910,6 +911,10 @@ add_record (W,  5000, "voronina",    "6:39.02", "2020-02-15", "salt lake city")
 //
 add_record (W, 10000, "nehringowa", "23:48.5",  "1935-12-30", "vienna")
 add_record (W, 10000, "niemczyk",   "22:46.4",  "1953-02-10", "zakopane")
+add_record (W, 10000, "SUSPENDED",   undefined, "1955-01-01", "",
+           {suspended_message: "Record suspended from the ISU Congress of " +
+                               "1955 onwards; the following " +
+                               "records are not official"})
 add_record (W, 10000, "donker",     "21:52.1",  "1972-01-27", "jaap eden")
 add_record (W, 10000, "pasveer",    "19:48.3",  "1980-03-04", "groningen")
 add_record (W, 10000, "swider",     "17:37.35", "1980-03-16", "savalen")
