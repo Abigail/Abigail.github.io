@@ -6,15 +6,17 @@ const W     = "women"
 const BIG   = -1
 const SMALL = -2
 const MINI  = -3
-const SPR   = -4
-const D500  = -5
+const O_SML = -4
+const SPR   = -5
+const D500  = -6
 
 const genders    = [M, W]
 const distances  = [500, 1000, 1500, 3000, 5000, 10000,
-                    BIG, SMALL, MINI, SPR, D500]
+                    BIG, SMALL, O_SML, MINI, SPR, D500]
 const dist_names = {
     [BIG]:    "Big",
     [SMALL]:  "Small",
+    [O_SML]:  "Old Small",
     [MINI]:   "Mini",
     [SPR]:    "Sprint",
     [D500]:   "2 x 500m",
@@ -995,6 +997,20 @@ add_record (W,  MINI, "nesbitt",     "153.856", "2007-11-11", "salt lake city",
 add_record (W,  MINI, "beune",       "153.776", "2018-03-10", "salt lake city")
 
 
+//
+// Women, old small combination (500, 3000, 1000, and 5000 meters)
+//
+add_record (W, O_SML, "kholshchevnikova",
+                                     "212.890", "1949-02-13", "kongsberg")
+add_record (W, O_SML, "kondakova",   "210.431", "1951-02-05", "medeo")
+add_record (W, O_SML, "karelina",    "208.820", "1951-02-12", "medeo")
+add_record (W, O_SML, "zhukova",     "208.750", "1952-01-22", "medeo")
+add_record (W, O_SML, "zhukova",     "204.010", "1953-01-24", "medeo")
+add_record (W, O_SML, "rylova",      "203.920", "1955-01-22", "medeo")
+add_record (W, O_SML, "SUSPENDED",   undefined, "1955-04-01", "",
+           {suspended_message: "Record suspended from the ISU Congress of " +
+                               "1955 onwards"})
+             
 
 //
 // Women sprint combination

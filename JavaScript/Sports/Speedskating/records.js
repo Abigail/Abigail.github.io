@@ -23,6 +23,7 @@ function config_config () {
              1000: {step_size:  3,    scale_y_min:  1 * 60 +  9,},
               500: {step_size:  1,    scale_y_min:      36,     },
           [SMALL]: {step_size:  5,    scale_y_min:     150      },
+          [O_SML]: {step_size:  2,    scale_y_min:     202      },
            [MINI]: {step_size:  5,    scale_y_min:     150      },
             [SPR]: {step_size:  5,    scale_y_min:     140      },
            [D500]: {step_size:  0.25, scale_y_min:      74      },
@@ -458,8 +459,9 @@ function build_navigation (this_gender, this_distance) {
         distances . forEach ((distance) => {
             let td   = "";
             let name = dist_names [distance] || distance + "m"
-            if (gender == "women" && distance == BIG ||
-                gender == "men"   && distance == MINI) {
+            if (gender == "women" && distance == BIG  ||
+                gender == "men"   && distance == MINI ||
+                gender == "men"   && distance == O_SML) {
                 td = ""
             }
             else if (gender == this_gender && +distance == +this_distance) {
