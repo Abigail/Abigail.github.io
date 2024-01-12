@@ -95,11 +95,12 @@ function add_record (gender, distance, skater, time, date, rink,
                 // "equalled" Borjes 38.9 with 38.99
                 //
 
+                new_entry . improvement = improvement
                 if (distance < 0) {
                     //
                     // It's points
                     //
-                    new_entry . improvement = improvement . toFixed (3)
+                    new_entry . precision = 3
                 }
                 else {
                     //
@@ -112,7 +113,8 @@ function add_record (gender, distance, skater, time, date, rink,
                         last      . time . length == old_dot + 3 &&
                         new_entry . time . length == new_dot + 3 ? 2 : 1;
 
-                    new_entry . improvement = sec2time (improvement, precision)
+                    new_entry . precision = precision
+                //  new_entry . improvement = sec2time (improvement, precision)
                 }
             }
         }

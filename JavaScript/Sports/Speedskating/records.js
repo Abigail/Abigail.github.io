@@ -290,7 +290,12 @@ function item_to_row (item) {
     if (item . current) {
         duration = `<span class = 'current'>${duration}</span>`
     }
-    const improvement = item . improvement || ""
+    const improvement =
+          item . improvement 
+       ?  item . distance < 0
+               ?           item . improvement . toFixed (item . precision)
+               : sec2time (item . improvement,           item . precision)
+       : ""
 
     return "<tr>" +
            "<td class = 'date'>"        + date                 + "</td>" +
