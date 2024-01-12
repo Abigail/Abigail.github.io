@@ -55,6 +55,11 @@ Start year: <span id = 'start_year_span'></span>
 </section>
 
 <section>
+<h4> By Improvement </h4>
+<div id = "improvement_count" class = "padded"></div>
+</section>
+
+<section>
 <h4> By Country </h4>
 <div id = "country_count" class = "padded"></div>
 </section>

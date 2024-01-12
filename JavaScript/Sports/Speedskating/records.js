@@ -316,11 +316,12 @@ function item_to_row (item) {
 // Count the number of records by skater, and rink
 //
 function count_records (progression) {
-    let skater_count   = {}
-    let rink_count     = {}
-    let country_count  = {}
-    let duration_count = {}
-    let current        = {}
+    let skater_count      = {}
+    let rink_count        = {}
+    let country_count     = {}
+    let duration_count    = {}
+    let improvement_count = {}
+    let current           = {}
 
     progression . forEach ((item) => {
         if (item . skater == "SUSPENDED") {
@@ -345,14 +346,27 @@ function count_records (progression) {
             current [item . skater] = 1
         }
 
-        skater_count   [item . skater] ++
-        rink_count     [item . rink]   ++
-        country_count  [country]       ++
-        duration_count [item . skater] += item . duration
+        skater_count      [item . skater] ++
+        rink_count        [item . rink]   ++
+        country_count     [country]       ++
+        duration_count    [item . skater] += item . duration
+        
+        if (item . improvement) {
+            if (!improvement_count [item . skater]) {
+                improvement_count [item . skater] = 0
+            }
+            //
+            // Some trickery to make sure we will classify the
+            // improvements into the same bucket if they only
+            // differ in floating point roundoffs.
+            //
+            improvement_count [item . skater] +=
+                              +item . improvement . toFixed (3)
+        }
     })
 
     return [skater_count, rink_count, country_count, duration_count,
-            current]
+            improvement_count, current]
 }
 
 //
@@ -384,10 +398,18 @@ function make_count_table (type, count, distance, current) {
                     value = `<span class = 'current'>${value}</span>`
                 }
             }
+            if (type == "improvement") {
+                if (distance < 0) {
+                    value = value . toFixed (3)
+                }
+                else {
+                    value = sec2time (value, 2)
+                }
+            }
             table += `<td rowspan = '${count_count [count [list [i]]]}' ` +
                       "class = 'count'>" + value + "</td>"
         }
-        if (type == "skater" || type == "duration") {
+        if (type == "skater" || type == "duration" || type == "improvement") {
             const skater = Skater . skater (list [i])
             const date   = date_of_last_record (list [i], distance)
             const img    = Flags . img (skater . nationality (date), date)
@@ -423,7 +445,7 @@ function build_tables (gender, distance, season = 0) {
 
     const type = distance < 0 ? "Points" : "Time"
     const [skater_count, rink_count, country_count, duration_count,
-           current] = count_records (my_progression)
+           improvement_count, current] = count_records (my_progression)
 
     const table = "<table id = 'records'>" +
                   "<tr><th colspan = '3'>Record</th>" +
@@ -447,10 +469,11 @@ function build_tables (gender, distance, season = 0) {
 
     $("#record_table") . html (table)
 
-    make_count_table ("skater",   skater_count,   distance, current)
-    make_count_table ("duration", duration_count, distance, current)
-    make_count_table ("rink",     rink_count,     distance, current)
-    make_count_table ("country",  country_count,  distance, current)
+    make_count_table ("skater",      skater_count,      distance, current)
+    make_count_table ("duration",    duration_count,    distance, current)
+    make_count_table ("improvement", improvement_count, distance, current)
+    make_count_table ("rink",        rink_count,        distance, current)
+    make_count_table ("country",     country_count,     distance, current)
 }
 
 
