@@ -3,52 +3,33 @@
 //
 function config_config () {
     const config = {
-        men: {
-            10000: {step_size: 30,    scale_y_min: 12 * 60,     },
-             5000: {step_size: 15,    scale_y_min:  6 * 60,     },
-             3000: {step_size: 10,    scale_y_min:  3 * 60 + 30,},
-             1500: {step_size:  5,    scale_y_min:  1 * 60 + 35,},
-             1000: {step_size:  3,    scale_y_min:  1 * 60 +  3,},
-              500: {step_size:  1,    scale_y_min:      33,     },
-            [BIG]: {step_size:  5,    scale_y_min:     140      },
-          [SMALL]: {step_size:  5,    scale_y_min:     140      },
-            [SPR]: {step_size:  5,    scale_y_min:     135      },
-           [D500]: {step_size:  0.25, scale_y_min:      68      },
+        [Event . MEN]: {
+            [Event . M500]:     {step_size:  1,    scale_y_min:      33,     },
+            [Event . M1000]:    {step_size:  3,    scale_y_min:  1 * 60 +  3,},
+            [Event . M1500]:    {step_size:  5,    scale_y_min:  1 * 60 + 35,},
+            [Event . M3000]:    {step_size: 10,    scale_y_min:  3 * 60 + 30,},
+            [Event . M5000]:    {step_size: 15,    scale_y_min:  6 * 60,     },
+            [Event . M10000]:   {step_size: 30,    scale_y_min: 12 * 60,     },
+            [Event . BIG]:      {step_size:  5,    scale_y_min:     140      },
+            [Event . SMALL]:    {step_size:  5,    scale_y_min:     140      },
+            [Event . SPRING]:   {step_size:  5,    scale_y_min:     135      },
+             [Event . D500]:    {step_size:  0.25, scale_y_min:      68      },
         },
-        women: {
-            10000: {step_size: 30,    scale_y_min: 13 * 60 + 30,},
-             5000: {step_size: 15,    scale_y_min:  6 * 60 + 30,},
-             3000: {step_size: 10,    scale_y_min:  3 * 60 + 40,},
-             1500: {step_size:  5,    scale_y_min:  1 * 60 + 40,},
-             1000: {step_size:  3,    scale_y_min:  1 * 60 +  9,},
-              500: {step_size:  1,    scale_y_min:      36,     },
-          [SMALL]: {step_size:  5,    scale_y_min:     150      },
-          [O_SML]: {step_size:  2,    scale_y_min:     202      },
-           [MINI]: {step_size:  5,    scale_y_min:     150      },
-            [SPR]: {step_size:  5,    scale_y_min:     140      },
-           [D500]: {step_size:  0.25, scale_y_min:      74      },
+        [Event . WOMEN]: {
+            [Event . M500]:     {step_size:  1,    scale_y_min:      36,     },
+            [Event . M1000]:    {step_size:  3,    scale_y_min:  1 * 60 +  9,},
+            [Event . M1500]:    {step_size:  5,    scale_y_min:  1 * 60 + 40,},
+            [Event . M3000]:    {step_size: 10,    scale_y_min:  3 * 60 + 40,},
+            [Event . M5000]:    {step_size: 15,    scale_y_min:  6 * 60 + 30,},
+            [Event . M10000]:   {step_size: 30,    scale_y_min: 13 * 60 + 30,},
+            [Event. SMALL]:     {step_size:  5,    scale_y_min:     150      },
+            [Event. OLD_SMALL]: {step_size:  2,    scale_y_min:     202      },
+            [Event. MINI]:      {step_size:  5,    scale_y_min:     150      },
+            [Event. SPRINT]:    {step_size:  5,    scale_y_min:     140      },
+            [Event. D500]:      {step_size:  0.25, scale_y_min:      74      },
         }
     }
     return config
-}
-
-//
-// Given a gender and a distance, return the title;
-// the title is used both on top of the page, and the
-// top of the graph.
-//
-function make_title (gender, distance) {
-    let title = gender [0] . toUpperCase () + gender . slice (1) + ", "
-    if (distance > 0) {
-        title += distance + "m"
-    }
-    else if (distance == D500) {
-        title += "2 x 500m"
-    }
-    else {
-        title += dist_names [distance] + " Combination"
-    }
-    return title
 }
 
 //
@@ -121,10 +102,9 @@ function point_colour (context) {
 }
 
 
-function make_config (gender, distance, season = 0) {
-    const my_progression = progression ({gender:   gender,
-                                         distance: distance,
-                                         season:   season})
+function make_config (event, season = 0) {
+    const my_progression = progression ({event:  event,
+                                         season: season})
     if (!my_progression . length) {
         return
     }
@@ -183,7 +163,8 @@ function make_config (gender, distance, season = 0) {
     //
     // Create the configuration
     //
-    const my_config_config       = config_config () [gender] [distance]
+    const my_config_config       = config_config () [event . gender ()]
+                                                    [event . type   ()]
     const scale_title_font_size  = 16;
     const legend_title_font_size = 16;
 
@@ -215,7 +196,8 @@ function make_config (gender, distance, season = 0) {
                     type: 'linear',
                     ticks: {
                         callback: function (value, index, ticks) {
-                            return distance < 0 ? format_point_value (value)
+                            return event . is_combination ()
+                                                ? format_point_value (value)
                                                 : sec2time (value)
                         },
                         stepSize: my_config_config . step_size,
@@ -223,7 +205,7 @@ function make_config (gender, distance, season = 0) {
                     },
                     min: my_config_config . scale_y_min,
                     title: {
-                        text: distance < 0 ? "Points" : "Time",
+                        text: event . is_combination ()  ? "Points" : "Time",
                         display: true,
                         font: {
                             size: scale_title_font_size,
@@ -513,8 +495,8 @@ function build_navigation (page_event) {
 
 
 
-function build_chart (gender, distance, title, start_year = 0) {
-    const chart_config = make_config (gender, distance, start_year)
+function build_chart (event, title, start_year = 0) {
+    const chart_config = make_config (event, start_year)
 
     if (!chart_config) {
         return
@@ -541,11 +523,10 @@ function build_chart (gender, distance, title, start_year = 0) {
 
 function load_chart () {
     const start_year = + $("#start_year") . val ();
-    const gender     = window . __private . gender
-    const distance   = window . __private . distance
     const title      = window . __private . title
-    build_chart  (gender, distance, title, start_year)
-    build_tables (gender, distance, start_year)
+    const event      = window . __private . event
+    build_chart  (event, title, start_year)
+    build_tables (event, start_year)
 }
 
 
@@ -564,8 +545,7 @@ window . addEventListener ("load", function () {
 
     build_navigation (page_event)
     build_tables     (page_event)
- // build_tables     (gender, distance)
-    build_chart      (gender, distance, title)
+    build_chart      (page_event, title)
 
     $("#start_year_span") . html (`<input id = 'start_year' type = 'number' ` +
                                   `value = '1960' size = '5'>`)
