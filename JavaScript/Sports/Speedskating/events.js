@@ -1,7 +1,4 @@
 class Event {
-    let __gender;
-    let __event;
-
     static M500      = 1
     static M1000     = 1 + Event . M500
     static M1500     = 1 + Event . M1000
@@ -18,7 +15,7 @@ class Event {
     static T_SPRINT  = 1 + Event . PURSUIT
 
     static MEN       = 1
-    statis WOMEN     = 1 + Event . MEN
+    static WOMEN     = 1 + Event . MEN
 
     static event_names = {
         [Event . M500]     : "500m",
@@ -42,17 +39,40 @@ class Event {
         [Event . WOMEN]    : "Women",
     }
 
+    static distance = {
+        [Event . M500]     : 500,
+        [Event . M1000]    : 1000,
+        [Event . M1500]    : 1500,
+        [Event . M3000]    : 3000,
+        [Event . M5000]    : 5000,
+        [Event . M10000]   : 10000,
+    }
+
     constructor (gender, event) {
         this . __gender = gender
         this . __event  = event
     }
 
     name () {
-        return event_name [this . __event]
+        return Event . event_names [this . __event]
     }
 
     gender_name () {
-        return gender_name (this . __gender)
+        return Event . gender_names [this . __gender]
+    }
+
+    full_name () {
+        return this . gender_name ()  + ", " +
+              (this . is_distance () ? this . distance () + "m"
+                                     : this . name ()     + " Combination")
+    }
+
+    gender () {
+        return this . __gender
+    }
+
+    distance () {
+        return Event . distance [this . __event] || 0
     }
 
     is_distance () {
@@ -68,5 +88,14 @@ class Event {
     is_team () {
         return this . __event >= Event . PURSUIT &&
                this . __event <= Event . T_SPRINT
+    }
+
+    is_type () {
+        return this . __event 
+    }
+
+    equal (other_event) {
+        return this . __gender == other_event . gender () &&
+               this . __event  == other_event . event  ()
     }
 }

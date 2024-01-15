@@ -24,6 +24,19 @@ const dist_names = {
 const W1         = {weekend: 1}
 const W3         = {weekend: 3}
 
+const event = {
+    [500]   : Event . M500,
+    [1000]  : Event . M1000,
+    [1500]  : Event . M1500,
+    [3000]  : Event . M3000,
+    [5000]  : Event . M5000,
+    [10000] : Event . M10000,
+    [BIG]   : Event . BIG,
+    [SMALL] : Event . SMALL,
+    [O_SML] : Event . OLD_SMALL,
+    [SPR]   : Event . SPRINT,
+    [D500]  : Event . D500,
+}
 
 //
 // time2sec
@@ -64,6 +77,8 @@ function add_record (gender, distance, skater, time, date, rink,
     let new_entry = {
         gender:      gender,
         distance:    distance,
+        event:       new Event (gender == M ? Event . MEN : Event . WOMEN,
+                                distance),
         skater:      skater,
         time:        time,
         date:        date,

@@ -544,13 +544,36 @@ function load_chart () {
     build_tables (gender, distance, start_year)
 }
 
+
 window . addEventListener ("load", function () {
     const params   = new URLSearchParams (window . location . search)
     const gender   = params . get ('gender')
     const distance = params . get ('distance')
-    const title    = make_title (gender, distance)
 
-    window . __private = {gender: gender, distance: distance, title: title}
+    const my_map = {
+        "500":     Event . M500,
+        "1000":    Event . M1000,
+        "1500":    Event . M1500,
+        "3000":    Event . M3000,
+        "5000":    Event . M5000,
+        "10000":   Event . M10000,
+        "-1":      Event . BIG,
+        "-2":      Event . SMALL,
+        "-3":      Event . OLD_SMALL,
+        "-4":      Event . MINI,
+        "-5":      Event . SPRINT,
+        "-6":      Event . D500,
+    }
+
+    const page_event = new Event (
+        gender == "men" ? Event . MEN : Event . WOMEN,
+        my_map [+distance]
+    )
+
+    const title = page_event . full_name ()
+
+    window . __private = {gender: gender, distance: distance, title: title,
+                          event: page_event}
 
     $("h1") . html (title)
 
