@@ -124,24 +124,6 @@ function progression (filters) {
 }
 
 //
-// function date_of_last_record
-//
-// Given a skater and a distance, return the record of last time the
-// skater broke that record
-//
-function date_of_last_record (skater, event) {
-    let date = "0000-00-00";
-    __progression . forEach ((item) => {
-        if (item . skater   == skater    &&
-            item . event . equal (event) &&
-            item . date     >  date) {
-            date = item . date
-        }
-    })
-    return date
-}
-           
-//
 // Men   500m
 //
 const m500    = new Event (Event . MEN,   Event . M500)
