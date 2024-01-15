@@ -48,17 +48,31 @@ class Event {
         [Event . M10000]   : 10000,
     }
 
+    static genders = [Event . MEN,   Event . WOMEN]
+    static events  = [Event . M500,  Event . M1000,  Event . M1500,
+                      Event . M3000, Event . M5000,  Event . M10000,
+                      Event . BIG,   Event . SMALL,  Event . OLD_SMALL,
+                      Event . MINI,  Event . SPRINT, Event . D500]
+
     constructor (gender, event) {
         this . __gender = gender
         this . __event  = event
     }
 
+    static name (type) {
+        return Event . event_names [type]
+    }
+
     name () {
-        return Event . event_names [this . __event]
+        return Event . name (this . __event)
+    }
+
+    static gender_name (gender) {
+        return Event . gender_names [gender]
     }
 
     gender_name () {
-        return Event . gender_names [this . __gender]
+        return Event . gender_name (this . __gender)
     }
 
     full_name () {
@@ -90,12 +104,19 @@ class Event {
                this . __event <= Event . T_SPRINT
     }
 
-    is_type () {
+    type () {
         return this . __event 
+    }
+
+    is_valid () {
+        return this . gender () == Event . MEN 
+             ? this . type   () != Event . OLD_SMALL &&
+               this . type   () != Event . MINI
+             : this . type   () != Event . BIG
     }
 
     equal (other_event) {
         return this . __gender == other_event . gender () &&
-               this . __event  == other_event . event  ()
+               this . __event  == other_event . type   ()
     }
 }

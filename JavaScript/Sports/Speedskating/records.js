@@ -265,6 +265,7 @@ function item_to_row (item) {
     let   duration = item . duration
     const skater   = Skater . skater (item . skater)
     const rink     = Rink   . rink   (item . rink)
+    const event    = item   . event
 
     const rink_symbol = rink . is_natural    (date) ? "\u{25A0}"
                       : rink . is_artificial (date) ? "\u{25B2}"
@@ -280,7 +281,8 @@ function item_to_row (item) {
     // Cases where the fastest time is "shorter" than the longest time.
     // In that case, we prepad with an invisible 0.
     //
-    if (item . gender == "women" && item . distance == "5000") {
+    if (event . gender () == Event . WOMEN &&
+        event . type   () == Event . M5000) {
         let [minute] = time . split (':')
         if (+minute < 10) {
             time = "<span style = 'visibility: hidden'>0</span>" + time
@@ -291,8 +293,8 @@ function item_to_row (item) {
         duration = `<span class = 'current'>${duration}</span>`
     }
     const improvement =
-          item . improvement 
-       ?  item . distance < 0
+          item  . improvement 
+       ?  event . is_combination ()
                ?           item . improvement . toFixed (item . precision)
                : sec2time (item . improvement,           item . precision)
        : ""
@@ -438,12 +440,11 @@ function make_count_table (type, count, distance, current) {
 //
 // Build the tables with records
 //
-function build_tables (gender, distance, season = 0) {
-    const my_progression = progression ({gender:   gender,
-                                         distance: distance,
+function build_tables (event, season = 0) {
+    const my_progression = progression ({event:    event,
                                          season:   season})
 
-    const type = distance < 0 ? "Points" : "Time"
+    const type = event . is_distance () ? "Time" : "Points"
     const [skater_count, rink_count, country_count, duration_count,
            improvement_count, current] = count_records (my_progression)
 
@@ -469,35 +470,35 @@ function build_tables (gender, distance, season = 0) {
 
     $("#record_table") . html (table)
 
-    make_count_table ("skater",      skater_count,      distance, current)
-    make_count_table ("duration",    duration_count,    distance, current)
-    make_count_table ("improvement", improvement_count, distance, current)
-    make_count_table ("rink",        rink_count,        distance, current)
-    make_count_table ("country",     country_count,     distance, current)
+//  make_count_table ("skater",      skater_count,      distance, current)
+//  make_count_table ("duration",    duration_count,    distance, current)
+//  make_count_table ("improvement", improvement_count, distance, current)
+//  make_count_table ("rink",        rink_count,        distance, current)
+//  make_count_table ("country",     country_count,     distance, current)
 }
 
 
 //
 // Build the navigation table
 //
-function build_navigation (this_gender, this_distance) {
+function build_navigation (page_event) {
     let table_str = "<table id = 'nav_bar'>";
-    genders . forEach ((gender) => {
-        table_str += "<tr><th>" + gender + "</th>";
-        distances . forEach ((distance) => {
-            let td   = "";
-            let name = dist_names [distance] || distance + "m"
-            if (gender == "women" && distance == BIG  ||
-                gender == "men"   && distance == MINI ||
-                gender == "men"   && distance == O_SML) {
-                td = ""
-            }
-            else if (gender == this_gender && +distance == +this_distance) {
-                td = "<b>" + name + "</b>"
-            }
-            else {
-                td = "<a href = 'records.html?gender=" + gender +
-                       "&distance=" + distance + "'>" + name + "</a>"
+    Event . genders . forEach ((gender) => {
+        table_str += "<tr><th>" + Event . gender_name (gender) + "</th>"
+        Event . events . forEach ((type) => {
+            const event = new Event (gender, type)
+            let   td    = ""
+            if (event . is_valid ()) {
+                const name = event . name ()
+                if (event . equal (page_event)) {
+                    td = "<b>" + name + "</b>"
+                }
+                else {
+                    td = "<a href = 'records.html?gender=" +
+                             event . gender () +
+                          "&distance=" + event . type () + "'>" +
+                          name + "</a>"
+                }
             }
             table_str += `<td>${td}</td>`
         })
@@ -507,6 +508,9 @@ function build_navigation (this_gender, this_distance) {
 
     $("div#navigation") . html (table_str)
 }
+
+            
+
 
 
 function build_chart (gender, distance, title, start_year = 0) {
@@ -550,35 +554,17 @@ window . addEventListener ("load", function () {
     const gender   = params . get ('gender')
     const distance = params . get ('distance')
 
-    const my_map = {
-        "500":     Event . M500,
-        "1000":    Event . M1000,
-        "1500":    Event . M1500,
-        "3000":    Event . M3000,
-        "5000":    Event . M5000,
-        "10000":   Event . M10000,
-        "-1":      Event . BIG,
-        "-2":      Event . SMALL,
-        "-3":      Event . OLD_SMALL,
-        "-4":      Event . MINI,
-        "-5":      Event . SPRINT,
-        "-6":      Event . D500,
-    }
-
-    const page_event = new Event (
-        gender == "men" ? Event . MEN : Event . WOMEN,
-        my_map [+distance]
-    )
+    const page_event = new Event (+gender, +distance)
 
     const title = page_event . full_name ()
 
-    window . __private = {gender: gender, distance: distance, title: title,
-                          event: page_event}
+    window . __private = {title: title, event: page_event}
 
     $("h1") . html (title)
 
-    build_navigation (gender, distance)
-    build_tables     (gender, distance)
+    build_navigation (page_event)
+    build_tables     (page_event)
+ // build_tables     (gender, distance)
     build_chart      (gender, distance, title)
 
     $("#start_year_span") . html (`<input id = 'start_year' type = 'number' ` +
