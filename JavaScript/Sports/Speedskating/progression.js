@@ -64,8 +64,7 @@ function add_record (event, skater, time, date, rink, extra = {}) {
 
     if (__progression . length) {
         const last = __progression [__progression . length - 1]
-        if (last . distance == new_entry . distance &&
-            last . gender   == new_entry . gender) {
+        if (last . event . equal (new_entry . event)) {
             const improvement = last . y - new_entry . y
             if (improvement > 0) {
                 //
@@ -130,11 +129,11 @@ function progression (filters) {
 // Given a skater and a distance, return the record of last time the
 // skater broke that record
 //
-function date_of_last_record (skater, distance) {
+function date_of_last_record (skater, event) {
     let date = "0000-00-00";
     __progression . forEach ((item) => {
-        if (item . skater   == skater   &&
-            item . distance == distance &&
+        if (item . skater   == skater    &&
+            item . event . equal (event) &&
             item . date     >  date) {
             date = item . date
         }

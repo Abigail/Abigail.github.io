@@ -359,7 +359,7 @@ function count_records (progression) {
 // Given a list of skater or rinks with their number of records, 
 // create a table showing them.
 //
-function make_count_table (type, count, distance, current) {
+function make_count_table (type, count, event, current) {
     let table = `<table id = '${type}s' class = 'count'>`
 
     let count_count = {}
@@ -383,7 +383,7 @@ function make_count_table (type, count, distance, current) {
                 }
             }
             if (type == "improvement") {
-                if (distance < 0) {
+                if (event . is_combination ()) {
                     value = value . toFixed (3)
                 }
                 else {
@@ -395,7 +395,7 @@ function make_count_table (type, count, distance, current) {
         }
         if (type == "skater" || type == "duration" || type == "improvement") {
             const skater = Skater . skater (list [i])
-            const date   = date_of_last_record (list [i], distance)
+            const date   = date_of_last_record (list [i], event)
             const img    = Flags . img (skater . nationality (date), date)
             table += "<td class = 'name'>"   + skater . name ("now") + "</td>"
                   +  "<td class = 'nation'>" + img                   + "</td>"
@@ -452,11 +452,11 @@ function build_tables (event, season = 0) {
 
     $("#record_table") . html (table)
 
-//  make_count_table ("skater",      skater_count,      distance, current)
-//  make_count_table ("duration",    duration_count,    distance, current)
-//  make_count_table ("improvement", improvement_count, distance, current)
-//  make_count_table ("rink",        rink_count,        distance, current)
-//  make_count_table ("country",     country_count,     distance, current)
+    make_count_table ("skater",      skater_count,      event, current)
+    make_count_table ("duration",    duration_count,    event, current)
+    make_count_table ("improvement", improvement_count, event, current)
+    make_count_table ("rink",        rink_count,        event, current)
+    make_count_table ("country",     country_count,     event, current)
 }
 
 
