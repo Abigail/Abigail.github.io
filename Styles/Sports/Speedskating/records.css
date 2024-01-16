@@ -37,6 +37,11 @@ table#records td.time, table#records td.name {
         font-weight: bold;
 }
 
+@media (max-width: 1400px) {
+        table#nav_bar td {
+                font-size: 110%;
+        }
+}
 
 table#nav_bar th {
         text-align: left;
