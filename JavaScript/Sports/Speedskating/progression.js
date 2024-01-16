@@ -1079,9 +1079,9 @@ add_record (wTP,   "JPN",         "2:55.77", "2017-11-10", "thialf",
 add_record (wTP,   "JPN",         "2:53.88", "2017-12-02", "calgary",
                    {members: ["takagi_miho", "kikuchi", "takagi_nana"]})
 add_record (wTP,   "JPN",         "2:50.87", "2017-12-08", "salt lake city",
-                   {members: ["takagi_miho", "sato", "takagi_nana"]})
+                   {members: ["takagi miho", "sato", "takagi nana"]})
 add_record (wTP,   "JPN",         "2:50.76", "2020-02-16", "salt lake city",
-                   {members: ["takagi_miho", "sato", "takagi_nana"]})
+                   {members: ["takagi miho", "sato", "takagi nana"]})
 
 
 
