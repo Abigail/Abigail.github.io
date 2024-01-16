@@ -17,18 +17,18 @@
     <th colspan = 2>Artificial</th></tr>
 <tr class = 'low'>
     <td></td>
-    <td>200m</td>
+    <td>300m</td>
     <td class = 'symbol'>&#x25A0;</td>
     <td class = 'symbol'>&#x25B2;</td>
     <td class = 'symbol'>&#x25CF;</td></tr>
 <tr class = 'middle'>
-    <td>200m</td>
-    <td>500m</td>
+    <td>300m</td>
+    <td>1000m</td>
     <td class = 'symbol'>&#x25A0;</td>
     <td class = 'symbol'>&#x25B2;</td>
     <td class = 'symbol'>&#x25CF;</td></tr>
 <tr class = 'high'>
-    <td>500m</td>
+    <td>1000m</td>
     <td></td>
     <td class = 'symbol'>&#x25A0;</td>
     <td class = 'symbol'>&#x25B2;</td>

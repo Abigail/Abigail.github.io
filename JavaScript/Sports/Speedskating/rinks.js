@@ -40,20 +40,20 @@ class Rink {
     }
 
 
-    is_natural    (date) {return this . type (date) == Rink . NATURAL}
-    is_artificial (date) {return this . type (date) == Rink . ARTIFICIAL}
-    is_indoor     (date) {return this . type (date) == Rink . INDOOR}
-    is_sea_level  () {return this . __elevation     <= 200}
-    is_high_land  () {return this . __elevation     >= 500}
+    is_natural       (date) {return this . type (date) == Rink . NATURAL}
+    is_artificial    (date) {return this . type (date) == Rink . ARTIFICIAL}
+    is_indoor        (date) {return this . type (date) == Rink . INDOOR}
+    is_lowland       ()     {return this . __elevation <   300}
+    is_high_altitude ()     {return this . __elevation >  1000}
 
     //
     // Derived values
     //
     point_colour () {
-        return this . city          () == ""  ? Rink . NO_RINK_COLOUR
-             : this . is_sea_level  ()        ? Rink . LOW_COLOUR
-             : this . is_high_land  ()        ? Rink . HIGH_COLOUR
-             :                                  Rink . MIDDLE_COLOUR
+        return this . city             () == ""  ? Rink . NO_RINK_COLOUR
+             : this . is_lowland       ()        ? Rink . LOW_COLOUR
+             : this . is_high_altitude ()        ? Rink . HIGH_COLOUR
+             :                                     Rink . MIDDLE_COLOUR
     }
 
     point_style (date) {
