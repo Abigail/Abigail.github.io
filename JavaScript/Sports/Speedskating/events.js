@@ -1,37 +1,37 @@
 class Event {
-    static M500      = 1
-    static M1000     = 1 + Event . M500
-    static M1500     = 1 + Event . M1000
-    static M3000     = 1 + Event . M1500
-    static M5000     = 1 + Event . M3000
-    static M10000    = 1 + Event . M5000
-    static BIG       = 1 + Event . M10000
-    static SMALL     = 1 + Event . BIG
-    static OLD_SMALL = 1 + Event . SMALL
-    static MINI      = 1 + Event . OLD_SMALL
-    static SPRINT    = 1 + Event . MINI
-    static D500      = 1 + Event . SPRINT
-    static PURSUIT   = 1 + Event . D500
-    static T_SPRINT  = 1 + Event . PURSUIT
+    static M500         = 1
+    static M1000        = 1 + Event . M500
+    static M1500        = 1 + Event . M1000
+    static M3000        = 1 + Event . M1500
+    static M5000        = 1 + Event . M3000
+    static M10000       = 1 + Event . M5000
+    static BIG          = 1 + Event . M10000
+    static SMALL        = 1 + Event . BIG
+    static OLD_SMALL    = 1 + Event . SMALL
+    static MINI         = 1 + Event . OLD_SMALL
+    static SPRINT       = 1 + Event . MINI
+    static D500         = 1 + Event . SPRINT
+    static TEAM_PURSUIT = 1 + Event . D500
+    static TEAM_SPRINT  = 1 + Event . TEAM_PURSUIT
 
-    static MEN       = 1
-    static WOMEN     = 1 + Event . MEN
+    static MEN          = 1
+    static WOMEN        = 1 + Event . MEN
 
     static event_names = {
-        [Event . M500]     : "500m",
-        [Event . M1000]    : "1000m",
-        [Event . M1500]    : "1500m",
-        [Event . M3000]    : "3000m",
-        [Event . M5000]    : "5000m",
-        [Event . M10000]   : "10000m",
-        [Event . BIG]      : "Big",
-        [Event . SMALL]    : "Small",
-        [Event . OLD_SMALL]: "Old Small",
-        [Event . MINI]     : "Mini",
-        [Event . SPRINT]   : "Sprint",
-        [Event . D500]     : "2 x 500m",
-        [Event . PURSUIT]  : "Team Pursuit",
-        [Event . T_SPRINT] : "Team Sprint",
+        [Event . M500]        : "500m",
+        [Event . M1000]       : "1000m",
+        [Event . M1500]       : "1500m",
+        [Event . M3000]       : "3000m",
+        [Event . M5000]       : "5000m",
+        [Event . M10000]      : "10000m",
+        [Event . BIG]         : "Big",
+        [Event . SMALL]       : "Small",
+        [Event . OLD_SMALL]   : "Old Small",
+        [Event . MINI]        : "Mini",
+        [Event . SPRINT]      : "Sprint",
+        [Event . D500]        : "2 x 500m",
+        [Event . TEAM_PURSUIT]: "Team Pursuit",
+        [Event . TEAM_SPRINT] : "Team Sprint",
     }
 
     static gender_names = {
@@ -52,7 +52,8 @@ class Event {
     static events  = [Event . M500,  Event . M1000,  Event . M1500,
                       Event . M3000, Event . M5000,  Event . M10000,
                       Event . BIG,   Event . SMALL,  Event . OLD_SMALL,
-                      Event . MINI,  Event . SPRINT, Event . D500]
+                      Event . MINI,  Event . SPRINT, Event . D500,
+                      Event . TEAM_PURSUIT]
 
     constructor (gender, event) {
         this . __gender = gender
@@ -77,8 +78,9 @@ class Event {
 
     full_name () {
         return this . gender_name ()  + ", " +
-              (this . is_distance () ? this . distance () + "m"
-                                     : this . name ()     + " Combination")
+              (this . is_distance    () ? this . distance () + "m"
+             : this . is_combination () ? this . name     () + " Combination"
+             :                            this . name     ())
     }
 
     gender () {
@@ -100,8 +102,8 @@ class Event {
     }
 
     is_team () {
-        return this . __event >= Event . PURSUIT &&
-               this . __event <= Event . T_SPRINT
+        return this . __event >= Event . TEAM_PURSUIT &&
+               this . __event <= Event . TEAM_SPRINT
     }
 
     type () {

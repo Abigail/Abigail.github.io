@@ -50,7 +50,9 @@ class Skater {
     }
 
     static skater (key) {
-        return Skater . skaters [key] || new Skater (key, "")
+        return Skater  . skaters [key] ||
+               Country . country (key) ||
+               new Skater (key, "")
     }
 }
 

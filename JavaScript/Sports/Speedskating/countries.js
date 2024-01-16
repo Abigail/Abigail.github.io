@@ -29,4 +29,24 @@ class Country {
     static name (code) {
         return Country . nation_names [code] || code
     }
+
+    constructor (code) {
+        this . __code = code
+        this . __name = Country . nation_names [code]
+    }
+
+    nationality () {
+        return this . __code
+    }
+
+    name () {
+        return this . __name
+    }
+
+    static country (code) {
+        if (Country . nation_names [code]) {
+            return new Country (code)
+        }
+        return undefined
+    }
 }
