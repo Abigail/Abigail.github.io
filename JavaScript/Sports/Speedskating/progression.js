@@ -634,15 +634,15 @@ add_record (mD500, "wotherspoon",  "68.310", "2008-03-15", "calgary")
 add_record (mTP,   "USA",         "3:48.56", "2004-11-13", "hamar",
                    {members: ["boutiette", "hedrick", "parra"]})
 add_record (mTP,   "NED",         "3:46.44", "2004-11-21", "berlin",
-                   {members: ["verheijen", "tuitert", "wennemars"]})
+                   {members: ["verheijen", "wennemars", "tuitert"]})
 add_record (mTP,   "CAN",         "3:39.69", "2005-11-12", "calgary",
                    {members: ["elm", "dankers", "morrison"]})
 add_record (mTP,   "NED",         "3:37.80", "2007-03-11", "salt lake city",
-                   {members: ["wennemars", "kramer", "verheijen"]})
+                   {members: ["verheijen", "wennemars", "kramer"]})
 add_record (mTP,   "NED",         "3:37.17", "2013-11-09", "calgary",
-                   {members: ["blokhuijsen", "kramer", "verweij"]})
+                   {members: ["kramer", "blokhuijsen", "verweij"]})
 add_record (mTP,   "NED",         "3:35.60", "2013-11-16", "salt lake city",
-                   {members: ["blokhuijsen", "kramer", "verweij"]})
+                   {members: ["kramer", "blokhuijsen", "verweij"]})
 add_record (mTP,   "NED",         "3:34.68", "2020-02-16", "salt lake city",
                    {members: ["kramer", "de vries", "bosker"]})
 add_record (mTP,   "USA",         "3:34.47", "2021-12-05", "salt lake city",
@@ -823,7 +823,7 @@ add_record (w1500, "friesinger",  "1:53.22", "2005-11-06", "calgary")
 add_record (w1500, "klassen",     "1:51.79", "2005-11-20", "salt lake city")
 add_record (w1500, "bowe",        "1:51.59", "2015-11-15", "calgary")
 add_record (w1500, "richardson",  "1:50.85", "2015-11-21", "salt lake city")
-add_record (w1500, "takagi miho", "1:49.84", "2019-03-10", "salt lake city")
+add_record (w1500, "takagi_miho", "1:49.84", "2019-03-10", "salt lake city")
 
 //
 // Women  3000m
@@ -1073,15 +1073,15 @@ add_record (wTP,   "CAN",         "3:03.07", "2004-11-20", "berlin",
 add_record (wTP,   "GER",         "2:56.04", "2005-11-13", "calgary",
                    {members: ["friesinger", "pechstein", "anschutz"]})
 add_record (wTP,   "CAN",         "2:55.79", "2009-12-06", "calgary",
-                   {members: ["schussler", "groves", "nesbitt"]})
+                   {members: ["groves", "schussler", "nesbitt"]})
 add_record (wTP,   "JPN",         "2:55.77", "2017-11-10", "thialf",
                    {members: ["takagi_miho", "sato", "takagi_nana"]})
 add_record (wTP,   "JPN",         "2:53.88", "2017-12-02", "calgary",
                    {members: ["takagi_miho", "kikuchi", "takagi_nana"]})
 add_record (wTP,   "JPN",         "2:50.87", "2017-12-08", "salt lake city",
-                   {members: ["takagi miho", "sato", "takagi nana"]})
+                   {members: ["takagi_miho", "sato", "takagi_nana"]})
 add_record (wTP,   "JPN",         "2:50.76", "2020-02-16", "salt lake city",
-                   {members: ["takagi miho", "sato", "takagi nana"]})
+                   {members: ["takagi_miho", "sato", "takagi_nana"]})
 
 
 

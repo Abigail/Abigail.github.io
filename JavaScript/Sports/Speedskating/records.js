@@ -285,16 +285,26 @@ function item_to_row (item) {
                : sec2time (item . improvement,           item . precision)
        : ""
 
+    let name = skater . name (date)
+    if (event . is_team ()) {
+        const members = item . members . map ((skater) => {
+            return Skater . skater (skater) . name (date)
+        })
+        name = "<div class = 'tooltip'>" + name +
+               "<div class = 'tooltiptext'>" + members . join ("<br>") +
+               "</div></div>"
+    }
+
     return "<tr>" +
-           "<td class = 'date'>"        + date                 + "</td>" +
-           "<td class = 'time'>"        + time                 + "</td>" +
-           "<td class = 'improvement'>" + improvement          + "</td>" +
-           "<td class = 'name'>"        + skater . name (date) + "</td>" +
-           "<td class = 'nation'>"      + img                  + "</td>" +
-           "<td class = 'city'>"        + rink   . city ()     + "</td>" +
-           "<td class = 'stadion'>"     + rink   . name ()     + "</td>" +
-           "<td class = 'rinktype'>"    + rink_span            + "</td>" +
-           "<td class = 'duration'>"    + duration             + "</td>" +
+           "<td class = 'date'>"        + date             + "</td>" +
+           "<td class = 'time'>"        + time             + "</td>" +
+           "<td class = 'improvement'>" + improvement      + "</td>" +
+           "<td class = 'name'>"        + name             + "</td>" +
+           "<td class = 'nation'>"      + img              + "</td>" +
+           "<td class = 'city'>"        + rink   . city () + "</td>" +
+           "<td class = 'stadion'>"     + rink   . name () + "</td>" +
+           "<td class = 'rinktype'>"    + rink_span        + "</td>" +
+           "<td class = 'duration'>"    + duration         + "</td>" +
           "</tr>"
 }
 
