@@ -78,6 +78,16 @@ table.count td.count {
         text-align: right;
 }
 
+table.rink_info th {
+        text-align: left;
+}
+table.rink_info td {
+        white-space:    nowrap;
+}
+table.rink_info td.flag img {
+        width: 1.5em;
+}
+
 
 /*
  * Multi-column layout
@@ -122,6 +132,10 @@ h3.records-header {
         z-index:        1;
         left:           115%;
         top:           -1.25em;
+}
+
+.tooltip .rink_info {
+        top:           -2.25em;
 }
 
 .tooltip:hover .tooltiptext {

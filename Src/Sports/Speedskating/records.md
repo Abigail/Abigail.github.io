@@ -6,35 +6,6 @@
 
 <div id = "record_table"></div>
 
-### Rink Symbols
-<table id = "rink_type">
-<tr><th colspan = 2>Elevation</th>
-    <th colspan = 2>Outdoor</th>
-    <th>Indoor</th></tr>
-<tr><th>Min</th>
-    <th>Max</th>
-    <th>Natural</th>
-    <th colspan = 2>Artificial</th></tr>
-<tr class = 'low'>
-    <td></td>
-    <td>300m</td>
-    <td class = 'symbol'>&#x25A0;</td>
-    <td class = 'symbol'>&#x25B2;</td>
-    <td class = 'symbol'>&#x25CF;</td></tr>
-<tr class = 'middle'>
-    <td>300m</td>
-    <td>1000m</td>
-    <td class = 'symbol'>&#x25A0;</td>
-    <td class = 'symbol'>&#x25B2;</td>
-    <td class = 'symbol'>&#x25CF;</td></tr>
-<tr class = 'high'>
-    <td>1000m</td>
-    <td></td>
-    <td class = 'symbol'>&#x25A0;</td>
-    <td class = 'symbol'>&#x25B2;</td>
-    <td class = 'symbol'>&#x25CF;</td></tr>
-</table>
-
 <canvas id = "record_chart"></canvas>
 
 Start year: <span id = 'start_year_span'></span>

@@ -154,7 +154,7 @@ Rink . add_rink ("horten",          "Lystlunden Gressbane",
                  "Horten",          "NOR",      Rink . NATURAL,       2)
 
 Rink . add_rink ("inzell",          "Ludwig Schwabl Stadion",
-                 "Inzell",          "GER",      Rink . ARTIFICIAL,  690)
+                 "Inzell",          "FRG",      Rink . ARTIFICIAL,  690)
 
 Rink . add_rink ("jaap eden",       "Jaap Edenbaan",
                  "Amsterdam",       "NED",      Rink . ARTIFICIAL,    0)

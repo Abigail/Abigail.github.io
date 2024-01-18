@@ -234,6 +234,46 @@ function make_config (event, season = 0) {
     return wr_config
 }
 
+
+//
+// Create the td content of the rink type column. This includes a
+// tooltip with info about the rink.
+//
+function rink_type_td (rink, date) {
+    const rink_symbol = rink . is_natural    (date) ? "\u{25A0}"
+                      : rink . is_artificial (date) ? "\u{25B2}"
+                      : rink . is_indoor     (date) ? "\u{25CF}"
+                      :                               ""
+    const rink_span   = "<span style = 'color: " + rink . point_colour () +
+                        "'>" + rink_symbol + "</span>"
+
+    const type = rink . is_natural    (date) ? "Natural"
+               : rink . is_artificial (date) ? "Artificial"
+               : rink . is_indoor     (date) ? "Indoor" : "???"
+
+    const flag = Flags . img (rink . country (), date)
+
+    const alt  = rink . is_lowland       () ? "LL"
+               : rink . is_high_altitude () ? "HA" : ""
+
+    const td = "<div class = 'tooltip'>" + rink_span +
+               "<div class = 'tooltiptext rink_info'>" +
+               "<table class = 'rink_info'>" +
+                  `<tr><th>City</th>`                                  +
+                      `<td>${rink . city ()}</td>`                     +
+                      `<td class = 'flag'>${flag}</td></tr>`           +
+                  `<tr><th>Name</th>`                                  + 
+                      `<td colspan = '2'>${rink . name ()}</td></tr>`  +
+                  `<tr><th>Ice Type</th>`                              + 
+                      `<td colspan = '2'>${type}</td></tr>`            +
+                  `<tr><th>Elevation</th>`                             + 
+                      `<td>${rink . elevation ()}m</td>`               +
+                      `<td>${alt}</td></tr>`                           +
+               "</table></div></div>"
+
+    return td
+}
+
 //
 // Given a record, return the HTML table row representing it
 //
@@ -252,13 +292,6 @@ function item_to_row (item) {
     const skater   = Skater . skater (item . skater)
     const rink     = Rink   . rink   (item . rink)
     const event    = item   . event
-
-    const rink_symbol = rink . is_natural    (date) ? "\u{25A0}"
-                      : rink . is_artificial (date) ? "\u{25B2}"
-                      : rink . is_indoor     (date) ? "\u{25CF}"
-                      :                               ""
-    const rink_span   = "<span style = 'color: " + rink . point_colour () +
-                        "'>" + rink_symbol + "</span>"
 
     let nationality = skater . nationality (date)
     let img = Flags . img (nationality, date)
@@ -295,6 +328,8 @@ function item_to_row (item) {
                "</div>" + name + "</div>"
     }
 
+    const rink_td = rink_type_td (rink, date)
+
     return "<tr>" +
            "<td class = 'date'>"        + date             + "</td>" +
            "<td class = 'time'>"        + time             + "</td>" +
@@ -302,8 +337,7 @@ function item_to_row (item) {
            "<td class = 'name'>"        + name             + "</td>" +
            "<td class = 'nation'>"      + img              + "</td>" +
            "<td class = 'city'>"        + rink   . city () + "</td>" +
-           "<td class = 'stadion'>"     + rink   . name () + "</td>" +
-           "<td class = 'rinktype'>"    + rink_span        + "</td>" +
+           "<td class = 'rinktype'>"    + rink_td          + "</td>" +
            "<td class = 'duration'>"    + duration         + "</td>" +
           "</tr>"
 }
@@ -457,7 +491,7 @@ function build_tables (event, season = 0) {
     const table = "<table id = 'records'>" +
                   "<tr><th colspan = '3'>Record</th>"  +
                       `<th colspan = '2'>${what}</th>` +
-                      "<th colspan = '3'>Rink</th>"    +
+                      "<th colspan = '2'>Rink</th>"    +
                       "<th rowspan = '2'>Duration<br>(Days)</th></tr>"
                                                        +
 
@@ -467,7 +501,6 @@ function build_tables (event, season = 0) {
                       "<th>Name</th>"                  +
                       "<th>Nat</th>"                   +
                       "<th>City</th>"                  +
-                      "<th>Name</th>"                  +
                       "<th>Type</th></tr>"             +
 
                     my_progression . map  (item => item_to_row (item))
