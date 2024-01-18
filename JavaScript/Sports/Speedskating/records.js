@@ -324,8 +324,11 @@ function item_to_row (item) {
             return Skater . skater (skater) . name (date)
         })
         name = "<div class = 'tooltip'>" + 
-               "<div class = 'tooltiptext'>" + members . join ("<br>") +
-               "</div>" + name + "</div>"
+               "<div class = 'tooltiptext team-members'>" +
+               "<table class = 'team-members'>" +
+                   members . map (item => `<tr><td>${item}</td></tr>`)
+                           . join ("") +
+               "</table></div>" + name + "</div>"
     }
 
     const rink_td = rink_type_td (rink, date)

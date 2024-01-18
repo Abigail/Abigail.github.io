@@ -81,7 +81,7 @@ table.count td.count {
 table.rink_info th {
         text-align: left;
 }
-table.rink_info td {
+table.rink_info td, table.team-members td {
         white-space:    nowrap;
 }
 table.rink_info td.flag img {
@@ -131,7 +131,10 @@ h3.records-header {
         position:       absolute;
         z-index:        1;
         left:           115%;
-        top:           -1.25em;
+}
+
+.tooltip .team-members {
+        top:           -1.5em;
 }
 
 .tooltip .rink_info {
