@@ -290,9 +290,9 @@ function item_to_row (item) {
         const members = item . members . map ((skater) => {
             return Skater . skater (skater) . name (date)
         })
-        name = "<div class = 'tooltip'>" + name +
+        name = "<div class = 'tooltip'>" + 
                "<div class = 'tooltiptext'>" + members . join ("<br>") +
-               "</div></div>"
+               "</div>" + name + "</div>"
     }
 
     return "<tr>" +
@@ -452,21 +452,23 @@ function build_tables (event, season = 0) {
            improvement_count, current, last] =
            count_records (my_progression)
 
-    const table = "<table id = 'records'>" +
-                  "<tr><th colspan = '3'>Record</th>" +
-                      "<th colspan = '2'>Skater</th>" +
-                      "<th colspan = '3'>Rink</th>"   +
-                      "<th rowspan = '2'>Duration<br>(Days)</th></tr>"
-                                                      +
+    const what = event . is_team () ? "Team" : "Skater"
 
-                  "<tr><th>Date</th>"                 +
-                      `<th>${type}</th>`              +
-                      "<th>Diff.</th>"                +
-                      "<th>Name</th>"                 +
-                      "<th>Nat</th>"                  +
-                      "<th>City</th>"                 +
-                      "<th>Name</th>"                 +
-                      "<th>Type</th></tr>"            +
+    const table = "<table id = 'records'>" +
+                  "<tr><th colspan = '3'>Record</th>"  +
+                      `<th colspan = '2'>${what}</th>` +
+                      "<th colspan = '3'>Rink</th>"    +
+                      "<th rowspan = '2'>Duration<br>(Days)</th></tr>"
+                                                       +
+
+                  "<tr><th>Date</th>"                  +
+                      `<th>${type}</th>`               +
+                      "<th>Diff.</th>"                 +
+                      "<th>Name</th>"                  +
+                      "<th>Nat</th>"                   +
+                      "<th>City</th>"                  +
+                      "<th>Name</th>"                  +
+                      "<th>Type</th></tr>"             +
 
                     my_progression . map  (item => item_to_row (item))
                                    . join ("\n") +
