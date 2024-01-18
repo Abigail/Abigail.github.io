@@ -27,10 +27,10 @@ class Rink {
     //
     // Simple getters
     //
-    name      () {return this . __name}
-    city      () {return this . __city}
-    country   () {return this . __country}
-    elevation () {return this . __elevation}
+    name      ()     {return this . __name}
+    city      ()     {return this . __city}
+    country   (date) {return value_by_date (this . __country, date)}
+    elevation ()     {return this . __elevation}
 
     //
     // Types
@@ -38,7 +38,6 @@ class Rink {
     type          (date) {
         return value_by_date (this . __type, date)
     }
-
 
     is_natural       (date) {return this . type (date) == Rink . NATURAL}
     is_artificial    (date) {return this . type (date) == Rink . ARTIFICIAL}
@@ -182,7 +181,11 @@ Rink . add_rink ("madonna",         "Pista Olimpica",
                  "Madonna di Campiglio", "ITA", Rink . NATURAL,    1450)
 
 Rink . add_rink ("medeo",           "Kompleks Medeo",
-                 "Medeo",           "KAZ",      Rink . ARTIFICIAL, 1691)
+                 "Medeo",          ["1951-02-05", "URS",
+                                    "1991-12-26", "KAZ",],
+                                   ["1951-02-05", Rink . NATURAL,
+                                    "1972-08-00", Rink . ARTIFICIAL],
+                                                                   1691)
 
 Rink . add_rink ("misurina",        "Lagua Misurina",
                  "Misurina",        "ITA",      Rink . NATURAL,    1756)

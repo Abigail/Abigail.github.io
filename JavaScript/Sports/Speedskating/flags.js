@@ -84,6 +84,11 @@ class Flags {
             "1870-02-27", "JPN-1870.svg",
             "1999-08-13", "JPN-1999.svg",
         ],
+
+        KAZ: [
+            "1992-06-04", "KAZ-1992.svg",
+        ],
+
         KOR: [
             "1948-08-15", "KOR-1948.svg",
             "1949-10-15", "KOR-1949.svg",
@@ -231,6 +236,8 @@ const attributions = {
 
     "JPN-1870.svg": `Kahusi. Public Domain. ${url}?curid=7552269`,
     "JPN-1999.svg": `Public Domain. ${url}?curid=33285241`,
+
+    "KAZ-1992.svg": `-xfi-. Public Domain, ${url}?curid=18517170`,
 
     "KOR-1948.svg": `Public Domain. ${url}?curid=38524597`,
     "KOR-1949.svg": `Xfigpower. Public Domain. ${url}?curid=75217531`,

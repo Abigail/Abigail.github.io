@@ -251,7 +251,7 @@ function rink_type_td (rink, date) {
                : rink . is_artificial (date) ? "Artificial"
                : rink . is_indoor     (date) ? "Indoor" : "???"
 
-    const flag = Flags . img (rink . country (), date)
+    const flag = Flags . img (rink . country (date), date)
 
     const alt  = rink . is_lowland       () ? "LL"
                : rink . is_high_altitude () ? "HA" : ""
