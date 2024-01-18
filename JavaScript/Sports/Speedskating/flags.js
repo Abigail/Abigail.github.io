@@ -36,6 +36,16 @@ class Flags {
             "1959-10-01", "GER-1959.svg",
             "1990-10-03",  undefined,
         ],
+
+        FRA: [
+            "1790",       "FRA-1790.svg",
+            "1794",       "FRA-1794.svg",
+            "1815",       "FRA-1815.svg",
+            "1830",       "FRA-1794.svg",
+            "1848-02-24", "FRA-1848.svg",
+            "1848-03-05", "FRA-1794.svg",
+        ],
+
         FRG: [
             "1949-05-23", "GER-1949.svg",
             "1990-10-03",  undefined,
@@ -114,6 +124,11 @@ class Flags {
             "1905-11-01", "SWE-1905.svg",
             "1906-06-22", "SWE-1906.svg",
         ],
+
+        SUI: [
+            "1841",       "SUI-1841.svg",
+        ],
+
         URS: [
             "1922-12-30", "URS-1922.svg",
             "1923-11-12", "URS-1923.svg",
@@ -131,6 +146,13 @@ class Flags {
             "1912-07-04", "USA-1912.svg",
             "1959-07-04", "USA-1959.svg",
             "1960-07-04", "USA-1960.svg",
+        ],
+
+        YUG: [
+            "1918",       "YUG-1918.svg",
+            "1943-11-00", "YUG-1943.svg",
+            "1946-01-31", "YUG-1946.svg",
+            "1992-04-27", undefined,
         ],
     }
     static img (nation, date) {
@@ -188,6 +210,11 @@ const attributions = {
 
     "FIN-1918.svg": `Sebastian Koppehel. Public Domain. $[url}?curid=343054`,
 
+    "FRA-1790.svg": `Public Domain. ${url}?curid=4937419`,
+    "FRA-1794.svg": `Anomie, MSGJ, SKopp. Public Domain, ${url}curid=33285388`,
+    "FRA-1815.svg": `-Strogoff-. Public Domain, ${url}?curid=6245937`,
+    "FRA-1848.svg": `Titimaster. CC BY-SA 3.0. ${url}?curid=11346359`,
+
     "HUN-1848.svg": `Thommy. Public Domain. ${url}?curid=57905765`,
     "HUN-1869.svg": `Thommy. Public Domain. ${url}?curid=57905869`,
     "HUN-1874.svg": `Thommy. Public Domain. ${url}?curid=57905982`,
@@ -233,6 +260,8 @@ const attributions = {
                     `Public Domain. ${url}?curid=86776520`,
     "SWE-1906.svg": `Public Domain. ${url}?curid=33285365`,
 
+    "SUI-1841-svg": `Public Domain, ${url}?curid=9553304`,
+
     "URS-1922.svg": `Public Domain. ${url}?curid=19822358`,
     "URS-1923.svg": `Supreme Dragon. Public Domain. ${url}?curid=57069825`,
     "URS-1924.svg": `Supreme Dragon. Public Domain. ${url}?curid=57069822`,
@@ -248,5 +277,10 @@ const attributions = {
     "USA-1959.svg": `Jacobolus. Public Domain. ${url}?curid=733573`,
     "USA-1960.svg": `Dbenbenn, Zscout370, Jacobolus, Indolences, and ` +
                     `Technion. Public Domain. ${url}?curid=11035750`,
+
+    "YUG-1918.svg": `Fibonacci. Public Domain. ${url}?curid=55021423`,
+    "YUG-1943.svg": `Public Domain. ${url}?curid=1697262`,
+    "YUG-1946.svg": `\u{110}or\u{111} Andrejevi\u{107}-Kun, Zscout370. ` +
+                    `Public Domain. ${url}?curid=20854121`,
 }
 
