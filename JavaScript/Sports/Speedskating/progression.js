@@ -707,9 +707,12 @@ add_record (mSPRINT, "verbij",      "136.065", "2017-02-26", "calgary",
 //
 // Men   2x500m
 //
-add_record (mD500, "shimizu",      "68.960", "2001-03-10", "salt lake city")
-add_record (mD500, "kang-seok",    "68.690", "2007-03-09", "salt lake city")
-add_record (mD500, "wotherspoon",  "68.310", "2008-03-15", "calgary")
+add_record (mD500, "shimizu",      "68.960", "2001-03-10", "salt lake city",
+                   {times: ["0:34.64", "0:34.32"]})
+add_record (mD500, "kang-seok",    "68.690", "2007-03-09", "salt lake city",
+                   {times: ["0:34.44", "0:34.25"]})
+add_record (mD500, "wotherspoon",  "68.310", "2008-03-15", "calgary",
+                   {times: ["0:34.78", "0:34.68"]})
 
 
 //
@@ -1143,8 +1146,10 @@ add_record (wSPRINT, "kodaira",     "146.390", "2017-02-26", "calgary")
 //
 // Women 2x500m
 //
-add_record (wD500, "le may",       "74.720", "2001-03-09", "salt lake city")
-add_record (wD500, "wolf",         "74.420", "2007-03-10", "salt lake city")
+add_record (wD500, "le may",       "74.720", "2001-03-09", "salt lake city",
+                   {times: ["0:37.43    (1)     0:37.29"]})
+add_record (wD500, "wolf",         "74.420", "2007-03-10", "salt lake city",
+                   {times: ["0:37.38 (2)     0:37.04"]})
 add_record (wD500, "richardson",   "74.190", "2013-12-28", "salt lake city")
 
 //
