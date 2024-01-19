@@ -274,6 +274,32 @@ function rink_type_td (rink, date) {
     return td
 }
 
+function pad (time) {
+    const pad = "<span style = 'visibility: hidden'>0</span>"
+    return time . match (/\.[0-9]$/) ? time + pad : time
+}
+
+//
+// format_time_td
+//
+function format_time_td (item) {
+    const event = item . event
+    const time  = item . time
+    let td      = pad (time)
+
+    const distances = event . distances ()
+    if (distances && item . times) {
+        td = `<div class = 'tooltip'>${td}<div class = 'tooltiptext times'>` +
+             `<table class = 'times'>` +
+             item . times . map ((item, i) => {
+                return `<tr><th>${distances [i]}m</th>` +
+                           `<td>${pad (item)}</td></tr>` 
+             }) . join ("") +
+             `</table></div></div>`
+    }
+    return td
+}
+
 //
 // Given a record, return the HTML table row representing it
 //
@@ -295,18 +321,6 @@ function item_to_row (item) {
 
     let nationality = skater . nationality (date)
     let img = Flags . img (nationality, date)
-
-    //
-    // Cases where the fastest time is "shorter" than the longest time.
-    // In that case, we prepad with an invisible 0.
-    //
-    if (event . gender () == Event . WOMEN &&
-        event . type   () == Event . M5000) {
-        let [minute] = time . split (':')
-        if (+minute < 10) {
-            time = "<span style = 'visibility: hidden'>0</span>" + time
-        }
-    }
 
     if (item . current) {
         duration = `<span class = 'current'>${duration}</span>`
@@ -332,10 +346,11 @@ function item_to_row (item) {
     }
 
     const rink_td = rink_type_td (rink, date)
+    const time_td = format_time_td (item)
 
     return "<tr>" +
            "<td class = 'date'>"        + date             + "</td>" +
-           "<td class = 'time'>"        + time             + "</td>" +
+           "<td class = 'time'>"        + time_td          + "</td>" +
            "<td class = 'improvement'>" + improvement      + "</td>" +
            "<td class = 'name'>"        + name             + "</td>" +
            "<td class = 'nation'>"      + img              + "</td>" +

@@ -32,6 +32,9 @@ td.duration {
 span.current {
         color: red;
 }
+table#records td.time {
+        text-align: right;
+}
 
 table#records td.time, table#records td.name {
         font-weight: bold;
@@ -89,6 +92,10 @@ table.rink_info td.flag img {
 }
 
 
+table.times td, table.times th {
+        text-align: right;
+}
+
 /*
  * Multi-column layout
  */
@@ -138,6 +145,10 @@ h3.records-header {
 }
 
 .tooltip .rink_info {
+        top:           -2.25em;
+}
+
+.tooltip .times {
         top:           -2.25em;
 }
 

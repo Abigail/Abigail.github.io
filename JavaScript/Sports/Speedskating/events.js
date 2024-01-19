@@ -48,6 +48,15 @@ class Event {
         [Event . M10000]   : 10000,
     }
 
+    static distances = {
+        [Event . BIG]:       [500, 5000, 1500, 10000],
+        [Event . SMALL]:     [500, 3000, 1500,  5000],
+        [Event . OLD_SMALL]: [500, 3000, 1000,  5000],
+        [Event . MINI]:      [500, 1500, 1000,  3000],
+        [Event . SPRINT]:    [500, 1000,  500,  1000],
+        [Event . D500]:      [500,  500],
+    }
+
     static genders = [Event . MEN,   Event . WOMEN]
     static events  = [Event . M500,  Event . M1000,  Event . M1500,
                       Event . M3000, Event . M5000,  Event . M10000,
@@ -120,6 +129,14 @@ class Event {
     equal (other_event) {
         return this . __gender == other_event . gender () &&
                this . __event  == other_event . type   ()
+    }
+
+    //
+    // If the event is a combination, and has times, return a list
+    // of tuples, mapping distance to time per distance
+    //
+    distances () {
+        return Event . distances [this . type ()]
     }
 
     //
