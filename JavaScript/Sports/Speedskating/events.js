@@ -13,9 +13,11 @@ class Event {
     static D500         = 1 + Event . SPRINT
     static TEAM_PURSUIT = 1 + Event . D500
     static TEAM_SPRINT  = 1 + Event . TEAM_PURSUIT
+    static RELAY        = 1 + Event . TEAM_SPRINT
 
     static MEN          = 1
     static WOMEN        = 1 + Event . MEN
+    static MIXED        = 1 + Event . WOMEN
 
     static event_names = {
         [Event . M500]        : "500m",

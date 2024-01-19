@@ -123,9 +123,6 @@ function progression (filters) {
     return result
 }
 
-//
-// Men   500m
-//
 const m500    = new Event (Event . MEN,   Event . M500)
 const m1000   = new Event (Event . MEN,   Event . M1000)
 const m1500   = new Event (Event . MEN,   Event . M1500)
@@ -137,6 +134,7 @@ const mSMALL  = new Event (Event . MEN,   Event . SMALL)
 const mSPRINT = new Event (Event . MEN,   Event . SPRINT)
 const mD500   = new Event (Event . MEN,   Event . D500)
 const mTP     = new Event (Event . MEN,   Event . TEAM_PURSUIT)
+const mTS     = new Event (Event . MEN,   Event . TEAM_SPRINT)
 
 const w500    = new Event (Event . WOMEN, Event . M500)
 const w1000   = new Event (Event . WOMEN, Event . M1000)
@@ -150,7 +148,13 @@ const wMINI   = new Event (Event . WOMEN, Event . MINI)
 const wSPRINT = new Event (Event . WOMEN, Event . SPRINT)
 const wD500   = new Event (Event . WOMEN, Event . D500)
 const wTP     = new Event (Event . WOMEN, Event . TEAM_PURSUIT)
+const wTS     = new Event (Event . WOMEN, Event . TEAM_SPRINT)
 
+const RELAY   = new Event (Event . MIXED, Event . RELAY)
+
+//
+// Men   500m
+//
 add_record (m500, "grunden",     "0:50.8",  "1891-02-28", "neglingeviken")
 add_record (m500, "halvorsen",   "0:50.2",  "1892-02-28", "hamar mjosen")
 add_record (m500, "naess",       "0:49.4",  "1893-02-05", "hamar mjosen")
@@ -737,6 +741,10 @@ add_record (mTP,   "USA",         "3:34.47", "2021-12-05", "salt lake city",
 add_record (mTP,   "NOR",         "3:34.22", "2024-01-05", "thialf",
                    {members: ["eitrem", "kongshaug", "pederson"]})
 
+//
+// Men Team Sprint
+//
+add_record (mTS,   "CAN",         "1:17.31", "2017-12-01", "calgary")
 
 //
 // Women   500m
@@ -1172,6 +1180,17 @@ add_record (wTP,   "JPN",         "2:50.87", "2017-12-08", "salt lake city",
 add_record (wTP,   "JPN",         "2:50.76", "2020-02-16", "salt lake city",
                    {members: ["takagi_miho", "sato", "takagi_nana"]})
 
+//
+// Women Team Sprint
+//
+add_record (wTS,   "RUS",         "1:24.84", "2017-12-01", "calgary")
+add_record (wTS,   "NED",         "1:24.02", "2020-02-13", "salt lake city")
+
+
+//
+// Mixed Relay
+//
+add_record (RELAY, "NED",         "2:55.53", "2023-11-12", "obihiro")
 
 
 //

@@ -205,6 +205,9 @@ Rink . add_rink ("neglingeviken",   "Saltsj\u{F6}banen",
 Rink . add_rink ("notodden",        "Notodden Sportsplass",
                  "Notodden",        "NOR",      Rink . NATURAL,     103)
 
+Rink . add_rink ("obihiro",         "Meiji Hokkaido-Tokachi Oval",
+                 "Obihiro",         "JAP",      Rink . INDOOR,       79)
+
 Rink . add_rink ("paterswolde",     "Paterswoldsche Meer",
                  "Paterswolde",     "NED",      Rink . NATURAL,       0)
                  
