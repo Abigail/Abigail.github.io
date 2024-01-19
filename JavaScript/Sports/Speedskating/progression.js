@@ -925,11 +925,11 @@ add_record (w5000, "voronina",    "6:39.02", "2020-02-15", "salt lake city")
 // Women 10000m
 //
 add_record (w10000, "nehringowa", "23:48.5",  "1935-12-30", "vienna")
-add_record (w10000, "niemczyk",   "22:46.4",  "1953-02-10", "zakopane")
-add_record (w10000, "SUSPENDED",   undefined, "1955-01-01", "",
+add_record (w10000, "SUSPENDED",   undefined, "1953-01-01", "",
            {suspended_message: "Record suspended from the ISU Congress of " +
-                               "1955 onwards; the following " +
+                               "1953 onwards; the following " +
                                "records are not official"})
+add_record (w10000, "niemczyk",   "22:46.4",  "1953-02-10", "zakopane")
 add_record (w10000, "donker",     "21:52.1",  "1972-01-27", "jaap eden")
 add_record (w10000, "pasveer",    "19:48.3",  "1980-03-04", "groningen")
 add_record (w10000, "swider",     "17:37.35", "1980-03-16", "savalen")
