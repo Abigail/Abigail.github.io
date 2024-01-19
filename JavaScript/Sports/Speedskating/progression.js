@@ -607,58 +607,100 @@ add_record (mBIG, "roest",       "145.561", "2019-03-02", "calgary",
 //
 // Men small combination
 //
-add_record (mSMALL, "dietel",      "163.244", "1981-01-17", "davos")
-add_record (mSMALL, "falk-larssen","162.734", "1982-01-17", "davos")
-add_record (mSMALL, "falk-larssen","161.758", "1983-01-23", "davos")
-add_record (mSMALL, "hoffmann",    "161.158", "1985-01-13", "davos")
-add_record (mSMALL, "kemkers",     "160.454", "1990-03-17", "inzell")
+add_record (mSMALL, "dietel",      "163.244", "1981-01-17", "davos",
+                    {times: ["0:38.16", "4:07.28", "1:57.83", "7:25.95"]})
+add_record (mSMALL, "falk-larssen","162.734", "1982-01-17", "davos",
+                    {times: ["0:38.70", "4:08.00", "1:58.10", "7:13.55"]})
+add_record (mSMALL, "falk-larssen","161.758", "1983-01-23", "davos",
+                    {times: ["0:38.62", "4:09.60", "1:56.70", "7:06.38"]})
+add_record (mSMALL, "hoffmann",    "161.158", "1985-01-13", "davos",
+                    {times: ["0:38.77", "4:03.31", "1:56.10", "7:11.37"]})
+add_record (mSMALL, "kemkers",     "160.454", "1990-03-17", "inzell",
+                    {times: ["0:38.55", "4:02.57", "1:57.95", "7:01.60"]})
 
-add_record (mSMALL, "zandstra",    "159.753", "1991-02-17", "thialf")
-add_record (mSMALL, "zandstra",    "156.059", "1991-03-01", "calgary", W3)
-add_record (mSMALL, "boutiette",   "154.103", "1997-03-15", "calgary")
-add_record (mSMALL, "verheijen",   "153.767", "1998-03-21", "calgary")
-add_record (mSMALL, "wennemars",   "153.583", "1998-08-16", "calgary")
+add_record (mSMALL, "zandstra",    "159.753", "1991-02-17", "thialf",
+                    {times: ["0:38.17", "4:04.58", "1:56.23", "7:00.77"]})
+add_record (mSMALL, "zandstra",    "156.059", "1991-03-01", "calgary",
+                    {times: ["0:37.99", "3:57.64", "1:53.26", "6:47.10"],
+                     weekend: 3})
+add_record (mSMALL, "boutiette",   "154.103", "1997-03-15", "calgary",
+                    {times: ["0:37.41", "3:53.65", "1:50.09", "6:50.56"]})
+add_record (mSMALL, "verheijen",   "153.767", "1998-03-21", "calgary",
+                    {times: ["0:38.46", "3:49.97", "1:50.93", "6:40.03"]})
+add_record (mSMALL, "wennemars",   "153.583", "1998-08-16", "calgary",
+                    {times: ["0:37.22", "3:53.35", "1:49.22", "6:50.66"]})
 
-add_record (mSMALL, "elm",         "152.043", "1998-11-29", "calgary", W3)
-add_record (mSMALL, "breuer",      "149.283", "1999-03-20", "calgary")
-add_record (mSMALL, "wennemars",   "149.188", "1999-08-15", "calgary")
-add_record (mSMALL, "uytdehaage",  "147.665", "2001-03-15", "calgary", W3)
-add_record (mSMALL, "wennemars",   "146.365", "2005-08-13", "calgary")
+add_record (mSMALL, "elm",         "152.043", "1998-11-29", "calgary",
+                    {times: ["0:37.85", "3:50.76", "1:49.06", "6:33.80"],
+                     weekend: 3})
+add_record (mSMALL, "breuer",      "149.283", "1999-03-20", "calgary",
+                    {times: ["0:35.68", "3:49.25", "1:47.62", "6:35.22"]})
+add_record (mSMALL, "wennemars",   "149.188", "1999-08-15", "calgary",
+                    {times: ["0:35.73", "3:46.37", "1:47.22", "6:39.90"]})
+add_record (mSMALL, "uytdehaage",  "147.665", "2001-03-15", "calgary",
+                    {times: ["0:36.93", "3:43.28", "1:46.32", "6:20.82"],
+                     weekend: 3})
+add_record (mSMALL, "wennemars",   "146.365", "2005-08-13", "calgary",
+                    {times: ["0:35.65", "3:41.84", "1:44.70", "6:28.42"]})
 
 
 
 //
 // Men sprint combination
 //
-add_record (mSPRINT, "borjes",      "163.300", "1971-12-12", "kongsberg")
-add_record (mSPRINT, "linkovesi",   "156.500", "1972-01-08", "davos")
-add_record (mSPRINT, "keller",      "155.800", "1972-03-05", "inzell")
-add_record (mSPRINT, "efskind",     "154.400", "1973-01-14", "davos")
-add_record (mSPRINT, "muratov",     "153.390", "1975-03-18", "medeo")
+add_record (mSPRINT, "borjes",      "163.300", "1971-12-12", "kongsberg",
+                     {times: ["0:40.1",  "1:23.8",  "0:39.6",  "1:23.4"]})
+add_record (mSPRINT, "linkovesi",   "156.500", "1972-01-08", "davos",
+                     {times: ["0:38.7",  "1:19.3",  "0:38.0",  "1:20.3"]})
+add_record (mSPRINT, "keller",      "155.800", "1972-03-05", "inzell",
+                     {times: ["0:38.0",  "1:18.5",  "0:38.5",  "1:20.1"]})
+add_record (mSPRINT, "efskind",     "154.400", "1973-01-14", "davos",
+                     {times: ["0:38.0",  "1:17.6",  "0:38.2",  "1:18.8"]})
+add_record (mSPRINT, "muratov",     "153.390", "1975-03-18", "medeo",
+                     {times: ["0:37.98", "1:16.92", "0:37.85", "1:18.20"]})
 
-add_record (mSPRINT, "kulikov",     "153.250", "1975-03-29", "medeo")
-add_record (mSPRINT, "kulikov",     "151.190", "1976-03-21", "medeo")
-add_record (mSPRINT, "heiden_eric", "150.250", "1980-01-13", "davos")
-add_record (mSPRINT, "boucher",     "148.785", "1981-01-31", "davos")
-add_record (mSPRINT, "pegov",       "146.955", "1983-03-26", "medeo")
+add_record (mSPRINT, "kulikov",     "153.250", "1975-03-29", "medeo",
+                     {times: ["0:37.20", "1:19.12", "0:37.00", "1:18.98"]})
+add_record (mSPRINT, "kulikov",     "151.190", "1976-03-21", "medeo",
+                     {times: ["0:37.24", "1:15.70", "0:38.10", "1:16.00"]})
+add_record (mSPRINT, "heiden_eric", "150.250", "1980-01-13", "davos",
+                     {times: ["0:38.25", "1:15.14", "0:37.23", "1:13.60"]})
+add_record (mSPRINT, "boucher",     "148.785", "1981-01-31", "davos",
+                     {times: ["0:37.88", "1:13.96", "0:37.23", "1:13.39"]})
+add_record (mSPRINT, "pegov",       "146.955", "1983-03-26", "medeo",
+                     {times: ["0:36.68", "1:12.58", "0:36.57", "1:14.83"]})
 
-add_record (mSPRINT, "zhelezovsky", "145.945", "1989-02-26", "thialf")
-add_record (mSPRINT, "jansen",      "145.580", "1993-03-20", "calgary")
-add_record (mSPRINT, "jansen",      "144.815", "1994-01-30", "calgary")
-add_record (mSPRINT, "miyabe",      "144.445", "1994-03-26", "calgary")
-add_record (mSPRINT, "horii",       "143.425", "1996-03-03", "calgary")
+add_record (mSPRINT, "zhelezovsky", "145.945", "1989-02-26", "thialf",
+                     {times: ["0:36.52", "1:12.58", "0:36.83", "1:12.61"]})
+add_record (mSPRINT, "jansen",      "145.580", "1993-03-20", "calgary",
+                     {times: ["0:36.41", "1:13.14", "0:36.02", "1:13.16"]})
+add_record (mSPRINT, "jansen",      "144.815", "1994-01-30", "calgary",
+                     {times: ["0:35.96", "1:13.04", "0:35.76", "1:13.15"]})
+add_record (mSPRINT, "miyabe",      "144.445", "1994-03-26", "calgary",
+                     {times: ["0:35.86", "1:12.62", "0:36.09", "1:12.37"]})
+add_record (mSPRINT, "horii",       "143.425", "1996-03-03", "calgary",
+                     {times: ["0:35.87", "1:11.67", "0:35.67", "1:12.10"]})
 
-add_record (mSPRINT, "wotherspoon", "141.995", "1997-11-23", "calgary")
-add_record (mSPRINT, "wotherspoon", "140.050", "1999-01-16", "calgary")
-add_record (mSPRINT, "wotherspoon", "138.310", "1999-02-21", "calgary")
-add_record (mSPRINT, "wotherspoon", "137.285", "2002-12-02", "salt lake city")
-add_record (mSPRINT, "wotherspoon", "137.270", "2003-01-12", "salt lake city")
+add_record (mSPRINT, "wotherspoon", "141.995", "1997-11-23", "calgary",
+                     {times: ["0:35.50", "1:10.76", "0:35.77", "1:10.69"]})
+add_record (mSPRINT, "wotherspoon", "140.050", "1999-01-16", "calgary",
+                     {times: ["35:27", "1:09.09", "35:53", "1:09.41"]})
+add_record (mSPRINT, "wotherspoon", "138.310", "1999-02-21", "calgary",
+                     {times: ["0:34.76", "1:08.66", "0:34.93", "1:08.58"]})
+add_record (mSPRINT, "wotherspoon", "137.285", "2002-12-02", "salt lake city",
+                     {times: ["0:34.85", "1:07.72", "0:34.66", "1:07.83"]})
+add_record (mSPRINT, "wotherspoon", "137.270", "2003-01-12", "salt lake city",
+                     {times: ["0:34.41", "1:07.89", "0:34.77", "1:08.29"]})
 
-add_record (mSPRINT, "wotherspoon", "137.230", "2003-01-19", "calgary")
-add_record (mSPRINT, "groothuis",   "136.810", "2012-01-29", "calgary")
+add_record (mSPRINT, "wotherspoon", "137.230", "2003-01-19", "calgary",
+                     {times: ["0:34.41", "1:08.41", "0:34.49", "1:08.25"]})
+add_record (mSPRINT, "groothuis",   "136.810", "2012-01-29", "calgary",
+                     {times: ["0:34.84", "1:07.50", "0:34.74", "1:06.96"]})
 add_record (mSPRINT, "mulder_michel",
-                                    "136.790", "2013-01-27", "salt lake city")
-add_record (mSPRINT, "verbij",      "136.065", "2017-02-26", "calgary")
+                                    "136.790", "2013-01-27", "salt lake city",
+                     {times: ["0:34.47", "1:07.49", "0:34.75", "1:07.65"]})
+add_record (mSPRINT, "verbij",      "136.065", "2017-02-26", "calgary",
+                     {times: ["0:34.48", "1:06.73", "0:34.25", "1:07.94"]})
 
 
 
