@@ -121,4 +121,66 @@ class Event {
         return this . __gender == other_event . gender () &&
                this . __event  == other_event . type   ()
     }
+
+    //
+    // (HTML) description of the event
+    //
+    description () {
+        let text = "Here we are showing the record progression for the "
+        const gender = this . gender_name ()
+        if (this . is_distance ()) {
+            const dist = this . distance ()
+            text += `${gender}'s ${dist} meter. `
+            if (this . gender () == Event . WOMEN) {
+                if (dist == 5000) {
+                    text += `This record was suspended between the ISU ` +
+                            `congresses of 1955 and 1982.`
+                }
+                if (dist == 10000) {
+                    text += `This record was suspended at the ISU congress ` +
+                            `of 1953. All records listed since are unofficial.`
+                }
+            }
+        }
+        else if (this . type () == Event . BIG) {
+            text += `${gender}'s Big Combination. The Big Combination `       +
+                    `consists of combined results of the 500m, 5000m, `       +
+                    `1500m and 10000m, achieved in the same tournament.`
+        }
+        else if (this . type () == Event . SMALL) {
+            text += `${gender}'s Small Combination. The Small Combination `   +
+                    `consists of combined results of the 500m, 3000m, `       +
+                    `1500m and 5000m, achieved in the same tournament.`
+        }
+        else if (this . type () == Event . OLD_SMALL) {
+            text += `${gender}'s old Small Combination. The old Small `       +
+                    `Combination consists of combined results of the `        +
+                    `500m, 3000m, 1000m and 5000m, achieved in the `          +
+                    `same tournament. This record has been suspended `        +
+                    `since the ISU congress of 1955.`
+        }
+        else if (this . type () == Event . MINI) {
+            text += `${gender}'s Mini Combination. The Mini Combination `     +
+                    `consists of combined results of the 500m, 1500m, `       +
+                    `1000m and 3000m, achieved in the same tournament.`
+        }
+        else if (this . type () == Event . SPRINT) {
+            text += `${gender}'s Sprint Combination. The Sprint Combination ` +
+                    `consists of combined results of the 500m, 1000m, `       +
+                    `500m and 1000m, achieved in the same tournament.`
+        }
+        else if (this . type () == Event . D500) {
+            text += `${gender}'s 2 x 500 meter. This is the combined `        +
+                    `result of skating twice a 500m in the same event `       +
+                    `on the same day.`
+        }
+        else if (this . type () == Event . TEAM_PURSUIT) {
+            const laps = this . gender () == Event . MEN ? 8 : 6
+            text += `${gender}'s Team Pursuit. The Team Pursuit is skated `   +
+                    `by a team of three, over ${laps} (inner) laps. `         +
+                    `The time of the third skater crossing the line `         +
+                    `counts.`
+        }
+        return text
+    }
 }

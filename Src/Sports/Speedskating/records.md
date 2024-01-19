@@ -2,6 +2,8 @@
 
 <div id = "navigation"></div>
 
+<div id = 'description'></div>
+
 ### Record progression
 
 <div id = "record_table"></div>

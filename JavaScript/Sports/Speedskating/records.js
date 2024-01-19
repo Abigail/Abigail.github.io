@@ -12,7 +12,7 @@ function config_config () {
             [Event . M10000]:   {step_size: 30,    scale_y_min: 12 * 60,     },
             [Event . BIG]:      {step_size:  5,    scale_y_min:     140      },
             [Event . SMALL]:    {step_size:  5,    scale_y_min:     140      },
-            [Event . SPRING]:   {step_size:  5,    scale_y_min:     135      },
+            [Event . SPRINT]:   {step_size:  5,    scale_y_min:     135      },
             [Event . D500]:     {step_size:  0.25, scale_y_min:      68      },
             [Event . TEAM_PURSUIT]:
                                 {step_size:  1,    scale_y_min:  3 * 60 + 30,},
@@ -615,4 +615,6 @@ window . addEventListener ("load", function () {
         $("section.by-country") . css ({display: "none"})
         $("section.by-skater h4") . html ("By Team")
     }
+
+    $("div#description") . html (page_event . description ())
 })
