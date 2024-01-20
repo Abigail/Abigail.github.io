@@ -152,6 +152,10 @@ h3.records-header {
         top:           -2.25em;
 }
 
+.tooltip .times2 {
+        top:           -1.125em;
+}
+
 .tooltip:hover .tooltiptext {
         visibility:     visible;
 }

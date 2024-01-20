@@ -716,7 +716,9 @@ add_record (mD500, "shimizu",      "68.960", "2001-03-10", "salt lake city",
 add_record (mD500, "kang-seok",    "68.690", "2007-03-09", "salt lake city",
                    {times: ["0:34.44", "0:34.25"]})
 add_record (mD500, "wotherspoon",  "68.310", "2008-03-15", "calgary",
-                   {times: ["0:34.78", "0:34.68"]})
+                   {times: ["0:34.26", "0:34.05"]})
+                   // https://www.guinnessworldrecords.com/world-records/
+                   // fastest-speed-skating-2-x-500-metres-(male)
 
 
 //
@@ -1155,10 +1157,13 @@ add_record (wSPRINT, "kodaira",     "146.390", "2017-02-26", "calgary")
 // Women 2x500m
 //
 add_record (wD500, "le may",       "74.720", "2001-03-09", "salt lake city",
-                   {times: ["0:37.43    (1)     0:37.29"]})
+                   {times: ["0:37.43", "0:37.29"]})
 add_record (wD500, "wolf",         "74.420", "2007-03-10", "salt lake city",
-                   {times: ["0:37.38 (2)     0:37.04"]})
-add_record (wD500, "richardson",   "74.190", "2013-12-28", "salt lake city")
+                   {times: ["0:37.38", "0:37.04"]})
+add_record (wD500, "richardson",   "74.190", "2013-12-28", "salt lake city",
+                   {times: ["0:37.10", "0:37.09"]})
+                   // https://www.guinnessworldrecords.com/world-records/
+                   // fastest-speed-skating-2-x-500-metres-(female)
 
 //
 // Women Team Pursuit

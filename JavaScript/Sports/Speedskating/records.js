@@ -289,7 +289,9 @@ function format_time_td (item) {
 
     const distances = event . distances ()
     if (distances && item . times) {
-        td = `<div class = 'tooltip'>${td}<div class = 'tooltiptext times'>` +
+        const name = distances . length == 4 ? "times" : "times2"
+        td = `<div class = 'tooltip'>${td}` +
+             `<div class = 'tooltiptext ${name}'>` +
              `<table class = 'times'>` +
              item . times . map ((item, i) => {
                 return `<tr><th>${distances [i]}m</th>` +

@@ -190,8 +190,10 @@ class Event {
         }
         else if (this . type () == Event . D500) {
             text += `${gender}'s 2 x 500 meter. This is the combined `        +
-                    `result of skating twice a 500m in the same event `       +
-                    `on the same day.`
+                    `result of skating twice a 500m in the same event; `      +
+                    `only results achieved in events where the final `        +
+                    `result is determined by the total time after two `       +
+                    `races qualify.` 
         }
         else if (this . type () == Event . TEAM_PURSUIT) {
             const laps = this . gender () == Event . MEN ? 8 : 6
