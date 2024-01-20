@@ -16,6 +16,8 @@ function config_config () {
             [Event . D500]:     {step_size:  0.25, scale_y_min:      68      },
             [Event . TEAM_PURSUIT]:
                                 {step_size:  1,    scale_y_min:  3 * 60 + 30,},
+            [Event . TEAM_SPRINT]:
+                                {step_size:  1,    scale_y_min:  1 * 60 + 15,},
         },
         [Event . WOMEN]: {
             [Event . M500]:     {step_size:  1,    scale_y_min:      36,     },
@@ -24,13 +26,18 @@ function config_config () {
             [Event . M3000]:    {step_size: 10,    scale_y_min:  3 * 60 + 40,},
             [Event . M5000]:    {step_size: 15,    scale_y_min:  6 * 60 + 30,},
             [Event . M10000]:   {step_size: 30,    scale_y_min: 13 * 60 + 30,},
-            [Event. SMALL]:     {step_size:  5,    scale_y_min:     150      },
-            [Event. OLD_SMALL]: {step_size:  2,    scale_y_min:     202      },
-            [Event. MINI]:      {step_size:  5,    scale_y_min:     150      },
-            [Event. SPRINT]:    {step_size:  5,    scale_y_min:     140      },
-            [Event. D500]:      {step_size:  0.25, scale_y_min:      74      },
+            [Event . SMALL]:    {step_size:  5,    scale_y_min:     150      },
+            [Event . OLD_SMALL]:{step_size:  2,    scale_y_min:     202      },
+            [Event . MINI]:     {step_size:  5,    scale_y_min:     150      },
+            [Event . SPRINT]:   {step_size:  5,    scale_y_min:     140      },
+            [Event . D500]:     {step_size:  0.25, scale_y_min:      74      },
             [Event . TEAM_PURSUIT]:
                                 {step_size:  1,    scale_y_min:  2 * 60 + 50,},
+            [Event . TEAM_SPRINT]:
+                                {step_size:  1,    scale_y_min:  1 * 60 + 20,},
+        },
+        [Event . MIXED]: {
+            [Event . RELAY]:    {step_size:  1,    scale_y_min:  2 * 60 + 50,},
         }
     }
     return config
@@ -335,7 +342,7 @@ function item_to_row (item) {
        : ""
 
     let name = skater . name (date)
-    if (event . is_team ()) {
+    if (event . is_team () && item . members) {
         const members = item . members . map ((skater) => {
             return Skater . skater (skater) . name (date)
         })
@@ -501,7 +508,7 @@ function build_tables (event, season = 0) {
     const my_progression = progression ({event:    event,
                                          season:   season})
 
-    const type = event . is_distance () ? "Time" : "Points"
+    const type = event . is_combination () ? "Points" : "Time"
     const [skater_count, rink_count, country_count, duration_count,
            improvement_count, current, last] =
            count_records (my_progression)
@@ -545,7 +552,11 @@ function build_navigation (page_event) {
     Event . genders . forEach ((gender) => {
         table_str += "<tr><th>" + Event . gender_name (gender) + "</th>"
         Event . events . forEach ((type) => {
-            const event = new Event (gender, type)
+            if (gender == Event . WOMEN && type == Event . RELAY) {
+                return
+            }
+            const event = new Event (type == Event . RELAY ? Event . MIXED
+                                                           : gender, type)
             let   td    = ""
             if (event . is_valid ()) {
                 const name = event . name ()
@@ -559,7 +570,8 @@ function build_navigation (page_event) {
                           name + "</a>"
                 }
             }
-            table_str += `<td>${td}</td>`
+            const rowspan = type == Event . RELAY ? 2 : 1
+            table_str += `<td rowspan = '${rowspan}'>${td}</td>`
         })
         table_str += "</tr>"
     })

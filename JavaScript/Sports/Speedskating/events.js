@@ -34,11 +34,13 @@ class Event {
         [Event . D500]        : "2 x 500m",
         [Event . TEAM_PURSUIT]: "Team Pursuit",
         [Event . TEAM_SPRINT] : "Team Sprint",
+        [Event . RELAY]       : "Mixed Gender Relay",
     }
 
     static gender_names = {
         [Event . MEN]      : "Men",
         [Event . WOMEN]    : "Women",
+        [Event . MIXED]    : "Mixed",
     }
 
     static distance = {
@@ -64,7 +66,8 @@ class Event {
                       Event . M3000, Event . M5000,  Event . M10000,
                       Event . BIG,   Event . SMALL,  Event . OLD_SMALL,
                       Event . MINI,  Event . SPRINT, Event . D500,
-                      Event . TEAM_PURSUIT]
+                      Event . TEAM_PURSUIT, Event . TEAM_SPRINT,
+                      Event . RELAY]
 
     constructor (gender, event) {
         this . __gender = gender
@@ -88,7 +91,8 @@ class Event {
     }
 
     full_name () {
-        return this . gender_name ()  + ", " +
+        return this . gender () == Event . MIXED ? this . name ()
+             : this . gender_name ()  + ", " +
               (this . is_distance    () ? this . distance () + "m"
              : this . is_combination () ? this . name     () + " Combination"
              :                            this . name     ())
@@ -114,7 +118,7 @@ class Event {
 
     is_team () {
         return this . __event >= Event . TEAM_PURSUIT &&
-               this . __event <= Event . TEAM_SPRINT
+               this . __event <= Event . RELAY
     }
 
     type () {
@@ -201,6 +205,17 @@ class Event {
                     `by a team of three, over ${laps} (inner) laps. `         +
                     `The time of the third skater crossing the line `         +
                     `counts.`
+        }
+        else if (this . type () == Event . TEAM_SPRINT) {
+            text += `${gender}'s Team Sprint. In the Team Sprint, a team `    +
+                    `of three skaters skates three laps, dropping one rider ` +
+                    `each lap. The time is the time of the final skater `     +
+                    `finishing their last lap.`
+        }
+        else if (this . type () == Event . RELAY) {
+            text += `Mixed Gender Relay. A team of two skaters, one male `    +
+                    `and one female skate skate six laps. Skaters skate `     +
+                    `one or two laps, then they exchange.`
         }
         return text
     }
