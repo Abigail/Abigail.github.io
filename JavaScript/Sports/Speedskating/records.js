@@ -281,6 +281,13 @@ function rink_type_td (rink, date) {
     return td
 }
 
+//
+// function pad (time)
+//
+// Take a time value, and add an invisible '0' if the time only has a single
+// digit after the decimal dot. This makes sure times will be lined up
+// nicely when right aligned.
+//
 function pad (time) {
     const pad = "<span style = 'visibility: hidden'>0</span>"
     return time . match (/\.[0-9]$/) ? time + pad : time
@@ -479,8 +486,8 @@ function make_count_table (type, count, event, current, last) {
             const skater = Skater . skater (list [i])
             const date   = last [list [i]]
             const img    = Flags . img (skater . nationality (date), date)
-            table += "<td class = 'name'>"   + skater . name ("now") + "</td>"
-                  +  "<td class = 'nation'>" + img                   + "</td>"
+            table += "<td class = 'name'>"   + skater . name (date) + "</td>"
+                  +  "<td class = 'nation'>" + img                  + "</td>"
         }
         else if (type == "rink") {
             const rink = Rink . rink (list [i])
