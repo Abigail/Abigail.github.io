@@ -1,3 +1,6 @@
+/*
+ * By default, we want borders around our tables, with a bit of padding.
+ */
 table,
 table td,
 table th {
@@ -5,19 +8,4 @@ table th {
         border-collapse: collapse;
         padding-left:   .5em;
         padding-right:  .5em;
-}
-
-@media (max-width: 1400px) {
-        table#nav_bar td {
-                font-size: 110%;
-        }
-}
-
-table#nav_bar th {
-        text-align: left;
-        text-transform: capitalize;
-}
-
-table#nav_bar {
-        margin-bottom: 3ex;
 }

@@ -1,7 +1,10 @@
 # Speedskating
 
-<!-- %%% style:  Sports/Speedskating/nav_bar -->
-<!-- %%% script: Sports/Speedskating/nav_bar -->
+<!-- %%% style:  ~/nav_bar -->
+<!-- %%% script: ~/nav_bar -->
+<!-- %%% script: ~/events  -->
+
+## Progression of world records
 
 <div id = "navigation"></div>
 

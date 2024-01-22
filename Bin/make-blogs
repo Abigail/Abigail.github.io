@@ -76,8 +76,6 @@ my $TYPE_INFO = {
         $INFO_DIR      =>  $DIR_SKATING,
         $INFO_UP       => "../../..",
         $INFO_NAV      => "Sports/Speedskating/pages",
-        $INFO_JS       =>  ["events", "skaters", "rinks", "progression",
-                            "flags", "countries"],
     },
 };
 
@@ -223,18 +221,26 @@ sub header ($title, $directives) {
     my @script_files = @files;
 
     if ($$directives {style}) {
-        push @script_files => ref $$directives {style} ? @{$$directives {style}}
-                                                       :   $$directives {style}
+        push @style_files => ref $$directives {style}
+                             ? @{$$directives {style}}
+                             :   $$directives {style}
     }
 
     my $styles = join "\n" =>
         map  {"<link rel = 'stylesheet' href = '$up/$_'>"}
         grep {-f}
-        map  {glob "$STYLE_DIR/$_.css"} @style_files;
+        map  {glob "$STYLE_DIR/$_.css"}
+        map  {s{^~/}{$dir/}r} @style_files;
 
+    if ($$directives {script}) {
+        push @script_files => ref $$directives {script}
+                ?               @{$$directives {script}}
+                : split /,\s*/ => $$directives {script}
+    }
     my @scripts = sort
                   grep {-f}
-                  map  {glob "$JAVASCRIPT_DIR/$_.js"} @script_files;
+                  map  {glob "$JAVASCRIPT_DIR/$_.js"} 
+                  map  {s{^~/}{$dir/}r} @script_files;
 
     #
     # Another ugly hack
@@ -260,12 +266,6 @@ sub header ($title, $directives) {
               map {"$dir/$_"} @{$$TYPE_INFO {$type} {$INFO_JS}}
     }
 
-    my @d_scripts = $$directives {script} ?
-                      ref $$directives {script} ?
-                                          @{$$directives {script}}
-                          : split /,\s*/ => $$directives {script}
-                    : ();
-    
     my $scripts = join "\n" =>
         map  {"<script src = '$up/$_'></script>"}
         @scripts,
@@ -274,7 +274,6 @@ sub header ($title, $directives) {
                @scripts2,
                @typed_scripts,
                $$TYPE_INFO {$type} {$INFO_NAV},
-               @d_scripts;
 
     my $chart_js = "";
        $chart_js = "<script id = 'chart-script' async src = '$CHART_URL'>" .
