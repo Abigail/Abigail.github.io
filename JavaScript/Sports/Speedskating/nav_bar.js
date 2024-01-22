@@ -3,6 +3,10 @@
 //
 function build_navigation (page_event = 0) {
     let table_str = "<table id = 'nav_bar'>";
+    table_str += "<tr class = 'top-line'><th></th>"
+    table_str += "<th colspan = '6'>Individual Distances</th>"
+    table_str += "<th colspan = '6'>Combinations</th>"
+    table_str += "<th colspan = '3'>Team Events</th></tr>"
     Event . genders . forEach ((gender) => {
         table_str += "<tr><th>" + Event . gender_name (gender) + "</th>"
         Event . events . forEach ((type) => {

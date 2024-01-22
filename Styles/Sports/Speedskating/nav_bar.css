@@ -12,6 +12,10 @@ table#nav_bar th {
         text-transform: capitalize;
 }
 
+table#nav_bar tr.top-line th {
+        text-align: center;
+}
+
 table#nav_bar {
         margin-bottom: 3ex;
 }
