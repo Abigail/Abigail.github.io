@@ -17,7 +17,7 @@ function build_navigation (page_event = 0) {
                                                            : gender, type)
             let   td    = ""
             if (event . is_valid ()) {
-                const name = event . name ()
+                const name = event . short_name ()
                 if (page_event && event . equal (page_event)) {
                     td = "<b>" + name + "</b>"
                 }

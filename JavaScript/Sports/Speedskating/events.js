@@ -98,6 +98,13 @@ class Event {
              :                            this . name     ())
     }
 
+    short_name () {
+        return this . __event == Event . RELAY        ? "Relay"
+             : this . __event == Event . TEAM_PURSUIT ? "Pursuit"
+             : this . __event == Event . TEAM_SPRINT  ? "Sprint"
+             : this . name ()
+    }
+
     gender () {
         return this . __gender
     }
