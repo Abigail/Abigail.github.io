@@ -7,6 +7,7 @@
 <!-- %%% script: ~/skaters     -->
 <!-- %%% script: ~/countries   -->
 <!-- %%% script: ~/flags       -->
+<!-- %%% script: ~/rinks       -->
 
 ## Current World Records
 

@@ -18,9 +18,9 @@ window . addEventListener ("load", function () {
 function build_current_records () {
     let table_str = ""
     table_str += "<table class = 'current'>"
-    table_str += "<tr><th>Event</th>"                +
-                     "<th>Date</th>"                 +
-                     "<th>Record</th>"               +
+    table_str += "<tr><th>Event</th>"  +
+                     "<th>Date</th>"   +
+                     "<th>Record</th>" +
                      "<th colspan = '2'>Skater</th>" +
                      "<th>Rink</th></tr>"
 
@@ -34,12 +34,10 @@ function build_current_records () {
             }
             const current_records = progression ({current: 1,
                                                   event: event})
-            console . log (current_records)
             const amount = current_records . length
             table_str += `<tr><th rowspan = '${amount}' class = 'event'>` +
                               `${event . full_name (0)}</th>`
             current_records . forEach ((item, index) => {
-                console . log (item)
                 if (index > 1) {
                     table_str += `<tr>`
                 }
@@ -48,10 +46,11 @@ function build_current_records () {
                 table_str += `<td class = 'record'>${item . time}</td>`
                 const skater = Skater . skater (item . skater)
                 const name   = skater . name (date)
-                const img    = Flags . img (skater . nationality (date), date)
+                const img    = Flags  . img (skater . nationality (date), date)
+                const rink   = Rink   . rink (item . rink)
                 table_str += `<td class = 'name'>${name}</td>`
                 table_str += `<td class = 'flag'>${img}</td>`
-                table_str += `<td colspan = '1'></td>`
+                table_str += `<td class = 'city'>${rink . city ()}</td>`
                 table_str += `</tr>`
             })
         })

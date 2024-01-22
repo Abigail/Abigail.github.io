@@ -533,7 +533,7 @@ function build_tables (event, season = 0) {
                       `<th>${type}</th>`               +
                       "<th>Diff.</th>"                 +
                       "<th>Name</th>"                  +
-                      "<th>Nat</th>"                   +
+                      "<th>N</th>"                     +
                       "<th>City</th>"                  +
                       "<th>Type</th></tr>"             +
 
