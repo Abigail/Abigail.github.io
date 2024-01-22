@@ -222,6 +222,11 @@ sub header ($title, $directives) {
     my @style_files  = @files;
     my @script_files = @files;
 
+    if ($$directives {style}) {
+        push @script_files => ref $$directives {style} ? @{$$directives {style}}
+                                                       :   $$directives {style}
+    }
+
     my $styles = join "\n" =>
         map  {"<link rel = 'stylesheet' href = '$up/$_'>"}
         grep {-f}
@@ -254,6 +259,12 @@ sub header ($title, $directives) {
         push @typed_scripts =>
               map {"$dir/$_"} @{$$TYPE_INFO {$type} {$INFO_JS}}
     }
+
+    my @d_scripts = $$directives {script} ?
+                      ref $$directives {script} ?
+                                          @{$$directives {script}}
+                          : split /,\s*/ => $$directives {script}
+                    : ();
     
     my $scripts = join "\n" =>
         map  {"<script src = '$up/$_'></script>"}
@@ -263,7 +274,7 @@ sub header ($title, $directives) {
                @scripts2,
                @typed_scripts,
                $$TYPE_INFO {$type} {$INFO_NAV},
-               split /,\s*/ => ($$directives {script} // "");
+               @d_scripts;
 
     my $chart_js = "";
        $chart_js = "<script id = 'chart-script' async src = '$CHART_URL'>" .

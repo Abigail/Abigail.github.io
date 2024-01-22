@@ -1,12 +1,3 @@
-table,
-table td,
-table th {
-        border:          1px solid black;
-        border-collapse: collapse;
-        padding-left:   .5em;
-        padding-right:  .5em;
-}
-
 table#records td.rinktype {
         text-align: center;
 }
@@ -38,21 +29,6 @@ table#records td.time {
 
 table#records td.time, table#records td.name {
         font-weight: bold;
-}
-
-@media (max-width: 1400px) {
-        table#nav_bar td {
-                font-size: 110%;
-        }
-}
-
-table#nav_bar th {
-        text-align: left;
-        text-transform: capitalize;
-}
-
-table#nav_bar {
-        margin-bottom: 3ex;
 }
 
 table#rink_type td {
