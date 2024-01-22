@@ -62,6 +62,7 @@ class Event {
     }
 
     static genders = [Event . MEN,   Event . WOMEN]
+    static all_genders = [Event . MEN, Event . WOMEN, Event . MIXED]
     static events  = [Event . M500,  Event . M1000,  Event . M1500,
                       Event . M3000, Event . M5000,  Event . M10000,
                       Event . BIG,   Event . SMALL,  Event . OLD_SMALL,
@@ -90,10 +91,10 @@ class Event {
         return Event . gender_name (this . __gender)
     }
 
-    full_name () {
+    full_name (use_gender = 1) {
         return this . gender () == Event . MIXED ? this . name ()
-             : this . gender_name ()  + ", " +
-              (this . is_distance    () ? this . distance () + "m"
+             : (use_gender ? (this . gender_name ()  + ", ") : "") +
+              (this . is_distance    () ? this . distance () + " meter"
              : this . is_combination () ? this . name     () + " Combination"
              :                            this . name     ())
     }
@@ -133,10 +134,17 @@ class Event {
     }
 
     is_valid () {
-        return this . gender () == Event . MEN 
-             ? this . type   () != Event . OLD_SMALL &&
-               this . type   () != Event . MINI
-             : this . type   () != Event . BIG
+        return this . gender () == Event . MIXED
+             ? this . type   () == Event . RELAY
+             : this . type   () != Event . RELAY &&
+              (this . gender () == Event . MEN
+                 ? this . type   () != Event . OLD_SMALL &&
+                   this . type   () != Event . MINI
+                 : this . type   () != Event . BIG)
+    }
+
+    is_suspended () {
+        return this . type () == Event . OLD_SMALL
     }
 
     equal (other_event) {

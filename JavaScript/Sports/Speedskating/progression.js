@@ -115,6 +115,9 @@ function progression (filters) {
                 result = result . filter (item => item [key] .
                                                          equal (filters [key]))
             }
+            else if (key == "current") {
+                result = result . filter (item => item [key] == 1)
+            }
             else {
                 result = result . filter (item => item [key] == filters [key])
             }
@@ -1226,9 +1229,12 @@ for (let i = 0; i < __progression . length; i ++) {
         end = new Date ()
         end . setHours (12, 0, 0, 0)
         //
-        // This also means it is the current record
+        // This also means it is the current record, but only if it's
+        // not suspeneded
         //
-        entry_i . current = 1
+        if (entry_i . skater != "SUSPENDED") {
+            entry_i . current = 1
+        }
     }
     else {
         //

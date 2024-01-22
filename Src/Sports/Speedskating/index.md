@@ -1,10 +1,18 @@
 # Speedskating
 
-<!-- %%% style:  ~/nav_bar -->
-<!-- %%% script: ~/nav_bar -->
-<!-- %%% script: ~/events  -->
+<!-- %%% style:  ~/nav_bar     -->
+<!-- %%% script: ~/nav_bar     -->
+<!-- %%% script: ~/events      -->
+<!-- %%% script: ~/progression -->
+<!-- %%% script: ~/skaters     -->
+<!-- %%% script: ~/countries   -->
+<!-- %%% script: ~/flags       -->
 
-## Progression of world records
+## Current World Records
+
+<div id = "current"></div>
+
+## Progression of World Records
 
 <div id = "navigation"></div>
 
