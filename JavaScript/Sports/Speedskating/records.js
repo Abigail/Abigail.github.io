@@ -64,7 +64,6 @@ function sec2time (seconds, precision = 0) {
 // Given a tooltip context, format the rink
 //
 function format_rink (context) {
- // const  rink = Rink . rink (context . raw . rink)
     const  rink = context . raw . rink
     return rink . name () + " \u{2014} " + rink . city ()
 }
@@ -106,13 +105,11 @@ function point_style (context) {
     const date = context . raw . date
     const rink = context . raw . rink
     return rink . point_style (date)
-//  return Rink . rink (rink) . point_style (date)
 }
 
 
 function point_colour (context) {
     return context . raw . rink . point_colour ()
-//  return Rink . rink (context . raw . rink) . point_colour ()
 }
 
 
@@ -335,7 +332,6 @@ function item_to_row (item) {
     const date     = item . date
     let   duration = item . duration
     const skater   = Skater . skater (item . skater)
- // const rink     = Rink   . rink   (item . rink)
     const rink     = item . rink
     const event    = item   . event
 
