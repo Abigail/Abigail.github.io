@@ -64,7 +64,8 @@ function sec2time (seconds, precision = 0) {
 // Given a tooltip context, format the rink
 //
 function format_rink (context) {
-    const  rink = Rink . rink (context . raw . rink)
+ // const  rink = Rink . rink (context . raw . rink)
+    const  rink = context . raw . rink
     return rink . name () + " \u{2014} " + rink . city ()
 }
 
@@ -104,12 +105,14 @@ function format_point_value (value) {
 function point_style (context) {
     const date = context . raw . date
     const rink = context . raw . rink
-    return Rink . rink (rink) . point_style (date)
+    return rink . point_style (date)
+//  return Rink . rink (rink) . point_style (date)
 }
 
 
 function point_colour (context) {
-    return Rink . rink (context . raw . rink) . point_colour ()
+    return context . raw . rink . point_colour ()
+//  return Rink . rink (context . raw . rink) . point_colour ()
 }
 
 
@@ -332,7 +335,8 @@ function item_to_row (item) {
     const date     = item . date
     let   duration = item . duration
     const skater   = Skater . skater (item . skater)
-    const rink     = Rink   . rink   (item . rink)
+ // const rink     = Rink   . rink   (item . rink)
+    const rink     = item . rink
     const event    = item   . event
 
     let nationality = skater . nationality (date)
@@ -400,8 +404,8 @@ function count_records (progression) {
         if (!skater_count [item . skater]) {
             skater_count [item . skater] = 0
         }
-        if (!rink_count [item . rink]) {
-            rink_count [item . rink] = 0
+        if (!rink_count [item . rink . key ()]) {
+            rink_count [item . rink . key ()] = 0
         }
         if (!country_count [country]) {
             country_count [country] = 0
@@ -416,10 +420,10 @@ function count_records (progression) {
             current [item . skater] = 1
         }
 
-        skater_count      [item . skater] ++
-        rink_count        [item . rink]   ++
-        country_count     [country]       ++
-        duration_count    [item . skater] += item . duration
+        skater_count      [item . skater]        ++
+        rink_count        [item . rink . key ()] ++
+        country_count     [country]              ++
+        duration_count    [item . skater]        += item . duration
         if (item . date > last_record [item . skater]) {
             last_record [item . skater] = item . date
         }
@@ -589,6 +593,9 @@ function load_chart () {
 
 
 window . addEventListener ("load", function () {
+    init_rinks       ()
+    init_progression ()
+
     const params   = new URLSearchParams (window . location . search)
     const gender   = params . get ('gender')
     const distance = params . get ('distance')

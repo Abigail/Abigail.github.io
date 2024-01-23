@@ -1,4 +1,6 @@
 window . addEventListener ("load", function () {
+    init_rinks       ()
+    init_progression ()
     //
     // Get rid of the hands at the bottom
     //
@@ -47,10 +49,9 @@ function build_current_records () {
                 const skater = Skater . skater (item . skater)
                 const name   = skater . name (date)
                 const img    = Flags  . img (skater . nationality (date), date)
-                const rink   = Rink   . rink (item . rink)
                 table_str += `<td class = 'name'>${name}</td>`
                 table_str += `<td class = 'flag'>${img}</td>`
-                table_str += `<td class = 'city'>${rink . city ()}</td>`
+                table_str += `<td class = 'city'>${item . rink . city ()}</td>`
                 table_str += `</tr>`
             })
         })
