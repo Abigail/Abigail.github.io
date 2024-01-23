@@ -1,5 +1,6 @@
 window . addEventListener ("load", function () {
     init_rinks       ()
+    init_skaters     ()
     init_progression ()
     //
     // Get rid of the hands at the bottom
