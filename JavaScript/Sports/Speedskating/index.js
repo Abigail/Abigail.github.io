@@ -1,6 +1,6 @@
 window . addEventListener ("load", function () {
-    Rink . init ()
-    init_skaters     ()
+    Rink   . init ()
+    Skater . init ()
     init_progression ()
     //
     // Get rid of the hands at the bottom

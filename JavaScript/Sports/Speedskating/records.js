@@ -591,8 +591,8 @@ function load_chart () {
 
 
 window . addEventListener ("load", function () {
-    Rink . init ()
-    init_skaters     ()
+    Rink   . init ()
+    Skater . init ()
     init_progression ()
 
     const params   = new URLSearchParams (window . location . search)
