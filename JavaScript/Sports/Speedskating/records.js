@@ -65,7 +65,8 @@ function sec2time (seconds, precision = 0) {
 //
 function format_rink (context) {
     const  rink = context . raw . rink
-    return rink . name () + " \u{2014} " + rink . city ()
+    const  date = context . raw . date
+    return rink . name () + " \u{2014} " + rink . city (date)
 }
 
 //
@@ -267,7 +268,7 @@ function rink_type_td (rink, date) {
                "<div class = 'tooltiptext rink_info'>" +
                "<table class = 'rink_info'>" +
                   `<tr><th>City</th>`                                  +
-                      `<td>${rink . city ()}</td>`                     +
+                      `<td>${rink . city (date)}</td>`                 +
                       `<td class = 'flag'>${flag}</td></tr>`           +
                   `<tr><th>Name</th>`                                  + 
                       `<td colspan = '2'>${rink . name ()}</td></tr>`  +
@@ -363,16 +364,17 @@ function item_to_row (item) {
 
     const rink_td = rink_type_td (rink, date)
     const time_td = format_time_td (item)
+    const city    = rink . city (date)
 
     return "<tr>" +
-           "<td class = 'date'>"        + date             + "</td>" +
-           "<td class = 'time'>"        + time_td          + "</td>" +
-           "<td class = 'improvement'>" + improvement      + "</td>" +
-           "<td class = 'name'>"        + name             + "</td>" +
-           "<td class = 'nation'>"      + img              + "</td>" +
-           "<td class = 'city'>"        + rink   . city () + "</td>" +
-           "<td class = 'rinktype'>"    + rink_td          + "</td>" +
-           "<td class = 'duration'>"    + duration         + "</td>" +
+           "<td class = 'date'>"        + date        + "</td>" +
+           "<td class = 'time'>"        + time_td     + "</td>" +
+           "<td class = 'improvement'>" + improvement + "</td>" +
+           "<td class = 'name'>"        + name        + "</td>" +
+           "<td class = 'nation'>"      + img         + "</td>" +
+           "<td class = 'city'>"        + city        + "</td>" +
+           "<td class = 'rinktype'>"    + rink_td     + "</td>" +
+           "<td class = 'duration'>"    + duration    + "</td>" +
           "</tr>"
 }
 
@@ -491,8 +493,8 @@ function make_count_table (type, count, event, current, last) {
         }
         else if (type == "rink") {
             const rink = Rink . rink (list [i])
-            table += "<td class = 'city'>"    + rink . city () + "</td>"
-                  +  "<td class = 'stadion'>" + rink . name () + "</td>"
+            table += "<td class = 'city'>"    + rink . city ("now") + "</td>"
+                  +  "<td class = 'stadion'>" + rink . name ()      + "</td>"
         }
         else if (type == "country") {
             const name = Country . name (list [i])
