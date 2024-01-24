@@ -589,7 +589,7 @@ function load_chart () {
 
 
 window . addEventListener ("load", function () {
-    init_rinks       ()
+    Rink . init ()
     init_skaters     ()
     init_progression ()
 
