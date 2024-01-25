@@ -75,7 +75,7 @@ function format_rink (context) {
 // Given a tooltip context, format the time and skater
 //
 function format_record (context) {
-    const skater  = Skater . skater (context . raw . skater)
+    const skater  = context . raw . skater
     const time    = context . raw . time
     const date    = context . raw . date
 
@@ -332,9 +332,9 @@ function item_to_row (item) {
     let   time     = item . time
     const date     = item . date
     let   duration = item . duration
-    const skater   = Skater . skater (item . skater)
+    const skater   = item . skater
     const rink     = item . rink
-    const event    = item   . event
+    const event    = item . event
 
     let nationality = skater . nationality (date)
     let img = Flags . img (nationality, date)
@@ -351,13 +351,11 @@ function item_to_row (item) {
 
     let name = skater . name (date)
     if (event . is_team () && item . members) {
-        const members = item . members . map ((skater) => {
-            return Skater . skater (skater) . name (date)
-        })
+        const m_names = item . members . map (skater => skater . name (date))
         name = "<div class = 'tooltip'>" + 
                "<div class = 'tooltiptext team-members'>" +
                "<table class = 'team-members'>" +
-                   members . map (item => `<tr><td>${item}</td></tr>`)
+                   m_names . map (item => `<tr><td>${item}</td></tr>`)
                            . join ("") +
                "</table></div>" + name + "</div>"
     }
@@ -396,47 +394,48 @@ function count_records (progression) {
         if (item . skater == "SUSPENDED") {
             return;
         }
-        const country = Skater . skater      (item . skater)
-                               . nationality (item . date)
+        const country = item . skater . nationality (item . date)
 
-        if (!skater_count [item . skater]) {
-            skater_count [item . skater] = 0
+        const skater_key = item . skater . key ()
+        const rink_key   = item . rink   . key ()
+
+        if (!skater_count [skater_key]) {
+            skater_count [skater_key] = 0
         }
-        if (!rink_count [item . rink . key ()]) {
-            rink_count [item . rink . key ()] = 0
+        if (!rink_count [rink_key]) {
+            rink_count [rink_key] = 0
         }
         if (!country_count [country]) {
             country_count [country] = 0
         }
-        if (!duration_count [item . skater]) {
-            duration_count [item . skater] = 0
+        if (!duration_count [skater_key]) {
+            duration_count [skater_key] = 0
         }
-        if (!last_record [item . skater]) {
-            last_record [item . skater] = "0000-00-00"
+        if (!last_record [skater_key]) {
+            last_record [skater_key] = "0000-00-00"
         }
         if (item . current) {
-            current [item . skater] = 1
+            current [skater_key] = 1
         }
 
-        skater_count      [item . skater]        ++
-        rink_count        [item . rink . key ()] ++
-        country_count     [country]              ++
-        duration_count    [item . skater]        += item . duration
-        if (item . date > last_record [item . skater]) {
-            last_record [item . skater] = item . date
+        skater_count      [skater_key] ++
+        rink_count        [rink_key]   ++
+        country_count     [country]    ++
+        duration_count    [skater_key] += item . duration
+        if (item . date > last_record [skater_key]) {
+            last_record [skater_key] = item . date
         }
         
         if (item . improvement) {
-            if (!improvement_count [item . skater]) {
-                improvement_count [item . skater] = 0
+            if (!improvement_count [skater_key]) {
+                improvement_count [skater_key] = 0
             }
             //
             // Some trickery to make sure we will classify the
             // improvements into the same bucket if they only
             // differ in floating point roundoffs.
             //
-            improvement_count [item . skater] +=
-                              +item . improvement . toFixed (3)
+            improvement_count [skater_key] += +item . improvement . toFixed (3)
         }
     })
 

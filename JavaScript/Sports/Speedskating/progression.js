@@ -40,7 +40,7 @@ function add_record (event, skater, time, date, rink, extra = {}) {
     const [year, month, mday] = date . split ("-") . map (x => +x)
     let new_entry = {
         event:       event,
-        skater:      skater,
+        skater:      Skater . skater (skater),
         time:        time,
         date:        date,
         year:        year,
@@ -57,6 +57,12 @@ function add_record (event, skater, time, date, rink, extra = {}) {
     Object . keys (extra) . forEach ((key) => {
         new_entry [key] = extra [key]
     })
+
+    if (new_entry . members) {
+        const names = new_entry . members
+                                . map (member => Skater . skater (member))
+        new_entry  . members = names
+    }
 
     if (skater == "SUSPENDED") {
         new_entry . suspended = 1

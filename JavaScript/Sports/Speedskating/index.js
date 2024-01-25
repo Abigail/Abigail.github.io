@@ -47,7 +47,7 @@ function build_current_records () {
                 const date = item . date
                 table_str += `<td class = 'date'>${item . date}</td>` 
                 table_str += `<td class = 'record'>${item . time}</td>`
-                const skater = Skater . skater (item . skater)
+                const skater = item   . skater
                 const name   = skater . name (date)
                 const img    = Flags  . img (skater . nationality (date), date)
                 const city   = item   . rink   . city (date)
