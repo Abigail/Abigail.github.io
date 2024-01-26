@@ -72,6 +72,49 @@ class Event {
                       Event . TEAM_PURSUIT, Event . TEAM_SPRINT,
                       Event . RELAY]
 
+    //
+    // Return a list of events, depending on some filters
+    //
+    static give_events (filters) {
+        let out = Event . all_events
+        Object . keys (filters) . forEach ((key) => {
+            if (key == "gender") {
+                out = out . filter (item => item . gender () == filters [key])
+            }
+            else if (key == "distance") {
+                out = out . filter (item =>
+                            filters [key] ?  item . is_distance ()
+                                          : !item . is_distance ()
+                )
+            }
+            else if (key == "combination") {
+                out = out . filter (item =>
+                            filters [key] ?  item . is_combination ()
+                                          : !item . is_combination ()
+                )
+            }
+            else if (key == "team") {
+                out = out . filter (item =>
+                            filters [key] ?  item . is_team ()
+                                          : !item . is_team ()
+                )
+            }
+            else if (key == "suspended") {
+                out = out . filter (item =>
+                            filters [key] ?  item . is_suspended ()
+                                          : !item . is_suspended ()
+                )
+            }
+            else if (key == "record") {
+                out = out . filter (item =>
+                            filters [key] ?  item . has_record ()
+                                          : !item . has_record ()
+                )
+            }
+        })
+        return out
+    }
+
     constructor (gender, event) {
         this . __gender = gender
         this . __event  = event

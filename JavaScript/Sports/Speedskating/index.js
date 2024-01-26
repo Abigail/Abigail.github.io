@@ -1,6 +1,7 @@
 window . addEventListener ("load", function () {
     Rink   . init ()
     Skater . init ()
+    Event  . init ()
     init_progression ()
 
     //
@@ -36,8 +37,10 @@ function build_current_records () {
     Event . all_genders . forEach ((gender) => {
         const gender_name = Event . gender_name (gender)
         table_str += `<tr><th colspan = '6'>${gender_name}</th></tr>`
-        Event . events . forEach ((e) => {
-            const event = new Event (gender, e)
+        const events = Event . give_events ({gender:    gender,
+                                        suspended: 0,
+                                        record:    1})
+        events . forEach ((event) => {
             if (!event . is_valid () || event . is_suspended ()) {
                 return
             }
