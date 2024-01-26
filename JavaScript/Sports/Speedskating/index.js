@@ -2,11 +2,17 @@ window . addEventListener ("load", function () {
     Rink   . init ()
     Skater . init ()
     init_progression ()
+
     //
     // Get rid of the hands at the bottom
     //
     $("p.next") . html ("")
     $("p.prev") . html ("")
+
+    //
+    // Build the navigation bar
+    //
+    Navigation . build ()
 
     //
     // Build the table with the current records
@@ -36,6 +42,7 @@ function build_current_records () {
                 return
             }
             const current_records = progression ({current: 1,
+                                                  suspended: 0,
                                                   event: event})
             const amount = current_records . length
             table_str += `<tr><th rowspan = '${amount}' class = 'event'>` +

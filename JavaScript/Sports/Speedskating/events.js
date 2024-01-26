@@ -19,6 +19,8 @@ class Event {
     static WOMEN        = 1 + Event . MEN
     static MIXED        = 1 + Event . WOMEN
 
+    static all_events   = []
+
     static event_names = {
         [Event . M500]        : "500m",
         [Event . M1000]       : "1000m",
@@ -147,6 +149,15 @@ class Event {
         return this . type () == Event . OLD_SMALL
     }
 
+    //
+    // Return true if this is an event which has a record
+    //
+    has_record () {
+        return this . is_distance    () ||
+               this . is_combination () ||
+               this . is_team        ()
+    }
+
     equal (other_event) {
         return this . __gender == other_event . gender () &&
                this . __event  == other_event . type   ()
@@ -234,4 +245,46 @@ class Event {
         }
         return text
     }
+
+    //
+    // Initialize all events
+    //
+    static init () {
+        //
+        // Individual distances
+        //
+        [Event . M500,  Event .  M1000,
+         Event . M1500, Event .  M3000,
+         Event . M5000, Event . M10000] . forEach ((distance) => {
+            Event . all_events . push (
+                new Event (Event . MEN,   distance),
+                new Event (Event . WOMEN, distance)
+            )
+        })
+
+        //
+        // Combinations
+        //
+        Event . all_events . push (new Event (Event .   MEN, Event . BIG))
+        Event . all_events . push (new Event (Event .   MEN, Event . SMALL))
+        Event . all_events . push (new Event (Event . WOMEN, Event . SMALL))
+        Event . all_events . push (new Event (Event . WOMEN, Event . OLD_SMALL))
+        Event . all_events . push (new Event (Event . WOMEN, Event . MINI))
+        Event . all_events . push (new Event (Event .   MEN, Event . SPRINT))
+        Event . all_events . push (new Event (Event . WOMEN, Event . SPRINT))
+        Event . all_events . push (new Event (Event .   MEN, Event . D500))
+        Event . all_events . push (new Event (Event . WOMEN, Event . D500));
+
+        //
+        // Team events
+        //
+        [Event . TEAM_PURSUIT, Event . TEAM_SPRINT] . forEach ((type) => {
+            Event . all_events . push (
+                new Event (Event . MEN,   type),
+                new Event (Event . WOMEN, type)
+            )
+        })
+        Event . all_events . push (new Event (Event . MIXED, Event . RELAY))
+    }
 }
+

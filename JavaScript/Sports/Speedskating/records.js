@@ -592,6 +592,7 @@ function load_chart () {
 window . addEventListener ("load", function () {
     Rink   . init ()
     Skater . init ()
+    Event  . init ()
     init_progression ()
 
     const params   = new URLSearchParams (window . location . search)
@@ -606,9 +607,9 @@ window . addEventListener ("load", function () {
 
     $("h1") . html (title)
 
-    build_navigation (page_event)
-    build_tables     (page_event)
-    build_chart      (page_event, title)
+    Navigation . build (page_event)
+    build_tables       (page_event)
+    build_chart        (page_event, title)
 
     $("#start_year_span") . html (`<input id = 'start_year' type = 'number' ` +
                                   `value = '1960' size = '5'>`)

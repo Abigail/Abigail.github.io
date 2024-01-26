@@ -64,9 +64,7 @@ function add_record (event, skater, time, date, rink, extra = {}) {
         new_entry  . members = names
     }
 
-    if (skater == "SUSPENDED") {
-        new_entry . suspended = 1
-    }
+    new_entry . suspended = skater == "SUSPENDED"
 
     if (__progression . length) {
         const last = __progression [__progression . length - 1]
@@ -1252,7 +1250,7 @@ function init_progression () {
             // This also means it is the current record, but only if it's
             // not suspeneded
             //
-            if (entry_i . skater != "SUSPENDED") {
+            if (!entry_i . suspended) {
                 entry_i . current = 1
             }
         }
