@@ -757,6 +757,9 @@ class Skater {
         Skater . add_skater ({key:         "stiepl",
                               name:        "Max Stiepl",
                               nationality: "AUT"})
+        Skater . add_skater ({key:         "stolz",
+                              name:        "Jordan Stolz",
+                              nationality: "USA"})
         Skater . add_skater ({key:         "storholt",
                               name:        "Jan Egil Storholt",
                               nationality: "NOR"})

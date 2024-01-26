@@ -304,6 +304,7 @@ function init_progression () {
     add_record (m1000, "davis",       "1:06.42", "2009-03-07", "salt lake city")
     add_record (m1000, "nuis",        "1:06.18", "2019-03-09", "salt lake city")
     add_record (m1000, "kulizhnikov", "1:05.69", "2020-02-15", "salt lake city")
+    add_record (m1000, "stolz",       "1:05.37", "2024-01-26", "salt lake city")
 
     //
     // Men  1500m
