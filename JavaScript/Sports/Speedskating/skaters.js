@@ -164,6 +164,9 @@ class Skater {
         Skater . add_skater ({key:         "carlsen",
                               name:        "Armand Carlsen",
                               nationality: "NOR"})
+        Skater . add_skater ({key:         "cepuran",
+                              name:        "Ethan Cepuran",
+                              nationality: "USA"})
         Skater . add_skater ({key:         "chaykin",
                               name:        "Valetin Chaykin",
                               nationality: "URS"})

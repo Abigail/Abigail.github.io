@@ -35,6 +35,10 @@ class Country {
         this . __name = Country . nation_names [code]
     }
 
+    key () {
+        return this . __code
+    }
+
     nationality () {
         return this . __code
     }

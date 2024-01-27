@@ -760,6 +760,8 @@ function init_progression () {
                        {members: ["mantia", "lehman", "dawson"]})
     add_record (mTP,   "NOR",         "3:34.22", "2024-01-05", "thialf",
                        {members: ["eitrem", "kongshaug", "pederson"]})
+    add_record (mTP,   "USA",         "3:33.66", "2024-01-27", "salt lake city",
+                       {members: ["dawson", "lehman", "cepuran"]})
 
     //
     // Men Team Sprint

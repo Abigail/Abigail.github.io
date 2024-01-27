@@ -396,6 +396,8 @@ function count_records (progression) {
         }
         const country = item . skater . nationality (item . date)
 
+        console . log (item . skater)
+
         const skater_key = item . skater . key ()
         const rink_key   = item . rink   . key ()
 
