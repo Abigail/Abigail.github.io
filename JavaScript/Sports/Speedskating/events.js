@@ -63,19 +63,13 @@ class Event {
         [Event . D500]:      [500,  500],
     }
 
-    static genders = [Event . MEN,   Event . WOMEN]
+    static genders     = [Event . MEN, Event . WOMEN]
     static all_genders = [Event . MEN, Event . WOMEN, Event . MIXED]
-    static events  = [Event . M500,  Event . M1000,  Event . M1500,
-                      Event . M3000, Event . M5000,  Event . M10000,
-                      Event . BIG,   Event . SMALL,  Event . OLD_SMALL,
-                      Event . MINI,  Event . SPRINT, Event . D500,
-                      Event . TEAM_PURSUIT, Event . TEAM_SPRINT,
-                      Event . RELAY]
 
     //
     // Return a list of events, depending on some filters
     //
-    static give_events (filters) {
+    static events (filters) {
         let out = Event . all_events
         Object . keys (filters) . forEach ((key) => {
             if (key == "gender") {
