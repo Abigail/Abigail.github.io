@@ -189,6 +189,9 @@ class Skater {
         Skater . add_skater ({key:         "dietel",
                               name:        "Andreas Dietel",
                               nationality: "GDR"})
+        Skater . add_skater ({key:         "dijs",
+                              name:        "Wesly Dijs",
+                              nationality: "NED"})
         Skater . add_skater ({key:         "donker",
                               name:        "Gr\u{E9} Donker",
                               nationality: "NED"})
@@ -415,6 +418,9 @@ class Skater {
         Skater . add_skater ({key:         "kodaira",
                               name:        "Nao Kodaira",
                               nationality: "JPN"})
+        Skater . add_skater ({key:         "kok",
+                              name:        "Femke Kok",
+                              nationality: "NED"})
         Skater . add_skater ({key:         "kondakov",
                               name:        "Yury Kondakov",
                               nationality: "URS"})

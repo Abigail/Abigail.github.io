@@ -352,8 +352,9 @@ function item_to_row (item) {
     let name = skater . name (date)
     if (event . is_team () && item . members) {
         const m_names = item . members . map (skater => skater . name (date))
+        const c_name  = `team-members-${m_names . length}`
         name = "<div class = 'tooltip'>" + 
-               "<div class = 'tooltiptext team-members'>" +
+               `<div class = 'tooltiptext team-members ${c_name}'>` +
                "<table class = 'team-members'>" +
                    m_names . map (item => `<tr><td>${item}</td></tr>`)
                            . join ("") +

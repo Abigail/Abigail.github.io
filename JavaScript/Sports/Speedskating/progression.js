@@ -1219,7 +1219,8 @@ function init_progression () {
     //
     // Mixed Relay
     //
-    add_record (RELAY, "NED",         "2:55.53", "2023-11-12", "obihiro")
+    add_record (RELAY, "NED",         "2:55.53", "2023-11-12", "obihiro",
+                       {members: ["kok", "dijs"]})
 
 
     //

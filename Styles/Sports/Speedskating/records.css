@@ -116,8 +116,11 @@ h3.records-header {
         left:           115%;
 }
 
-.tooltip .team-members {
+.tooltip .team-members-3 {
         top:           -1.5em;
+}
+.tooltip .team-members-2 {
+        top:           -1em;
 }
 
 .tooltip .rink_info {
