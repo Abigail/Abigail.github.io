@@ -1226,6 +1226,8 @@ function init_progression () {
     //
     add_record (RELAY, "NED",         "2:55.53", "2023-11-12", "obihiro",
                        {members: ["kok", "dijs"]})
+    add_record (RELAY, "CHN",         "2:54.90", "2024-01-28", "salt lake city",
+                       {members: ["sun", "jin"]})
 
 
     //

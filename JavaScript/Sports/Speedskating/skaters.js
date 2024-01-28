@@ -365,6 +365,9 @@ class Skater {
         Skater . add_skater ({key:         "jensen",
                               name:        "Bj\u{F8}rg Eva Jensen",
                               nationality: "NOR"})
+        Skater . add_skater ({key:         "jin",
+                              name:        "Wenjing Jin",
+                              nationality: "CHN"})
         Skater . add_skater ({key:         "jing",
                               name:        "Yu Jing",
                               nationality: "CHN"})
@@ -805,6 +808,9 @@ class Skater {
         Skater . add_skater ({key:         "strunnikov",
                               name:        "Nikolay Strunnikov",
                               nationality: "RU1"})
+        Skater . add_skater ({key:         "sun",
+                              name:        "Chuanyi Sun",
+                              nationality: "CHN"})
         Skater . add_skater ({key:         "sundstrom",
                               name:        "Becky Sundstrom",
                               nationality: "USA"})
