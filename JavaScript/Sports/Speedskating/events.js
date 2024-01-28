@@ -14,6 +14,7 @@ class Event {
     static TEAM_PURSUIT = 1 + Event . D500
     static TEAM_SPRINT  = 1 + Event . TEAM_PURSUIT
     static RELAY        = 1 + Event . TEAM_SPRINT
+    static ALLROUND     = 1 + Event . RELAY
 
     static MEN          = 1
     static WOMEN        = 1 + Event . MEN
@@ -37,6 +38,7 @@ class Event {
         [Event . TEAM_PURSUIT]: "Team Pursuit",
         [Event . TEAM_SPRINT] : "Team Sprint",
         [Event . RELAY]       : "Mixed Gender Relay",
+        [Event . ALLROUND]    : "Allround",
     }
 
     static gender_names = {

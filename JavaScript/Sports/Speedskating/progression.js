@@ -377,7 +377,8 @@ function init_progression () {
     add_record (m3000, "huiskes",     "4:40.2",  "1953-01-24", "davos")
     add_record (m3000, "johannesen",  "4:33.9",  "1963-01-12", "tonsberg")
     add_record (m3000, "eriksen",     "4:33.0",  "1963-02-28", "bislett")
-    add_record (m3000, "nilsson",     "4:27.6",  "1963-03-23", "tolga")
+    add_record (m3000, "nilsson_johnny",
+                                      "4:27.6",  "1963-03-23", "tolga")
     add_record (m3000, "antson",      "4:27.3",  "1964-02-11", "bislett")
     add_record (m3000, "liebrechts",  "4:26.8",  "1965-02-25", "bislett")
     add_record (m3000, "schenk",      "4:26.2",  "1966-01-29", "inzell")
@@ -429,8 +430,10 @@ function init_progression () {
     add_record (m5000, "mamonov",     "8:03.7",  "1952-01-23", "medeo")
     add_record (m5000, "shilkov",     "7:45.6",  "1955-01-09", "medeo")
     add_record (m5000, "johannesen",  "7:37.8",  "1963-01-26", "bislett")
-    add_record (m5000, "nilsson",     "7:34.3",  "1963-02-23", "karuizawa")
-    add_record (m5000, "nilsson",     "7:33.2",  "1965-02-13", "bislett")
+    add_record (m5000, "nilsson_johnny",
+                                      "7:34.3",  "1963-02-23", "karuizawa")
+    add_record (m5000, "nilsson_johnny",
+                                      "7:33.2",  "1965-02-13", "bislett")
     add_record (m5000, "maier",       "7:28.1",  "1965-03-04", "notodden")
     add_record (m5000, "verkerk",     "7:26.6",  "1967-02-26", "inzell")
     add_record (m5000, "maier",       "7:26.2",  "1968-01-07", "deventer")
@@ -486,7 +489,8 @@ function init_progression () {
     add_record (m10000, "andersen",   "16:51.4",  "1952-01-27", "gjovik")
     add_record (m10000, "andersen",   "16:32.6",  "1952-02-10", "hamar stadion")
     add_record (m10000, "johannesen", "15:46.6",  "1960-02-27", "squaw valley")
-    add_record (m10000, "nilsson",    "15:33.0",  "1963-02-24", "karuizawa")
+    add_record (m10000, "nilsson_johnny",
+                                      "15:33.0",  "1963-02-24", "karuizawa")
     add_record (m10000, "maier",      "15:32.2",  "1966-02-06", "bislett")
     add_record (m10000, "maier",      "15:31.8",  "1967-02-28", "inzell")
     add_record (m10000, "maier",      "15:29.5",  "1968-01-21", "horten")
@@ -544,7 +548,8 @@ function init_progression () {
     add_record (mBIG, "aaness",      "180.560", "1963-01-27", "bislett",
                       {times: ["0:41.6",  "7:42.8",  "2:10.8",  "16:21.6"]})
 
-    add_record (mBIG, "nilsson",     "178.447", "1963-02-24", "karuizawa",
+    add_record (mBIG, "nilsson_johnny",
+                                     "178.447", "1963-02-24", "karuizawa",
                       {times: ["0;43.0",  "7:34.3",  "2:10.1",  "15:33.0"]})
     add_record (mBIG, "maier",       "178.253", "1966-02-06", "bislett",
                       {times: ["0:43.6",  "7:33.1",  "2:08.2",  "15:32.2"]})

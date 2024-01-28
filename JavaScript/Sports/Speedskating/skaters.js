@@ -272,6 +272,9 @@ class Skater {
         Skater . add_skater ({key:         "gennip",
                               name:        "Yvonne van Gennip",
                               nationality: "NED"})
+        Skater . add_skater ({key:         "grift",
+                              name:        "Henk van der Grift",
+                              nationality: "NED"})
         Skater . add_skater ({key:         "grishin",
                               name:        "Yevgeny Grishin",
                               nationality: "URS"})
@@ -436,15 +439,24 @@ class Skater {
         Skater . add_skater ({key:         "kondakova",
                               name:        "Sofya Kondakova",
                               nationality: "URS"})
+        Skater . add_skater ({key:         "kosichkin",
+                              name:        "Viktor Kosichkin",
+                              nationality: "URS"})
         Skater . add_skater ({key:         "koskela",
                               name:        "Pekka Koskela",
                               nationality: "FIN"})
         Skater . add_skater ({key:         "koss",
                               name:        "Johann Olav Koss",
                               nationality: "NOR"})
+        Skater . add_skater ({key:         "kouprianoff",
+                              name:        "Andr\u{E9} Kouprianoff",
+                              nationality: "FRA"})
         Skater . add_skater ({key:         "kramer",
                               name:        "Sven Kramer",
                               nationality: "NED"})
+        Skater . add_skater ({key:         "kuhnert",
+                              name:        "Helmut Kuhnert",
+                              nationality: "GDR"})
         Skater . add_skater ({key:         "kulikov",
                               name:        "Yevgeny Kulikov",
                               nationality: "URS"})
@@ -467,6 +479,9 @@ class Skater {
         Skater . add_skater ({key:         "larsen",
                               name:        "Roald Larsen",
                               nationality: "NOR"})
+        Skater . add_skater ({key:         "launonen",
+                              name:        "Jouko Launonen",
+                              nationality: "FIN"})
         Skater . add_skater ({key:         "le may",
                               name:       ["1970-12-23", "Catriona Le May",
                                            "1996-07-00", "Catriona Le May " +
@@ -538,6 +553,9 @@ class Skater {
         Skater . add_skater ({key:         "mikhaylov",
                               name:        "Yury Mikhaylov",
                               nationality: "URS"})
+        Skater . add_skater ({key:         "moe",
+                              name:        "Per Ivar Moe",
+                              nationality: "NOR"})
         Skater . add_skater ({key:         "mulder_grietje",
                               name:        "Grietje Mulder",
                               nationality: "NED"})
@@ -575,9 +593,12 @@ class Skater {
         Skater . add_skater ({key:         "nilsen",
                               name:        "Laila Schou Nilsen",
                               nationality: "NOR"})
-        Skater . add_skater ({key:         "nilsson",
+        Skater . add_skater ({key:         "nilsson_ivar",
+                              name:        "Ivar Nilsson",
+                              nationality: "SWE"})
+        Skater . add_skater ({key:         "nilsson_johnny",
                               name:        "Johnny Nilsson",
-                              nationality: "NOR"})
+                              nationality: "SWE"})
         Skater . add_skater ({key:         "noake",
                               name:        "Hiroyuki Noake",
                               nationality: "JPN"})
@@ -750,6 +771,9 @@ class Skater {
                               nationality: "NED"})
         Skater . add_skater ({key:         "statkevich",
                               name:        "Nina Statkevich",
+                              nationality: "URS"})
+        Skater . add_skater ({key:         "stenin",
+                              name:        "Boris Stenin",
                               nationality: "URS"})
         Skater . add_skater ({key:         "stensen",
                               name:        "Sten Stensen",
