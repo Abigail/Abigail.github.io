@@ -397,8 +397,6 @@ function count_records (progression) {
         }
         const country = item . skater . nationality (item . date)
 
-        console . log (item . skater)
-
         const skater_key = item . skater . key ()
         const rink_key   = item . rink   . key ()
 
@@ -602,7 +600,7 @@ window . addEventListener ("load", function () {
     const gender   = params . get ('gender')
     const distance = params . get ('distance')
 
-    const page_event = new Event (+gender, +distance)
+    const page_event = new Event (+gender, +distance, {record: 1})
 
     const title = page_event . full_name ()
 

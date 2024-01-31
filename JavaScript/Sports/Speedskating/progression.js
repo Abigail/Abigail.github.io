@@ -130,34 +130,37 @@ function progression (filters) {
     return result
 }
 
-const m500    = new Event (Event . MEN,   Event . M500)
-const m1000   = new Event (Event . MEN,   Event . M1000)
-const m1500   = new Event (Event . MEN,   Event . M1500)
-const m3000   = new Event (Event . MEN,   Event . M3000)
-const m5000   = new Event (Event . MEN,   Event . M5000)
-const m10000  = new Event (Event . MEN,   Event . M10000)
-const mBIG    = new Event (Event . MEN,   Event . BIG)
-const mSMALL  = new Event (Event . MEN,   Event . SMALL)
-const mSPRINT = new Event (Event . MEN,   Event . SPRINT)
-const mD500   = new Event (Event . MEN,   Event . D500)
-const mTP     = new Event (Event . MEN,   Event . TEAM_PURSUIT)
-const mTS     = new Event (Event . MEN,   Event . TEAM_SPRINT)
+//
+// Events we use in the progression
+//
+const m500    = new Event (Event . MEN,   Event . M500,         {record: 1})
+const m1000   = new Event (Event . MEN,   Event . M1000,        {record: 1})
+const m1500   = new Event (Event . MEN,   Event . M1500,        {record: 1})
+const m3000   = new Event (Event . MEN,   Event . M3000,        {record: 1})
+const m5000   = new Event (Event . MEN,   Event . M5000,        {record: 1})
+const m10000  = new Event (Event . MEN,   Event . M10000,       {record: 1})
+const mBIG    = new Event (Event . MEN,   Event . BIG,          {record: 1})
+const mSMALL  = new Event (Event . MEN,   Event . SMALL,        {record: 1})
+const mSPRINT = new Event (Event . MEN,   Event . SPRINT,       {record: 1})
+const mD500   = new Event (Event . MEN,   Event . D500,         {record: 1})
+const mTP     = new Event (Event . MEN,   Event . TEAM_PURSUIT, {record: 1})
+const mTS     = new Event (Event . MEN,   Event . TEAM_SPRINT,  {record: 1})
 
-const w500    = new Event (Event . WOMEN, Event . M500)
-const w1000   = new Event (Event . WOMEN, Event . M1000)
-const w1500   = new Event (Event . WOMEN, Event . M1500)
-const w3000   = new Event (Event . WOMEN, Event . M3000)
-const w5000   = new Event (Event . WOMEN, Event . M5000)
-const w10000  = new Event (Event . WOMEN, Event . M10000)
-const wSMALL  = new Event (Event . WOMEN, Event . SMALL)
-const wO_SML  = new Event (Event . WOMEN, Event . OLD_SMALL)
-const wMINI   = new Event (Event . WOMEN, Event . MINI)
-const wSPRINT = new Event (Event . WOMEN, Event . SPRINT)
-const wD500   = new Event (Event . WOMEN, Event . D500)
-const wTP     = new Event (Event . WOMEN, Event . TEAM_PURSUIT)
-const wTS     = new Event (Event . WOMEN, Event . TEAM_SPRINT)
+const w500    = new Event (Event . WOMEN, Event . M500,         {record: 1})
+const w1000   = new Event (Event . WOMEN, Event . M1000,        {record: 1})
+const w1500   = new Event (Event . WOMEN, Event . M1500,        {record: 1})
+const w3000   = new Event (Event . WOMEN, Event . M3000,        {record: 1})
+const w5000   = new Event (Event . WOMEN, Event . M5000,        {record: 1})
+const w10000  = new Event (Event . WOMEN, Event . M10000,       {record: 1})
+const wSMALL  = new Event (Event . WOMEN, Event . SMALL,        {record: 1})
+const wO_SML  = new Event (Event . WOMEN, Event . OLD_SMALL,    {record: 1})
+const wMINI   = new Event (Event . WOMEN, Event . MINI,         {record: 1})
+const wSPRINT = new Event (Event . WOMEN, Event . SPRINT,       {record: 1})
+const wD500   = new Event (Event . WOMEN, Event . D500,         {record: 1})
+const wTP     = new Event (Event . WOMEN, Event . TEAM_PURSUIT, {record: 1})
+const wTS     = new Event (Event . WOMEN, Event . TEAM_SPRINT,  {record: 1})
 
-const RELAY   = new Event (Event . MIXED, Event . RELAY)
+const RELAY   = new Event (Event . MIXED, Event . RELAY,        {record: 1})
 
 
 function init_progression () {

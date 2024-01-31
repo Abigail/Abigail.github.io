@@ -103,17 +103,18 @@ class Event {
             }
             else if (key == "record") {
                 out = out . filter (item =>
-                            filters [key] ?  item . has_record ()
-                                          : !item . has_record ()
+                            filters [key] ?  item . record ()
+                                          : !item . record ()
                 )
             }
         })
         return out
     }
 
-    constructor (gender, event) {
+    constructor (gender, event, args = {}) {
         this . __gender = gender
         this . __event  = event
+        this . __record = args . record || 0
     }
 
     static name (type) {
@@ -191,15 +192,14 @@ class Event {
     //
     // Return true if this is an event which has a record
     //
-    has_record () {
-        return this . is_distance    () ||
-               this . is_combination () ||
-               this . is_team        ()
+    record () {
+        return this . __record
     }
 
     equal (other_event) {
-        return this . __gender == other_event . gender () &&
-               this . __event  == other_event . type   ()
+        return this . gender () == other_event . gender () &&
+               this . type   () == other_event . type   () &&
+               this . record () == other_event . record ()
     }
 
     //
@@ -290,40 +290,50 @@ class Event {
     //
     static init () {
         //
+        // Events with records
+        //
+
+        //
         // Individual distances
         //
         [Event . M500,  Event .  M1000,
          Event . M1500, Event .  M3000,
          Event . M5000, Event . M10000] . forEach ((distance) => {
             Event . all_events . push (
-                new Event (Event . MEN,   distance),
-                new Event (Event . WOMEN, distance)
+                new Event (Event . MEN,   distance, {record: 1}),
+                new Event (Event . WOMEN, distance, {record: 1})
             )
         })
 
         //
         // Combinations
         //
-        Event . all_events . push (new Event (Event .   MEN, Event . BIG))
-        Event . all_events . push (new Event (Event .   MEN, Event . SMALL))
-        Event . all_events . push (new Event (Event . WOMEN, Event . SMALL))
-        Event . all_events . push (new Event (Event . WOMEN, Event . OLD_SMALL))
-        Event . all_events . push (new Event (Event . WOMEN, Event . MINI))
-        Event . all_events . push (new Event (Event .   MEN, Event . SPRINT))
-        Event . all_events . push (new Event (Event . WOMEN, Event . SPRINT))
-        Event . all_events . push (new Event (Event .   MEN, Event . D500))
-        Event . all_events . push (new Event (Event . WOMEN, Event . D500));
+        ;[Event . BIG, Event . SMALL, Event . SPRINT, Event . D500] .
+            forEach ((type) => {
+                Event . all_events . push (
+                    new Event (Event . MEN,   type, {record: 1}),
+                )
+            })
+
+        ;[Event . SMALL,  Event . OLD_SMALL, Event . MINI,
+         Event . SPRINT, Event . D500] .
+            forEach ((type) => {
+                Event . all_events . push (
+                    new Event (Event . WOMEN, type, {record: 1}),
+                )
+            })
 
         //
         // Team events
         //
-        [Event . TEAM_PURSUIT, Event . TEAM_SPRINT] . forEach ((type) => {
+        ;[Event . TEAM_PURSUIT, Event . TEAM_SPRINT] . forEach ((type) => {
             Event . all_events . push (
-                new Event (Event . MEN,   type),
-                new Event (Event . WOMEN, type)
+                new Event (Event . MEN,   type, {record: 1}),
+                new Event (Event . WOMEN, type, {record: 1})
             )
         })
-        Event . all_events . push (new Event (Event . MIXED, Event . RELAY))
+        Event . all_events . push (new Event (Event . MIXED, Event . RELAY,
+                                             {record: 1}))
     }
 }
 
