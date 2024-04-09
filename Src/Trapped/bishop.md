@@ -16,7 +16,7 @@ Due to its diagonal movement, the %%PIECE%% is %%COLOUR_BOUND%%.
 &           %%PROMOTED%% [*Alfil*](alfil.html) \\
   {th = 1}  %%TYPHOON%%
 &           %%PROMOTED%% [*Guard*](guard.html) \\
-  {th = 1}  %%CHESS%%; %%CAGLIOSTRO%%; %%FALCON_HUNTER%%;
+  {th = 1}  %%CHESS%%; %%CAGLIOSTRO%%; %%FALCON_HUNTER%%; %%RENN_CHESS%%;
             %%WILDEBEEST%%; %%WOLF%%; Other Chess variants
 & {rs = 2}  **Bishop**  & {rs = 2} &#x2657;
 &           \\

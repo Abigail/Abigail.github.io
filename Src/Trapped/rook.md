@@ -31,7 +31,7 @@ occupied square.
 &           %%PROMOTED%% [*Yari Rook*](yari_rook.html) \\
   {th = 1}  %%SCIROCCO%%; %%TYPHOON%%
 &           %%PROMOTED%% [*Knight*](knight.html) \\
-  {th = 1}  %%CHESS%%; %%CAGLIOSTRO%%; %%FALCON_HUNTER%%;
+  {th = 1}  %%CHESS%%; %%CAGLIOSTRO%%; %%FALCON_HUNTER%%; %%RENN_CHESS%%;
             %%WILDEBEEST%%; %%WOLF%%; Other Chess variants
 & {rs = 2}  **Rook** & {rs = 2} &#x2656;
 &           \\

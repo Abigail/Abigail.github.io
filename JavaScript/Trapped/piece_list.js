@@ -1036,6 +1036,12 @@ let pieces = {
         parent: "archbishop",
     },
 
+    fox_renn: {
+        parent: "wazir",
+        _name: "Fox",
+        _index_name: "Fox (Wazir)",
+    },
+
     free_boar: {
         betza:    "BsR",
         results: {
@@ -1243,10 +1249,10 @@ let pieces = {
         _index_name: "Guard (Wazir)",
     },
 
-    guard_janggi: {
+    guard_king: {
         parent: "king",
         _name: "Guard",
-        _index_name: "Guard (Janggi)",
+        _index_name: "Guard (Non-Royal King)",
     },
 
     guardian: {
@@ -1320,7 +1326,14 @@ let pieces = {
     },
 
     horse: {
+        _index_name: "Horse (Mao)",
         parent: "mao",
+    },
+
+    horse_renn: {
+        _index_name: "Horse (Knight)",
+        _name: "Horse",
+        parent: "knight",
     },
 
     hummingbird: {
@@ -2020,6 +2033,18 @@ let pieces = {
         parent: "knight",
     },
 
+    squire_wfda: {
+        betza: "WFDA",
+        _name: "Squire",
+        _index_name: "Squire (WFDA)",
+        results: {
+            spiral_square:  "W",
+            spiral_diamond: "BM",
+            wedge_folded:   "FC",
+            wedge_flat:     "F/100%",
+        },
+    },
+
     squirrel: {
         betza:    "DNA",
         results: {
@@ -2539,6 +2564,15 @@ let set_info = {
                  "queen_jump", "squire", "viscount" ],
     },
 
+    renniassance_chess: {
+        href:    "https://www.chessvariants.com/large.dir/renaiss.html",
+        pieces: ["king", "queen", "rook", "bishop", "horse_renn",
+                 "fox_renn", "guard_king", "page", "squire_wfda",
+                 "!!prince", "!!nobleman", "!!archbishop",
+                 "!!cavelier_renn", "!!duke", "!!castle",
+                 "!!general", "pawn"],
+    },
+
     rococo: {
         href: "https://www.chessvariants.com/other.dir/rococo.html",
         pieces: ["king", "advancer", "chameleon_rococo", "immobilizer",
@@ -2686,7 +2720,7 @@ let set_info = {
 
     janggi: {
         href:  "https://en.wikipedia.org/wiki/Janggi",
-        pieces: ["general_janggi", "guard_janggi", "horse",
+        pieces: ["general_janggi", "guard_king", "horse",
                  "elephant_janggi", "chariot_xiangqi",
                  "!!Cannon", "soldier_janggi"],
     },

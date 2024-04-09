@@ -52,6 +52,8 @@ our %MACROS = (
                            '(#chess-v:rules/overkill-ecumenical-chess)',
         QUANTUM        =>  '[Quantum Chess](https://web.archive.org/web/' .
                            '20090602051546/http://www.quantumchess.com/)',
+        RENN_CHESS     =>  '[Renniassance Chess]' .
+                               '(#chess-v:large.dir/renaiss.html)',
         ROCOCO         =>  '[Rococo](#chess-v:other.dir/rococo.html)',
         SCIROCCO       =>  '[Scirocco](#chess-v:rules/scirocco)',
         SENTEREJ       =>  "[Senterej](#wiki) [[$CHESS_V_TOKEN](#chess-v:" .

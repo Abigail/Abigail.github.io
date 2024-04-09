@@ -38,7 +38,7 @@ It's common in many Chess variant, using different names:
   {th = 1}  %%SCIROCCO%%; %%TYPHOON%%
 & {cs = 2}  **Queen**
 &           %%PROMOTED%% [*Stork*](alfil.html?piece=stork) \\
-  {th = 1}  %%CHESS%%; %%CAGLIOSTRO%%; %%FALCON_HUNTER%%;
+  {th = 1}  %%CHESS%%; %%CAGLIOSTRO%%; %%FALCON_HUNTER%%; %%RENN_CHESS%%;
             %%WOLF%%; Other chess variants
 & {rs = 3}  **Queen** & {rs = 3} &#x2655;
 &           \\

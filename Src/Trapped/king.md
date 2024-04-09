@@ -43,6 +43,10 @@ Of course, for our investigation, Royalness plays no part.
             and the **General** does not have all its moves available 
             on every square of the palace; Also known as *Assistant* or
             *Mandarin* \\
+  {th = 1}  %%RENN_CHESS%%
+& {cs = 2}  **Guard**
+&           \\
+
   {th = 1}  %%SCIROCCO%%
 & {rs = 2; cs = 2}
             **King**
@@ -52,7 +56,7 @@ Of course, for our investigation, Royalness plays no part.
 &           %%ROYAL%%;
             %%PROMOTES_TO%% [*Emperor*](emperor_typhoon.html) or
                             [*Emperor of Emperors*](emperor_of_emperors.html) \\
-  {th = 1}  %%CHESS%%; %%CAGLIOSTRO%%; %%FALCON_HUNTER%%;
+  {th = 1}  %%CHESS%%; %%CAGLIOSTRO%%; %%FALCON_HUNTER%%; %%RENN_CHESS%%;
             %%ROCOCO%%; %%WILDEBEEST%%; %%WOLF%%; Other chess variants
 & {rs = 2}  **King** & {rs = 2} &#x2654;
 &           %%ROYAL%% \\

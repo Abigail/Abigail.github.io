@@ -13,6 +13,9 @@ be blocked.
   {th = 1}  %%SENTEREJ%%
 & {cs = 2}  **Ferese**
 &           *Ferese* meaning *Horse* \\
+  {th = 1}  %%RENN_CHESS%%
+& {cs = 2}  **Horse**
+&           \\
   {th = 1}  %%SCIROCCO%%; %%TYPHOON%%
 & {cs = 2; rs = 2}
             **Knight**

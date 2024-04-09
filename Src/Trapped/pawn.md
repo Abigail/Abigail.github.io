@@ -43,7 +43,7 @@ captures differently than it moves.
 {th = 1} Promotes to &
 {th = 1} MS &
 {th = 1} Cap. \\
-{rs = 4} **Pawn** & {rs = 4} &#x2659;
+{rs = 5} **Pawn** & {rs = 5} &#x2659;
              &  %%CHESS%%; many Chess variants
              &  Player's choice
              &  %%YES%% 
@@ -51,6 +51,12 @@ captures differently than it moves.
 
                 %%GANYMEDE%%
              &  [*Frog*](frog_wfh.html)
+             &  %%YES%% 
+             &  %%YES%%                                                      \\
+
+                %%RENN_CHESS%%
+             &  Player's choice of captured pieces; Optional to
+                Fox on the penultimate rank                                  
              &  %%YES%% 
              &  %%YES%%                                                      \\
 

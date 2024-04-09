@@ -8,6 +8,9 @@ the %%PIECE%%.
 
 |====
 %%PIECE_HEADERS%%
+  {th = 1}  %%RENN_CHESS%%
+& {cs = 2}  **Fox**
+&           \\
   {th = 1}  %%XIANGQI%%
 &           **General**  & &#x5C07;/&#x5E25;
 &           %%ROYAL%%; This piece is normally limited to a 3 x 3 box,

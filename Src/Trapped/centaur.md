@@ -33,7 +33,7 @@ two away in one orthogonal direction and one in the other.
   {th = 1}  [Cavalier Chess](#chess-v:dpieces.dir/cavalier/index.html)
 & {cs = 2}  **Knight King**
 &           %%ROYAL%% \\
-  {th = 1}  [Renniassance Chess](#chess-v:large.dir/renaiss.html)
+  {th = 1}  %%RENN_CHESS%%
 & {cs = 2}  **Page**
 &           \\
   {th = 1}  [Kung Fu Chess](#chess-v:large.dir/kungfuchess.html)
