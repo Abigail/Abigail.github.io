@@ -34,7 +34,7 @@ moves, the %%PIECE%% gets trapped after 50,279 steps.
 #### Folded
 
 On the Folded Wedge, it takes quite some time for the %%PIECE%% to
-get trapped, bu after 8,619,774 steps, it does get trapped.
+get trapped, but after 8,619,774 steps, it does get trapped.
 
 #### Flat
 
