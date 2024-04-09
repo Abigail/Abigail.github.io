@@ -560,10 +560,10 @@ let pieces = {
     counsellor: {
         betza: "RBt[WF]t[FW]",
         results: {
-            spiral_square:   "",
-            spiral_diamond:  "",
-            wedge_folded:    "",
-            wedge_flat:      "",
+            spiral_square:   "W",
+            spiral_diamond:  "BM",
+            wedge_folded:    "FC",
+            wedge_flat:      "F/100%",
         },
     },
 
