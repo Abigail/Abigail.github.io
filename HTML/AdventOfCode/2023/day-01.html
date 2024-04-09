@@ -1,0 +1,160 @@
+<html>
+<head>
+<title>Advent Of Code 2023, Day 1: Trebuchet?!</title>
+<meta charset = "utf-8">
+<link rel  = 'preconnect' href = 'https://fonts.gstatic.com'>
+<link rel = 'stylesheet' href =      'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
+<link rel = 'stylesheet' href = '../../../Styles/main.css'>
+<link rel = 'stylesheet' href = '../../../Styles/AdventOfCode/main.css'>
+<script src = "../../../JavaScript/jquery.js"></script>
+<script id  = 'MathJax-script' async src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.js'></script>
+<script src = '../../../JavaScript/AdventOfCode/main-header.js'></script>
+<script src = '../../../JavaScript/navigation.js'></script>
+<script src = '../../../JavaScript/AdventOfCode/2023/pages.js'></script>
+</head>
+
+<body><h1>Advent Of Code 2023, Day 1: Trebuchet?!</h1><div class = "byline">
+by Abigail<br>
+<img src = "../../../Images/jan_sluiters.jpg">
+</div>
+
+
+<h2><a href="https://adventofcode.com/2023/day/1">Challenge</a></h2>
+
+<div class = "section">
+<p>We are given a file, containing <em>calibration values</em>; one on each 
+line of the input. We're tasked to find the sum of all the calibration
+values.</p>
+</div>
+
+<h4 id = 'part_1'>Part 1</h4>
+
+<div class = "section">
+<p>For part 1, the calibration value can be found by combining
+the first and last digit on each line. For this example input:</p>
+
+<pre><code>1abc2
+pqr3stu8vwx
+a1b2c3d4e5f
+treb7uchet
+</code></pre>
+
+<p>we can extract the calibration values <code>12</code>, <code>38</code>, <code>15</code>, and <code>77</code>, 
+for a total of <span class = 'answer'>142</span>.</p>
+</div>
+
+<h4 id = 'part_2'>Part 2</h4>
+
+<div class = "section">
+<p>In the second part, we need to take a closer look. It turns out, some
+digits are written as words: <code>one</code>, <code>two</code>, <code>three</code>, <code>four</code>, <code>five</code>, <code>six</code>,
+<code>seven</code>, <code>eight</code>, and <code>nine</code> should be considered digits.</p>
+
+<p>Given this example:</p>
+
+<pre><code>two1nine
+eightwothree
+abcone2threexyz
+xtwone3four
+4nineeightseven2
+zoneight234
+7pqrstsixteen
+</code></pre>
+
+<p>we get the calibration values: <code>29</code>, <code>83</code>, <code>13</code>, <code>24</code>, <code>42</code>, <code>14</code>, and <code>76</code>,
+which sums up to <span class = 'answer'>281</span>.</p>
+</div>
+
+<h2 id = 'solution'>Solution</h2>
+
+<p>There are three things to consider when extracting the first and last digit.</p>
+
+<ul>
+<li>A line may contain just a single digit, like the last line of the first
+example. In this case, the digit counts both as the first and last digit
+of the line.</li>
+<li>Spelled out digits can overlap. For instance <code>twone</code> should be considered
+a <code>2</code> if it's the first digit on a line, but a <code>1</code> if it is the last digit.
+A trivial replacement of each spelled out digit with its numerical
+representation can go wrong: if you just replace <code>two</code> with <code>2</code>, you
+are left with <code>2ne</code>, and you'll miss the <code>one</code>.</li>
+<li>Zero is not defined as a possible spelled out digits. In my input,
+<code>zero</code> does not occur, but it's cleaner if the solution doesn't
+consider a spelled out <code>zero</code>.</li>
+</ul>
+
+<p>We will use simple regexes to find the first and last digits on each line,
+using a leading <code>/.*/</code> to force a match as late as possible.</p>
+
+<p>First, we start off with some initialization:</p>
+
+<pre><code>my $solution_1 = 0;
+my $solution_2 = 0;
+
+my @words      = qw [one two three four five six seven eight nine];
+my %value      = do {my $i = 0; map {$_ =&gt; ++ $i} @words};
+   $value {$_} = $_ for 0 .. 9;
+</code></pre>
+
+<p>We set two counters to <code>0</code>, and create an array with the spelled out
+digits. We then use a <a href="https://perldoc.perl.org/perlfunc#map"><code>map</code></a> and a counter (<code>$i</code>) to create a hash
+(<code>%value</code>) which maps the spelled out digit to its numeric value.</p>
+
+<p>We can then iterate over the input, and extract the digits:</p>
+
+<pre><code>while (&lt;&gt;) {
+    local $" = "|";
+    my ($first_digit) = /   ([0-9])         /x;
+    my ($last_digit)  = /.* ([0-9])         /x;
+    my ($first_word)  = /   ([0-9] | @words)/x;
+    my ($last_word)   = /.* ([0-9] | @words)/x;
+</code></pre>
+
+<p><code>/([0-9])/</code> finds the first digit of the line, and places it in <code>$first_digit</code>.
+<code>/.*([0-9])/</code> finds the last digit, due to the <code>/.*/</code> which first tries to
+match as much characters as possible, before trying to match the rest.
+(Note the use of the <code>/x</code> modifiers, which ignore the whitespace in the
+regular expression).</p>
+
+<p>To find the match for part two, we use <code>/([0-9] | @words)/</code>. This interpolates
+the array <code>@words</code>, with its elements separated by the contain of the
+variable <a href="https://perldoc.perl.org/perlvar#$LIST_SEPARATOR"><code>$"</code></a>. This is by default a space, but we
+set it to <code>|</code>. In effect, it turns the regular expression into:</p>
+
+<pre><code>/([0-9] | one | two | three | four | five | six | seven | eight | nine)/x
+</code></pre>
+
+<p>so this will find the first digit in a line, whether it is used numerically
+or spelled out. And we find the last one by prepending the pattern with
+a <code>/.*/</code>, just like we did for part one.</p>
+
+<p>We can then sum towards the solutions:</p>
+
+<pre><code>    $solution_1      += 10 *         $first_digit +         $last_digit;
+    $solution_2      += 10 * $value {$first_word} + $value {$last_word};
+}
+</code></pre>
+
+<p>we take 10 times the value of the first digit, and just the second digit.
+For the second part, where we consider spelled out digits, we use the
+hash <code>%value</code> to map any found digit to its numeric value.</p>
+
+<p>All that is left to do is to print out the solution:</p>
+
+<pre><code>say "Solution 1: $solution_1";
+say "Solution 2: $solution_2";
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/AdventofCode2023/blob/master/Day_01/solution.pl">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+
+<hr id = 'last-line'>
+<div class = 'trailer'>
+<p class = 'prev'><a class = "prev" href = "">&#x261C;</a></p>
+<p class = 'issue'>Please leave any comments as a
+  <a href = 'https://github.com/Abigail/Abigail.github.io/issues'
+     title = 'GitHub issue'>GitHub issue</a>.
+<p class = 'next'><a class = "next" href = "">&#x261E;</a></p>
+</div>
+
+</body>
+</html>

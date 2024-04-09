@@ -1,0 +1,142 @@
+<html>
+<head>
+<title>Advent Of Code 2022, Day 1: Calorie Counting</title>
+<meta charset = "utf-8">
+<link rel  = 'preconnect' href = 'https://fonts.gstatic.com'>
+<link rel = 'stylesheet' href =      'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
+<link rel = 'stylesheet' href = '../../../Styles/main.css'>
+<link rel = 'stylesheet' href = '../../../Styles/AdventOfCode/main.css'>
+<link rel = 'stylesheet' href = '../../../Styles/AdventOfCode/2022/main.css'>
+<script src = "../../../JavaScript/jquery.js"></script>
+<script id  = 'MathJax-script' async src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.js'></script>
+<script src = '../../../JavaScript/AdventOfCode/main-header.js'></script>
+<script src = '../../../JavaScript/navigation.js'></script>
+<script src = '../../../JavaScript/AdventOfCode/2022/pages.js'></script>
+</head>
+
+<body><h1>Advent Of Code 2022, Day 1: Calorie Counting</h1><div class = "byline">
+by Abigail<br>
+<img src = "../../../Images/jan_sluiters.jpg">
+</div>
+
+
+<h2><a href="https://adventofcode.com/2022/day/1">Challenge</a></h2>
+
+<div class = "section">
+<p>We are given a file, containing calories (of snacks) each Elf is
+carrying. Calories from different elves are separated by a blank line.</p>
+
+<p>An example file is:</p>
+
+<pre><code>1000
+2000
+3000
+
+4000
+
+5000
+6000
+
+7000
+8000
+9000
+
+10000
+</code></pre>
+
+<p>This would be the list of calories carried by five different elves.</p>
+
+<ul>
+<li>The first elf carries three snacks, worth <code>1000</code>, <code>2000</code> and <code>3000</code>
+calories, for a total of <code>6000</code> calories.</li>
+<li>The second elf carries a single snack, worth <code>4000</code> calories.</li>
+<li>The third elf carries two snacks, with <code>5000</code> and <code>6000</code> calories.
+This totals <code>11000</code> calories.</li>
+<li>The fourth elf carries three snacks, with <code>7000</code>, <code>8000</code>, and <code>9000</code>
+calories, which sum to a total of <code>24000</code> calories.</li>
+<li>The fifth and final elf carries one snack, worth <code>10000</code> calories.</li>
+</ul>
+</div>
+
+<h4 id = 'part_1'>Part 1</h4>
+
+<div class = "section">
+<p>For part 1, we have to find the elf carrying the most calories, 
+and report the amount of calories it is carrying.</p>
+
+<p>For the example above, this would be the fourth elf, which carries
+<span class = "answer">24000</span> calories.</p>
+</div>
+
+<h4 id = 'part_2'>Part 2</h4>
+
+<div class = "section">
+<p>In part 2, we need to find the top three elves (in amount of calories
+carried) and sum their totals. For the example file, this would
+be the fourth, third and fifth elf, carrying <code>24000</code>, <code>11000</code>
+and <code>10000</code> calories, for a total of <span class = 'answer'>45000</span>
+calories.</p>
+</div>
+
+<h2 id = 'solution'>Solution</h2>
+
+<p>Given this is the first day, the challenge is simple. The heart of
+our solution is a one liner, once we tell Perl to go into 
+<a href="https://perldoc.perl.org/perlvar#$/"><em>paragraph</em></a> mode, which we do with </p>
+
+<pre><code>$/ = "";
+</code></pre>
+
+<p>This makes that if we read in input in list context, Perl won't split
+the input into lines, but into paragraphs: sections separated by two
+or more newlines.</p>
+
+<p>The one-liner doing the work:</p>
+
+<pre><code>my @calories = sort {$b &lt;=&gt; $a} map {sum split} &lt;&gt;;
+</code></pre>
+
+<p>To understand this, it's best to work from left to right:</p>
+
+<ul>
+<li><code>&lt;&gt;</code>: this reads the input, returning the input as a list of paragraphs.
+    Each paragraphs contains the calories carred by a single elf.</li>
+<li><code>map {sum split}</code>: this is called for each paragraph; inside the block,
+    the paragraph is in <code>$_</code>. First, we call <a href="https://perldoc.perl.org/perlfunc#split"><code>split</code></a>: it's called
+    without arguments, which means it splits the content of <code>$_</code> on
+    whitespace. <code>$_</code> contains the calories carried by an elf, separated
+    by newlines (which is whitespace). So, out of <code>split</code> comes a list
+    all the calories carried by a single elf. This list is then the
+    input of <code>sum</code> which we have imported from <a href="https://metacpan.org/pod/List::Util"><code>List::Util</code></a>.
+    <code>sum</code> just sums its list of arguments. So, the output of the
+    <code>map</code> is a list of the sums of the calories of each elf.</li>
+<li><code>sort {$b &lt;=&gt; $a}</code>: this <a href="https://perldoc.perl.org/perlfunc#sort">sorts</a> the list numerically,
+     and in descending order. The <em>spaceship</em> operator,
+     <a href="https://perldoc.perl.org/perlop#Equality-Operators"><code>&lt;=&gt;</code></a>
+     makes the sort work numerically, having <code>$b</code> on the left hand
+     side of the operator (and <code>$a</code> on the right hand side) makes
+     it sort descending.</li>
+</ul>
+
+<p>So, we end up with <code>@calories</code> containing a list of total calories each
+elf is carrying, sorted from most to least. So, the answer of part 1
+is just the first element of <code>@calories</code> and the answer of part 2
+is the sum of the first three elements of <code>@calories</code>.</p>
+
+<pre><code>say "Solution 1: ",     $calories [0];
+say "Solution 2: ", sum @calories [0 .. 2];
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/AdventofCode2022/blob/master/Day_01/solution.pl">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+
+<hr id = 'last-line'>
+<div class = 'trailer'>
+<p class = 'prev'><a class = "prev" href = "">&#x261C;</a></p>
+<p class = 'issue'>Please leave any comments as a
+  <a href = 'https://github.com/Abigail/Abigail.github.io/issues'
+     title = 'GitHub issue'>GitHub issue</a>.
+<p class = 'next'><a class = "next" href = "">&#x261E;</a></p>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,327 @@
+<html>
+<head>
+<title>Advent Of Code 2022, Day 2: Rock Paper Scissors</title>
+<meta charset = "utf-8">
+<link rel  = 'preconnect' href = 'https://fonts.gstatic.com'>
+<link rel = 'stylesheet' href =      'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
+<link rel = 'stylesheet' href = '../../../Styles/main.css'>
+<link rel = 'stylesheet' href = '../../../Styles/AdventOfCode/main.css'>
+<link rel = 'stylesheet' href = '../../../Styles/AdventOfCode/2022/main.css'>
+<link rel = 'stylesheet' href = '../../../Styles/AdventOfCode/2022/day-02.css'>
+<script src = "../../../JavaScript/jquery.js"></script>
+<script id  = 'MathJax-script' async src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.js'></script>
+<script src = '../../../JavaScript/AdventOfCode/main-header.js'></script>
+<script src = '../../../JavaScript/navigation.js'></script>
+<script src = '../../../JavaScript/AdventOfCode/2022/pages.js'></script>
+</head>
+
+<body><h1>Advent Of Code 2022, Day 2: Rock Paper Scissors</h1><div class = "byline">
+by Abigail<br>
+<img src = "../../../Images/jan_sluiters.jpg">
+</div>
+
+
+<h2><a href="https://adventofcode.com/2022/day/2">Challenge</a></h2>
+
+<div class = "section">
+<p>Today, we are going to play <a href="https://en.wikipedia.org/wiki/Rock,_Paper,_Scissors">Rock, Paper, Scissors</a>. In this
+two player game, both players pick one of Rock, Paper or Scissors
+simultaneously. If both players pick the same shape, the game is a
+draw. Else, a player who picks a Rock wins if the other player picks
+Scissors, but loses if the other player picks Paper. A player who picks
+Paper wins if the other player picks Rock, but loses if the other player
+picks Scissors. And if the player picks Scissors, that player wins if
+the other player picks Paper, but loses if the other player picks Rock.</p>
+
+<p>In table form, this looks like:</p>
+
+<table>
+  <tr class = 'row-0' markdown = '1'>
+    <th class = 'cell-0-0 col-0 ' markdown = '1'>Player A</td>
+    <th class = 'cell-0-1 col-1 ' markdown = '1'>Player B</td>
+    <th class = 'cell-0-2 col-2 ' markdown = '1'>Outcome</td>
+  </tr>
+  <tr class = 'row-1' markdown = '1'>
+    <td class = 'cell-1-0 col-0 ' markdown = '1'>Rock</td>
+    <td class = 'cell-1-1 col-1 ' markdown = '1'>Rock</td>
+    <td class = 'cell-1-2 col-2 ' markdown = '1'>Draw</td>
+  </tr>
+  <tr class = 'row-2' markdown = '1'>
+    <td class = 'cell-2-0 col-0 ' markdown = '1'>Rock</td>
+    <td class = 'cell-2-1 col-1 ' markdown = '1'>Paper</td>
+    <td class = 'cell-2-2 col-2 ' markdown = '1'>Player B wins</td>
+  </tr>
+  <tr class = 'row-3' markdown = '1'>
+    <td class = 'cell-3-0 col-0 ' markdown = '1'>Rock</td>
+    <td class = 'cell-3-1 col-1 ' markdown = '1'>Scissors</td>
+    <td class = 'cell-3-2 col-2 ' markdown = '1'>Player A wins</td>
+  </tr>
+  <tr class = 'row-4' markdown = '1'>
+    <td class = 'cell-4-0 col-0 ' markdown = '1'>Paper</td>
+    <td class = 'cell-4-1 col-1 ' markdown = '1'>Rock</td>
+    <td class = 'cell-4-2 col-2 ' markdown = '1'>Player A wins</td>
+  </tr>
+  <tr class = 'row-5' markdown = '1'>
+    <td class = 'cell-5-0 col-0 ' markdown = '1'>Paper</td>
+    <td class = 'cell-5-1 col-1 ' markdown = '1'>Paper</td>
+    <td class = 'cell-5-2 col-2 ' markdown = '1'>Draw</td>
+  </tr>
+  <tr class = 'row-6' markdown = '1'>
+    <td class = 'cell-6-0 col-0 ' markdown = '1'>Paper</td>
+    <td class = 'cell-6-1 col-1 ' markdown = '1'>Scissors</td>
+    <td class = 'cell-6-2 col-2 ' markdown = '1'>Player B wins</td>
+  </tr>
+  <tr class = 'row-7' markdown = '1'>
+    <td class = 'cell-7-0 col-0 ' markdown = '1'>Scissors</td>
+    <td class = 'cell-7-1 col-1 ' markdown = '1'>Rock</td>
+    <td class = 'cell-7-2 col-2 ' markdown = '1'>Player B wins</td>
+  </tr>
+  <tr class = 'row-8' markdown = '1'>
+    <td class = 'cell-8-0 col-0 ' markdown = '1'>Scissors</td>
+    <td class = 'cell-8-1 col-1 ' markdown = '1'>Paper</td>
+    <td class = 'cell-8-2 col-2 ' markdown = '1'>Player A wins</td>
+  </tr>
+  <tr class = 'row-9' markdown = '1'>
+    <td class = 'cell-9-0 col-0 ' markdown = '1'>Scissors</td>
+    <td class = 'cell-9-1 col-1 ' markdown = '1'>Scissors</td>
+    <td class = 'cell-9-2 col-2 ' markdown = '1'>Draw</td>
+  </tr>
+</table>
+
+<p>Each game has a score, consisting of the sum of two parts:</p>
+
+<ul>
+<li>Points for the outcome of the game. A win gives 6 points. A draw 
+gives 3 points, while no points are scored for a draw.</li>
+<li>Points given depending on the shape picked: 1 point if you picked
+Rock, 2 points if you picked Paper, and 3 points if you picked
+Scissors.</li>
+</ul>
+
+<p>So, the minimum score you can get is 1, if you picked Rock, and your
+opponent picked Paper (0 points for the outcome (lost), 1 for the shape).
+The maximum score you can get is 9, if you picked Scissors and your
+opponent picked Paper (6 points for the outcome (win), 3 for the shape).</p>
+
+<p>Our input consists of a file which looks like:</p>
+
+<pre><code>A Y
+B X
+C Z
+</code></pre>
+
+<p>That is, each line consists of two characters separated by a space.
+The first character is one of <code>A</code>, <code>B</code>, and <code>C</code>. The last character
+is one of <code>X</code>, <code>Y</code> and <code>Z</code>. So the file has at most 9 different
+lines.</p>
+
+<p>Each line is an encoded round of a game of Rock Paper Scissors, where the first
+column (with <code>A</code>, <code>B</code>, and <code>C</code>) the throw of an Elf, and the second
+column (with <code>X</code>, <code>Y</code>, and <code>Z</code>) our throw.</p>
+</div>
+
+<h4 id = 'part_1'>Part 1</h4>
+
+<div class = "section">
+<p>In Part 1, the encoding is as follows:</p>
+
+<table>
+  <tr class = 'row-0' markdown = '1'>
+    <th class = 'cell-0-0 col-0 ' markdown = '1'>Throw</td>
+    <th class = 'cell-0-1 col-1 ' markdown = '1'>Meaning</td>
+  </tr>
+  <tr class = 'row-1' markdown = '1'>
+    <td class = 'cell-1-0 col-0 ' markdown = '1'>A</td>
+    <td class = 'cell-1-1 col-1 ' markdown = '1'>Elf throws Rock</td>
+  </tr>
+  <tr class = 'row-2' markdown = '1'>
+    <td class = 'cell-2-0 col-0 ' markdown = '1'>B</td>
+    <td class = 'cell-2-1 col-1 ' markdown = '1'>Elf throws Paper</td>
+  </tr>
+  <tr class = 'row-3' markdown = '1'>
+    <td class = 'cell-3-0 col-0 ' markdown = '1'>C</td>
+    <td class = 'cell-3-1 col-1 ' markdown = '1'>Elf throws Scissors</td>
+  </tr>
+  <tr class = 'row-4' markdown = '1'>
+    <td class = 'cell-4-0 col-0 ' markdown = '1'>X</td>
+    <td class = 'cell-4-1 col-1 ' markdown = '1'>You throw Rock</td>
+  </tr>
+  <tr class = 'row-5' markdown = '1'>
+    <td class = 'cell-5-0 col-0 ' markdown = '1'>Y</td>
+    <td class = 'cell-5-1 col-1 ' markdown = '1'>You throw Paper</td>
+  </tr>
+  <tr class = 'row-6' markdown = '1'>
+    <td class = 'cell-6-0 col-0 ' markdown = '1'>Z</td>
+    <td class = 'cell-6-1 col-1 ' markdown = '1'>You throw Scissors</td>
+  </tr>
+</table>
+
+<p>We're asked to calculate the score of all the rounds and sum them.</p>
+
+<p>For the example file, this means the following:</p>
+
+<ol>
+<li>In the first round, the Elf throws Rock, while you throw Paper.
+You win the round, scoring <code>6</code> for the win, <code>2</code> for throwing Paper,
+for a total of <code>8</code>.</li>
+<li>In the second round, the Elf throws Paper, while you throw Rock.
+You lose the game, scoring <code>0</code> for the outcome, and score <code>1</code>
+for throwing Rock. The score for this round is <code>1</code>.</li>
+<li>In the third round, both you and the Elf throw Scissors, making
+this round a draw. The score is <code>3</code> for the draw, and <code>3</code> for
+throwing Scissors, for a total of <code>6</code>.</li>
+</ol>
+
+<p>Summing the score of all the rounds gives <span class = "answer">15</span>
+points in total.</p>
+</div>
+
+<h4 id = 'part_2'>Part 2</h4>
+
+<div class = "section">
+<p>In part 2, the letters <code>X</code>, <code>Y</code>, and <code>Z</code> aren't just a straightforward
+encoding of what we should throw, instead, they encode what the outcome
+of the round should be:</p>
+
+<table>
+  <tr class = 'row-0' markdown = '1'>
+    <th class = 'cell-0-0 col-0 ' markdown = '1'>Throw</td>
+    <th class = 'cell-0-1 col-1 ' markdown = '1'>Meaning</td>
+  </tr>
+  <tr class = 'row-1' markdown = '1'>
+    <td class = 'cell-1-0 col-0 ' markdown = '1'>A</td>
+    <td class = 'cell-1-1 col-1 ' markdown = '1'>Elf throws Rock</td>
+  </tr>
+  <tr class = 'row-2' markdown = '1'>
+    <td class = 'cell-2-0 col-0 ' markdown = '1'>B</td>
+    <td class = 'cell-2-1 col-1 ' markdown = '1'>Elf throws Paper</td>
+  </tr>
+  <tr class = 'row-3' markdown = '1'>
+    <td class = 'cell-3-0 col-0 ' markdown = '1'>C</td>
+    <td class = 'cell-3-1 col-1 ' markdown = '1'>Elf throws Scissors</td>
+  </tr>
+  <tr class = 'row-4' markdown = '1'>
+    <td class = 'cell-4-0 col-0 ' markdown = '1'>X</td>
+    <td class = 'cell-4-1 col-1 ' markdown = '1'>You should lose</td>
+  </tr>
+  <tr class = 'row-5' markdown = '1'>
+    <td class = 'cell-5-0 col-0 ' markdown = '1'>Y</td>
+    <td class = 'cell-5-1 col-1 ' markdown = '1'>The game should be a draw</td>
+  </tr>
+  <tr class = 'row-6' markdown = '1'>
+    <td class = 'cell-6-0 col-0 ' markdown = '1'>Z</td>
+    <td class = 'cell-6-1 col-1 ' markdown = '1'>You should win</td>
+  </tr>
+</table>
+
+<p>For the example file, this means:</p>
+
+<ol>
+<li>In the first round, the Elf throws Rock. You should draw this
+game, so you throw Rock as well. You score <code>3</code> (draw) plus
+<code>1</code> (throwing Rock) for a total of <code>4</code>.</li>
+<li>In the second round, the Elf throws Paper. You should lose, so
+you throw Rock, scoring <code>0</code> (a loss) plus <code>1</code> (throwing Rock),
+for a total of <code>1</code>.</li>
+<li>In the third round, the Elf throws Scissors. You should win this
+round, so you throw Rock. This scores <code>6</code> (for the win) plus
+<code>1</code> (for throwing Rock), which gives a total of <code>7</code>.</li>
+</ol>
+
+<p>The total score of the entire game is <span class = "answer">12</span>.</p>
+</div>
+
+<h2 id = 'solution'>Solution</h2>
+
+<p>We first point out there are only nine possibilities for each round:
+the Elf throws one of Rock, Paper, or Scissors, and so do you. Hence,
+the input consists of at most nine different lines.</p>
+
+<p>So, what we do is precalculate the score of each possible round, and
+put them into a lookup table. We can then take each line of input and
+just look up the score without having to further parse the input, or
+do any calculations.</p>
+
+<p>The lookup tables:</p>
+
+<pre><code>my ($ELF_ROCK, $ELF_PAPER, $ELF_SCISSORS) = qw [A B C];
+my ( $ME_ROCK,  $ME_PAPER,  $ME_SCISSORS) = qw [X Y Z];
+my ( $TO_LOSE,  $TO_DRAW,        $TO_WIN) = qw [X Y Z];
+my ( $SH_ROCK,  $SH_PAPER,  $SH_SCISSORS) = qw [1 2 3];
+my (     $WIN,      $DRAW,         $LOSS) = qw [6 3 0];
+
+
+my %score1 = (
+    "$ELF_ROCK $ME_ROCK"          =&gt; $DRAW + $SH_ROCK,
+    "$ELF_ROCK $ME_PAPER"         =&gt; $WIN  + $SH_PAPER,
+    "$ELF_ROCK $ME_SCISSORS"      =&gt; $LOSS + $SH_SCISSORS,
+    "$ELF_PAPER $ME_ROCK"         =&gt; $LOSS + $SH_ROCK,
+    "$ELF_PAPER $ME_PAPER"        =&gt; $DRAW + $SH_PAPER,
+    "$ELF_PAPER $ME_SCISSORS"     =&gt; $WIN  + $SH_SCISSORS,
+    "$ELF_SCISSORS $ME_ROCK"      =&gt; $WIN  + $SH_ROCK,
+    "$ELF_SCISSORS $ME_PAPER"     =&gt; $LOSS + $SH_PAPER,
+    "$ELF_SCISSORS $ME_SCISSORS"  =&gt; $DRAW + $SH_SCISSORS,
+);
+
+my %score2 = (
+    "$ELF_ROCK $TO_DRAW"          =&gt; $DRAW + $SH_ROCK,
+    "$ELF_ROCK $TO_WIN"           =&gt; $WIN  + $SH_PAPER,
+    "$ELF_ROCK $TO_LOSE"          =&gt; $LOSS + $SH_SCISSORS,
+    "$ELF_PAPER $TO_LOSE"         =&gt; $LOSS + $SH_ROCK,
+    "$ELF_PAPER $TO_DRAW"         =&gt; $DRAW + $SH_PAPER,
+    "$ELF_PAPER $TO_WIN"          =&gt; $WIN  + $SH_SCISSORS,
+    "$ELF_SCISSORS $TO_WIN"       =&gt; $WIN  + $SH_ROCK,
+    "$ELF_SCISSORS $TO_LOSE"      =&gt; $LOSS + $SH_PAPER,
+    "$ELF_SCISSORS $TO_DRAW"      =&gt; $DRAW + $SH_SCISSORS,
+);
+</code></pre>
+
+<p>If we were to dump out <code>%score1</code> using <a href="https://metacpan.org/pod/YAML"><code>YAML</code></a>, we get:</p>
+
+<pre><code>A X: 4
+A Y: 8
+A Z: 3
+B X: 1
+B Y: 5
+B Z: 9
+C X: 7
+C Y: 2
+C Z: 6
+</code></pre>
+
+<p>And the dump of <code>%score2</code>:</p>
+
+<pre><code>A X: 3
+A Y: 4
+A Z: 8
+B X: 1
+B Y: 5
+B Z: 9
+C X: 2
+C Y: 6
+C Z: 7
+</code></pre>
+
+<p>Processing the input and printing out the results is now simple:</p>
+
+<pre><code>chomp (my @input = &lt;&gt;);
+
+say "Solution 1: ", sum map {$score1 {$_}} @input;
+say "Solution 2: ", sum map {$score2 {$_}} @input;
+</code></pre>
+
+<p><code>sum</code> is imported from <a href="https://metacpan.org/pod/List::Util"><code>List::Util</code></a>.</p>
+
+<p>Find the <a href="https://github.com/Abigail/AdventofCode2022/blob/master/Day_02/solution.pl">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+
+<hr id = 'last-line'>
+<div class = 'trailer'>
+<p class = 'prev'><a class = "prev" href = "">&#x261C;</a></p>
+<p class = 'issue'>Please leave any comments as a
+  <a href = 'https://github.com/Abigail/Abigail.github.io/issues'
+     title = 'GitHub issue'>GitHub issue</a>.
+<p class = 'next'><a class = "next" href = "">&#x261E;</a></p>
+</div>
+
+</body>
+</html>
