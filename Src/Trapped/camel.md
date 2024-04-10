@@ -15,7 +15,10 @@ This makes the %%PIECE%% %%COLOUR_BOUND%%.
             **Camel**
 &           \\
   {th = 1}  %%SCIROCCO%%; %%TYPHOON%%
-&           %%PROMOTES_TO%% [*Squirrel*](squirrel.html)
+&           %%PROMOTES_TO%% [*Squirrel*](squirrel.html) \\
+  {th = 1}  %%RENN_CHESS%%
+& {cs = 2}  **General**
+&           \\
 ====|
       
 Links: [%%WIKI%%](#wiki:Camel_(chess)),

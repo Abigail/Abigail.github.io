@@ -44,6 +44,9 @@ and **Marshal(l)** are the most frequently used.
   {th = 1}  %%GRAND_CAVALIER%%
 & {cs = 2}  **Marshall**
 &           \\
+  {th = 1}  %%RENN_CHESS%%
+& {cs = 2}  **Nobleman**
+&           \\
   {th = 1}  %%WOLF%%
 & {cs = 2}  **Wolf**
 &           \\

@@ -428,8 +428,33 @@ let pieces = {
         },
     },
 
+    castle: {
+        parent: "squirrel",
+    },
+
     cavalier: {
         parent: "mao",
+    },
+
+    cavalier_renn: {
+        _name: "Cavalier",
+        _index_name: "Cavalier (Renn Chess)",
+        move_list: [
+            {dr: -1, dc:  0, or: -1, oc:  1, min_land: 1},
+            {dr: -1, dc:  0, or: -1, oc: -1, min_land: 1},
+            {dr:  1, dc:  0, or:  1, oc:  1, min_land: 1},
+            {dr:  1, dc:  0, or:  1, oc: -1, min_land: 1},
+            {dr:  0, dc: -1, or: -1, oc: -1, min_land: 1},
+            {dr:  0, dc: -1, or:  1, oc: -1, min_land: 1},
+            {dr:  0, dc:  1, or: -1, oc:  1, min_land: 1},
+            {dr:  0, dc:  1, or:  1, oc:  1, min_land: 1},
+        ],
+        results: {
+            spiral_square:  "T/102",
+            spiral_diamond: "T/56",
+            wedge_folded:   "T/12", 
+            wedge_flat:      sqrt (2, 2),
+        }
     },
 
     centaur: {
@@ -1096,6 +1121,12 @@ let pieces = {
         parent: "amazon"
     },
 
+    general_camel: {
+        parent: "camel",
+        _name: "General",
+        _index_name: "General (Camel)",
+    },
+
     general_janggi: {
         parent: "king",
         _name: "General",
@@ -1663,6 +1694,10 @@ let pieces = {
         },
     },
 
+    nobleman: {
+        parent: "chancellor",
+    },
+
     noyan: {
         parent: "king",
     },
@@ -1789,6 +1824,12 @@ let pieces = {
 
     prince: {
         parent: "king",
+    },
+
+    prince_amazon: {
+        parent: "amazon",
+        _name: "Prince",
+        _index_name: "Prince (Amazon)",
     },
 
     princess: {
@@ -2567,10 +2608,12 @@ let set_info = {
     renniassance_chess: {
         href:    "https://www.chessvariants.com/large.dir/renaiss.html",
         pieces: ["king", "queen", "rook", "bishop", "horse_renn",
-                 "fox_renn", "guard_king", "page", "squire_wfda",
-                 "!!prince", "!!nobleman", "!!archbishop",
-                 "!!cavelier_renn", "!!duke", "!!castle",
-                 "!!general", "pawn"],
+                 "archbishop", "castle", "cavalier_renn", "fox_renn",
+                 "general_camel",
+                 "guard_king", "nobleman", "page", "prince_amazon",
+                 "squire_wfda",
+                 "!!duke",
+                 "pawn"],
     },
 
     rococo: {

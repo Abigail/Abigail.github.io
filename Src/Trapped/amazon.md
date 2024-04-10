@@ -50,6 +50,9 @@ it's known under various names, including:
   {th = 1}  [Maharajah and the Sepoys](#wiki)
 & {cs = 2}  **Maharajah**
 &           %%ROYAL%% \\
+  {th = 1}  %%RENN_CHESS%%
+& {cs = 2}  **Prince**
+&           \\
   {th = 1}  [Terror Chess](#chess-v:large.dir/terror.html)
 & {cs = 2}  **Terror**
 &           \\

@@ -7,6 +7,9 @@ direction, and no more than two in the other.
 
 |====
 %%PIECE_HEADERS%%
+  {th = 1}  %%RENN_CHESS%%
+& {cs = 2}  **Castle**
+&           \\
   {th = 1}  %%COMPOUND_LEAPERS%%
 & {cs = 2; rs = 2}
             **Squirrel**
