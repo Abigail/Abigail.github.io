@@ -483,7 +483,19 @@ let pieces = {
             wedge_flat:      sqrt (2, 4),
         },
         _name: "Chameleon",
-        _index_name: "Chameleon (Fairy)",
+        _index_name: "Chameleon (Fairy I)",
+    },
+
+    chameleon_fairy: {
+        betza_list: ["BR", "N", "B", "R"],
+        results: {
+            spiral_square:  "T/415", 
+            spiral_diamond: "T/190",
+            wedge_folded:   "T/73",
+            wedge_flat:     sqrt (2, 4),
+        },
+        _name: "Chameleon",
+        _index_name: "Chameleon (Fairy II)",
     },
 
     chameleon_rococo: {
