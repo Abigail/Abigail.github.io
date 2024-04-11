@@ -797,6 +797,28 @@ let pieces = {
         _index_name: "Duke (Scirocco)",
     },
 
+    duke_renn: {
+        _name: "Duke",
+        _index_name: "Duke (Renn Chess)",
+        move_list: [
+            ((n, args = {}) => [- n,        n - 1,  {not_a_target: n == 1}]),
+            ((n, args = {}) => [- n,      -(n - 1), {not_a_target: n == 1}]),
+            ((n, args = {}) => [  n,        n - 1,  {not_a_target: n == 1}]),
+            ((n, args = {}) => [  n,      -(n - 1), {not_a_target: n == 1}]),
+            ((n, args = {}) => [  n - 1,  - n,      {not_a_target: n == 1}]),
+            ((n, args = {}) => [  n - 1,    n,      {not_a_target: n == 1}]),
+            ((n, args = {}) => [-(n - 1),   n,      {not_a_target: n == 1}]),
+            ((n, args = {}) => [-(n - 1), - n,      {not_a_target: n == 1}]),
+        ],
+        results: {
+            spiral_square:  "T/116",
+            spiral_diamond: "T/114",
+            wedge_folded:   "T/14", 
+            wedge_flat:     "T/12",
+        }
+    },
+
+
     //
     // E pieces
     //
@@ -2608,12 +2630,9 @@ let set_info = {
     renniassance_chess: {
         href:    "https://www.chessvariants.com/large.dir/renaiss.html",
         pieces: ["king", "queen", "rook", "bishop", "horse_renn",
-                 "archbishop", "castle", "cavalier_renn", "fox_renn",
-                 "general_camel",
-                 "guard_king", "nobleman", "page", "prince_amazon",
-                 "squire_wfda",
-                 "!!duke",
-                 "pawn"],
+                 "archbishop", "castle", "cavalier_renn", "duke_renn",
+                 "fox_renn", "general_camel", "guard_king", "nobleman",
+                 "page", "prince_amazon", "squire_wfda", "pawn"],
     },
 
     rococo: {
