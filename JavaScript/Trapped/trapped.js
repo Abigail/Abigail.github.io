@@ -720,109 +720,197 @@ class Trapped {
         let best_row   = 0
         let best_col   = 0
         moves . forEach ((move) => {
-            let dr        = move . dr
-            let dc        = move . dc
-            let or        = move . or        || 0  // Offset
-            let oc        = move . oc        || 0  // Offset
-            let us        = move . us        || []
-            let max       = move . max       || 0
-            let min       = move . min       || ((or || oc) ? 0 : 1)
-            let min_land  = move . min_land  || 0
-            let max_jumps = move . max_jumps || 0
-
             let move_best     = 0    // Best value within this move
             let move_best_row = 0    // Best row within this move
             let move_best_col = 0    // Best col within this move
             let prev_val      = 0    // Previous value within this move
 
-            //
-            // "Slide" along this move. (A step (or leap) is just
-            // a slide with a max of 1. We stop the slide under
-            // if at least one of the conditions is true:
-            //
-            //    - We exceed the max step size (max reach)
-            //    - We reach a visited square (move is blocked)
-            //      and max_jumps <= 0
-            //    - The value of square is higher than the value
-            //      of the previous square (too far away from center;
-            //      we cannot improve)
-            //
-            //  Explaination of move properties:
-            //
-            //    - dr/dc     The row (dr) and column (dc) difference 
-            //                on each "slide" step. They should not both
-            //                be 0.
-            //    - or/oc:    Row (or)/Column (oc) offset from origin. This
-            //                is added to each step in the slide. Defaults to 0.
-            //    - us:       List of row/columns which must be unoccupied.
-            //    - max:      Maximum number of slide steps which can be taken.
-            //                0, the default, mean there is no limit.
-            //    - min:      Minimum number of slide steps which must be taken.
-            //                Defaults to 1, unless one of or/oc isn't 0.
-            //    - min_land: The minimum number of slide moves which must
-            //                be taken before the piece can land. This is
-            //                different from min, and useful for pieces 
-            //                which must slide a minimum number of squares,
-            //                but those squares must be unoccupied.
-            //                The Wagon for instance, will have min = 1,
-            //                but min_land = 2, meaning the first square
-            //                it slides over must be unoccupied, but it
-            //                cannot land on it.
-            //
-            for (let step = min; max == 0 || step <= max; step ++) {
-                let new_row = row + step * move . dr + or
-                let new_col = col + step * move . dc + oc
-                let value   = this . to_value (new_row, new_col)
+            if (typeof move === "function") {
+                for (let step = 1; ; step ++) {
+                    let [dr, dc, info] = move (step);
 
-                if (value <= 0) {
-                    break    // Out of bounds (only on some "spirals")
-                }
-
-                //
-                // If the value has been visited before, we cannot visit
-                // it, unless we have some free jumps.
-                //
-                if (value in this . visited) {
-                    if (max_jumps > 0) {
-                        max_jumps = max_jumps - 1
-                        continue
+                    if (info . stop) {
+                        //
+                        // For limited slides (or just single steps/jumps
+                        // we return "stop" if the maximum number of steps
+                        // has been exceeded.
+                        //
+                        break;
                     }
-                    else {
+
+                    if (info . skip) {
+                        //
+                        // Just in case we return targets which we do
+                        // not want to futher inspect. 
+                        //
+                        continue;
+                    }
+
+                    let  new_row = row + dr
+                    let  new_col = col + dc
+                    let  value   = this . to_value (new_row, new_col);
+
+                    if (value <= 0) {
+                        //
+                        // Out of bounds; only for some boards (wedges)
+                        //
+                        if (!info . curls) {
+                            //
+                            // Stop processing this moves possibilities,
+                            // unless it's a curling piece and it may 
+                            // move back.
+                            //
+                            break;
+                        }
+                    }
+                    
+                    if (value in this . visited) {
+                        //
+                        // Todo: handle "free" jumps
+                        //
+                        break; // Square has been visited before
+                    }
+
+                    if (prev_val && value > prev_val && !info . curls) {
+                        //
+                        // Values start increasing, we cannot do better
+                        //
+                        break;
+                    }
+
+                    if (info . not_a_target) {
+                        //
+                        // This is a square which needs to be on the
+                        // board, and not occupied, but the piece
+                        // cannot actually land here. For instance,
+                        // the Mao and Moa make Knight moves, but may
+                        // not jump over a piece.
+                        //
+                        continue;
+                    }
+
+                    //
+                    // The square is a possible target. Update the best
+                    // value for this move.
+                    //
+                    if (move_best == 0 || value < move_best) {
+                        move_best     = value // We found a better square
+                        move_best_row = new_row
+                        move_best_col = new_col
+                    }
+
+                    //
+                    // Update the previous value
+                    //
+                    prev_val = value
+
+                    //
+                    // And continue
+                    //
+                }
+            }
+            else {
+                let dr        = move . dr
+                let dc        = move . dc
+                let or        = move . or        || 0  // Offset
+                let oc        = move . oc        || 0  // Offset
+                let us        = move . us        || []
+                let max       = move . max       || 0
+                let min       = move . min       || ((or || oc) ? 0 : 1)
+                let min_land  = move . min_land  || 0
+                let max_jumps = move . max_jumps || 0
+
+                //
+                // "Slide" along this move. (A step (or leap) is just
+                // a slide with a max of 1. We stop the slide under
+                // if at least one of the conditions is true:
+                //
+                //    - We exceed the max step size (max reach)
+                //    - We reach a visited square (move is blocked)
+                //      and max_jumps <= 0
+                //    - The value of square is higher than the value
+                //      of the previous square (too far away from center;
+                //      we cannot improve)
+                //
+                //  Explaination of move properties:
+                //
+                //    - dr/dc     The row (dr) and column (dc) difference 
+                //                on each "slide" step. They should not both
+                //                be 0.
+                //    - or/oc:    Row (or)/Column (oc) offset from origin. This
+                //                is added to each step in the slide.
+                //                Defaults to 0.
+                //    - us:       List of row/columns which must be unoccupied.
+                //    - max:      Maximum number of slide steps which can be
+                //                taken. 0, the default, mean there is no limit.
+                //    - min:      Minimum number of slide steps which must
+                //                be taken. Defaults to 1, unless one of
+                //                or/oc isn't 0.
+                //    - min_land: The minimum number of slide moves which must
+                //                be taken before the piece can land. This is
+                //                different from min, and useful for pieces 
+                //                which must slide a minimum number of squares,
+                //                but those squares must be unoccupied.
+                //                The Wagon for instance, will have min = 1,
+                //                but min_land = 2, meaning the first square
+                //                it slides over must be unoccupied, but it
+                //                cannot land on it.
+                //
+                for (let step = min; max == 0 || step <= max; step ++) {
+                    let new_row = row + step * move . dr + or
+                    let new_col = col + step * move . dc + oc
+                    let value   = this . to_value (new_row, new_col)
+
+                    if (value <= 0) {
+                        break    // Out of bounds (only on some "spirals")
+                    }
+
+                    //
+                    // If the value has been visited before, we cannot visit
+                    // it, unless we have some free jumps.
+                    //
+                    if (value in this . visited) {
+                        if (max_jumps > 0) {
+                            max_jumps = max_jumps - 1
+                            continue
+                        }
+                        else {
+                            break
+                        }
+                        break    // Square is occupied
+                    }
+
+                    //
+                    // Check whether the move is blocked
+                    //
+                    let blocked = false
+                    us . forEach ((coord) => {
+                        let [r, c] = coord
+                        let value  = this . to_value (row + r, col + c)
+                        if (value in this . visited) {
+                            blocked = true
+                        }
+                    })
+                    if (blocked) {
                         break
                     }
-                    break    // Square is occupied
-                }
 
-                //
-                // Check whether the move is blocked
-                //
-                let blocked = false
-                us . forEach ((coord) => {
-                    let [r, c] = coord
-                    let value  = this . to_value (row + r, col + c)
-                    if (value in this . visited) {
-                        blocked = true
+                    if (min_land > step) {
+                        continue // May not land on this square
                     }
-                })
-                if (blocked) {
-                    break
-                }
 
-                if (min_land > step) {
-                    continue // May not land on this square
-                }
+                    if (prev_val && value > prev_val) {
+                        break    // Values start increasing, we cannot do better
+                    }
 
-                if (prev_val && value > prev_val) {
-                    break    // Values start increasing, we cannot do better
-                }
-
-                if (move_best == 0 || value < move_best) {
-                    move_best     = value  // Found a better square
-                    move_best_row = new_row
-                    move_best_col = new_col
-                }
+                    if (move_best == 0 || value < move_best) {
+                        move_best     = value  // Found a better square
+                        move_best_row = new_row
+                        move_best_col = new_col
+                    }
                 
-                prev_val = value
+                    prev_val = value
+                }
             }
 
             //
