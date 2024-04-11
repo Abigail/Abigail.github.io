@@ -2336,10 +2336,10 @@ let pieces = {
             wedge_flat:      sqrt (2),
         },
         move_list: [
-            {dr: -1, dc:  0, min_land: 2},
-            {dr:  1, dc:  0, min_land: 2},
-            {dr:  0, dc: -1, min_land: 2},
-            {dr:  0, dc:  1, min_land: 2},
+            ((n, a = {}) => [-n,  0, {not_a_target: n == 1}]),
+            ((n, a = {}) => [ n,  0, {not_a_target: n == 1}]),
+            ((n, a = {}) => [ 0, -n, {not_a_target: n == 1}]),
+            ((n, a = {}) => [ 0,  n, {not_a_target: n == 1}]),
         ],
     },
 
