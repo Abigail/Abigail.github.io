@@ -2,6 +2,18 @@
 // Chess pieces go here
 //
 
+let LEAPER_DESTINATIONS = {
+    'A':  [2, 2],     // Alfil
+    'C':  [3, 1],     // Camel
+    'D':  [2, 0],     // Dabbada
+    'F':  [1, 1],     // Ferz
+    'G':  [3, 3],     // Tripper
+    'H':  [3, 0],     // Threeleaper
+    'N':  [2, 1],     // Knight
+    'W':  [1, 0],     // Wazir
+    'Z':  [3, 2],     // Zebra
+}
+
 //
 // Return a move representing a step
 //
@@ -261,10 +273,100 @@ function move_modifiers (moves, modifiers, ortho = false) {
     return moves
 }
 
+//
+// Given a leaper, turn it into its corresponding rose
+//
+function rose (betza) {
+    let out = []
+
+    //
+    // This is called if there is a 'q' modifier.
+    // We can only rosify moves which are:
+    //    - Do not contain other modifiers
+    //    - Single leaps, not sliders
+    //
+    let match = betza . match (/^([a-z]+)([A-Z]+|[(][0-9]+,[0-9]+[)])$/);
+    if (!match) {
+        return out
+    }
+    let modifiers = match [1]
+    let leaper    = match [2]
+    if (modifiers != 'q') {
+        return out
+    }
+    let row = 0
+    let col = 0
+    if (LEAPER_DESTINATIONS [leaper]) {
+        row = LEAPER_DESTINATIONS [leaper] [0]
+        col = LEAPER_DESTINATIONS [leaper] [1]
+    }
+    else {
+        if (match = leaper . match (/[(]([0-9]+),([0-9]+)[)]/)) {
+            row = +match [1]
+            col = +match [2]
+        }
+    }
+    if (row == 0 && col == 0) {
+        return out  // Cannot parse, or a slider
+    }
+
+    let set = []
+    row = Math . abs (row)
+    col = Math . abs (col)
+    if (row && col && row != col) {
+        set = [[ row,  col], [ col,  row], [-col,  row], [-row,  col],
+               [-row, -col], [-col, -row], [ col, -row], [ row, -col]]
+    }
+    else {
+        //
+        // Either the row and col are equal, or one of them is 0.
+        // In either case, we get the same pattern. 
+        //
+        if (row == 0) {
+            row = col
+        }
+        if (col == 0) {
+            col = row
+        }
+        set = [[ row,  col], [ row, 0], [ row, -col], [0, -col],
+               [-row, -col], [-row, 0], [-row,  col], [0,  col]]
+    }
+
+    [-1, 1] . forEach ((direction) => {
+        for (let start = 0; start < set . length; start ++) {
+            out . push (
+                function (n, a = {}) {
+                    if (n >= set . length) {
+                        return [0, 0, {stop: 1}]
+                    }
+                    let row = 0
+                    let col = 0
+                    let indices = []
+                    for (let i = 0; i < n; i ++) {
+                        let index = direction * i + start
+                        while (index < 0) {
+                            index += set . length
+                        }
+                        while (index >= set . length) {
+                            index -= set . length
+                        }
+                        indices . push (index)
+                        let jump = set [index]
+                        row += jump [0]
+                        col += jump [1]
+                    }
+                    return [row, col, {curls: 1}]
+                }
+            )
+        }
+    })
+
+    return out;
+}
+
+
 function betza_leaper (betza) {
     let out = [];
-
-    console . log (`leaper = ${betza}`)
 
     //
     // We cannot deal with:
@@ -275,6 +377,10 @@ function betza_leaper (betza) {
     // So we return an empty set of moves.
     //
     if (betza . match (/[cjgo]/)) {return out}
+
+    if (betza . match (/[q]/)) {
+        return rose (betza)
+    }
 
     //
     // Hard code t[WF] and t[FW]

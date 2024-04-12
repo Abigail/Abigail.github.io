@@ -383,6 +383,16 @@ let pieces = {
         },
     },
 
+    camel_rose: {
+        betza:    "qC",
+        results: {
+            spiral_square:  "?/10k", 
+            spiral_diamond: "?/10k",
+            wedge_folded:   "?/10k", 
+            wedge_flat:     "?/10k",
+        },
+    },
+
     cannon: {
         parent: "rook",
     },
@@ -1994,6 +2004,16 @@ let pieces = {
         },
     },
 
+    rose: {
+        betza:    "qN",
+        results: {
+            spiral_square:  "?/10k",
+            spiral_diamond: "?/10k",
+            wedge_folded:   "?/10k",
+            wedge_flat:     "T/39",
+        },
+    },
+
     running_rabbit: {
         betza:   "bWFfR",
         results: {
@@ -2514,6 +2534,16 @@ let pieces = {
             spiral_diamond: "T/1,613",
             wedge_folded:   "T/72", 
             wedge_flat:     "T/57",
+        },
+    },
+
+    zebra_rose: {
+        betza:    "qZ",
+        results: {
+            spiral_square:  "?/10k", 
+            spiral_diamond: "?/10k",
+            wedge_folded:   "?/10k", 
+            wedge_flat:     "T/86",
         },
     },
 

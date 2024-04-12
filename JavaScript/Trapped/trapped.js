@@ -752,16 +752,10 @@ class Trapped {
 
                     if (value <= 0) {
                         //
-                        // Out of bounds; only for some boards (wedges)
+                        // Out of bounds; this can only happen for
+                        // some boards (wedges)
                         //
-                        if (!info . curls) {
-                            //
-                            // Stop processing this moves possibilities,
-                            // unless it's a curling piece and it may 
-                            // move back.
-                            //
-                            break;
-                        }
+                        break;
                     }
                     
                     if (value in this . visited) {
@@ -774,6 +768,9 @@ class Trapped {
                     if (prev_val && value > prev_val && !info . curls) {
                         //
                         // Values start increasing, we cannot do better
+                        // Curling pieces may curl inwards and get better
+                        // values, so we continue; they ought to have
+                        // limited possibilities, so we don't break then.
                         //
                         break;
                     }
@@ -930,6 +927,20 @@ class Trapped {
             this . new_line (row, col, best_row, best_col)
             this . place ({row: best_row, col: best_col})
             this . steps = this . steps + 1
+
+            let dr = best_row - row
+            let dc = best_col - col
+            if (!this . moves_done) {
+                this . moves_done = {}
+            }
+            if (!this . moves_done [dr]) {
+                this . moves_done [dr] = {}
+            }
+            if (!this . moves_done [dr] [dc]) {
+                this . moves_done [dr] [dc] = 0
+            }
+            this . moves_done [dr] [dc] ++
+
             if (this . may_continue ()) {
                 if (this . max_speed) {
                     //
@@ -951,6 +962,10 @@ class Trapped {
         else {
             this . set_trapped ()
         }
+
+   //   if (!this . may_continue ()) {
+   //       console . log (this . moves_done)
+   //   }
 
         this . update_info ()
 
