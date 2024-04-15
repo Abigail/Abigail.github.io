@@ -333,7 +333,7 @@ function rose (betza) {
     }
 
     [-1, 1] . forEach ((direction) => {
-        for (let start = 0; start < set . length; start ++) {
+        [... set . keys ()] . forEach ((start) => {
             out . push (
                 function (n, a = {}) {
                     if (n >= set . length) {
@@ -358,7 +358,7 @@ function rose (betza) {
                     return [row, col, {curls: 1}]
                 }
             )
-        }
+        })
     })
 
     return out;
