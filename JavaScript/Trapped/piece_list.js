@@ -765,7 +765,7 @@ let pieces = {
             wedge_flat:     "T/734,298,797",
         },
         _name: "Dragon",
-        _index_name: "Dragon (Alfil) + Camel)",
+        _index_name: "Dragon (Alfil + Camel)",
     },
 
     dragon_horse: {
