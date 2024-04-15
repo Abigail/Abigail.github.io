@@ -1,0 +1,99 @@
+<html>
+<head>
+<title>%%PIECE%%</title>
+<meta charset = "utf-8">
+<link rel  = 'preconnect' href = 'https://fonts.gstatic.com'>
+<link rel = 'stylesheet' href =      'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
+<link rel = 'stylesheet' href = '../../Styles/main.css'>
+<link rel = 'stylesheet' href = '../../Styles/Trapped/main.css'>
+<script src = "../../JavaScript/jquery.js"></script>
+<script id  = 'MathJax-script' async src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.js'></script>
+<script id = 'svg-script' src = 'https://cdn.jsdelivr.net/npm/@svgdotjs/svg.js@3.0/dist/svg.min.js'></script>
+<script src = '../../JavaScript/navigation.js'></script>
+<script src = '../../JavaScript/Trapped/piece_list.js'></script>
+<script src = '../../JavaScript/Trapped/trapped.js'></script>
+<script src = '../../JavaScript/Trapped/pieces.js'></script>
+<script src = '../../JavaScript/Trapped/boxset.js'></script>
+<script src = '../../JavaScript/Trapped/pages.js'></script>
+</head>
+
+<body><h1>%%PIECE%%</h1><div class = "byline">
+by Abigail<br>
+<img src = "../../Images/jan_sluiters.jpg">
+</div>
+
+
+<p>The %%PIECE%% makes repeated <a href="giraffe.html"><em>Giraffe</em></a> steps, but unlike the 
+<a href="giraffe_rider.html"><em>Giraffe Rider</em></a>, the %%PIECE%% turns on each step
+(the minimum turn possible). After 8 such steps, it is back at
+the square it started on. Given that it start in 8 directions,
+and move either clockwise or counter-clockwise, it can reach
+quite a number of squares in one move. (Each square of its in between
+steps need to be unoccupied though). On a large enough board, away from 
+any borders, the %%PIECE%% can reach 32 different squares, assuming
+all squares are unoccupied.</p>
+
+<table class = piece_list>
+  <tr class = 'row-0' markdown = '1'>
+    <th class = 'cell-0-0 col-0 ' markdown = '1'>Game</td>
+    <th class = 'cell-0-1 col-1 ' markdown = '1' colspan = '2'>Piece</td>
+    <th class = 'cell-0-3 col-3 ' markdown = '1'>Info</td>
+  </tr>
+  <tr class = 'row-1' markdown = '1'>
+    <th class = 'cell-1-0 col-0 ' markdown = '1'></td>
+    <td class = 'cell-1-1 col-1 ' markdown = '1' colspan = '2'><strong>Giraffe Rose</strong></td>
+    <td class = 'cell-1-3 col-3 ' markdown = '1'></td>
+  </tr>
+</table>
+
+<p>See also the <a href="rose.html"><em>Rose</em></a>.</p>
+
+<h3 id = 'spiral'>Spiral</h3>
+
+<h4 id = 'square'>Square</h4>
+
+<div class = "section">
+<p>On the Square Spiral, the %%PIECE%% moves outward, keeping always a 
+near square as the boundary of squares visited. It probably won't
+get trapped, and certainly doesn't do in its first 10,000 steps.</p>
+</div>
+
+<h4 id = 'diamond'>Diamond</h4>
+
+<div class = "section">
+<p>On the Diamond Spiral, the %%PIECE%% moves outward, keeping always a 
+near, rotated, square as the boundary of squares visited. It probably won't
+get trapped, and certainly doesn't do in its first 10,000 steps.</p>
+</div>
+
+<h3 id = 'wedge'>Wedge</h3>
+
+<h4 id = 'folded'>Folded</h4>
+
+<div class = "section">
+<p>The %%PIECE%% seems to fill the Folded Wedge completely, working on just
+a few rows at the time. It probably won't get trapped, and it certainly
+doesn't do so in its first 10,000 steps.</p>
+</div>
+
+<h4 id = 'flat'>Flat</h4>
+
+<p>The %%PIECE%% seems to fill the Folded Wedge completely, working on just
+a few rows at the time. It probably won't get trapped, and it certainly
+doesn't do so in its first 10,000 steps.</p>
+
+<div class = 'trapped' data-piece = 'giraffe_rose'></div>
+
+<div class = 'boxset' data-piece = 'giraffe_rose'></div>
+
+<hr id = 'last-line'>
+<div class = 'trailer'>
+<p class = 'prev'><a class = "prev" href = "">&#x261C;</a></p>
+<p class = 'issue'>Please leave any comments as a
+  <a href = 'https://github.com/Abigail/Abigail.github.io/issues'
+     title = 'GitHub issue'>GitHub issue</a>.
+<p class = 'next'><a class = "next" href = "">&#x261E;</a></p>
+</div>
+
+</body>
+</html>

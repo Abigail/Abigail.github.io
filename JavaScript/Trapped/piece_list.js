@@ -151,6 +151,16 @@ let pieces = {
         },
     },
 
+    antelope_rose: {
+        betza:    "q(3,4)",
+        results: {
+            spiral_square:  "?/10k",
+            spiral_diamond: "?/10k",
+            wedge_folded:   "?/10k", 
+            wedge_flat:     "?/10k",
+        },
+    },
+
     archbishop:    {
         betza:    "BN",
         results: {
@@ -1230,6 +1240,16 @@ let pieces = {
         _index_name: "Giraffe ((4, 1) - leaper)",
     },
 
+    giraffe_rose: {      // (4, 1)-leaper
+        betza:    "q(1,4)",
+        results: {
+            spiral_square:  "?/10k", 
+            spiral_diamond: "?/10k",
+            wedge_folded:   "?/10k", 
+            wedge_flat:     "?/10k",
+        },
+    },
+
     giraffe_dobutsu: {
         parent: "wazir",
         _name: "Giraffe",
@@ -2157,6 +2177,16 @@ let pieces = {
             spiral_diamond: "T/3,722",
             wedge_folded:    sqrt (2, 2),
             wedge_flat:      sqrt (2, 2),
+        },
+    },
+
+    stag_rose: {
+        betza:    "q(2,4)",
+        results: {
+            spiral_square:  "?/10k", 
+            spiral_diamond: "?/10k",
+            wedge_folded:   "F*/50%",
+            wedge_flat:     "F*/50%",
         },
     },
 
