@@ -408,6 +408,7 @@ class Trapped {
         this . stop_box      = 0
 
         this . state         = START
+        this . moves_done    = {}
 
         return this
     }
@@ -940,21 +941,12 @@ class Trapped {
 
             let dr = best_row - row
             let dc = best_col - col
-            if (!this . moves_done) {
-                this . moves_done = {}
-            }
-            if (!this . moves_done [dr]) {
-                this . moves_done [dr] = {}
-            }
-            if (!this . moves_done [dr] [dc]) {
-                this . moves_done [dr] [dc] = 0
-            }
-            this . moves_done [dr] [dc] ++
+            this . record_move (dr, dc)
 
             if (this . may_continue ()) {
                 if (this . max_speed) {
                     //
-                    // Give animation a change to display progress
+                    // Give animation a chance to display progress
                     //
                     if (Math . random () < 1 / 1000) {
                         setTimeout (() => {this . move ()}, 1)
@@ -968,18 +960,50 @@ class Trapped {
                                        this . speed / this . size)
                 }
             }
+            else {
+                this . report_moves ()
+            }
         }
         else {
             this . set_trapped ()
+            this . report_moves ()
         }
-
-   //   if (!this . may_continue ()) {
-   //       console . log (this . moves_done)
-   //   }
 
         this . update_info ()
 
         return this
+    }
+
+    //
+    // Record which steps we have taken
+    //
+    record_move (dr, dc) {
+        if (!this . moves_done [dr]) {
+            this . moves_done [dr] = {}
+        }
+        if (!this . moves_done [dr] [dc]) {
+            this . moves_done [dr] [dc] = 1
+        }
+        else {
+            this . moves_done [dr] [dc] ++
+        }
+
+        return this
+    }
+
+    //
+    // Report a histogram of the moves made
+    //
+    report_moves () {
+        let moves_done = this . moves_done
+        let entries = []
+        for (const dr in moves_done) {
+            for (const dc in moves_done [dr]) {
+                entries . push ([dr, dc, moves_done [dr] [dc]])
+            }
+        }
+        entries . sort ((a, b) => b [2] - a [2])
+        console . log (entries)
     }
 
     //
