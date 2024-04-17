@@ -337,6 +337,10 @@ let pieces = {
         },
     },
 
+    boyscout: {
+        parent: "crooked_bishop",
+    },
+
     buffalo: {
         betza:    "NCZ",
         results: {
@@ -654,6 +658,26 @@ let pieces = {
 
     crane_king: {
         parent: "king",
+    },
+
+    crooked_bishop: {
+        betza: "zB",
+        results: {
+            spiral_square:  "F/50%", 
+            spiral_diamond: "F/50%",
+            wedge_folded:   "F/50%",
+            wedge_flat:     "F/50%",
+        },
+    },
+
+    crooked_rook: {
+        betza: "zR",
+        results: {
+            spiral_square:  "W", 
+            spiral_diamond: "F/100%",
+            wedge_folded:   "F/100%",
+            wedge_flat:     "F/100%",
+        },
     },
 
     crown_prince: {
@@ -2633,6 +2657,10 @@ let set_info = {
                  "dabbabarider", "nightrider", "alfilrider",
                  "threeleaperrider", "camelrider",
                  "zebrarider", "tripperrider",]
+    },
+
+    crooked_riders: {
+        pieces: ["crooked_bishop", "crooked_rook"]
     },
 
 

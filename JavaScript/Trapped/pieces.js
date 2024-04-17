@@ -274,6 +274,89 @@ function move_modifiers (moves, modifiers, ortho = false) {
 }
 
 //
+// Handle "crooked" sliders. For now, just the Bishop and Rook
+//
+function crooked (betza) {
+    let out = []
+
+    //
+    // This is called if there is a 'z' modifier.
+    // We can only crook moves which are:
+    //    - Do not contain other modifiers
+    //    - Is a Bishop or a Rook
+    //
+    let match = betza . match (/^([a-z]+)([A-Z]+|[(][0-9]+,[0-9]+[)])$/)
+    if (!match) {
+        return out
+    }
+    let modifiers = match [1]
+    let slider    = match [2]
+    if (modifiers != 'z') {
+        return out
+    }
+    if (slider == 'FF') {
+        slider =  'B'
+    }
+    if (slider == 'WW') {
+        slider =  'R'
+    }
+    //
+    // Maybe later...
+    //
+    if (slider != 'B' && slider != 'R') {
+        return out
+    }
+
+    //
+    // There are four different starting moves for each of the B and R,
+    // and each starting move can have two different second moves.
+    // "fold" is used to get all the different starting moves from one
+    // principle direction, we then use "map" to turn the object into
+    // an array. The "flatMap" takes each starting move, and adds the
+    // two second moves.
+    //
+    let move_sets = {
+        B:  fold ({move: step (1, 1)})              .
+             map ((move) => [move . dr, move . dc]) .
+         flatMap ((move) => [[move, [ move [0], -move [1]]],
+                             [move, [-move [0],  move [1]]]]),
+
+        R:  fold ({move: step (1, 0)})              .
+             map ((move) => [move . dr, move . dc]) .
+         flatMap ((move) => [[move, [ move [1],  move [0]]],
+                             [move, [-move [1], -move [0]]]])
+    }
+
+    move_sets [slider] . forEach ((set) => {
+        out . push (
+            function (n, a = {}) {
+                let info   = {}
+                let values = a . values
+                //
+                // Determine whether we should stop
+                //
+                if (values . length >= 2) {
+                    info ["prev_value"] = values [values . length - 2]
+                }
+                else {
+                    info ["prev_value"] = -1
+                }
+                let [dr, dc] = [0, 0]
+                for (let i = 0; i < n; i ++) {
+                    let step = set [i % 2]
+                    dr += step [0]
+                    dc += step [1]
+                }
+                return [dr, dc, info]
+            }
+        )
+    })
+
+    return out
+}
+
+
+//
 // Given a leaper, turn it into its corresponding rose
 //
 function rose (betza) {
@@ -378,8 +461,12 @@ function betza_leaper (betza) {
     //
     if (betza . match (/[cjgo]/)) {return out}
 
-    if (betza . match (/[q]/)) {
+    if (betza . match (/q/)) {
         return rose (betza)
+    }
+
+    if (betza . match (/z/)) {
+        return crooked (betza)
     }
 
     //

@@ -726,14 +726,18 @@ class Trapped {
             let prev_val      = 0    // Previous value within this move
 
             if (typeof move === "function") {
+                let values = []
                 for (let step = 1; ; step ++) {
-                    let [dr, dc, info] = move (step);
+                    let args = {values: values}
+                    let [dr, dc, info] = move (step, args)
 
                     if (info . stop) {
                         //
                         // For limited slides (or just single steps/jumps
                         // we return "stop" if the maximum number of steps
                         // has been exceeded.
+                        //
+                        // There may be other reasons why we want to stop
                         //
                         break;
                     }
@@ -765,12 +769,16 @@ class Trapped {
                         break; // Square has been visited before
                     }
 
-                    if (prev_val && value > prev_val && !info . curls) {
+                    let compare_value = info . prev_value || prev_value
+
+                    if (compare_value > 0 &&  value > compare_value
+                                          && !info . curls) {
                         //
                         // Values start increasing, we cannot do better
                         // Curling pieces may curl inwards and get better
-                        // values, so we continue; they ought to have
-                        // limited possibilities, so we don't break then.
+                        // values, so we continue; they ought to either have
+                        // limited possibilities, or they handle breaking
+                        // themselves so we don't break here.
                         //
                         break;
                     }
@@ -797,9 +805,11 @@ class Trapped {
                     }
 
                     //
-                    // Update the previous value
+                    // Update the previous value, and remember the
+                    // values seen
                     //
                     prev_val = value
+                    values . push (value)
 
                     //
                     // And continue
