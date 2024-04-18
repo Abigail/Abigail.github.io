@@ -290,44 +290,84 @@ function crooked (betza) {
         return out
     }
     let modifiers = match [1]
-    let slider    = match [2]
+    let rider     = match [2]
     if (modifiers != 'z') {
         return out
     }
-    if (slider == 'FF') {
-        slider =  'B'
-    }
-    if (slider == 'WW') {
-        slider =  'R'
-    }
+
     //
-    // Maybe later...
+    // For now, only handle sliders which are doubled
     //
-    if (slider != 'B' && slider != 'R') {
+    match = rider . match (/^([A-Z])\1$/)
+    if (!match) {
         return out
     }
 
-    //
-    // There are four different starting moves for each of the B and R,
-    // and each starting move can have two different second moves.
-    // "fold" is used to get all the different starting moves from one
-    // principle direction, we then use "map" to turn the object into
-    // an array. The "flatMap" takes each starting move, and adds the
-    // two second moves.
-    //
-    let move_sets = {
-        B:  fold ({move: step (1, 1)})              .
-             map ((move) => [move . dr, move . dc]) .
-         flatMap ((move) => [[move, [ move [0], -move [1]]],
-                             [move, [-move [0],  move [1]]]]),
+    let leaper = match [1]  // Now it's a single char
 
-        R:  fold ({move: step (1, 0)})              .
-             map ((move) => [move . dr, move . dc]) .
-         flatMap ((move) => [[move, [ move [1],  move [0]]],
-                             [move, [-move [1], -move [0]]]])
+    if (!LEAPER_DESTINATIONS [leaper]) {
+        return out
     }
 
-    move_sets [slider] . forEach ((set) => {
+    let [dr, dc] = LEAPER_DESTINATIONS [leaper]
+
+    //
+    // Get the first moves; this will be 4 moves for diagonal and
+    // orthogonal leapers, and eight moves for knights and friends
+    //
+    let first_moves = fold ({move: step (dr, dc)}) .
+                       map ((move) => [move . dr, move . dc])
+
+    if (Math . abs (dr) == Math . abs (dc)) {
+        //
+        // Diagonal rider
+        //
+        move_sets = first_moves . flatMap ((move) => {
+            let [dr, dc] = [... move]
+            return [[move, [ dr, -dc]],   // Mirror x == 0
+                    [move, [-dr,  dc]]]   // Mirror y == 0
+        })
+    }
+    else if (dr == 0 || dc == 0) {
+        //
+        // Orthogonal rider
+        //
+        move_sets = first_moves . flatMap ((move) => {
+            let [dr, dc] = [... move]
+            return [[move, [ dc,  dr]],   // Mirror x ==  y
+                    [move, [-dc, -dr]]]   // Mirror x == -y
+        })
+    }
+    else {
+        //
+        // Knight like
+        //
+        move_sets = first_moves . flatMap ((move) => {
+            let [dr, dc] = [... move]
+            let  orthogonal_move
+            let  diagonal_move
+            if (Math . abs (dr) > Math . abs (dc)) {
+                // Mirror y == 0
+                orthogonal_move = [ dr, -dc]
+            }
+            else {
+                // Mirror x == 0
+                orthogonal_move = [-dr,  dc]
+            }
+            if (Math . sign (dr) == Math . sign (dc)) {
+                // Mirror x == y
+                diagonal_move   = [ dc,  dr]
+            }
+            else {
+                // Mirror x == -y
+                diagonal_move   = [-dc, -dr]
+            }
+            return [[move, diagonal_move],
+                    [move, orthogonal_move]]
+        })
+    }
+
+    move_sets . forEach ((set) => {
         out . push (
             function (n, a = {}) {
                 let info   = {}
