@@ -670,6 +670,16 @@ let pieces = {
         },
     },
 
+    crooked_nightrider: {
+        betza: "zNN",
+        results: {
+            spiral_square:  "?/10k", 
+            spiral_diamond: "?/10k",
+            wedge_folded:   "?/10k",
+            wedge_flat:     "T/21",
+        },
+    },
+
     crooked_rook: {
         betza: "zR",
         results: {
@@ -2660,7 +2670,7 @@ let set_info = {
     },
 
     crooked_riders: {
-        pieces: ["crooked_bishop", "crooked_rook"]
+        pieces: ["crooked_bishop", "crooked_rook", "crooked_nightrider"]
     },
 
 
