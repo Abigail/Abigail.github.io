@@ -680,6 +680,16 @@ let pieces = {
         },
     },
 
+    crooked_queen: {
+        betza: "zRzB",
+        results: {
+            spiral_square:  "W", 
+            spiral_diamond: "BM",
+            wedge_folded:   "FC",
+            wedge_flat:     "F/100%",
+        },
+    },
+
     crooked_rook: {
         betza: "zR",
         results: {
@@ -1391,6 +1401,28 @@ let pieces = {
     //
     // H pieces
     //
+    half_crooked_queen_I: {
+        _name: "Half Crooked Queen \u{2160}",
+        betza: "RzB",
+        results: {
+            spiral_square:  "W", 
+            spiral_diamond: "BM",
+            wedge_folded:   "FC",
+            wedge_flat:     "F/100%",
+        },
+    },
+
+    half_crooked_queen_II: {
+        _name: "Half Crooked Queen \u{2161}",
+        betza: "zRB",
+        results: {
+            spiral_square:  "W", 
+            spiral_diamond: "BM",
+            wedge_folded:   "FC",
+            wedge_flat:     "F/100%",
+        },
+    },
+
     harpy: {
         parent:   "genie",
     },
@@ -2670,7 +2702,9 @@ let set_info = {
     },
 
     crooked_riders: {
-        pieces: ["crooked_bishop", "crooked_rook", "crooked_nightrider"]
+        pieces: ["crooked_queen", "crooked_rook", "crooked_bishop",
+                 "crooked_nightrider", "half_crooked_queen_I",
+                 "half_crooked_queen_II"]
     },
 
 

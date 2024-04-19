@@ -16,27 +16,23 @@ three squares away, or orthogonally four squares away.
 
 #### Square
 
-On the Square Spiral, the %%PIECE%% follows the spiral, skipping all
-the even numbers. Hence, it visits \(50\%\) of the squares. This is more
-than the %%BISHOP%% does, which only visits \(\frac{5}{16} = 31.25\%\)
-of the squares.
+On the Square Spiral, the %%PIECE%% does not get trapped in the
+first 10,000 steps. It's unlikely it will later on.
 
 #### Diamond
 
-On the Diamond Spiral, the %%PIECE%% visits the same squares as
-the %%BISHOP%% does. \(50\%\) of the squares are visited 
-using a simple spiral pattern.
+On the Diamond Spiral, the %%PIECE%% does not get trapped in the
+first 10,000 steps. It's unlikely it will later on.
 
 ### Wedge
 
 #### Folded
 
-The %%PIECE%% follows the Folded Wedge, skipping over the squares
-with a colour opposite of its starting square. So, \(50\%\) of the
-squares are are visited. This is unlike the %%BISHOP%%, which escapes.
+On the Folded Wedge, the %%PIECE%% does not get trapped in the
+first 10,000 steps. It's unlikely it will later on.
+
 
 #### Flat
 
-The %%PIECE%% follows a wavy pattern on the Flat Wedge, visiting all
-the squares of the same colour as its starting square. Hence, it visits
-\(50\%\) of the squares. This is unlike the %%BISHOP%%, which escapes.
+The %%PIECE%% does get trapped on the Flat Wedge, after no more
+than 21 steps.
