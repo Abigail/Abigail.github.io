@@ -710,6 +710,16 @@ let pieces = {
         },
     },
 
+    crooked_zebrarider: {
+        betza: "zZZ",
+        results: {
+            spiral_square:  "?/10k", 
+            spiral_diamond: "?/10k",
+            wedge_folded:   "T/358",
+            wedge_flat:     "T/122",
+        },
+    },
+
     crown_prince: {
         parent: "chancellor",
     },
@@ -2714,6 +2724,7 @@ let set_info = {
     crooked_riders: {
         pieces: ["crooked_queen", "crooked_rook", "crooked_bishop",
                  "crooked_nightrider", "crooked_camelrider",
+                 "crooked_zebrarider",
                  "half_crooked_queen_I", "half_crooked_queen_II"]
     },
 
