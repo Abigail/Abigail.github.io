@@ -1,10 +1,21 @@
-# %%PIECE%%
+# Wazir
 
-The %%PIECE%% is a [*(0,1)-leaper*](leapers.html#basic_leapers).
+<div class = "movement">
+. . . . .
+. . * . .
+. * S * .
+. . * . .
+. . . . .
+</div>
+
+The **Wazir** is a [*(0,1)-leaper*](leapers.html#basic_leapers).
 It's a very old piece, appearing
 in very early chess variants. It may step one square in each of the
 four orthogonal directions. Many games have a piece which moves as
-the %%PIECE%%.
+the **Wazir**.
+
+The [*Knight-Bishop compound*](archbishop.html) is sometimes called a
+**Wazir** as well.
 
 |====
 %%PIECE_HEADERS%%
@@ -33,9 +44,6 @@ the %%PIECE%%.
   {th = 1}  %%SCIROCCO%%; %%TYPHOON%%
 &           %%PROMOTES_TO%% [*Zag*](modern_elephant.html?piece=zag) \\
 ====|
-
-The [Knight-Bishop compound](archbishop.html) is sometimes called a
-*Wazir* as well.
 
 ### Spiral
 
