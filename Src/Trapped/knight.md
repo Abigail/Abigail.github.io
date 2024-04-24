@@ -1,5 +1,15 @@
 # %%PIECE%%
 
+<div class = "movement">
+. . . . . . .
+. . * . * . .
+. * . . . * .
+. . . S . . .
+. * . . . * .
+. . * . * . .
+. . . . . . .
+</div>
+
 This is the piece it all started with.
 
 A %%PIECE%% is a [*(1,2)-leaper*](leapers.html#basic_leapers).
@@ -7,6 +17,9 @@ That is, a %%PIECE%% moves from a square
 to a square which is one square away in one direction, and two squares away
 in a direction orthogonally to the first direction. The move cannot
 be blocked.
+
+See also the [*Nightrider*](nightrider.html), a piece which moves
+one or more squares in the same direction as the %%PIECE%%.
 
 |====
 %%PIECE_HEADERS%%
@@ -47,9 +60,6 @@ be blocked.
       
 Links: [%%WIKI%%](#wiki:Knight_(chess)),
        [%%CHESS_V%%](#piece:knight)
-
-See also the [*Knightrider*](knightrider.html), a piece which moves
-one or more squares in the same direction as the %%PIECE%%.
 
 ### Spiral
 
