@@ -21,6 +21,9 @@ be blocked.
 See also the [*Nightrider*](nightrider.html), a piece which moves
 one or more squares in the same direction as the %%PIECE%%.
 
+*Cavalry Chess* also has a piece called a *Knight*, but that moves 
+like the [*Buffalo*](buffalo.html).
+
 |====
 %%PIECE_HEADERS%%
   {th = 1}  %%SENTEREJ%%
