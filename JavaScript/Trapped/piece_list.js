@@ -2526,6 +2526,40 @@ let pieces = {
             wedge_folded:   "T/6", 
             wedge_flat:      sqrt (2, 2),
         },
+        others: {
+            "Fox": [
+                {game:  "renniassance_chess"},
+            ],
+            "General": [
+                {game:  "xiangqi",
+                 token: "&#x5C07;/&#x5E25;",
+                 royal:  1,
+                 info:  "The **General** in **Xiangqi** limited " +
+                        "to a 3 x 3 box",}
+            ],
+            "Giraffe": [
+                {game: "dobutsu_shogi",}
+            ],
+            "Guard": [
+                {game:     "scirocco",
+                 promotes: "zebra",
+                 captures:  1,},
+                {game:     "typhoon",
+                 promotes: "zebra",
+                 captures:  1,},
+            ],
+            "Steward": [
+                {game:     "interdependent_chess",
+                 captures:  1,}
+            ],
+            "Wazir": [
+                {game:     "basic_leapers"},
+                {game:     "scirocco",
+                 promotes: "zag"},
+                {game:     "typhoon",
+                 promotes: "zag"},
+            ],
+        },
     },
 
     wazirrider: {
@@ -2951,6 +2985,7 @@ let set_info = {
 
     xiangqi: {
         href:  "https://en.wikipedia.org/wiki/Xiangqi",
+        full_name: "Xiangqi (&#x8C61;&#x68CB;)",
         pieces: ["general_xiangqi", "advisor", "elephant_xiangqi", "horse",
                  "chariot_xiangqi", "cannon", "soldier"],
     },

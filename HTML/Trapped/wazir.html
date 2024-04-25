@@ -1,6 +1,6 @@
 <html>
 <head>
-<title>%%PIECE%%</title>
+<title>Wazir</title>
 <meta charset = "utf-8">
 <link rel  = 'preconnect' href = 'https://fonts.gstatic.com'>
 <link rel = 'stylesheet' href =      'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
@@ -14,20 +14,33 @@
 <script src = '../../JavaScript/Trapped/trapped.js'></script>
 <script src = '../../JavaScript/Trapped/pieces.js'></script>
 <script src = '../../JavaScript/Trapped/boxset.js'></script>
+<script src = '../../JavaScript/Trapped/movement.js'></script>
+<script src = '../../JavaScript/Trapped/piece_svg.js'></script>
 <script src = '../../JavaScript/Trapped/pages.js'></script>
 </head>
 
-<body><h1>%%PIECE%%</h1><div class = "byline">
+<body><h1>Wazir</h1><div class = "byline">
 by Abigail<br>
 <img src = "../../Images/jan_sluiters.jpg">
 </div>
 
 
-<p>The %%PIECE%% is a <a href="leapers.html#basic_leapers"><em>(0,1)-leaper</em></a>.
+<div class = "movement">
+. . . . .
+. . * . .
+. * S * .
+. . * . .
+. . . . .
+</div>
+
+<p>The <strong>Wazir</strong> is a <a href="leapers.html#basic_leapers"><em>(0,1)-leaper</em></a>.
 It's a very old piece, appearing
 in very early chess variants. It may step one square in each of the
 four orthogonal directions. Many games have a piece which moves as
-the %%PIECE%%.</p>
+the <strong>Wazir</strong>.</p>
+
+<p>The <a href="archbishop.html"><em>Knight-Bishop compound</em></a> is sometimes called a
+<strong>Wazir</strong> as well.</p>
 
 <table class = piece_list>
   <tr class = 'row-0' markdown = '1'>
@@ -75,19 +88,16 @@ the %%PIECE%%.</p>
   </tr>
 </table>
 
-<p>The <a href="archbishop.html">Knight-Bishop compound</a> is sometimes called a
-<em>Wazir</em> as well.</p>
-
 <h3 id = 'spiral'>Spiral</h3>
 
 <h4 id = 'square'>Square</h4>
 
 <div class = "section">
-<p>Because the %%PIECE%% can always make a step in each of the four orthogonal
+<p>Because the <strong>Wazir</strong> can always make a step in each of the four orthogonal
 directions, it can follow the Spiral, visiting all the squares in order.
 As such, if will fill the entire board in a boring pattern.</p>
 
-<p>It also means that any piece which can move as the %%PIECE%% (even when
+<p>It also means that any piece which can move as the <strong>Wazir</strong> (even when
 it has more moves available, like the Chess <a href="king.html"><em>King</em></a>), will
 follow the Spiral and fill the entire board.</p>
 </div>
@@ -95,10 +105,10 @@ follow the Spiral and fill the entire board.</p>
 <h4 id = 'diamond'>Diamond</h4>
 
 <div class = "section">
-<p>The pattern the %%PIECE%% moves on the Diamond Spiral it the mirror
-image of the pattern the %%PIECE%% moves on the Square Spiral. Hence,
+<p>The pattern the <strong>Wazir</strong> moves on the Diamond Spiral it the mirror
+image of the pattern the <strong>Wazir</strong> moves on the Square Spiral. Hence,
 it visits all the squares on the board. However, not all pieces whose
-movements are a superset of the movements of the %%PIECE%% will 
+movements are a superset of the movements of the <strong>Wazir</strong> will 
 follow this pattern on the Diamond Spiral.</p>
 </div>
 
@@ -107,12 +117,12 @@ follow this pattern on the Diamond Spiral.</p>
 <h4 id = 'folded'>Folded</h4>
 
 <div class = "section">
-<p>On the Folded Wedge, the %%PIECE%% gets trapped after no more than 6 steps!</p>
+<p>On the Folded Wedge, the <strong>Wazir</strong> gets trapped after no more than 6 steps!</p>
 </div>
 
 <h4 id = 'flat'>Flat</h4>
 
-<p>On the Flat Wedge, the %%PIECE%% escapes to infinity, following a zigzag
+<p>On the Flat Wedge, the <strong>Wazir</strong> escapes to infinity, following a zigzag
 pattern on the right edge of the Flat Wedge. This gives it an 
 escape velocity of <span class = 'latex-inline'>\(\frac{\sqrt{2}}{2}\)</span>.</p>
 

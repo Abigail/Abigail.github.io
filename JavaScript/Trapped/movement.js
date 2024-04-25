@@ -144,16 +144,27 @@ class Movement {
                 if (entry . path) {
                     element = group . path (entry . path)
                 }
+                else if (entry . polygon) {
+                    console . log (entry . polygon)
+                    element = group . polygon (entry . polygon)
+                }
                 if (entry . fill) {
                     element . fill (entry . fill)
                 }
+                else {
+                    element . fill ('white')
+                }
                 if (entry . stroke) {
                     element . stroke (entry . stroke)
+                }
+                else {
+                    element . stroke ('black')
                 }
                 if (entry . transform) {
                     element . transform (entry . transform)
                 }
             })
+            console . log (group)
         }
         else {
             group . rect (35, 35)
