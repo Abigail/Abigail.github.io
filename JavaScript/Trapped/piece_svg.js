@@ -27,10 +27,32 @@ let PIECE_SVG = {
     },
 
     wazir: {
-        svg: [{polygon: '15,0  15,10 10,10 10,15  0,15 ' +
-                        ' 0,20 10,20 10,25 15,25 15,35 ' +
-                        '20,35 20,25 25,25 25,20 35,20 ' +
-                        '35,15 25,15 25,10 20,10 20,0',}],
+        svg: '<g transform="translate(0,-8)">' +
+                 '<path d="M 487.11262,1845.2434 H 1560.8875 ' +
+                          'c -125.7574,-239.2033 -308.6887,-360.091 ' +
+                          '-537.3024,-360.3389 -207.89956,-0.9538 ' +
+                          '-394.72165,118.0517 -536.47248,360.3389 z"' +
+                       'style="fill:#f9f9f9;fill-opacity:1;stroke:#000000;' +
+                              'stroke-width:80.25;stroke-linecap:butt;' +
+                              'stroke-linejoin:miter;stroke-miterlimit:4;' +
+                              'stroke-dasharray:none;stroke-opacity:1"/>' +
+   `<ellipse
+       transform="matrix(1.2206726,0,0,1.4495264,-241.85826,89.825231)"
+       style="fill:#f9f9f9;fill-opacity:1;stroke:#000000;stroke-width:60.32986832;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       cx="1037.017"
+       cy="702.91528"
+       rx="446.91525"
+       ry="373.15256" />
+    <g transform="matrix(1.07,0,0,1.07,-73.321389,-37.350307)">
+      <path
+         style="fill:none;stroke:#000000;stroke-width:75;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         d="M 1024.668,911.53802 V 1229.2479" />
+      <path
+         style="fill:none;stroke:#000000;stroke-width:75;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         d="M 863.94359,1071.6615 H 1181.654" />
+    </g>
+ </g>
+`,
+        scale: 45 / 2048
     },
-                        
 }

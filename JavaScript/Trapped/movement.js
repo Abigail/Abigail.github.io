@@ -138,40 +138,11 @@ class Movement {
 
         let info  = PIECE_SVG [piece]
 
-        if (info) {
-            info . svg . forEach ((entry) => {
-                let element
-                if (entry . path) {
-                    element = group . path (entry . path)
-                }
-                else if (entry . polygon) {
-                    console . log (entry . polygon)
-                    element = group . polygon (entry . polygon)
-                }
-                if (entry . fill) {
-                    element . fill (entry . fill)
-                }
-                else {
-                    element . fill ('white')
-                }
-                if (entry . stroke) {
-                    element . stroke (entry . stroke)
-                }
-                else {
-                    element . stroke ('black')
-                }
-                if (entry . transform) {
-                    element . transform (entry . transform)
-                }
-            })
-            console . log (group)
-        }
-        else {
-            group . rect (35, 35)
-                  . fill ('black')
-        }
-
+        group . svg (info . svg)
         group . center (... this . cell_to_coord (row, col))
+        if (info . scale) {
+            group . scale (info . scale)
+        }
 
         return this
     }
