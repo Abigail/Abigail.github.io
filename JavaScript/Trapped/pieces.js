@@ -285,31 +285,31 @@ function crooked (betza) {
     //    - Do not contain other modifiers
     //    - Is a Bishop or a Rook
     //
-    let match = betza . match (/^([a-z]+)([A-Z]+|[(][0-9]+,[0-9]+[)])$/)
+    let match = betza . match (/^([a-z]+)([A-Z]|[(][0-9]+,[0-9]+[)])(\2|0)$/)
     if (!match) {
         return out
     }
     let modifiers = match [1]
-    let rider     = match [2]
+    let leaper    = match [2]
     if (modifiers != 'z') {
         return out
     }
 
-    //
-    // For now, only handle sliders which are doubled
-    //
-    match = rider . match (/^([A-Z])\1$/)
-    if (!match) {
+    let [dr, dc] = [0, 0]
+
+    if (LEAPER_DESTINATIONS [leaper]) {
+        [dr, dc] = LEAPER_DESTINATIONS [leaper]
+    }
+    else if (match = leaper . match (/([0-9]+),([0-9]+)/)) {
+         dr = match [1]
+         dc = match [2]
+    }
+    else {
         return out
     }
 
-    let leaper = match [1]  // Now it's a single char
 
-    if (!LEAPER_DESTINATIONS [leaper]) {
-        return out
-    }
-
-    let [dr, dc] = LEAPER_DESTINATIONS [leaper]
+    console . log (`dr = ${dr}, dc = ${dc}`)
 
     //
     // Get the first moves; this will be 4 moves for diagonal and
