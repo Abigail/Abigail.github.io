@@ -17,10 +17,6 @@ the **Wazir**.
 The [*Knight-Bishop compound*](archbishop.html) is sometimes called a
 **Wazir** as well.
 
-<div class = 'piece_names'>
-</div>
-
-
 |====
 %%PIECE_HEADERS%%
   {th = 1}  %%RENN_CHESS%%
@@ -80,3 +76,5 @@ On the Folded Wedge, the **Wazir** gets trapped after no more than 6 steps!
 On the Flat Wedge, the **Wazir** escapes to infinity, following a zigzag
 pattern on the right edge of the Flat Wedge. This gives it an 
 escape velocity of \(\frac{\sqrt{2}}{2}\).
+
+

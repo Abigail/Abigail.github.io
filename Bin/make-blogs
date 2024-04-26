@@ -69,7 +69,7 @@ my $TYPE_INFO = {
         $INFO_NAV      =>  "Trapped/pages",
         $INFO_UP       =>  "../..",
         $INFO_JS       =>  ["piece_list", "trapped", "pieces", "boxset",
-                            "movement", "piece_svg"],
+                            "movement"],
     },
 };
 
@@ -906,6 +906,11 @@ sub post_process ($text, $directives) {
             if ($text !~ /<div[^>]*class\s*=\s*(["'])$class\1/) {
                 $text .= sprintf "\n<div class = '%s' data-piece = '%s'>" .
                                  "</div>\n" => $class, $base;
+            }
+            if (-f "$TOP_DIR/SVG/Trapped/$base.svg") {
+                my $svg = `cat $TOP_DIR/SVG/Trapped/$base.svg`;
+                $text .= "\n<div class = 'drawing' data-piece = '$base'>" .
+                         "<!--\n" . $svg . "\n-->\n</div>"
             }
         }
     }

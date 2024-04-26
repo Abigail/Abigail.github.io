@@ -11,7 +11,8 @@ $(window) . on ("load", () => {
 })
 
 
-let MOV_SIZE   = 50     // Height/width of square
+let MOV_SIZE = 50     // Height/width of square
+let SCALE    = { }
 
 class Movement {
 
@@ -134,14 +135,29 @@ class Movement {
         let col   = args . col
         let piece = args . piece
 
-        let group = this . board . group ()
+        let div   = $("div.drawing")
 
-        let info  = PIECE_SVG [piece]
+        if (div . length) {
+            let group = this . board . group ()
 
-        group . svg (info . svg)
-        group . center (... this . cell_to_coord (row, col))
-        if (info . scale) {
-            group . scale (info . scale)
+            let scale = SCALE [piece] || 45 / 2048
+
+            let svg   = $("div.drawing") . html ()
+                                         . replace (/.*<\/metadata>/s, "")
+                                         . replace ("<!--",            "")
+                                         . replace ("-->",             "")
+                                         . replace ("</svg>",          "")
+
+            group . svg    (svg)
+                  . center (... this . cell_to_coord (row, col))
+                  . scale  (scale)
+        }
+        else {
+            this . board . rect   (35, 35)
+                         . css    ({fill:         "white",
+                                    stroke:       "black",
+                                   "stroke-width": 2})
+                         . center (0, 0)
         }
 
         return this
