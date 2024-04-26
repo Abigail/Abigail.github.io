@@ -1,9 +1,19 @@
-# %%PIECE%%
+# Ferz
 
-The %%PIECE%% is a [*(1,1)-leaper*](leapers.html#basic_leapers).
+<div class = "movement">
+. . . . .
+. * . * .
+. . S . .
+. * . * .
+. . . . .
+</div>
+
+The **Ferz** is a [*(1,1)-leaper*](leapers.html#basic_leapers).
 It's a very old piece, appearing
 in very early chess variants. It may step one square in each of the
-four diagonal directions. This makes the %%PIECE%% %%COLOUR_BOUND%%.
+four diagonal directions. This makes the **Ferz** %%COLOUR_BOUND%%.
+
+Many games have a piece which moves like the **Ferz**.
 
 |====
 %%PIECE_HEADERS%%
@@ -38,7 +48,7 @@ four diagonal directions. This makes the %%PIECE%% %%COLOUR_BOUND%%.
 
 #### Square
 
-On the Square Spiral the %%PIECE%% will not get trapped.
+On the Square Spiral the **Ferz** will not get trapped.
 It follows a regular path around
 the origin, creating spiral in the opposite direction of the 
 Spiral, and rotated 45&deg;. It will visited all the odd
@@ -46,7 +56,7 @@ valued squares, so \(50\%\) of the squares on the board.
 
 #### Diamond
 
-On the Diamond Square, the %%PIECE%% follows the same regular
+On the Diamond Square, the **Ferz** follows the same regular
 path around the origin as the Square Spiral, except that it
 rotates the other way around. Hence, the pieces visits
 \(50\%\) of the squares on the board.
@@ -56,13 +66,13 @@ rotates the other way around. Hence, the pieces visits
 
 #### Folded
 
-On the Folded Wedge, the %%PIECE%% quickly escapes to infinity, using
+On the Folded Wedge, the **Ferz** quickly escapes to infinity, using
 a zig-zag pattern on the right hand side of the Wedge. It takes
 three steps to move one square diagonally upward, giving it an 
 escape speed of \(\frac{\sqrt{2}}{3}\).
 
 #### Flat
 
-On the Flat Wedge, the %%PIECE%% sticks the the right hand side
+On the Flat Wedge, the **Ferz** sticks the the right hand side
 edge of the board, escaping to infinity. The escape speed is
 \(\sqrt{2}\).

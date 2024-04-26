@@ -1,6 +1,14 @@
-# %%PIECE%%
+# King
 
-The %%PIECE%% can step one square away in all eight directions.
+<div class = "movement">
+. . . . .
+. * * * .
+. * S * .
+. * * * .
+. . . . .
+</div>
+
+The **King** can step one square away in all eight directions.
 Pieces which move this way appear in many games, using different names.
 Many, but not all, of those pieces are *Royal*, which means that if
 the piece is captured, the side owning the piece loses.
@@ -114,7 +122,7 @@ Of course, for our investigation, Royalness plays no part.
 &           %%ROYAL%% \\
 ====|
 
-Other names for pieces which move like the %%PIECE%%
+Other names for pieces which move like the **King**
 include *Mann* (not Royal).
 
 Links: [%%WIKI%%](#wiki:King_(chess)),
@@ -124,15 +132,15 @@ Links: [%%WIKI%%](#wiki:King_(chess)),
 
 #### Square
 
-The %%PIECE%% can move as the [*Wazir*](wazir.html), and the
+The **King** can move as the [*Wazir*](wazir.html), and the
 [*Wazir*](wazir.html)
-will follow the Spiral. Hence, the %%PIECE%% will visit all the squares on
+will follow the Spiral. Hence, the **King** will visit all the squares on
 the board.
 
 #### Diamond
 
-The %%PIECE%% can move as the [*Blind Monkey*](blind_monkey.html), and hence
-it will follow the Spiral. The %%PIECE%% will visit all the squares on
+The **King** can move as the [*Blind Monkey*](blind_monkey.html), and hence
+it will follow the Spiral. The **King** will visit all the squares on
 the board.
 
 
@@ -140,13 +148,13 @@ the board.
 
 #### Folded
 
-The %%PIECE%% can move as the [*Flying Cock*](flying_cock.html),
+The **King** can move as the [*Flying Cock*](flying_cock.html),
 and the [*Flying Cock*](flying_cock.html)
 will follow the Folded Wedge. Hence, the %%PIECE%% will visit all the squares on
 the board.
 
 #### Flat
 
-On the Flat Wedge, the %%PIECE%% fills the board row by row, alternating going
+On the Flat Wedge, the **King** fills the board row by row, alternating going
 with and against the numbers, with a small twist just before reaching
 the left hand side of the Wedge.
