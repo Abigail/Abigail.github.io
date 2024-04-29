@@ -37,18 +37,33 @@ class Movement {
         this . create_board ({addTo: element})
         this . create_grid  ()
 
+        let start        = []
+        let destinations = []
+        let arrows       = []
+
         board_info . forEach ((line, row) => {
             line . forEach ((field, col) => {
                 if (field == "S") {
-                    this . place_piece ({row: row, col: col,
-                                         piece: args . piece})
+                    start = {row: row, col: col}
                 }
                 if (field == '*') {
-                    this . place_destination ({row: row, col: col})
+                    destinations . push ({row: row, col: col})
+                }
+                if (field == 'A') {
+                    arrows . push ({row: row, col: col})
                 }
             })
         })
 
+        arrows . forEach ((square) => {
+            this . draw_arrow ({from: start, to: square})
+        })
+
+        this . place_piece ({start: start, piece: args . piece})
+
+        destinations . forEach ((square) => {
+            this . place_destination ({square: square})
+        })
     }
 
     cell_to_coord (row, col) {
@@ -131,8 +146,8 @@ class Movement {
     // Place the piece of which we show the movement
     //
     place_piece (args = {}) {
-        let row   = args . row
-        let col   = args . col
+        let row   = args . start . row
+        let col   = args . start . col
         let piece = args . piece
 
         let div   = $("div.drawing")
@@ -163,12 +178,72 @@ class Movement {
         return this
     }
 
+    //
+    // Given the coordinates of a square, mark the square as a
+    // valid destination
+    //
     place_destination (args = {}) {
-        let row   = args . row
-        let col   = args . col
+        let row   = args . square . row
+        let col   = args . square . col
 
         this . board . circle (MOV_SIZE * .50)
                      . fill   ('black')
                      . center (... this . cell_to_coord (row, col))
+
+        return this
+    }
+
+    //
+    // Given from and to squares, draw an arrow between them. 
+    // Arrow should start in the middle of the from square,
+    // and end 3/4 away from the start square in the to square.
+    //
+    draw_arrow (args = {}) {
+        let from = args . from
+        let to   = args . to
+
+        let [x_from, y_from] = this . cell_to_coord (from . row, from . col)
+        let [x_to,   y_to]   = this . cell_to_coord (to   . row, to   . col)
+
+        let line = this . board . line   (x_from, y_from, x_to, y_to)
+                                . stroke ({width:   1,
+                                           opacity: 0.5,
+                                           color:  'black',
+                                           linecap: 'round',})
+
+        //
+        // This needs to be badly improved
+        //
+        let angle = 0
+        if      (to . row < from . row) {
+            if      (to . col < from . col) {angle = -135}
+            else if (to . col > from . col) {angle = - 45}
+            else                            {angle = - 90}
+        }
+        else if (to . row > from . row) {
+            if      (to . col < from . col) {angle =  135}
+            else if (to . col > from . col) {angle =   45}
+            else                            {angle =   90}
+        }
+        else {
+            if      (to . col < from . col) {angle =  180}
+            else                            {angle =    0}
+        }
+
+        //
+        // Draw an arrow head
+        //
+        let head = this . board . polygon ('5,0  0,-10  20,0  0,10')
+                        . fill    ({color:  'black',
+                                    opacity: 0.5,})
+                        . stroke  ({color:  'black',
+                                    opacity: 0.5})
+                        . cx      (0)
+                        . cy      (0)
+                        . transform ({rotate:     angle,
+                                      scale:     .8,
+                                      translate: [x_to, y_to]})
+
+        return this
     }
 }
