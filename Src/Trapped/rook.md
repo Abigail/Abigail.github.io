@@ -1,14 +1,31 @@
-# %%PIECE%%
+# Rook
 
-The %%PIECE%% can slide an unlimited number of squares in all
+<div class = "movement">
+. . . . A . . . .
+. . . . * . . . .
+. . . . * . . . .
+. . . . * . . . .
+A * * * S * * * A
+. . . . * . . . .
+. . . . * . . . .
+. . . . * . . . .
+. . . . A . . . .
+</div>
+
+The **Rook** can slide an unlimited number of squares in all
 four orthogonal directions, as long as it does not slide over an
 occupied square.
 
+The **Rook** extends the movements of the %%WAZIR%%, making it a
+*Wazirrider*.
+
+Many games have pieces which move like the **Rook**, using various
+names.
 
 |====
 %%PIECE_HEADERS%%
   {th = 1}  %%GRAND_CAVALIER%%
-& {cs = 2}  **Cannon**<sup>[%%CHESS_V%%](#piece:cannon)</sup>
+& {cs = 2}  **Cannon**
 &           %%CAPTURE%% \\
   {th = 1}  %%XIANGQI%%
 &           **Cannon** & &#x7832;/&#x70AE;
@@ -70,13 +87,13 @@ Links: [%%WIKI%%](#wiki:Rook_(chess)),
 
 #### Square
 
-Since the %%PIECE%%'s movement is a superset of the movement of the
+Since the **Rook** movement is a superset of the movement of the
 [*Wazir*](wazir.html), it follows the Spiral, visiting all squares
 on the board.
 
 #### Diamond
 
-On the Diamond Spiral, the %%PIECE%% uses a regular pattern to fill
+On the Diamond Spiral, the **Rook** uses a regular pattern to fill
 \(\frac{5}{8} = 62.5\%\) of the board. This pattern is similar, but
 rotated 45&deg; of the pattern the [*Bishop*](bishop.html) uses on
 the Square Spiral.
@@ -85,13 +102,13 @@ the Square Spiral.
 
 #### Folded
 
-On the Folded Wedge, the %%PIECE%% gets trapped very quickly, after 6 moves.
+On the Folded Wedge, the **Rook** gets trapped very quickly, after 6 moves.
 This is the same number of moves that the [*Wazir*](wazir.html) takes before
 it gets trapped, but there is a slight difference in which squares
 are visited.
 
 #### Flat
 
-On the Flat Wedge the %%PIECE%% quickly escapes to infinity by alternating make 
+On the Flat Wedge the **Rook** quickly escapes to infinity by alternating make 
 a step forward, and a step to the right. This gives it an escape
 velocity of \(\frac{\sqrt{2}}{2}\) .
