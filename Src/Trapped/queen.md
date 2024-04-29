@@ -1,8 +1,20 @@
-# %%PIECE%%
+# Queen
 
-The %%PIECE%% can slide an unlimited number of squares in all eight 
+<div class = "movement">
+A . . . A . . . A
+. * . . * . . * .
+. . * . * . * . .
+. . . * * * . . .
+A * * * S * * * A
+. . . * * * . . .
+. . * . * . * . .
+. * . . * . . * .
+A . . . A . . . A
+</div>
+
+The **Queen** can slide an unlimited number of squares in all eight 
 directions: four orthogonal directions and four diagonal directions.
-It cannot slide over occupied squares. The %%PIECE%% combines the
+It cannot slide over occupied squares. The **Queen** combines the
 movements of the [*Rook*](rook.html) and [*Bishop*](bishop.html).
 
 It's common in many Chess variant, using different names:
@@ -66,24 +78,24 @@ Links: [%%WIKI%%](#wiki:Queen_(chess)),
 
 #### Square
 
-The %%PIECE%% can move like a [*Wazir*](wazir.html), and a *Wazir* 
-can follow the Spiral. Hence, the %%PIECE%% will fill the entire board,
+The **Queen** can move like a [*Wazir*](wazir.html), and a *Wazir* 
+can follow the Spiral. Hence, the **Queen** will fill the entire board,
 and not get trapped.
 
 #### Diamond
 
-The %%PIECE%% can move like a [*Blind Monkey*](blind_monkey.html),
-and a *Blind Monkey* can follow the Spiral. Hence, the %%PIECE%%
+The **Queen** can move like a [*Blind Monkey*](blind_monkey.html),
+and a *Blind Monkey* can follow the Spiral. Hence, the **Queen**
 will fill the entire board, and not get trapped.
 
 ### Wedge
 
 #### Folded
 
-The %%PIECE%% can move like the [*Flying Cock*](flying_cock.html), and
+The **Queen** can move like the [*Flying Cock*](flying_cock.html), and
 hence will follow the Wedge, filling the entire board.
 
 #### Flat
 
-The %%PIECE%% will fill the entire board, but in doing so, it has a 
+The **Queen** will fill the entire board, but in doing so, it has a 
 strong bias on the right hand side of the board. 
