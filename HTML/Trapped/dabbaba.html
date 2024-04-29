@@ -1,6 +1,6 @@
 <html>
 <head>
-<title>%%PIECE%%</title>
+<title>Dabbaba</title>
 <meta charset = "utf-8">
 <link rel  = 'preconnect' href = 'https://fonts.gstatic.com'>
 <link rel = 'stylesheet' href =      'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
@@ -14,18 +14,29 @@
 <script src = '../../JavaScript/Trapped/trapped.js'></script>
 <script src = '../../JavaScript/Trapped/pieces.js'></script>
 <script src = '../../JavaScript/Trapped/boxset.js'></script>
+<script src = '../../JavaScript/Trapped/movement.js'></script>
 <script src = '../../JavaScript/Trapped/pages.js'></script>
 </head>
 
-<body><h1>%%PIECE%%</h1><div class = "byline">
+<body><h1>Dabbaba</h1><div class = "byline">
 by Abigail<br>
 <img src = "../../Images/jan_sluiters.jpg">
 </div>
 
 
-<p>The %%PIECE%% is a (2,0)-leaper. That is, the %%PIECE%% jumps
+<div class = "movement">
+. . . . . . .
+. . . * . . .
+. . . . . . .
+. * . S . * .
+. . . . . . .
+. . . * . . .
+. . . . . . .
+</div>
+
+<p>The <strong>Dabbaba</strong> is a (2,0)-leaper. That is, the <strong>Dabbaba</strong> jumps
 two squares orthogonally. It can jump over an unoccupied square.
-This makes the %%PIECE%% <span class = 'tooltip underline'>colourbound<span class = 'tooltiptext'>A colourbound piece will always stay on a square of the same colour: if it starts on a black square, it will always remain on a black square; if it starts on a white square, it will always remain on a white square</span></span>.
+This makes the <strong>Dabbaba</strong> <span class = 'tooltip underline'>colourbound<span class = 'tooltiptext'>A colourbound piece will always stay on a square of the same colour: if it starts on a black square, it will always remain on a black square; if it starts on a white square, it will always remain on a white square</span></span>.
 It also keeps parity in both its row and file.
 This means, if it starts on an even row (or file), it will remain
 on an even row (of file). And if it starts on an odd row (of file),
@@ -60,7 +71,7 @@ it will remain on an odd row (or file).</p>
 <h4 id = 'square'>Square</h4>
 
 <div class = "section">
-<p>On the Square Spiral, the %%PIECE%% acts like a <a href="wazir.html"><em>Wazir</em></a>, except
+<p>On the Square Spiral, the <strong>Dabbaba</strong> acts like a <a href="wazir.html"><em>Wazir</em></a>, except
 that it skips all odd rows and odd files. Hence, it fills 25% of
 the board.</p>
 </div>
@@ -68,7 +79,7 @@ the board.</p>
 <h4 id = 'diamond'>Diamond</h4>
 
 <div class = "section">
-<p>Just like on the Square Spiral, on the Diamond Spiral, the %%PIECE%%
+<p>Just like on the Square Spiral, on the Diamond Spiral, the <strong>Dabbaba</strong>
 acts like a <a href="wazir.html"><em>Wazir</em></a>, except that it skips all odd rows
 and odd files. The path traced is a mirror image of the path traced
 on the Square Spiral. 25% of all the squares on the board will be visited.</p>
@@ -76,15 +87,191 @@ on the Square Spiral. 25% of all the squares on the board will be visited.</p>
 
 <h3 id = 'wedge'>Wedge</h3>
 
-<p>On both the Folded and Flat Wedge, the %%PIECE%% escapes using
+<p>On both the Folded and Flat Wedge, the <strong>Dabbaba</strong> escapes using
 a stepwise pattern: it visits the right most, and third square
 from the right, of each second row, with an escape velocity of
 <span class = 'latex-inline'>\(\sqrt{2}\)</span>.</p>
 
 <div class = 'trapped' data-piece = 'dabbaba'></div>
 
+<div class = 'drawing' data-piece = 'dabbaba'><!--
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="45"
+   height="45"
+   version="1.1"
+   id="svg1240"
+   sodipodi:docname="wDb.svg"
+   inkscape:version="1.2.1 (9c6d41e410, 2022-07-14)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs1244">
+    <inkscape:path-effect
+       effect="bspline"
+       id="path-effect4238"
+       is_visible="true"
+       lpeversion="1"
+       weight="33.333333"
+       steps="2"
+       helper_size="0"
+       apply_no_weight="true"
+       apply_with_weight="true"
+       only_selected="false" />
+  </defs>
+  <sodipodi:namedview
+     id="namedview1242"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     showgrid="false"
+     inkscape:zoom="11.313708"
+     inkscape:cx="25.411651"
+     inkscape:cy="22.450641"
+     inkscape:window-width="1366"
+     inkscape:window-height="705"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="g1238"
+     inkscape:lockguides="true" />
+  <g
+     fill="#fff"
+     fill-rule="evenodd"
+     stroke="#000"
+     stroke-width="1.5"
+     stroke-linecap="round"
+     stroke-linejoin="round"
+     id="g1238"
+     style="fill:#00ffff">
+    <path
+       id="path1228"
+       style="fill:#ffffff;stroke-width:1.70076"
+       d="m 35.504221,37.240235 -0.007,-5.690637 -25.9800846,0.03269 0.007,5.690637 4.5182746,-0.0057 -0.0028,-2.276255 5.647844,-0.007 0.0028,2.276255 5.647845,-0.007 -0.0028,-2.276255 5.647845,-0.007 0.0028,2.276254 z" />
+    <path
+       d="m 9.5170844,31.58228 3.3844756,-3.418645 19.202672,-0.02415 3.392938,3.410119"
+       id="path1230"
+       style="fill:#ffffff;stroke-width:1.70076" />
+    <path
+       d="M 12.952037,27.892939 16.332338,11.1345 28.631223,11.08767 32.048299,27.868924"
+       stroke-linecap="butt"
+       stroke-linejoin="miter"
+       id="path1232"
+       style="fill:#ffffff;stroke-width:1.84111"
+       sodipodi:nodetypes="cccc" />
+    <path
+       d="M 35.49717,31.549598 9.5170844,31.582288"
+       fill="none"
+       stroke-linejoin="miter"
+       id="path1236"
+       style="fill:#ffffff;stroke-width:1.70076" />
+    <path
+       style="fill:#ffffff;fill-rule:evenodd;stroke:#000000;stroke-width:2.05844"
+       d="m 28.649443,11.352828 c -1.319367,0.0059 -2.628117,0.01183 -3.488637,0.01552 -0.86052,0.0037 -1.272808,0.0052 -1.859526,0.0075 -0.586718,0.0023 -1.347868,0.0053 -1.807727,0.0072 -0.459859,0.0019 -0.618436,0.0026 -0.745289,0.0031 -0.126853,4.46e-4 -0.222004,6.35e-4 -0.697723,0.002 -0.475718,0.0014 -1.33201,0.0039 -1.823585,0.0055 -0.491575,0.0015 -0.618433,0.002 -0.69772,0.0022 -0.07929,2.18e-4 -0.110997,2.25e-4 -0.174429,4.87e-4 -0.06343,2.62e-4 -0.158569,7.28e-4 -0.200834,9.36e-4 -0.04227,2.07e-4 -0.04227,1.18e-4 -0.09515,2.24e-4 -0.05288,1.06e-4 -0.14802,5.72e-4 -0.274878,9.75e-4 -0.126859,4.03e-4 -0.28543,7.7e-4 -0.433389,0.0011"
+       id="path4236"
+       inkscape:path-effect="#path-effect4238"
+       inkscape:original-d="m 28.649443,11.352828 c -1.319366,0.0062 -2.628116,0.01196 -3.926254,0.01767 -0.422902,0.0017 -0.835191,0.0031 -1.236867,0.0045 -0.77176,0.0031 -1.53291,0.0062 -2.283443,0.0091 -0.169185,7.64e-4 -0.327759,0.0021 -0.475718,0.0022 -0.10575,4.12e-4 -0.200901,4.32e-4 -0.285431,5.65e-4 -0.866907,0.0027 -1.723199,0.0051 -2.568877,0.0077 -0.137472,4.19e-4 -0.26433,0.0011 -0.380574,0.0014 -0.04233,6.3e-5 -0.07404,6.9e-5 -0.09514,2.1e-5 -0.105762,7.48e-4 -0.2009,0.0011 -0.285432,0.0014 -0.01062,-3.4e-5 -0.01062,-1.69e-4 3e-6,-3.96e-4 -0.105762,7.48e-4 -0.200902,0.0011 -0.285432,0.0014 -0.169188,4.26e-4 -0.327759,9.64e-4 -0.475718,0.0011" />
+  </g>
+</svg>
+
+-->
+</div>
 <div class = 'boxset' data-piece = 'dabbaba'></div>
 
+<div class = 'drawing' data-piece = 'dabbaba'><!--
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="45"
+   height="45"
+   version="1.1"
+   id="svg1240"
+   sodipodi:docname="wDb.svg"
+   inkscape:version="1.2.1 (9c6d41e410, 2022-07-14)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs1244">
+    <inkscape:path-effect
+       effect="bspline"
+       id="path-effect4238"
+       is_visible="true"
+       lpeversion="1"
+       weight="33.333333"
+       steps="2"
+       helper_size="0"
+       apply_no_weight="true"
+       apply_with_weight="true"
+       only_selected="false" />
+  </defs>
+  <sodipodi:namedview
+     id="namedview1242"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     showgrid="false"
+     inkscape:zoom="11.313708"
+     inkscape:cx="25.411651"
+     inkscape:cy="22.450641"
+     inkscape:window-width="1366"
+     inkscape:window-height="705"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="g1238"
+     inkscape:lockguides="true" />
+  <g
+     fill="#fff"
+     fill-rule="evenodd"
+     stroke="#000"
+     stroke-width="1.5"
+     stroke-linecap="round"
+     stroke-linejoin="round"
+     id="g1238"
+     style="fill:#00ffff">
+    <path
+       id="path1228"
+       style="fill:#ffffff;stroke-width:1.70076"
+       d="m 35.504221,37.240235 -0.007,-5.690637 -25.9800846,0.03269 0.007,5.690637 4.5182746,-0.0057 -0.0028,-2.276255 5.647844,-0.007 0.0028,2.276255 5.647845,-0.007 -0.0028,-2.276255 5.647845,-0.007 0.0028,2.276254 z" />
+    <path
+       d="m 9.5170844,31.58228 3.3844756,-3.418645 19.202672,-0.02415 3.392938,3.410119"
+       id="path1230"
+       style="fill:#ffffff;stroke-width:1.70076" />
+    <path
+       d="M 12.952037,27.892939 16.332338,11.1345 28.631223,11.08767 32.048299,27.868924"
+       stroke-linecap="butt"
+       stroke-linejoin="miter"
+       id="path1232"
+       style="fill:#ffffff;stroke-width:1.84111"
+       sodipodi:nodetypes="cccc" />
+    <path
+       d="M 35.49717,31.549598 9.5170844,31.582288"
+       fill="none"
+       stroke-linejoin="miter"
+       id="path1236"
+       style="fill:#ffffff;stroke-width:1.70076" />
+    <path
+       style="fill:#ffffff;fill-rule:evenodd;stroke:#000000;stroke-width:2.05844"
+       d="m 28.649443,11.352828 c -1.319367,0.0059 -2.628117,0.01183 -3.488637,0.01552 -0.86052,0.0037 -1.272808,0.0052 -1.859526,0.0075 -0.586718,0.0023 -1.347868,0.0053 -1.807727,0.0072 -0.459859,0.0019 -0.618436,0.0026 -0.745289,0.0031 -0.126853,4.46e-4 -0.222004,6.35e-4 -0.697723,0.002 -0.475718,0.0014 -1.33201,0.0039 -1.823585,0.0055 -0.491575,0.0015 -0.618433,0.002 -0.69772,0.0022 -0.07929,2.18e-4 -0.110997,2.25e-4 -0.174429,4.87e-4 -0.06343,2.62e-4 -0.158569,7.28e-4 -0.200834,9.36e-4 -0.04227,2.07e-4 -0.04227,1.18e-4 -0.09515,2.24e-4 -0.05288,1.06e-4 -0.14802,5.72e-4 -0.274878,9.75e-4 -0.126859,4.03e-4 -0.28543,7.7e-4 -0.433389,0.0011"
+       id="path4236"
+       inkscape:path-effect="#path-effect4238"
+       inkscape:original-d="m 28.649443,11.352828 c -1.319366,0.0062 -2.628116,0.01196 -3.926254,0.01767 -0.422902,0.0017 -0.835191,0.0031 -1.236867,0.0045 -0.77176,0.0031 -1.53291,0.0062 -2.283443,0.0091 -0.169185,7.64e-4 -0.327759,0.0021 -0.475718,0.0022 -0.10575,4.12e-4 -0.200901,4.32e-4 -0.285431,5.65e-4 -0.866907,0.0027 -1.723199,0.0051 -2.568877,0.0077 -0.137472,4.19e-4 -0.26433,0.0011 -0.380574,0.0014 -0.04233,6.3e-5 -0.07404,6.9e-5 -0.09514,2.1e-5 -0.105762,7.48e-4 -0.2009,0.0011 -0.285432,0.0014 -0.01062,-3.4e-5 -0.01062,-1.69e-4 3e-6,-3.96e-4 -0.105762,7.48e-4 -0.200902,0.0011 -0.285432,0.0014 -0.169188,4.26e-4 -0.327759,9.64e-4 -0.475718,0.0011" />
+  </g>
+</svg>
+
+-->
+</div>
 <hr id = 'last-line'>
 <div class = 'trailer'>
 <p class = 'prev'><a class = "prev" href = "">&#x261C;</a></p>

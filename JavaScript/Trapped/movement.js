@@ -12,7 +12,15 @@ $(window) . on ("load", () => {
 
 
 let MOV_SIZE = 30     // Height/width of square
-let SCALE    = { }
+let SCALE    = {
+    dabbaba:   MOV_SIZE * .9 / 45
+}
+let TRANSFORM = {
+                //
+                // Beats me why this is necessary
+                //
+    dabbaba:   {scale: MOV_SIZE * .9 / 45, translate: [-MOV_SIZE * 1.05, 0]}
+}
 
 class Movement {
 
@@ -158,14 +166,23 @@ class Movement {
             let scale = SCALE [piece] || MOV_SIZE * .9 / 2048
 
             let svg   = $("div.drawing") . html ()
+                                         . replace (/<\?[^?]*?\?>/,    "")
                                          . replace (/.*<\/metadata>/s, "")
                                          . replace ("<!--",            "")
                                          . replace ("-->",             "")
                                          . replace ("</svg>",          "")
 
+            console . log (`${row}, ${col}`)
+            console . log (this . cell_to_coord (row, col))
+
             group . svg    (svg)
                   . center (... this . cell_to_coord (row, col))
                   . scale  (scale)
+
+            if (TRANSFORM [piece]) {
+                console . log (TRANSFORM [piece])
+                group . transform (TRANSFORM [piece])
+            }
         }
         else {
             this . board . rect   (MOV_SIZE * .85, MOV_SIZE * .85)
