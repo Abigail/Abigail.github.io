@@ -1,13 +1,15 @@
 # %%PIECE%%
 
 <div class = "movement">
-. . . . . . .
-. * . . . * .
-. . * . * . .
-. . . S . . .
-. . * . * . .
-. * . . . * .
-. . . . . . .
+A . . . . . . . A
+. * . . . . . * .
+. . * . . . * . .
+. . . * . * . . .
+. . . . S . . . .
+. . . * . * . . .
+. . * . . . * . .
+. * . . . . . * .
+A . . . . . . . A
 </div>
 
 The %%PIECE%% can slide an unlimited number of squares in
