@@ -1,5 +1,15 @@
 # %%PIECE%%
 
+<div class = "movement">
+. . . . . . .
+. * . . . * .
+. . * . * . .
+. . . S . . .
+. . * . * . .
+. * . . . * .
+. . . . . . .
+</div>
+
 The %%PIECE%% can slide an unlimited number of squares in
 each of the four diagonal directions, as long as the squares it
 slides over are not occupied.
