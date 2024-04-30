@@ -1,6 +1,20 @@
-# %%PIECE%%
+# Giraffe
 
-The %%PIECE%% is a (4,1)-%%LEAPER%%. That is, from its starting square,
+<div class = "movement">
+. . . . . . . . . . .
+. . . . * . * . . . .
+. . . . . . . . . . .
+. . . . . . . . . . .
+. * . . . . . . . * .
+. . . . . S . . . . .
+. * . . . . . . . * .
+. . . . . . . . . . .
+. . . . . . . . . . .
+. . . . * . * . . . .
+. . . . . . . . . . .
+</div>
+
+The **Giraffe** is a (4,1)-%%LEAPER%%. That is, from its starting square,
 it jumps to a square which is four away in one orthogonal direction,
 and one in the other.
 
@@ -19,22 +33,22 @@ and one in the other.
 
 #### Square
 
-The %%PIECE%% moves irregular on the Square Spiral, eventually getting
+The **Giraffe** moves irregular on the Square Spiral, eventually getting
 trapped. This, however, only happens on step 13,102.
 
 #### Diamond
 
-The %%PIECE%% gets trapped faster on the Diamond Square; after
+The **Giraffe** gets trapped faster on the Diamond Square; after
 1.322 steps, it is trapped.
 
 ### Wedge
 
 #### Folded
 
-On the Folded Wedge, the %%PIECE%% gets trapped much faster than
+On the Folded Wedge, the **Giraffe** gets trapped much faster than
 on either Spiral: after a mere 114 steps, it gets trapped.
 
 #### Flat
 
-On the Flat Wedge, the %%PIECE%% gets trapped even faster; it makes
+On the Flat Wedge, the **Giraffe** gets trapped even faster; it makes
 94 steps, and gets trapped.

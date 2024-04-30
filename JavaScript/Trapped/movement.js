@@ -13,13 +13,16 @@ $(window) . on ("load", () => {
 
 let MOV_SIZE = 30     // Height/width of square
 let SCALE    = {
-    dabbaba:   MOV_SIZE * .9 / 45
+    antelope:  MOV_SIZE * .9 /  450,
+    dabbaba:   MOV_SIZE * .9 /   45,
+    stag:      MOV_SIZE * .9 / 1000,
 }
 let TRANSFORM = {
-                //
-                // Beats me why this is necessary
-                //
-    dabbaba:   {scale: MOV_SIZE * .9 / 45, translate: [-MOV_SIZE * 1.05, 0]}
+    //
+    // Beats me why any of these are necessary
+    //
+    antelope:  {scale: MOV_SIZE * .9 / 450, translate: [-MOV_SIZE *  7.4, 0]},
+    dabbaba:   {scale: MOV_SIZE * .9 /  45, translate: [-MOV_SIZE * 1.05, 0]},
 }
 
 class Movement {
@@ -185,7 +188,7 @@ class Movement {
             }
         }
         else {
-            this . board . rect   (MOV_SIZE * .75, MOV_SIZE * .75)
+            this . board . rect   (MOV_SIZE * .85, MOV_SIZE * .85)
                          . css    ({fill:         "white",
                                     stroke:       "black",
                                    "stroke-width": 2})
