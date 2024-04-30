@@ -185,7 +185,7 @@ class Movement {
             }
         }
         else {
-            this . board . rect   (MOV_SIZE * .85, MOV_SIZE * .85)
+            this . board . rect   (MOV_SIZE * .75, MOV_SIZE * .75)
                          . css    ({fill:         "white",
                                     stroke:       "black",
                                    "stroke-width": 2})
