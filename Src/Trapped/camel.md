@@ -1,12 +1,24 @@
-# %%PIECE%%
+# Camel
 
-The %%PIECE%% is  a [*(1,3)-leaper*](leapers.html#basic_leapers). This means
-that the %%PIECE%% jumps to a square which is three squares away in
+<div class = "movement">
+. . . . . . . . .
+. . . * . * . . .
+. . . . . . . . .
+. * . . . . . * .
+. . . . S . . . .
+. * . . . . . * .
+. . . . . . . . .
+. . . * . * . . .
+. . . . . . . . .
+</div>
+
+The **Camel** is  a [*(1,3)-leaper*](leapers.html#basic_leapers). This means
+that the **Camel** jumps to a square which is three squares away in
 one orthogonal
 direction, and one square away into a direction perpendicular to the
 first direction.
 
-This makes the %%PIECE%% %%COLOUR_BOUND%%.
+This makes the **Camel** %%COLOUR_BOUND%%.
 
 |====
 %%PIECE_HEADERS%%
@@ -29,23 +41,23 @@ Links: [%%WIKI%%](#wiki:Camel_(chess)),
 
 #### Square
 
-The %%PIECE%% will circle in an irregular way around the origin, in
+The **Camel** will circle in an irregular way around the origin, in
 the opposite direction from the Spiral; roughly tracing out a square.
-The %%PIECE%% will get trapped after 3,722 steps.
+The **Camel** will get trapped after 3,722 steps.
 
 #### Diamond
 
-Surprisingly, the %%PIECE%% will get trapped in as many steps as
+Surprisingly, the **Camel** will get trapped in as many steps as
 the [*Knight*](knight.html) on the Square Spiral: 2,015 steps!
 
 ### Wedge
 
 #### Folded
 
-On the Folded Wedge, the %%PIECE%% gets trapped much sooner than on
-the Spiral, after no more than 342 steps, the %%PIECE%% is trapped.
+On the Folded Wedge, the **Camel** gets trapped much sooner than on
+the Spiral, after no more than 342 steps, the **Camel** is trapped.
 
 #### Flat
 
 On the Flat Wedge, it takes much longer than on the Folded Wedge for
-the %%PIECE%% to get trapped: 2,401 steps.
+the **Camel** to get trapped: 2,401 steps.

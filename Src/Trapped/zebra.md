@@ -1,7 +1,19 @@
-# %%PIECE%%
+# Zebra
 
-The %%PIECE%% is a (3,2)-%%LEAPER%%. This means
-that the %%PIECE%% jumps to a square which is three squares away in
+<div class = "movement">
+. . . . . . . . .
+. . * . . . * . .
+. * . . . . . * .
+. . . . . . . . .
+. . . . S . . . .
+. . . . . . . . .
+. * . . . . . * .
+. . * . . . * . .
+. . . . . . . . .
+</div>
+
+The **Zebra** is a (3,2)-%%LEAPER%%. This means
+that the **Zebra** jumps to a square which is three squares away in
 an orthogonal direction, and two squares away into a direction
 perpendicular to the first direction.
 
@@ -19,13 +31,13 @@ perpendicular to the first direction.
 
 #### Square
 
-The %%PIECE%% will circle in an irregular way around the origin, with
+The **Zebra** will circle in an irregular way around the origin, with
 some focus of activity on the diagonals.
 The Zebra will get trapped after 4,633 steps.
 
 #### Diamond
 
-The %%PIECE%% bounces around the origin, visiting squares in roughly
+The **Zebra** bounces around the origin, visiting squares in roughly
 diamond shaped area around the origin, only to get trapped after 14,569
 steps.
 
@@ -33,10 +45,10 @@ steps.
 
 #### Folded
 
-On the Folded Wedge, the %%PIECE%% bounces around for 80 steps, then
+On the Folded Wedge, the **Zebra** bounces around for 80 steps, then
 it gets trapped.
 
 #### Flat
 
-On the Flat Wedge, the %%PIECE%% has a strong bias to the right hand
+On the Flat Wedge, the **Zebra** has a strong bias to the right hand
 side of the board. It gets trapped after 286 steps.
