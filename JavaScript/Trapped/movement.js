@@ -14,7 +14,6 @@ $(window) . on ("load", () => {
 let MOV_SIZE = 30     // Height/width of square
 let SCALE    = {
     antelope:  MOV_SIZE * .9 /  450,
-    dabbaba:   MOV_SIZE * .9 /   45,
     stag:      MOV_SIZE * .9 / 1000,
 }
 let TRANSFORM = {
@@ -22,7 +21,7 @@ let TRANSFORM = {
     // Beats me why any of these are necessary
     //
     antelope:  {scale: MOV_SIZE * .9 / 450, translate: [-MOV_SIZE *  7.4, 0]},
-    dabbaba:   {scale: MOV_SIZE * .9 /  45, translate: [-MOV_SIZE * 1.05, 0]},
+    dabbaba:   {scale: MOV_SIZE * .9 /2048, translate: [ MOV_SIZE * 0.22, 0]},
 }
 
 class Movement {
@@ -175,15 +174,11 @@ class Movement {
                                          . replace ("-->",             "")
                                          . replace ("</svg>",          "")
 
-            console . log (`${row}, ${col}`)
-            console . log (this . cell_to_coord (row, col))
-
             group . svg    (svg)
                   . center (... this . cell_to_coord (row, col))
                   . scale  (scale)
 
             if (TRANSFORM [piece]) {
-                console . log (TRANSFORM [piece])
                 group . transform (TRANSFORM [piece])
             }
         }
