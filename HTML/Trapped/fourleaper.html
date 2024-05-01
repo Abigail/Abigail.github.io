@@ -1,6 +1,6 @@
 <html>
 <head>
-<title>%%PIECE%%</title>
+<title>Fourleaper</title>
 <meta charset = "utf-8">
 <link rel  = 'preconnect' href = 'https://fonts.gstatic.com'>
 <link rel = 'stylesheet' href =      'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
@@ -14,22 +14,39 @@
 <script src = '../../JavaScript/Trapped/trapped.js'></script>
 <script src = '../../JavaScript/Trapped/pieces.js'></script>
 <script src = '../../JavaScript/Trapped/boxset.js'></script>
+<script src = '../../JavaScript/Trapped/movement.js'></script>
 <script src = '../../JavaScript/Trapped/pages.js'></script>
 </head>
 
-<body><h1>%%PIECE%%</h1><div class = "byline">
+<body><h1>Fourleaper</h1><div class = "byline">
 by Abigail<br>
 <img src = "../../Images/jan_sluiters.jpg">
 </div>
 
 
-<p>The %%PIECE%% is a (4,0)-<a href="leapers.html"><em>Leaper</em></a> jumping to a square which is four squares
-away in any orthogonal direction. It can jump over
+<div class = "movement">
+. . . . . . . . . . .
+. . . . . * . . . . .
+. . . . . . . . . . .
+. . . . . . . . . . .
+. . . . . . . . . . .
+. * . . . S . . . * .
+. . . . . . . . . . .
+. . . . . . . . . . .
+. . . . . . . . . . .
+. . . . . * . . . . .
+. . . . . . . . . . .
+</div>
+
+<p>The <strong>Fourleaper</strong> is a (4,0)-<a href="leapers.html"><em>Leaper</em></a> jumping to a square which
+is four squares away in any orthogonal direction. It can jump over
 any occupied intermediate square. </p>
 
-<p>This makes the %%PIECE%% not only <span class = 'tooltip underline'>colourbound<span class = 'tooltiptext'>A colourbound piece will always stay on a square of the same colour: if it starts on a black square, it will always remain on a black square; if it starts on a white square, it will always remain on a white square</span></span>, it also means
-the %%PIECE%% can only reach squares <span class = 'latex-inline'>\((4 * x, 4 * y)\)</span>, for
-integers <span class = 'latex-inline'>\(x\)</span> and <span class = 'latex-inline'>\(y\)</span>, assuming it starts from square <span class = 'latex-inline'>\((0, 0)\)</span>.</p>
+<p>This makes the <strong>Fourleaper</strong> not only <span class = 'tooltip underline'>colourbound<span class = 'tooltiptext'>A colourbound piece will always stay on a square of the same colour: if it starts on a black square, it will always remain on a black square; if it starts on a white square, it will always remain on a white square</span></span>, it also means
+the <strong>Fourleaper</strong> can only reach squares <span class = 'latex-inline'>\((4 * x, 4 * y)\)</span>, for
+integers <span class = 'latex-inline'>\(x\)</span> and <span class = 'latex-inline'>\(y\)</span>, assuming it starts from square <span class = 'latex-inline'>\((0, 0)\)</span>. This
+means the <strong>Fourleaper</strong> can only reach <span class = 'latex-inline'>\(6.25\%\)</span> of the squares on
+a chessboard.</p>
 
 <table class = piece_list>
   <tr class = 'row-0' markdown = '1'>
@@ -49,22 +66,22 @@ integers <span class = 'latex-inline'>\(x\)</span> and <span class = 'latex-inli
 <h4 id = 'square'>Square</h4>
 
 <div class = "section">
-<p>On the Square Spiral, the %%PIECE%% moves in the same manner as
-the <a href="wazir.html"><em>Wazir</em></a>, but blown up by a factor of four. It visits 6.25%
+<p>On the Square Spiral, the <strong>Fourleaper</strong> moves in the same manner as
+the <a href="wazir.html"><em>Wazir</em></a>, but blown up by a factor of four. It visits <span class = 'latex-inline'>\(6.25\%\)</span>
 of the squares.</p>
 </div>
 
 <h4 id = 'diamond'>Diamond</h4>
 
 <div class = "section">
-<p>Just like on the Square Spiral, the %%PIECE%% moves in the same manner as 
-the <a href="wazir.html"><em>Wazir</em></a>, but blown up by a factor of four. It visits 6.25%
+<p>Just like on the Square Spiral, the <strong>Fourleaper</strong> moves in the same manner as 
+the <a href="wazir.html"><em>Wazir</em></a>, but blown up by a factor of four. It visits <span class = 'latex-inline'>\(6.25\%\)</span>
 of the squares.</p>
 </div>
 
 <h3 id = 'wedge'>Wedge</h3>
 
-<p>On both the Folded Wedge, and the Flat Wedge, the %%PIECE%% only
+<p>On both the Folded Wedge, and the Flat Wedge, the <strong>Fourleaper</strong> only
 visits two squares of each fourth row, escaping to infinity using
 a step-wise pattern. Since it takes two steps to move four squares
 to the upper right, the escape velocity is <span class = 'latex-inline'>\(2 \sqrt{2}\)</span>.</p>
