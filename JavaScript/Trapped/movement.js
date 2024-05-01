@@ -21,6 +21,7 @@ let TRANSFORM = {
     // Beats me why any of these are necessary
     //
     antelope:  {scale: MOV_SIZE * .9 / 450, translate: [-MOV_SIZE *  7.4, 0]},
+    caliph:    {scale: MOV_SIZE * .9 /2048, translate: [ MOV_SIZE * 0.20, 0]},
     dabbaba:   {scale: MOV_SIZE * .9 /2048, translate: [ MOV_SIZE * 0.22, 0]},
 }
 
