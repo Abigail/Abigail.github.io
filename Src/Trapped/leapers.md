@@ -128,12 +128,13 @@ Some Compound Leapers combining two Basic Leapers have names:
 |====
 {class = 'leapers compound_leapers'}
 & Wizar & Ferz & Dabbaba & Knight & Alfil
-        & Threeleaper & Camel & Zebra & Tripper \\
+        & Threeleaper & Camel & Zebra & Tripper & Giraffe \\
 Wizar       & &mdash;
             & [**King**](king.html)
             & [**War Machine**](war_machine.html)
             & [**Marquis**](marquis.html)
             & [**Caliph**](caliph.html)
+            &
             &
             &
             &
@@ -148,12 +149,14 @@ Ferz        & [**King**](king.html)
             & [**Wizard**](wizard.html)
             &
             &
+            &
             \\
 Dabbaba     & [**War Machine**](war_machine.html)
             & [**Goat**](goat.html)
             & &mdash;
             & [**Carpenter**](carpenter.html)
             & [**Alibaba**](alibaba.html)
+            &
             &
             &
             &
@@ -168,12 +171,14 @@ Knight      & [**Marquis**](marquis.html)
             & [**Gnu**](gnu.html)
             & [**Okapi**](okapi.html)
             &
+            &
             \\
 Alfil       & [**Caliph**](caliph.html)
             & [**Modern Elephant**](modern_elephant.html)
             & [**Alibaba**](alibaba.html)
             &
             & &mdash;
+            &
             &
             &
             &
@@ -188,6 +193,7 @@ Threeleaper &
             &
             &
             &
+            &
             \\
 Camel       &
             & [**Wizard**](wizard.html)
@@ -198,6 +204,7 @@ Camel       &
             & &mdash;
             &
             &
+            & [**Zebu**](zebu.html)
             \\
 Zebra       &
             &
@@ -208,6 +215,7 @@ Zebra       &
             &
             & &mdash;
             &
+            &
             \\
 Tripper     &
             &
@@ -215,6 +223,18 @@ Tripper     &
             &
             &
             &
+            &
+            &
+            & &mdash;
+            &
+            \\
+Giraffe     &
+            &
+            &
+            &
+            &
+            &
+            & [**Zebu**](zebu.html)
             &
             &
             & &mdash;
