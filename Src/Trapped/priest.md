@@ -1,6 +1,16 @@
-# %%PIECE%%
+# Priest
 
-The %%PIECE%% combines the movements of the [*Ferz*](ferz.html)
+<div class = "movement">
+. . . . . . .
+. . * . * . .
+. * * . * * .
+. . . S . . .
+. * * . * * .
+. . * . * . .
+. . . . . . .
+</div>
+
+The **Priest** combines the movements of the [*Ferz*](ferz.html)
 and the [*Knight*](knight.html). That is, it either jumps to a
 square diagonally adjacent, or to a square which is two away in
 one orthogonal direction, and one in the other.
@@ -21,12 +31,12 @@ The %%PIECE%% is also known as a *Dullahan*.
 
 #### Square
 
-The %%PIECE%% circles the origin in a counter clockwise fashion
+The **Priest** circles the origin in a counter clockwise fashion
 in an irregular way, getting trapped after 1,050 steps.
 
 #### Diamond
 
-The %%PIECE%% quickly falls into a routine where it circles the
+The **Priest** quickly falls into a routine where it circles the
 origin using only %%FERZ%% moves, with one %%KNIGHT%% move
 per revolution. \(100\%\) of the squares on the board will be
 visited.
@@ -35,10 +45,10 @@ visited.
 
 #### Folded
 
-On the Folded Wedge, the %%PIECE%% uses a complicated pattern
+On the Folded Wedge, the **Priest** uses a complicated pattern
 to fill the entire board.
 
 #### Flat
 
-On the Flat Wedge, the %%PIECE%% uses a simple, slanted, pattern
+On the Flat Wedge, the **Priest** uses a simple, slanted, pattern
 to fill the entire board.
