@@ -41,7 +41,7 @@ visiting half the squares on the board.
 
 #### Folded
 
-THe **Goat** follows the Folded Wedge, visiting every second square.
+The **Goat** follows the Folded Wedge, visiting every second square.
 
 #### Flat
 
