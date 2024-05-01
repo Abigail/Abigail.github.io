@@ -1,6 +1,16 @@
-# %%PIECE%%
+# War Machine
 
-The %%PIECE%% moves like either the [*Wazir*](wazir.html)
+<div class = "movement">
+. . . . . . .
+. . . * . . .
+. . . * . . .
+. * * S * * .
+. . . * . . .
+. . . * . . .
+. . . . . . .
+</div>
+
+The **War Machine** moves like either the [*Wazir*](wazir.html)
 or the [*Dabbaba*](dabbaba.html). That is, it jumps either one or
 two squares in an orthogonal direction. It may jump over an 
 occupied square.
@@ -20,29 +30,29 @@ occupied square.
             %%CAPTURE%%; \\
 ====|
 
-Other names for the %%PIECE%% include: *Machine*, and *Wazaba*. 
+Other names for the **War Machine** include: *Machine*, and *Wazaba*. 
 
 ### Spiral
 
 #### Square
 
-Since the %%PIECE%% can move as the [*Wazir*](wazir.html),
+Since the **War Machine** can move as the [*Wazir*](wazir.html),
 it will just follow the Spiral, filling the entire board.
 
 #### Diamond
 
-The %%PIECE%% will visit all the squares using an interesting
+The **War Machine** will visit all the squares using an interesting
 pattern.
 
 ### Wedge
 
 #### Folded
 
-The %%PIECE%% fills the Folded Wedge row by row, going left
+The **War Machine** fills the Folded Wedge row by row, going left
 to right on even rows, and right to left on odd rows.
 
 #### Flat
 
-On the Flat Wedge, the %%PIECE%% fills the board row by row
+On the Flat Wedge, the **War Machine** fills the board row by row
 as well, but each row requires two passes: a left to right sweep visiting
 the even squares, and a right to left sweep visiting the odd squares.
