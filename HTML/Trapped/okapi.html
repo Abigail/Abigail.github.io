@@ -1,6 +1,6 @@
 <html>
 <head>
-<title>%%PIECE%%</title>
+<title>Okapi</title>
 <meta charset = "utf-8">
 <link rel  = 'preconnect' href = 'https://fonts.gstatic.com'>
 <link rel = 'stylesheet' href =      'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
@@ -14,17 +14,30 @@
 <script src = '../../JavaScript/Trapped/trapped.js'></script>
 <script src = '../../JavaScript/Trapped/pieces.js'></script>
 <script src = '../../JavaScript/Trapped/boxset.js'></script>
+<script src = '../../JavaScript/Trapped/movement.js'></script>
 <script src = '../../JavaScript/Trapped/pages.js'></script>
 </head>
 
-<body><h1>%%PIECE%%</h1><div class = "byline">
+<body><h1>Okapi</h1><div class = "byline">
 by Abigail<br>
 <img src = "../../Images/jan_sluiters.jpg">
 </div>
 
 
-<p>The %%PIECE%% moves like either the <a href="knight.html"><em>Knight</em></a>
-or the <a href="zebra.html"><em>Zebra</em></a>. That is, the %%PIECE%% jumps to
+<div class = "movement">
+. . . . . . . . .
+. . * . . . * . .
+. * . * . * . * .
+. . * . . . * . .
+. . . . S . . . .
+. . * . . . * . .
+. * . * . * . * .
+. . * . . . * . .
+. . . . . . . . .
+</div>
+
+<p>The <strong>Okapi</strong> moves like either the <a href="knight.html"><em>Knight</em></a>
+or the <a href="zebra.html"><em>Zebra</em></a>. That is, the <strong>Okapi</strong> jumps to
 a square which is two away in one orthogonal direction, and
 one or three away in the other.</p>
 
@@ -46,14 +59,14 @@ one or three away in the other.</p>
 <h4 id = 'square'>Square</h4>
 
 <div class = "section">
-<p>It takes almost a million steps, but the %%PIECE%% gets trapped
+<p>It takes almost a million steps, but the <strong>Okapi</strong> gets trapped
 after 947,668 steps.</p>
 </div>
 
 <h4 id = 'diamond'>Diamond</h4>
 
 <div class = "section">
-<p>On the Diamond Spiral, it's not clear whether the %%PIECE%% gets
+<p>On the Diamond Spiral, it's not clear whether the <strong>Okapi</strong> gets
 trapped or not. It does not get trapped for its first billion steps.</p>
 </div>
 
@@ -62,13 +75,13 @@ trapped or not. It does not get trapped for its first billion steps.</p>
 <h4 id = 'folded'>Folded</h4>
 
 <div class = "section">
-<p>On the Folded Wedge, it's not clear whether the %%PIECE%% gets
+<p>On the Folded Wedge, it's not clear whether the <strong>Okapi</strong> gets
 trapped or not. It does not get trapped for its first billion steps.</p>
 </div>
 
 <h4 id = 'flat'>Flat</h4>
 
-<p>After almost 300 steps, the %%PIECE%% enters a four step loop which
+<p>After almost 300 steps, the <strong>Okapi</strong> enters a four step loop which
 brings it one square forward and to the right. This gives it an
 escape velocity of <span class = 'latex-inline'>\(\frac{\sqrt{2}}{4}\)</span>.</p>
 
