@@ -14,6 +14,7 @@ $(window) . on ("load", () => {
 let MOV_SIZE = 30     // Height/width of square
 let SCALE    = {
     antelope:  MOV_SIZE * .9 /  450,
+    okapi:     MOV_SIZE * .9 /  200,
     stag:      MOV_SIZE * .9 / 1000,
 }
 let TRANSFORM = {
