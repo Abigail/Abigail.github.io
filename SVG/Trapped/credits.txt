@@ -1,0 +1,7 @@
+lioness:
+    license: CC BY 3.0,
+    author:  Icongeek26 from Noun Project
+
+
+okapi:
+    author: Greenwade
