@@ -1,10 +1,20 @@
-# %%PIECE%%
+# Carpenter
 
-The %%PIECE%% either leaps to a square which is two away in any of
+<div class = "movement">
+. . . . . . .
+. . * * * . .
+. * . . . * .
+. * . S . * .
+. * . . . * .
+. . * * * . .
+. . . . . . .
+</div>
+
+The **Carpenter** either leaps to a square which is two away in any of
 the four orthogonal directions (like the [*Dabbaba*](dabbaba.html)),
 or to a square which is two away in one orthogonal direction, and
 one away in the other (like the [*Knight*](knight.html)).
-This makes the %%PIECE%% a %%COMPOUND_LEAPER%%.
+This makes the **Carpenter** a %%COMPOUND_LEAPER%%.
 
 |====
 %%PIECE_HEADERS%%
@@ -25,12 +35,12 @@ Link: [%%CHESS_V%%](#piece:carpentr)
 
 #### Square
 
-On the Square Spiral, the %%PIECE%% will not get trapped for quite
+On the Square Spiral, the **Carpenter** will not get trapped for quite
 a while, but it does get trapped on step 253,925,075.
 
 #### Diamond
 
-On the Diamond Spiral, the %%PIECE%% does not get trapped for its
+On the Diamond Spiral, the **Carpenter** does not get trapped for its
 first billion steps. It's not clear whether it will always remain
 free, or whether it gets trapped.
 
@@ -38,10 +48,10 @@ free, or whether it gets trapped.
 
 #### Folded
 
-On the Folded Wedge, the %%PIECE%% fills the complete wedge, using a unique
+On the Folded Wedge, the **Carpenter** fills the complete wedge, using a unique
 pattern, with no bias to the right nor left.
 
 #### Flat
 
-On the Flat Wedge, the %%PIECE%% fills the complete wedge, using a unique
+On the Flat Wedge, the **Carpenter** fills the complete wedge, using a unique
 pattern, and a slight bias to the right.
