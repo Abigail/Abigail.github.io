@@ -16,6 +16,7 @@ let SCALE    = {
     antelope:  MOV_SIZE * .9 /  450,
     okapi:     MOV_SIZE * .9 /  200,
     stag:      MOV_SIZE * .9 / 1000,
+    zebu:      MOV_SIZE * .9 / 1800,
 }
 let TRANSFORM = {
     //
