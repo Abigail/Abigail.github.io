@@ -28,9 +28,13 @@ it will remain on an odd row (or file).
   {th = 1}  %%TYPHOON%%
 &           %%PROMOTES_TO%%
              [*Dragon Kite*](dragon_king.html?piece=dragon_kite) \\
+  {th = 1}  
+& {cs = 2}  **War Machine**
+&           Not to be confused with the
+            [*Wazir + Dabbaba compound*](war_machine.html).
 ====|
 
-The name is infrequently used for the [Rook + Knight compound](chancellor.md).
+The name is infrequently used for the [*Rook + Knight compound*](chancellor.md).
 
 ### Spiral
 

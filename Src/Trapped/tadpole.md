@@ -1,6 +1,18 @@
-# %%PIECE%%
+# Tadpole
 
-The %%PIECE%% moves as either the [*Ferz*](ferz.html) or the
+<div class = "movement">
+. . . . . . . . .
+. . . . * . . . .
+. . . . . . . . .
+. . . * . * . . .
+. * . . S . . * .
+. . . * . * . . .
+. . . . . . . . .
+. . . . * . . . .
+. . . . . . . . .
+</div>
+
+The **Tadpole** moves as either the [*Ferz*](ferz.html) or the
 [*Threeleaper*](threeleaper.html). That is, it either moves one
 square diagonally, or jumps to a square three orthogonally away.
 
@@ -20,25 +32,25 @@ square diagonally, or jumps to a square three orthogonally away.
 
 #### Square
 
-On the Square Spiral, the %%PIECE%% does not get trapped for its
+On the Square Spiral, the **Tadpole** does not get trapped for its
 first billion steps. It's unclear whether it will stay untrapped
 forever.
 
 #### Diamond
 
 On the Diamond Square, after bouncing around making mostly %%FERZ%%
-moves, the %%PIECE%% gets trapped after 50,279 steps.
+moves, the **Tadpole** gets trapped after 50,279 steps.
 
 ### Wedge
 
 #### Folded
 
-On the Folded Wedge, it takes quite some time for the %%PIECE%% to
+On the Folded Wedge, it takes quite some time for the **Tadpole** to
 get trapped, but after 8,619,774 steps, it does get trapped.
 
 #### Flat
 
-On the Folded Wedge, the %%PIECE%% gets trapped after
-about half the steps it takes for %%PIECE%% to get trapped
+On the Folded Wedge, the **Tadpole** gets trapped after
+about half the steps it takes for **Tadpole** to get trapped
 on the Folded Wedge, but it still takes 4,637,261 steps.
 
