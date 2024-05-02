@@ -1,6 +1,16 @@
-# %%PIECE%%
+# Centaur
 
-The %%PIECE%% moves as either the [*King*](king.html) or the
+<div class = "movement">
+. . . . . . .
+. . * . * . .
+. * * * * * .
+. . * S * . .
+. * * * * * .
+. . * . * . .
+. . . . . . .
+</div>
+
+The **Centaur** moves as either the [*King*](king.html) or the
 [*Knight*](knight.html). That is, it either moves to a square
 one away orthogonally or diagonally, or to a square which is 
 two away in one orthogonal direction and one in the other.
@@ -44,29 +54,29 @@ two away in one orthogonal direction and one in the other.
 Link: [%%CHESS_V%%](#piece:centaur)
 
 There is also the *Cavalier King*, which moves the same way as the
-%%PIECE%%, except that its [*Knight*](knight.html) move may be blocked.
+**Centaur** except that its [*Knight*](knight.html) move may be blocked.
 
 ### Spiral
 
 #### Square
 
-The %%PIECE%% can move like the [*Wazir*](wazir.html), so it will
+The **Centaur** can move like the [*Wazir*](wazir.html), so it will
 just follow the Spiral and visit all the squares on the board.
 
 #### Diamond
 
-The %%PIECE%% can move like the [*Blind Monkey*](blind_monkey.html),
+The **Centaur** can move like the [*Blind Monkey*](blind_monkey.html),
 so it will just follow the Spiral and visit all the squares on the board.
 
 ### Wedge
 
 #### Folded
 
-The %%PIECE%% can move like the [*Flying Cock*](flying_cock.html),
+The **Centaur** can move like the [*Flying Cock*](flying_cock.html),
 so it will follow the Folded Wedge and visit all the squares.
 
 #### Flat
 
-On the Flat Wedge, the %%PIECE%% moves in a simple pattern, visiting
+On the Flat Wedge, the **Centaur** moves in a simple pattern, visiting
 all the squares on the board, with a bias to the right hand side
 of the board.
