@@ -13,18 +13,18 @@ $(window) . on ("load", () => {
 
 let MOV_SIZE = 30     // Height/width of square
 let SCALE    = {
-    antelope:  MOV_SIZE * .9 /  450,
-    okapi:     MOV_SIZE * .9 /  200,
-    stag:      MOV_SIZE * .9 / 1000,
-    zebu:      MOV_SIZE * .9 / 1800,
+    antelope:    450,
+    okapi:       200,
+    stag:       1000,
+    zebu:       1800,
 }
 let TRANSFORM = {
     //
     // Beats me why any of these are necessary
     //
-    antelope:  {scale: MOV_SIZE * .9 / 450, translate: [-MOV_SIZE *  7.4, 0]},
-    caliph:    {scale: MOV_SIZE * .9 /2048, translate: [ MOV_SIZE * 0.20, 0]},
-    dabbaba:   {scale: MOV_SIZE * .9 /2048, translate: [ MOV_SIZE * 0.22, 0]},
+    antelope:  {translate: [-MOV_SIZE *  7.4, 0]},
+    caliph:    {translate: [ MOV_SIZE * 0.20, 0]},
+    dabbaba:   {translate: [ MOV_SIZE * 0.22, 0]},
 }
 
 class Movement {
@@ -168,7 +168,8 @@ class Movement {
         if (div . length) {
             let group = this . board . group ()
 
-            let scale = SCALE [piece] || MOV_SIZE * .9 / 2048
+            let scale_factor = SCALE [piece] || 2048
+            let scale        = MOV_SIZE * .9 / scale_factor
 
             let svg   = $("div.drawing") . html ()
                                          . replace (/<\?[^?]*?\?>/,    "")
@@ -182,6 +183,7 @@ class Movement {
                   . scale  (scale)
 
             if (TRANSFORM [piece]) {
+                TRANSFORM [piece] . scale = scale
                 group . transform (TRANSFORM [piece])
             }
         }
