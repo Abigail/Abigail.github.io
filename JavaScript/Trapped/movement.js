@@ -13,20 +13,23 @@ $(window) . on ("load", () => {
 
 let MOV_SIZE = 30     // Height/width of square
 let SCALE    = {
-    antelope:    450,
-    lioness:     200,
-    okapi:       200,
-    stag:       1000,
-    zebu:       1800,
+    antelope:        450,
+    gold_general:     50,
+    hawk:            900,
+    lioness:         200,
+    okapi:           200,
+    stag:           1000,
+    zebu:           1800,
 }
 let TRANSFORM = {
     //
     // Beats me why any of these are necessary
     //
-    antelope:  {translate: [-MOV_SIZE * 7.40, 0]},
-    caliph:    {translate: [ MOV_SIZE * 0.20, 0]},
-    dabbaba:   {translate: [ MOV_SIZE * 0.22, 0]},
-    lioness:   {translate: [-MOV_SIZE * 3.50, 0]},
+    antelope:  {translate: [-MOV_SIZE *  7.40, 0]},
+    caliph:    {translate: [ MOV_SIZE *  0.20, 0]},
+    dabbaba:   {translate: [ MOV_SIZE *  0.22, 0]},
+    hawk:      {translate: [-MOV_SIZE * 14.05, 0]},
+    lioness:   {translate: [-MOV_SIZE *  3.50, 0]},
 }
 
 class Movement {

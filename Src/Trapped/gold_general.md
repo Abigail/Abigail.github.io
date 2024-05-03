@@ -1,6 +1,14 @@
-# %%PIECE%%
+# Gold General
 
-The %%PIECE%% either moves one step
+<div class = "movement">
+. . . . .
+. * * * .
+. * S * .
+. . * . .
+. . . . .
+</div>
+
+The **Gold General** either moves one step
 in an orthogonal direction (like a [*Wazir*](wazir.html)), or one
 step diagonally forward, like a forward [*Ferz*](ferz.html).
 
@@ -42,12 +50,12 @@ Link: [%%CHESS_V%%](#piece:goldgeneral)
 
 #### Square
 
-Since the %%PIECE%% can move like the [*Wazir*](wazir.html),
+Since the **Gold General** can move like the [*Wazir*](wazir.html),
 it does so, filling the board by following the Spiral.
 
 #### Diamond
 
-On the Diamond Spiral, the %%PIECE%% escapes using a two step loop,
+On the Diamond Spiral, the **Gold General** escapes using a two step loop,
 moving one square upward per loop iteration. This gives it an escape
 speed of \(\frac{1}{2}\). Only two files will be visited, and no
 squares below the origin will.
@@ -56,12 +64,12 @@ squares below the origin will.
 
 #### Folded
 
-Since the %%PIECE%% can move like the [*Flying Cock*](flying_cock.html),
+Since the **Gold General** can move like the [*Flying Cock*](flying_cock.html),
 it does so, filling the board by following the Wedge.
 
 #### Flat
 
-The %%PIECE%% fills the Flat Wedge going from right to left, and
+The **Gold General** fills the Flat Wedge going from right to left, and
 left to right, making a small sidestep just before reaching the left
 edge. Compare this to the [*King*](king.html) and
 [*Dragon Horse*](dragon_horse.html), which do something similar, with

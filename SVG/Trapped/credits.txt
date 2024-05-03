@@ -1,3 +1,17 @@
+antelope:
+    licence: CC0
+    url: https://www.svgrepo.com/svg/77259/antelope-silhouette-from-side-view
+
+gold_general:
+    license: CC BY SA 3.0
+    author: Hari Sheldon
+    url: https://en.wikipedia.org/wiki/Shogi#/media/File:Shogi_kinsho(svg)
+
+hawk:
+    licence: CC0
+    url: https://www.svgrepo.com/svg/18032/hawk-bird-animal-shape
+
+
 lioness:
     license: CC BY 3.0,
     author:  Icongeek26 from Noun Project
@@ -5,3 +19,9 @@ lioness:
 
 okapi:
     author: Greenwade
+
+
+zebu:
+    license: CC BY SA 3.0
+    author: Bgag, Whidou (Wikipedia)
+    url: https://commons.wikimedia.org/wiki/File:Zebu_silhouette.svg
