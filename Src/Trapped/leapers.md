@@ -290,7 +290,7 @@ basic leapers:
                               &
                               &
                               \\
-[**Squirrel**](Squirrel.html) &
+[**Squirrel**](squirrel.html) &
                               &
                               & [**Dabbaba**](dabbaba.html)
                               & [**Knight**](knight.html)

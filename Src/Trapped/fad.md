@@ -1,10 +1,20 @@
-# %%PIECE%%
+# FAD
 
-The %%PIECE%%FAD** either jumps to a square one away diagonally
+<div class = "movement">
+. . . . . . .
+. * . * . * .
+. . * . * . .
+. * . S . * .
+. . * . * . .
+. * . * . * .
+. . . . . . .
+</div>
+
+The **FAD** either jumps to a square one away diagonally
 (like the [*Ferz*](ferz.html)), or two away orthogonally
 (like the [*Dabbaba*](dabbaba.html)), or two away
 diagonally (like the [*Alfil*](alfil.html)). This makes the
-%%PIECE%% %%COLOUR_BOUND%%.
+**FAD** %%COLOUR_BOUND%%.
 
 |====
 %%PIECE_HEADERS%%
@@ -21,21 +31,21 @@ exactly in the same was as the [*Goat*](goat.html).
 
 #### Square
 
-The %%PIECE%% follows the spiral, but it visits only every second square.
+The **FAD** follows the spiral, but it visits only every second square.
 
 #### Diamond
 
-On the Diamond Spiral, the %%PIECE%% moves like the %%FERZ%%, visiting
+On the Diamond Spiral, the **FAD** moves like the %%FERZ%%, visiting
 half the squares on the board.
 
 ### Wedge
 
 #### Folded
 
-THe %%PIECE%% follows the Folded Wedge, visiting every second square.
+The **FAD** follows the Folded Wedge, visiting every second square.
 
 #### Flat
 
-The %%PIECE%% fills half the board, row by row, visiting every second
+The **FAD** fills half the board, row by row, visiting every second
 square. Before reaching the left side of the board, a small side step
 is taken.

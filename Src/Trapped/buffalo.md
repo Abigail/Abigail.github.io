@@ -1,13 +1,25 @@
-# %%PIECE%%
+# Buffalo
 
-The %%PIECE%% either leaps to a square which is one away in one 
+<div class = "movement">
+. . . . . . . . .
+. . * * . * * . .
+. * . * . * . * .
+. * * . . . * * .
+. . . . S . . . .
+. * * . . . * * .
+. * . * . * . * .
+. . * * . * * . .
+. . . . . . . . .
+</div>
+
+The **Buffalo** either leaps to a square which is one away in one 
 orthogonal direction and two the other (like a [*Knight*](knight.html)),
 leaps to a square which is one away in one orthogonal direction,
 and three in the other (like a [*Camel*](camel.html)), or to a square
 which is two away in one orthogonal direction, and three in the
 other (like a [*Zebra*](zebra.html)).
 
-This makes the %%PIECE%% a %%COMPOUND_LEAPER%%.
+This makes the **Buffalo** a %%COMPOUND_LEAPER%%.
 
 |====
 %%PIECE_HEADERS%%
@@ -30,22 +42,26 @@ Link: [%%CHESS_V%%](#piece:buffalo)
 
 #### Square
 
-On the Square Spiral, the %%PIECE%% does not get trapped for its first
+On the Square Spiral, the **Buffalo** does not get trapped for its first
 one billion steps, but it's not clear whether it will never get
 trapped.
 
 #### Diamond
 
+On the Diamond Spiral, the **Buffalo** does not get trapped for its first
+one billion steps, but it's not clear whether it will never get
+trapped.
+
 ### Wedge
 
 #### Folded
 
-On the Folded Spiral, the %%PIECE%% does not get trapped for its first
+On the Folded Spiral, the **Buffalo** does not get trapped for its first
 one billion steps, but it's not clear whether it will never get
 trapped.
 
 #### Flat
 
-On the Flat Spiral, the %%PIECE%% does not get trapped for its first
+On the Flat Spiral, the **Buffalo** does not get trapped for its first
 one billion steps, but it's not clear whether it will never get
 trapped.
