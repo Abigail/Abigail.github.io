@@ -13,13 +13,16 @@ $(window) . on ("load", () => {
 
 let MOV_SIZE = 30     // Height/width of square
 let SCALE    = {
-    antelope:        450,
-    gold_general:     50,
-    hawk:            900,
-    lioness:         200,
-    okapi:           200,
-    stag:           1000,
-    zebu:           1800,
+    antelope:          450,
+    dragon_horse:       50,
+    dragon_king:        50,
+    gold_general:       50,
+    hawk:              900,
+    lioness:           200,
+    okapi:             200,
+    silver_general:     50,
+    stag:             1000,
+    zebu:             1800,
 }
 let TRANSFORM = {
     //

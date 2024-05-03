@@ -1,11 +1,23 @@
-# %%PIECE%%
+# Dragon King
 
-The %%PIECE%% combines the movements of
+<div class = "movement">
+. . . . A . . . .
+. . . . * . . . .
+. . . . * . . . .
+. . . * * * . . .
+A * * * S * * * A
+. . . * * * . . .
+. . . . * . . . .
+. . . . * . . . .
+. . . . A . . . .
+</div>
+
+The **Dragon King** combines the movements of
 the [*Ferz*](ferz.html) and [*Rook*](rook.html). That is, it steps
 either one square diagonally, or slides an unlimited number of 
 unoccupied squares orthogonally.
 
-Pieces which can move like the %%PIECE%% can be found in
+Pieces which can move like the **Dragon King** can be found in
 several games:
 
 |====
@@ -52,22 +64,22 @@ Link: [%%CHESS_V%%](#piece:dragonking)
 
 #### Square
 
-The %%PIECE%% can move as a [*Wazir*](wazir.html). Hence, it will not
+The **Dragon King** can move as a [*Wazir*](wazir.html). Hence, it will not
 get stuck, filling the entire board by just following the spiral.
 
 #### Diamond
 
-The %%PIECE%% can move as the [*Blind Monkey*](blind_monkey.html).
+The **Dragon King** can move as the [*Blind Monkey*](blind_monkey.html).
 Hence, it will follow the spiral and visit all the squares on the board.
 
 ### Wedge
 
 #### Folded
 
-Since the %%PIECE%% can move as the [*Flying Cock*](flying_cock.html),
+Since the **Dragon King** can move as the [*Flying Cock*](flying_cock.html),
 it will do so, filling the entire board visiting all squares in value order.
 
 #### Flat
 
-The %%PIECE%% visits all the squares on the Flat Wedge, with a
+The **Dragon King** visits all the squares on the Flat Wedge, with a
 preference to the right hand side of the board.

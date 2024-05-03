@@ -1,6 +1,14 @@
-# %%PIECE%%
+# Silver General
 
-The %%PIECE%% either moves one square diagonally, or one square
+<div class = "movement">
+. . . . .
+. * * * .
+. . S . .
+. * . * .
+. . . . .
+</div>
+
+The **Silver General** either moves one square diagonally, or one square
 orthogonally forward. It appears in several games, under
 different names.
 
@@ -38,12 +46,12 @@ The [*Humpback*](humpback.html) mirrors the movements of the %%PIECE%%.
 
 #### Square
 
-The %%PIECE%% visits all the squares of the Square Spiral, in
+The **Silver General** visits all the squares of the Square Spiral, in
 a unique pattern, with a strong bias to the upper right.
 
 #### Diamond
 
-On the Diamond Spiral, the %%PIECE%% circles the origin counter
+On the Diamond Spiral, the **Silver General** circles the origin counter
 clockwise in a simple pattern. All squares on the board will
 be visited.
 
@@ -51,7 +59,7 @@ be visited.
 
 #### Folded
 
-On the Folded Wedge, the %%PIECE%% follows the same pattern
+On the Folded Wedge, the **Silver General** follows the same pattern
 as the [*Ferz*](ferz.html), visiting two squares on each row.
 It escapes to the upper right, using a three step loop to 
 move one square to the upper right. Its escape velocity is
@@ -59,6 +67,6 @@ move one square to the upper right. Its escape velocity is
 
 #### Flat
 
-On the Flat Wedge, the %%PIECE%% visits the right most
+On the Flat Wedge, the **Silver General** visits the right most
 square of each row, and no other squares. This gives it
 an escape velocity of \(\sqrt{2}\).

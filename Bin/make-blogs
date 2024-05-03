@@ -907,11 +907,12 @@ sub post_process ($text, $directives) {
                 $text .= sprintf "\n<div class = '%s' data-piece = '%s'>" .
                                  "</div>\n" => $class, $base;
             }
-            if (-f "$TOP_DIR/SVG/Trapped/$base.svg") {
-                my $svg = `cat $TOP_DIR/SVG/Trapped/$base.svg`;
-                $text .= "\n<div class = 'drawing' data-piece = '$base'>" .
-                         "<!--\n" . $svg . "\n-->\n</div>"
-            }
+        }
+        if (-f "$TOP_DIR/SVG/Trapped/$base.svg") {
+            my $svg = `cat $TOP_DIR/SVG/Trapped/$base.svg`;
+               $svg =~ s/<!--.*?-->//gs;
+            $text  .= "\n<div class = 'drawing' data-piece = '$base'>" .
+                      "<!--\n" . $svg . "\n-->\n</div>";
         }
     }
 

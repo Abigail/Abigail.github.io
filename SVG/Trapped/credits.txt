@@ -2,10 +2,13 @@ antelope:
     licence: CC0
     url: https://www.svgrepo.com/svg/77259/antelope-silhouette-from-side-view
 
-gold_general:
+gold_general, silver_general, dragon_king, dragon_horse:
     license: CC BY SA 3.0
     author: Hari Sheldon
     url: https://en.wikipedia.org/wiki/Shogi#/media/File:Shogi_kinsho(svg)
+    url: https://en.wikipedia.org/wiki/Shogi#/media/File:Shogi_ginsho(svg).svg
+    url: https://en.wikipedia.org/wiki/Shogi#/media/File:Shogi_ryuo(svg).svg
+    url: https://en.wikipedia.org/wiki/Shogi#/media/File:Shogi_ryuma(svg).svg
 
 hawk:
     licence: CC0

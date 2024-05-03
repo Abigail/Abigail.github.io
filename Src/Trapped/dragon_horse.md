@@ -1,9 +1,24 @@
-# %%PIECE%%
+# Dragon Horse
 
-The %%PIECE%% combines the moves of the [*Wazir*](wazir.html)
+<div class = "movement">
+A . . . . . . . A
+. * . . . . . * .
+. . * . . . * . .
+. . . * * * . . .
+. . . * S * . . .
+. . . * * * . . .
+. . * . . . * . .
+. * . . . . . * .
+A . . . . . . . A
+</div>
+
+The **Dragon Horse** combines the moves of the [*Wazir*](wazir.html)
 and the [*Bishop*](bishop.html). That is, it either moves one
 square orthogonally, or slides an unlimited number of unoccupied
 squares diagonally.
+
+The **Dragon Horse** comes from %%SHOGI%%, but pieces moving in the
+same way can be found in several games:
 
 |====
 %%PIECE_HEADERS%%
@@ -49,24 +64,24 @@ Link: [%%CHESS_V%%](#piece:dragonhorse)
 
 #### Square
 
-The %%PIECE%% can move as the [*Wazir*](wazir.html), and
+The **Dragon Horse** can move as the [*Wazir*](wazir.html), and
 hence just follow the Spiral.
 
 #### Spiral
 
-The %%PIECE%% can move as the %%BM%%, and hence, just follows
+The **Dragon Horse** can move as the %%BM%%, and hence, just follows
 the Spiral.
 
 ### Wedge
 
 #### Folded
 
-The %%PIECE%% can move as the [*Flying Cock*](flying_cock.html), and
+The **Dragon Horse** can move as the [*Flying Cock*](flying_cock.html), and
 hence just follow the Folded Wedge.
 
 #### Flat
 
 Just like the [*King*](king.html), on the Flat Wedge, the
-%%PIECE%% just goes left to right, and right to left, with a
+**Dragon Horse** just goes left to right, and right to left, with a
 little sidestep before reaching the left hand side, filling the
 entire board.
