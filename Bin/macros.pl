@@ -126,6 +126,10 @@ our %MACROS = (
                                                  "hopping moves or "          .
                                                  "captures, which we "        .
                                                  "can ignore here"),
+        OTHER_MOVES    =>  tooltip ("&rlarr;",   "This piece has other "      .
+                                                 "moves, captures or, "       .
+                                                 "abilities, but they are "   .
+                                                 "not relevant here."),
         PROMOTES_TO    =>  tooltip ("&#x260A;",  "Promotes to"),
         PROMOTED       =>  tooltip ("&#x260B;",  "Is promoted"),
 
