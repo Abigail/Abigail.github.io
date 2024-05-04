@@ -18,9 +18,11 @@ let SCALE    = {
     dragon_king:        50,
     gold_general:       50,
     hawk:              900,
+    lance:              50,
     lioness:           200,
     okapi:             200,
     silver_general:     50,
+    shogi_knight:       50,
     stag:             1000,
     zebu:             1800,
 }

@@ -1,7 +1,17 @@
-# %%PIECE%%
+# Lance
 
-The %%PIECE%% slides an
-unlimited number of unoccupied squares straight ahead.
+<div class = "movement">
+. A .
+. * .
+. * .
+. * .
+. S .
+. . .
+</div>
+
+The **Lance** slides an unlimited number of unoccupied squares straight ahead.
+This piece comes from %%SHOGI%%, and is found in various Sh&#x14d;gi variants,
+under different names.
 
 |====
 %%PIECE_HEADERS%%
@@ -21,11 +31,11 @@ Link: [%%CHESS_V%%](#piece:lance)
 
 ### Spiral
 
-On either Spriral the %%PIECE%% escapes in a straight line to
+On either Spriral the **Lance** escapes in a straight line to
 infinity with an escape velocity of \(1\).
 
 ### Wedge
 
-On both the Folded and the Flat Wedge, the %%PIECE%% 
+On both the Folded and the Flat Wedge, the **Lance** 
 escapes to infinity using the same line as the Spiral, hence
 its escape velocity is \(1\) as well.
