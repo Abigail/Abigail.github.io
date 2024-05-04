@@ -1,6 +1,6 @@
 <html>
 <head>
-<title>%%PIECE%%</title>
+<title>Hunter</title>
 <meta charset = "utf-8">
 <link rel  = 'preconnect' href = 'https://fonts.gstatic.com'>
 <link rel = 'stylesheet' href =      'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
@@ -14,16 +14,29 @@
 <script src = '../../JavaScript/Trapped/trapped.js'></script>
 <script src = '../../JavaScript/Trapped/pieces.js'></script>
 <script src = '../../JavaScript/Trapped/boxset.js'></script>
+<script src = '../../JavaScript/Trapped/movement.js'></script>
 <script src = '../../JavaScript/Trapped/pages.js'></script>
 </head>
 
-<body><h1>%%PIECE%%</h1><div class = "byline">
+<body><h1>Hunter</h1><div class = "byline">
 by Abigail<br>
 <img src = "../../Images/jan_sluiters.jpg">
 </div>
 
 
-<p>The %%PIECE%% either slides an unlimited amount of unoccupied squares
+<div class = "movement">
+. . . . A . . . .
+. . . . * . . . .
+. . . . * . . . .
+. . . . * . . . .
+. . . . S . . . .
+. . . * . * . . .
+. . * . . . * . .
+. * . . . . . * .
+A . . . . . . . A
+</div>
+
+<p>The <strong>Hunter</strong> either slides an unlimited amount of unoccupied squares
 orthogonally forward (like a forward <a href="rook.html"><em>Rook</em></a>) or an unlimited
 amount of unoccupied squares diagonally backward (like the
 backward <a href="bishop.html"><em>Bishop</em></a>).</p>
@@ -53,7 +66,7 @@ backward <a href="bishop.html"><em>Bishop</em></a>).</p>
 <h4 id = 'square'>Square</h4>
 
 <div class = "section">
-<p>On the Spiral, the %%PIECE%% gets trapped surprisingly fast, after 146 steps.
+<p>On the Spiral, the <strong>Hunter</strong> gets trapped surprisingly fast, after 146 steps.
 Compare this with the <a href="falcon.html"><em>Falcon</em></a> which will visit <span class = 'latex-inline'>\(25\%\)</span>
 of the squares on the board.</p>
 </div>
@@ -61,7 +74,7 @@ of the squares on the board.</p>
 <h4 id = 'diamond'>Diamond</h4>
 
 <div class = "section">
-<p>On the Diamond Spiral, the %%PIECE%% uses an eight step loop to move 
+<p>On the Diamond Spiral, the <strong>Hunter</strong> uses an eight step loop to move 
 four squares down, giving it an escape velocity of <span class = 'latex-inline'>\(\frac{1}{2}\)</span>.
 It moves mirrorred as the <a href="falcon.html"><em>Falcon</em></a> moves.</p>
 </div>
@@ -71,7 +84,7 @@ It moves mirrorred as the <a href="falcon.html"><em>Falcon</em></a> moves.</p>
 <h4 id = 'folded'>Folded</h4>
 
 <div class = "section">
-<p>On the Folded Wedge, the %%PIECE%% visits the three left most
+<p>On the Folded Wedge, the <strong>Hunter</strong> visits the three left most
 squares of each row, moving one square to the upper left every
 three steps. This gives it an escape velocity of 
 <span class = 'latex-inline'>\(\frac{\sqrt{2}}{3}\)</span>.</p>
@@ -79,7 +92,7 @@ three steps. This gives it an escape velocity of
 
 <h4 id = 'flat'>Flat</h4>
 
-<p>On the Flat Wedge, the %%PIECE%% visits the three right most
+<p>On the Flat Wedge, the <strong>Hunter</strong> visits the three right most
 squares of each row, moving one square to the upper right every
 three steps. This gives it an escape velocity of 
 <span class = 'latex-inline'>\(\frac{\sqrt{2}}{3}\)</span>.</p>

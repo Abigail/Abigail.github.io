@@ -1,9 +1,21 @@
-# %%PIECE%%
+# Amazon
 
-The %%PIECE%% combines the moves from the
+<div class = "movement">
+A . . . A . . . A
+. * . . * . . * .
+. . * * * * * . .
+. . * * * * * . .
+A * * * S * * * A
+. . * * * * * . .
+. . * * * * * . .
+. * . . * . . * .
+A . . . A . . . A
+</div>
+
+The **Amazon** combines the moves from the
 [*Queen*](queen.html) and the
 [*Knight*](knight.html), which makes it a *Knighted Piece*. The
-%%PIECE%% can either slide an unlimited amount of squares in one
+**Amazon** can either slide an unlimited amount of squares in one
 the eight main directions, or jump to a square which is two squares
 away in one orthogonal direction, and one square away in the other.
 
@@ -78,24 +90,24 @@ Other names include:
 
 #### Square
 
-On the Spiral, since the %%PIECE%% can move as the [*Queen*](queen.html),
+On the Spiral, since the **Amazon** can move as the [*Queen*](queen.html),
 it can move like the [*Wazir*](wazir.html), and hence will follow the spiral,
 visiting all the squares on the board. 
 
 #### Diamond
 
-The %%PIECE%% can move as the [*Blind Monkey*](blind_monkey.html),
-the %%PIECE%% will fille the entire board by following the Diamond Spiral.
+The **Amazon** can move as the [*Blind Monkey*](blind_monkey.html),
+the **Amazon** will fille the entire board by following the Diamond Spiral.
 
 ### Wedge
 
 #### Folded
 
-On the Folded Wedge, since %%PIECE%% can move as the [*Queen*](queen.html),
+On the Folded Wedge, since **Amazon** can move as the [*Queen*](queen.html),
 it can also move as the [*Flying Cock*](flying_cock.html). Hence
 it will visit all the squares on the board, in order of the values.
 
 #### Flat
 
-On the Flat Wedge, the %%PIECE%% fills the entire board, in a 
+On the Flat Wedge, the **Amazon** fills the entire board, in a 
 rather simple pattern.

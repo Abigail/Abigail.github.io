@@ -2,6 +2,10 @@ antelope:
     licence: CC0
     url: https://www.svgrepo.com/svg/77259/antelope-silhouette-from-side-view
 
+falcon:
+    license: Logo License
+    url: https://www.svgrepo.com/svg/330408/falcon
+
 gold_general, silver_general, dragon_king, dragon_horse, shogi_knight, lance:
     license: CC BY SA 3.0
     author: Hari Sheldon

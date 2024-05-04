@@ -16,6 +16,7 @@ let SCALE    = {
     antelope:          450,
     dragon_horse:       50,
     dragon_king:        50,
+    falcon:            800,
     gold_general:       50,
     hawk:              900,
     lance:              50,
@@ -33,6 +34,7 @@ let TRANSFORM = {
     antelope:  {translate: [-MOV_SIZE *  7.40, 0]},
     caliph:    {translate: [ MOV_SIZE *  0.20, 0]},
     dabbaba:   {translate: [ MOV_SIZE *  0.22, 0]},
+    falcon:    {translate: [-MOV_SIZE * 13.30, 0]},
     hawk:      {translate: [-MOV_SIZE * 14.05, 0]},
     lioness:   {translate: [-MOV_SIZE *  3.50, 0]},
 }
