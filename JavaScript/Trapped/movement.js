@@ -96,7 +96,7 @@ class Movement {
         })
 
         arrows . forEach ((square) => {
-            this . draw_arrow ({from: start, to: square})
+            this . draw_arrow ({from: pieces [0], to: square})
         })
 
         lines . forEach ((coordinates) => {
@@ -288,9 +288,9 @@ class Movement {
         let [x_to,   y_to]   = this . cell_to_coord (to   . row, to   . col)
 
         let line = this . board . line   (x_from, y_from, x_to, y_to)
-                                . stroke ({width:   1,
-                                           opacity: 0.5,
-                                           color:  'black',
+                                . stroke ({width:    1,
+                                           opacity:  0.5,
+                                           color:   'black',
                                            linecap: 'round',})
 
         //
