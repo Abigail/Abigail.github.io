@@ -1,6 +1,6 @@
 <html>
 <head>
-<title>%%PIECE%%</title>
+<title>Porpoise</title>
 <meta charset = "utf-8">
 <link rel  = 'preconnect' href = 'https://fonts.gstatic.com'>
 <link rel = 'stylesheet' href =      'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
@@ -14,16 +14,23 @@
 <script src = '../../JavaScript/Trapped/trapped.js'></script>
 <script src = '../../JavaScript/Trapped/pieces.js'></script>
 <script src = '../../JavaScript/Trapped/boxset.js'></script>
+<script src = '../../JavaScript/Trapped/movement.js'></script>
 <script src = '../../JavaScript/Trapped/pages.js'></script>
 </head>
 
-<body><h1>%%PIECE%%</h1><div class = "byline">
+<body><h1>Porpoise</h1><div class = "byline">
 by Abigail<br>
 <img src = "../../Images/jan_sluiters.jpg">
 </div>
 
 
-<p>The %%PIECE%% moves one square either to the left or right.
+<div class = "movement">
+. . . . .
+. * S * .
+. . . . .
+</div>
+
+<p>The <strong>Porpoise</strong> moves one square either to the left or right.
 This means, the <strong>Porpoise</strong> will always stay on the same row.</p>
 
 <table class = piece_list>
@@ -44,13 +51,13 @@ This means, the <strong>Porpoise</strong> will always stay on the same row.</p>
 <h3 id = 'spiral'>Spiral</h3>
 
 <div class = "section">
-<p>On either Spiral, the %%PIECE%% escapes to the right, with an escape
+<p>On either Spiral, the <strong>Porpoise</strong> escapes to the right, with an escape
 velocity of <span class = 'latex-inline'>\(1\)</span>, by stepping right on each step.</p>
 </div>
 
 <h3 id = 'wedge'>Wedge</h3>
 
-<p>The %%PIECE%% cannot move on either Wedge.</p>
+<p>The <strong>Porpoise</strong> cannot move on either Wedge.</p>
 
 <div class = 'trapped' data-piece = 'porpoise'></div>
 

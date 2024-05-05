@@ -1,6 +1,12 @@
-# %%PIECE%%
+# Porpoise
 
-The %%PIECE%% moves one square either to the left or right.
+<div class = "movement">
+. . . . .
+. * S * .
+. . . . .
+</div>
+
+The **Porpoise** moves one square either to the left or right.
 This means, the **Porpoise** will always stay on the same row.
 
 |====
@@ -14,9 +20,9 @@ This means, the **Porpoise** will always stay on the same row.
 
 ### Spiral
 
-On either Spiral, the %%PIECE%% escapes to the right, with an escape
+On either Spiral, the **Porpoise** escapes to the right, with an escape
 velocity of \(1\), by stepping right on each step.
 
 ### Wedge
 
-The %%PIECE%% cannot move on either Wedge.
+The **Porpoise** cannot move on either Wedge.
