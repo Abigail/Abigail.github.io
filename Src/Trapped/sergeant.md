@@ -1,6 +1,13 @@
-# %%PIECE%%
+# Sergeant
 
-The %%PIECE%% moves one square forward, either orthogonally, or diagonally.
+<div class = "movement">
+. . . . .
+. * * * .
+. . S . .
+. . . . .
+</div>
+
+The **Sergeant** moves one square forward, either orthogonally, or diagonally.
 
 |====
 %%PIECE_HEADERS%%
@@ -17,23 +24,23 @@ Link: [%%CHESS_V%%](#piece:sergeant)
 
 #### Square
 
-On the Square Spiral, the %%PIECE%% escapes by following a straigth
+On the Square Spiral, the **Sergeant** escapes by following a straigth
 path to the upper right, with an escape velocity of \(\sqrt{2}\).
 
 #### Diamond
 
-The %%PIECE%% moves, one square at the time, straight forward.
+The **Sergeant** moves, one square at the time, straight forward.
 This results in an escape velocity of \(1\).
 
 ### Wedge
 
 #### Folded
 
-On the Folded Wedge, the %%PIECE%% escapes by following a 
+On the Folded Wedge, the **Sergeant** escapes by following a 
 zig-zag pattern upwards. Two steps to move two squares upward
 gives an escape velocity of \(1\).
 
 #### Flat
 
-On the Flat Wedge, the %%PIECE%% escapes by following the
+On the Flat Wedge, the **Sergeant** escapes by following the
 right edge of the wedge. This gives it an escape velocity of \(\sqrt{2}\).
