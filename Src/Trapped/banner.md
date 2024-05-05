@@ -1,7 +1,14 @@
-# %%PIECE%%
+# Banner
 
-The %%PIECE%% moves like a forward and sideways [*Wazir*](wazir.html).
-That is, the %%PIECE%% can move one square to its right or left, or
+<div class = "movement">
+. . . . .
+. . * . .
+. * S * .
+. . . . .
+</div>
+
+The **Banner** moves like a forward and sideways [*Wazir*](wazir.html).
+That is, the **Banner** can move one square to its right or left, or
 one square forward.
 
 |====
@@ -22,17 +29,17 @@ one square forward.
 
 #### Square
 
-On the Spiral, the %%PIECE%% moves over those rows of the Spiral,
+On the Spiral, the **Banner** moves over those rows of the Spiral,
 where the numbers increase from right to left, going to the next
 row where the Spiral turns downward (or comes up from below). If
-you view the Spiral as a set of concentric squares, it %%PIECE%%
+you view the Spiral as a set of concentric squares, it **Banner**
 moves of the top edge of each square.
 
-This makes the %%PIECE%% cover 25% of the board.
+This makes the **Banner** cover 25% of the board.
 
 #### Diamond
 
-On the Diamond Spiral, the %%PIECE%% escapes in the straight
+On the Diamond Spiral, the **Banner** escapes in the straight
 line to the right, moving one square each step. So, it's 
 escape speed is 1.
 
@@ -40,14 +47,14 @@ escape speed is 1.
 
 #### Folded
 
-On the Folded Wedge, the %%PIECE%% moves in practical the same
+On the Folded Wedge, the **Banner** moves in practical the same
 pattern as on the Spiral, visiting all squares but one of each
-row. This makes that, in the limit, the %%PIECE%% visits 100%
+row. This makes that, in the limit, the **Banner** visits 100%
 of the board.
 
 #### Flat
 
-On the Flat Wedge, the %%PIECE%% visits the two right most squares
+On the Flat Wedge, the **Banner** visits the two right most squares
 on each row, escaping to infinity in a step-wise pattern. It uses
 a two step loop to move one square to the upper right, giving
 an escape speed of \(\frac{\sqrt{2}}{2}\).
