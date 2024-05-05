@@ -1,5 +1,14 @@
 # %%PIECE%%
 
+<div class = "movement">
+. . . . .
+. . * . .
+. . . . .
+. * S * .
+. . * . .
+. . . . .
+</div>
+
 The %%PIECE%% may move to a square one way orthogonally sidewards
 or backwards (like a sidewards/backwards [*Wazir*](wazir.html)), or
 two steps forward (like a forward [*Dabbaba*](dabbaba.html)).

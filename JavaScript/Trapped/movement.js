@@ -1,6 +1,8 @@
 $(window) . on ("load", () => {
     let file       = location . href . replace (/^.*\//,   "") 
+                                     . replace (/\?.*/,    "")
                                      . replace (/\.html$/, "")
+    console . log (file)
     if (file == "index") {
         return
     }
@@ -11,32 +13,24 @@ $(window) . on ("load", () => {
 })
 
 
-let MOV_SIZE = 30     // Height/width of square
-let SCALE    = {
-    antelope:          450,
-    dragon_horse:       50,
-    dragon_king:        50,
-    falcon:            800,
-    gold_general:       50,
-    hawk:              900,
-    lance:              50,
-    lioness:           200,
-    okapi:             200,
-    silver_general:     50,
-    shogi_knight:       50,
-    stag:             1000,
-    zebu:             1800,
-}
-let TRANSFORM = {
-    //
-    // Beats me why any of these are necessary
-    //
-    antelope:  {translate: [-MOV_SIZE *  7.40, 0]},
-    caliph:    {translate: [ MOV_SIZE *  0.20, 0]},
-    dabbaba:   {translate: [ MOV_SIZE *  0.22, 0]},
-    falcon:    {translate: [-MOV_SIZE * 13.30, 0]},
-    hawk:      {translate: [-MOV_SIZE * 14.05, 0]},
-    lioness:   {translate: [-MOV_SIZE *  3.50, 0]},
+let MOV_SIZE  = 30    // Height/width of square
+let TRANSFORM = {     // [Scale, Translate X, Translate Y]
+    antelope:            [  450,     - 7.40],
+    caliph:              [    0,       0.20],
+    dabbaba:             [    0,       0.22],
+    dragon_horse:        [   50],
+    dragon_king:         [   50],
+    falcon:              [  800,     -13.30],
+    gold_general:        [   50],
+    hawk:                [  900,     -14.05],
+    lance:               [   50],
+    lioness:             [  200,     - 3.50],
+    narwhal:             [  800,     -13.50],
+    okapi:               [  200],
+    silver_general:      [   50],
+    shogi_knight:        [   50],
+    stag:                [ 1000],
+    zebu:                [ 1800],
 }
 
 class Movement {
@@ -192,12 +186,18 @@ class Movement {
 
             group . svg    (svg)
                   . center (... this . cell_to_coord (row, col))
-                  . scale  (scale)
 
-            if (TRANSFORM [piece]) {
-                TRANSFORM [piece] . scale = scale
-                group . transform (TRANSFORM [piece])
+            let transform_in  = TRANSFORM [piece] ? TRANSFORM [piece] : [0]
+            let transform_out = {}
+            transform_out . scale = MOV_SIZE * .9 / (transform_in [0] || 2048)
+            if (transform_in . length > 1) {
+                transform_out . translateX = MOV_SIZE * transform_in [1]
             }
+            if (transform_in . length > 2) {
+                transform_out . translateY = MOV_SIZE * transform_in [2]
+            }
+            console . log (transform_out)
+            group . transform (transform_out)
         }
         else {
             this . board . rect   (MOV_SIZE * .65, MOV_SIZE * .65)

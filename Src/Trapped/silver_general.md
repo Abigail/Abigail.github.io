@@ -9,8 +9,12 @@
 </div>
 
 The **Silver General** either moves one square diagonally, or one square
-orthogonally forward. It appears in several games, under
-different names.
+orthogonally forward.
+
+The [*Humpback*](humpback.html) mirrors the movement of the **Silver General**.
+
+Pieces moving like the **Silver General** appear in several games,
+under different names.
 
 |====
 %%PIECE_HEADERS%%

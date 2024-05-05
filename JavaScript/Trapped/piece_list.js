@@ -1528,13 +1528,7 @@ let pieces = {
     },
 
     hummingbird: {
-        betza:    "sbWfD",
-        results: {
-            spiral_square:  "T/172", 
-            spiral_diamond:  frac (1),
-            wedge_folded:    sqrt (2, 3),
-            wedge_flat:      sqrt (2, 3),
-        },
+        parent:   "narwhal",
     },
 
     humpback: {
@@ -1832,7 +1826,13 @@ let pieces = {
     // N pieces
     //
     narwhal: {
-        parent:   "hummingbird",
+        betza:    "sbWfD",
+        results: {
+            spiral_square:  "T/172", 
+            spiral_diamond:  frac (1),
+            wedge_folded:    sqrt (2, 3),
+            wedge_flat:      sqrt (2, 3),
+        },
     },
 
     nb: {

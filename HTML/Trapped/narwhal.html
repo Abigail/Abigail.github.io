@@ -1,0 +1,127 @@
+<html>
+<head>
+<title>%%PIECE%%</title>
+<meta charset = "utf-8">
+<link rel  = 'preconnect' href = 'https://fonts.gstatic.com'>
+<link rel = 'stylesheet' href =      'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
+<link rel = 'stylesheet' href = '../../Styles/main.css'>
+<link rel = 'stylesheet' href = '../../Styles/Trapped/main.css'>
+<script src = "../../JavaScript/jquery.js"></script>
+<script id  = 'MathJax-script' async src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.js'></script>
+<script id = 'svg-script' src = 'https://cdn.jsdelivr.net/npm/@svgdotjs/svg.js@3.0/dist/svg.min.js'></script>
+<script src = '../../JavaScript/navigation.js'></script>
+<script src = '../../JavaScript/Trapped/piece_list.js'></script>
+<script src = '../../JavaScript/Trapped/trapped.js'></script>
+<script src = '../../JavaScript/Trapped/pieces.js'></script>
+<script src = '../../JavaScript/Trapped/boxset.js'></script>
+<script src = '../../JavaScript/Trapped/movement.js'></script>
+<script src = '../../JavaScript/Trapped/pages.js'></script>
+</head>
+
+<body><h1>%%PIECE%%</h1><div class = "byline">
+by Abigail<br>
+<img src = "../../Images/jan_sluiters.jpg">
+</div>
+
+
+<div class = "movement">
+. . . . .
+. . * . .
+. . . . .
+. * S * .
+. . * . .
+. . . . .
+</div>
+
+<p>The %%PIECE%% may move to a square one way orthogonally sidewards
+or backwards (like a sidewards/backwards <a href="wazir.html"><em>Wazir</em></a>), or
+two steps forward (like a forward <a href="dabbaba.html"><em>Dabbaba</em></a>).</p>
+
+<p>Pieces which can move like the %%PIECE%% can be found in
+several games:</p>
+
+<table class = piece_list>
+  <tr class = 'row-0' markdown = '1'>
+    <th class = 'cell-0-0 col-0 ' markdown = '1'>Game</td>
+    <th class = 'cell-0-1 col-1 ' markdown = '1' colspan = '2'>Piece</td>
+    <th class = 'cell-0-3 col-3 ' markdown = '1'>Info</td>
+  </tr>
+  <tr class = 'row-1' markdown = '1'>
+    <th class = 'cell-1-0 col-0 ' markdown = '1'><a href="https://www.chessvariants.com/rules/typhoon-revised">Typhoon</a></td>
+    <td class = 'cell-1-1 col-1 ' markdown = '1' colspan = '2'><strong>Hummingbird</strong></td>
+    <td class = 'cell-1-3 col-3 ' markdown = '1'><span class = 'tooltip'>&#x260A;<span class = 'tooltiptext'>Promotes to</span></span> <a href="queen.html?piece=immobilizer"><em>Immobilizer</em></a></td>
+  </tr>
+  <tr class = 'row-2' markdown = '1'>
+    <th class = 'cell-2-0 col-0 ' markdown = '1'><a href="https://www.chessvariants.com/shogivariants.dir/whale.html">Whale&nbsp;Sh&#x14d;gi <span class = 'uni_name'>(&#x9be8;&#x5c06;&#x68cb;)</span></a></td>
+    <td class = 'cell-2-1 col-1 ' markdown = '1' colspan = '2'><strong>Narwhal</strong></td>
+    <td class = 'cell-2-3 col-3 ' markdown = '1'></td>
+  </tr>
+</table>
+
+<h3 id = 'spiral'>Spiral</h3>
+
+<h4 id = 'square'>Square</h4>
+
+<div class = "section">
+<p>On the Square Spiral, the %%PIECE%% gets trapped after 172 steps.</p>
+</div>
+
+<h4 id = 'diamond'>Diamond</h4>
+
+<div class = "section">
+<p>After 13 steps, the %%PIECE%% escapes to the left, moving one
+square each step, for an escape velocity of <span class = 'latex-inline'>\(1\)</span>.</p>
+</div>
+
+<h3 id = 'wedge'>Wedge</h3>
+
+<h4 id = 'folded'>Folded</h4>
+
+<div class = "section">
+<p>On the Folded Wedge, the %%PIECE%% escapes to infinity by repeating
+a three step pattern: two squares forward, one square backwards, and
+one square to the left. This way, the three left most squares of each
+row will be visited. This three step loop to move one square to the
+upper left means an escape velocity of <span class = 'latex-inline'>\(\frac{\sqrt{2}}{3}\)</span>.</p>
+</div>
+
+<h4 id = 'flat'>Flat</h4>
+
+<p>On the Flat Wedge, the %%PIECE%% follows the same pattern as on
+the Folded Wedge, but mirrorred along the vertical axis. So, its
+escape velocity will also be <span class = 'latex-inline'>\(\frac{\sqrt{2}}{3}\)</span>.</p>
+
+<div class = 'trapped' data-piece = 'narwhal'></div>
+
+<div class = 'boxset' data-piece = 'narwhal'></div>
+
+<div class = 'drawing' data-piece = 'narwhal'><!--
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<svg fill="#000000" height="800px" width="800px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+	 viewBox="0 0 490 490" xml:space="preserve">
+<path id="XMLID_110_" d="M482.5,70H351.555C326.113,28.072,280.023,0,227.5,0C168.736,0,113.489,22.884,71.937,64.437
+	C30.384,105.989,7.5,161.235,7.5,220s22.884,114.011,64.437,155.563C113.489,417.116,168.736,440,227.5,440h35.312
+	c16.437,30.683,48.263,50,83.676,50h11.581l2.931-11.204c2.063-7.885,3.108-16.041,3.108-24.241
+	c0-21.723-7.461-42.743-20.837-59.555c13.376-16.812,20.837-37.832,20.837-59.555c0-8.2-1.046-16.356-3.108-24.241L358.068,300
+	h-11.581c-35.252,0-66.945,19.14-83.446,49.576c-43.073-4.191-77.814-37.278-84.55-79.576h66.818v-15
+	c0-28.388-13.46-54.776-35.479-71.583C226.999,168.378,249.009,160,272.309,160H372.5v-15c0-15.703-2.519-30.827-7.157-45H482.5V70z
+	 M272.309,130c-38.346,0-74.036,17.241-97.917,47.302l-11.977,15.076l17.547,7.925c16.79,7.584,28.934,22.363,33.432,39.697h-96.085
+	v30h30.895c7.431,61.895,60.254,110.024,124.112,110.024h10.112l3.793-9.375c8.391-20.74,26.42-35.316,47.751-39.452
+	c0.09,1.412,0.136,2.829,0.136,4.248c0,18.396-7.804,36.063-21.41,48.471L300.541,395l12.156,11.084
+	c13.606,12.407,21.41,30.074,21.41,48.471c0,1.419-0.046,2.836-0.136,4.247c-21.323-4.135-39.35-18.703-47.743-39.432l-3.794-9.37
+	H227.5c-104.767,0-190-85.233-190-190s85.233-190,190-190c58.329,0,106.655,43.648,114.026,100H272.309z"/>
+</svg>
+-->
+</div>
+<hr id = 'last-line'>
+<div class = 'trailer'>
+<p class = 'prev'><a class = "prev" href = "">&#x261C;</a></p>
+<p class = 'issue'>Please leave any comments as a
+  <a href = 'https://github.com/Abigail/Abigail.github.io/issues'
+     title = 'GitHub issue'>GitHub issue</a>.
+<p class = 'next'><a class = "next" href = "">&#x261E;</a></p>
+</div>
+
+</body>
+</html>
