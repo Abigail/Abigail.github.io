@@ -512,7 +512,7 @@ function betza_leaper (betza) {
     //
     // Hard code t[WF] and t[FW]
     //
-    if (betza == "t[WF]") { // Moa
+    if (betza == "t[FW]") { // Moa
         return [
             {dr: -1, dc:  2, us: [[-1,  1]], max: 1},
             {dr: -1, dc: -2, us: [[-1, -1]], max: 1},
@@ -524,7 +524,7 @@ function betza_leaper (betza) {
             {dr:  2, dc:  1, us: [[ 1,  1]], max: 1},
         ]
     }
-    if (betza == "t[FW]") { // Mao
+    if (betza == "t[WF]") { // Mao
         return [
             {dr: -1, dc:  2, us: [[ 0,  1]], max: 1},
             {dr: -1, dc: -2, us: [[ 0, -1]], max: 1},

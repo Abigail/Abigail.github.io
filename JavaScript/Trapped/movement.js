@@ -259,7 +259,6 @@ class Movement {
         }
         else if (unoccupied) {
             let stroke_width = MOV_SIZE / 20
-            console . log (args)
             this . board . circle (MOV_SIZE * .50 - stroke_width)
                          . stroke ({color: 'black',
                                     width: stroke_width,
