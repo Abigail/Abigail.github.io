@@ -54,6 +54,7 @@ class Movement {
         let initials     = []
         let arrows       = []
         let lines        = []
+        let lines2       = []
 
         let by_line = description . split  ("\n")
                                   . filter ((line) => line . match (/\S/))
@@ -81,7 +82,7 @@ class Movement {
                 if (field == "S") {
                     pieces . push ({row: row, col: col})
                 }
-                if (field == '*') {
+                if (field == '*' || field == 'L') {
                     destinations . push ({row: row, col: col})
                 }
                 if (field == 'i') {
@@ -93,6 +94,9 @@ class Movement {
                 if (field == 'A') {
                     arrows . push ({row: row, col: col})
                 }
+                if (field == 'L') {
+                    lines2 . push ({row: row, col: col})
+                }
             })
         })
 
@@ -102,6 +106,11 @@ class Movement {
 
         lines . forEach ((coordinates) => {
             this . draw_line (coordinates)
+        })
+        lines2 . forEach ((square) => {
+            this . draw_line ([[pieces [0] . row,
+                                pieces [0] . col],
+                               [square . row, square . col]])
         })
 
         pieces . forEach ((square) => {
