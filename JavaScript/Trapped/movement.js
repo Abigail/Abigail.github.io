@@ -2,7 +2,6 @@ $(window) . on ("load", () => {
     let file       = location . href . replace (/^.*\//,   "") 
                                      . replace (/\?.*/,    "")
                                      . replace (/\.html$/, "")
-    console . log (file)
     if (file == "index") {
         return
     }
@@ -20,6 +19,7 @@ let TRANSFORM = {     // [Scale, Translate X, Translate Y]
     dabbaba:             [    0,       0.22],
     dragon_horse:        [   50],
     dragon_king:         [   50],
+    elephant:            [   40,     - 0.87],
     falcon:              [  800,     -13.30],
     gold_general:        [   50],
     hawk:                [  900,     -14.05],
@@ -46,20 +46,33 @@ class Movement {
         //
         let description = $(element)  . text ()
         $(element) . html ("")
-        let board_info  = description . split  ("\n")
-                                      . filter ((line) => line . match (/\S/))
-                                      . map    ((line) => line . split (" "))
+
+        let pieces       = []
+        let destinations = []
+        let initials     = []
+        let arrows       = []
+        let lines        = []
+
+        let by_line = description . split  ("\n")
+                                  . filter ((line) => line . match (/\S/))
+
+        by_line . filter ((line) => line . match (/^Line:/))
+                . forEach ((line) => {
+            let coordinates = line . replace (/Line:\s*/, "")
+                                   . split (/\s+/)
+                                   . map ((x) => x . split (/,/) .
+                                                 map ((x) => +x))
+            lines . push (coordinates)
+        })
+
+        let board_info  = by_line . filter ((line) => !line . match (/[:]/))
+                                  . map    ((line) =>  line . split (" "))
 
         this . rows = board_info     . length
         this . cols = board_info [0] . length
 
         this . create_board ({addTo: element})
         this . create_grid  ()
-
-        let pieces       = []
-        let destinations = []
-        let initials     = []
-        let arrows       = []
 
         board_info . forEach ((line, row) => {
             line . forEach ((field, col) => {
@@ -80,6 +93,10 @@ class Movement {
 
         arrows . forEach ((square) => {
             this . draw_arrow ({from: start, to: square})
+        })
+
+        lines . forEach ((coordinates) => {
+            this . draw_line (coordinates)
         })
 
         pieces . forEach ((square) => {
@@ -202,7 +219,6 @@ class Movement {
             if (transform_in . length > 2) {
                 transform_out . translateY = MOV_SIZE * transform_in [2]
             }
-            console . log (transform_out)
             group . transform (transform_out)
         }
         else {
@@ -299,6 +315,19 @@ class Movement {
                                       scale:     .8,
                                       translate: [x_to, y_to]})
 
+        return this
+    }
+
+    //
+    // Given an array of coordinates, draw line between them.
+    //
+    draw_line (coordinates) {
+        this . board . polyline (coordinates . map ((point) =>
+                                         this . cell_to_coord (... point)))
+                     . stroke ({width:   1,
+                                opacity: 0.5,
+                                color:  'black',
+                                linecap: 'round',})
         return this
     }
 }

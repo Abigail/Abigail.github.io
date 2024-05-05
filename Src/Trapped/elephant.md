@@ -1,6 +1,20 @@
-# %%PIECE%%
+# Elephant
 
-The %%PIECE%% moves one or two unoccupied squares orthogonally
+<div class = "movement">
+. . . . . . .
+. * . . . * .
+. . * . * . .
+. . . S . . .
+. . * . * . .
+. * . . . * .
+. . . . . . .
+Line: 3,3 1,1
+Line: 3,3 5,1
+Line: 3,3 1,5
+Line: 3,3 5,5
+</div>
+
+The **Elephant** moves one or two unoccupied squares orthogonally
 or diagonally. This makes the %%PIECE%% %%COLOUR_BOUND%%.
 
 |====
@@ -15,14 +29,23 @@ or diagonally. This makes the %%PIECE%% %%COLOUR_BOUND%%.
 &           %%PROMOTES_TO%% [*Otter*](otter.html) \\
 ====|
 
+There are pieces name *Elephant* (but moving differently than the
+**Elephant** described here) in several other games: 
+[D&#x14d;butsu Sh&#x14d;gi](ferz.html), 
+[Janggi](elephant_janggi.html),
+[Wolf Chess](amazon_rider.html).
+There is also a piece called [*Elephant Prince*](king.html) in
+%%TYPHOON%%. The [*Alfil*](alfil.html) is sometimes called *Elephant*,
+as it's derived from the Persian word for elephant.
+
 ### Spiral
 
 #### Square
 
-On the Spiral the %%PIECE%% follows a pattern similar to the
+On the Spiral the **Elephant** follows a pattern similar to the
 [*Bishop*](bishop.html), except for the parts the [*Bishop*](bishop.html)
-skips; the %%PIECE%% will visit every second square on such parts.
-The %%PIECE%% will visit
+skips; the **Elephant** will visit every second square on such parts.
+The **Elephant** will visit
 \(\frac{1}{2} \cdot
 ((\frac{1}{2} + \frac{1}{4}) \cdot \frac{3}{4} + \frac{1}{4}) =
   \frac{1}{2} \cdot (\frac{9}{16} + \frac{1}{4}) =
@@ -31,14 +54,14 @@ of the squares.
 
 #### Diamond
 
-On the Diamond Spiral, the %%PIECE%% moves in the same way as the
+On the Diamond Spiral, the **Elephant** moves in the same way as the
 %%FERZ%% does, visiting half the squares of the board.
 
 ### Wedge
 
 #### Folded
 
-On the Folded Wedge, the %%PIECE%% will escape using a stepwise pattern, 
+On the Folded Wedge, the **Elephant** will escape using a stepwise pattern, 
 visiting the right most square, and the square two to the left of the
 rightmost square of every row. This is a four step loop to move two
 square to the upper right, giving it an escape velocity of
@@ -46,6 +69,6 @@ square to the upper right, giving it an escape velocity of
 
 #### Flat
 
-On the Flat Wedge, the %%PIECE%% stays to the far right, escaping
+On the Flat Wedge, the **Elephant** stays to the far right, escaping
 along the edge of the Wedge. This means an escape velocity of
 \(\sqrt{2}\).

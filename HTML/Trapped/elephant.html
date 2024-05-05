@@ -1,0 +1,187 @@
+<html>
+<head>
+<title>Elephant</title>
+<meta charset = "utf-8">
+<link rel  = 'preconnect' href = 'https://fonts.gstatic.com'>
+<link rel = 'stylesheet' href =      'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
+<link rel = 'stylesheet' href = '../../Styles/main.css'>
+<link rel = 'stylesheet' href = '../../Styles/Trapped/main.css'>
+<script src = "../../JavaScript/jquery.js"></script>
+<script id  = 'MathJax-script' async src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.js'></script>
+<script id = 'svg-script' src = 'https://cdn.jsdelivr.net/npm/@svgdotjs/svg.js@3.0/dist/svg.min.js'></script>
+<script src = '../../JavaScript/navigation.js'></script>
+<script src = '../../JavaScript/Trapped/piece_list.js'></script>
+<script src = '../../JavaScript/Trapped/trapped.js'></script>
+<script src = '../../JavaScript/Trapped/pieces.js'></script>
+<script src = '../../JavaScript/Trapped/boxset.js'></script>
+<script src = '../../JavaScript/Trapped/movement.js'></script>
+<script src = '../../JavaScript/Trapped/pages.js'></script>
+</head>
+
+<body><h1>Elephant</h1><div class = "byline">
+by Abigail<br>
+<img src = "../../Images/jan_sluiters.jpg">
+</div>
+
+
+<div class = "movement">
+. . . . . . .
+. * . . . * .
+. . * . * . .
+. . . S . . .
+. . * . * . .
+. * . . . * .
+. . . . . . .
+Line: 3,3 1,1
+Line: 3,3 5,1
+Line: 3,3 1,5
+Line: 3,3 5,5
+</div>
+
+<p>The <strong>Elephant</strong> moves one or two unoccupied squares orthogonally
+or diagonally. This makes the %%PIECE%% <span class = 'tooltip underline'>colourbound<span class = 'tooltiptext'>A colourbound piece will always stay on a square of the same colour: if it starts on a black square, it will always remain on a black square; if it starts on a white square, it will always remain on a white square</span></span>.</p>
+
+<table class = piece_list>
+  <tr class = 'row-0' markdown = '1'>
+    <th class = 'cell-0-0 col-0 ' markdown = '1'>Game</td>
+    <th class = 'cell-0-1 col-1 ' markdown = '1' colspan = '2'>Piece</td>
+    <th class = 'cell-0-3 col-3 ' markdown = '1'>Info</td>
+  </tr>
+  <tr class = 'row-1' markdown = '1'>
+    <th class = 'cell-1-0 col-0 ' markdown = '1'><a href="https://en.wikipedia.org/wiki/xiangqi">Xiangqi <span class = 'uni_name'>(&#x8C61;&#x68CB;)</span></a></td>
+    <td class = 'cell-1-1 col-1 ' markdown = '1'><strong>Elphant</strong></td>
+    <td class = 'cell-1-2 col-2 ' markdown = '1'>&#x8C61;/&#x76F8;</td>
+    <td class = 'cell-1-3 col-3 ' markdown = '1'>In the game, this piece cannot cross the river, restricting
+            it to 7 squares on the board (but we do not have a river here);
+            Also known as <em>Bishop</em></td>
+  </tr>
+  <tr class = 'row-2' markdown = '1'>
+    <th class = 'cell-2-0 col-0 ' markdown = '1'><a href="https://www.chessvariants.com/rules/typhoon-revised">Typhoon</a></td>
+    <td class = 'cell-2-1 col-1 ' markdown = '1' colspan = '2'><strong>Missionary</strong></td>
+    <td class = 'cell-2-3 col-3 ' markdown = '1'><span class = 'tooltip'>&#x260A;<span class = 'tooltiptext'>Promotes to</span></span> <a href="otter.html"><em>Otter</em></a></td>
+  </tr>
+</table>
+
+<p>There are pieces name <em>Elephant</em> (but moving differently than the
+<strong>Elephant</strong> described here) in several other games: 
+<a href="ferz.html">D&#x14d;butsu Sh&#x14d;gi</a>, 
+<a href="elephant_janggi.html">Janggi</a>,
+<a href="amazon_rider.html">Wolf Chess</a>.
+There is also a piece called <a href="king.html"><em>Elephant Prince</em></a> in
+<a href="https://www.chessvariants.com/rules/typhoon-revised">Typhoon</a>. The <a href="alfil.html"><em>Alfil</em></a> is sometimes called <em>Elephant</em>,
+as it's derived from the Persian word for elephant.</p>
+
+<h3 id = 'spiral'>Spiral</h3>
+
+<h4 id = 'square'>Square</h4>
+
+<div class = "section">
+<p>On the Spiral the <strong>Elephant</strong> follows a pattern similar to the
+<a href="bishop.html"><em>Bishop</em></a>, except for the parts the <a href="bishop.html"><em>Bishop</em></a>
+skips; the <strong>Elephant</strong> will visit every second square on such parts.
+The <strong>Elephant</strong> will visit
+\(\frac{1}{2} \cdot
+((\frac{1}{2} + \frac{1}{4}) \cdot \frac{3}{4} + \frac{1}{4}) =
+  \frac{1}{2} \cdot (\frac{9}{16} + \frac{1}{4}) =
+  \frac{1}{2} \cdot \frac{13}{16} = \frac{13}{32} = 40.625\%\)
+of the squares.</p>
+</div>
+
+<h4 id = 'diamond'>Diamond</h4>
+
+<div class = "section">
+<p>On the Diamond Spiral, the <strong>Elephant</strong> moves in the same way as the
+<a href="ferz.html"><em>Ferz</em></a> does, visiting half the squares of the board.</p>
+</div>
+
+<h3 id = 'wedge'>Wedge</h3>
+
+<h4 id = 'folded'>Folded</h4>
+
+<div class = "section">
+<p>On the Folded Wedge, the <strong>Elephant</strong> will escape using a stepwise pattern, 
+visiting the right most square, and the square two to the left of the
+rightmost square of every row. This is a four step loop to move two
+square to the upper right, giving it an escape velocity of
+<span class = 'latex-inline'>\(\frac{\sqrt{2}}{2}\)</span>.</p>
+</div>
+
+<h4 id = 'flat'>Flat</h4>
+
+<p>On the Flat Wedge, the <strong>Elephant</strong> stays to the far right, escaping
+along the edge of the Wedge. This means an escape velocity of
+<span class = 'latex-inline'>\(\sqrt{2}\)</span>.</p>
+
+<div class = 'trapped' data-piece = 'elephant'></div>
+
+<div class = 'boxset' data-piece = 'elephant'></div>
+
+<div class = 'drawing' data-piece = 'elephant'><!--
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg height="40" width="40">
+  <g
+     transform="translate(-648.8939,-329.85941)"
+     id="layer1"
+     inkscape:groupmode="layer"
+     inkscape:label="Capa 1">
+    <g
+       transform="translate(349.98565,-293.98483)"
+       id="g4234">
+      <g
+         id="g3849-5-7-2-2"
+         transform="translate(-114.67816,-11.956614)">
+        <g
+           transform="translate(-89.418988,4.8662534)"
+           id="g3840-7-1-0-1">
+          <g
+             id="g3834-3-2-8-3"
+             transform="translate(1e-4,1.1401374)">
+            <g
+               transform="translate(5e-5,-0.73329175)"
+               id="g3830-6-4-3-5" />
+          </g>
+        </g>
+      </g>
+      <g
+         id="g4166"
+         transform="matrix(0,1.1056337,-0.9506969,0,931.0664,249.68773)">
+        <path
+           sodipodi:nodetypes="ccsccs"
+           id="path4158"
+           d="m 358.98215,643.05862 c 1.25297,-1.10714 3.44345,-1.52679 5.44642,-1.07143 l -0.14285,14.39285 c -0.0293,2.94777 -7.41072,-0.89285 -7.41072,-0.89285 v 0 0"
+           style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:round;stroke-opacity:1" />
+        <path
+           sodipodi:nodetypes="czczcccccczcc"
+           id="path4160"
+           d="m 354.375,646.91576 c 0,0 3.02395,0.66193 3.83929,2.67857 0.81534,2.01664 -1.60714,8.21429 -1.60714,8.21429 0,0 -9.72997,-4.52576 -10.35715,-5.80358 -0.62718,-1.27782 0.26786,-4.55357 0.26786,-4.55357 -4.17141,-7.79318 3.7209,-9.58329 9.24511,-10.67099 l 0.31205,-1.96159 -4.8277,-1.20581 0.0505,-2.15003 c 6.91051,1.15036 14.31691,3.64295 7.18436,8.93485 0,0 0.42022,1.5548 0.31833,3.01777 -0.1019,1.46296 -4.42548,3.50009 -4.42548,3.50009 z"
+           style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:round;stroke-opacity:1" />
+        <path
+           sodipodi:nodetypes="cccc"
+           id="path4162"
+           d="m 358.49693,642.28086 -1.63966,-12.76223 -1.68768,12.96037 z"
+           style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:round;stroke-opacity:1" />
+        <circle
+           transform="matrix(0.74437527,0,0,0.74437527,78.140463,309.27465)"
+           id="path4164"
+           style="color:#000000;display:inline;overflow:visible;visibility:visible;fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;enable-background:accumulate"
+           cx="366.65179"
+           cy="444.72824"
+           r="0.75344813" />
+      </g>
+    </g>
+  </g>
+</svg>
+
+-->
+</div>
+<hr id = 'last-line'>
+<div class = 'trailer'>
+<p class = 'prev'><a class = "prev" href = "">&#x261C;</a></p>
+<p class = 'issue'>Please leave any comments as a
+  <a href = 'https://github.com/Abigail/Abigail.github.io/issues'
+     title = 'GitHub issue'>GitHub issue</a>.
+<p class = 'next'><a class = "next" href = "">&#x261E;</a></p>
+</div>
+
+</body>
+</html>

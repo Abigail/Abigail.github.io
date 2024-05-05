@@ -953,6 +953,16 @@ let pieces = {
         parent: "amazon"
     },
 
+    elephant: {
+        betza:    "F2",
+        results: {
+            spiral_square:  "F/40.625%", 
+            spiral_diamond: "F/50%",
+            wedge_folded:    sqrt (2, 2),
+            wedge_flat:      sqrt (2),
+        },
+    },
+
     dobutsu_elephant: {
         parent: "ferz",
         _name: "Elephant",
@@ -979,12 +989,6 @@ let pieces = {
             {dr:  3, dc: -2, us: [[ 1,  0], [ 2, -1]], max: 1},
             {dr:  3, dc:  2, us: [[ 1,  0], [ 2,  1]], max: 1},
         ],
-    },
-
-    elephant_xiangqi: {
-        parent: "missionary",
-        _name:       "Elephant",
-        _index_name: "Elephant (Xiangqi)",
     },
 
     elephant_prince: {
@@ -1779,6 +1783,7 @@ let pieces = {
     },
 
     missionary: {
+        parent: "elephant",
         betza:    "F2",
         results: {
             spiral_square:  "F/40.625%", 
@@ -2986,7 +2991,7 @@ let set_info = {
     xiangqi: {
         href:  "https://en.wikipedia.org/wiki/Xiangqi",
         full_name: "Xiangqi (&#x8C61;&#x68CB;)",
-        pieces: ["general_xiangqi", "advisor", "elephant_xiangqi", "horse",
+        pieces: ["general_xiangqi", "advisor", "elephant", "horse",
                  "chariot_xiangqi", "cannon", "soldier"],
     },
 

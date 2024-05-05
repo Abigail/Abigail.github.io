@@ -7,7 +7,8 @@ falcon, narwhal:
     url: https://www.svgrepo.com/svg/330408/falcon
     url: https://www.svgrepo.com/svg/54042/narwhal
 
-gold_general, silver_general, dragon_king, dragon_horse, shogi_knight, lance:
+gold_general, silver_general, dragon_king, dragon_horse, shogi_knight, lance,
+elephant: 
     license: CC BY SA 3.0
     author: Hari Sheldon
     url: https://en.wikipedia.org/wiki/Shogi#/media/File:Shogi_kinsho(svg)
@@ -16,6 +17,7 @@ gold_general, silver_general, dragon_king, dragon_horse, shogi_knight, lance:
     url: https://en.wikipedia.org/wiki/Shogi#/media/File:Shogi_ryuma(svg).svg
     url: https://en.wikipedia.org/wiki/Shogi#/media/File:Shogi_keima.svg
     url: https://en.wikipedia.org/wiki/Shogi#/media/File:Shogi_kyosha(svg).svg
+    url: https://en.wikipedia.org/wiki/File:Xiangqi_pieces_with_pictorial_%28Western_chess_style%29_drawings.svg (modified)
 
 hawk:
     licence: CC0
