@@ -1,8 +1,19 @@
-# %%PIECE%%
+# Pawn
+
+<div class = "movement">
+. . . . . . . . .
+. . . . . . . i .
+. . . . i . . i .
+. * . . * . . * .
+. S . . S . . S .
+. . . . . . . . .
+</div>
 
 The **Pawn** appears in [Chess](#wiki), 
 [Sh&#x14d;gi (&#x5c06;&#x68cb;)](#wiki:Shogi), and many of their
 variants; it is known under different names.
+
+<div style = 'clear: both'></div>
 
 It's usually a humble piece, appearing multiple times on the board.
 It's movements are complicated, but most movements we can ignore

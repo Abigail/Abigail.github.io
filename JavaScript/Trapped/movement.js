@@ -56,17 +56,21 @@ class Movement {
         this . create_board ({addTo: element})
         this . create_grid  ()
 
-        let start        = []
+        let pieces       = []
         let destinations = []
+        let initials     = []
         let arrows       = []
 
         board_info . forEach ((line, row) => {
             line . forEach ((field, col) => {
                 if (field == "S") {
-                    start = {row: row, col: col}
+                    pieces . push ({row: row, col: col})
                 }
                 if (field == '*') {
                     destinations . push ({row: row, col: col})
+                }
+                if (field == 'i') {
+                    initials . push ({row: row, col: col})
                 }
                 if (field == 'A') {
                     arrows . push ({row: row, col: col})
@@ -78,10 +82,15 @@ class Movement {
             this . draw_arrow ({from: start, to: square})
         })
 
-        this . place_piece ({start: start, piece: args . piece})
+        pieces . forEach ((square) => {
+            this . place_piece ({square: square, piece: args . piece})
+        })
 
         destinations . forEach ((square) => {
             this . place_destination ({square: square})
+        })
+        initials . forEach ((square) => {
+            this . place_destination ({square: square, initial: 1})
         })
     }
 
@@ -165,17 +174,14 @@ class Movement {
     // Place the piece of which we show the movement
     //
     place_piece (args = {}) {
-        let row   = args . start . row
-        let col   = args . start . col
+        let row   = args . square . row
+        let col   = args . square . col
         let piece = args . piece
 
         let div   = $("div.drawing")
 
         if (div . length) {
             let group = this . board . group ()
-
-            let scale_factor = SCALE [piece] || 2048
-            let scale        = MOV_SIZE * .9 / scale_factor
 
             let svg   = $("div.drawing") . html ()
                                          . replace (/<\?[^?]*?\?>/,    "")
@@ -204,7 +210,7 @@ class Movement {
                          . css    ({fill:         "white",
                                     stroke:       "black",
                                    "stroke-width": 2})
-                         . center (0, 0)
+                         . center (... this . cell_to_coord (row, col))
         }
 
         return this
@@ -215,12 +221,29 @@ class Movement {
     // valid destination
     //
     place_destination (args = {}) {
-        let row   = args . square . row
-        let col   = args . square . col
+        let row     = args . square . row
+        let col     = args . square . col
+        let initial = args . initial
 
-        this . board . circle (MOV_SIZE * .50)
-                     . fill   ('black')
-                     . center (... this . cell_to_coord (row, col))
+        if (initial) {
+            let stroke_width = MOV_SIZE / 8
+            this . board . circle (MOV_SIZE * .50 - stroke_width)
+                         . stroke ({color: 'black',
+                                    width:  stroke_width,})
+                         . fill ('none')
+                         . center (... this . cell_to_coord (row, col))
+        }
+        else {
+            this . board . circle (MOV_SIZE * .50)
+                         . fill   ('black')
+                         . center (... this . cell_to_coord (row, col))
+        }
+
+    //  if (initial) {
+    //      this . board . circle (MOV_SIZE * .25)
+    //                   . fill   ('red')
+    //                   . center (... this . cell_to_coord (row, col))
+    //  }
 
         return this
     }
