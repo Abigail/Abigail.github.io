@@ -8,7 +8,7 @@ falcon, narwhal:
     url: https://www.svgrepo.com/svg/54042/narwhal
 
 gold_general, silver_general, dragon_king, dragon_horse, shogi_knight, lance,
-elephant: 
+elephant (elephant_janggi): 
     license: CC BY SA 3.0
     author: Hari Sheldon
     url: https://en.wikipedia.org/wiki/Shogi#/media/File:Shogi_kinsho(svg)

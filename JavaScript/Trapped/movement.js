@@ -20,6 +20,7 @@ let TRANSFORM = {     // [Scale, Translate X, Translate Y]
     dragon_horse:        [   50],
     dragon_king:         [   50],
     elephant:            [   40,     - 0.87],
+    elephant_janggi:     [   40,     - 0.87],
     falcon:              [  800,     -13.30],
     gold_general:        [   50],
     hawk:                [  900,     -14.05],
