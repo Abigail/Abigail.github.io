@@ -17,6 +17,18 @@ Line: 3,3 5,5
 The **Elephant** moves one or two unoccupied squares orthogonally
 or diagonally. This makes the %%PIECE%% %%COLOUR_BOUND%%.
 
+This is the **Elephant** from %%XIANGQI%%. There are pieces named
+*Elephant* in other games, but they move differently:
+[D&#x14d;butsu Sh&#x14d;gi](ferz.html), [Janggi](elephant_janggi.html), and
+[Wolf Chess](amazon_rider.html).
+
+There is also a piece called [*Elephant Prince*](king.html) in
+%%TYPHOON%%. The [*Alfil*](alfil.html) is sometimes called *Elephant*,
+as it's derived from the Persian word for elephant.
+
+%%CLEAR%%
+Pieces moving like the **Elephant**:
+
 |====
 %%PIECE_HEADERS%%
   {th = 1}  %%XIANGQI%%
@@ -28,15 +40,6 @@ or diagonally. This makes the %%PIECE%% %%COLOUR_BOUND%%.
 & {cs = 2}  **Missionary**
 &           %%PROMOTES_TO%% [*Otter*](otter.html) \\
 ====|
-
-There are pieces name *Elephant* (but moving differently than the
-**Elephant** described here) in several other games: 
-[D&#x14d;butsu Sh&#x14d;gi](ferz.html), 
-[Janggi](elephant_janggi.html),
-[Wolf Chess](amazon_rider.html).
-There is also a piece called [*Elephant Prince*](king.html) in
-%%TYPHOON%%. The [*Alfil*](alfil.html) is sometimes called *Elephant*,
-as it's derived from the Persian word for elephant.
 
 ### Spiral
 

@@ -150,6 +150,8 @@ our %MACROS = (
 
         WIKI           =>  $WIKI_TOKEN,
         CHESS_V        =>  $CHESS_V_TOKEN,
+
+        CLEAR          =>  "<div style = 'clear: both'></div>",
     },
 
     our $TYPE_TALK => {

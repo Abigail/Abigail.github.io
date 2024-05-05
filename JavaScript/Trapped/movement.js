@@ -323,7 +323,7 @@ class Movement {
     //
     draw_line (coordinates) {
         this . board . polyline (coordinates . map ((point) =>
-                                         this . cell_to_coord (... point)))
+                                        this . cell_to_coord (... point)))
                      . stroke ({width:   1,
                                 opacity: 0.5,
                                 color:  'black',
