@@ -63,6 +63,9 @@ function make_index_table () {
         if (name1 > name2) {return  1}
                             return  0
     }) . forEach ((piece) => {
+        if (piece . parent) {
+            return
+        }
         let name  = piece . index_name ();
 
         table += `<tr><td class = 'piece-name'>`               +
