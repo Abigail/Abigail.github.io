@@ -1,11 +1,32 @@
-# %%PIECE%%
+# Mao
 
-The %%PIECE%% moves as the [*Knight*](knight.html), but it
+<div class = "movement">
+. . . . . . .
+. . * . * . .
+. * . u . * .
+. . u S u . .
+. * . u . * .
+. . * . * . .
+. . . . . . .
+Line: 3,3 3,2 2,1
+Line: 3,3 3,2 4,1
+Line: 3,3 3,4 2,5
+Line: 3,3 3,4 4,5
+Line: 3,3 2,3 1,2
+Line: 3,3 2,3 1,4
+Line: 3,3 4,3 5,2
+Line: 3,3 4,3 5,4
+</div>
+
+The **Mao** moves as the [*Knight*](knight.html), but it
 may not jump. It moves one square orthogonally (which must
 be unoccupied), then one square diagonally outward.
 
 Compare this to the [*Moa*](moa.html) which reaches the same
 squares, but first moves diagonally, then orthogonally.
+
+Problemists call this piece the **Mao**, but it is used in various
+games, using different names:
 
 |====
 %%PIECE_HEADERS%%
@@ -30,24 +51,24 @@ Link: [%%CHESS_V%%](#piece:mao)
 
 #### Square
 
-On the Square Spiral, the %%PIECE%% gets trapped quickly, after
+On the Square Spiral, the **Mao** gets trapped quickly, after
 no more than 28 steps.
 
 #### Diamond
 
-On the Diamond Spiral, the %%PIECE%% gets trapped quickly as well;
+On the Diamond Spiral, the **Mao** gets trapped quickly as well;
 this time after 64 steps.
 
 ### Wedge
 
 #### Folded
 
-On the Folded Wedge, the %%PIECE%% uses a six step loop
+On the Folded Wedge, the **Mao** uses a six step loop
 to move two squares to the upper left. It escapes to
 infinity by repeating this loop forever, giving it an 
 escape velocity of \(\frac{\sqrt{2}}{3}\).
 
 #### Flat
 
-On the Flat Wedge, the %%PIECE%% gets trapped even sooner
+On the Flat Wedge, the **Mao** gets trapped even sooner
 than on the Square Spiral. 12 steps, and it is trapped.

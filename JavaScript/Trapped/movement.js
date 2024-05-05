@@ -49,6 +49,7 @@ class Movement {
 
         let pieces       = []
         let destinations = []
+        let unoccupied   = []
         let initials     = []
         let arrows       = []
         let lines        = []
@@ -85,6 +86,9 @@ class Movement {
                 if (field == 'i') {
                     initials . push ({row: row, col: col})
                 }
+                if (field == 'u') {
+                    unoccupied . push ({row: row, col: col})
+                }
                 if (field == 'A') {
                     arrows . push ({row: row, col: col})
                 }
@@ -108,6 +112,9 @@ class Movement {
         })
         initials . forEach ((square) => {
             this . place_destination ({square: square, initial: 1})
+        })
+        unoccupied . forEach ((square) => {
+            this . place_destination ({square: square, unoccupied: 1})
         })
     }
 
@@ -237,9 +244,10 @@ class Movement {
     // valid destination
     //
     place_destination (args = {}) {
-        let row     = args . square . row
-        let col     = args . square . col
-        let initial = args . initial
+        let row        = args . square . row
+        let col        = args . square . col
+        let initial    = args . initial
+        let unoccupied = args . unoccupied
 
         if (initial) {
             let stroke_width = MOV_SIZE / 8
@@ -249,17 +257,21 @@ class Movement {
                          . fill ('none')
                          . center (... this . cell_to_coord (row, col))
         }
+        else if (unoccupied) {
+            let stroke_width = MOV_SIZE / 20
+            console . log (args)
+            this . board . circle (MOV_SIZE * .50 - stroke_width)
+                         . stroke ({color: 'black',
+                                    width: stroke_width,
+                                    dasharray: '5 2 5 2 5 2',})
+                         . fill ('none')
+                         . center (... this . cell_to_coord (row, col))
+        }
         else {
             this . board . circle (MOV_SIZE * .50)
                          . fill   ('black')
                          . center (... this . cell_to_coord (row, col))
         }
-
-    //  if (initial) {
-    //      this . board . circle (MOV_SIZE * .25)
-    //                   . fill   ('red')
-    //                   . center (... this . cell_to_coord (row, col))
-    //  }
 
         return this
     }
@@ -324,10 +336,11 @@ class Movement {
     draw_line (coordinates) {
         this . board . polyline (coordinates . map ((point) =>
                                         this . cell_to_coord (... point)))
-                     . stroke ({width:   1,
-                                opacity: 0.5,
-                                color:  'black',
+                     . stroke ({width:    1,
+                                opacity:  0.5,
+                                color:   'black',
                                 linecap: 'round',})
+                     . fill ('none')
         return this
     }
 }
