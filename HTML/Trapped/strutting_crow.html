@@ -1,6 +1,6 @@
 <html>
 <head>
-<title>%%PIECE%%</title>
+<title>Strutting Crow</title>
 <meta charset = "utf-8">
 <link rel  = 'preconnect' href = 'https://fonts.gstatic.com'>
 <link rel = 'stylesheet' href =      'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
@@ -14,17 +14,28 @@
 <script src = '../../JavaScript/Trapped/trapped.js'></script>
 <script src = '../../JavaScript/Trapped/pieces.js'></script>
 <script src = '../../JavaScript/Trapped/boxset.js'></script>
+<script src = '../../JavaScript/Trapped/movement.js'></script>
 <script src = '../../JavaScript/Trapped/pages.js'></script>
 </head>
 
-<body><h1>%%PIECE%%</h1><div class = "byline">
+<body><h1>Strutting Crow</h1><div class = "byline">
 by Abigail<br>
 <img src = "../../Images/jan_sluiters.jpg">
 </div>
 
 
-<p>The %%PIECE%% either moves one square orthogonally forward, or
-one square diagonally backward.</p>
+<div class = "movement">
+. . . . .
+. . * . .
+. . S . .
+. * . * .
+. . . . .
+Shogi: 1
+</div>
+
+<p>The <strong>Strutting Crow</strong> either moves one square orthogonally forward
+(like a forward <a href="wazir.html"><em>Wazir</em></a>), or
+one square diagonally backward (like a backward <a href="ferz.html"><em>Ferz</em></a>).</p>
 
 <table class = piece_list>
   <tr class = 'row-0' markdown = '1'>
@@ -50,7 +61,7 @@ one square diagonally backward.</p>
 <h4 id = 'square'>Square</h4>
 
 <div class = "section">
-<p>The %%PIECE%% circles around the origin once, then escapes to the
+<p>The <strong>Strutting Crow</strong> circles around the origin once, then escapes to the
 upper left by visiting three squares of reach row and column. This
 three step loop to move one square to the upper left implies an
 escape velocity of <span class = 'latex-inline'>\(\frac{\sqrt{2}}{3}\)</span>.</p>
@@ -59,7 +70,7 @@ escape velocity of <span class = 'latex-inline'>\(\frac{\sqrt{2}}{3}\)</span>.</
 <h4 id = 'diamond'>Diamond</h4>
 
 <div class = "section">
-<p>On the Diamond Spiral, the %%PIECE%% uses an eight step loop
+<p>On the Diamond Spiral, the <strong>Strutting Crow</strong> uses an eight step loop
 (two four step parts which are mirror images of each other), to
 move four squares downward. Only visited squares are restricted
 to two files, and only the two visited squares to lie below the origin.
@@ -71,16 +82,18 @@ The escape velocity is <span class = 'latex-inline'>\(\frac{1}{2}\)</span>.</p>
 <h4 id = 'folded'>Folded</h4>
 
 <div class = "section">
-<p>The %%PIECE%% escapes to the upper left by visiting three squares of reach
-row and column. It uses the same three step loop as it uses on the
-Square Spiral, with an escape velocity of <span class = 'latex-inline'>\(\frac{\sqrt{2}}{3}\)</span>.</p>
+<p>The <strong>Strutting Crow</strong> escapes to the upper left by visiting three
+squares of reach row and column. It uses the same three step loop
+as it uses on the Square Spiral, with an escape velocity of
+<span class = 'latex-inline'>\(\frac{\sqrt{2}}{3}\)</span>.</p>
 </div>
 
 <h4 id = 'flat'>Flat</h4>
 
-<p>The %%PIECE%% escapes to the upper right by visiting three squares of reach
-row and column. This is a mirror image of how %%PIECE%% moves on the
-Folded Wedge &mdash; hence the escape velocity is also <span class = 'latex-inline'>\(\frac{\sqrt{2}}{3}\)</span>.</p>
+<p>The <strong>Strutting Crow</strong> escapes to the upper right by visiting three
+squares of reach row and column. This is a mirror image of how
+%%PIECE%% moves on the Folded Wedge &mdash; hence the escape velocity
+is also <span class = 'latex-inline'>\(\frac{\sqrt{2}}{3}\)</span>.</p>
 
 <div class = 'trapped' data-piece = 'strutting_crow'></div>
 

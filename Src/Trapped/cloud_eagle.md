@@ -1,6 +1,19 @@
-# %%PIECE%%
+# Cloud Eagle
 
-The %%PIECE%% either slides up to three unoccupied squares 
+<div class = "movement">
+. . . . A . . . .
+. L . . * . . L .
+. . * . * . * . .
+. . . * * * . . .
+. . . * S * . . .
+. . . * * * . . .
+. . . . * . . . .
+. . . . * . . . .
+. . . . A . . . .
+Shogi: 1
+</div>
+
+The **Cloud Eagle** either slides up to three unoccupied squares 
 diagonally forward, an unlimited number of unoccupied squares
 orthogonally forward or backward, or one square left, right,
 or diagonally backward. That is, it combines the movements
@@ -20,12 +33,12 @@ a backward [*Ferz*](ferz.html).
 
 #### Square
 
-The %%PIECE%% can move as a [*Wazir*](wazir.html), so it will
+The **Cloud Eagle** can move as a [*Wazir*](wazir.html), so it will
 follow the Spiral and visit all the squares.
 
 #### Diamond
 
-On the Diamond Spiral, the %%PIECE%% can moves as the
+On the Diamond Spiral, the **Cloud Eagle** can moves as the
 [*Blind Monkey*](blind_monkey.html), so it will just follow
 the Spiral.
 
@@ -33,10 +46,10 @@ the Spiral.
 
 #### Folded
 
-The %%PIECE%% can move as the [*Flying Cock*](flying_cock.html),
+The **Cloud Eagle** can move as the [*Flying Cock*](flying_cock.html),
 so it will follow the Wedge and visit all the squares.
 
 #### Flat
 
-On the Flat Wedge, the %%PIECE%% will visit all the squares using
+On the Flat Wedge, the **Cloud Eagle** will visit all the squares using
 a simple pattern.

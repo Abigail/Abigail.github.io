@@ -56,17 +56,23 @@ class Movement {
         let arrows       = []
         let lines        = []
         let lines2       = []
+        let shogi        = 0
 
         let by_line = description . split  ("\n")
                                   . filter ((line) => line . match (/\S/))
 
-        by_line . filter ((line) => line . match (/^Line:/))
+        by_line . filter ((line) => line . match (/:/))
                 . forEach ((line) => {
-            let coordinates = line . replace (/Line:\s*/, "")
-                                   . split (/\s+/)
-                                   . map ((x) => x . split (/,/) .
-                                                 map ((x) => +x))
-            lines . push (coordinates)
+            if (line . match (/^Line:/)) {
+                let coordinates = line . replace (/Line:\s*/, "")
+                                       . split (/\s+/)
+                                       . map ((x) => x . split (/,/) .
+                                                     map ((x) => +x))
+                lines . push (coordinates)
+            }
+            else if (line . match (/^Shogi:/)) {
+                shogi = 1
+            }
         })
 
         let board_info  = by_line . filter ((line) => !line . match (/[:]/))
@@ -103,7 +109,9 @@ class Movement {
         })
 
         pieces . forEach ((square) => {
-            this . place_piece ({square: square, piece: args . piece})
+            this . place_piece ({square: square,
+                                 piece:  args . piece,
+                                 shogi:  shogi})
         })
 
         destinations . forEach ((square) => {
@@ -203,6 +211,7 @@ class Movement {
     place_piece (args = {}) {
         let square = args . square
         let piece  = args . piece
+        let shogi  = args . shogi
 
         let div    = $("div.drawing")
 
@@ -229,6 +238,14 @@ class Movement {
                 transform_out . translateY = MOV_SIZE * transform_in [2]
             }
             group . transform (transform_out)
+        }
+        else if (shogi) {
+            this . board . polygon   ('4,5 -4,5, -2,-3 0,-5 2,-3')
+                         . css       ({fill:         "white",
+                                       stroke:       "black",
+                                      "stroke-width": .5})
+                         . center    (... this . square_to_coord (square))
+                         . transform ({scale: MOV_SIZE * .9 / 12})
         }
         else {
             this . board . rect   (MOV_SIZE * .65, MOV_SIZE * .65)

@@ -18,7 +18,7 @@ variants; it is known under different names.
 <div style = 'clear: both'></div>
 
 It's usually a humble piece, appearing multiple times on the board.
-It's movements are complicated, but most movements we can ignore
+Its movements are complicated, but most movements we can ignore
 for our investigations:
 
 * In [Chess](#wiki) and its variants, the **Pawn** captures differently

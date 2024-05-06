@@ -1,6 +1,6 @@
 <html>
 <head>
-<title>%%PIECE%%</title>
+<title>Free Boar</title>
 <meta charset = "utf-8">
 <link rel  = 'preconnect' href = 'https://fonts.gstatic.com'>
 <link rel = 'stylesheet' href =      'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
@@ -14,16 +14,30 @@
 <script src = '../../JavaScript/Trapped/trapped.js'></script>
 <script src = '../../JavaScript/Trapped/pieces.js'></script>
 <script src = '../../JavaScript/Trapped/boxset.js'></script>
+<script src = '../../JavaScript/Trapped/movement.js'></script>
 <script src = '../../JavaScript/Trapped/pages.js'></script>
 </head>
 
-<body><h1>%%PIECE%%</h1><div class = "byline">
+<body><h1>Free Boar</h1><div class = "byline">
 by Abigail<br>
 <img src = "../../Images/jan_sluiters.jpg">
 </div>
 
 
-<p>The %%PIECE%% moves an unlimited amount of unoccupied squares
+<div class = "movement">
+A . . . . . . . A
+. * . . . . . * .
+. . * . . . * . .
+. . . * . * . . .
+A * * * S * * * A
+. . . * . * . . .
+. . * . . . * . .
+. * . . . . . * .
+A . . . . . . . A
+Shogi: 1
+</div>
+
+<p>The <strong>Free Boar</strong> moves an unlimited amount of unoccupied squares
 diagonally (like the <a href="bishop.html"><em>Bishop</em></a>), or orthogonally
 leftward or rightward (like the sidewards <a href="rook.html"><em>Rook</em></a>).</p>
 
@@ -57,7 +71,7 @@ movements, rotated 90&deg;.</p>
 <p>Despite the <a href="bishop.html"><em>Bishop</em></a> and the sidewards
 <a href="rook.html"><em>Rook</em></a> not getting trapped, nor the <a href="queen.html"><em>Queen</em></a>
 (which combines the <a href="bishop.html"><em>Bishop</em></a> and full <a href="rook.html"><em>Rook</em></a>),
-the %%PIECE%% does get trapped, after 251 steps. This is less than
+the <strong>Free Boar</strong> does get trapped, after 251 steps. This is less than
 half the steps the <a href="flying_ox.html"><em>Flying Ox</em></a> takes before getting
 trapped.</p>
 </div>
@@ -65,7 +79,7 @@ trapped.</p>
 <h4 id = 'diamond'>Diamond</h4>
 
 <div class = "section">
-<p>THe %%PIECE%% can move as the <a href="blind_monkey.html"><em>Blind Monkey</em></a>, so it visits all the squares
+<p>THe <strong>Free Boar</strong> can move as the <a href="blind_monkey.html"><em>Blind Monkey</em></a>, so it visits all the squares
 by just following the Spiral.</p>
 </div>
 
@@ -74,14 +88,14 @@ by just following the Spiral.</p>
 <h4 id = 'folded_wedge'>Folded Wedge</h4>
 
 <div class = "section">
-<p>The %%PIECE%% can move as the <a href="flying_cock.html"><em>Flying Cock</em></a>,
-hence the %%PIECE%% follows the Folded Wedge, visiting all the
+<p>The <strong>Free Boar</strong> can move as the <a href="flying_cock.html"><em>Flying Cock</em></a>,
+hence the <strong>Free Boar</strong> follows the Folded Wedge, visiting all the
 squares on the board.</p>
 </div>
 
 <h4 id = 'flat_wedge'>Flat Wedge</h4>
 
-<p>On the Flat Wedge, the %%PIECE%% follows a simple pattern, visiting
+<p>On the Flat Wedge, the <strong>Free Boar</strong> follows a simple pattern, visiting
 every square on the board, with a strong bias to the right.</p>
 
 <div class = 'trapped' data-piece = 'free_boar'></div>

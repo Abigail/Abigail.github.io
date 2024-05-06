@@ -1,6 +1,6 @@
 <html>
 <head>
-<title>%%PIECE%%</title>
+<title>Running Rabbit</title>
 <meta charset = "utf-8">
 <link rel  = 'preconnect' href = 'https://fonts.gstatic.com'>
 <link rel = 'stylesheet' href =      'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
@@ -14,16 +14,28 @@
 <script src = '../../JavaScript/Trapped/trapped.js'></script>
 <script src = '../../JavaScript/Trapped/pieces.js'></script>
 <script src = '../../JavaScript/Trapped/boxset.js'></script>
+<script src = '../../JavaScript/Trapped/movement.js'></script>
 <script src = '../../JavaScript/Trapped/pages.js'></script>
 </head>
 
-<body><h1>%%PIECE%%</h1><div class = "byline">
+<body><h1>Running Rabbit</h1><div class = "byline">
 by Abigail<br>
 <img src = "../../Images/jan_sluiters.jpg">
 </div>
 
 
-<p>The %%PIECE%% either moves one square diagonally (like a
+<div class = "movement">
+. . A . .
+. . * . .
+. . * . .
+. * * * .
+. . S . .
+. * * * .
+. . . . .
+Shogi: 1
+</div>
+
+<p>The <strong>Running Rabbit</strong> either moves one square diagonally (like a
 <a href="ferz.html"><em>Ferz</em></a>), one square orthogonally backward
 (like a backward <a href="wazir.html"><em>Wazir</em></a>), or slides an unlimited amount
 of unoccupied squares orthogonally forward (like a forward
@@ -48,16 +60,17 @@ of unoccupied squares orthogonally forward (like a forward
 <h4 id = 'square'>Square</h4>
 
 <div class = "section">
-<p>On the Square Spiral, the %%PIECE%% visits every square on the board
+<p>On the Square Spiral, the <strong>Running Rabbit</strong> visits every square on the board
 using a pattern which vaguely resembles a Pacman.</p>
 </div>
 
 <h4 id = 'diamond'>Diamond</h4>
 
 <div class = "section">
-<p>The %%PIECE%% slowly spirals outward, visiting all squares on the board.
-On each revolution, the %%PIECE%% moves only <a href="ferz.html"><em>Ferz</em></a> moves, except for
-a single <a href="wazir.html"><em>Wazir</em></a> move, moving the piece one step outward.</p>
+<p>The <strong>Running Rabbit</strong> slowly spirals outward, visiting all squares
+on the board.  On each revolution, the <strong>Running Rabbit</strong> moves
+only <a href="ferz.html"><em>Ferz</em></a> moves, except for a single <a href="wazir.html"><em>Wazir</em></a> move, moving the
+piece one step outward.</p>
 </div>
 
 <h3 id = 'wedge'>Wedge</h3>
@@ -65,7 +78,7 @@ a single <a href="wazir.html"><em>Wazir</em></a> move, moving the piece one step
 <h4 id = 'folded'>Folded</h4>
 
 <div class = "section">
-<p>On the Folded Wedge, the %%PIECE%% escapes to the upper right
+<p>On the Folded Wedge, the <strong>Running Rabbit</strong> escapes to the upper right
 by visiting the three right most squares on each row. A six step
 loop moves the piece two squares forward and to the right, resulting
 in an escape velocity of <span class = 'latex-inline'>\(\frac{\sqrt{2}}{3}\)</span>.</p>
@@ -73,7 +86,7 @@ in an escape velocity of <span class = 'latex-inline'>\(\frac{\sqrt{2}}{3}\)</sp
 
 <h4 id = 'flat'>Flat</h4>
 
-<p>On the Flat Wedge, the %%PIECE%% escapes to the upper right by
+<p>On the Flat Wedge, the <strong>Running Rabbit</strong> escapes to the upper right by
 visiting the right most square on each row. This gives an escape
 velocity of <span class = 'latex-inline'>\(\sqrt{2}\)</span>.</p>
 

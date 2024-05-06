@@ -1,6 +1,19 @@
-# %%PIECE%%
+# Free Boar
 
-The %%PIECE%% moves an unlimited amount of unoccupied squares
+<div class = "movement">
+A . . . . . . . A
+. * . . . . . * .
+. . * . . . * . .
+. . . * . * . . .
+A * * * S * * * A
+. . . * . * . . .
+. . * . . . * . .
+. * . . . . . * .
+A . . . . . . . A
+Shogi: 1
+</div>
+
+The **Free Boar** moves an unlimited amount of unoccupied squares
 diagonally (like the [*Bishop*](bishop.html)), or orthogonally
 leftward or rightward (like the sidewards [*Rook*](rook.html)).
 
@@ -24,24 +37,24 @@ movements, rotated 90&deg;.
 Despite the [*Bishop*](bishop.html) and the sidewards
 [*Rook*](rook.html) not getting trapped, nor the [*Queen*](queen.html)
 (which combines the [*Bishop*](bishop.html) and full [*Rook*](rook.html)),
-the %%PIECE%% does get trapped, after 251 steps. This is less than
+the **Free Boar** does get trapped, after 251 steps. This is less than
 half the steps the [*Flying Ox*](flying_ox.html) takes before getting
 trapped.
 
 #### Diamond
 
-THe %%PIECE%% can move as the %%BM%%, so it visits all the squares
+THe **Free Boar** can move as the %%BM%%, so it visits all the squares
 by just following the Spiral.
 
 ### Wedge
 
 #### Folded Wedge
 
-The %%PIECE%% can move as the [*Flying Cock*](flying_cock.html),
-hence the %%PIECE%% follows the Folded Wedge, visiting all the
+The **Free Boar** can move as the [*Flying Cock*](flying_cock.html),
+hence the **Free Boar** follows the Folded Wedge, visiting all the
 squares on the board.
 
 #### Flat Wedge
 
-On the Flat Wedge, the %%PIECE%% follows a simple pattern, visiting
+On the Flat Wedge, the **Free Boar** follows a simple pattern, visiting
 every square on the board, with a strong bias to the right.
