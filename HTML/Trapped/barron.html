@@ -1,6 +1,6 @@
 <html>
 <head>
-<title>%%PIECE%%</title>
+<title>Barron</title>
 <meta charset = "utf-8">
 <link rel  = 'preconnect' href = 'https://fonts.gstatic.com'>
 <link rel = 'stylesheet' href =      'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
@@ -14,16 +14,45 @@
 <script src = '../../JavaScript/Trapped/trapped.js'></script>
 <script src = '../../JavaScript/Trapped/pieces.js'></script>
 <script src = '../../JavaScript/Trapped/boxset.js'></script>
+<script src = '../../JavaScript/Trapped/movement.js'></script>
 <script src = '../../JavaScript/Trapped/pages.js'></script>
 </head>
 
-<body><h1>%%PIECE%%</h1><div class = "byline">
+<body><h1>Barron</h1><div class = "byline">
 by Abigail<br>
 <img src = "../../Images/jan_sluiters.jpg">
 </div>
 
 
-<p>The %%PIECE%% either slides an unlimited number of squares in any
+<div class = "movement">
+A . . . . . . . A
+. * . . . . . * .
+. . * * . * * . .
+. . * * u * * . .
+. . . u S u . . .
+. . * * u * * . .
+. . * * . * * . .
+. * . . . . . * .
+A . . . . . . . A
+Line: 4,4 4,3 3,2
+Line: 4,4 4,3 5,2
+Line: 4,4 4,5 3,6
+Line: 4,4 4,5 5,6
+Line: 4,4 3,4 2,3
+Line: 4,4 3,4 2,5
+Line: 4,4 5,4 6,3
+Line: 4,4 5,4 6,5
+Line: 4,4 3,3 3,2
+Line: 4,4 3,3 2,3
+Line: 4,4 3,5 2,5
+Line: 4,4 3,5 3,6
+Line: 4,4 5,3 5,2
+Line: 4,4 5,3 6,3
+Line: 4,4 5,5 6,5
+Line: 4,4 5,5 5,6
+</div>
+
+<p>The <strong>Barron</strong> either slides an unlimited number of squares in any
 of the four diagonal directions (like the <a href="bishop.html"><em>Bishop</em></a>), or it makes
 a non-jumping <a href="knight.html"><em>Knight</em></a>'s move (like the <a href="bowman.html"><em>Bowman</em></a>),
 that is, it either moves one square
@@ -49,7 +78,7 @@ unoccupied.</p>
 <h4 id = 'square'>Square</h4>
 
 <div class = "section">
-<p>The %%PIECE%% gets trapped quickly, after no more than 160 steps. This
+<p>The <strong>Barron</strong> gets trapped quickly, after no more than 160 steps. This
 is about twice as many steps as it takes for the <a href="bowman.html"><em>Bowman</em></a>
 to get trapped (after 78 steps), but the <a href="bishop.html"><em>Bishop</em></a> does not get trapped
 at all.</p>
@@ -58,7 +87,7 @@ at all.</p>
 <h4 id = 'diamond'>Diamond</h4>
 
 <div class = "section">
-<p>The %%PIECE%% gets trapped even quicker on the Diamond Square: it is
+<p>The <strong>Barron</strong> gets trapped even quicker on the Diamond Square: it is
 trapped after 45 steps, which is 10 steps faster than the
 <a href="bowman.html"><em>Bowman</em></a>.</p>
 </div>
@@ -68,13 +97,13 @@ trapped after 45 steps, which is 10 steps faster than the
 <h4 id = 'folded'>Folded</h4>
 
 <div class = "section">
-<p>After no more than 19 steps, the %%PIECE%% gets trapped; 9 more staps
+<p>After no more than 19 steps, the <strong>Barron</strong> gets trapped; 9 more staps
 than the <a href="bowman.html"><em>Bowman</em></a>.</p>
 </div>
 
 <h4 id = 'flat'>Flat</h4>
 
-<p>The %%PIECE%% gets trapped after 105 steps. </p>
+<p>The <strong>Barron</strong> gets trapped after 105 steps. </p>
 
 <div class = 'trapped' data-piece = 'barron'></div>
 

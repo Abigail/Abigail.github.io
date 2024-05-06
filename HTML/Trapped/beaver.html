@@ -1,6 +1,6 @@
 <html>
 <head>
-<title>%%PIECE%%</title>
+<title>Beaver</title>
 <meta charset = "utf-8">
 <link rel  = 'preconnect' href = 'https://fonts.gstatic.com'>
 <link rel = 'stylesheet' href =      'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
@@ -14,16 +14,27 @@
 <script src = '../../JavaScript/Trapped/trapped.js'></script>
 <script src = '../../JavaScript/Trapped/pieces.js'></script>
 <script src = '../../JavaScript/Trapped/boxset.js'></script>
+<script src = '../../JavaScript/Trapped/movement.js'></script>
 <script src = '../../JavaScript/Trapped/pages.js'></script>
 </head>
 
-<body><h1>%%PIECE%%</h1><div class = "byline">
+<body><h1>Beaver</h1><div class = "byline">
 by Abigail<br>
 <img src = "../../Images/jan_sluiters.jpg">
 </div>
 
 
-<p>The %%PIECE%% either moves one square orthogonally or diagonally
+<div class = "movement">
+. . . . . . . . . . .
+. . . . * * * . . . .
+. L * * * S * * * L .
+. . . . . * . . . . .
+. . . . . * . . . . .
+. . . . . * . . . . .
+. . . . . A . . . . .
+</div>
+
+<p>The <strong>Beaver</strong> either moves one square orthogonally or diagonally
 forward (like a forward <a href="wazir.html"><em>Wazir</em></a> or a forward
 <a href="ferz.html"><em>Ferz</em></a>), up to four unoccupied squares orthogonally sideways,
 or an unlimited of unoccupied squares orthogonally backward
@@ -48,15 +59,15 @@ or an unlimited of unoccupied squares orthogonally backward
 <h4 id = 'square'>Square</h4>
 
 <div class = "section">
-<p>Since the %%PIECE%% can move as the <a href="wazir.html"><em>Wazir</em></a>, the
-%%PIECE%% will follow the Spiral, visiting every square on the
+<p>Since the <strong>Beaver</strong> can move as the <a href="wazir.html"><em>Wazir</em></a>, the
+<strong>Beaver</strong> will follow the Spiral, visiting every square on the
 board.</p>
 </div>
 
 <h4 id = 'diamond'>Diamond</h4>
 
 <div class = "section">
-<p>On the Diamond Spiral, the %%PIECE%% escapes upward, using a 
+<p>On the Diamond Spiral, the <strong>Beaver</strong> escapes upward, using a 
 two step loop to move on square upward. This means an escape
 velocity of <span class = 'latex-inline'>\(\frac{1}{2}\)</span>.</p>
 </div>
@@ -66,14 +77,14 @@ velocity of <span class = 'latex-inline'>\(\frac{1}{2}\)</span>.</p>
 <h4 id = 'folded'>Folded</h4>
 
 <div class = "section">
-<p>Since the %%PIECE%% can move as the <a href="flying_cock.html"><em>Flying Cock</em></a>, the
-%%PIECE%% will follow the Folded Wedge, visiting every square on the
+<p>Since the <strong>Beaver</strong> can move as the <a href="flying_cock.html"><em>Flying Cock</em></a>, the
+<strong>Beaver</strong> will follow the Folded Wedge, visiting every square on the
 board.</p>
 </div>
 
 <h4 id = 'flat'>Flat</h4>
 
-<p>On the Flat Wedge, the %%PIECE%% uses a fairy unique and simple pattern
+<p>On the Flat Wedge, the <strong>Beaver</strong> uses a fairy unique and simple pattern
 to to visit all the squares on the board.</p>
 
 <div class = 'trapped' data-piece = 'beaver'></div>

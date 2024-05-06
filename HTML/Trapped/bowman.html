@@ -1,6 +1,6 @@
 <html>
 <head>
-<title>%%PIECE%%</title>
+<title>Bowman</title>
 <meta charset = "utf-8">
 <link rel  = 'preconnect' href = 'https://fonts.gstatic.com'>
 <link rel = 'stylesheet' href =      'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
@@ -14,16 +14,43 @@
 <script src = '../../JavaScript/Trapped/trapped.js'></script>
 <script src = '../../JavaScript/Trapped/pieces.js'></script>
 <script src = '../../JavaScript/Trapped/boxset.js'></script>
+<script src = '../../JavaScript/Trapped/movement.js'></script>
 <script src = '../../JavaScript/Trapped/pages.js'></script>
 </head>
 
-<body><h1>%%PIECE%%</h1><div class = "byline">
+<body><h1>Bowman</h1><div class = "byline">
 by Abigail<br>
 <img src = "../../Images/jan_sluiters.jpg">
 </div>
 
 
-<p>The %%PIECE%% moves to the same squares as the <a href="knight.html"><em>Knight</em></a> moves
+<div class = "movement">
+. . . . . . .
+. . * . * . .
+. * u u u * .
+. . u S u . .
+. * u u u * .
+. . * . * . .
+. . . . . . .
+Line: 3,3 3,2 2,1
+Line: 3,3 3,2 4,1
+Line: 3,3 3,4 2,5
+Line: 3,3 3,4 4,5
+Line: 3,3 2,3 1,2
+Line: 3,3 2,3 1,4
+Line: 3,3 4,3 5,2
+Line: 3,3 4,3 5,4
+Line: 3,3 2,2 2,1
+Line: 3,3 2,2 1,2
+Line: 3,3 2,4 1,4
+Line: 3,3 2,4 2,5
+Line: 3,3 4,2 4,1
+Line: 3,3 4,2 5,2
+Line: 3,3 4,4 5,4
+Line: 3,3 4,4 4,5
+</div>
+
+<p>The <strong>Bowman</strong> moves to the same squares as the <a href="knight.html"><em>Knight</em></a> moves
 to, but it cannot jump. It either moves one square orthogonally,
 then one square diagonally outward, or one square diagonally,
 then one square orthogonally outward. The first square may not
@@ -52,7 +79,7 @@ be occupied.</p>
 <h4 id = 'square'>Square</h4>
 
 <div class = "section">
-<p>The %%PIECE%% gets trapped after 78 steps, which is a little bit
+<p>The <strong>Bowman</strong> gets trapped after 78 steps, which is a little bit
 more than the <a href="mao.html"><em>Mao</em></a> or <a href="moa.html"><em>Moa</em></a>, but a lot
 less than the <a href="knight.html"><em>Knight</em></a>.</p>
 </div>
@@ -60,7 +87,7 @@ less than the <a href="knight.html"><em>Knight</em></a>.</p>
 <h4 id = 'diamond'>Diamond</h4>
 
 <div class = "section">
-<p>The %%PIECE%% gets trapped faster than on the Square Spiral:
+<p>The <strong>Bowman</strong> gets trapped faster than on the Square Spiral:
 after 55 steps, it is trapped.</p>
 </div>
 
@@ -69,12 +96,12 @@ after 55 steps, it is trapped.</p>
 <h4 id = 'folded'>Folded</h4>
 
 <div class = "section">
-<p>Only 10 steps, and the %%PIECE%% is trapped.</p>
+<p>Only 10 steps, and the <strong>Bowman</strong> is trapped.</p>
 </div>
 
 <h4 id = 'flat'>Flat</h4>
 
-<p>On the Flat Wedge, the %%PIECE%% moves in the same way as
+<p>On the Flat Wedge, the <strong>Bowman</strong> moves in the same way as
 on the Folded Wedge, and hence gets trapped after 10 steps.</p>
 
 <div class = 'trapped' data-piece = 'bowman'></div>
