@@ -1,6 +1,6 @@
 <html>
 <head>
-<title>%%PIECE%%</title>
+<title>Bishop's Dog</title>
 <meta charset = "utf-8">
 <link rel  = 'preconnect' href = 'https://fonts.gstatic.com'>
 <link rel = 'stylesheet' href =      'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
@@ -14,16 +14,29 @@
 <script src = '../../JavaScript/Trapped/trapped.js'></script>
 <script src = '../../JavaScript/Trapped/pieces.js'></script>
 <script src = '../../JavaScript/Trapped/boxset.js'></script>
+<script src = '../../JavaScript/Trapped/movement.js'></script>
 <script src = '../../JavaScript/Trapped/pages.js'></script>
 </head>
 
-<body><h1>%%PIECE%%</h1><div class = "byline">
+<body><h1>Bishop's Dog</h1><div class = "byline">
 by Abigail<br>
 <img src = "../../Images/jan_sluiters.jpg">
 </div>
 
 
-<p>The %%PIECE%% moves up to three squares diagonally, like
+<div class = "movement">
+. . . . . . . . .
+. L . . . . . L .
+. . * . . . * . .
+. . . * . * . . .
+. . . . S . . . .
+. . . * . * . . .
+. . * . . . * . .
+. L . . . . . L .
+. . . . . . . . .
+</div>
+
+<p>The <strong>Bishop's Dog</strong> moves up to three unoccupied squares diagonally, like
 a limited <a href="bishop.html"><em>Bishop</em></a>.</p>
 
 <table class = piece_list>
@@ -44,16 +57,16 @@ a limited <a href="bishop.html"><em>Bishop</em></a>.</p>
 <h4 id = 'square'>Square</h4>
 
 <div class = "section">
-<p>The %%PIECE%%'s movement falls between the movement
+<p>The <strong>Bishop's Dog</strong>'s movement falls between the movement
 of the <a href="ferz.html"><em>Ferz</em></a>, and the <a href="bishop.html"><em>Bishop</em></a>, which
-both do not get trapped. Suprisingly, the %%PIECE%%, does
+both do not get trapped. Suprisingly, the <strong>Bishop's Dog</strong> does
 get trapped, and it gets trapped after 129 steps.</p>
 </div>
 
 <h4 id = 'diamond'>Diamond</h4>
 
 <div class = "section">
-<p>On the Diamond Spiral, the %%PIECE%% moves as the <a href="ferz.html"><em>Ferz</em></a>,
+<p>On the Diamond Spiral, the <strong>Bishop's Dog</strong> moves as the <a href="ferz.html"><em>Ferz</em></a>,
 visiting <span class = 'latex-inline'>\(50%\)</span> of the squares on the board.</p>
 </div>
 
@@ -62,7 +75,7 @@ visiting <span class = 'latex-inline'>\(50%\)</span> of the squares on the board
 <h4 id = 'folded'>Folded</h4>
 
 <div class = "section">
-<p>On the Folded Wedge, the %%PIECE%% escapes to infinity
+<p>On the Folded Wedge, the <strong>Bishop's Dog</strong> escapes to infinity
 using the same pattern as the <a href="ferz.html"><em>Ferz</em></a>. It
 escapes to the upper right, using a three step loop, giving
 it an escape velocity of <span class = 'latex-inline'>\(\frac{\sqrt{2}}{3}\)</span>.</p>
@@ -70,7 +83,7 @@ it an escape velocity of <span class = 'latex-inline'>\(\frac{\sqrt{2}}{3}\)</sp
 
 <h4 id = 'flat'>Flat</h4>
 
-<p>On the Flat Wedge, the %%PIECE%% escapes to infinity
+<p>On the Flat Wedge, the <strong>Bishop's Dog</strong> escapes to infinity
 by visiting only the right most square of each row. This
 is an escape velocity of <span class = 'latex-inline'>\(\sqrt{2}\)</span>.</p>
 
