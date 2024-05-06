@@ -1,6 +1,6 @@
 <html>
 <head>
-<title>%%PIECE%%</title>
+<title>Crane</title>
 <meta charset = "utf-8">
 <link rel  = 'preconnect' href = 'https://fonts.gstatic.com'>
 <link rel = 'stylesheet' href =      'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
@@ -14,16 +14,26 @@
 <script src = '../../JavaScript/Trapped/trapped.js'></script>
 <script src = '../../JavaScript/Trapped/pieces.js'></script>
 <script src = '../../JavaScript/Trapped/boxset.js'></script>
+<script src = '../../JavaScript/Trapped/movement.js'></script>
 <script src = '../../JavaScript/Trapped/pages.js'></script>
 </head>
 
-<body><h1>%%PIECE%%</h1><div class = "byline">
+<body><h1>Crane</h1><div class = "byline">
 by Abigail<br>
 <img src = "../../Images/jan_sluiters.jpg">
 </div>
 
 
-<p>The %%PIECE%% either steps one square forward, either diagonally,
+<div class = "movement">
+. . . . .
+. * * * .
+. . S . .
+. * * * .
+. . . . .
+Shogi: 1
+</div>
+
+<p>The <strong>Crane</strong> either steps one square forward, either diagonally,
 or straight ahead, or one square backwards, either diagonally
 or straight backwards, combining the moves of the 
 <a href="ferz.html"><em>Ferz</em></a> and a vertical <a href="wazir.html"><em>Wazir</em></a>.</p>
@@ -58,14 +68,14 @@ or straight backwards, combining the moves of the
 <h4 id = 'square'>Square</h4>
 
 <div class = "section">
-<p>The %%PIECE%% visits all the squares on the Spiral. The squares visited
+<p>The <strong>Crane</strong> visits all the squares on the Spiral. The squares visited
 form an expanding hexagon, which is kind of unusual.</p>
 </div>
 
 <h4 id = 'diamond'>Diamond</h4>
 
 <div class = "section">
-<p>On the Diamond Spiral, the %%PIECE%% circles the origin in a direction
+<p>On the Diamond Spiral, the <strong>Crane</strong> circles the origin in a direction
 opposite ot the direction of the Spiral, visiting all squares, and
 tracing a path which does not intersect itself.</p>
 </div>
@@ -75,7 +85,7 @@ tracing a path which does not intersect itself.</p>
 <h4 id = 'folded'>Folded</h4>
 
 <div class = "section">
-<p>On the Folded Wedge, the %%PIECE%% visits the right most three squares
+<p>On the Folded Wedge, the <strong>Crane</strong> visits the right most three squares
 of each row, escaping to infinity. It uses a six step loop to move
 two squares to the upper left, giving it an escape speed of
 <span class = 'latex-inline'>\(\frac{\sqrt{2}}{3}\)</span>.</p>
@@ -83,7 +93,7 @@ two squares to the upper left, giving it an escape speed of
 
 <h4 id = 'flat'>Flat</h4>
 
-<p>On the Flat Wedge, the %%PIECE%% only visits the right most square
+<p>On the Flat Wedge, the <strong>Crane</strong> only visits the right most square
 of each row, escaping to infinity quickly. Its escape speed is
 <span class = 'latex-inline'>\(\sqrt{2}\)</span>.</p>
 

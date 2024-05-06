@@ -1,6 +1,6 @@
 <html>
 <head>
-<title>%%PIECE%%</title>
+<title>Counsellor</title>
 <meta charset = "utf-8">
 <link rel  = 'preconnect' href = 'https://fonts.gstatic.com'>
 <link rel = 'stylesheet' href =      'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
@@ -14,16 +14,45 @@
 <script src = '../../JavaScript/Trapped/trapped.js'></script>
 <script src = '../../JavaScript/Trapped/pieces.js'></script>
 <script src = '../../JavaScript/Trapped/boxset.js'></script>
+<script src = '../../JavaScript/Trapped/movement.js'></script>
 <script src = '../../JavaScript/Trapped/pages.js'></script>
 </head>
 
-<body><h1>%%PIECE%%</h1><div class = "byline">
+<body><h1>Counsellor</h1><div class = "byline">
 by Abigail<br>
 <img src = "../../Images/jan_sluiters.jpg">
 </div>
 
 
-<p>The %%PIECE%% either moves as the <a href="rook.html"><em>Rook</em></a>, <a href="bishop.html"><em>Bishop</em></a>, or the
+<div class = "movement">
+A . . . A . . . A
+. * . . * . . * .
+. . * * * * * . .
+. . * * * * * . .
+A * * * S * * * A
+. . * * * * * . .
+. . * * * * * . .
+. * . . * . . * .
+A . . . A . . . A
+Line: 4,4 4,3 3,2
+Line: 4,4 4,3 5,2
+Line: 4,4 4,5 3,6
+Line: 4,4 4,5 5,6
+Line: 4,4 3,4 2,3
+Line: 4,4 3,4 2,5
+Line: 4,4 5,4 6,3
+Line: 4,4 5,4 6,5
+Line: 4,4 3,3 3,2
+Line: 4,4 3,3 2,3
+Line: 4,4 3,5 2,5
+Line: 4,4 3,5 3,6
+Line: 4,4 5,3 5,2
+Line: 4,4 5,3 6,3
+Line: 4,4 5,5 6,5
+Line: 4,4 5,5 5,6
+</div>
+
+<p>The <strong>Counsellor</strong> either moves as the <a href="rook.html"><em>Rook</em></a>, <a href="bishop.html"><em>Bishop</em></a>, or the
 <a href="bowman.html"><em>Bowman</em></a>. That is, it moves an unlimited amount
 of unoccupied squares in each of the eight main directions,
 or it jumps like a <a href="knight.html"><em>Knight</em></a>, provided it does not jump over
@@ -47,14 +76,14 @@ an occupied square.</p>
 <h4 id = 'square'>Square</h4>
 
 <div class = "section">
-<p>On the Square Spiral, the %%PIECE%% can move as the <a href="wazir.html"><em>Wazir</em></a>, and
+<p>On the Square Spiral, the <strong>Counsellor</strong> can move as the <a href="wazir.html"><em>Wazir</em></a>, and
 hence it follows the spiral.</p>
 </div>
 
 <h4 id = 'diamond'>Diamond</h4>
 
 <div class = "section">
-<p>On the Diamond Spiral, the %%PIECE%% can move as the <a href="blind_monkey.html"><em>Blind Monkey</em></a>, and hence,
+<p>On the Diamond Spiral, the <strong>Counsellor</strong> can move as the <a href="blind_monkey.html"><em>Blind Monkey</em></a>, and hence,
 it follows the spiral.</p>
 </div>
 
@@ -63,13 +92,13 @@ it follows the spiral.</p>
 <h4 id = 'folded'>Folded</h4>
 
 <div class = "section">
-<p>On the Folded Wedge, the %%PIECE%% can move as the <a href="flying_cock.html"><em>Flying Cock</em></a>, and hence,
+<p>On the Folded Wedge, the <strong>Counsellor</strong> can move as the <a href="flying_cock.html"><em>Flying Cock</em></a>, and hence,
 it follows the spiral.</p>
 </div>
 
 <h4 id = 'flat'>Flat</h4>
 
-<p>On the Flat Wedge, the %%PIECE%% visits all the squares on the board,
+<p>On the Flat Wedge, the <strong>Counsellor</strong> visits all the squares on the board,
 following a simple pattern. It will make diagonally forward 
 <a href="ferz.html"><em>Ferz</em></a> moves, sideways <a href="wazir.html"><em>Wazir</em></a> moves, and both <a href="moa.html">Moa</a>
 and <a href="mao.html">Mao</a> moves. </p>

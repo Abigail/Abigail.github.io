@@ -1,6 +1,6 @@
 <html>
 <head>
-<title>%%PIECE%%</title>
+<title>Chariot</title>
 <meta charset = "utf-8">
 <link rel  = 'preconnect' href = 'https://fonts.gstatic.com'>
 <link rel = 'stylesheet' href =      'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
@@ -14,16 +14,31 @@
 <script src = '../../JavaScript/Trapped/trapped.js'></script>
 <script src = '../../JavaScript/Trapped/pieces.js'></script>
 <script src = '../../JavaScript/Trapped/boxset.js'></script>
+<script src = '../../JavaScript/Trapped/movement.js'></script>
 <script src = '../../JavaScript/Trapped/pages.js'></script>
 </head>
 
-<body><h1>%%PIECE%%</h1><div class = "byline">
+<body><h1>Chariot</h1><div class = "byline">
 by Abigail<br>
 <img src = "../../Images/jan_sluiters.jpg">
 </div>
 
 
-<p>The %%PIECE%% is a <em>short rook</em>: a piece which moves like
+<div class = "movement">
+. . . . . . . . . . .
+. . . . . L . . . . .
+. . . . . * . . . . .
+. . . . . * . . . . .
+. . . . . * . . . . .
+. L * * * S * * * L .
+. . . . . * . . . . .
+. . . . . * . . . . .
+. . . . . * . . . . .
+. . . . . L . . . . .
+. . . . . . . . . . .
+</div>
+
+<p>The <strong>Chariot</strong> is a <em>short rook</em>: a piece which moves like
 a <a href="rook.html"><em>Rook</em></a>, but with a limited range. The %%PIECE%%
 slides up to four unoccupied squares in any orthogonal direction.</p>
 
@@ -46,19 +61,19 @@ slides up to four unoccupied squares in any orthogonal direction.</p>
 <h4 id = 'square'>Square</h4>
 
 <div class = "section">
-<p>On the Square Spiral, the %%PIECE%% can move as the <a href="wazir.html"><em>Wazir</em></a>,
+<p>On the Square Spiral, the <strong>Chariot</strong> can move as the <a href="wazir.html"><em>Wazir</em></a>,
 hence it fills the board by following the spiral.</p>
 </div>
 
 <h4 id = 'diamond'>Diamond</h4>
 
 <div class = "section">
-<p>On the Diamond Spiral, the movements of the %%PIECE%% start out in the
+<p>On the Diamond Spiral, the movements of the <strong>Chariot</strong> start out in the
 same way as the <a href="rook.html"><em>Rook</em></a> moves on the Diamond Spiral, until
 the point where the <a href="rook.html"><em>Rook</em></a> slides more than four squares
-&mdash; which the %%PIECE%% cannot for. From that point on, the %%PIECE%%
+&mdash; which the <strong>Chariot</strong> cannot for. From that point on, the <strong>Chariot</strong>
 makes a wrong turn, and gets trapped a few steps later. From the beginning,
-it takes 112 steps for the %%PIECE%% to get trapped.</p>
+it takes 112 steps for the <strong>Chariot</strong> to get trapped.</p>
 </div>
 
 <h3 id = 'wedge'>Wedge</h3>
@@ -66,13 +81,13 @@ it takes 112 steps for the %%PIECE%% to get trapped.</p>
 <h4 id = 'folded'>Folded</h4>
 
 <div class = "section">
-<p>Just like the <a href="rook.html"><em>Rook</em></a>, the %%PIECE%% gets trapped after
+<p>Just like the <a href="rook.html"><em>Rook</em></a>, the <strong>Chariot</strong> gets trapped after
 six steps.</p>
 </div>
 
 <h4 id = 'flat'>Flat</h4>
 
-<p>On the Flat Wedge, the %%PIECE%% escapes. It visits the two right
+<p>On the Flat Wedge, the <strong>Chariot</strong> escapes. It visits the two right
 most squares of each row; the travel pattern for the %%PIECE%%
 is the same as for the <a href="rook.html"><em>Rook</em></a>. This gives an escape
 velocity of <span class = 'latex-inline'>\(\frac{\sqrt{2}}{2}\)</span>.</p>

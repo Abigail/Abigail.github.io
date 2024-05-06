@@ -1,6 +1,6 @@
 <html>
 <head>
-<title>%%PIECE%%</title>
+<title>Cuckoo</title>
 <meta charset = "utf-8">
 <link rel  = 'preconnect' href = 'https://fonts.gstatic.com'>
 <link rel = 'stylesheet' href =      'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
@@ -14,16 +14,25 @@
 <script src = '../../JavaScript/Trapped/trapped.js'></script>
 <script src = '../../JavaScript/Trapped/pieces.js'></script>
 <script src = '../../JavaScript/Trapped/boxset.js'></script>
+<script src = '../../JavaScript/Trapped/movement.js'></script>
 <script src = '../../JavaScript/Trapped/pages.js'></script>
 </head>
 
-<body><h1>%%PIECE%%</h1><div class = "byline">
+<body><h1>Cuckoo</h1><div class = "byline">
 by Abigail<br>
 <img src = "../../Images/jan_sluiters.jpg">
 </div>
 
 
-<p>The %%PIECE%% either moves one square sideways (like a sideways
+<div class = "movement">
+. . . . .
+. . * . .
+. . . . .
+. * S * .
+. . . . .
+</div>
+
+<p>The <strong>Cuckoo</strong> either moves one square sideways (like a sideways
 <a href="wazir.html"><em>Wazir</em></a>), or two squares
 orthogonally forward (like a forward <a href="dabbaba.html"><em>Dabbaba</em></a>).</p>
 
@@ -46,7 +55,7 @@ orthogonally forward (like a forward <a href="dabbaba.html"><em>Dabbaba</em></a>
 <h4 id = 'square'>Square</h4>
 
 <div class = "section">
-<p>On the Square Spiral, the %%PIECE%% visits every second row going forward
+<p>On the Square Spiral, the <strong>Cuckoo</strong> visits every second row going forward
 from the origin. It will visits that part where the numbers on the
 Spiral are consecutive (so, from where the spiral turns left on to
 the row, till where it the spiral turns left again). As such, it will
@@ -56,13 +65,13 @@ visit 12.5% of the board.</p>
 <h4 id = 'diamond'>Diamond</h4>
 
 <div class = "section">
-<p>On the Diamond Spiral, the %%PIECE%% moves in a straight line to
+<p>On the Diamond Spiral, the <strong>Cuckoo</strong> moves in a straight line to
 the right, one square at the time, for an escape velocity of 1.</p>
 </div>
 
 <h3 id = 'wedge'>Wedge</h3>
 
-<p>On both the Folded Wedge and the Flat Wedge, the %%PIECE%% will visit
+<p>On both the Folded Wedge and the Flat Wedge, the <strong>Cuckoo</strong> will visit
 the three right most squares of every second row, escaping to infinity
 that way. It's a three step loop to move to a square which is two
 away to the upper left.
