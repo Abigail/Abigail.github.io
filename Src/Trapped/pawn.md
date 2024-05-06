@@ -7,6 +7,8 @@
 . * . . * . . * .
 . S . . S . . S .
 . . . . . . . . .
+Line: 4,4 2,4
+Line: 4,7 1,7
 </div>
 
 The **Pawn** appears in [Chess](#wiki), 
