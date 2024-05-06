@@ -15,6 +15,7 @@ $(window) . on ("load", () => {
 let MOV_SIZE  = 30    // Height/width of square
 let TRANSFORM = {     // [Scale, Translate X, Translate Y]
     antelope:            [  450,     - 7.40],
+    alfilrider:          [    0,       0.17],
     caliph:              [    0,       0.20],
     dabbaba:             [    0,       0.22],
     dragon_horse:        [   50],
@@ -55,17 +56,23 @@ class Movement {
         let arrows       = []
         let lines        = []
         let lines2       = []
+        let shogi        = 0
 
         let by_line = description . split  ("\n")
                                   . filter ((line) => line . match (/\S/))
 
-        by_line . filter ((line) => line . match (/^Line:/))
+        by_line . filter ((line) => line . match (/:/))
                 . forEach ((line) => {
-            let coordinates = line . replace (/Line:\s*/, "")
-                                   . split (/\s+/)
-                                   . map ((x) => x . split (/,/) .
-                                                 map ((x) => +x))
-            lines . push (coordinates)
+            if (line . match (/^Line:/)) {
+                let coordinates = line . replace (/Line:\s*/, "")
+                                       . split (/\s+/)
+                                       . map ((x) => x . split (/,/) .
+                                                     map ((x) => +x))
+                lines . push (coordinates)
+            }
+            else if (line . match (/^Shogi:/)) {
+                shogi = 1
+            }
         })
 
         let board_info  = by_line . filter ((line) => !line . match (/[:]/))
@@ -79,42 +86,32 @@ class Movement {
 
         board_info . forEach ((line, row) => {
             line . forEach ((field, col) => {
-                if (field == "S") {
-                    pieces . push ({row: row, col: col})
-                }
-                if (field == '*' || field == 'L') {
-                    destinations . push ({row: row, col: col})
-                }
-                if (field == 'i') {
-                    initials . push ({row: row, col: col})
-                }
-                if (field == 'u') {
-                    unoccupied . push ({row: row, col: col})
-                }
-                if (field == 'A') {
-                    arrows . push ({row: row, col: col})
-                }
-                if (field == 'L') {
-                    lines2 . push ({row: row, col: col})
-                }
+                let square = [row, col]
+                if (field == '*' ||
+                    field == 'L') {destinations . push (square)}
+                if (field == "S") {pieces       . push (square)}
+                if (field == 'i') {initials     . push (square)}
+                if (field == 'u') {unoccupied   . push (square)}
+                if (field == 'A') {arrows       . push (square)}
+                if (field == 'L') {lines2       . push (square)}
             })
         })
 
         arrows . forEach ((square) => {
-            this . draw_arrow ({from: pieces [0], to: square})
+            this . draw_arrow ([pieces [0], square])
         })
 
         lines . forEach ((coordinates) => {
             this . draw_line (coordinates)
         })
         lines2 . forEach ((square) => {
-            this . draw_line ([[pieces [0] . row,
-                                pieces [0] . col],
-                               [square . row, square . col]])
+            this . draw_line ([pieces [0], square])
         })
 
         pieces . forEach ((square) => {
-            this . place_piece ({square: square, piece: args . piece})
+            this . place_piece ({square: square,
+                                 piece:  args . piece,
+                                 shogi:  shogi})
         })
 
         destinations . forEach ((square) => {
@@ -128,13 +125,17 @@ class Movement {
         })
     }
 
-    cell_to_coord (row, col) {
-        //
-        // Coordinates of the middle of the cell
-        //
+
+    //
+    // Coordinates of the middle of the cell
+    //
+    square_to_coord (square) {
+        let row = square [0]
+        let col = square [1]
         return [this . inner_left + (col + .5) * MOV_SIZE,
                 this . inner_top  + (row + .5) * MOV_SIZE]
     }
+
 
     //
     // Initialize the movement board
@@ -208,11 +209,11 @@ class Movement {
     // Place the piece of which we show the movement
     //
     place_piece (args = {}) {
-        let row   = args . square . row
-        let col   = args . square . col
-        let piece = args . piece
+        let square = args . square
+        let piece  = args . piece
+        let shogi  = args . shogi
 
-        let div   = $("div.drawing")
+        let div    = $("div.drawing")
 
         if (div . length) {
             let group = this . board . group ()
@@ -225,7 +226,7 @@ class Movement {
                                          . replace ("</svg>",          "")
 
             group . svg    (svg)
-                  . center (... this . cell_to_coord (row, col))
+                  . center (... this . square_to_coord (square))
 
             let transform_in  = TRANSFORM [piece] ? TRANSFORM [piece] : [0]
             let transform_out = {}
@@ -238,12 +239,20 @@ class Movement {
             }
             group . transform (transform_out)
         }
+        else if (shogi) {
+            this . board . polygon   ('4,5 -4,5, -2,-3 0,-5 2,-3')
+                         . css       ({fill:         "white",
+                                       stroke:       "black",
+                                      "stroke-width": .5})
+                         . center    (... this . square_to_coord (square))
+                         . transform ({scale: MOV_SIZE * .9 / 12})
+        }
         else {
             this . board . rect   (MOV_SIZE * .65, MOV_SIZE * .65)
                          . css    ({fill:         "white",
                                     stroke:       "black",
                                    "stroke-width": 2})
-                         . center (... this . cell_to_coord (row, col))
+                         . center (... this . square_to_coord (square))
         }
 
         return this
@@ -254,8 +263,7 @@ class Movement {
     // valid destination
     //
     place_destination (args = {}) {
-        let row        = args . square . row
-        let col        = args . square . col
+        let square     = args . square
         let initial    = args . initial
         let unoccupied = args . unoccupied
 
@@ -265,7 +273,7 @@ class Movement {
                          . stroke ({color: 'black',
                                     width:  stroke_width,})
                          . fill ('none')
-                         . center (... this . cell_to_coord (row, col))
+                         . center (... this . square_to_coord (square))
         }
         else if (unoccupied) {
             let stroke_width = MOV_SIZE / 20
@@ -274,62 +282,70 @@ class Movement {
                                     width: stroke_width,
                                     dasharray: '5 2 5 2 5 2',})
                          . fill ('none')
-                         . center (... this . cell_to_coord (row, col))
+                         . center (... this . square_to_coord (square))
         }
         else {
             this . board . circle (MOV_SIZE * .50)
                          . fill   ('black')
-                         . center (... this . cell_to_coord (row, col))
+                         . center (... this . square_to_coord (square))
         }
 
         return this
     }
 
     //
-    // Given from and to squares, draw an arrow between them. 
-    // Arrow should start in the middle of the from square,
-    // and end 3/4 away from the start square in the to square.
+    // Given a sequence of squares, draw an arrow between them,
+    // starting/ending in the middle of the first/last square,
+    // and passing through the midpoint of every other square.
+    // Then draw an arrow head on the end of the arrow.
     //
-    draw_arrow (args = {}) {
-        let from = args . from
-        let to   = args . to
+    draw_arrow (coordinates) {
+        let from = coordinates [coordinates . length - 2]
+        let to   = coordinates [coordinates . length - 1]
 
-        let [x_from, y_from] = this . cell_to_coord (from . row, from . col)
-        let [x_to,   y_to]   = this . cell_to_coord (to   . row, to   . col)
+        //
+        // First draw the line
+        //
+        this . draw_line (coordinates)
 
-        let line = this . board . line   (x_from, y_from, x_to, y_to)
-                                . stroke ({width:    1,
-                                           opacity:  0.5,
-                                           color:   'black',
-                                           linecap: 'round',})
+        let [x_from, y_from] = this . square_to_coord (from)
+        let [x_to,   y_to]   = this . square_to_coord (to)
 
         //
         // This needs to be badly improved
         //
         let angle = 0
-        if      (to . row < from . row) {
-            if      (to . col < from . col) {angle = -135}
-            else if (to . col > from . col) {angle = - 45}
-            else                            {angle = - 90}
+        if      (to [0] < from [0]) {
+            if      (to [1] < from [1]) {angle = -135}
+            else if (to [1] > from [1]) {angle = - 45}
+            else                        {angle = - 90}
         }
-        else if (to . row > from . row) {
-            if      (to . col < from . col) {angle =  135}
-            else if (to . col > from . col) {angle =   45}
-            else                            {angle =   90}
+        else if (to [0] > from [0]) {
+            if      (to [1] < from [1]) {angle =  135}
+            else if (to [1] > from [1]) {angle =   45}
+            else                        {angle =   90}
         }
         else {
-            if      (to . col < from . col) {angle =  180}
-            else                            {angle =    0}
+            if      (to [1] < from [1]) {angle =  180}
+            else                        {angle =    0}
         }
+
+        let dx = x_from - x_to
+        let dy = y_from - y_to
+
+        let l  = Math . sqrt (dx * dx + dy * dy)
+        angle  = Math . acos (dx / l)
+        angle *= 180
+        angle /= Math . PI
+
+        console . log (`dx = ${dx}; dy = ${dy}; l = ${l}; angle = ${angle}`)
 
         //
         // Draw an arrow head
         //
         let head = this . board . polygon ('5,0  0,-10  20,0  0,10')
-                        . fill    ({color:  'black',
-                                    opacity: 0.5,})
-                        . stroke  ({color:  'black',
-                                    opacity: 0.5})
+                        . fill    ({color:  'black', opacity: 0.5})
+                        . stroke  ({color:  'black', opacity: 0.5})
                         . cx      (0)
                         . cy      (0)
                         . transform ({rotate:     angle,
@@ -344,7 +360,7 @@ class Movement {
     //
     draw_line (coordinates) {
         this . board . polyline (coordinates . map ((point) =>
-                                        this . cell_to_coord (... point)))
+                                        this . square_to_coord (point)))
                      . stroke ({width:    1,
                                 opacity:  0.5,
                                 color:   'black',

@@ -1,6 +1,6 @@
 <html>
 <head>
-<title>%%PIECE%%</title>
+<title>Crab</title>
 <meta charset = "utf-8">
 <link rel  = 'preconnect' href = 'https://fonts.gstatic.com'>
 <link rel = 'stylesheet' href =      'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
@@ -14,16 +14,26 @@
 <script src = '../../JavaScript/Trapped/trapped.js'></script>
 <script src = '../../JavaScript/Trapped/pieces.js'></script>
 <script src = '../../JavaScript/Trapped/boxset.js'></script>
+<script src = '../../JavaScript/Trapped/movement.js'></script>
 <script src = '../../JavaScript/Trapped/pages.js'></script>
 </head>
 
-<body><h1>%%PIECE%%</h1><div class = "byline">
+<body><h1>Crab</h1><div class = "byline">
 by Abigail<br>
 <img src = "../../Images/jan_sluiters.jpg">
 </div>
 
 
-<p>The %%PIECE%% leaps to a square which is either two squares away
+<div class = "movement">
+. . . . . . .
+. . * . * . .
+. . . . . . .
+. . . S . . .
+. * . . . * .
+. . . . . . .
+</div>
+
+<p>The <strong>Crab</strong> leaps to a square which is either two squares away
 sideways (right or left) and one square backward, or to a square
 which is one away sideways and two squares forward. This half the
 moves a <a href="knight.html"><em>Knight</em></a> has, and it mirrors the movements
@@ -49,7 +59,7 @@ of the <a href="barc.html"><em>Barc</em></a>.</p>
 <h4 id = 'square'>Square</h4>
 
 <div class = "section">
-<p>After visiting mostly squares above the origin, the %%PIECE%% gets
+<p>After visiting mostly squares above the origin, the <strong>Crab</strong> gets
 trapped after 382 steps, which is more than double the number
 of steps the <a href="barc.html"><em>Barc</em></a> uses.</p>
 </div>
@@ -57,7 +67,7 @@ of steps the <a href="barc.html"><em>Barc</em></a> uses.</p>
 <h4 id = 'diamond'>Diamond</h4>
 
 <div class = "section">
-<p>On the Diamond Spiral, the %%PIECE%% gets trapped just a little sooner
+<p>On the Diamond Spiral, the <strong>Crab</strong> gets trapped just a little sooner
 than on the Square Spiral: after 315 steps it's trapped.</p>
 </div>
 
@@ -66,13 +76,14 @@ than on the Square Spiral: after 315 steps it's trapped.</p>
 <h4 id = 'folded'>Folded</h4>
 
 <div class = "section">
-<p>On the Folded Wedge, the %%PIECE%% gets trapped quickly, after 17 moves.</p>
+<p>On the Folded Wedge, the <strong>Crab</strong> gets trapped quickly, after 17 moves.</p>
 </div>
 
 <h4 id = 'flat'>Flat</h4>
 
-<p>On the Flat Wedge, the %%PIECE%% escapes using a 12-step loop to move itself
-three square diagonally right-upward.</p>
+<p>On the Flat Wedge, the <strong>Crab</strong> escapes using a 12-step loop to move itself
+three square diagonally right-upward, resulting in an escape velocity
+of <span class = 'latex-inline'>\(\frac{\sqrt{2}}{4}\)</span>.</p>
 
 <div class = 'trapped' data-piece = 'crab'></div>
 

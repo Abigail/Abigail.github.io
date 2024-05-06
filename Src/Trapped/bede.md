@@ -1,10 +1,22 @@
-# %%PIECE%%
+# Bede
 
-The %%PIECE%% either leaps to a square which is two away in any of
+<div class = "movement">
+A . . . . . . . A
+. * . . . . . * .
+. . * . * . * . .
+. . . * . * . . .
+. . * . S . * . .
+. . . * . * . . .
+. . * . * . * . .
+. * . . . . . * .
+A . . . . . . . A
+</div>
+
+The **Bede** either leaps to a square which is two away in any of
 the four orthogonal directions (like a [*Dabbaba*](dabbaba.html)),
 or slides an unlimited amount of unoccupied squares in any of the
 four diagonal directions (like a [*Bishop*](bishop.html)).
-The %%PIECE%% is %%COLOUR_BOUND%%.
+The **Bede** is %%COLOUR_BOUND%%.
 
 |====
 %%PIECE_HEADERS%%
@@ -18,17 +30,17 @@ Link: [%%CHESS_V%%](#piece:bd)
 
 ### Spiral
 
-On the Spiral, the %%PIECE%% visits every second number of the Spiral;
-hence, the %%PIECE%% will visit 50% of the squares on the board.
+On the Spiral, the **Bede** visits every second number of the Spiral;
+hence, the **Bede** will visit 50% of the squares on the board.
 
 ### Wedge
 
 #### Folded
 
-On the Folded Wedge, the %%PIECE%% visits every second number of the Wedge;
-hence, the %%PIECE%% will visit 50% of the squares on the board.
+On the Folded Wedge, the **Bede** visits every second number of the Wedge;
+hence, the **Bede** will visit 50% of the squares on the board.
 
 #### Flat
 
-The %%PIECE%% will use a simple pattern to visit 50% of the squares
+The **Bede** will use a simple pattern to visit 50% of the squares
 on the board.

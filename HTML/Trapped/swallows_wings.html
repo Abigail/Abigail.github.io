@@ -1,6 +1,6 @@
 <html>
 <head>
-<title>%%PIECE%%</title>
+<title>Swallow's Wings</title>
 <meta charset = "utf-8">
 <link rel  = 'preconnect' href = 'https://fonts.gstatic.com'>
 <link rel = 'stylesheet' href =      'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
@@ -14,16 +14,26 @@
 <script src = '../../JavaScript/Trapped/trapped.js'></script>
 <script src = '../../JavaScript/Trapped/pieces.js'></script>
 <script src = '../../JavaScript/Trapped/boxset.js'></script>
+<script src = '../../JavaScript/Trapped/movement.js'></script>
 <script src = '../../JavaScript/Trapped/pages.js'></script>
 </head>
 
-<body><h1>%%PIECE%%</h1><div class = "byline">
+<body><h1>Swallow's Wings</h1><div class = "byline">
 by Abigail<br>
 <img src = "../../Images/jan_sluiters.jpg">
 </div>
 
 
-<p>The %%PIECE%% either slides an unlimited amount of unoccupied
+<div class = "movement">
+. . . . . . . . .
+. . . . * . . . .
+A * * * S * * * A
+. . . . * . . . .
+. . . . . . . . .
+Shogi: 1
+</div>
+
+<p>The <strong>Swallow's Wing</strong> either slides an unlimited amount of unoccupied
 squares to the right of left (like a sideways <a href="rook.html"><em>Rook</em></a>),
 or steps one square orthogonally forward or backward (like a
 vertical <a href="wazir.html"><em>Wazir</em></a>).</p>
@@ -61,14 +71,14 @@ vertical <a href="wazir.html"><em>Wazir</em></a>).</p>
 <h4 id = 'square'>Square</h4>
 
 <div class = "section">
-<p>On the Square Spiral, the %%PIECE%% moves as the <a href="wazir.html"><em>Wazir</em></a>,
+<p>On the Square Spiral, the <strong>Swallow's Wing</strong> moves as the <a href="wazir.html"><em>Wazir</em></a>,
 and hence, will follow the Spiral, visiting all the squares.</p>
 </div>
 
 <h4 id = 'diamond'>Diamond</h4>
 
 <div class = "section">
-<p>On the Diamond Spiral, the %%PIECE%% will visit all the squares,
+<p>On the Diamond Spiral, the <strong>Swallow's Wing</strong> will visit all the squares,
 except the squares of half a quadrant. Hence <span class = 'latex-inline'>\(87.5\%\)</span> of the
 squares will be visited.</p>
 </div>
@@ -78,13 +88,13 @@ squares will be visited.</p>
 <h4 id = 'folded'>Folded</h4>
 
 <div class = "section">
-<p>On the Folded Wedge, the %%PIECE%% gets trapped after 6 steps,
+<p>On the Folded Wedge, the <strong>Swallow's Wing</strong> gets trapped after 6 steps,
 as quickly has the <a href="wazir.html"><em>Wazir</em></a> and <a href="rook.html"><em>Rook</em></a>.</p>
 </div>
 
 <h4 id = 'flat'>Flat</h4>
 
-<p>On the Flat Wedge, the %%PIECE%% escapes to the upper right,
+<p>On the Flat Wedge, the <strong>Swallow's Wing</strong> escapes to the upper right,
 using a step wise pattern. It uses a two-step loop to move
 one square forward and to the right; hence, an escape velocity
 of <span class = 'latex-inline'>\(\frac{\sqrt{2}}{2}\)</span>.</p>

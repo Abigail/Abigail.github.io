@@ -1,6 +1,18 @@
-# %%PIECE%%
+# Canvasser
 
-The %%PIECE%% either slides an unlimited amount of unoccupied squares
+<div class = "movement">
+. . . . A . . . .
+. . . * * * . . .
+. . . . * . . . .
+. * . . * . . * .
+A * * * S * * * A
+. * . . * . . * .
+. . . . * . . . .
+. . . * * * . . .
+. . . . A . . . .
+</div>
+
+The **Canvasser** either slides an unlimited amount of unoccupied squares
 in an orthogonal direction (like the [*Rook*](rook.html)), 
 or jumps to a square which is three away in one orthogonal direction,
 and one away in the other (it jumps like the [*Camel*](camel.html)).
@@ -18,25 +30,25 @@ Link: [%%CHESS_V%%](#piece:canvassr)
 
 #### Square
 
-Since the %%PIECE%% can move as the [*Rook*](rook.html), it
+Since the **Canvasser** can move as the [*Rook*](rook.html), it
 can also move as the [*Wazir*](wazir.html), which means it can
 follow the Spiral, filling the entire board in a boring pattern.
 
 #### Diamond
 
-It's not clear whether the %%PIECE%% gets trapped on the Diamond
+It's not clear whether the **Canvasser** gets trapped on the Diamond
 Spiral. It does not get trapped for its first billion moves.
 
 ### Wedge
 
 #### Folded
 
-On the Folded Wedge, the %%PIECE%% visits all the squares on
+On the Folded Wedge, the **Canvasser** visits all the squares on
 the board, filling the Wedge going left to right, and right to back,
 using a handful of repeating patterns.
 
 #### Flat
 
-The %%PIECE%% visits all the square of the Flat Wedge, using
+The **Canvasser** visits all the square of the Flat Wedge, using
 a repeating pattern, and filling the board with a bias to the right
 hand side.

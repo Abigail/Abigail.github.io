@@ -1,6 +1,34 @@
-# %%PIECE%%
+# Camelrider
 
-On each move, the %%PIECE%% makes one or more steps as the 
+<div class = "movement">
+. . . . . . . . A . . . . . . . A . . . . . . . .
+. . . . . . . . . . . . . . . . . . . . . . . . .
+. . . . . . . . . . . . . . . . . . . . . . . . .
+. . . . . . . . . * . . . . . * . . . . . . . . .
+. . . . . . . . . . . . . . . . . . . . . . . . .
+. . . . . . . . . . . . . . . . . . . . . . . . .
+. . . . . . . . . . * . . . * . . . . . . . . . .
+. . . . . . . . . . . . . . . . . . . . . . . . .
+A . . . . . . . . . . . . . . . . . . . . . . . A
+. . . * . . . . . . . * . * . . . . . . . * . . .
+. . . . . . * . . . . . . . . . . . * . . . . . .
+. . . . . . . . . * . . . . . * . . . . . . . . .
+. . . . . . . . . . . . S . . . . . . . . . . . .
+. . . . . . . . . * . . . . . * . . . . . . . . .
+. . . . . . * . . . . . . . . . . . * . . . . . .
+. . . * . . . . . . . * . * . . . . . . . * . . .
+A . . . . . . . . . . . . . . . . . . . . . . . A
+. . . . . . . . . . . . . . . . . . . . . . . . .
+. . . . . . . . . . * . . . * . . . . . . . . . .
+. . . . . . . . . . . . . . . . . . . . . . . . .
+. . . . . . . . . . . . . . . . . . . . . . . . .
+. . . . . . . . . * . . . . . * . . . . . . . . .
+. . . . . . . . . . . . . . . . . . . . . . . . .
+. . . . . . . . . . . . . . . . . . . . . . . . .
+. . . . . . . . A . . . . . . . A . . . . . . . .
+</div>
+
+On each move, the **Camelrider** makes one or more steps as the 
 [*Camel*](camel.html), provided it doesn't turn, and each
 step lands on an unoccupied square. The [*Camel*](camel.html)
 is a (3,1)-leaper, that is, each move it moves to a square
@@ -18,13 +46,13 @@ other orthogonal direction. The %%PIECE%% is %%COLOUR_BOUND%%.
 
 #### Square
 
-On the Spiral, the %%PIECE%% gets trapped after 1,697 steps, which
+On the Spiral, the **Camelrider** gets trapped after 1,697 steps, which
 is a lot sooner than the [*Camel*](camel.html), which gets trapped
 after 3,722 steps.
 
 #### Diamond
 
-On the Diamon Spiral, the %%PIECE%% gets trapped after 509 steps,
+On the Diamon Spiral, the **Camelrider** gets trapped after 509 steps,
 which is sooner than the [*Camel*](camel.html), which gets trapped
 after 2,015 steps.
 
@@ -32,12 +60,12 @@ after 2,015 steps.
 
 #### Folded
 
-On the Folded Wedge, the %%PIECE%% gets trapped after 90 steps.
+On the Folded Wedge, the **Camelrider** gets trapped after 90 steps.
 This is also sooner than the [*Camel*](camel.html), which gets trapped
 after 342 steps.
 
 #### Flat
 
-On the Flat Wedge, the %%PIECE%% gets trapped after 482 steps, which
+On the Flat Wedge, the **Camelrider** gets trapped after 482 steps, which
 is also sooner than the [*Camel*](camel.html), which gets trapped
 after 2,401 steps.
