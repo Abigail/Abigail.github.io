@@ -1,6 +1,6 @@
 <html>
 <head>
-<title>%%PIECE%%</title>
+<title>Blind Monkey</title>
 <meta charset = "utf-8">
 <link rel  = 'preconnect' href = 'https://fonts.gstatic.com'>
 <link rel = 'stylesheet' href =      'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
@@ -14,16 +14,26 @@
 <script src = '../../JavaScript/Trapped/trapped.js'></script>
 <script src = '../../JavaScript/Trapped/pieces.js'></script>
 <script src = '../../JavaScript/Trapped/boxset.js'></script>
+<script src = '../../JavaScript/Trapped/movement.js'></script>
 <script src = '../../JavaScript/Trapped/pages.js'></script>
 </head>
 
-<body><h1>%%PIECE%%</h1><div class = "byline">
+<body><h1>Blind Monkey</h1><div class = "byline">
 by Abigail<br>
 <img src = "../../Images/jan_sluiters.jpg">
 </div>
 
 
-<p>The %%PIECE%% can move either one square diagonally, or one step
+<div class = "movement">
+. . . . .
+. * . * .
+. * S * .
+. * . * .
+. . . . .
+Shogi: 1
+</div>
+
+<p>The <strong>Blind Monkey</strong> can move either one square diagonally, or one step
 sideways (to the right or left). That is, it makes the same moves
 as a <a href="king.html"><em>King</em></a>, except for stepping straight forward or backward.</p>
 
@@ -62,19 +72,19 @@ as a <a href="king.html"><em>King</em></a>, except for stepping straight forward
 <h4 id = 'square'>Square</h4>
 
 <div class = "section">
-<p>On the Square Spiral, the %%PIECE%% visits all the squares, filling the
+<p>On the Square Spiral, the <strong>Blind Monkey</strong> visits all the squares, filling the
 squares in roughly a flattened hexagon.</p>
 </div>
 
 <h4 id = 'diamond'>Diamond</h4>
 
 <div class = "section">
-<p>The %%PIECE%% is the canonical piece for following the the Diamond
+<p>The <strong>Blind Monkey</strong> is the canonical piece for following the the Diamond
 Spiral. You need five different movements (stepping one square in
 each of the four diagonal directions, and one step to the right).
-The %%PIECE%% can move to six different destinations &mdash; one movement
+The <strong>Blind Monkey</strong> can move to six different destinations &mdash; one movement
 possibility is not used (stepping one square to the left). However,
-%%PIECE%% is the "smallest" piece to follow the Diamond Spiral whose
+<strong>Blind Monkey</strong> is the "smallest" piece to follow the Diamond Spiral whose
 movements are symmetric.</p>
 </div>
 
@@ -83,13 +93,13 @@ movements are symmetric.</p>
 <h4 id = 'folded'>Folded</h4>
 
 <div class = "section">
-<p>Since the %%PIECE%% can move as the <a href="flying_cock.html"><em>Flying Cock</em></a>,
+<p>Since the <strong>Blind Monkey</strong> can move as the <a href="flying_cock.html"><em>Flying Cock</em></a>,
 it can follow the numbers and fill the complete board trivially.</p>
 </div>
 
 <h4 id = 'flat'>Flat</h4>
 
-<p>On the Flat Wedge, the %%PIECE%% fills the board row by row,
+<p>On the Flat Wedge, the <strong>Blind Monkey</strong> fills the board row by row,
 alternating going
 with and against the numbers, with a small twist just before reaching
 the left hand side of the Wedge. It visits the squares in the

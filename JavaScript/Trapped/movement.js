@@ -330,6 +330,16 @@ class Movement {
             else                        {angle =    0}
         }
 
+        let dx = x_from - x_to
+        let dy = y_from - y_to
+
+        let l  = Math . sqrt (dx * dx + dy * dy)
+        angle  = Math . acos (dx / l)
+        angle *= 180
+        angle /= Math . PI
+
+        console . log (`dx = ${dx}; dy = ${dy}; l = ${l}; angle = ${angle}`)
+
         //
         // Draw an arrow head
         //
