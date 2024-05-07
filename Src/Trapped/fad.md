@@ -10,11 +10,11 @@
 . . . . . . .
 </div>
 
-The **FAD** either jumps to a square one away diagonally
-(like the [*Ferz*](ferz.html)), or two away orthogonally
-(like the [*Dabbaba*](dabbaba.html)), or two away
-diagonally (like the [*Alfil*](alfil.html)). This makes the
-**FAD** %%COLOUR_BOUND%%.
+The **FAD** combines the movements of the %%FERZ%%, the
+[*Alfil*](alfil.html) and the [*Dabbaba*](dabbaba.html).
+Thus, the **FAD** either jumps to a square one or two away diagonally
+or two away orthogonally. Its movement cannot be blocked.
+This makes the **FAD** %%COLOUR_BOUND%%.
 
 |====
 %%PIECE_HEADERS%%
@@ -25,7 +25,7 @@ diagonally (like the [*Alfil*](alfil.html)). This makes the
 
 It turns out that on the Spirals and the Wedges, the **FAD** never 
 makes use of its [*Alfil*](alfil.html) move option, so it moves
-exactly in the same was as the [*Goat*](goat.html).
+exactly in the same way as the [*Goat*](goat.html).
 
 ### Spiral
 
