@@ -54,6 +54,7 @@ class Movement {
         let unoccupied   = []
         let initials     = []
         let arrows       = []
+        let arrows2      = []
         let lines        = []
         let lines2       = []
         let shogi        = 0
@@ -63,12 +64,17 @@ class Movement {
 
         by_line . filter ((line) => line . match (/:/))
                 . forEach ((line) => {
-            if (line . match (/^Line:/)) {
-                let coordinates = line . replace (/Line:\s*/, "")
+            if (line . match (/^(Line|Arrow):/)) {
+                let coordinates = line . replace (/^[^:]+:\s*/, "")
                                        . split (/\s+/)
                                        . map ((x) => x . split (/,/) .
                                                      map ((x) => +x))
-                lines . push (coordinates)
+                if (line . match (/^Line:/)) {
+                    lines  . push (coordinates)
+                }
+                else {
+                    arrows . push (coordinates)
+                }
             }
             else if (line . match (/^Shogi:/)) {
                 shogi = 1
@@ -92,12 +98,15 @@ class Movement {
                 if (field == "S") {pieces       . push (square)}
                 if (field == 'i') {initials     . push (square)}
                 if (field == 'u') {unoccupied   . push (square)}
-                if (field == 'A') {arrows       . push (square)}
+                if (field == 'A') {arrows2      . push (square)}
                 if (field == 'L') {lines2       . push (square)}
             })
         })
 
-        arrows . forEach ((square) => {
+        arrows . forEach ((coordinates) => {
+            this . draw_arrow (coordinates)
+        })
+        arrows2 . forEach ((square) => {
             this . draw_arrow ([pieces [0], square])
         })
 
@@ -300,6 +309,7 @@ class Movement {
     // Then draw an arrow head on the end of the arrow.
     //
     draw_arrow (coordinates) {
+        console . log (coordinates)
         let from = coordinates [coordinates . length - 2]
         let to   = coordinates [coordinates . length - 1]
 
