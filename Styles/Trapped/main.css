@@ -174,4 +174,5 @@ div.movement {
     float:                  left;
     margin-right:            2em;
     margin-bottom:           3ex;
+    visibility:           hidden;
 }

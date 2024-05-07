@@ -132,6 +132,8 @@ class Movement {
         unoccupied . forEach ((square) => {
             this . place_destination ({square: square, unoccupied: 1})
         })
+
+        $(element) . css ({visibility: "visible"})
     }
 
 
