@@ -1,6 +1,6 @@
 <html>
 <head>
-<title>%%PIECE%%</title>
+<title>Earl</title>
 <meta charset = "utf-8">
 <link rel  = 'preconnect' href = 'https://fonts.gstatic.com'>
 <link rel = 'stylesheet' href =      'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
@@ -14,22 +14,54 @@
 <script src = '../../JavaScript/Trapped/trapped.js'></script>
 <script src = '../../JavaScript/Trapped/pieces.js'></script>
 <script src = '../../JavaScript/Trapped/boxset.js'></script>
+<script src = '../../JavaScript/Trapped/movement.js'></script>
 <script src = '../../JavaScript/Trapped/pages.js'></script>
 </head>
 
-<body><h1>%%PIECE%%</h1><div class = "byline">
+<body><h1>Earl</h1><div class = "byline">
 by Abigail<br>
 <img src = "../../Images/jan_sluiters.jpg">
 </div>
 
 
-<p>The %%PIECE%% either slides an unlimited number of squares in any
+<div class = "movement">
+. . . . A . . . .
+. . . . * . . . .
+. . . * * * . . .
+. . * u * u * . .
+A * * * S * * * A
+. . * u * u * . .
+. . . * * * . . .
+. . . . * . . . .
+. . . . A . . . .
+Line: 4,4 4,3 3,2
+Line: 4,4 4,3 5,2
+Line: 4,4 4,5 3,6
+Line: 4,4 4,5 5,6
+Line: 4,4 3,4 2,3
+Line: 4,4 3,4 2,5
+Line: 4,4 5,4 6,3
+Line: 4,4 5,4 6,5
+Line: 4,4 3,3 3,2
+Line: 4,4 3,3 2,3
+Line: 4,4 3,5 2,5
+Line: 4,4 3,5 3,6
+Line: 4,4 5,3 5,2
+Line: 4,4 5,3 6,3
+Line: 4,4 5,5 6,5
+Line: 4,4 5,5 5,6
+</div>
+
+<p>The <strong>Earl</strong> either slides an unlimited number of squares in any
 of the four orthogonal directions (like the <a href="rook.html"><em>Rook</em></a>), or it makes
 a non-jumping <a href="knight.html"><em>Knight</em></a>'s move (like the <a href="bowman.html"><em>Bowman</em></a>),
-that is, it either moves one square
-orthogonally followed by one square diagonally outward, or one square
-diagonally outward, where in either case, the first square must be
-unoccupied.</p>
+that is, it either moves one square orthogonally followed by one
+square diagonally outward, or one square diagonally followed by one
+square orthogonally outward, where in either case, the first square
+must be unoccupied.</p>
+
+<p>Alternatively, one can say the <strong>Earl</strong> combines the moves of the
+<a href="rook.html"><em>Rook</em></a>, the <a href="mao.html"><em>Mao</em></a> and the <a href="moa.html"><em>Moa</em></a>.</p>
 
 <table class = piece_list>
   <tr class = 'row-0' markdown = '1'>
@@ -49,14 +81,14 @@ unoccupied.</p>
 <h4 id = 'square'>Square</h4>
 
 <div class = "section">
-<p>The %%PIECE%% can move as the <a href="wazir.html"><em>Wazir</em></a>, and hence, it will just follow
+<p>The <strong>Earl</strong> can move as the <a href="wazir.html"><em>Wazir</em></a>, and hence, it will just follow
 the spiral.</p>
 </div>
 
 <h4 id = 'diamond'>Diamond</h4>
 
 <div class = "section">
-<p>The pattern the %%PIECE%% follows on the Diamond Spiral is almost regular,
+<p>The pattern the <strong>Earl</strong> follows on the Diamond Spiral is almost regular,
 but not regular enough &mdash; it gets trapped after 1,431 steps.</p>
 </div>
 
@@ -65,13 +97,13 @@ but not regular enough &mdash; it gets trapped after 1,431 steps.</p>
 <h4 id = 'folded'>Folded</h4>
 
 <div class = "section">
-<p>The %%PIECE%% uses a simple pattern to visit every square on the Folded
+<p>The <strong>Earl</strong> uses a simple pattern to visit every square on the Folded
 Wedge.</p>
 </div>
 
 <h4 id = 'flat'>Flat</h4>
 
-<p>The %%PIECE%% uses a simple pattern to visit every square on the Flat
+<p>The <strong>Earl</strong> uses a simple pattern to visit every square on the Flat
 Wedge.</p>
 
 <div class = 'trapped' data-piece = 'earl'></div>

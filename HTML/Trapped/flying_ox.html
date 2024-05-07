@@ -1,6 +1,6 @@
 <html>
 <head>
-<title>%%PIECE%%</title>
+<title>Flying Ox</title>
 <meta charset = "utf-8">
 <link rel  = 'preconnect' href = 'https://fonts.gstatic.com'>
 <link rel = 'stylesheet' href =      'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
@@ -14,18 +14,31 @@
 <script src = '../../JavaScript/Trapped/trapped.js'></script>
 <script src = '../../JavaScript/Trapped/pieces.js'></script>
 <script src = '../../JavaScript/Trapped/boxset.js'></script>
+<script src = '../../JavaScript/Trapped/movement.js'></script>
 <script src = '../../JavaScript/Trapped/pages.js'></script>
 </head>
 
-<body><h1>%%PIECE%%</h1><div class = "byline">
+<body><h1>Flying Ox</h1><div class = "byline">
 by Abigail<br>
 <img src = "../../Images/jan_sluiters.jpg">
 </div>
 
 
-<p>The %%PIECE%% moves an unlimited amount of unoccupied squares
-diagonally (like the <a href="bishop.html"><em>Bishop</em></a>, or orthogonally
-forward or backward (like the forward/backward <a href="rook.html"><em>Rook</em></a>).</p>
+<div class = "movement">
+A . . . A . . . A
+. * . . * . . * .
+. . * . * . * . .
+. . . * * * . . .
+. . . . S . . . .
+. . . * * * . . .
+. . * . * . * . .
+. * . . * . . * .
+A . . . A . . . A
+</div>
+
+<p>The <strong>Flying Ox</strong> moves either has a <a href="bishop.html"><em>Bishop</em></a>, or a vertical <a href="rook.html"><em>Rook</em></a>.
+The %%PIECE%% moves an unlimited amount of unoccupied squares
+diagonally, or orthogonally forward or backward.</p>
 
 <p>Compare with the <a href="free_boar.html"><em>Free Boar</em></a> which has the same
 movements, rotated 90&deg;.</p>
@@ -62,15 +75,15 @@ movements, rotated 90&deg;.</p>
 <p>Despite the <a href="bishop.html"><em>Bishop</em></a> and the forward/backward 
 <a href="rook.html"><em>Rook</em></a> not getting trapped, nor the <a href="queen.html"><em>Queen</em></a>
 (which combines the <a href="bishop.html"><em>Bishop</em></a> and full <a href="rook.html"><em>Rook</em></a>),
-the %%PIECE%% does get trapped, after 540 steps.</p>
+the <strong>Flying Ox</strong> does get trapped, after 540 steps.</p>
 </div>
 
 <h4 id = 'diamond'>Diamond</h4>
 
 <div class = "section">
-<p>On the Diamond Spiral. the %%PIECE%% escapes to the four orthogonal
+<p>On the Diamond Spiral. the <strong>Flying Ox</strong> escapes to the four orthogonal
 directions. After bouncing around for 300 moves in an almost regular
-pattern, %%PIECE%% enters a 10 step cycle, where it visits one square
+pattern, <strong>Flying Ox</strong> enters a 10 step cycle, where it visits one square
 below the origin, one square to the left of the origin, one square
 above the origin, and seven squares to the right. In each cycle, it
 expands one square outward, giving it an escape velocity of 
@@ -82,7 +95,7 @@ expands one square outward, giving it an escape velocity of
 <h4 id = 'folded_wedge'>Folded Wedge</h4>
 
 <div class = "section">
-<p>On the Folded Wedge, the %%PIECE%% escapes, visiting the three
+<p>On the Folded Wedge, the <strong>Flying Ox</strong> escapes, visiting the three
 right most squares on each row. It uses a six step cycle to move
 two squares to the upper right, for an escape velocity of
 <span class = 'latex-inline'>\(\frac{\sqrt{2}}{3}\)</span>.</p>
@@ -90,7 +103,7 @@ two squares to the upper right, for an escape velocity of
 
 <h4 id = 'flat_wedge'>Flat Wedge</h4>
 
-<p>On the Folded Wedge, the %%PIECE%% escapes, visiting the
+<p>On the Folded Wedge, the <strong>Flying Ox</strong> escapes, visiting the
 right most square on each row. The escape velocity is 
 <span class = 'latex-inline'>\(\sqrt{2}\)</span>.</p>
 

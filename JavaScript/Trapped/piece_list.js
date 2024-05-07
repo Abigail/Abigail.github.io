@@ -1006,7 +1006,7 @@ let pieces = {
         _index_name: "Emperor (Scirocco)",
     },
 
-    emperor_typhoon: {
+    emperor: {
         betza: "W2F2N",
         results: {
             spiral_square:  "W", 
@@ -1014,7 +1014,6 @@ let pieces = {
             wedge_folded:   "FC", 
             wedge_flat:     "F/100%",
         },
-        _name: "Emperor",
         _index_name: "Emperor (Typhoon)",
     },
 
@@ -2872,7 +2871,7 @@ let set_info = {
 
     typhoon: {
         href: "https://www.chessvariants.com/rules/typhoon-revised",
-        pieces: ["king", "emperor_typhoon", "queen", "rook", "bishop",
+        pieces: ["king", "emperor", "queen", "rook", "bishop",
                  "knight", "wazir", "firzan", "dabbaba", "alfil",
                  "camel", "zebra", 
             
