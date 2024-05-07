@@ -311,34 +311,15 @@ class Movement {
         let [x_from, y_from] = this . square_to_coord (from)
         let [x_to,   y_to]   = this . square_to_coord (to)
 
-        //
-        // This needs to be badly improved
-        //
-        let angle = 0
-        if      (to [0] < from [0]) {
-            if      (to [1] < from [1]) {angle = -135}
-            else if (to [1] > from [1]) {angle = - 45}
-            else                        {angle = - 90}
-        }
-        else if (to [0] > from [0]) {
-            if      (to [1] < from [1]) {angle =  135}
-            else if (to [1] > from [1]) {angle =   45}
-            else                        {angle =   90}
-        }
-        else {
-            if      (to [1] < from [1]) {angle =  180}
-            else                        {angle =    0}
-        }
+        let dx  = x_to - x_from
+        let dy  = y_to - y_from
 
-        let dx = x_from - x_to
-        let dy = y_from - y_to
-
-        let l  = Math . sqrt (dx * dx + dy * dy)
-        angle  = Math . acos (dx / l)
-        angle *= 180
-        angle /= Math . PI
-
-        console . log (`dx = ${dx}; dy = ${dy}; l = ${l}; angle = ${angle}`)
+        let hyp   = Math . sqrt (dx * dx + dy * dy)
+        let angle = Math . acos (dx / hyp)   // Radians
+        angle     = 180 * angle / Math . PI  // Convert to degrees
+        if (dy < 0) {
+            angle = 360 - angle
+        }
 
         //
         // Draw an arrow head
