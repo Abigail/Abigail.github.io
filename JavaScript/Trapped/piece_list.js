@@ -457,12 +457,6 @@ let pieces = {
     },
 
     cavalier: {
-        parent: "mao",
-    },
-
-    cavalier_renn: {
-        _name: "Cavalier",
-        _index_name: "Cavalier (Renn Chess)",
         move_list: [
             ((n, a = {}) => [-n,  1, {not_a_target: n == 1}]),
             ((n, a = {}) => [-n, -1, {not_a_target: n == 1}]),
@@ -479,6 +473,11 @@ let pieces = {
             wedge_folded:   "T/12", 
             wedge_flat:      sqrt (2, 2),
         }
+    },
+
+    cavalier_mao: {
+        _name:  "Cavalier",
+        parent: "mao",
     },
 
     centaur: {
@@ -2808,7 +2807,7 @@ let set_info = {
 
     grand_cavalier_chess: {
         href: "https://www.chessvariants.com/large.dir/grandcavalier.html",
-        pieces: ["eques_rex", "queen", "cannon", "cavalier", "marshall",
+        pieces: ["eques_rex", "queen", "cannon", "cavalier_mao", "marshall",
                  "nightrider", "paladin"],
     },
 
@@ -2844,7 +2843,7 @@ let set_info = {
     renniassance_chess: {
         href:    "https://www.chessvariants.com/large.dir/renaiss.html",
         pieces: ["king", "queen", "rook", "bishop", "horse_renn",
-                 "archbishop", "castle", "cavalier_renn", "duke_renn",
+                 "archbishop", "castle", "cavalier", "duke_renn",
                  "fox_renn", "general_camel", "guard_king", "nobleman",
                  "page", "prince_amazon", "squire_wfda", "pawn"],
     },
