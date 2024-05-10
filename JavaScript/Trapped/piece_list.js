@@ -2171,7 +2171,14 @@ let pieces = {
     },
 
     side_mover: {
-        parent: "swallows_wings",
+        betza: "vWsR",
+        results: {
+            spiral_square:  "W",
+            spiral_diamond: "F*/87.5%",
+            wedge_folded:   "T/6",
+            wedge_flat:      sqrt (2, 2),
+        },
+        _name: "Swallow's Wings",
     },
 
     silver_general: {
@@ -2314,14 +2321,7 @@ let pieces = {
     },
 
     swallows_wings: {
-        betza: "vWsR",
-        results: {
-            spiral_square:  "W",
-            spiral_diamond: "F*/87.5%",
-            wedge_folded:   "T/6",
-            wedge_flat:      sqrt (2, 2),
-        },
-        _name: "Swallow's Wings",
+        parent: "side_mover",
     },
 
     swapper: {
