@@ -29,6 +29,7 @@ let TRANSFORM = {     // [Scale, Translate X, Translate Y]
     lioness:             [  200,     - 3.50],
     narwhal:             [  800,     -13.50],
     okapi:               [  200],
+    otter:               [  800,     -13.43],
     silver_general:      [   50],
     shogi_knight:        [   50],
     stag:                [ 1000],

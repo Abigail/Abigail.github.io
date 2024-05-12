@@ -7,6 +7,11 @@ falcon, narwhal:
     url: https://www.svgrepo.com/svg/330408/falcon
     url: https://www.svgrepo.com/svg/54042/narwhal
 
+otter:
+    license: MIT License
+    author: Icons8
+    url: https://www.svgrepo.com/svg/314416/otter-solid
+
 gold_general, silver_general, dragon_king, dragon_horse, shogi_knight, lance,
 elephant (elephant_janggi): 
     license: CC BY SA 3.0
