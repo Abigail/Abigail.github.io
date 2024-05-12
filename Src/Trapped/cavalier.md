@@ -30,6 +30,10 @@ by a %%ROOK%% move, whether the latter moves away from the starting square.
 The %%ROOK%% moves must happen, the **Cavalier** cannot finish its move
 on the %%FERZ%% move.
 
+Compare with the [*Octopus*](octopus.html), which moves in the
+same way as the **Cavalier**, except that it may finish its
+move next to its starting square.
+
 The [*Mao*](mao.html) goes by the name of *Cavalier* as well.
 
 |====

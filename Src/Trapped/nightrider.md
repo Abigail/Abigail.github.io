@@ -1,6 +1,26 @@
-# %%PIECE%%
+# Nightrider
 
-The %%PIECE%% moves one or more squares like a [*Knight*](knight.html),
+<div class = "movement">
+. . . . A . . . . . . . A . . . .
+. . . . . . . . . . . . . . . . .
+. . . . . * . . . . . * . . . . .
+. . . . . . . . . . . . . . . . .
+A . . . . . * . . . * . . . . . A
+. . * . . . . . . . . . . . * . .
+. . . . * . . * . * . . * . . . .
+. . . . . . * . . . * . . . . . .
+. . . . . . . . S . . . . . . . .
+. . . . . . * . . . * . . . . . .
+. . . . * . . * . * . . * . . . .
+. . * . . . . . . . . . . . * . .
+A . . . . . * . . . * . . . . . A
+. . . . . . . . . . . . . . . . .
+. . . . . * . . . . . * . . . . .
+. . . . . . . . . . . . . . . . .
+. . . . A . . . . . . . A . . . .
+</div>
+
+The **Nightrider** moves one or more squares like a [*Knight*](knight.html),
 where each subsequents moves must be in the same direction as the
 first, and each square may not be occupied.
 
@@ -28,14 +48,14 @@ Links: [%%WIKI%%](#wiki:Nightrider_(chess)),
 
 #### Square
 
-Surpringly, despite the %%PIECE%% having more squares to move to in
-each steps, the %%PIECE%% gets trapped sooner than the
+Surpringly, despite the **Nightrider** having more squares to move to in
+each steps, the **Nightrider** gets trapped sooner than the
 [*Knight*](knight.html). Where the [*Knight*](knight.html) gets trapped
-in 2,015 steps, the %%PIECE%% gets trapped after 509 steps!
+in 2,015 steps, the **Nightrider** gets trapped after 509 steps!
 
 #### Diamond
 
-On the Diamond Spiral, the %%PIECE%% gets trapped after 1,687 steps.
+On the Diamond Spiral, the **Nightrider** gets trapped after 1,687 steps.
 This is less than half the number of steps the %%KNIGHT%% makes
 before getting trapped (3,722).
 
@@ -43,10 +63,10 @@ before getting trapped (3,722).
 
 #### Folded
 
-On the Folded Wedge, the %%PIECE%% gets trapped after 60 steps, which is
+On the Folded Wedge, the **Nightrider** gets trapped after 60 steps, which is
 10 steps more than the [*Knight*](knight.html).
 
 #### Flat
 
-On the Flat Wedge, the %%PIECE%% gets trapped after 22 steps, while
+On the Flat Wedge, the **Nightrider** gets trapped after 22 steps, while
 the [*Knight*](knight.html) escapes.

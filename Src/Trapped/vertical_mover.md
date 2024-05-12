@@ -17,6 +17,9 @@ The **Vertical Mover** either moves one square to the right or left
 amount of unoccupied squares orthogonally forward or backward
 (like a vertical [*Rook*](rook.html)).
 
+Compare with the [*Side Mover*](side_mover.html) which moves
+the same way, but rotated by 90&deg;.
+
 |====
 %%PIECE_HEADERS%%
   {th = 1}  %%CHU_SHOGI%%

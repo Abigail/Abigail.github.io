@@ -6,13 +6,15 @@
 A * * * S * * * A
 . . . . * . . . .
 . . . . . . . . .
-Shogi: 1
 </div>
 
 The **Side Mover** either slides an unlimited amount of unoccupied
 squares to the right of left (like a sideways [*Rook*](rook.html)),
 or steps one square orthogonally forward or backward (like a
 vertical [*Wazir*](wazir.html)).
+
+Compare with the [*Vertical Mover*](vertical_mover.html) which moves
+the same way, but rotated by 90&deg;.
 
 |====
 %%PIECE_HEADERS%%
