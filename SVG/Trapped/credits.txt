@@ -1,3 +1,7 @@
+acropolis:
+    license: CC0 License
+    url: https://www.svgrepo.com/svg/197101/parthenon
+
 antelope:
     licence: CC0
     url: https://www.svgrepo.com/svg/77259/antelope-silhouette-from-side-view

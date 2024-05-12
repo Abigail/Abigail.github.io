@@ -14,6 +14,7 @@ $(window) . on ("load", () => {
 
 let MOV_SIZE  = 30    // Height/width of square
 let TRANSFORM = {     // [Scale, Translate X, Translate Y]
+    acropolis:           [  350,     - 4.50],
     antelope:            [  450,     - 7.40],
     alfilrider:          [    0,       0.17],
     caliph:              [    0,       0.20],
