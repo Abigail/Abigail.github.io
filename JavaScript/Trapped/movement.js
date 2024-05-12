@@ -54,6 +54,7 @@ class Movement {
         let unoccupied   = []
         let initials     = []
         let arrows       = []
+        let arrows2      = []
         let lines        = []
         let lines2       = []
         let shogi        = 0
@@ -63,12 +64,17 @@ class Movement {
 
         by_line . filter ((line) => line . match (/:/))
                 . forEach ((line) => {
-            if (line . match (/^Line:/)) {
-                let coordinates = line . replace (/Line:\s*/, "")
+            if (line . match (/^(Line|Arrow):/)) {
+                let coordinates = line . replace (/^[^:]+:\s*/, "")
                                        . split (/\s+/)
                                        . map ((x) => x . split (/,/) .
                                                      map ((x) => +x))
-                lines . push (coordinates)
+                if (line . match (/^Line:/)) {
+                    lines  . push (coordinates)
+                }
+                else {
+                    arrows . push (coordinates)
+                }
             }
             else if (line . match (/^Shogi:/)) {
                 shogi = 1
@@ -92,12 +98,15 @@ class Movement {
                 if (field == "S") {pieces       . push (square)}
                 if (field == 'i') {initials     . push (square)}
                 if (field == 'u') {unoccupied   . push (square)}
-                if (field == 'A') {arrows       . push (square)}
+                if (field == 'A') {arrows2      . push (square)}
                 if (field == 'L') {lines2       . push (square)}
             })
         })
 
-        arrows . forEach ((square) => {
+        arrows . forEach ((coordinates) => {
+            this . draw_arrow (coordinates)
+        })
+        arrows2 . forEach ((square) => {
             this . draw_arrow ([pieces [0], square])
         })
 
@@ -123,6 +132,8 @@ class Movement {
         unoccupied . forEach ((square) => {
             this . place_destination ({square: square, unoccupied: 1})
         })
+
+        $(element) . css ({visibility: "visible"})
     }
 
 
@@ -300,6 +311,7 @@ class Movement {
     // Then draw an arrow head on the end of the arrow.
     //
     draw_arrow (coordinates) {
+        console . log (coordinates)
         let from = coordinates [coordinates . length - 2]
         let to   = coordinates [coordinates . length - 1]
 
@@ -311,34 +323,15 @@ class Movement {
         let [x_from, y_from] = this . square_to_coord (from)
         let [x_to,   y_to]   = this . square_to_coord (to)
 
-        //
-        // This needs to be badly improved
-        //
-        let angle = 0
-        if      (to [0] < from [0]) {
-            if      (to [1] < from [1]) {angle = -135}
-            else if (to [1] > from [1]) {angle = - 45}
-            else                        {angle = - 90}
-        }
-        else if (to [0] > from [0]) {
-            if      (to [1] < from [1]) {angle =  135}
-            else if (to [1] > from [1]) {angle =   45}
-            else                        {angle =   90}
-        }
-        else {
-            if      (to [1] < from [1]) {angle =  180}
-            else                        {angle =    0}
-        }
+        let dx  = x_to - x_from
+        let dy  = y_to - y_from
 
-        let dx = x_from - x_to
-        let dy = y_from - y_to
-
-        let l  = Math . sqrt (dx * dx + dy * dy)
-        angle  = Math . acos (dx / l)
-        angle *= 180
-        angle /= Math . PI
-
-        console . log (`dx = ${dx}; dy = ${dy}; l = ${l}; angle = ${angle}`)
+        let hyp   = Math . sqrt (dx * dx + dy * dy)
+        let angle = Math . acos (dx / hyp)   // Radians
+        angle     = 180 * angle / Math . PI  // Convert to degrees
+        if (dy < 0) {
+            angle = 360 - angle
+        }
 
         //
         // Draw an arrow head

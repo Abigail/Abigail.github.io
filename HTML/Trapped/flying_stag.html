@@ -14,6 +14,7 @@
 <script src = '../../JavaScript/Trapped/trapped.js'></script>
 <script src = '../../JavaScript/Trapped/pieces.js'></script>
 <script src = '../../JavaScript/Trapped/boxset.js'></script>
+<script src = '../../JavaScript/Trapped/movement.js'></script>
 <script src = '../../JavaScript/Trapped/pages.js'></script>
 </head>
 
@@ -23,10 +24,23 @@ by Abigail<br>
 </div>
 
 
-<p>The %%PIECE%% either moves one square diagonally (like a 
-<a href="ferz.html"><em>Ferz</em></a>), one square right or left (like a sideways
-<a href="wazir.html"><em>Wazir</em></a>), or an unlimited number of unoccupied
-squares orthogonally forward or backward (like a vertical <a href="rook.html"><em>Rook</em></a>).</p>
+<div class = "movement">
+. . A . .
+. . * . .
+. . * . .
+. * * * .
+. * S * .
+. * * * .
+. . * . .
+. . * . .
+. . A . .
+</div>
+
+<p>The <strong>Flying Stag</strong> combines the movements of the <a href="king.html"><em>King</em></a>, and
+the vertical <a href="rook.html"><em>Rook</em></a>. That is, the <strong>Flying Stag</strong> either steps
+one square away in each of the eight cardinal directions, or slides
+an unlimited amount of unoccupied squares orthogonally forward
+or backward.</p>
 
 <table class = piece_list>
   <tr class = 'row-0' markdown = '1'>
@@ -47,14 +61,14 @@ squares orthogonally forward or backward (like a vertical <a href="rook.html"><e
 <h4 id = 'square'>Square</h4>
 
 <div class = "section">
-<p>The %%PIECE%% can move as the <a href="wazir.html"><em>Wazir</em></a>, and hence,
+<p>The <strong>Flying Stag</strong> can move as the <a href="wazir.html"><em>Wazir</em></a>, and hence,
 will visit all the squares by following the Spiral.</p>
 </div>
 
 <h4 id = 'diamond'>Diamond</h4>
 
 <div class = "section">
-<p>The %%PIECE%% can moves as the <a href="blind_monkey.html"><em>Blind Monkey</em></a>, visiting all the squares
+<p>The <strong>Flying Stag</strong> can moves as the <a href="blind_monkey.html"><em>Blind Monkey</em></a>, visiting all the squares
 on the board by following the Spiral.</p>
 </div>
 
@@ -63,13 +77,13 @@ on the board by following the Spiral.</p>
 <h4 id = 'folded'>Folded</h4>
 
 <div class = "section">
-<p>The %%PIECE%% can move as the <a href="flying_cock.html"><em>Flying Cock</em></a>, and hence,
-will visit all the squares by following the Folded Wedge.</p>
+<p>The <strong>Flying Stag</strong> can move as the <a href="flying_cock.html"><em>Flying Cock</em></a>,
+and hence, will visit all the squares by following the Folded Wedge.</p>
 </div>
 
 <h4 id = 'flat'>Flat</h4>
 
-<p>On the Flat Wedge, the %%PIECE%% will visit all the squares, using
+<p>On the Flat Wedge, the <strong>Flying Stag</strong> will visit all the squares, using
 the same pattern the <a href="king.html"><em>King</em></a> uses.</p>
 
 <div class = 'trapped' data-piece = 'flying_stag'></div>

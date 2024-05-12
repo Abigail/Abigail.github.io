@@ -1,11 +1,24 @@
-# %%PIECE%%
+# Emperor
 
-The %%PIECE%% either moves as a [*Knight*](knight.html), or as
+<div class = "movement">
+. . . . . . .
+. L * * * L .
+. * * * * * .
+. * * S * * .
+. * * * * * .
+. L * * * L .
+. . . . . . .
+</div>
+
+The **Emperor** either moves as a [*Knight*](knight.html), or as
 a [*Queen*](queen.html), but not more than two squares. That is,
 the %%PIECE%% can reach every square of a 5x5 square with where
 the %%PIECE%% starts in the center -- but it can be blocked when
 trying to reach the corners (or centers of the edges) of the 5x5
 square.
+
+The related game of %%SCIROCC%% has a piece named 
+[*Emperor*](champion.html), but it moves differently.
 
 |====
 %%PIECE_HEADERS%%
@@ -18,22 +31,22 @@ square.
 
 #### Square
 
-The %%PIECE%% can move like the %%WAZIR%%, and hence,
+The **Emperor** can move like the %%WAZIR%%, and hence,
 will follow the Square Spiral.
 
 #### Diamond
 
-The %%PIECE%% can move like the %%BM%%, and hence,
+The **Emperor** can move like the %%BM%%, and hence,
 will follow the Diamond Spiral.
 
 ### Wedge
 
 #### Folded
 
-The %%PIECE%% can move like the %%FC%% and hence,
+The **Emperor** can move like the %%FC%% and hence,
 will follow the Wedge.
 
 #### Flat
 
-The %%PIECE%% will visit every square on the Flat Wedge, following
+The **Emperor** will visit every square on the Flat Wedge, following
 a simple pattern.

@@ -15,7 +15,7 @@ Line: 3,3 5,5
 </div>
 
 The **Elephant** moves one or two unoccupied squares orthogonally
-or diagonally. This makes the %%PIECE%% %%COLOUR_BOUND%%.
+or diagonally. This makes the **Elephant** %%COLOUR_BOUND%%.
 
 This is the **Elephant** from %%XIANGQI%%. There are pieces named
 *Elephant* in other games, but they move differently:

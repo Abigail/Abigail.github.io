@@ -1,6 +1,19 @@
-# %%PIECE%%
+# Eagle
 
-The %%PIECE%% either slides an unlimited amount of unoccupied 
+<div class = "movement">
+A . . . . . . . A
+. * . . . . . * .
+. . * . . . * . .
+. . . * * * . . .
+. . . * S * . . .
+. . . * * * . . .
+. . L . * . L . .
+. . . . * . . . .
+. . . . A . . . .
+Shogi: 1
+</div>
+
+The **Eagle** either slides an unlimited amount of unoccupied 
 squares diagonally forward (like a forward %%BISHOP%%),
 slides an unlimited amount of unoccupied unoccupied squares
 orthogonally backwards (like a backward %%ROOK%%), steps
@@ -20,13 +33,13 @@ be unoccupied) (like a limited range backward %%BISHOP%%).
 
 #### Square
 
-Since the %%PIECE%% can move like the [*Wazir*](wazir.html), the
+Since the **Eagle** can move like the [*Wazir*](wazir.html), the
 piece will do so, following the Spiral and visiting all the squares
 in order.
 
 #### Diamond
 
-Since the %%PIECE%% can move like the %%BM%% the
+Since the **Eagle** can move like the %%BM%% the
 piece will do so, following the Spiral and visiting all the squares
 in order.
 
@@ -34,12 +47,12 @@ in order.
 
 #### Folded
 
-Since the %%PIECE%% can move as the [*Flying Cock*](flying_cock.html),
-the %%PIECE%% will follow the numbers.
+Since the **Eagle** can move as the [*Flying Cock*](flying_cock.html),
+the **Eagle** will follow the numbers.
 
 #### Flat
 
-On the Flat Wedge, the %%PIECE%% fills the board row by row, alternating going
+On the Flat Wedge, the **Eagle** fills the board row by row, alternating going
 with and against the numbers, with a small twist just before reaching
 the left hand side of the Wedge. This is the same pattern the
 [*Phoenix*](king.html?piece=phoenix) uses.

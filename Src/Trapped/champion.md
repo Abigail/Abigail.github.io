@@ -24,7 +24,8 @@ two squares orthogonally,
             as well \\
   {th = 1}  %%SCIROCCO%%
 & {cs = 2}  **Emperor**
-&           %%PROMOTED%% [*King*](king.html)
+&           %%PROMOTED%% [*King*](king.html). Not to be confused with
+            the [*Emperor*](emperor.html) found in %%TYPHOON%%.
 ====|
 
 ### Spiral

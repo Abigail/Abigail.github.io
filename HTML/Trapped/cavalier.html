@@ -1,0 +1,226 @@
+<html>
+<head>
+<title>Cavalier</title>
+<meta charset = "utf-8">
+<link rel  = 'preconnect' href = 'https://fonts.gstatic.com'>
+<link rel = 'stylesheet' href =      'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
+<link rel = 'stylesheet' href = '../../Styles/main.css'>
+<link rel = 'stylesheet' href = '../../Styles/Trapped/main.css'>
+<script src = "../../JavaScript/jquery.js"></script>
+<script id  = 'MathJax-script' async src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.js'></script>
+<script id = 'svg-script' src = 'https://cdn.jsdelivr.net/npm/@svgdotjs/svg.js@3.0/dist/svg.min.js'></script>
+<script src = '../../JavaScript/navigation.js'></script>
+<script src = '../../JavaScript/Trapped/piece_list.js'></script>
+<script src = '../../JavaScript/Trapped/trapped.js'></script>
+<script src = '../../JavaScript/Trapped/pieces.js'></script>
+<script src = '../../JavaScript/Trapped/boxset.js'></script>
+<script src = '../../JavaScript/Trapped/movement.js'></script>
+<script src = '../../JavaScript/Trapped/pages.js'></script>
+</head>
+
+<body><h1>Cavalier</h1><div class = "byline">
+by Abigail<br>
+<img src = "../../Images/jan_sluiters.jpg">
+</div>
+
+
+<div class = "movement">
+. . . . . . . . . . .
+. . . . * . * . . . .
+. . . . * . * . . . .
+. . . . * . * . . . .
+. * * * u . u * * * .
+. . . . . S . . . . .
+. * * * u . u * * * .
+. . . . * . * . . . .
+. . . . * . * . . . .
+. . . . * . * . . . .
+. . . . . . . . . . .
+Arrow: 5,5 4,4  4,0
+Arrow: 5,5 4,4  0,4
+Arrow: 5,5 6,4  6,0
+Arrow: 5,5 6,4 10,4
+Arrow: 5,5 6,6 10,6
+Arrow: 5,5 6,6  6,10
+Arrow: 5,5 4,6  0,6
+Arrow: 5,5 4,6  4,10
+</div>
+
+<p>The <strong>Cavalier</strong> moves one square diagonally, then slides over any
+zero number of squares orthogonally outward. It may not land next
+to its starting square (so, it needs to slide at least one square
+orthogonally). That is, it makes a step like a <a href="ferz.html"><em>Ferz</em></a>, followed 
+by a <a href="rook.html"><em>Rook</em></a> move, whether the latter moves away from the starting square.
+The <a href="rook.html"><em>Rook</em></a> moves must happen, the <strong>Cavalier</strong> cannot finish its move
+on the <a href="ferz.html"><em>Ferz</em></a> move.</p>
+
+<p>The <a href="mao.html"><em>Mao</em></a> goes by the name of <em>Cavalier</em> as well.</p>
+
+<table class = piece_list>
+  <tr class = 'row-0' markdown = '1'>
+    <th class = 'cell-0-0 col-0 ' markdown = '1'>Game</td>
+    <th class = 'cell-0-1 col-1 ' markdown = '1' colspan = '2'>Piece</td>
+    <th class = 'cell-0-3 col-3 ' markdown = '1'>Info</td>
+  </tr>
+  <tr class = 'row-1' markdown = '1'>
+    <th class = 'cell-1-0 col-0 ' markdown = '1'><a href="https://www.chessvariants.com/large.dir/renaiss.html">Renniassance Chess</a></td>
+    <td class = 'cell-1-1 col-1 ' markdown = '1' colspan = '2'><strong>Cavalier</strong></td>
+    <td class = 'cell-1-3 col-3 ' markdown = '1'></td>
+  </tr>
+</table>
+
+<h3 id = 'spiral'>Spiral</h3>
+
+<h4 id = 'square'>Square</h4>
+
+<div class = "section">
+<p>On the Square Spiral, the <strong>Cavalier</strong> is trapped after 102 steps.</p>
+</div>
+
+<h4 id = 'diamond'>Diamond</h4>
+
+<div class = "section">
+<p>On the Diamond Spiral, the <strong>Cavalier</strong> is trapped after 56 steps.</p>
+</div>
+
+<h3 id = 'wedge'>Wedge</h3>
+
+<h4 id = 'folded'>Folded</h4>
+
+<div class = "section">
+<p>On the Folded Wedge, the <strong>Cavalier</strong> is trapped after a mere 12 steps.</p>
+</div>
+
+<h4 id = 'flat'>Flat</h4>
+
+<p>On the Flat Wedge, the <strong>Cavalier</strong> escapes, hugging the left hand side
+of the wedge, using a zigzag pattern to up one step diagonally every
+second move, giving it an escape velocity of <span class = 'latex-inline'>\(\frac{\sqrt{2}}{2}\)</span>.</p>
+
+<div class = 'trapped' data-piece = 'cavalier'></div>
+
+<div class = 'boxset' data-piece = 'cavalier'></div>
+
+<div class = 'drawing' data-piece = 'cavalier'><!--
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   id="svg2"
+   height="100%"
+   width="100%"
+   version="1.1"
+   viewBox="0 0 2048 2048"
+   inkscape:version="1.0.2-2 (e86c870879, 2021-01-15)"
+   sodipodi:docname="wpromotedrook.svg"
+   inkscape:export-filename="S:\Greg\Projects\Chess\CVP\Graphics\Alfaerie SVG\WPromotedRook.png"
+   inkscape:export-xdpi="18.75"
+   inkscape:export-ydpi="18.75">
+  <defs
+     id="defs11">
+    <inkscape:perspective
+       sodipodi:type="inkscape:persp3d"
+       inkscape:vp_x="0 : 1024 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_z="2048 : 1024 : 1"
+       inkscape:persp3d-origin="1024 : 682.66667 : 1"
+       id="perspective13" />
+  </defs>
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1686"
+     inkscape:window-height="955"
+     id="namedview9"
+     showgrid="false"
+     inkscape:zoom="0.32593203"
+     inkscape:cx="1183.382"
+     inkscape:cy="850.44076"
+     inkscape:window-x="4"
+     inkscape:window-y="24"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="svg2"
+     inkscape:document-rotation="0" />
+  <metadata
+     id="metadata12">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     id="g3343-3"
+     style="fill:#ff0000">
+    <g
+       id="g3339-6"
+       style="fill:#ff0000">
+      <g
+         id="g4-7"
+         transform="matrix(1,0,0,-1,0,2048)"
+         style="fill:#ff0000">
+        <path
+           inkscape:connector-curvature="0"
+           id="path6-5"
+           d="m 1036.2725,235.68124 -598.04626,9.20438 13.65938,205.70563 159,118 57.31777,672.35795 -159.3859,133.5277 -10.86375,282.7056 h 206.16064 l 9.20438,-140.8637 201.43061,6.1362 3.06812,131.6594 218.50131,3.0681 6.1362,-131.6594 195.2944,-3.0681 12.2725,134.7275 209.2287,3.0681 -17,-285.7737 -139.7956,-103.9319 46.9319,-708.08999 159,-130.2725 25.9319,-199.56939 z"
+           style="fill:#f9f9f9;fill-opacity:1"
+           sodipodi:nodetypes="cccccccccccccccccccccc" />
+      </g>
+    </g>
+  </g>
+  <g
+     id="g3343">
+    <g
+       id="g3339">
+      <g
+         id="g4"
+         transform="matrix(1 0 0 -1 0 2048)"
+         style="fill:#000000">
+        <path
+           id="path6"
+           d="m1024 547h-381l5 74h752l5-74h-381zm0 661h-332l5 74h654l5-74h-332zm0-1003h-641l29 264 159 118 50 659-149 107-17 341h289v-147h137v147h286v-147h137v147h289l-17-341-149-107 50-659 159-118 29-264h-641zm0 74h557l-15 149-161 119-54 735 152 109 13 230h-138v-148h-285v148h-138v-148h-285v148h-138l13-230 152-109-54-735-161-119-15-149h557z"
+           fill="currentColor"
+           style="fill:#000000" />
+      </g>
+    </g>
+  </g>
+  <path
+     style="fill:none;stroke:#000000;stroke-width:75;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+     d="M 668.20339,807.05085 1397.1525,1466.5763"
+     id="path2819"
+     sodipodi:nodetypes="cc" />
+  <path
+     style="fill:none;stroke:#000000;stroke-width:75;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+     d="M 659.52543,1466.5762 1379.7966,807.05085"
+     id="path3595"
+     sodipodi:nodetypes="cc" />
+</svg>
+
+-->
+</div>
+<hr id = 'last-line'>
+<div class = 'trailer'>
+<p class = 'prev'><a class = "prev" href = "">&#x261C;</a></p>
+<p class = 'issue'>Please leave any comments as a
+  <a href = 'https://github.com/Abigail/Abigail.github.io/issues'
+     title = 'GitHub issue'>GitHub issue</a>.
+<p class = 'next'><a class = "next" href = "">&#x261E;</a></p>
+</div>
+
+</body>
+</html>

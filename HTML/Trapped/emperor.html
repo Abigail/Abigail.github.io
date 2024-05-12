@@ -1,6 +1,6 @@
 <html>
 <head>
-<title>%%PIECE%%</title>
+<title>Emperor</title>
 <meta charset = "utf-8">
 <link rel  = 'preconnect' href = 'https://fonts.gstatic.com'>
 <link rel = 'stylesheet' href =      'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
@@ -14,22 +14,32 @@
 <script src = '../../JavaScript/Trapped/trapped.js'></script>
 <script src = '../../JavaScript/Trapped/pieces.js'></script>
 <script src = '../../JavaScript/Trapped/boxset.js'></script>
+<script src = '../../JavaScript/Trapped/movement.js'></script>
 <script src = '../../JavaScript/Trapped/pages.js'></script>
 </head>
 
-<body><h1>%%PIECE%%</h1><div class = "byline">
+<body><h1>Emperor</h1><div class = "byline">
 by Abigail<br>
 <img src = "../../Images/jan_sluiters.jpg">
 </div>
 
 
-<p>The %%PIECE%% moves one square diagonally, then slides over any
-zero number of squares orthogonally outward. It may not land next
-to its starting square (so, it needs to slide at least one square
-orthogonally). That is, it makes a step like a <a href="ferz.html"><em>Ferz</em></a>, followed 
-by a <a href="rook.html"><em>Rook</em></a> move, whether the latter moves away from the starting square.
-The <a href="rook.html"><em>Rook</em></a> moves must happen, the %%PIECE%% cannot finish its move
-on the <a href="ferz.html"><em>Ferz</em></a> move.</p>
+<div class = "movement">
+. . . . . . .
+. L * * * L .
+. * * * * * .
+. * * S * * .
+. * * * * * .
+. L * * * L .
+. . . . . . .
+</div>
+
+<p>The <strong>Emperor</strong> either moves as a <a href="knight.html"><em>Knight</em></a>, or as
+a <a href="queen.html"><em>Queen</em></a>, but not more than two squares. That is,
+the %%PIECE%% can reach every square of a 5x5 square with where
+the %%PIECE%% starts in the center &mdash; but it can be blocked when
+trying to reach the corners (or centers of the edges) of the 5x5
+square.</p>
 
 <table class = piece_list>
   <tr class = 'row-0' markdown = '1'>
@@ -38,9 +48,9 @@ on the <a href="ferz.html"><em>Ferz</em></a> move.</p>
     <th class = 'cell-0-3 col-3 ' markdown = '1'>Info</td>
   </tr>
   <tr class = 'row-1' markdown = '1'>
-    <th class = 'cell-1-0 col-0 ' markdown = '1'><a href="https://www.chessvariants.com/large.dir/renaiss.html">Renniassance Chess</a></td>
-    <td class = 'cell-1-1 col-1 ' markdown = '1' colspan = '2'><strong>Cavelier</strong></td>
-    <td class = 'cell-1-3 col-3 ' markdown = '1'></td>
+    <th class = 'cell-1-0 col-0 ' markdown = '1'><a href="https://www.chessvariants.com/rules/typhoon-revised">Typhoon</a></td>
+    <td class = 'cell-1-1 col-1 ' markdown = '1' colspan = '2'><strong>Emperor</strong></td>
+    <td class = 'cell-1-3 col-3 ' markdown = '1'><span class = 'tooltip'>&#x265A;<span class = 'tooltiptext'>This piece is <em>Royal</em>; if all Royal pieces have been captured, the game is lost</span></span>; <span class = 'tooltip'>&#x260B;<span class = 'tooltiptext'>Is promoted</span></span> <a href="king.html"><em>King</em></a></td>
   </tr>
 </table>
 
@@ -49,13 +59,15 @@ on the <a href="ferz.html"><em>Ferz</em></a> move.</p>
 <h4 id = 'square'>Square</h4>
 
 <div class = "section">
-<p>On the Square Spiral, the %%PIECE%% is trapped after 102 moves.</p>
+<p>The <strong>Emperor</strong> can move like the <a href="wazir.html"><em>Wazir</em></a>, and hence,
+will follow the Square Spiral.</p>
 </div>
 
 <h4 id = 'diamond'>Diamond</h4>
 
 <div class = "section">
-<p>On the Diamond Spiral, the %%PIECE%% is trapped after 56 moves.</p>
+<p>The <strong>Emperor</strong> can move like the <a href="blind_monkey.html"><em>Blind Monkey</em></a>, and hence,
+will follow the Diamond Spiral.</p>
 </div>
 
 <h3 id = 'wedge'>Wedge</h3>
@@ -63,18 +75,18 @@ on the <a href="ferz.html"><em>Ferz</em></a> move.</p>
 <h4 id = 'folded'>Folded</h4>
 
 <div class = "section">
-<p>On the Folded Wedge, the %%PIECE%% is trapped after a mere 12 moves.</p>
+<p>The <strong>Emperor</strong> can move like the <a href="flying_cock.html"><em>Flying Cock</em></a> and hence,
+will follow the Wedge.</p>
 </div>
 
 <h4 id = 'flat'>Flat</h4>
 
-<p>On the Flat Wedge, the %%PIECE%% escapes, hugging the left hand side
-of the wedge, using a zigzag pattern to up one step diagonally every
-second move, giving it an escape velocity of <span class = 'latex-inline'>\(\frac{\sqrt{2}}{2}\)</span>.</p>
+<p>The <strong>Emperor</strong> will visit every square on the Flat Wedge, following
+a simple pattern.</p>
 
-<div class = 'trapped' data-piece = 'cavalier_renn'></div>
+<div class = 'trapped' data-piece = 'emperor'></div>
 
-<div class = 'boxset' data-piece = 'cavalier_renn'></div>
+<div class = 'boxset' data-piece = 'emperor'></div>
 
 <hr id = 'last-line'>
 <div class = 'trailer'>
