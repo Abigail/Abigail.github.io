@@ -1,6 +1,7 @@
-acropolis:
+acropolis, actress:
     license: CC0 License
     url: https://www.svgrepo.com/svg/197101/parthenon
+    url: https://www.svgrepo.com/svg/97210/actress
 
 antelope:
     licence: CC0
