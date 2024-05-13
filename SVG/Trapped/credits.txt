@@ -1,10 +1,16 @@
-acropolis, actress, antelope, barc, crab:
+acropolis, actress, antelope, barc, beaver, crab:
     license: CC0 License
     url: https://www.svgrepo.com/svg/197101/parthenon
     url: https://www.svgrepo.com/svg/97210/actress
     url: https://www.svgrepo.com/svg/155065/antelope
     url: https://www.svgrepo.com/svg/176704/crab-food (modified)
+    url: https://www.svgrepo.com/svg/138361/beaver-head
     url: https://www.svgrepo.com/svg/176704/crab-food
+
+blind_dog:
+    license: PD License
+    author: Icooon Mono
+    url: https://www.svgrepo.com/svg/481198/dog-5
 
 falcon, narwhal:
     license: Logo License
