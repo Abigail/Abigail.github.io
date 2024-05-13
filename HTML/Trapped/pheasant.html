@@ -1,6 +1,6 @@
 <html>
 <head>
-<title>%%PIECE%%</title>
+<title>Pheasant</title>
 <meta charset = "utf-8">
 <link rel  = 'preconnect' href = 'https://fonts.gstatic.com'>
 <link rel = 'stylesheet' href =      'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
@@ -14,17 +14,30 @@
 <script src = '../../JavaScript/Trapped/trapped.js'></script>
 <script src = '../../JavaScript/Trapped/pieces.js'></script>
 <script src = '../../JavaScript/Trapped/boxset.js'></script>
+<script src = '../../JavaScript/Trapped/movement.js'></script>
 <script src = '../../JavaScript/Trapped/pages.js'></script>
 </head>
 
-<body><h1>%%PIECE%%</h1><div class = "byline">
+<body><h1>Pheasant</h1><div class = "byline">
 by Abigail<br>
 <img src = "../../Images/jan_sluiters.jpg">
 </div>
 
 
-<p>The %%PIECE%% either jumps two squares forward, or steps one
-square diagonally backwards. This makes the %%PIECE%% <span class = 'tooltip underline'>colourbound<span class = 'tooltiptext'>A colourbound piece will always stay on a square of the same colour: if it starts on a black square, it will always remain on a black square; if it starts on a white square, it will always remain on a white square</span></span>.</p>
+<div class = "movement">
+. . . . .
+. . * . .
+. . . . .
+. . S . .
+. * . * .
+. . . . .
+Shogi: 1
+</div>
+
+<p>The <strong>Pheasant</strong> either jumps two squares forward
+(like a forward <a href="dabbaba.html"><em>Dabbaba</em></a>), or steps one
+square diagonally backwards (like a backward <a href="ferz.html"><em>Ferz</em></a>).
+This makes the %%PIECE%% <span class = 'tooltip underline'>colourbound<span class = 'tooltiptext'>A colourbound piece will always stay on a square of the same colour: if it starts on a black square, it will always remain on a black square; if it starts on a white square, it will always remain on a white square</span></span>.</p>
 
 <table class = piece_list>
   <tr class = 'row-0' markdown = '1'>
@@ -45,7 +58,7 @@ square diagonally backwards. This makes the %%PIECE%% <span class = 'tooltip und
 <h4 id = 'square'>Square</h4>
 
 <div class = "section">
-<p>On the Square Spiral, the %%PIECE%% escapes to infinity in a zig-zag
+<p>On the Square Spiral, the <strong>Pheasant</strong> escapes to infinity in a zig-zag
 pattern, heading forward-left. The two step loop which moves the
 piece one square forward-left means an escape velocity of
 <span class = 'latex-inline'>\(\frac{\sqrt{2}}{2}\)</span>.</p>
@@ -54,10 +67,10 @@ piece one square forward-left means an escape velocity of
 <h4 id = 'diamond'>Diamond</h4>
 
 <div class = "section">
-<p>On the Diamond Spiral, the %%PIECE%% visits half the squares which
+<p>On the Diamond Spiral, the <strong>Pheasant</strong> visits half the squares which
 are below the origin (or on the same row), and less than half the
 squares on the two rows above the origin. No squares further forward
-will be visited, hence, in the limit, the %%PIECE%% vists <span class = 'latex-inline'>\(25\%\)</span>
+will be visited, hence, in the limit, the <strong>Pheasant</strong> vists <span class = 'latex-inline'>\(25\%\)</span>
 of the squares on the board.</p>
 </div>
 
@@ -66,14 +79,14 @@ of the squares on the board.</p>
 <h4 id = 'folded'>Folded</h4>
 
 <div class = "section">
-<p>On the Folded Wedge, the %%PIECE%% escapes to infinity in the
+<p>On the Folded Wedge, the <strong>Pheasant</strong> escapes to infinity in the
 same way as on the Spiral, hence, with an escape velocity of
 <span class = 'latex-inline'>\(\frac{\sqrt{2}}{2}\)</span>.</p>
 </div>
 
 <h4 id = 'flat'>Flat</h4>
 
-<p>On the Flat Wedge, the %%PIECE%% escapes to infinity in a zig-zag
+<p>On the Flat Wedge, the <strong>Pheasant</strong> escapes to infinity in a zig-zag
 pattern, heading forward-left. This pattern is a mirror image
 from the pattern formed on the Folded Wedge. Hence, the escape
 velocity is <span class = 'latex-inline'>\(\frac{\sqrt{2}}{2}\)</span>.</p>

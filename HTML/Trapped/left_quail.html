@@ -1,6 +1,6 @@
 <html>
 <head>
-<title>%%PIECE%%</title>
+<title>Left Quail</title>
 <meta charset = "utf-8">
 <link rel  = 'preconnect' href = 'https://fonts.gstatic.com'>
 <link rel = 'stylesheet' href =      'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
@@ -14,18 +14,34 @@
 <script src = '../../JavaScript/Trapped/trapped.js'></script>
 <script src = '../../JavaScript/Trapped/pieces.js'></script>
 <script src = '../../JavaScript/Trapped/boxset.js'></script>
+<script src = '../../JavaScript/Trapped/movement.js'></script>
 <script src = '../../JavaScript/Trapped/pages.js'></script>
 </head>
 
-<body><h1>%%PIECE%%</h1><div class = "byline">
+<body><h1>Left Quail</h1><div class = "byline">
 by Abigail<br>
 <img src = "../../Images/jan_sluiters.jpg">
 </div>
 
 
-<p>The %%PIECE%% either slides an unlimited amount of unoccupied squares 
-orthogonally forward, or slides an unlimited amount of unoccupied squares
-diagonally right-backward, or steps one square left-backward.</p>
+<div class = "movement">
+. . A . . . .
+. . * . . . .
+. . * . . . .
+. . * . . . .
+. . S . . . .
+. * . * . . .
+. . . . * . .
+. . . . . * .
+. . . . . . A
+Shogi: 1
+</div>
+
+<p>The <strong>Left Quail</strong> either slides an unlimited amount of unoccupied squares 
+orthogonally forward (like a forward <a href="rook.html"><em>Rook</em></a>), or slides an unlimited
+amount of unoccupied squares diagonally right-backward (like a 
+right-backward <a href="bishop.html"><em>Bishop</em></a>), or steps one square left-backward
+(like a left-backward <a href="ferz.html"><em>Ferz</em></a>).</p>
 
 <p>This piece is a mirror image of the <a href="right_quail.html"><em>Right Quail</em></a>.</p>
 
@@ -48,14 +64,14 @@ diagonally right-backward, or steps one square left-backward.</p>
 <h4 id = 'square'>Square</h4>
 
 <div class = "section">
-<p>Initially, on the Square Spiral, the %%PIECE%% gives the impression its
+<p>Initially, on the Square Spiral, the <strong>Left Quail</strong> gives the impression its
 movement pattern is regular, but then it gets trapped after only 146 steps!</p>
 </div>
 
 <h4 id = 'diamond'>Diamond</h4>
 
 <div class = "section">
-<p>On the Diamond Spiral, the %%PIECE%% uses an eight step loop, bouncing
+<p>On the Diamond Spiral, the <strong>Left Quail</strong> uses an eight step loop, bouncing
 between two files, to move four squares backward. This gives it an
 escape velocity of <span class = 'latex-inline'>\(\frac{1}{2}\)</span>. This is exactly how the
 <a href="right_quail.html"><em>Right Quail</em></a> moves on the Diamond Spiral.</p>
@@ -66,7 +82,7 @@ escape velocity of <span class = 'latex-inline'>\(\frac{1}{2}\)</span>. This is 
 <h4 id = 'folded'>Folded</h4>
 
 <div class = "section">
-<p>On the Folded Wedge, the %%PIECE%% will only visit the three
+<p>On the Folded Wedge, the <strong>Left Quail</strong> will only visit the three
 left most squares of each row (except the bottom two), escaping
 to infinity by sticking to the left side of the board. This is
 exactly the same pattern the <a href="right_quail.html"><em>Right Quail</em></a> leaves
@@ -75,7 +91,7 @@ behind. The escape velocity is <span class = 'latex-inline'>\(\frac{\sqrt{2}}{3}
 
 <h4 id = 'flat'>Flat</h4>
 
-<p>The movement of the %%PIECE%% on the Flat Wedge is a mirror
+<p>The movement of the <strong>Left Quail</strong> on the Flat Wedge is a mirror
 image of the movement on the Folded Wedge: the three right most
 squares of each row are visited while the %%PIECE%% escapes
 to infinity. This is exactly the same pattern the

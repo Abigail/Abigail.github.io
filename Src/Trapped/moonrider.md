@@ -1,5 +1,25 @@
 # %%PIECE%%
 
+<div class = "movement">
+. . . . A . . . . . . . A . . . .
+. . . . . . . . . . . . . . . . .
+. . . . . * . . . . . * . . . . .
+. . . . . . . . . . . . . . . . .
+A . . . . . * . . . * . . . . . A
+. . * . . . * . . . * . . . * . .
+. . . . * * . * . * . * * . . . .
+. . . . . . * . . . * . . . . . .
+. . . . . . . . S . . . . . . . .
+. . . . . . * . . . * . . . . . .
+. . . . * * . * . * . * * . . . .
+. . * . . . * . . . * . . . * . .
+A . . . . . * . . . * . . . . . A
+. . . . . . . . . . . . . . . . .
+. . . . . * . . . . . * . . . . .
+. . . . . . . . . . . . . . . . .
+. . . . A . . . . . . . A . . . .
+</div>
+
 The %%PIECE%% either moves as the [*Zebra*](zebra.html), or as
 the [*Nightrider*](nightrider.html). That is, it either jumps
 to a square which is two away in one orthogonal direction,

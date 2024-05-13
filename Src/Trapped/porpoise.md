@@ -4,6 +4,7 @@
 . . . . .
 . * S * .
 . . . . .
+Shogi: 1
 </div>
 
 The **Porpoise** moves one square either to the left or right.
