@@ -337,8 +337,14 @@ let pieces = {
         },
     },
 
-    boyscout: {
-        parent: "crooked_bishop",
+    boy_scout: {
+        betza: "zB",
+        results: {
+            spiral_square:  "F/50%", 
+            spiral_diamond: "F/50%",
+            wedge_folded:   "F/50%",
+            wedge_flat:     "F/50%",
+        },
     },
 
     buffalo: {
@@ -660,13 +666,7 @@ let pieces = {
     },
 
     crooked_bishop: {
-        betza: "zB",
-        results: {
-            spiral_square:  "F/50%", 
-            spiral_diamond: "F/50%",
-            wedge_folded:   "F/50%",
-            wedge_flat:     "F/50%",
-        },
+        parent: "boy_scout",
     },
 
     crooked_camelrider: {
@@ -705,16 +705,6 @@ let pieces = {
             spiral_square:  "W", 
             spiral_diamond: "BM",
             wedge_folded:   "FC",
-            wedge_flat:     "F/100%",
-        },
-    },
-
-    crooked_rook: {
-        betza: "zR",
-        results: {
-            spiral_square:  "W", 
-            spiral_diamond: "F/100%",
-            wedge_folded:   "F/100%",
             wedge_flat:     "F/100%",
         },
     },
@@ -1336,6 +1326,16 @@ let pieces = {
         parent: "amazon",
         _name:  "Giraffe",
         _index_name: "Giraffe (Turkish Great Chess)",
+    },
+
+    girl_scout: {
+        betza: "zR",
+        results: {
+            spiral_square:  "W", 
+            spiral_diamond: "F/100%",
+            wedge_folded:   "F/100%",
+            wedge_flat:     "F/100%",
+        },
     },
 
     gliding_swallow: {
@@ -2769,7 +2769,7 @@ let set_info = {
     },
 
     crooked_riders: {
-        pieces: ["crooked_queen", "crooked_rook", "crooked_bishop",
+        pieces: ["crooked_queen", "girl_scout", "boy_scout",
                  "crooked_nightrider", "crooked_camelrider",
                  "crooked_zebrarider", "crooked_girafferider",
                  "half_crooked_queen_I", "half_crooked_queen_II"]

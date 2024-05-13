@@ -1,6 +1,19 @@
-# %%PIECE%%
+# Soaring Eagle
 
-The %%PIECE%% either slides an unlimited number of unoccupied squares
+<div class = "movement">
+. . . . A . . . .
+. . . . * . . . .
+. . * . * . * . .
+. . . * * * . . .
+A * * * S * * * A
+. . . * * * . . .
+. . * . * . * . .
+. * . . * . . * .
+A . . . A . . . A
+Shogi: 1
+</div>
+
+The **Soaring Eagle** either slides an unlimited number of unoccupied squares
 orthogonally (like a [*Rook*](rook.html)), or diagonally backward
 (like a backward [*Bishop*](bishop.html)), or jumps one or two
 squares diagonally forward (like a forward [*Ferz*](ferz.html) or
@@ -18,23 +31,23 @@ a forward [*Alfil*](alfil.html)).
 
 #### Square
 
-On the Spiral, the %%PIECE%% can move as the [*Wazir*](wazir.html),
+On the Spiral, the **Soaring Eagle** can move as the [*Wazir*](wazir.html),
 so it visit all the squares by following the Spiral.
 
 #### Diamond
 
-On the Spiral, the %%PIECE%% can move as the %%BM%%,
+On the Spiral, the **Soaring Eagle** can move as the %%BM%%,
 so it visit all the squares by following the Spiral.
 
 ### Wedge
 
 #### Folded
 
-On the Folded Wedge, the %%PIECE%% can move as the
+On the Folded Wedge, the **Soaring Eagle** can move as the
 [*Flying Cock*](flying_cock.html),
 so it visit all the squares by following the Wedge.
 
 #### Flat
 
-On the Flat Wedge, the %%PIECE%% visits all the squares
+On the Flat Wedge, the **Soaring Eagle** visits all the squares
 using a pattern with a strong bias to the right.

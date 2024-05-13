@@ -1,6 +1,19 @@
-# %%PIECE%%
+# Reverse Chariot
 
-The %%PIECE%% moves an unlimited number of unoccupied squares
+<div class = "movement">
+. A .
+. * .
+. * .
+. * .
+. S .
+. * .
+. * .
+. * .
+. A .
+Shogi: 1
+</div>
+
+The **Reverse Chariot** moves an unlimited number of unoccupied squares
 orthogonally forward or backward (like a vertical [*Rook*](rook.html)).
 
 |====
@@ -12,10 +25,10 @@ orthogonally forward or backward (like a vertical [*Rook*](rook.html)).
 
 ### Spiral
 
-On either Spiral, the %%PIECE%% escapes in a straight line forward,
+On either Spiral, the **Reverse Chariot** escapes in a straight line forward,
 with an escape velocity of \(1\).
 
 ### Wedge
 
-On both the Folded and Flat Wedge, the %%PIECE%% escapes in a
+On both the Folded and Flat Wedge, the **Reverse Chariot** escapes in a
 straight line forward, with an escape velocity of \(1\).

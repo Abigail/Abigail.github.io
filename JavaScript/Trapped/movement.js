@@ -62,11 +62,24 @@ class Movement {
         let lines2       = []
         let shogi        = 0
 
-        let by_line = description . split  ("\n")
-                                  . filter ((line) => line . match (/\S/))
+        let by_line = description . replace (/\\\n/g, " ")
+                                  . split   ("\n")
+                                  . filter  ((line) => line . match (/\S/))
 
         by_line . filter ((line) => line . match (/:/))
                 . forEach ((line) => {
+            let args = {}
+            if (line . match (/;/)) {
+                let options = line . replace (/^[^;]*;\s*/, "")
+                line = line . replace (/;.*/, "")
+                options . split (/;\s*/)
+                        . forEach ((option) => {
+                            let match = option . match (/^([^=]+?)\s*=\s*(.*)/)
+                            if (match) {
+                                args [match [1]] = match [2]
+                            }
+                        })
+            }
             if (line . match (/^(Line|Arrow):/)) {
                 let coordinates = line . replace (/^[^:]+:\s*/, "")
                                        . split (/\s+/)
@@ -76,7 +89,7 @@ class Movement {
                     lines  . push (coordinates)
                 }
                 else {
-                    arrows . push (coordinates)
+                    arrows . push ([coordinates, args])
                 }
             }
             else if (line . match (/^Shogi:/)) {
@@ -106,11 +119,11 @@ class Movement {
             })
         })
 
-        arrows . forEach ((coordinates) => {
-            this . draw_arrow (coordinates)
+        arrows . forEach ((info) => {
+            this . draw_arrow (info [0], info [1])
         })
         arrows2 . forEach ((square) => {
-            this . draw_arrow ([pieces [0], square])
+            this . draw_arrow ([pieces [0], square], {})
         })
 
         lines . forEach ((coordinates) => {
@@ -313,15 +326,14 @@ class Movement {
     // and passing through the midpoint of every other square.
     // Then draw an arrow head on the end of the arrow.
     //
-    draw_arrow (coordinates) {
-        console . log (coordinates)
+    draw_arrow (coordinates, options = {}) {
         let from = coordinates [coordinates . length - 2]
         let to   = coordinates [coordinates . length - 1]
 
         //
         // First draw the line
         //
-        this . draw_line (coordinates)
+        this . draw_line (coordinates, options)
 
         let [x_from, y_from] = this . square_to_coord (from)
         let [x_to,   y_to]   = this . square_to_coord (to)
@@ -339,9 +351,10 @@ class Movement {
         //
         // Draw an arrow head
         //
+        let color = options . stroke || 'black'
         let head = this . board . polygon ('5,0  0,-10  20,0  0,10')
-                        . fill    ({color:  'black', opacity: 0.5})
-                        . stroke  ({color:  'black', opacity: 0.5})
+                        . fill    ({color:  color, opacity: 0.5})
+                        . stroke  ({color:  color, opacity: 0.5})
                         . cx      (0)
                         . cy      (0)
                         . transform ({rotate:     angle,
@@ -354,12 +367,12 @@ class Movement {
     //
     // Given an array of coordinates, draw line between them.
     //
-    draw_line (coordinates) {
+    draw_line (coordinates, options = {}) { 
         this . board . polyline (coordinates . map ((point) =>
                                         this . square_to_coord (point)))
                      . stroke ({width:    1,
                                 opacity:  0.5,
-                                color:   'black',
+                                color:    options . stroke || 'black',
                                 linecap: 'round',})
                      . fill ('none')
         return this
