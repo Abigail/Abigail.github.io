@@ -1,6 +1,6 @@
 <html>
 <head>
-<title>%%PIECE%%</title>
+<title>Crooked Queen</title>
 <meta charset = "utf-8">
 <link rel  = 'preconnect' href = 'https://fonts.gstatic.com'>
 <link rel = 'stylesheet' href =      'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
@@ -14,17 +14,60 @@
 <script src = '../../JavaScript/Trapped/trapped.js'></script>
 <script src = '../../JavaScript/Trapped/pieces.js'></script>
 <script src = '../../JavaScript/Trapped/boxset.js'></script>
+<script src = '../../JavaScript/Trapped/movement.js'></script>
 <script src = '../../JavaScript/Trapped/pages.js'></script>
 </head>
 
-<body><h1>%%PIECE%%</h1><div class = "byline">
+<body><h1>Crooked Queen</h1><div class = "byline">
 by Abigail<br>
 <img src = "../../Images/jan_sluiters.jpg">
 </div>
 
 
-<p>The %%PIECE%% combines the moves of the <a href="crooked_rook.html"><em>Crooked Rook</em></a>
-and the <a href="crooked_bishop.html"><em>Crooked Bishop</em></a>. That is, it zigzags
+<div class = "movement">
+. . . . . . . . . . . . . . .
+. * * . . . . * . . . . * * .
+. * * * . . * . * . . * * * .
+. . * * * . . * . . * * * . .
+. . . * * * * . * * * * . . .
+. . . . * * * * * * * . . . .
+. . * . * * * * * * * . * . .
+. * . * . * * S * * . * . * .
+. . * . * * * * * * * . * . .
+. . . . * * * * * * * . . . .
+. . . * * * * . * * * * . . .
+. . * * * . . * . . * * * . .
+. * * * . . * . * . . * * * .
+. * * . . . . * . . . . * * .
+. . . . . . . . . . . . . . .
+Arrow: 7,7   8,8   9,7  10,8  11,7  12,8  13,7  14,8
+Arrow: 7,7   8,6   9,7  10,6  11,7  12,6  13,7  14,6;  stroke = red
+Arrow: 7,7   6,8   5,7   4,8   3,7   2,8   1,7   0,8;  stroke = red
+Arrow: 7,7   6,6   5,7   4,6   3,7   2,6   1,7   0,6
+Arrow: 7,7   6,6   7,5   6,4   7,3   6,2   7,1   6,0
+Arrow: 7,7   8,6   7,5   8,4   7,3   8,2   7,1   8,0;  stroke = red
+Arrow: 7,7   6,8   7,9   6,10  7,11  6,12  7,13  6,14; stroke = red
+Arrow: 7,7   8,8   7,9   8,10  7,11  8,12  7,13  8,14
+Arrow: 7,7   6,7   6,6   5,6   5,5   4,5   4,4   3,4  \\
+             3,3   2,3   2,2   1,2   1,1   0,1;        stroke = blue
+Arrow: 7,7   7,6   6,6   6,5   5,5   5,4   4,4   4,3  \\
+             3,3   3,2   2,2   2,1   1,1   1,0;        stroke = green
+Arrow: 7,7   7,8   6,8   6,9   5,9   5,10  4,10  4,11 \\
+             3,11  3,12  2,12  2,13  1,13  1,14;       stroke = green
+Arrow: 7,7   6,7   6,8   5,8   5,9   4,9   4,10  3,10 \\
+             3,11  2,11  2,12  1,12  1,13  0,13;       stroke = blue
+Arrow: 7,7   8,7   8,6   9,6   9,5  10,5  10,4  11,4  \\
+            11,3  12,3  12,2  13,2  13,1  14,1;        stroke = blue
+Arrow: 7,7   7,6   8,6   8,5   9,5   9,4  10,4  10,3  \\
+            11,3  11,2  12,2  12,1  13,1  13,0;        stroke = green
+Arrow: 7,7   7,8   8,8   8,9   9,9   9,10 10,10 10,11 \\
+            11,11 11,12 12,12 12,13 13,13 13,14;       stroke = green
+Arrow: 7,7   8,7   8,8   9,8   9,9  10,9  10,10 11,10 \\
+            11,11 12,11 12,12 13,12 13,13 14,13;       stroke = blue
+</div>
+
+<p>The <strong>Crooked Queen</strong> combines the moves of the <a href="boy_scout.html"><em>Boy Scout</em></a>
+and the <a href="girl_scout.html"><em>Girl Scout</em></a>. That is, it zigzags
 orthogonally or diagonally outward.</p>
 
 <table class = piece_list>
@@ -45,14 +88,14 @@ orthogonally or diagonally outward.</p>
 <h4 id = 'square'>Square</h4>
 
 <div class = "section">
-<p>On the Square Spiral, the %%PIECE%% can move like the <a href="wazir.html"><em>Wazir</em></a>, so
+<p>On the Square Spiral, the <strong>Crooked Queen</strong> can move like the <a href="wazir.html"><em>Wazir</em></a>, so
 it follows the spiral and visits all the squares.</p>
 </div>
 
 <h4 id = 'diamond'>Diamond</h4>
 
 <div class = "section">
-<p>On the Diamond Spiral, the %%PIECE%% can move like the <a href="blind_monkey.html"><em>Blind Monkey</em></a>, so
+<p>On the Diamond Spiral, the <strong>Crooked Queen</strong> can move like the <a href="blind_monkey.html"><em>Blind Monkey</em></a>, so
 it follows the spiral and visits all the squares.</p>
 </div>
 
@@ -61,13 +104,13 @@ it follows the spiral and visits all the squares.</p>
 <h4 id = 'folded'>Folded</h4>
 
 <div class = "section">
-<p>On the Folded Wedge, the %%PIECE%% can move like the <a href="flying_cock.html"><em>Flying Cock</em></a>, so
+<p>On the Folded Wedge, the <strong>Crooked Queen</strong> can move like the <a href="flying_cock.html"><em>Flying Cock</em></a>, so
 it follows the wedge and visits all the squares.</p>
 </div>
 
 <h4 id = 'flat'>Flat</h4>
 
-<p>On the Flat Wedge, the %%PIECE%% visits all the squares by visiting
+<p>On the Flat Wedge, the <strong>Crooked Queen</strong> visits all the squares by visiting
 all the squares of each row, before moving on to the next row.</p>
 
 <div class = 'trapped' data-piece = 'crooked_queen'></div>

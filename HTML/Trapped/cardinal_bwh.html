@@ -1,6 +1,6 @@
 <html>
 <head>
-<title>%%PIECE%%</title>
+<title>Cardinal</title>
 <meta charset = "utf-8">
 <link rel  = 'preconnect' href = 'https://fonts.gstatic.com'>
 <link rel = 'stylesheet' href =      'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
@@ -14,18 +14,31 @@
 <script src = '../../JavaScript/Trapped/trapped.js'></script>
 <script src = '../../JavaScript/Trapped/pieces.js'></script>
 <script src = '../../JavaScript/Trapped/boxset.js'></script>
+<script src = '../../JavaScript/Trapped/movement.js'></script>
 <script src = '../../JavaScript/Trapped/pages.js'></script>
 </head>
 
-<body><h1>%%PIECE%%</h1><div class = "byline">
+<body><h1>Cardinal</h1><div class = "byline">
 by Abigail<br>
 <img src = "../../Images/jan_sluiters.jpg">
 </div>
 
 
-<p>The %%PIECE%% either slides an unlimited number of unoccupied squares
+<div class = "movement">
+A . . . . . . . A
+. * . . * . . * .
+. . * . . . * . .
+. . . * * * . . .
+. * . * S * . * .
+. . . * * * . . .
+. . * . . . * . .
+. * . . * . . * .
+A . . . . . . . A
+</div>
+
+<p>The <strong>Cardinal</strong> either slides an unlimited number of unoccupied squares
 diagonally (like a <a href="bishop.html"><em>Bishop</em></a>), or jumps one or three
-squares orthogonally (like a <a href="wazir.html"><em>Wazir</em></a> or <a href="threeleaper.html"><em>Threeleaper</em></a>.</p>
+squares orthogonally (like a <a href="wazir.html"><em>Wazir</em></a> or <a href="threeleaper.html"><em>Threeleaper</em></a>).</p>
 
 <table class = piece_list>
   <tr class = 'row-0' markdown = '1'>
@@ -45,14 +58,14 @@ squares orthogonally (like a <a href="wazir.html"><em>Wazir</em></a> or <a href=
 <h4 id = 'square'>Square</h4>
 
 <div class = "section">
-<p>The %%PIECE%% can move like the <a href="wazir.html"><em>Wazir</em></a> and fills the board, visiting
+<p>The <strong>Cardinal</strong> can move like the <a href="wazir.html"><em>Wazir</em></a> and fills the board, visiting
 the squares in order.</p>
 </div>
 
 <h4 id = 'diamond'>Diamond</h4>
 
 <div class = "section">
-<p>The %%PIECE%% can move like the <a href="blind_monkey.html"><em>Blind Monkey</em></a> and fills the board, visiting
+<p>The <strong>Cardinal</strong> can move like the <a href="blind_monkey.html"><em>Blind Monkey</em></a> and fills the board, visiting
 the squares in order.</p>
 </div>
 
@@ -61,13 +74,13 @@ the squares in order.</p>
 <h4 id = 'folded'>Folded</h4>
 
 <div class = "section">
-<p>The %%PIECE%% can move like the <a href="flying_cock.html"><em>Flying Cock</em></a> and fills the board, visiting
+<p>The <strong>Cardinal</strong> can move like the <a href="flying_cock.html"><em>Flying Cock</em></a> and fills the board, visiting
 the squares in order.</p>
 </div>
 
 <h4 id = 'flat'>Flat</h4>
 
-<p>The %%PIECE%% uses a simple pattern, visiting all the squares in a 
+<p>The <strong>Cardinal</strong> uses a simple pattern, visiting all the squares in a 
 row before moving to the next one.</p>
 
 <div class = 'trapped' data-piece = 'cardinal_bwh'></div>
