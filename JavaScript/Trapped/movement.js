@@ -60,9 +60,6 @@ class Movement {
         let lines2       = []
         let shogi        = 0
 
-        let hmm = description . replace (/\\\n/g, " ")
-        console . log (hmm)
-
         let by_line = description . replace (/\\\n/g, " ")
                                   . split   ("\n")
                                   . filter  ((line) => line . match (/\S/))
