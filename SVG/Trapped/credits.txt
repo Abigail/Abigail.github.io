@@ -1,11 +1,8 @@
-acropolis, actress:
+acropolis, actress, antelope:
     license: CC0 License
     url: https://www.svgrepo.com/svg/197101/parthenon
     url: https://www.svgrepo.com/svg/97210/actress
-
-antelope:
-    licence: CC0
-    url: https://www.svgrepo.com/svg/77259/antelope-silhouette-from-side-view
+    url: https://www.svgrepo.com/svg/155065/antelope
 
 falcon, narwhal:
     license: Logo License
