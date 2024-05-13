@@ -21,6 +21,7 @@ let TRANSFORM = {     // [Scale, Translate X, Translate Y]
     barc:                [  850,     -13.32],
     beaver:              [  850,     -13.32],
     blind_dog:           [  850,     -13.32],
+    blind_monkey:        [  850,     -13.40],
     caliph:              [    0,       0.20],
     crab:                [  850,     -13.32],
     dabbaba:             [    0,       0.22],

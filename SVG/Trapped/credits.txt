@@ -12,6 +12,11 @@ blind_dog:
     author: Icooon Mono
     url: https://www.svgrepo.com/svg/481198/dog-5
 
+blind_monkey:
+    license: MIT License
+    author: joypixels
+    url: https://www.svgrepo.com/svg/404099/see-no-evil-monkey
+
 falcon, narwhal:
     license: Logo License
     url: https://www.svgrepo.com/svg/330408/falcon
