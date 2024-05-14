@@ -1,4 +1,9 @@
-acropolis, actress, antelope, barc, beaver, crab:
+abbot:
+    author: game-icons.net
+    license: CC Attribution License
+    url: https://www.svgrepo.com/svg/321699/abbot-meeple
+
+acropolis, actress, antelope, barc, beaver, crab, fire_horse:
     license: CC0 License
     url: https://www.svgrepo.com/svg/197101/parthenon
     url: https://www.svgrepo.com/svg/97210/actress
@@ -6,6 +11,7 @@ acropolis, actress, antelope, barc, beaver, crab:
     url: https://www.svgrepo.com/svg/176704/crab-food (modified)
     url: https://www.svgrepo.com/svg/138361/beaver-head
     url: https://www.svgrepo.com/svg/176704/crab-food
+    url: https://www.svgrepo.com/svg/176552/horse-head-facing-right-outline-variant
 
 blind_dog:
     license: PD License
@@ -16,6 +22,12 @@ blind_monkey:
     license: MIT License
     author: joypixels
     url: https://www.svgrepo.com/svg/404099/see-no-evil-monkey
+
+emperor, genie:
+    author: vectordoodle
+    license: CC Attribution License
+    url: https://www.svgrepo.com/svg/453055/king (modified)
+    url: https://www.svgrepo.com/svg/452514/jinn (modified)
 
 falcon, narwhal:
     license: Logo License

@@ -14,6 +14,7 @@ $(window) . on ("load", () => {
 
 let MOV_SIZE  = 30    // Height/width of square
 let TRANSFORM = {     // [Scale, Translate X, Translate Y]
+    abbot:               [  850,     -15.80],
     acropolis:           [  350,     - 4.50],
     actress:             [  850,     -13.70],
     antelope:            [  850,     -13.82],
@@ -29,7 +30,10 @@ let TRANSFORM = {     // [Scale, Translate X, Translate Y]
     dragon_king:         [   50],
     elephant:            [   40,     - 0.87],
     elephant_janggi:     [   40,     - 0.87],
+    emperor:             [  850,     -13.32],
     falcon:              [  800,     -13.30],
+    fire_horse:          [  850,     -13.32],
+    genie:               [  850,     -13.32],
     gold_general:        [   50],
     hawk:                [  900,     -14.05],
     lance:               [   50],

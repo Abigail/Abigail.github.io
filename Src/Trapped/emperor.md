@@ -2,11 +2,11 @@
 
 <div class = "movement">
 . . . . . . .
-. L * * * L .
+. L * L * L .
 . * * * * * .
-. * * S * * .
+. L * S * L .
 . * * * * * .
-. L * * * L .
+. L * L * L .
 . . . . . . .
 </div>
 
@@ -17,7 +17,7 @@ the %%PIECE%% starts in the center -- but it can be blocked when
 trying to reach the corners (or centers of the edges) of the 5x5
 square.
 
-The related game of %%SCIROCC%% has a piece named 
+The related game of %%SCIROCCO%% has a piece named 
 [*Emperor*](champion.html), but it moves differently.
 
 |====

@@ -1,6 +1,6 @@
 <html>
 <head>
-<title>%%PIECE%%</title>
+<title>Ghost Warrior</title>
 <meta charset = "utf-8">
 <link rel  = 'preconnect' href = 'https://fonts.gstatic.com'>
 <link rel = 'stylesheet' href =      'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
@@ -14,16 +14,27 @@
 <script src = '../../JavaScript/Trapped/trapped.js'></script>
 <script src = '../../JavaScript/Trapped/pieces.js'></script>
 <script src = '../../JavaScript/Trapped/boxset.js'></script>
+<script src = '../../JavaScript/Trapped/movement.js'></script>
 <script src = '../../JavaScript/Trapped/pages.js'></script>
 </head>
 
-<body><h1>%%PIECE%%</h1><div class = "byline">
+<body><h1>Ghost Warrior</h1><div class = "byline">
 by Abigail<br>
 <img src = "../../Images/jan_sluiters.jpg">
 </div>
 
 
-<p>The %%PIECE%% either moves an unlimited number of unoccupied
+<div class = "movement">
+. . A . .
+. . * . .
+. . * . .
+. . * . .
+. . S . .
+. * . * .
+. . . . .
+</div>
+
+<p>The <strong>Ghost Warrior</strong> either moves an unlimited number of unoccupied
 squares forward (like the <a href="lance.html"><em>Lance</em></a>), or a one square
 diagonally backward.</p>
 
@@ -45,16 +56,16 @@ diagonally backward.</p>
 <h4 id = 'square'>Square</h4>
 
 <div class = "section">
-<p>On the Spiral, the %%PIECE%% visits all the squares in
+<p>On the Spiral, the <strong>Ghost Warrior</strong> visits all the squares in
 the left quadrant of the board, when divided along the diagonals.
-THus, the %%PIECE%% visits <span class = 'latex-inline'>\(25\%\)</span> of the squares on the board.</p>
+THus, the <strong>Ghost Warrior</strong> visits <span class = 'latex-inline'>\(25\%\)</span> of the squares on the board.</p>
 </div>
 
 <h4 id = 'diamond'>Diamond</h4>
 
 <div class = "section">
-<p>On the Diamond Square, the uses an eight step loop to move four
-square straight down, giving it an escape velocity of
+<p>On the Diamond Square, the <strong>Ghost Warrior</strong> uses an eight step loop
+to move four square straight down, giving it an escape velocity of
 <span class = 'latex-inline'>\(\frac{1}{2}\)</span>. Only two files will be visited, and all but
 two of the visited squares are below the origin.</p>
 </div>
@@ -64,18 +75,18 @@ two of the visited squares are below the origin.</p>
 <h4 id = 'folded'>Folded</h4>
 
 <div class = "section">
-<p>On the Folded Wedge, the %%PIECE%% escapes to infinity
+<p>On the Folded Wedge, the <strong>Ghost Warrior</strong> escapes to infinity
 by visiting only the three left most squares of each row.
-In a three step loop, the %%PIECE%% moves one square
+In a three step loop, the <strong>Ghost Warrior</strong> moves one square
 upwards and to the left, giving it an escape velocity
 of <span class = 'latex-inline'>\(\frac{\sqrt{2}}{3}\)</span>.</p>
 </div>
 
 <h4 id = 'flat'>Flat</h4>
 
-<p>On the Flat Wedge, the %%PIECE%% escapes to infinity
+<p>On the Flat Wedge, the <strong>Ghost Warrior</strong> escapes to infinity
 by visiting only the three right most squares of each row.
-In a three step loop, the %%PIECE%% moves one square
+In a three step loop, the <strong>Ghost Warrior</strong> moves one square
 upwards and to the right, giving it an escape velocity
 of <span class = 'latex-inline'>\(\frac{\sqrt{2}}{3}\)</span>.</p>
 
