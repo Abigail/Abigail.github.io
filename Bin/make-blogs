@@ -908,11 +908,21 @@ sub post_process ($text, $directives) {
                                  "</div>\n" => $class, $base;
             }
         }
-        if (-f "$TOP_DIR/SVG/Trapped/$base.svg") {
-            my $svg = `cat $TOP_DIR/SVG/Trapped/$base.svg`;
-               $svg =~ s/<!--.*?-->//gs;
-            $text  .= "\n<div class = 'drawing' data-piece = '$base'>" .
-                      "<!--\n" . $svg . "\n-->\n</div>";
+
+        #
+        # Find the pieces we need to include
+        #
+        my @svgs = $text =~ m {<div \s+ class \s* = \s* ["']movement['"] \s+
+                                    data-piece \s* = \s* ["']? ([^"']+)}xg;
+        @svgs = ($base) unless @svgs;
+
+        foreach my $piece (@svgs) {
+            if (-f "$TOP_DIR/SVG/Trapped/$piece.svg") {
+                my $svg = `cat $TOP_DIR/SVG/Trapped/$piece.svg`;
+                   $svg =~ s/<!--.*?-->//gs;
+                $text  .= "\n<div class = 'drawing' data-piece = '$piece'>" .
+                          "<!--\n" . $svg . "\n-->\n</div>";
+            }
         }
     }
 

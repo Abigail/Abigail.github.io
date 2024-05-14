@@ -51,6 +51,8 @@ class Movement {
             return
         }
 
+        let piece_name = $(element) . data ("piece") || args . piece
+
         //
         // Find the size of board. It ought to be a rectangle
         //
@@ -91,7 +93,7 @@ class Movement {
                                        . map ((x) => x . split (/,/) .
                                                      map ((x) => +x))
                 if (line . match (/^Line:/)) {
-                    lines  . push (coordinates)
+                    lines  . push ([coordinates, args])
                 }
                 else {
                     arrows . push ([coordinates, args])
@@ -125,22 +127,22 @@ class Movement {
         })
 
         arrows . forEach ((info) => {
-            this . draw_arrow (info [0], info [1])
+            this . draw_arrow (... info)
         })
         arrows2 . forEach ((square) => {
             this . draw_arrow ([pieces [0], square], {})
         })
 
-        lines . forEach ((coordinates) => {
-            this . draw_line (coordinates)
+        lines . forEach ((info) => {
+            this . draw_line (... info)
         })
         lines2 . forEach ((square) => {
-            this . draw_line ([pieces [0], square])
+            this . draw_line ([pieces [0], square], {})
         })
 
         pieces . forEach ((square) => {
             this . place_piece ({square: square,
-                                 piece:  args . piece,
+                                 piece:  piece_name,
                                  shogi:  shogi})
         })
 
@@ -185,7 +187,7 @@ class Movement {
         this . inner_bottom =  h / 2
         this . inner_right  =  w / 2
 
-        let board = SVG () . addTo   ("div.movement")
+        let board = SVG () . addTo   (args . addTo)
                            . size    ( w, h)
                            . viewbox (-w / 2, -h / 2, w, h)
 
@@ -245,17 +247,33 @@ class Movement {
         let piece  = args . piece
         let shogi  = args . shogi
 
-        let div    = $("div.drawing")
+        let divs   = $("div.drawing")
+        let drawing
 
-        if (div . length) {
+        if (divs && divs . length) {
+            divs . each ((index, div) => {
+                if ($(div) . data ("piece")) {
+                    if ($(div) . data ("piece") == piece) {
+                        drawing = div
+                    }
+                }
+                else {
+                    if (!drawing) {
+                        drawing = div
+                    }
+                }
+            })
+        }
+
+        if (drawing) {
             let group = this . board . group ()
 
-            let svg   = $("div.drawing") . html ()
-                                         . replace (/<\?[^?]*?\?>/,    "")
-                                         . replace (/.*<\/metadata>/s, "")
-                                         . replace ("<!--",            "")
-                                         . replace ("-->",             "")
-                                         . replace ("</svg>",          "")
+            let svg   = $(drawing) . html ()
+                                   . replace (/<\?[^?]*?\?>/,    "")
+                                   . replace (/.*<\/metadata>/s, "")
+                                   . replace ("<!--",            "")
+                                   . replace ("-->",             "")
+                                   . replace ("</svg>",          "")
 
             group . svg    (svg)
                   . center (... this . square_to_coord (square))
