@@ -1,6 +1,6 @@
 <html>
 <head>
-<title>%%PIECE%%</title>
+<title>Goose</title>
 <meta charset = "utf-8">
 <link rel  = 'preconnect' href = 'https://fonts.gstatic.com'>
 <link rel = 'stylesheet' href =      'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
@@ -14,18 +14,30 @@
 <script src = '../../JavaScript/Trapped/trapped.js'></script>
 <script src = '../../JavaScript/Trapped/pieces.js'></script>
 <script src = '../../JavaScript/Trapped/boxset.js'></script>
+<script src = '../../JavaScript/Trapped/movement.js'></script>
 <script src = '../../JavaScript/Trapped/pages.js'></script>
 </head>
 
-<body><h1>%%PIECE%%</h1><div class = "byline">
+<body><h1>Goose</h1><div class = "byline">
 by Abigail<br>
 <img src = "../../Images/jan_sluiters.jpg">
 </div>
 
 
-<p>The %%PIECE%% either jumps to a square two away on a forward
-diagonal (like a forward <a href="alfil.html"><em>Alfil</em></a>, or to a square
-two orthogonally backwards (like a backward <a href="dabbaba.html"><em>Dabbaba</em></a>.
+<div class = "movement">
+. . . . . . .
+. * . . . * .
+. . . . . . .
+. . . S . . .
+. . . . . . .
+. . . * . . .
+. . . . . . .
+Shogi: 1
+</div>
+
+<p>The <strong>Goose</strong> either jumps to a square two away on a forward
+diagonal (like a forward <a href="alfil.html"><em>Alfil</em></a>), or to a square
+two orthogonally backwards (like a backward <a href="dabbaba.html"><em>Dabbaba</em></a>).
 This makes the %%PIECE%% <span class = 'tooltip underline'>colourbound<span class = 'tooltiptext'>A colourbound piece will always stay on a square of the same colour: if it starts on a black square, it will always remain on a black square; if it starts on a white square, it will always remain on a white square</span></span>.</p>
 
 <table class = piece_list>
@@ -48,10 +60,10 @@ This makes the %%PIECE%% <span class = 'tooltip underline'>colourbound<span clas
 <h4 id = 'square'>Square</h4>
 
 <div class = "section">
-<p>The first 30 steps, the %%PIECE%% bounces around, and then
+<p>The first 30 steps, the <strong>Goose</strong> bounces around, and then
 gets into a pattern where it visits three squares (with one
 unvisited square in between) every second row. Following this
-pattern, the %%PIECE%% escapes to the lower right. It uses a 
+pattern, the <strong>Goose</strong> escapes to the lower right. It uses a 
 three step loop to move two squares down and to the right,
 giving it an escape velocity of <span class = 'latex-inline'>\(\frac{\sqrt{2}}{3}\)</span>.</p>
 </div>
@@ -59,14 +71,14 @@ giving it an escape velocity of <span class = 'latex-inline'>\(\frac{\sqrt{2}}{3
 <h4 id = 'diamond'>Diamond</h4>
 
 <div class = "section">
-<p>The %%PIECE%% uses an eight step loop to move eight squares upward,
+<p>The <strong>Goose</strong> uses an eight step loop to move eight squares upward,
 visiting squares in only two files. This gives it an escape speed
 of <span class = 'latex-inline'>\(1\)</span>.</p>
 </div>
 
 <h3 id = 'wedge'>Wedge</h3>
 
-<p>On both the Folded and Flat Wedge, the %%PIECE%% visits the right most
+<p>On both the Folded and Flat Wedge, the <strong>Goose</strong> visits the right most
 square on each second row, and no other squares. It escapes hugging the
 right edge of the Wedge, with an escape speed of 
 <span class = 'latex-inline'>\(2 \sqrt{2}\)</span>.</p>

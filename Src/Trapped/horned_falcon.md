@@ -1,6 +1,19 @@
-# %%PIECE%%
+# Horned Falcon
 
-The %%PIECE%% either moves an unlimited number of unoccupied squares
+<div class = "movement">
+A . . . . . . . A
+. * . . . . . * .
+. . * . * . * . .
+. . . * * * . . .
+A * * * S * * * A
+. . . * * * . . .
+. . * . * . * . .
+. * . . * . . * .
+A . . . A . . . A
+Shogi: 1
+</div>
+
+The **Horned Falcon** either moves an unlimited number of unoccupied squares
 in each orthogonal and diagonal direction, except straight forward
 (so, like a [*Bishop*](bishop.html) or a sidewards/backwards
 [*Rook*](rook.html)), or leaps one or two squares forward
@@ -19,23 +32,23 @@ in each orthogonal and diagonal direction, except straight forward
 
 #### Square
 
-On the Spiral, the %%PIECE%% can move as the [*Wazir*](wazir.html),
+On the Spiral, the **Horned Falcon** can move as the [*Wazir*](wazir.html),
 so it visits all the squares by following the Spiral.
 
 #### Diamond
 
-On the Spiral, the %%PIECE%% can move as the %%BM%%
+On the Spiral, the **Horned Falcon** can move as the %%BM%%
 so it visits all the squares by following the Spiral.
 
 ### Wedge
 
 #### Folded
 
-On the Folded Wedge, the %%PIECE%% can move as the
+On the Folded Wedge, the **Horned Falcon** can move as the
 [*Flying Cock*](flying_cock.html),
 so it visits all the squares by following the Wedge.
 
 #### Flat
 
-On the Flat Wedge, the %%PIECE%% visits all the squares
+On the Flat Wedge, the **Horned Falcon** visits all the squares
 using a pattern with a strong bias to the right.

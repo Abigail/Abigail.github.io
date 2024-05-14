@@ -1,6 +1,6 @@
 <html>
 <head>
-<title>%%PIECE%%</title>
+<title>Half Crooked Queen &#x2161;</title>
 <meta charset = "utf-8">
 <link rel  = 'preconnect' href = 'https://fonts.gstatic.com'>
 <link rel = 'stylesheet' href =      'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
@@ -14,18 +14,46 @@
 <script src = '../../JavaScript/Trapped/trapped.js'></script>
 <script src = '../../JavaScript/Trapped/pieces.js'></script>
 <script src = '../../JavaScript/Trapped/boxset.js'></script>
+<script src = '../../JavaScript/Trapped/movement.js'></script>
 <script src = '../../JavaScript/Trapped/pages.js'></script>
 </head>
 
-<body><h1>%%PIECE%%</h1><div class = "byline">
+<body><h1>Half Crooked Queen &#x2161;</h1><div class = "byline">
 by Abigail<br>
 <img src = "../../Images/jan_sluiters.jpg">
 </div>
 
 
-<p>The %%PIECE%% combines the moves of the <a href="crooked_rook.html"><em>Crooked Rook</em></a>
-and the <a href="bishop.html"><em>Bishop</em></a>. That is, it zigzags
-orthogonally outward, or slides diagonally outwards.</p>
+<div class = "movement">
+. . . . . . . . . . .
+. * * . . . . . * * .
+. * * * . . . * * * .
+. . * * * . * * * . .
+. . . * * * * * . . .
+. . . . * S * . . . .
+. . . * * * * * . . .
+. . * * * . * * * . .
+. * * * . . . * * * .
+. * * . . . . . * * .
+. . . . . . . . . . .
+Arrow: 5,5  4,5 4,4 3,4 3,3 2,3 2,2 1,2 1,1  0,1;   stroke = red
+Arrow: 5,5  5,4 4,4 4,3 3,3 3,2 2,2 2,1 1,1  1,0
+Arrow: 5,5  4,5 4,6 3,6 3,7 2,7 2,8 1,8 1,9  0,9;   stroke = red
+Arrow: 5,5  5,6 4,6 4,7 3,7 3,8 2,8 2,9 1,9  1,10
+Arrow: 5,5  5,4 6,4 6,3 7,3 7,2 8,2 8,1 9,1  9,0
+Arrow: 5,5  6,5 6,4 7,4 7,3 8,3 8,2 9,2 9,1 10,1;   stroke = red
+Arrow: 5,5  5,6 6,6 6,7 7,7 7,8 8,8 8,9 9,9  9,10
+Arrow: 5,5  6,5 6,6 7,6 7,7 8,7 8,8 9,8 9,9 10,9;   stroke = red
+Arrow: 5,5  0,0;                                    stroke = green
+Arrow: 5,5  0,10;                                   stroke = green
+Arrow: 5,5 10,0;                                    stroke = green
+Arrow: 5,5 10,10;                                   stroke = green
+</div>
+
+<p>The <strong>Half Crooked Queen &#x2161;</strong> combines the moves of the
+<a href="girl_scout.html"><em>Girl Scout</em></a> and the <a href="bishop.html"><em>Bishop</em></a>.
+That is, it zigzags orthogonally outward, or slides diagonally
+outwards.</p>
 
 <table class = piece_list>
   <tr class = 'row-0' markdown = '1'>
@@ -45,15 +73,16 @@ orthogonally outward, or slides diagonally outwards.</p>
 <h4 id = 'square'>Square</h4>
 
 <div class = "section">
-<p>On the Square Spiral, the %%PIECE%% can move like the <a href="wazir.html"><em>Wazir</em></a>, so
-it follows the spiral and visits all the squares.</p>
+<p>On the Square Spiral, the <strong>Half Crooked Queen &#x2161;</strong> can move
+like the <a href="wazir.html"><em>Wazir</em></a>, so it follows the spiral and visits all the
+squares.</p>
 </div>
 
 <h4 id = 'diamond'>Diamond</h4>
 
 <div class = "section">
-<p>On the Diamond Spiral, the %%PIECE%% can move like the <a href="blind_monkey.html"><em>Blind Monkey</em></a>, so
-it follows the spiral and visits all the squares.</p>
+<p>On the Diamond Spiral, the <strong>Half Crooked Queen &#x2161;</strong> can move
+like the <a href="blind_monkey.html"><em>Blind Monkey</em></a>, so it follows the spiral and visits all the squares.</p>
 </div>
 
 <h3 id = 'wedge'>Wedge</h3>
@@ -61,16 +90,17 @@ it follows the spiral and visits all the squares.</p>
 <h4 id = 'folded'>Folded</h4>
 
 <div class = "section">
-<p>On the Folded Wedge, the %%PIECE%% can move like the <a href="flying_cock.html"><em>Flying Cock</em></a>, so
-it follows the wedge and visits all the squares.</p>
+<p>On the Folded Wedge, the <strong>Half Crooked Queen &#x2161;</strong> can move
+like the <a href="flying_cock.html"><em>Flying Cock</em></a>, so it follows the wedge and visits all the squares.</p>
 </div>
 
 <h4 id = 'flat'>Flat</h4>
 
-<p>On the Flat Wedge, the %%PIECE%% visits all the squares by visiting
-all the squares by following a simple pattern. The pattern is different
-from the pattern followed by the <a href="crooked_queen.html"><em>Crooked Queen</em></a>
-and the <a href="half_crooked_queen_I.html"><em>Half Crooked Queen &#x2160;</em></a></p>
+<p>On the Flat Wedge, the <strong>Half Crooked Queen &#x2161;</strong> visits all
+the squares by visiting all the squares by following a simple
+pattern. The pattern is different from the pattern followed by the
+<a href="crooked_queen.html"><em>Crooked Queen</em></a> and the <a href="half_crooked_queen_I.html"><em>Half Crooked Queen
+&#x2160;</em></a>.</p>
 
 <div class = 'trapped' data-piece = 'half_crooked_queen_II'></div>
 
