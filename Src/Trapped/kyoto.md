@@ -8,6 +8,7 @@
 . * S * .
 . . * . .
 . . . . .
+Caption: Odd Moves
 </div>
 
 <div class = "movement" data-piece = "lance">
@@ -18,6 +19,7 @@
 . S .
 . . .
 . . .
+Caption: Even Moves
 </div>
 
 

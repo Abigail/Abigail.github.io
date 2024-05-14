@@ -68,6 +68,7 @@ class Movement {
         let lines        = []
         let lines2       = []
         let shogi        = 0
+        let caption      = ""
 
         let by_line = description . replace (/\\\n/g, " ")
                                   . split   ("\n")
@@ -101,6 +102,9 @@ class Movement {
             }
             else if (line . match (/^Shogi:/)) {
                 shogi = 1
+            }
+            else if (line . match (/^Caption:/)) {
+                caption = line . replace (/^Caption:\s*/, "")
             }
         })
 
@@ -155,6 +159,10 @@ class Movement {
         unoccupied . forEach ((square) => {
             this . place_destination ({square: square, unoccupied: 1})
         })
+
+        if (caption) {
+            $(element) . html ($(element) . html () + "<p>" + caption)
+        }
 
         $(element) . css ({visibility: "visible"})
     }
