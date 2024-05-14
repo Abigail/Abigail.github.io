@@ -1,0 +1,44 @@
+#!/opt/perl/bin/perl
+
+use 5.038;
+
+use strict;
+use warnings;
+no  warnings 'syntax';
+
+my ($x, $row, $col) = @ARGV;
+
+my $y   = $x;
+
+my @set = ([ $row,  $col], [ $col,  $row], [-$col,  $row], [-$row,  $col],
+           [-$row, -$col], [-$col, -$row], [ $col, -$row], [ $row, -$col]);
+
+my @sets;
+for my $offset (0 .. 7) {
+    push @sets => [@set [$offset .. 7, 0 .. $offset - 1]];
+}
+
+foreach my $set (@sets) {
+    print "Line: $x,$y";
+    my $xx = $x;
+    my $yy = $y;
+    foreach my $d (@$set) {
+        $xx += $$d [0];
+        $yy += $$d [1];
+        my $c  = sprintf " %2d,%d" => $xx, $yy;
+           $c .= " " if $yy < 10;
+        print $c;
+    }
+    print "\n"
+}
+
+# Line:  7,7  6,9  4,10   2,9   1,7   2,5   4,4  6,5   7,7
+# Line:  7,7  5,8  3,7    2,5   3,3   5,2   7,3  8,5   7,7
+# Line:  7,7  5,6  4,4    5,2   7,1   9,2  10,4  9,6   7,7
+# Line:  7,7  6,5  7,3    9,2  11,3  12,5  11,7  9,8   7,7
+# Line:  7,7  8,5 10,4   12,5  13,7  12,9  10,10 8,9   7,7
+# Line:  7,7  9,6 11,7   12,9  11,11  9,12  7,11 6,9   7,7
+# Line:  7,7  9,8 10,10   9,12  7,13  5,12  4,10 5,8   7,7
+# Line:  7,7  8,9  7,11   5,12  3,11  2,9   3,7  5,6   7,7
+
+__END__
