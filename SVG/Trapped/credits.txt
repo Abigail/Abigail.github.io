@@ -3,13 +3,16 @@ abbot:
     license: CC Attribution License
     url: https://www.svgrepo.com/svg/321699/abbot-meeple
 
-acropolis, actress, antelope, barc, beaver, crab, fire_horse:
+acropolis, actress, antelope, barc, beaver, blind_tiger, chariot, crab,
+fire_horse:
     license: CC0 License
     url: https://www.svgrepo.com/svg/197101/parthenon
     url: https://www.svgrepo.com/svg/97210/actress
     url: https://www.svgrepo.com/svg/155065/antelope
     url: https://www.svgrepo.com/svg/176704/crab-food (modified)
     url: https://www.svgrepo.com/svg/138361/beaver-head
+    url: https://www.svgrepo.com/svg/191140/tiger
+    url: https://www.svgrepo.com/svg/120360/chariot
     url: https://www.svgrepo.com/svg/176704/crab-food
     url: https://www.svgrepo.com/svg/176552/horse-head-facing-right-outline-variant
 
@@ -18,10 +21,11 @@ blind_dog:
     author: Icooon Mono
     url: https://www.svgrepo.com/svg/481198/dog-5
 
-blind_monkey:
+blind_monkey, dragon_a2c:
     license: MIT License
     author: joypixels
     url: https://www.svgrepo.com/svg/404099/see-no-evil-monkey
+    url: https://www.svgrepo.com/svg/403215/dragon-face
 
 emperor, genie:
     author: vectordoodle
