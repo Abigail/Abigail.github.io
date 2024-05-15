@@ -6,9 +6,9 @@ use strict;
 use warnings;
 no  warnings 'syntax';
 
-my ($x, $row, $col) = @ARGV;
+my ($row, $col) = @ARGV;
 
-my $y   = $x;
+my $x = my $y = 1 + 2 * ($row + $col);
 
 my @set = ([ $row,  $col], [ $col,  $row], [-$col,  $row], [-$row,  $col],
            [-$row, -$col], [-$col, -$row], [ $col, -$row], [ $row, -$col]);
