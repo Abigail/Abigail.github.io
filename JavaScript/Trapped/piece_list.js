@@ -1247,6 +1247,12 @@ let pieces = {
         _index_name: "General (Camel)",
     },
 
+    general_euro: {
+        parent: "gold_general",
+        _name: "General",
+        _index_name: "General (EuroShogi)",
+    },
+
     general_janggi: {
         parent: "king",
         _name: "General",
@@ -1623,6 +1629,18 @@ let pieces = {
         parent: "centaur",
     },
 
+    knight_euro: {
+        betza: "sWfN",
+        _name: "Knight",
+        _index_name: "Knight (EuroShogi)",
+        results: {
+            spiral_square:   "",
+            spiral_diamond:  "",
+            wedge_folded:    "",
+            wedge_flat:      "",
+        },
+    },
+
     shogi_knight: {
         betza:  "fN",
         _name:  "Knight",
@@ -1997,6 +2015,26 @@ let pieces = {
 
     princess: {
         parent: "archbishop"
+    },
+
+    promoted_bishop: {
+        parent: "dragon_horse",
+    },
+
+    promoted_knight_euro: {
+        parent: "gold_general",
+        _name: "Promoted Knight",
+        _index_name: "Promoted Knight (EuroShogi)",
+    },
+
+    promoted_rook: {
+        parent: "dragon_king",
+    },
+
+    promoted_pawn_euro: {
+        parent: "gold_general",
+        _name: "Promoted Pawn",
+        _index_name: "Promoted Pawn (EuroShogi)",
     },
 
     //
@@ -2971,6 +3009,14 @@ let set_info = {
         href:    "https://en.wikipedia.org/wiki/Yari_shogi",
         pieces: ["general_yari", "rook", "yari_rook", "yari_bishop",
                  "yari_gold", "yari_knight", "yari_silver", "pawn"],
+    },
+
+    euro_shogi: {
+        name:    "EuroShogi",
+        href:    "https://en.wikipedia.org/wiki/EuroShogi",
+        pieces: ["king", "rook", "promoted_rook", "bishop", "promoted_bishop",
+                 "general_euro", "knight_euro", "promoted_knight_euro",
+                 "pawn", "promoted_pawn_euro"]
     },
 
     wa_shogi: {
