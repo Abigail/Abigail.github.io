@@ -39,7 +39,9 @@ say '<div class = "movement">';
 
 foreach my $row (0 .. 2 * $x) {
     foreach my $col (0 .. 2 * $y) {
-        print $squares {$row} {$col} ? "* " : ". ";
+        print " " if $col;
+        print $x == $row && $y == $col ? "S"
+            : $squares {$row} {$col}   ? "*" : ".";
     }
     print "\n";
 }

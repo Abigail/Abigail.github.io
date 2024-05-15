@@ -1,6 +1,6 @@
 <html>
 <head>
-<title>%%PIECE%%</title>
+<title>Antelope Rose</title>
 <meta charset = "utf-8">
 <link rel  = 'preconnect' href = 'https://fonts.gstatic.com'>
 <link rel = 'stylesheet' href =      'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
@@ -14,24 +14,69 @@
 <script src = '../../JavaScript/Trapped/trapped.js'></script>
 <script src = '../../JavaScript/Trapped/pieces.js'></script>
 <script src = '../../JavaScript/Trapped/boxset.js'></script>
+<script src = '../../JavaScript/Trapped/movement.js'></script>
 <script src = '../../JavaScript/Trapped/pages.js'></script>
 </head>
 
-<body><h1>%%PIECE%%</h1><div class = "byline">
+<body><h1>Antelope Rose</h1><div class = "byline">
 by Abigail<br>
 <img src = "../../Images/jan_sluiters.jpg">
 </div>
 
 
-<p>The %%PIECE%% makes repeated <a href="antelope.html"><em>Antelope</em></a> steps, but unlike the 
-<a href="antelope_rider.html"><em>Antelope Rider</em></a>, the %%PIECE%% turns on each step
-(the minimum turn possible). After 8 such steps, it is back at
-the square it started on. Given that it start in 8 directions,
-and move either clockwise or counter-clockwise, it can reach
-quite a number of squares in one move. (Each square of its in between
-steps need to be unoccupied though). On a large enough board, away from 
-any borders, the %%PIECE%% can reach 32 different squares, assuming
-all squares are unoccupied.</p>
+<div class = "movement">
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+. . . . . . . . . . . . . . . * . . . . . . . . . . . . . . .
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+. . . . . . . . . . . * . . . . . . . * . . . . . . . . . . .
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+. . . . . . . * . . . . . . . * . . . . . . . * . . . . . . .
+. . . . . . . . * . . . . . . . . . . . . . * . . . . . . . .
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+. . . . * . . . . . . . * . . . . . * . . . . . . . * . . . .
+. . . . . . . . . . . * . . . . . . . * . . . . . . . . . . .
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+. * . . . . . * . . . . . . . S . . . . . . . * . . . . . * .
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+. . . . . . . . . . . * . . . . . . . * . . . . . . . . . . .
+. . . . * . . . . . . . * . . . . . * . . . . . . . * . . . .
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+. . . . . . . . * . . . . . . . . . . . . . * . . . . . . . .
+. . . . . . . * . . . . . . . * . . . . . . . * . . . . . . .
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+. . . . . . . . . . . * . . . . . . . * . . . . . . . . . . .
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+. . . . . . . . . . . . . . . * . . . . . . . . . . . . . . .
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+Line: 15,15 19,18 22,22 19,26 15,29 11,26  8,22 11,18 15,15
+Line: 15,15 18,19 15,23 11,26  7,23  4,19  7,15 11,12 15,15
+Line: 15,15 12,19  8,22  4,19  1,15  4,11  8,8  12,11 15,15
+Line: 15,15 11,18  7,15  4,11  7,7  11,4  15,7  18,11 15,15
+Line: 15,15 11,12  8,8  11,4  15,1  19,4  22,8  19,12 15,15
+Line: 15,15 12,11 15,7  19,4  23,7  26,11 23,15 19,18 15,15
+Line: 15,15 18,11 22,8  26,11 29,15 26,19 22,22 18,19 15,15
+Line: 15,15 19,12 23,15 26,19 23,23 19,26 15,23 12,19 15,15
+</div>
+
+<p>The <strong>Antelope Rose</strong> makes repeated <a href="antelope.html"><em>Antelope</em></a>
+steps, but unlike the <a href="antelope_rider.html"><em>Antelope Rider</em></a>, the
+<strong>Antelope Rose</strong> turns on each step (the minimum turn possible).
+After 8 such steps, it is back at the square it started on. Given
+that it start in 8 directions, and move either clockwise or
+counter-clockwise, it can reach quite a number of squares in one
+move. (Each square of its in between steps need to be unoccupied
+though). On a large enough board, away from any borders, the
+<strong>Antelope Rose</strong> can reach 32 different squares, assuming all
+squares are unoccupied. It needs a board sized at least 29x29 to
+reach its full potential.</p>
 
 <table class = piece_list>
   <tr class = 'row-0' markdown = '1'>
@@ -53,7 +98,7 @@ all squares are unoccupied.</p>
 <h4 id = 'square'>Square</h4>
 
 <div class = "section">
-<p>On the Square Spiral, the %%PIECE%% moves outward, keeping always a 
+<p>On the Square Spiral, the <strong>Antelope Rose</strong> moves outward, keeping always a 
 near square as the boundary of squares visited. It probably won't
 get trapped, and certainly doesn't do in its first 10,000 steps.</p>
 </div>
@@ -61,7 +106,7 @@ get trapped, and certainly doesn't do in its first 10,000 steps.</p>
 <h4 id = 'diamond'>Diamond</h4>
 
 <div class = "section">
-<p>On the Diamond Spiral, the %%PIECE%% moves outward, keeping always a 
+<p>On the Diamond Spiral, the <strong>Antelope Rose</strong> moves outward, keeping always a 
 near, rotated, square as the boundary of squares visited. It probably won't
 get trapped, and certainly doesn't do in its first 10,000 steps.</p>
 </div>
@@ -78,7 +123,9 @@ doesn't do so in its first 10,000 steps.</p>
 
 <h4 id = 'flat'>Flat</h4>
 
-<p>The %%PIECE%% get trapped after a mere 86 steps.</p>
+<p>The %%PIECE%% seems to fill the Folded Wedge completely, working on just
+a few rows at the time. It probably won't get trapped, and it certainly
+doesn't do so in its first 10,000 steps.</p>
 
 <div class = 'trapped' data-piece = 'antelope_rose'></div>
 

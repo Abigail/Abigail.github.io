@@ -14,11 +14,17 @@ The **Heavenly Horse** leaps to a square which is two squares away forward or
 backward, and one away to the right or left. This is equivalent to
 half the moves of the %%KNIGHT%%.
 
+Compare with the [*Wide Knight*](wide_knight.html) which uses the other
+half of the %%KNIGHT%% moves.
+
 |====
 %%PIECE_HEADERS%%
   {th = 1}  %%WA_SHOGI%%
 &           **Heavenly Horse** & &#x5929;&#x99AC;
 &           %%PROMOTED%% [*Liberated Horse*](liberated_horse.html) \\
+
+&           **Narrow Knight**
+& \\
 ====|
 
 ### Spiral

@@ -13,6 +13,9 @@
 The **Sorcerer** moves up to two unoccupied squares in each of the
 eight main directions. It is a very limited %%QUEEN%%.
 
+Compare with the [*Squire*](squire.html) which can move to the same
+set of squares, but which cannot be blocked.
+
 |====
 %%PIECE_HEADERS%%
   {th = 1}  %%HIASHATAR%%

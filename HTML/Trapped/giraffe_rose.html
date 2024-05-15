@@ -1,6 +1,6 @@
 <html>
 <head>
-<title>%%PIECE%%</title>
+<title>Giraffe Rose</title>
 <meta charset = "utf-8">
 <link rel  = 'preconnect' href = 'https://fonts.gstatic.com'>
 <link rel = 'stylesheet' href =      'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
@@ -14,24 +14,60 @@
 <script src = '../../JavaScript/Trapped/trapped.js'></script>
 <script src = '../../JavaScript/Trapped/pieces.js'></script>
 <script src = '../../JavaScript/Trapped/boxset.js'></script>
+<script src = '../../JavaScript/Trapped/movement.js'></script>
 <script src = '../../JavaScript/Trapped/pages.js'></script>
 </head>
 
-<body><h1>%%PIECE%%</h1><div class = "byline">
+<body><h1>Giraffe Rose</h1><div class = "byline">
 by Abigail<br>
 <img src = "../../Images/jan_sluiters.jpg">
 </div>
 
 
-<p>The %%PIECE%% makes repeated <a href="giraffe.html"><em>Giraffe</em></a> steps, but unlike the 
-<a href="giraffe_rider.html"><em>Giraffe Rider</em></a>, the %%PIECE%% turns on each step
-(the minimum turn possible). After 8 such steps, it is back at
-the square it started on. Given that it start in 8 directions,
-and move either clockwise or counter-clockwise, it can reach
-quite a number of squares in one move. (Each square of its in between
-steps need to be unoccupied though). On a large enough board, away from 
-any borders, the %%PIECE%% can reach 32 different squares, assuming
-all squares are unoccupied.</p>
+<div class = "movement">
+. . . . . . . . . . . . . . . . . . . . . . .
+. . . . . . . . . . . * . . . . . . . . . . .
+. . . . . . . * . . . . . . . * . . . . . . .
+. . . * . . . . . . . * . . . . . . . * . . .
+. . . . . . . . . . . . . . . . . . . . . . .
+. . . . . . . . . . . . . . . . . . . . . . .
+. . . . . . * . . . . . . . . . * . . . . . .
+. . * . . . . . . . * . * . . . . . . . * . .
+. . . . . . . . . . . . . . . . . . . . . . .
+. . . . . . . . . . . . . . . . . . . . . . .
+. . . . . . . * . . . . . . . * . . . . . . .
+. * . * . . . . . . . S . . . . . . . * . * .
+. . . . . . . * . . . . . . . * . . . . . . .
+. . . . . . . . . . . . . . . . . . . . . . .
+. . . . . . . . . . . . . . . . . . . . . . .
+. . * . . . . . . . * . * . . . . . . . * . .
+. . . . . . * . . . . . . . . . * . . . . . .
+. . . . . . . . . . . . . . . . . . . . . . .
+. . . . . . . . . . . . . . . . . . . . . . .
+. . . * . . . . . . . * . . . . . . . * . . .
+. . . . . . . * . . . . . . . * . . . . . . .
+. . . . . . . . . . . * . . . . . . . . . . .
+. . . . . . . . . . . . . . . . . . . . . . .
+Line: 11,11 15,12 16,16 15,20 11,21  7,20  6,16  7,12 11,11
+Line: 11,11 12,15 11,19  7,20  3,19  2,15  3,11  7,10 11,11
+Line: 11,11 10,15  6,16  2,15  1,11  2,7   6,6  10,7  11,11
+Line: 11,11  7,12  3,11  2,7   3,3   7,2  11,3  12,7  11,11
+Line: 11,11  7,10  6,6   7,2  11,1  15,2  16,6  15,10 11,11
+Line: 11,11 10,7  11,3  15,2  19,3  20,7  19,11 15,12 11,11
+Line: 11,11 12,7  16,6  20,7  21,11 20,15 16,16 12,15 11,11
+Line: 11,11 15,10 19,11 20,15 19,19 15,20 11,19 10,15 11,11
+</div>
+
+<p>The <strong>Giraffe Rose</strong> makes repeated <a href="giraffe.html"><em>Giraffe</em></a> steps,
+but unlike the <a href="giraffe_rider.html"><em>Giraffe Rider</em></a>, the <strong>Giraffe
+Rose</strong> turns on each step (the minimum turn possible). After 8 such
+steps, it is back at the square it started on. Given that it start
+in 8 directions, and move either clockwise or counter-clockwise,
+it can reach quite a number of squares in one move. (Each square
+of its in between steps need to be unoccupied though). On a large
+enough board, away from any borders, the <strong>Giraffe Rose</strong> can reach
+32 different squares, assuming all squares are unoccupied. It needs
+a board sized at least 19x19 to reach its full potential.</p>
 
 <table class = piece_list>
   <tr class = 'row-0' markdown = '1'>
@@ -53,7 +89,7 @@ all squares are unoccupied.</p>
 <h4 id = 'square'>Square</h4>
 
 <div class = "section">
-<p>On the Square Spiral, the %%PIECE%% moves outward, keeping always a 
+<p>On the Square Spiral, the <strong>Giraffe Rose</strong> moves outward, keeping always a 
 near square as the boundary of squares visited. It probably won't
 get trapped, and certainly doesn't do in its first 10,000 steps.</p>
 </div>
@@ -61,7 +97,7 @@ get trapped, and certainly doesn't do in its first 10,000 steps.</p>
 <h4 id = 'diamond'>Diamond</h4>
 
 <div class = "section">
-<p>On the Diamond Spiral, the %%PIECE%% moves outward, keeping always a 
+<p>On the Diamond Spiral, the <strong>Giraffe Rose</strong> moves outward, keeping always a 
 near, rotated, square as the boundary of squares visited. It probably won't
 get trapped, and certainly doesn't do in its first 10,000 steps.</p>
 </div>
@@ -71,14 +107,14 @@ get trapped, and certainly doesn't do in its first 10,000 steps.</p>
 <h4 id = 'folded'>Folded</h4>
 
 <div class = "section">
-<p>The %%PIECE%% seems to fill the Folded Wedge completely, working on just
+<p>The <strong>Giraffe Rose</strong> seems to fill the Folded Wedge completely, working on just
 a few rows at the time. It probably won't get trapped, and it certainly
 doesn't do so in its first 10,000 steps.</p>
 </div>
 
 <h4 id = 'flat'>Flat</h4>
 
-<p>The %%PIECE%% seems to fill the Folded Wedge completely, working on just
+<p>The <strong>Giraffe Rose</strong> seems to fill the Folded Wedge completely, working on just
 a few rows at the time. It probably won't get trapped, and it certainly
 doesn't do so in its first 10,000 steps.</p>
 

@@ -1,6 +1,6 @@
 <html>
 <head>
-<title>%%PIECE%%</title>
+<title>Stag Rose</title>
 <meta charset = "utf-8">
 <link rel  = 'preconnect' href = 'https://fonts.gstatic.com'>
 <link rel = 'stylesheet' href =      'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
@@ -14,25 +14,67 @@
 <script src = '../../JavaScript/Trapped/trapped.js'></script>
 <script src = '../../JavaScript/Trapped/pieces.js'></script>
 <script src = '../../JavaScript/Trapped/boxset.js'></script>
+<script src = '../../JavaScript/Trapped/movement.js'></script>
 <script src = '../../JavaScript/Trapped/pages.js'></script>
 </head>
 
-<body><h1>%%PIECE%%</h1><div class = "byline">
+<body><h1>Stag Rose</h1><div class = "byline">
 by Abigail<br>
 <img src = "../../Images/jan_sluiters.jpg">
 </div>
 
 
-<p>The %%PIECE%% makes repeated <em>Stag</em>](stag.html) steps, but unlike the 
-<a href="stag_rider.html"><em>Stag Rider</em></a>, the %%PIECE%% turns on each step
+<div class = "movement">
+. . . . . . . . . . . . . . . . . . . . . . . . . . .
+. . . . . . . . . . . . . * . . . . . . . . . . . . .
+. . . . . . . . . . . . . . . . . . . . . . . . . . .
+. . . . . . . . . * . . . . . . . * . . . . . . . . .
+. . . . . . . . . . . . . . . . . . . . . . . . . . .
+. . . . . * . . . . . . . * . . . . . . . * . . . . .
+. . . . . . . . . . . . . . . . . . . . . . . . . . .
+. . . . . . . * . . . . . . . . . . . * . . . . . . .
+. . . . . . . . . . . . . . . . . . . . . . . . . . .
+. . . * . . . . . . . * . . . * . . . . . . . * . . .
+. . . . . . . . . . . . . . . . . . . . . . . . . . .
+. . . . . . . . . * . . . . . . . * . . . . . . . . .
+. . . . . . . . . . . . . . . . . . . . . . . . . . .
+. * . . . * . . . . . . . S . . . . . . . * . . . * .
+. . . . . . . . . . . . . . . . . . . . . . . . . . .
+. . . . . . . . . * . . . . . . . * . . . . . . . . .
+. . . . . . . . . . . . . . . . . . . . . . . . . . .
+. . . * . . . . . . . * . . . * . . . . . . . * . . .
+. . . . . . . . . . . . . . . . . . . . . . . . . . .
+. . . . . . . * . . . . . . . . . . . * . . . . . . .
+. . . . . . . . . . . . . . . . . . . . . . . . . . .
+. . . . . * . . . . . . . * . . . . . . . * . . . . .
+. . . . . . . . . . . . . . . . . . . . . . . . . . .
+. . . . . . . . . * . . . . . . . * . . . . . . . . .
+. . . . . . . . . . . . . . . . . . . . . . . . . . .
+. . . . . . . . . . . . . * . . . . . . . . . . . . .
+. . . . . . . . . . . . . . . . . . . . . . . . . . .
+Line: 13,13 17,15 19,19 17,23 13,25  9,23  7,19  9,15 13,13
+Line: 13,13 15,17 13,21  9,23  5,21  3,17  5,13  9,11 13,13
+Line: 13,13 11,17  7,19  3,17  1,13  3,9   7,7  11,9  13,13
+Line: 13,13  9,15  5,13  3,9   5,5   9,3  13,5  15,9  13,13
+Line: 13,13  9,11  7,7   9,3  13,1  17,3  19,7  17,11 13,13
+Line: 13,13 11,9  13,5  17,3  21,5  23,9  21,13 17,15 13,13
+Line: 13,13 15,9  19,7  23,9  25,13 23,17 19,19 15,17 13,13
+Line: 13,13 17,11 21,13 23,17 21,21 17,23 13,21 11,17 13,13
+</div>
+
+<p>The <strong>Stag Rose</strong> makes repeated <a href="stag.html"><em>Stag</em></a> steps, but unlike the 
+<a href="stag_rider.html"><em>Stag Rider</em></a>, the <strong>Stag Rose</strong> turns on each step
 (the minimum turn possible). After 8 such steps, it is back at
 the square it started on. Given that it start in 8 directions,
 and move either clockwise or counter-clockwise, it can reach
 quite a number of squares in one move. (Each square of its in between
 steps need to be unoccupied though). On a large enough board, away from 
-any borders, the %%PIECE%% can reach 32 different squares, assuming
-all squares are unoccupied. Just like the <a href="stag.html"><em>Stag</em></a>, the
-%%PIECE%% is <span class = 'tooltip underline'>colourbound<span class = 'tooltiptext'>A colourbound piece will always stay on a square of the same colour: if it starts on a black square, it will always remain on a black square; if it starts on a white square, it will always remain on a white square</span></span>, and will only visit squares of the
+any borders, the <strong>Stag Rose</strong> can reach 32 different squares, assuming
+all squares are unoccupied. It needs a board with sizes at least 25x25 
+to be able to reach all the squares.</p>
+
+<p>Just like the <a href="stag.html"><em>Stag</em></a>, the
+<strong>Stag Rose</strong> is <span class = 'tooltip underline'>colourbound<span class = 'tooltiptext'>A colourbound piece will always stay on a square of the same colour: if it starts on a black square, it will always remain on a black square; if it starts on a white square, it will always remain on a white square</span></span>, and will only visit squares of the
 same colour as the square it starts on.</p>
 
 <table class = piece_list>
@@ -55,7 +97,7 @@ same colour as the square it starts on.</p>
 <h4 id = 'square'>Square</h4>
 
 <div class = "section">
-<p>On the Square Spiral, the %%PIECE%% moves outward, keeping always a 
+<p>On the Square Spiral, the <strong>Stag Rose</strong> moves outward, keeping always a 
 near square as the boundary of squares visited. It probably won't
 get trapped, and certainly doesn't do in its first 10,000 steps.
 It appears to visit 50% of the squares.</p>
@@ -64,7 +106,7 @@ It appears to visit 50% of the squares.</p>
 <h4 id = 'diamond'>Diamond</h4>
 
 <div class = "section">
-<p>On the Diamond Spiral, the %%PIECE%% moves outward, keeping always a 
+<p>On the Diamond Spiral, the <strong>Stag Rose</strong> moves outward, keeping always a 
 near, rotated, square as the boundary of squares visited. It probably won't
 get trapped, and certainly doesn't do in its first 10,000 steps.
 It appears to visit 50% of the squares.</p>
@@ -75,16 +117,14 @@ It appears to visit 50% of the squares.</p>
 <h4 id = 'folded'>Folded</h4>
 
 <div class = "section">
-<p>The %%PIECE%% seems to fill the Folded Wedge for 50%, working on just
-a few rows at the time. It probably won't get trapped, and it certainly
-doesn't do so in its first 10,000 steps.</p>
+<p>The <strong>Stag Rose</strong> fills the Folded Wedge for 50%, working on just
+a few rows at the time.</p>
 </div>
 
 <h4 id = 'flat'>Flat</h4>
 
-<p>The %%PIECE%% seems to fill the Flat Wedge for 50%, working on just
-a few rows at the time. It probably won't get trapped, and it certainly
-doesn't do so in its first 10,000 steps.</p>
+<p>The <strong>Stag Rose</strong> fills the Flat Wedge for 50%, working on just
+a few rows at the time.</p>
 
 <div class = 'trapped' data-piece = 'stag_rose'></div>
 

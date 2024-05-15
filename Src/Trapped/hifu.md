@@ -1,4 +1,4 @@
-# %%PIECE%%
+# Hifu
 
 <div class = "movement" data-piece = "pawn">
 . . .

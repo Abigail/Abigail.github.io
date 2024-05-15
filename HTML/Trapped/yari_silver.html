@@ -1,6 +1,6 @@
 <html>
 <head>
-<title>%%PIECE%%</title>
+<title>Yari Silver</title>
 <meta charset = "utf-8">
 <link rel  = 'preconnect' href = 'https://fonts.gstatic.com'>
 <link rel = 'stylesheet' href =      'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
@@ -14,18 +14,31 @@
 <script src = '../../JavaScript/Trapped/trapped.js'></script>
 <script src = '../../JavaScript/Trapped/pieces.js'></script>
 <script src = '../../JavaScript/Trapped/boxset.js'></script>
+<script src = '../../JavaScript/Trapped/movement.js'></script>
 <script src = '../../JavaScript/Trapped/pages.js'></script>
 </head>
 
-<body><h1>%%PIECE%%</h1><div class = "byline">
+<body><h1>Yari Silver</h1><div class = "byline">
 by Abigail<br>
 <img src = "../../Images/jan_sluiters.jpg">
 </div>
 
 
-<p>The %%PIECE%% moves either a one square forward (either diagonally,
-or orthogonally), or slides an unlimited amount of unoccupied
-squares orthogonally backward.</p>
+<div class = "movement">
+. . . . .
+. * * * .
+. . S . .
+. . * . .
+. . * . .
+. . * . .
+. . A . .
+Shogi: 1
+</div>
+
+<p>The <strong>Yari Silver</strong> combines the movements of a forward <a href="ferz.html"><em>Ferz</em></a>,
+a forward <a href="wazir.html"><em>Wazir</em></a> and a backward <a href="rook.html"><em>Rook</em></a>. So, it either steps
+one square forward (diagonally or orthogonally), and slides an
+unlimited amount of unoccupied squares orthogonally backward.</p>
 
 <table class = piece_list>
   <tr class = 'row-0' markdown = '1'>
@@ -45,14 +58,14 @@ squares orthogonally backward.</p>
 <h4 id = 'square'>Square</h4>
 
 <div class = "section">
-<p>On the Square Spiral, the %%PIECE%% fills 25% of the squares: a wedge to
+<p>On the Square Spiral, the <strong>Yari Silver</strong> fills 25% of the squares: a wedge to
 the right of the origin, with mostly vertical movements.</p>
 </div>
 
 <h4 id = 'diamond'>Diamond</h4>
 
 <div class = "section">
-<p>On the Diamond Spiral, the %%PIECE%% moves straight forward, one square
+<p>On the Diamond Spiral, the <strong>Yari Silver</strong> moves straight forward, one square
 per step. This gives an escape velocity of <span class = 'latex-inline'>\(1\)</span>.</p>
 </div>
 
@@ -61,7 +74,7 @@ per step. This gives an escape velocity of <span class = 'latex-inline'>\(1\)</s
 <h4 id = 'folded'>Folded</h4>
 
 <div class = "section">
-<p>On the Folded Wedge, the %%PIECE%% visits the three right most
+<p>On the Folded Wedge, the <strong>Yari Silver</strong> visits the three right most
 squares of each row, escaping to the upper right. A six step loop
 moves the pieces two squares forward and to the right. The escape
 velocity is <span class = 'latex-inline'>\(\frac{\sqrt{2}}{3}\)</span>.</p>
@@ -69,7 +82,7 @@ velocity is <span class = 'latex-inline'>\(\frac{\sqrt{2}}{3}\)</span>.</p>
 
 <h4 id = 'flat'>Flat</h4>
 
-<p>On the Flat Wedge, the %%PIECE%% escapes by visiting the right most
+<p>On the Flat Wedge, the <strong>Yari Silver</strong> escapes by visiting the right most
 square of each row, with an escape velocity of <span class = 'latex-inline'>\(\sqrt{2}\)</span>.</p>
 
 <div class = 'trapped' data-piece = 'yari_silver'></div>

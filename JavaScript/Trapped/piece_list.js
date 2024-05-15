@@ -2251,19 +2251,19 @@ let pieces = {
     },
 
     squire: {
-        parent: "knight",
-    },
-
-    squire_wfda: {
         betza: "WFDA",
-        _name: "Squire",
-        _index_name: "Squire (WFDA)",
         results: {
             spiral_square:  "W",
             spiral_diamond: "BM",
             wedge_folded:   "FC",
             wedge_flat:     "F/100%",
         },
+    },
+
+    squire_knight: {
+        _name:  "Squire",
+        _index_name: "Squire (Knight)",
+        parent: "knight",
     },
 
     squirrel: {
@@ -2579,6 +2579,14 @@ let pieces = {
         },
     },
 
+    wide_knight: {
+        betza: "lrN",
+        results: {
+            spiral_square:  "F/25%",
+            spiral_diamond: "F/25%",
+        }
+    },
+
     white_horse: {
         betza: "vRfB",
         results: {
@@ -2775,6 +2783,11 @@ let set_info = {
                  "half_crooked_queen_I", "half_crooked_queen_II"]
     },
 
+    roses: {
+        pieces: ["rose", "camel_rose", "zebra_rose", "giraffe_rose",
+                 "stag_rose", "antelope_rose"]
+    },
+
 
     //
     // Chess variants
@@ -2836,7 +2849,7 @@ let set_info = {
         pieces: ["king", "rook", "bishop", "knight",
                  "archbishop_rbn", "barron", "bowman", "counsellor",
                  "crown_prince", "duke_q", "earl", "marquis", "princess",
-                 "queen_jump", "squire", "viscount" ],
+                 "queen_jump", "squire_knight", "viscount" ],
     },
 
     renniassance_chess: {
@@ -2844,7 +2857,7 @@ let set_info = {
         pieces: ["king", "queen", "rook", "bishop", "horse_renn",
                  "archbishop", "castle", "cavalier", "duke_renn",
                  "fox_renn", "general_camel", "guard_king", "nobleman",
-                 "page", "prince_amazon", "squire_wfda", "pawn"],
+                 "page", "prince_amazon", "squire", "pawn"],
     },
 
     rococo: {

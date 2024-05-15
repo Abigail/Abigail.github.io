@@ -1,6 +1,6 @@
 <html>
 <head>
-<title>%%PIECE%%</title>
+<title>Squire</title>
 <meta charset = "utf-8">
 <link rel  = 'preconnect' href = 'https://fonts.gstatic.com'>
 <link rel = 'stylesheet' href =      'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
@@ -14,17 +14,33 @@
 <script src = '../../JavaScript/Trapped/trapped.js'></script>
 <script src = '../../JavaScript/Trapped/pieces.js'></script>
 <script src = '../../JavaScript/Trapped/boxset.js'></script>
+<script src = '../../JavaScript/Trapped/movement.js'></script>
 <script src = '../../JavaScript/Trapped/pages.js'></script>
 </head>
 
-<body><h1>%%PIECE%%</h1><div class = "byline">
+<body><h1>Squire</h1><div class = "byline">
 by Abigail<br>
 <img src = "../../Images/jan_sluiters.jpg">
 </div>
 
 
-<p>The %%PIECE%% moves one or two squares in any of the orthogonal or
+<div class = "movement">
+. . . . . . .
+. * . * . * .
+. . * * * . .
+. * * S * * .
+. . * * * . .
+. * . * . * .
+. . . . . . .
+</div>
+
+<p>The <strong>Squire</strong> combines the movements of the <a href="wazir.html"><em>Wazir</em></a>, <a href="ferz.html"><em>Ferz</em></a>,
+<a href="alfil.html"><em>Alfil</em></a> and the <a href="dabbaba.html"><em>Dabbaba</em></a>. 
+That is, the <strong>Squire</strong> moves one or two squares in any of the orthogonal or
 diagonal directions, possibly jumping over any occupied square.</p>
+
+<p>Compare with the <a href="sorcerer.html"><em>Sorcerer</em></a> which can move to the same
+set of squares, but which cannot jump over occupied squares.</p>
 
 <table class = piece_list>
   <tr class = 'row-0' markdown = '1'>
@@ -44,14 +60,14 @@ diagonal directions, possibly jumping over any occupied square.</p>
 <h4 id = 'square'>Square</h4>
 
 <div class = "section">
-<p>The %%PIECE%% can move like the <a href="wazir.html"><em>Wazir</em></a>, so
+<p>The <strong>Squire</strong> can move like the <a href="wazir.html"><em>Wazir</em></a>, so
 it just follows the Spiral.</p>
 </div>
 
 <h4 id = 'diamond'>Diamond</h4>
 
 <div class = "section">
-<p>The %%PIECE%% can move like the <a href="blind_monkey.html"><em>Blind Monkey</em></a>, so
+<p>The <strong>Squire</strong> can move like the <a href="blind_monkey.html"><em>Blind Monkey</em></a>, so
 it just follows the Spiral.</p>
 </div>
 
@@ -60,17 +76,17 @@ it just follows the Spiral.</p>
 <h4 id = 'folded'>Folded</h4>
 
 <div class = "section">
-<p>The %%PIECE%% can move like the <a href="flying_cock.html"><em>Flying Cock</em></a>, so it just follows the Wedge.</p>
+<p>The <strong>Squire</strong> can move like the <a href="flying_cock.html"><em>Flying Cock</em></a>, so it just follows the Wedge.</p>
 </div>
 
 <h4 id = 'flat'>Flat</h4>
 
-<p>The %%PIECE%% visits every square on the Flat Wedge, by sweeping every
+<p>The <strong>Squire</strong> visits every square on the Flat Wedge, by sweeping every
 row left to right, and right to left, before going to the next row.</p>
 
-<div class = 'trapped' data-piece = 'squire_wfda'></div>
+<div class = 'trapped' data-piece = 'squire'></div>
 
-<div class = 'boxset' data-piece = 'squire_wfda'></div>
+<div class = 'boxset' data-piece = 'squire'></div>
 
 <hr id = 'last-line'>
 <div class = 'trailer'>

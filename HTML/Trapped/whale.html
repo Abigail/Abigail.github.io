@@ -1,6 +1,6 @@
 <html>
 <head>
-<title>%%PIECE%%</title>
+<title>Whale</title>
 <meta charset = "utf-8">
 <link rel  = 'preconnect' href = 'https://fonts.gstatic.com'>
 <link rel = 'stylesheet' href =      'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
@@ -14,21 +14,36 @@
 <script src = '../../JavaScript/Trapped/trapped.js'></script>
 <script src = '../../JavaScript/Trapped/pieces.js'></script>
 <script src = '../../JavaScript/Trapped/boxset.js'></script>
+<script src = '../../JavaScript/Trapped/movement.js'></script>
 <script src = '../../JavaScript/Trapped/pages.js'></script>
 </head>
 
-<body><h1>%%PIECE%%</h1><div class = "byline">
+<body><h1>Whale</h1><div class = "byline">
 by Abigail<br>
 <img src = "../../Images/jan_sluiters.jpg">
 </div>
 
 
-<p>The %%PIECE%% either moves an unlimited amount of unoccupied
-squares orthogonally forward or backward (like a vertical
-<a href="rook.html"><em>Rook</em></a>), or an unlimited amount of unoccupied
-squares diagonally backward (like a backward <a href="bishop.html"><em>Bishop</em></a>).</p>
+<div class = "movement">
+. . . . A . . . .
+. . . . * . . . .
+. . . . * . . . .
+. . . . * . . . .
+. . . . S . . . .
+. . . * * * . . .
+. . * . * . * . .
+. * . . * . . * .
+A . . . A . . . A
+Shogi: 1
+</div>
 
-<p>The movements of the %%PIECE%% is the mirror image of the 
+<p>The <strong>Whale</strong> combines the movements of a vertical <a href="rook.html"><em>Rook</em></a>
+with a backward <a href="bishop.html"><em>Bishop</em></a>. That is, the <strong>Whale Horse</strong> either moves
+an unlimited amount of unoccupied squares orthogonally forward or
+backward, or an unlimited amount of unoccupied squares diagonally
+backward.</p>
+
+<p>The movements of the <strong>Whale</strong> is the mirror image of the 
 movements of the <a href="white_horse.html"><em>White Horse</em></a>.</p>
 
 <table class = piece_list>
@@ -50,8 +65,8 @@ movements of the <a href="white_horse.html"><em>White Horse</em></a>.</p>
 <h4 id = 'square'>Square</h4>
 
 <div class = "section">
-<p>The %%PIECE%% will visit almost all squares in a wedge to the
-left of the origin. As such, in the limit, the %%PIECE%% will
+<p>The <strong>Whale</strong> will visit almost all squares in a wedge to the
+left of the origin. As such, in the limit, the <strong>Whale</strong> will
 visit <span class = 'latex-inline'>\(25\%\)</span> of the squares on the board.</p>
 
 <p>This mirrors the squares visited by the <a href="white_horse.html"><em>White Horse</em></a>.</p>
@@ -60,7 +75,7 @@ visit <span class = 'latex-inline'>\(25\%\)</span> of the squares on the board.<
 <h4 id = 'diamond'>Diamond</h4>
 
 <div class = "section">
-<p>The %%PIECE%% makes half a revolution around the origin, then escapes
+<p>The <strong>Whale</strong> makes half a revolution around the origin, then escapes
 backward in a one step loop. The escape velocity is <span class = 'latex-inline'>\(1\)</span>.</p>
 </div>
 
@@ -69,7 +84,7 @@ backward in a one step loop. The escape velocity is <span class = 'latex-inline'
 <h4 id = 'folded'>Folded</h4>
 
 <div class = "section">
-<p>On the Folded Wedge, the %%PIECE%% escapes to the upper left, 
+<p>On the Folded Wedge, the <strong>Whale</strong> escapes to the upper left, 
 by visiting the three left most squares of each row. A three step
 loop brings the piece one square upward and to the left, for
 an escape velocity of <span class = 'latex-inline'>\(\frac{\sqrt{2}}{3}\)</span>.</p>
@@ -77,7 +92,7 @@ an escape velocity of <span class = 'latex-inline'>\(\frac{\sqrt{2}}{3}\)</span>
 
 <h4 id = 'flat'>Flat</h4>
 
-<p>On the Folded Wedge, the %%PIECE%% escapes to the upper right, 
+<p>On the Folded Wedge, the <strong>Whale</strong> escapes to the upper right, 
 by visiting the three right most squares of each row. A three step
 loop brings the piece one square upward and to the right, for
 an escape velocity of <span class = 'latex-inline'>\(\frac{\sqrt{2}}{3}\)</span>.</p>

@@ -93,8 +93,10 @@ our %MACROS = (
         #
         # Common referred to pieces
         #
+        ALFIL          =>  "[*Alfil*](alfil.html)",
         BISHOP         =>  "[*Bishop*](bishop.html)",
         BM             =>  "[*Blind Monkey*](blind_monkey.html)",
+        DABBABA        =>  "[*Dabbaba*](dabbaba.html)",
         FC             =>  "[*Flying Cock*](flying_cock.html)",
         FERZ           =>  "[*Ferz*](ferz.html)",
         KING           =>  "[*King*](king.html)",
