@@ -1,0 +1,50 @@
+#!/opt/perl/bin/perl
+
+use 5.038;
+
+use strict;
+use warnings;
+no  warnings 'syntax';
+
+my ($row, $col) = @ARGV;
+
+my %squares;
+my @lines;
+
+my $x = my $y = 1 + 2 * ($row + $col);
+
+my @set = ([ $row,  $col], [ $col,  $row], [-$col,  $row], [-$row,  $col],
+           [-$row, -$col], [-$col, -$row], [ $col, -$row], [ $row, -$col]);
+
+my @sets;
+for my $offset (0 .. 7) {
+    push @sets => [@set [$offset .. 7, 0 .. $offset - 1]];
+}
+
+foreach my $set (@sets) {
+    my $line = "Line: $x,$y";
+    my $xx = $x;
+    my $yy = $y;
+    foreach my $d (@$set) {
+        $xx += $$d [0];
+        $yy += $$d [1];
+        $squares {$xx} {$yy} = 1;
+        $line .= sprintf " %2d,%d" => $xx, $yy;
+        $line .= " " if $yy < 10;
+    }
+    push @lines => $line;
+}
+
+say '<div class = "movement">';
+
+foreach my $row (0 .. 2 * $x) {
+    foreach my $col (0 .. 2 * $y) {
+        print $squares {$row} {$col} ? "* " : ". ";
+    }
+    print "\n";
+}
+say for @lines;
+
+say "</div>";
+
+__END__
