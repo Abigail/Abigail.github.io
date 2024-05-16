@@ -53,8 +53,6 @@ a board sized at least 19x19 to reach its full potential.
 &           \\
 ====|
       
-See also the [*Rose*](rose.html).
-
 ### Spiral
 
 #### Square

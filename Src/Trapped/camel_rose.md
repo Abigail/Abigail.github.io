@@ -53,8 +53,6 @@ same colour as the square it starts on.
 &           \\
 ====|
       
-See also the [*Rose*](rose.html).
-
 ### Spiral
 
 #### Square
