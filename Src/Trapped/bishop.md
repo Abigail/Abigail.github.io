@@ -21,9 +21,11 @@ Due to its diagonal movement, the **Bishop** is %%COLOUR_BOUND%%.
 |====
 %%PIECE_HEADERS%%
   {th = 1}  %%MICRO_SHOGI%%
-& {rs = 3; cs = 2}
+& {rs = 4; cs = 2}
             **Bishop**
 &           Becomes a [*Tokin*](gold_general.html?piece=tokin) when capturing \\
+  {th = 1}  %%EURO_SHOGI%%
+&           \\
   {th = 1}  %%SCIROCCO%%
 &           %%PROMOTED%% [*Alfil*](alfil.html) \\
   {th = 1}  %%TYPHOON%%

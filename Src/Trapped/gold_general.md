@@ -14,6 +14,14 @@ step diagonally forward, like a forward [*Ferz*](ferz.html).
 
 |====
 %%PIECE_HEADERS%%
+  {th = 1; rs = 3}
+            %%EURO_SHOGI%%
+& {cs = 2}  **General**
+&           \\
+  {cs = 2}  **Promoted Knight**
+&           \\
+  {cs = 2}  **Promoted Pawn**
+&           \\
   {th = 1}  %%TYPHOON%%
 & {cs = 2}  **Gold General**
 &           %%PROMOTES_TO%% [*Horned Owl*](horned_owl.html) \\

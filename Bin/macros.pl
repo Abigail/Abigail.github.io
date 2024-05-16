@@ -40,6 +40,7 @@ our %MACROS = (
                                      "underline"),
         DIFFERENT      =>  '[Chess with different armies](#wiki)',
         DOBUTSU        =>  '[D&#x14d;butsu sh&#x14d;gi](#wiki:Dobutsu_shogi)',
+        EURO_SHOGI     =>  '[EuroShogi](#wiki:EuroShogi)',
         FALCON_HUNTER  =>  '[Falcon-Hunter Chess](#wiki:Falcon-hunter_chess)',
         INTERDEPENDENT =>  '[Interdependent Chess]' .
                            '(#chess-v:42.dir/interdependent/)',

@@ -42,6 +42,9 @@ same way can be found in several games:
 &           %%ROYAL%%; Appears when the [*King*](king.html) moves into
             the same square as the [*Bishop*](bishop.html); demotes to
             [*King*](king.html) when capturing \\
+  {th = 1}  %%EURO_SHOGI%%
+& {cs = 2}  **Promoted Bishop**
+&           \\
   {th = 1}  %%SCIROCCO%%
 & {rs = 2; cs = 2}
             **Scirocco**

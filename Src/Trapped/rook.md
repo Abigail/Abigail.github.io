@@ -43,9 +43,11 @@ names.
 &           **Gliding Swallow** & &#x71D5;&#x884C;
 &           %%PROMOTED%% [*Swallow's Wings*](swallows_wings.html) \\
   {th = 1}  %%YARI_SHOGI%%
-& {rs = 2; cs = 2}
+& {rs = 3; cs = 2}
             **Rook**
 &           %%PROMOTED%% [*Yari Rook*](yari_rook.html) \\
+  {th = 1}  %%EURO_SHOGI%%
+&           \\
   {th = 1}  %%SCIROCCO%%; %%TYPHOON%%
 &           %%PROMOTED%% [*Knight*](knight.html) \\
   {th = 1}  %%CHESS%%; %%CAGLIOSTRO%%; %%FALCON_HUNTER%%; %%RENN_CHESS%%;

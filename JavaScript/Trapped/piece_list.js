@@ -1634,10 +1634,10 @@ let pieces = {
         _name: "Knight",
         _index_name: "Knight (EuroShogi)",
         results: {
-            spiral_square:   "",
-            spiral_diamond:  "",
-            wedge_folded:    "",
-            wedge_flat:      "",
+            spiral_square:   sqrt (2, 2),
+            spiral_diamond:  "E = 1",
+            wedge_folded:    sqrt (2, 2),
+            wedge_flat:      sqrt (2, 2),
         },
     },
 

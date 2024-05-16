@@ -73,6 +73,9 @@ Of course, for our investigation, Royalness plays no part.
   {th = 1}  %%MAKRUK%%
 &           **King** & &#x0E02;
 &           %%ROYAL%% \\
+  {th = 1}  %%EURO_SHOGI%%
+& {cs = 2}  **King**
+&           \\
   {th = 1; rs = 2}
             %%SHOGI%%; %%KYOTO_SHOGI%%; %%MICRO_SHOGI%%; %%CHU_SHOGI%%
 &           **King General** & &#x738b;&#x5c06;

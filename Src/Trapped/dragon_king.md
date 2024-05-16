@@ -56,6 +56,9 @@ several games:
   {th = 1}  %%WHALE_SHOGI%%
 & {cs = 2}  **Killer Whale** 
 &           Captured enemy [*Porpoise*](porpoise.html) \\
+  {th = 1}  %%EURO_SHOGI%%
+& {cs = 2}  **Promoted Rook**
+&           \\
 ====|
 
 Link: [%%CHESS_V%%](#piece:dragonking)
