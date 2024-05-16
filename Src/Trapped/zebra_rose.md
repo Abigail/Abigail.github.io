@@ -52,8 +52,6 @@ to be able to reach 32 different squares.
             **Zebra Rose**
 &           \\
 ====|
-      
-See also the [*Rose*](rose.html).
 
 ### Spiral
 

@@ -181,14 +181,19 @@ function navigation (type, pagename, pages) {
     })
 
     //
-    // If we click on the image (or rather, the entire div it is in),
-    // go to the index.
+    // Sometimes, we don't get the binding. Let's try with a delay
     //
-    $(".byline") . click (() => {
-        location . href = "index.html"
-    })
+    setTimeout (function () {
+        //
+        // If we click on the image (or rather, the entire div it is in),
+        // go to the index.
+        //
+        $(".byline") . click (() => {
+            location . href = "index.html"
+        })
 
-    $(".byline") . attr ("title", "Go to index")
+        $(".byline") . attr ("title", "Go to index")
+    }, 100)
 
 }
 

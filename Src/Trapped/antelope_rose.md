@@ -62,8 +62,6 @@ reach its full potential.
 &           \\
 ====|
       
-See also the [*Rose*](rose.html).
-
 ### Spiral
 
 #### Square
