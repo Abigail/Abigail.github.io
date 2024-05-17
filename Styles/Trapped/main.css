@@ -116,13 +116,29 @@ table.boxset span.self {
     font-weight:                  bold;
 }
 
-table.piece_list {
+table.piece_list, table.piece_info {
     clear:                        both;
 }
 
-table.piece_list, table.promotion {
+table.piece_list, table.piece_info, table.promotion {
     border:                solid black 2px;
     border-collapse:       collapse;
+}
+
+table.piece_info td, table.piece_info th {
+    border:                solid black 1px;
+    padding-left:          0.5em;
+    padding-right:         0.5em;
+}
+
+table.piece_info td {
+    text-align:            left;
+}
+
+table.piece_info th {
+    background:            #D7F4D2;
+    border-bottom:         solid black 2px;
+    text-align:            center;
 }
 
 table.piece_list td, table.piece_list th,

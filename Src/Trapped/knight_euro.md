@@ -13,10 +13,10 @@ right or left, or to a square two rows forward, and one to the right
 or left (like the most forward moves of the %%KNIGHT%% from Western Chess).
 
 |====
-%%PIECE_HEADERS%%
-  {th = 1}  %%EURO_SHOGI%%
-& {cs = 2}  **Knight**
-&           \\
+%%PIECE_INFO%%
+  **Knight**
+& %%EURO_SHOGI%%
+& See also the %%KNIGHT%% from Western Chess \\
 ====|
 
 ### Spiral

@@ -113,6 +113,9 @@ our %MACROS = (
         PIECE_HEADERS  =>  "{class = piece_list}\n"            .
                            "{th = 1} Game & {th = 1; cs = 2} Piece & " .
                            "{th = 1} Info \\\\",
+        PIECE_INFO     =>  "{class = 'piece_info'}\n" .
+                           "{th = 1} Name & {th = 1} Game(s) &" .
+                           "{th = 1} Info \\\\",
         ROYAL          =>  tooltip ("&#x265A;", "This piece is *Royal*; if "  .
                                                 "all Royal pieces have been " .
                                                 "captured, the game is lost"),

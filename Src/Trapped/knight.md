@@ -22,74 +22,41 @@ See also the [*Nightrider*](nightrider.html), a piece which moves
 one or more squares in the same direction as the **Knight**.
 
 *Cavalry Chess* also has a piece called a *Knight*, but that moves 
-like the [*Buffalo*](buffalo.html).
-
-<PIECE_INFO>
-Ferese: 
-   - %%SENTEREJ%%
-       + *Ferese* means *Horse*
-Horse:
-   - %%SCIROCCO%%; %%TYPHOON%%
-Knight:
-   - %%CHESS%%; %%BASIC_LEAPERS%%; %%CAGLIOSTRO%%; %%FALCON_HUNTER%%;
-     %%QUANTUM%%; %%WILDEBEEST%%
-       + Symbol: &#x2658;
-   - %%GANYMEDE%%
-       + %%PROMOTES_TO%% [*Gnu*](gnu.html)
-   - %%INTERDEPENDENT%%
-       + %%OTHER_MOVES%%
-   - %%MAKRUK%%
-       + Symbol: &#x0E21;
-   - %%SCIROCCO%%; %%TYPHOON%%
-       + %%PROMOTES_TO%% [*Rook*](rook.html)
-Mori:
-   - %%HIASHATAR%%
-   - %%SHATAR%%
-       + Symbol: <span class = "mongolian" 
-                             >&#x182E;&#x1823;&#x1837;&#x1822;</span>
-       + May not deliver mate
-Squire:
-   - %%QUANTUM%%
-       + %%OTHER_MOVES%%
-</PIECE_INFO>
+like the [*Buffalo*](buffalo.html); it also has a piece called
+*Knight King* which moves like a [*Centaur*](centaur.html).
+%%SHOGI%% also have a piece
+called [*Knight*](shogi_knight.html), and there is also a 
+[*Knight*](knight_euro.html) in %%EURO_SHOGI%%. Both pieces move
+differently than the **Knight**.
 
 |====
-%%PIECE_HEADERS%%
-  {th = 1}  %%SENTEREJ%%
-& {cs = 2}  **Ferese**
-&           *Ferese* meaning *Horse* \\
-  {th = 1}  %%RENN_CHESS%%
-& {cs = 2}  **Horse**
-&           \\
-  {th = 1}  %%SCIROCCO%%; %%TYPHOON%%
-& {cs = 2; rs = 2}
-            **Knight**
-&           %%PROMOTES_TO%% [*Rook*](rook.html) \\
-  {th = 1; rs = 2}
-            %%QUANTUM%%
-&           <span style = "visibility: hidden">I</span> \\
-  {cs = 2}  **Squire**
-&           %%CAPTURE%% \\
-  {th = 1}  %%CHESS%%; %%CAGLIOSTRO%%; %%FALCON_HUNTER%%; %%WILDEBEEST%%;
-            %%BASIC_LEAPERS%%
-& {rs = 3}  **Knight** & {rs = 3} &#x2658;
-&           \\
-  {th = 1}  %%INTERDEPENDENT%%
-&           %%CAPTURE%%  \\
-  {th = 1}  %%GANYMEDE%%
-&           %%PROMOTES_TO%% [*Gnu*](gnu.html) \\
-  {th = 1}  %%MAKRUK%%
-&           **Knight** & &#x0E21;
-&           \\
-  {th = 1}  %%HIASHATAR%%
-& {cs = 2}  **Mori**
-&           \\
-  {th = 1}  %%SHATAR%%
-&           **Mori**  & <span class =
-                        "mongolian">&#x182E;&#x1823;&#x1837;&#x1822;</span>
-&           May not deliver mate \\
+ %%PIECE_INFO%%
+  **Ferese**
+& %%SENTEREJ%%
+& *Ferese* means *Horse*. \\
+
+  **Horse**
+& %%RENN_CHESS%%; %%SCIROCCO%%; %%TYPHOON%%
+& The [*Mao*](mao.html) is also called a *Horse*. \\
+
+  {rs = 2} **Knight**
+& %%CHESS%%; %%BASIC_LEAPERS%%; %%CAGLIOSTRO%%; %%FALCON_HUNTER%%;
+  %%GANYMEDE%%;<br>
+  %%MAKRUK%%; %%QUANTUM%%; %%SCIROCCO%%; %%TYPHOON%%; %%WILDEBEEST%%;
+& \\
+  %%INTERDEPENDENT%%
+& %%OTHER_MOVES%% \\
+
+  **Mori**
+& %%HIASHATAR%%; %%SHATAR%%
+& \\
+
+  **Squire**
+& %%QUANTUM%%
+& %%OTHER_MOVES%%; This is a different piece than the
+  [*Squire*](squire.html) from %%RENN_CHESS%%. \\
 ====|
-      
+
 Links: [%%WIKI%%](#wiki:Knight_(chess)),
        [%%CHESS_V%%](#piece:knight)
 
