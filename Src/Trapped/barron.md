@@ -37,10 +37,10 @@ diagonally outward, where in either case, the first square must be
 unoccupied.
 
 |====
-%%PIECE_HEADERS%%
-  {th = 1}  %%QUANTUM%%
-& {cs = 2}  **Barron**
-&           %%CAPTURE%% \\
+%%PIECE_INFO%%
+  **Barron**
+& %%QUANTUM%%
+& %%OTHER_MOVES%% \\
 ====|
 
 ### Spiral

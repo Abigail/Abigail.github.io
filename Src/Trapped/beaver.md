@@ -17,10 +17,10 @@ or an unlimited of unoccupied squares orthogonally backward
 (like a backward [*Rook*](rook.html)).
 
 |====
-%%PIECE_HEADERS%%
-  {th = 1}  %%TYPHOON%%
-& {cs = 2}  **Beaver**
-&           %%PROMOTES_TO%% [*Sorcerer*](sorcerer.html)
+%%PIECE_INFO%%
+  **Beaver**
+& %%TYPHOON%%
+& \\
 ====|
 
 ### Spiral

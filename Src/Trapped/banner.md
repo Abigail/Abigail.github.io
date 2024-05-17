@@ -12,17 +12,14 @@ That is, the **Banner** can move one square to its right or left, or
 one square forward.
 
 |====
-%%PIECE_HEADERS%%
-  {th = 1}  %%TYPHOON%%
-& {cs = 2}  **Banner**
-&           %%PROMOTES_TO%% [*Raven*](modern_elephant.html?piece=raven) \\
-  {th = 1}  %%JANGGI%%
-& {cs = 2; rs = 2}
-            **Soldier**
+%%PIECE_INFO%%
+  **Banner**
+& %%TYPHOON%%
 & \\
-  {th = 1}  %%XIANGQI%%
-&           Only after crossing the river; before crossing the river,
-            it moves like the [*Pawn*](pawn.html?piece=soldier) \\
+
+  **Soldier**
+& %%JANGGI%%; %%XIANGQI%%
+& \\
 ====|
 
 ### Spiral

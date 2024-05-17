@@ -55,11 +55,10 @@ squares are unoccupied. It needs a board sized at least 29x29 to
 reach its full potential.
 
 |====
-%%PIECE_HEADERS%%
-  {th = 1}
-& {rs = 1; cs = 2}
-            **Antelope Rose**
-&           \\
+%%PIECE_INFO%%
+  **Antelope Rose**
+& Roses
+& \\
 ====|
       
 ### Spiral

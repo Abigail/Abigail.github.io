@@ -18,10 +18,10 @@ The **Actress** combines the movements of the
 the movements of the [*Knight*](knight.html) and [*Camel*](camel.html).)
 
 |====
-%%PIECE_HEADERS%%
-  {th = 1}  %%OVERKILL%%
-& {cs = 2}  **Actress** 
-&           \\
+%%PIECE_INFO%%
+  **Actress** 
+& %%OVERKILL%%
+& \\
 ====|
 
 ### Spiral

@@ -24,12 +24,22 @@ The **Amazon Rider** combines the moves of the [*Queen*](queen.html)
 and the [*Nightrider*](nightrider.html), making it a very
 strong piece (even stronger than the [*Amazon*](amazon.html)).
 
+The piece is also called *Elephant*. There are several other pieces
+called *Elephant*: the [*Elephant*](elephant.html) from %%XIANGQI%%,
+the [*Elephant*](elephant_janggi.html) from %%JANGGI%%, the
+[*Elephant Prince*](king.html) from %%TYPHOON%%, and the
+[*Drunk Elephant*](drunk_elephant.html) from %%TYPHOON%% and %%CHU_SHOGI%%.
+The [*Alfil*](alfil.html) also goes by the name *Elephant*.
+
 |====
-%%PIECE_HEADERS%%
-  {th = 1}  %%WOLF%%
-& {cs = 2}  **Elephant**
-&           Not in the starting line up; only appears after a
-            [*Pawn*](pawn.html) promotion. \\
+%%PIECE_INFO%%
+  **Amazon Rider**
+&
+& \\
+
+  **Elephant**
+& %%WOLF%%
+& \\
 ====|
 
 ### Spiral

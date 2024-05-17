@@ -19,11 +19,10 @@ four diagonal directions (like a [*Bishop*](bishop.html)).
 The **Bede** is %%COLOUR_BOUND%%.
 
 |====
-%%PIECE_HEADERS%%
-  {th = 1}  [The Colorbound
-                 Clobberers](#chess-v:d.betza/chessvar/dan/colclob.html)
-& {cs = 2}  **Bede** or<br>**BD**
-&           \\
+%%PIECE_INFO%%
+  **Bede** or **BD**
+& [The Colorbound Clobberers](#chess-v:d.betza/chessvar/dan/colclob.html)
+& \\
 ====|
 
 Link: [%%CHESS_V%%](#piece:bd)

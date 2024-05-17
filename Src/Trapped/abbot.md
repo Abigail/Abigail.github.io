@@ -25,10 +25,10 @@ This makes the **Abbot** a limited range [*Archbishop*](archbishop.html).
 
 
 |====
-%%PIECE_HEADERS%%
-  {th = 1}  %%TYPHOON%%, %%SCIROCCO%%
-& {cs = 2}  **Abbot**
-&           %%PROMOTED%% [*Marquis*](marquis.html) \\
+%%PIECE_INFO%%
+  **Abbot**
+& %%TYPHOON%%; %%SCIROCCO%%
+& \\
 ====|
 
 
