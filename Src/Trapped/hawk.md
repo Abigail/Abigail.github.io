@@ -19,10 +19,10 @@ That it, it steps two or three squares in each of the eight main
 directions.
 
 |====
-%%PIECE_HEADERS%%
-  {th = 1}  [Chess on an infinite plane](#wiki:Infinite_chess#Variations);
-            Musketeer Chess
-& {cs = 2}  **Hawk**
+%%PIECE_INFO%%
+  **Hawk**
+& [Chess on an infinite plane](#wiki:Infinite_chess#Variations);
+  Musketeer Chess
 &           \\
 ====|
 

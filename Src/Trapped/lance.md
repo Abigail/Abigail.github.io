@@ -13,18 +13,18 @@ The **Lance** slides an unlimited number of unoccupied squares straight ahead.
 This piece comes from %%SHOGI%%, and is found in various Sh&#x14d;gi variants,
 under different names.
 
+See also the [*Ky&#x014D;to*](kyoto.html), which moves like the
+**Lance** on its even moves.
+
 |====
-%%PIECE_HEADERS%%
-  {th = 1}  %%SHOGI%%
-& {rs = 3}  **Lance** & {rs = 3} &#x9999;&#x8ECA;
-&           %%PROMOTES_TO%% [*Gold General*](gold_general.html) \\
-  {th = 1}  %%MICRO_SHOGI%%
-&           Becomes a [*Silver General*](silver_general.html) when capturing \\
-  {th = 1}  %%CHU_SHOGI%%
-&           %%PROMOTES_TO%% [*White Horse*](white_horse.html) \\
-  {th = 1}  %%WA_SHOGI%%
-&           **Oxcart** & &#x725B;&#x8ECA;
-&           %%PROMOTES_TO%% [*Plodding Ox*](king.html?piece=plodding_ox) \\
+%%PIECE_INFO%%
+  **Lance**
+& %%SHOGI%%; %%CHU_SHOGI%%; %%MICRO_SHOGI%%
+& \\
+
+  **Oxcart**
+& %%WA_SHOGI%%
+& \\
 ====|
 
 Link: [%%CHESS_V%%](#piece:lance)

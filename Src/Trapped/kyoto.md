@@ -32,9 +32,9 @@ even moves, the **Ky&#x014D;to** slides an unlimited number of
 squares orthogonally forward.
 
 |====
-%%PIECE_HEADERS%%
-  {th = 1}  %%KYOTO_SHOGI%%
-& {cs = 2}  **Ky&#x014D;to**
+%%PIECE_INFO%%
+  **Ky&#x014D;to**
+& %%KYOTO_SHOGI%%
 &           \\
 ====|
 

@@ -12,44 +12,51 @@ The **Gold General** either moves one step
 in an orthogonal direction (like a [*Wazir*](wazir.html)), or one
 step diagonally forward, like a forward [*Ferz*](ferz.html).
 
+The **Gold General** is a common piece in many Sh&#x14d;gi variants.
+Either as a piece on the starting array, but many pieces promote
+to a piece moving like the **Gold General**.
+
 |====
-%%PIECE_HEADERS%%
-  {th = 1; rs = 3}
-            %%EURO_SHOGI%%
-& {cs = 2}  **General**
-&           \\
-  {cs = 2}  **Promoted Knight**
-&           \\
-  {cs = 2}  **Promoted Pawn**
-&           \\
-  {th = 1}  %%TYPHOON%%
-& {cs = 2}  **Gold General**
-&           %%PROMOTES_TO%% [*Horned Owl*](horned_owl.html) \\
-  {th = 1}  %%SHOGI%%
-& {rs = 3}  **Gold General** & {rs = 3} &#x91d1;&#x5c07;
-&           The [*Silver General*](silver_general.html),
-            [*Lance*](lance.html), and [*Knight*](shogi_knight.html)
-            all promote to a piece which moves like the *Gold General* \\
-  {th = 1}  %%MICRO_SHOGI%%
-&           Becomes a [*Rook*](rook.html) when capturing \\
-  {th = 1}  %%CHU_SHOGI%%
-&           %%PROMOTES_TO%% [*Rook*](rook.html) \\
-  {th = 1}  %%WA_SHOGI%%
-&           **Golden Bird**  & &#x91D1;&#x9CE5;
-&           %%PROMOTED%% [*Sparrow Pawn*](pawn.html?piece=sparrow_pawn) \\
-  {th = 1}  %%DOBUTSU%%
-& {cs = 2}  **Hen**
-&           %%PROMOTED%% [*Chick*](pawn.html?piece=dobutsu_chick) \\
-  {th = 1}  %%SHOGI%%
-& {rs = 2}  **Tokin** & {rs = 2} &#x3068;&#x91D1;
-&           %%PROMOTED%% [*Pawn*](pawn.html) \\
-  {th = 1}  %%MICRO_SHOGI%%
-&           Becomes a [*Bishop*](bishop.html) when capturing \\
-  {th = 1}  %%WA_SHOGI%%
-&           **Violent Wolf** & &#x731B;&#x72FC;
-&           %%PROMOTED%% [*Blind Dog*](blind_dog.html);
-            %%PROMOTES_TO%% [*Bear's Eyes*](king.html?piece=bears_eyes);
-            A promoted [*Blind Dog*](blind_dog.html) won't promote again \\
+%%PIECE_INFO%%
+  **General**
+& %%EURO_SHOGI%%
+& \\
+
+  **Gold General**
+& %%SHOGI%%; %%CHU_SHOGI%%; %%MICRO_SHOGI%%; %%TYPHOON%%
+& \\
+
+  **Golden Bird**
+& %%WA_SHOGI%%
+& \\
+
+  **Hen**
+& %%DOBUTSU%%
+& Also known as *Tokin*. \\ 
+
+  **Promoted Lance**
+& %%SHOGI%%
+& \\
+
+  **Promoted Knight**
+& %%SHOGI%%; %%EURO_SHOGI%%
+& \\
+
+  **Promoted Pawn**
+& %%EURO_SHOGI%%
+& \\
+
+  **Promoted Silver**
+& %%SHOGI%%
+& \\
+
+  **Tokin**
+& %%SHOGI%%; %%MICRO_SHOGI%%
+& \\
+
+  **Violent Wolf**
+& %%WA_SHOGI%%
+& \\
 ====|
 
 Link: [%%CHESS_V%%](#piece:goldgeneral)

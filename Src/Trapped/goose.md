@@ -17,11 +17,10 @@ two orthogonally backwards (like a backward [*Dabbaba*](dabbaba.html)).
 This makes the %%PIECE%% %%COLOUR_BOUND%%.
 
 |====
-%%PIECE_HEADERS%%
-  {th = 1}  %%TORI_SHOGI%%
-& {cs = 1}  **Goose** & &#x9d08;
-&           %%PROMOTED%% [*Swallow*](pawn.html?piece=swallow);
-            The **Goose** does not appear in the starting array. \\
+%%PIECE_INFO%%
+  **Goose**
+& %%TORI_SHOGI%%
+& \\
 ====|
 
 ### Spiral

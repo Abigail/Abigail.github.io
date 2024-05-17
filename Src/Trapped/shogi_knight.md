@@ -21,12 +21,9 @@ differently.
 
 |====
 %%PIECE_INFO%%
-  {rs = 2}
   **Knight**
-& %%SHOGI%%
+& %%SHOGI%%; %%MICRO_SHOGI%%
 & \\
-  %%MICRO_SHOGI%%
-& Becomes a [*Pawn*](pawn.html) when capturing \\
 ====|
 
 ### Spiral
