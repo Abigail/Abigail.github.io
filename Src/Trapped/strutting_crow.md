@@ -13,15 +13,21 @@ The **Strutting Crow** either moves one square orthogonally forward
 (like a forward %%WAZIR%%), or
 one square diagonally backward (like a backward %%FERZ%%).
 
+This mirrors the movement of the [*Tile General*](tile_general.html).
+
 |====
-%%PIECE_HEADERS%%
-  {th = 1; rs = 2}
-            %%WA_SHOGI%%
-&           **Strutting Crow** & &#x70CF;&#x884C;
-&           %%PROMOTES_TO%% [*Flying Falcon*](flying_falcon.html) \\
+%%PIECE_INFO%%
+  **Old Rat**
+& %%TAIKYOKU%%
+& \\
+
+  **Strutting Crow**
+& %%TAIKYOKU%%; %%WA_SHOGI%%
+& \\
   
-            **Swooping Owl** & &#x9D1F;&#x884C;
-&           %%PROMOTES_TO%% [*Cloud Eagle*](cloud_eagle.html) \\
+  **Swooping Owl**
+& %%TAIKYOKU%%; %%WA_SHOGI%%
+& \\
 ====|
 
 ### Spiral

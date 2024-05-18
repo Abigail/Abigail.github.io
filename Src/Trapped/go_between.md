@@ -13,10 +13,14 @@ The **Go-Between** moves one square orthogonally forward or backward
 (that is, a vertical [*Wazir*](wazir.html)).
 
 |====
-%%PIECE_HEADERS%%
-  {th = 1}  %%CHU_SHOGI%%
-&           **Go-Between** & &#x4EF2;&#x4EBA;
-&           %%PROMOTES_TO%% [*Drunk Elephant*](drunk_elephant.html) \\
+%%PIECE_INFO%%
+  **Earth General**
+& %%TAIKYOKU%%
+& \\
+
+  **Go-Between**
+& %%CHU_SHOGI%%; %%TAIKYOKU%%
+& \\
 ====|
 
 ### Spiral

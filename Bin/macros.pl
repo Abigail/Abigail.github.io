@@ -35,6 +35,9 @@ our %MACROS = (
         GANYMEDE       =>  '[Ganymede Chess](#chess-v:large.dir/ganymede.html)',
         GRAND_CAVALIER =>  '[Grand&nbsp;Cavalier&nbsp;Chess]' .
                            '(#chess-v:large.dir/grandcavalier.html)',
+        DAI_DAI        =>  '[Dai dai sh&#x14d;gi '               .
+                           '(&#x5927;&#x5927;&#x5c06;&#x68cb;)]' .
+                           '(#wiki:Dai_dai_shogi)',
         DICKENS        =>   tooltip ("*A Guide To Fairy Chess*",
                                      "Anothy Dickens, 1969",
                                      "underline"),
@@ -62,6 +65,9 @@ our %MACROS = (
         SHATAR         =>  "[Shatar](#wiki) [[$CHESS_V_TOKEN](#chess-v:" .
                            'oriental.dir/shatar.html)]',
         SHOGI          =>  '[Sh&#x14d;gi (&#x5c06;&#x68cb;)](#wiki:Shogi)',
+        TAIKYOKU       =>  '[Taikyoku sh&#x14d;gi '              .
+                           '(&#x5927;&#x5c40;&#x5c06;&#x68cb;)]' .
+                           '(#wiki:Taikyoku_shogi)',
         TYPHOON        =>  '[Typhoon](#chess-v:rules/typhoon-revised)',
         TORI_SHOGI     =>  '[Tori&nbsp;Sh&#x14d;gi](#wiki:Tori_Shogi)',
         WA_SHOGI       =>  '[Wa&nbsp;Sh&#x14d;gi (&#x548C;&#x5C06;&#x68CB;)]' . 

@@ -16,10 +16,10 @@ The **Bishop's Dog** moves up to three unoccupied squares diagonally, like
 a limited [*Bishop*](bishop.html).
 
 |====
-%%PIECE_HEADERS%%
-  {th = 1}  %%TYPHOON%%
-& {cs = 2}  **Bishop's Dog**
-&           %%PROMOTES_TO%% [*Centaur*](centaur.html) \\
+%%PIECE_INFO%%
+  **Bishop's Dog**
+& %%TYPHOON%%
+& \\
 ====|
 
 ### Spiral
@@ -28,7 +28,7 @@ a limited [*Bishop*](bishop.html).
 
 The **Bishop's Dog**'s movement falls between the movement
 of the [*Ferz*](ferz.html), and the [*Bishop*](bishop.html), which
-both do not get trapped. Suprisingly, the **Bishop's Dog** does
+both do not get trapped. Surprisingly, the **Bishop's Dog** does
 get trapped, and it gets trapped after 129 steps.
 
 #### Diamond

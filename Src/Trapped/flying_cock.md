@@ -12,13 +12,10 @@ The **Flying Cock** either steps one square sideways,
 or one square diagonally forward.
 
 |====
-%%PIECE_HEADERS%%
-  {th = 1}  %%WA_SHOGI%%
-& {rs = 2}  **Flying Cock** & {rs = 2} &#x9d8f;&#x98db;
-&           %%PROMOTES_TO%% [*Raiding Falcon*](raiding_falcon.html) \\
-  {th = 1}  [Taikyoku Sh&#x14d;gi (&#x5927;&#x5c40;&#x5c06;&#x68cb;)
-            ](#wiki:Taikyoku_shogi) 
-&           \\
+%%PIECE_INFO%%
+  **Flying Cock**
+& %%TAIKYOKU%%; %%WA_SHOGI%%
+& \\
 ====|
 
 The piece is also known as the *Sidewinder*.

@@ -11,10 +11,14 @@ The **Lantern** moves one square diagonally forward, like a
 forward %%FERZ%%.
 
 |====
-%%PIECE_HEADERS%%
-  {th = 1}  %%TYPHOON%%
-& {cs = 2}  **Lanterns**
-&           %%PROMOTES_TO%% [*Parrot*](war_machine.html?piece=parrot) \\
+%%PIECE_INFO%%
+  **Lantern**
+& %%TYPHOON%%
+& \\
+
+  **Stone General**
+& %%TAIKYOKU%%
+& \\
 ====|
 
 ### Spiral

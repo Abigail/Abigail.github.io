@@ -462,6 +462,10 @@ let pieces = {
         parent: "squirrel",
     },
 
+    cat_sword: {
+        parent: "ferz",
+    },
+
     cavalier: {
         move_list: [
             ((n, a = {}) => [-n,  1, {not_a_target: n == 1}]),
@@ -596,6 +600,16 @@ let pieces = {
             spiral_diamond: "BM",
             wedge_folded:   "FC",
             wedge_flat:     "F/100%",
+        },
+    },
+
+    coiled_serpent: {
+        betza: "vWbF",
+        results: {
+            spiral_square:   sqrt (2, 3),
+            spiral_diamond: "E = 1",
+            wedge_folded:    sqrt (2, 3),
+            wedge_flat:      sqrt (2, 3),
         },
     },
 
@@ -800,6 +814,10 @@ let pieces = {
         },
     },
 
+    dog: {
+        parent: "sergeant",
+    },
+
     dolphin: {
         parent:   "pawn",
     },
@@ -937,6 +955,9 @@ let pieces = {
         },
     },
 
+    earth_general: {
+        parent: "go_between",
+    },
 
     elder: {
         parent: "amazon"
@@ -1570,6 +1591,10 @@ let pieces = {
         parent: "queen",
     },
 
+    iron_general: {
+        parent: "sergeant",
+    },
+
     //
     // J pieces
     //
@@ -1910,6 +1935,10 @@ let pieces = {
         },
     },
 
+    old_rat: {
+        parent: "strutting_crow",
+    },
+
     otter: {
         betza:    "FfWsW4",
         results: {
@@ -2094,6 +2123,10 @@ let pieces = {
             wedge_folded:   "FC", 
             wedge_flat:     "F/100%",
         },
+    },
+
+    reclining_dragon: {
+        parent: "wazir",
     },
 
     reverse_chariot: {
@@ -2338,6 +2371,10 @@ let pieces = {
         parent: "wazir",
     },
 
+    stone_general: {
+        parent: "lantern",
+    },
+
     stork: {
         parent:  "alfil",
     },
@@ -2362,6 +2399,10 @@ let pieces = {
 
     swapper: {
         parent: "queen",
+    },
+
+    sword_soldier: {
+        parent: "tile_general",
     },
 
     swooping_owl: {
@@ -2440,6 +2481,16 @@ let pieces = {
 
     tiger_prince: {
         parent:   "king",
+    },
+
+    tile_general: {
+        betza:  "bWfF",
+        results: {
+            spiral_square:  sqrt (2, 3),
+            spiral_diamond: frac (1, 2),
+            wedge_folded:   sqrt (2, 3),
+            wedge_flat:     sqrt (2),
+        },
     },
 
     treacherous_fox: {
@@ -3043,6 +3094,19 @@ let set_info = {
                  "lion", "phoenix_chu", "reverse_chariot", "side_mover",
                  "silver_general", "soaring_eagle", "vertical_mover",
                  "whale", "white_horse", "pawn"],
+    },
+
+    taikyoku_shogi: {
+        name:    "Taikyoku Sh&#x14d;gi",
+        href:    "https://en.wikipedia.org/wiki/Taikyoku_shogi",
+        pieces: ["blind_bear", "blind_monkey", "cat_sword", "climbing_monkey",
+                 "coiled_serpent", "copper_general", "dog",
+                 "earth_general", "flying_cock", "flying_goose", "go_between",
+                 "iron_general", "old_rat", "reclining_dragon",
+                 "stone_general",
+                 "strutting_crow", "sword_soldier",
+                 "swooping_owl", "tile_general",
+                 "pawn"],
     },
 
     xiangqi: {
