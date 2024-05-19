@@ -17,13 +17,26 @@ Compare with the [*Squire*](squire.html) which can move to the same
 set of squares, but which cannot be blocked.
 
 |====
-%%PIECE_HEADERS%%
-  {th = 1}  %%HIASHATAR%%
-& {cs = 2}  **Hia** or **Bodyguard**
-&           %%ABILITIES%% \\
-  {th = 1}  %%TYPHOON%%
-& {cs = 2}  **Sorcerer**
-&           %%PROMOTED%% [*Beaver*](beaver.html); %%CAPTURE%% \\
+%%PIECE_INFO%%
+  **Fragant Elephant**
+& %%TAIKYOKU%%
+& \\
+ 
+  **Hia** or **Bodyguard**
+& %%HIASHATAR%%
+& %%OTHER_MOVES%% \\
+
+  **King**
+& %%TAIKYOKU%%
+& Not the same piece as the [*King*](king.html) from Western Chess. \\
+
+  **Sorcerer**
+& %%TYPHOON%%
+& %%OTHER_MOVES%% \\
+
+  **White Elephant**
+& %%TAIKYOKU%%
+& \\
 ====|
 
 ### Spiral

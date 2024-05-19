@@ -46,7 +46,7 @@ function set_up_boxset (div) {
             }
 
             if (index > 0) {
-                table += " &#xB7; "
+                table += "&nbsp;&#xB7; "
             }
 
             table += `<span class = 'piece_name'>`
