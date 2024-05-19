@@ -23,7 +23,7 @@ to a piece moving like the **Gold General**.
 & \\
 
   **Gold General**
-& %%SHOGI%%; %%CHU_SHOGI%%; %%MICRO_SHOGI%%; %%TYPHOON%%
+& %%SHOGI%%; %%CHU_SHOGI%%; %%MICRO_SHOGI%%; %%TAIKYOKU%%; %%TYPHOON%%
 & \\
 
   **Golden Bird**
@@ -55,7 +55,7 @@ to a piece moving like the **Gold General**.
 & \\
 
   **Violent Wolf**
-& %%WA_SHOGI%%
+& %%TAIKYOKU%%; %%WA_SHOGI%%
 & \\
 ====|
 

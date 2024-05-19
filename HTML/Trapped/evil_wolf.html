@@ -1,6 +1,6 @@
 <html>
 <head>
-<title>Lantern</title>
+<title>Evil Wolf</title>
 <meta charset = "utf-8">
 <link rel  = 'preconnect' href = 'https://fonts.gstatic.com'>
 <link rel = 'stylesheet' href =      'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
@@ -18,7 +18,7 @@
 <script src = '../../JavaScript/Trapped/pages.js'></script>
 </head>
 
-<body><h1>Lantern</h1><div class = "byline">
+<body><h1>Evil Wolf</h1><div class = "byline">
 by Abigail<br>
 <img src = "../../Images/jan_sluiters.jpg">
 </div>
@@ -26,13 +26,16 @@ by Abigail<br>
 
 <div class = "movement">
 . . . . .
-. * . * .
-. . S . .
+. * * * .
+. * S * .
 . . . . .
+Shogi: 1
 </div>
 
-<p>The <strong>Lantern</strong> moves one square diagonally forward, like a
-forward <a href="ferz.html"><em>Ferz</em></a>.</p>
+<p>The <strong>Evil Wolf</strong> either moves one square side ways, or one square
+forward, either orthogonally or diagonally. The <strong>Evil Wolf</strong> 
+combines the movements of the forward <a href="ferz.html"><em>Ferz</em></a> and the
+forward-sideward <a href="wazir.html"><em>Wazir</em></a>.</p>
 
 <table class = 'piece_info'>
   <tr class = 'row-0' markdown = '1'>
@@ -41,14 +44,9 @@ forward <a href="ferz.html"><em>Ferz</em></a>.</p>
     <th class = 'cell-0-2 col-2 ' markdown = '1'>Info</td>
   </tr>
   <tr class = 'row-1' markdown = '1'>
-    <td class = 'cell-1-0 col-0 ' markdown = '1'><strong>Lantern</strong></td>
-    <td class = 'cell-1-1 col-1 ' markdown = '1'><a href="https://www.chessvariants.com/rules/typhoon-revised">Typhoon</a></td>
+    <td class = 'cell-1-0 col-0 ' markdown = '1'><strong>Evil Wolf</strong></td>
+    <td class = 'cell-1-1 col-1 ' markdown = '1'><a href="https://en.wikipedia.org/wiki/Taikyoku_shogi">Taikyoku Sh&#x14d;gi <span class = 'uni_name'>(&#x5927;&#x5c40;&#x5c06;&#x68cb;)</span></a></td>
     <td class = 'cell-1-2 col-2 ' markdown = '1'></td>
-  </tr>
-  <tr class = 'row-2' markdown = '1'>
-    <td class = 'cell-2-0 col-0 ' markdown = '1'><strong>Stone General</strong></td>
-    <td class = 'cell-2-1 col-1 ' markdown = '1'><a href="https://en.wikipedia.org/wiki/Taikyoku_shogi">Taikyoku Sh&#x14d;gi <span class = 'uni_name'>(&#x5927;&#x5c40;&#x5c06;&#x68cb;)</span></a></td>
-    <td class = 'cell-2-2 col-2 ' markdown = '1'></td>
   </tr>
 </table>
 
@@ -57,16 +55,16 @@ forward <a href="ferz.html"><em>Ferz</em></a>.</p>
 <h4 id = 'square'>Square</h4>
 
 <div class = "section">
-<p>On the Square Spiral, the <strong>Lantern</strong> escapes diagonally upwards in a
-straight line, with an escape velocity of <span class = 'latex-inline'>\(\sqrt{2}\)</span>.</p>
+<p>On the Square Spiral, the <strong>Evil Wolf</strong> visits a quarter of the squares:
+the squares in the wedge in front of the starting square; row by row.</p>
 </div>
 
 <h4 id = 'diamond'>Diamond</h4>
 
 <div class = "section">
-<p>On the Diamond Spiral, the <strong>Lantern</strong> escapes upward, bouncing in a
-two step loop between two files, moving two squares up in each loop,
-for an escape velocity of <span class = 'latex-inline'>\(1\)</span>.</p>
+<p>On the Diamond Square, the <strong>Evil Wolf</strong> uses a two step loop to move
+one square forward. Only squares in two files will be visited. The
+escape velocity is <span class = 'latex-inline'>\(\frac{1}{2}\)</span>.</p>
 </div>
 
 <h3 id = 'wedge'>Wedge</h3>
@@ -74,19 +72,20 @@ for an escape velocity of <span class = 'latex-inline'>\(1\)</span>.</p>
 <h4 id = 'folded'>Folded</h4>
 
 <div class = "section">
-<p>On the Diamond Spiral, the <strong>Lantern</strong> escapes upward, bouncing in a
-two step loop between two files, moving two squares up in each loop,
-for an escape velocity of <span class = 'latex-inline'>\(1\)</span>.</p>
+<p>The <strong>Evil Wolf</strong> can move like the <a href="flying_cock.html"><em>Flying Cock</em></a>, so it visits all the
+squares of the Folded Wedge in order.</p>
 </div>
 
 <h4 id = 'flat'>Flat</h4>
 
-<p>On the Flat Wedge, the <strong>Lantern</strong> escapes diagonally upward,
-hugging the right edge of the Wedge, for an escape velocity of <span class = 'latex-inline'>\(\sqrt{2}\)</span>.</p>
+<p>On the Flat Wedge, the <strong>Evil Wolf</strong> visits the same squares as on
+the Square Spiral, using the same pattern. As such, it visits all
+the squares, except the two left most squares every second row.
+Hence, it visits <span class = 'latex-inline'>\(100\%\)</span> of the squares.</p>
 
-<div class = 'trapped' data-piece = 'lantern'></div>
+<div class = 'trapped' data-piece = 'evil_wolf'></div>
 
-<div class = 'boxset' data-piece = 'lantern'></div>
+<div class = 'boxset' data-piece = 'evil_wolf'></div>
 
 <hr id = 'last-line'>
 <div class = 'trailer'>

@@ -17,7 +17,11 @@ or to a square which is one away diagonally forward
 |====
 %%PIECE_INFO%%
   **Blind Dog** 
-& %%WA_SHOGI%%
+& %%TAIKYOKU%%; %%WA_SHOGI%%
+& \\
+
+  **Chinese Cock**
+& %%TAIKYOKU%%
 & \\
 ====|
 

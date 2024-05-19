@@ -585,6 +585,10 @@ let pieces = {
         _name: "Chick",
     },
 
+    chinese_cock: {
+        parent: "blind_dog",
+    },
+
     cicada: {
         parent: "king",
     },
@@ -782,6 +786,16 @@ let pieces = {
         },
     },
 
+    dark_spirit: {
+        betza: "WfrFbF",
+        results: {
+            spiral_square:  "W",
+            spiral_diamond: "F/100%",
+            wedge_folded:   "F/100%",
+            wedge_flat:     "F/100%",
+        },
+    },
+
     dayrider: {
         betza:    "WFAADD",
         results: {
@@ -798,6 +812,16 @@ let pieces = {
 
     dervish: {
         parent:   "alibaba",
+    },
+
+    deva: {
+        betza: "WflFbF",
+        results: {
+            spiral_square:  "W",
+            spiral_diamond: "F/100%",
+            wedge_folded:   "F/100%",
+            wedge_flat:      sqrt (2, 2),
+        },
     },
 
     diabolo: {
@@ -1048,6 +1072,17 @@ let pieces = {
         _name:  "Eques Rex",
         _index_name: "Eques Rex",
     },
+
+    evil_wolf: {
+        betza: "fFfsW",
+        results: {
+            spiral_square:  "F/25%",
+            spiral_diamond:  frac (1, 2),
+            wedge_folded:   "FC",
+            wedge_flat:     "F/100%",
+        },
+    },
+
 
     //
     // F pieces
@@ -1890,6 +1925,10 @@ let pieces = {
         parent: "king",
     },
 
+    neighbouring_king: {
+        parent: "drunk_elephant",
+    },
+
     nightrider: {
         betza:    "NN",
         results: {
@@ -1933,6 +1972,10 @@ let pieces = {
             wedge_folded:   "?/1G",
             wedge_flat:      sqrt (2, 4),
         },
+    },
+
+    old_monkey: {
+        parent: "humpback",
     },
 
     old_rat: {
@@ -2212,6 +2255,10 @@ let pieces = {
             wedge_folded:    sqrt (2, 3),
             wedge_flat:      sqrt (2),
         },
+    },
+
+    rushing_boar: {
+        parent: "drunk_elephant",
     },
 
     //
@@ -3099,13 +3146,20 @@ let set_info = {
     taikyoku_shogi: {
         name:    "Taikyoku Sh&#x14d;gi",
         href:    "https://en.wikipedia.org/wiki/Taikyoku_shogi",
-        pieces: ["blind_bear", "blind_monkey", "cat_sword", "climbing_monkey",
-                 "coiled_serpent", "copper_general", "dog",
-                 "earth_general", "flying_cock", "flying_goose", "go_between",
-                 "iron_general", "old_rat", "reclining_dragon",
-                 "stone_general",
+        pieces: ["blind_bear", "blind_dog", "blind_monkey", "blind_tiger",
+                 "cat_sword", "chinese_cock", "climbing_monkey",
+                 "coiled_serpent", "copper_general", "dark_spirit",
+                 "deva", "dog", "drunk_elephant",
+                 "earth_general", "evil_wolf",
+                 "ferocious_leopard",
+                 "flying_cock", "flying_goose", "go_between",
+                 "gold_general",
+                 "iron_general", "old_monkey", "old_rat",
+                 "neighbouring_king", "reclining_dragon", "rushing_boar",
+                 "silver_general", "stone_general",
                  "strutting_crow", "sword_soldier",
-                 "swooping_owl", "tile_general",
+                 "swooping_owl", "tile_general", "violent_stag",
+                 "violent_wolf",
                  "pawn"],
     },
 
