@@ -141,6 +141,16 @@ let pieces = {
         },
     },
 
+    angry_boar: {
+        betza: "fF2fsW",
+        results: {
+            spiral_square:  "F/25%",
+            spiral_diamond:  frac (1, 2),
+            wedge_folded:   "FC", 
+            wedge_flat:     "F/100%",
+        },
+    },
+
     antelope: {     // (4, 3)-leaper
         betza:    "(3,4)",
         results: {
@@ -1001,6 +1011,16 @@ let pieces = {
 
     earth_general: {
         parent: "go_between",
+    },
+
+    eastern_barbarian: {
+        betza: "vW2fFsW",
+        results: {
+            spiral_square:  "W",
+            spiral_diamond: "F/50%",
+            wedge_folded:   "FC",
+            wedge_flat:     "F/100%",
+        },
     },
 
     elder: {
@@ -1978,6 +1998,16 @@ let pieces = {
         parent: "chancellor",
     },
 
+    northern_barbarian: {
+        betza: "fFWsW2",
+        results:   {
+            spiral_square:  "W",
+            spiral_diamond:  frac (1, 2),
+            wedge_folded:   "FC",
+            wedge_flat:     "F/100%",
+        },
+    },
+
     noyan: {
         parent: "king",
     },
@@ -2006,6 +2036,16 @@ let pieces = {
             spiral_diamond: "?/1G",
             wedge_folded:   "?/1G",
             wedge_flat:      sqrt (2, 4),
+        },
+    },
+
+    old_kite: {
+        betza: "F2sW",
+        results: {
+            spiral_square:  "T/96",
+            spiral_diamond: "BM",
+            wedge_folded:   "FC",
+            wedge_flat:     "F/100%",
         },
     },
 
@@ -2090,6 +2130,16 @@ let pieces = {
         parent: "king",
     },
 
+    poisonous_snake: {
+        betza: "fFfsW2bW",
+        results: {
+            spiral_square:  "W",
+            spiral_diamond:  frac (1, 2),
+            wedge_folded:   "FC", 
+            wedge_flat:     "F/100%",
+        },
+    },
+
     porpoise: {
         betza:    "sW",
         results: {
@@ -2098,6 +2148,10 @@ let pieces = {
             wedge_folded:   "", 
             wedge_flat:     "",
         },
+    },
+
+    prancing_stag: {
+        parent: "northern_barbarian",
     },
 
     priest: {
@@ -2386,6 +2440,10 @@ let pieces = {
         },
     },
 
+    southern_barbarian: {
+        parent: "northern_barbarian",
+    },
+
     sparrow_pawn: {
         parent: "pawn",
     },
@@ -2658,6 +2716,16 @@ let pieces = {
         parent: "archbishop",
     },
 
+    violent_bear: {
+        betza: "fF2bFsW",
+        results: {
+            spiral_square:  "T/93",
+            spiral_diamond: "BM",
+            wedge_folded:   "FC",
+            wedge_flat:     "F/100%",
+        },
+    },
+
     violent_stag: {
         parent: "silver_general",
     },
@@ -2755,6 +2823,10 @@ let pieces = {
 
     wazirrider: {
         parent: "rook",
+    },
+
+    western_barbarian: {
+        parent: "eastern_barbarian",
     },
 
     whale: {
@@ -3212,24 +3284,27 @@ let set_info = {
     taikyoku_shogi: {
         name:    "Taikyoku Sh&#x14d;gi",
         href:    "https://en.wikipedia.org/wiki/Taikyoku_shogi",
-        pieces: ["bears_eyes", "beast_cadet",
+        pieces: ["angry_boar", "bears_eyes", "beast_cadet",
                  "blind_bear", "blind_dog", "blind_monkey", "blind_tiger",
                  "cat_sword", "chinese_cock", "climbing_monkey",
                  "coiled_serpent", "copper_general", "dark_spirit",
                  "deva", "dog", "donkey", "drunk_elephant",
-                 "earth_general", "enchanted_badger", "evil_wolf",
+                 "earth_general", "eastern_barbarian",
+                 "enchanted_badger", "evil_wolf",
                  "ferocious_leopard",
                  "flying_cock", "flying_goose", "flying_horse",
                  "fragant_elephant", "go_between",
                  "gold_general", "iron_general", "king_taikyoku",
-                 "left_general",
+                 "left_general", "old_kite",
                  "old_monkey", "old_rat", "prince",
-                 "neighbouring_king", "reclining_dragon",
+                 "neighbouring_king", "northern_barbarian", "poisonous_snake",
+                 "prancing_stag", "reclining_dragon",
                  "right_general", "running_bird", "rushing_boar",
-                 "silver_general", "stone_general",
+                 "silver_general", "southern_barbarian", "stone_general",
                  "strutting_crow", "sword_soldier",
                  "swooping_owl", "tile_general", "violent_stag",
-                 "venomous_wolf", "violent_wolf", "white_elephant",
+                 "venomous_wolf", "violent_bear", "violent_wolf",
+                 "western_barbarian", "white_elephant",
                  "wood_general",
                  "pawn"],
     },
