@@ -20,6 +20,10 @@ a limited [*Bishop*](bishop.html).
   **Bishop's Dog**
 & %%TYPHOON%%
 & \\
+
+  **Wrestler**
+& %%TAIKYOKU%%
+& \\
 ====|
 
 ### Spiral

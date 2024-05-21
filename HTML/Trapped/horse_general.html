@@ -1,6 +1,6 @@
 <html>
 <head>
-<title>Bishop's Dog</title>
+<title>Horse General</title>
 <meta charset = "utf-8">
 <link rel  = 'preconnect' href = 'https://fonts.gstatic.com'>
 <link rel = 'stylesheet' href =      'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
@@ -18,26 +18,27 @@
 <script src = '../../JavaScript/Trapped/pages.js'></script>
 </head>
 
-<body><h1>Bishop's Dog</h1><div class = "byline">
+<body><h1>Horse General</h1><div class = "byline">
 by Abigail<br>
 <img src = "../../Images/jan_sluiters.jpg">
 </div>
 
 
 <div class = "movement">
-. . . . . . . . .
-. L . . . . . L .
-. . * . . . * . .
-. . . * . * . . .
-. . . . S . . . .
-. . . * . * . . .
-. . * . . . * . .
-. L . . . . . L .
-. . . . . . . . .
+. . . . .
+. . L . .
+. . * . .
+. * * * .
+. . S . .
+. . * . .
+. . . . .
+Shogi: 1
 </div>
 
-<p>The <strong>Bishop's Dog</strong> moves up to three unoccupied squares diagonally, like
-a limited <a href="bishop.html"><em>Bishop</em></a>.</p>
+<p>The <strong>Horse General</strong> either moves to one square diagonally forward
+(like a forward <a href="ferz.html"><em>Ferz</em></a>), moves on square orthogonally backward
+(like a backward <a href="wazir.html"><em>Wazir</em></a>), or it slides up to three unoccupied
+squares orthogonally forward (like a limited forward <a href="rook.html"><em>Rook</em></a>).</p>
 
 <table class = 'piece_info'>
   <tr class = 'row-0' markdown = '1'>
@@ -46,14 +47,21 @@ a limited <a href="bishop.html"><em>Bishop</em></a>.</p>
     <th class = 'cell-0-2 col-2 ' markdown = '1'>Info</td>
   </tr>
   <tr class = 'row-1' markdown = '1'>
-    <td class = 'cell-1-0 col-0 ' markdown = '1'><strong>Bishop's Dog</strong></td>
-    <td class = 'cell-1-1 col-1 ' markdown = '1'><a href="https://www.chessvariants.com/rules/typhoon-revised">Typhoon</a></td>
+    <td class = 'cell-1-0 col-0 ' markdown = '1'><strong>Horse General</strong></td>
+    <td class = 'cell-1-1 col-1 ' markdown = '1' rowspan = '4'><a href="https://en.wikipedia.org/wiki/Taikyoku_shogi">Taikyoku Sh&#x14d;gi</a></td>
     <td class = 'cell-1-2 col-2 ' markdown = '1'></td>
   </tr>
   <tr class = 'row-2' markdown = '1'>
-    <td class = 'cell-2-0 col-0 ' markdown = '1'><strong>Wrestler</strong></td>
-    <td class = 'cell-2-1 col-1 ' markdown = '1'><a href="https://en.wikipedia.org/wiki/Taikyoku_shogi">Taikyoku Sh&#x14d;gi</a></td>
+    <td class = 'cell-2-0 col-0 ' markdown = '1'><strong>Ox General</strong></td>
     <td class = 'cell-2-2 col-2 ' markdown = '1'></td>
+  </tr>
+  <tr class = 'row-3' markdown = '1'>
+    <td class = 'cell-3-0 col-0 ' markdown = '1'><strong>River General</strong></td>
+    <td class = 'cell-3-2 col-2 ' markdown = '1'></td>
+  </tr>
+  <tr class = 'row-4' markdown = '1'>
+    <td class = 'cell-4-0 col-0 ' markdown = '1'><strong>Wind General</strong></td>
+    <td class = 'cell-4-2 col-2 ' markdown = '1'></td>
   </tr>
 </table>
 
@@ -62,17 +70,16 @@ a limited <a href="bishop.html"><em>Bishop</em></a>.</p>
 <h4 id = 'square'>Square</h4>
 
 <div class = "section">
-<p>The <strong>Bishop's Dog</strong>'s movement falls between the movement
-of the <a href="ferz.html"><em>Ferz</em></a>, and the <a href="bishop.html"><em>Bishop</em></a>, which
-both do not get trapped. Surprisingly, the <strong>Bishop's Dog</strong> does
-get trapped, and it gets trapped after 129 steps.</p>
+<p>After making one clockwise rotation, the <strong>Horse General</strong> uses a
+three step loop to move one square diagonally backward, giving
+it an escape velocity of <span class = 'latex-inline'>\(\frac{\sqrt{2}}{3}\)</span>.</p>
 </div>
 
 <h4 id = 'diamond'>Diamond</h4>
 
 <div class = "section">
-<p>On the Diamond Spiral, the <strong>Bishop's Dog</strong> moves as the <a href="ferz.html"><em>Ferz</em></a>,
-visiting <span class = 'latex-inline'>\(50%\)</span> of the squares on the board.</p>
+<p>On the Diamond Spiral, the <strong>Horse General</strong> moves in a straight
+line forward, giving it an escape velocity of <span class = 'latex-inline'>\(1\)</span>.</p>
 </div>
 
 <h3 id = 'wedge'>Wedge</h3>
@@ -80,21 +87,20 @@ visiting <span class = 'latex-inline'>\(50%\)</span> of the squares on the board
 <h4 id = 'folded'>Folded</h4>
 
 <div class = "section">
-<p>On the Folded Wedge, the <strong>Bishop's Dog</strong> escapes to infinity
-using the same pattern as the <a href="ferz.html"><em>Ferz</em></a>. It
-escapes to the upper right, using a three step loop, giving
-it an escape velocity of <span class = 'latex-inline'>\(\frac{\sqrt{2}}{3}\)</span>.</p>
+<p>On the Folded Wedge, the <strong>Horse General</strong> uses a six step loop
+to move two square diagonally forward, giving it an escape
+velocity of <span class = 'latex-inline'>\(\frac{\sqrt{2}}{3}\)</span>.</p>
 </div>
 
 <h4 id = 'flat'>Flat</h4>
 
-<p>On the Flat Wedge, the <strong>Bishop's Dog</strong> escapes to infinity
-by visiting only the right most square of each row. This
-is an escape velocity of <span class = 'latex-inline'>\(\sqrt{2}\)</span>.</p>
+<p>On the Flat Wedge, the <strong>Horse General</strong> escapes in a straight
+diagonal path forward, visiting the right most square of each row.
+This gives it an escape velocity of <span class = 'latex-inline'>\(\sqrt{2}\)</span>.</p>
 
-<div class = 'trapped' data-piece = 'bishops_dog'></div>
+<div class = 'trapped' data-piece = 'horse_general'></div>
 
-<div class = 'boxset' data-piece = 'bishops_dog'></div>
+<div class = 'boxset' data-piece = 'horse_general'></div>
 
 <hr id = 'last-line'>
 <div class = 'trailer'>
