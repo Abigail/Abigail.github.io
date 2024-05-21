@@ -15,114 +15,122 @@ the piece is captured, the side owning the piece loses.
 Of course, for our investigation, Royalness plays no part.
 
 |====
-%%PIECE_HEADERS%%
-  {th = 1}  %%WA_SHOGI%%
-&           **Bear's Eyes** & &#x718A;&#x773C;
-&           %%PROMOTED%%
-              [*Violent Wolf*](gold_general.html?piece=violent_wolf) \\
-  {th = 1}  %%ROCOCO%%
-& {cs = 2}  **Cannon Pawn**
-&           %%PROMOTES_TO%% Player's choice of captured friendly piece;
-            %%CAPTURE%%; %%HOPPER%% \\
-  {th = 1}  %%TYPHOON%%
-& {cs = 2}  **Cicada**
-&           %%HOPPER%%; %%PROMOTES_TO%% [*Typhoon*](genie.html?piece=typoon) \\
-  {th = 1}  %%SCIROCCO%%; %%TYPHOON%%
-& {cs = 2}  **Commoner**
-&           %%PROMOTES_TO%% [*Wildebeest*](gnu.html?piece=wildebeest) \\
-  {th = 1}  %%WA_SHOGI%%
-&           **Crane King** & &#x974F;&#x7389;
-&           %%ROYAL%% \\
-  {th = 1}  %%TYPHOON%%
-& {cs = 2}  **Elephant Prince**
-&           %%CAPTURE%%; %%PROMOTED%% [*Drunk Elephant*](drunk_elephant.html) \\
-  {th = 1}  %%JANGGI%%
-&           **General** & &#xD55C;/&#xCD08;
-&           %%ROYAL%%;
-            In the game, the **General** is restricted to the 3x3 palace,
-            and the **General** does not have all its moves available 
-            on every square of the palace \\
-  {th = 1}  %%YARI_SHOGI%%
-& {cs = 2}  **General**
-&           %%ROYAL%% \\
-  {th = 1}  %%JANGGI%%
-&           **Guard** & &#xC0AC;
-&           In the game, the **Guard** is restricted to the 3x3 palace,
-            and the **General** does not have all its moves available 
-            on every square of the palace; Also known as *Assistant* or
-            *Mandarin* \\
-  {th = 1}  %%RENN_CHESS%%
-& {cs = 2}  **Guard**
-&           \\
+%%PIECE_INFO%%
+  **Bear's Eyes**
+& %%TAIKYOKU%%; %%WA_SHOGI%%
+& \\
 
-  {th = 1}  %%SCIROCCO%%
-& {rs = 2; cs = 2}
-            **King**
-&           %%ROYAL%%;
-            %%PROMOTES_TO%% [*Emperor*](champion.html?piece=emperor_scirocco) \\
-  {th = 1}  %%TYPHOON%%
-&           %%ROYAL%%;
-            %%PROMOTES_TO%% [*Emperor*](emperor_typhoon.html) or
-                            [*Emperor of Emperors*](emperor_of_emperors.html) \\
-  {th = 1}  %%CHESS%%; %%CAGLIOSTRO%%; %%FALCON_HUNTER%%; %%RENN_CHESS%%;
-            %%ROCOCO%%; %%WILDEBEEST%%; %%WOLF%%; Other chess variants
-& {rs = 2}  **King** & {rs = 2} &#x2654;
-&           %%ROYAL%% \\
-  {th = 1}  %%INTERDEPENDENT%%
-&           %%ROYAL%%; %%CAPTURE%%  \\
-  {th = 1}  %%MAKRUK%%
-&           **King** & &#x0E02;
-&           %%ROYAL%% \\
-  {th = 1}  %%EURO_SHOGI%%
-& {cs = 2}  **King**
-&           \\
-  {th = 1; rs = 2}
-            %%SHOGI%%; %%KYOTO_SHOGI%%; %%MICRO_SHOGI%%; %%CHU_SHOGI%%
-&           **King General** & &#x738b;&#x5c06;
-& {rs = 2}  %%ROYAL%%; Also named *King* \\
-            **Jeweled General** or<br>
-            **Jade General** & &#x7389;&#x5C06; \\
-  {th = 1}  %%DOBUTSU%%
-& {cs = 2}  **Lion**
-&           %%ROYAL%% \\
-  {th = 1}  %%SENTEREJ%%
-& {cs = 2}  **Negus**
-&           %%ROYAL%% \\
-  {th = 1}  %%SHATAR%%
-&           **Noyan** or **Noin** &
-            <span class =
-                 "mongolian">&#x1828;&#x1823;&#x1836;&#x1820;&#x1828;</span>
-&           %%ROYAL%%; *Noyan* meaning *Lord* \\
-  {th = 1}  %%HIASHATAR%%
-& {cs = 2}  **Noyon** 
-&           %%ROYAL%% \\
-  {th = 1}  %%TYPHOON%%
-& {cs = 2}  **Overtaker**
-&           %%HOPPER%%; %%PROMOTES_TO%% [*Nightrider*](knightrider.html) \\
-  {th = 1}  %%TORI_SHOGI%%
-&           **Phoenix** & &#x9d6c;
-&           %%ROYAL%%; This is a different piece than the 
-            [*Phoenix*](caliph.html?piece=phoenix_chu) from %%CHU_SHOGI%% \\
-  {th = 1}  %%WA_SHOGI%%
-&           **Plodding Ox** & &#x6B6C;&#x725B;
-&           %%PROMOTED%% [*Oxcart*](lance.html?piece=oxchart) \\
-  {th = 1}  %%CHU_SHOGI%%
-&           **Prince** & &#x592A;&#x5B50;
-&           %%ROYAL%%; %%PROMOTED%% [*Drunk Elephant*](drunk_elephant.html) \\
-  {th = 1; rs = 3}
-            %%TYPHOON%%
-& {cs = 2}  **Salamander**
-&           %%MORE_MOVES%%; %%PROMOTES_TO%% [*Genie*](genie.html) \\
+  **Cannon Pawn**
+& %%ROCOCO%%
+& %%OTHER_MOVES%% \\
+
+  **Cicada**
+& %%TYPHOON%%
+& %%OTHER_MOVES%% \\
+
+  **Commoner**
+& %%SCIROCCO%%; %%TYPHOON%%
+& \\
+
+  **Crane King**
+& %%WA_SHOGI%%
+& \\
+
+  **Elephant Prince**
+& %%TYPHOON%%
+& %%OTHER_MOVES%% \\
+
+  {rs = 2}
+  **General**
+& %%JANGGI%%
+& In the game, the **General** is restricted to the 3x3 palace, and the
+  **General** does not have all its moves available on every square of
+  the palace \\
+  %%YARI_SHOGI%%
+& \\
+
+  {rs = 2}
+  **Guard**
+& %%JANGGI%%
+& In the game, the **Guard** is restricted to the 3x3 palace,
+  and the **Guard** does not have all its moves available 
+  on every square of the palace; Also known as *Assistant* or *Mandarin* \\
+  %%RENN_CHESS%%
+& \\
+
+  {rs = 3}
+  **King**
+& %%CHESS%%; %%CAGLIOSTRO%%; %%FALCON_HUNTER%%; %%MAKRUK%%;
+  %%RENN_CHESS%%; %%ROCOCO%%; %%SCIROCCO%%; %%TYPHOON%%;
+  %%WILDEBEEST%%; %%WOLF%%; Other chess variants
+& \\
+  %%INTERDEPENDENT%%
+& %%OTHER_MOVES%% \\
+  %%SHOGI%%; %%CHU_SHOGI%%; %%EURO_SHOGI%%; %%KYOTO_SHOGI%%;
+  %%MICRO_SHOGI%%; %%TAIKYOKU%%
+& In Sh&#x014d;gi and Sh&#x014d;gi variants, the **Kings** may also
+  be refer to as *King General* and *Jeweled* or *Jade General*. \\
+
+  **Left General**
+& %%TAIKYOKU%%
+& \\
+
+  **Lion**
+& %%DOBUTSU%%
+& \\
+
+  **Negus**
+& %%SENTEREJ%%
+& \\
+
+  **Noyan** or **Noin** 
+& %%SHATAR%%
+& *Noyan* means *Lord* \\
+
+  **Noyon** 
+& %%HIASHATAR%%
+& \\
+
+  **Overtaker**
+& %%TYPHOON%%
+& %%OTHER_MOVES%% \\
+
+  **Phoenix**
+& %%TORI_SHOGI%%
+& This is a different piece than the 
+  [*Phoenix*](caliph.html) from %%CHU_SHOGI%% \\
   
-  {cs = 2}  **Tiger Prince**
-&           %%ROYAL%%; %%CAPTURE%%;
-            %%PROMOTED%% [*Blind Tiger*](blind_tiger.html) \\
+  **Plodding Ox**
+& %%WA_SHOGI%%
+& \\
 
-  {cs = 2}  **Undertaker**
-&           %%CAPTURE%%; %%PROMOTES_TO%% [*Dayrider*](dayrider.html) \\
-  {th = 1}  %%WHALE_SHOGI%%
-& {cs = 2}  **White Whale**
-&           %%ROYAL%% \\
+  **Prince**
+& %%CHU_SHOGI%%; %%TAIKYOKU%%
+& \\
+
+  **Right General**
+& %%TAIKYOKU%%
+& \\
+
+  **Salamander**
+& %%TYPHOON%%
+& %%OTHER_MOVES%% \\
+  
+  **Tiger Prince**
+& %%TYPHOON%%
+& %%OTHER_MOVES%% \\
+
+  **Undertaker**
+& %%TYPHOON%%
+& %%OTHER_MOVES%% \\
+
+  **Venomous Wolf**
+& %%TAIKYOKU%%
+& \\
+
+  **White Whale**
+& %%WHALE_SHOGI%%
+& \\
 ====|
 
 Other names for pieces which move like the **King**

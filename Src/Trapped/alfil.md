@@ -29,20 +29,18 @@ The proposed Unicode symbol for the **Alfil** looks like an elephant.
 There are several pieces which move like the **Alfil**. 
 
 |====
-%%PIECE_HEADERS%%
-  {th = 1}  %%BASIC_LEAPERS%%
-& {cs = 2; rs = 3}  **Alfil**
-&           \\
-  {th = 1}  %%SCIROCCO%%
-&           %%PROMOTES_TO%% [*Bishop*](bishop.html) \\
-  {th = 1}  %%TYPHOON%%
-&           %%PROMOTES_TO%% [*Scirocco*](scirocco.html) \\
-  {th = 1}  %%SENTEREJ%%
-& {cs = 2}  **Saba**
-&           *Saba* meaning *Elephant* \\
-  {th = 1}  %%SCIROCCO%%; %%TYPHOON%%
-& {cs = 2}  **Stork** 
-&           %%PROMOTES_TO%% [*Queen*](queen.html); %%CAPTURE%% \\
+%%PIECE_INFO%%
+  **Alfil**
+& %%BASIC_LEAPERS%%; %%SCIROCCO%%; %%TYPHOON%%
+& \\
+
+  **Saba**
+& %%SENTEREJ%%
+& *Saba* means *Elephant* \\
+
+  **Stork** 
+& %%SCIROCCO%%; %%TYPHOON%%
+& %%OTHER_MOVES%% \\
 ====|
 
 Link: [%%CHESS_V%%](#chess-v:alfil)

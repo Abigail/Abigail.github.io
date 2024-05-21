@@ -20,9 +20,9 @@ diagonal), or leap to a square which is three squares away in
 one orthogonal direction, and one square away in the other.
 
 |====
-%%PIECE_HEADERS%%
-  {th = 1}  %%OVERKILL%%
-& {cs = 2}  **Acme**
+%%PIECE_INFO%%
+  **Acme**
+& %%OVERKILL%%
 &           \\
 ====|
 

@@ -141,6 +141,16 @@ let pieces = {
         },
     },
 
+    angry_boar: {
+        betza: "fF2fsW",
+        results: {
+            spiral_square:  "F/25%",
+            spiral_diamond:  frac (1, 2),
+            wedge_folded:   "FC", 
+            wedge_flat:     "F/100%",
+        },
+    },
+
     antelope: {     // (4, 3)-leaper
         betza:    "(3,4)",
         results: {
@@ -225,6 +235,16 @@ let pieces = {
     bears_eyes: {
         parent: "king",
         _name: "Bear's Eyes",
+    },
+
+    beast_cadet: {
+        betza: "F2fsW2",
+        results: {
+            spiral_square:  "T/323", 
+            spiral_diamond: "BM",
+            wedge_folded:   "FC", 
+            wedge_flat:     "F/100%",
+        },
     },
 
     beaver: {
@@ -462,6 +482,10 @@ let pieces = {
         parent: "squirrel",
     },
 
+    cat_sword: {
+        parent: "ferz",
+    },
+
     cavalier: {
         move_list: [
             ((n, a = {}) => [-n,  1, {not_a_target: n == 1}]),
@@ -581,6 +605,10 @@ let pieces = {
         _name: "Chick",
     },
 
+    chinese_cock: {
+        parent: "blind_dog",
+    },
+
     cicada: {
         parent: "king",
     },
@@ -596,6 +624,16 @@ let pieces = {
             spiral_diamond: "BM",
             wedge_folded:   "FC",
             wedge_flat:     "F/100%",
+        },
+    },
+
+    coiled_serpent: {
+        betza: "vWbF",
+        results: {
+            spiral_square:   sqrt (2, 3),
+            spiral_diamond: "E = 1",
+            wedge_folded:    sqrt (2, 3),
+            wedge_flat:      sqrt (2, 3),
         },
     },
 
@@ -768,6 +806,16 @@ let pieces = {
         },
     },
 
+    dark_spirit: {
+        betza: "WfrFbF",
+        results: {
+            spiral_square:  "W",
+            spiral_diamond: "F/100%",
+            wedge_folded:   "F/100%",
+            wedge_flat:     "F/100%",
+        },
+    },
+
     dayrider: {
         betza:    "WFAADD",
         results: {
@@ -786,6 +834,16 @@ let pieces = {
         parent:   "alibaba",
     },
 
+    deva: {
+        betza: "WflFbF",
+        results: {
+            spiral_square:  "W",
+            spiral_diamond: "F/100%",
+            wedge_folded:   "F/100%",
+            wedge_flat:      sqrt (2, 2),
+        },
+    },
+
     diabolo: {
         parent: "blind_monkey",
     },
@@ -800,8 +858,22 @@ let pieces = {
         },
     },
 
+    dog: {
+        parent: "sergeant",
+    },
+
     dolphin: {
         parent:   "pawn",
+    },
+
+    donkey: {
+        betza: "W2",
+        results: {
+            spiral_square:  "W",
+            spiral_diamond: "F/81.25%",
+            wedge_folded:   "T/5",
+            wedge_flat:      frac (2, 2),
+        },
     },
 
     doughnut: {
@@ -937,6 +1009,19 @@ let pieces = {
         },
     },
 
+    earth_general: {
+        parent: "go_between",
+    },
+
+    eastern_barbarian: {
+        betza: "vW2fFsW",
+        results: {
+            spiral_square:  "W",
+            spiral_diamond: "F/50%",
+            wedge_folded:   "FC",
+            wedge_flat:     "F/100%",
+        },
+    },
 
     elder: {
         parent: "amazon"
@@ -1018,6 +1103,10 @@ let pieces = {
         _index_name: "Empress (Queen + Knight)",
     },
 
+    enchanted_badger: {
+        parent: "donkey",
+    },
+
     equerry: {
         parent: "archbishop",
     },
@@ -1027,6 +1116,17 @@ let pieces = {
         _name:  "Eques Rex",
         _index_name: "Eques Rex",
     },
+
+    evil_wolf: {
+        betza: "fFfsW",
+        results: {
+            spiral_square:  "F/25%",
+            spiral_diamond:  frac (1, 2),
+            wedge_folded:   "FC",
+            wedge_flat:     "F/100%",
+        },
+    },
+
 
     //
     // F pieces
@@ -1137,6 +1237,10 @@ let pieces = {
         parent: "copper_general",
     },
 
+    flying_horse: {
+        parent: "elephant",
+    },
+
     flying_ox: {
         betza:    "BvR",
         results: {
@@ -1155,6 +1259,10 @@ let pieces = {
             wedge_folded:   "FC", 
             wedge_flat:     "F/100%",
         },
+    },
+
+    fragant_elephant: {
+        parent: "sorcerer"
     },
 
     fort: {
@@ -1570,6 +1678,10 @@ let pieces = {
         parent: "queen",
     },
 
+    iron_general: {
+        parent: "sergeant",
+    },
+
     //
     // J pieces
     //
@@ -1592,6 +1704,12 @@ let pieces = {
             wedge_folded:   "FC", 
             wedge_flat:     "F/100%"
         },
+    },
+
+    king_taikyoku: {
+        parent: "sorcerer",
+        _name: "King",
+        _index_name: "King (Taikyoku)",
     },
 
     kinkei: {
@@ -1690,6 +1808,10 @@ let pieces = {
             wedge_folded:    frac (1),
             wedge_flat:      sqrt (2),
         },
+    },
+
+    left_general: {
+        parent: "king",
     },
 
     left_quail: {
@@ -1800,13 +1922,6 @@ let pieces = {
 
     missionary: {
         parent: "elephant",
-        betza:    "F2",
-        results: {
-            spiral_square:  "F/40.625%", 
-            spiral_diamond: "F/50%",
-            wedge_folded:    sqrt (2, 2),
-            wedge_flat:      sqrt (2),
-        },
     },
 
     moa: {
@@ -1865,6 +1980,10 @@ let pieces = {
         parent: "king",
     },
 
+    neighbouring_king: {
+        parent: "drunk_elephant",
+    },
+
     nightrider: {
         betza:    "NN",
         results: {
@@ -1877,6 +1996,16 @@ let pieces = {
 
     nobleman: {
         parent: "chancellor",
+    },
+
+    northern_barbarian: {
+        betza: "fFWsW2",
+        results:   {
+            spiral_square:  "W",
+            spiral_diamond:  frac (1, 2),
+            wedge_folded:   "FC",
+            wedge_flat:     "F/100%",
+        },
     },
 
     noyan: {
@@ -1908,6 +2037,24 @@ let pieces = {
             wedge_folded:   "?/1G",
             wedge_flat:      sqrt (2, 4),
         },
+    },
+
+    old_kite: {
+        betza: "F2sW",
+        results: {
+            spiral_square:  "T/96",
+            spiral_diamond: "BM",
+            wedge_folded:   "FC",
+            wedge_flat:     "F/100%",
+        },
+    },
+
+    old_monkey: {
+        parent: "humpback",
+    },
+
+    old_rat: {
+        parent: "strutting_crow",
     },
 
     otter: {
@@ -1983,6 +2130,16 @@ let pieces = {
         parent: "king",
     },
 
+    poisonous_snake: {
+        betza: "fFfsW2bW",
+        results: {
+            spiral_square:  "W",
+            spiral_diamond:  frac (1, 2),
+            wedge_folded:   "FC", 
+            wedge_flat:     "F/100%",
+        },
+    },
+
     porpoise: {
         betza:    "sW",
         results: {
@@ -1991,6 +2148,10 @@ let pieces = {
             wedge_folded:   "", 
             wedge_flat:     "",
         },
+    },
+
+    prancing_stag: {
+        parent: "northern_barbarian",
     },
 
     priest: {
@@ -2096,6 +2257,10 @@ let pieces = {
         },
     },
 
+    reclining_dragon: {
+        parent: "wazir",
+    },
+
     reverse_chariot: {
         betza: "vR",
         results: {
@@ -2106,6 +2271,9 @@ let pieces = {
         },
     },
 
+    right_general: {
+        parent: "king",
+    },
 
     right_quail: {
         betza:  "fRblBbrF",
@@ -2171,6 +2339,16 @@ let pieces = {
         },
     },
 
+    running_bird: {
+        betza: "FsWfW2",
+        results: {
+            spiral_square:  "F*/100%",
+            spiral_diamond: "BM",
+            wedge_folded:   "FC",
+            wedge_flat:     "F/100%",
+        },
+    },
+
     running_rabbit: {
         betza:   "bWFfR",
         results: {
@@ -2179,6 +2357,10 @@ let pieces = {
             wedge_folded:    sqrt (2, 3),
             wedge_flat:      sqrt (2),
         },
+    },
+
+    rushing_boar: {
+        parent: "drunk_elephant",
     },
 
     //
@@ -2256,6 +2438,10 @@ let pieces = {
             wedge_folded:   "FC", 
             wedge_flat:     "F/100%",
         },
+    },
+
+    southern_barbarian: {
+        parent: "northern_barbarian",
     },
 
     sparrow_pawn: {
@@ -2338,6 +2524,10 @@ let pieces = {
         parent: "wazir",
     },
 
+    stone_general: {
+        parent: "lantern",
+    },
+
     stork: {
         parent:  "alfil",
     },
@@ -2362,6 +2552,10 @@ let pieces = {
 
     swapper: {
         parent: "queen",
+    },
+
+    sword_soldier: {
+        parent: "tile_general",
     },
 
     swooping_owl: {
@@ -2442,6 +2636,16 @@ let pieces = {
         parent:   "king",
     },
 
+    tile_general: {
+        betza:  "bWfF",
+        results: {
+            spiral_square:  sqrt (2, 3),
+            spiral_diamond: frac (1, 2),
+            wedge_folded:   sqrt (2, 3),
+            wedge_flat:     sqrt (2),
+        },
+    },
+
     treacherous_fox: {
         betza: "vWFvDA",
         results: {
@@ -2494,6 +2698,10 @@ let pieces = {
         parent: "buffalo",
     },
 
+    venomous_wolf: {
+        parent: "king",
+    },
+
     vertical_mover: {
         betza: "sWvR",
         results: {
@@ -2506,6 +2714,16 @@ let pieces = {
 
     viscount: {
         parent: "archbishop",
+    },
+
+    violent_bear: {
+        betza: "fF2bFsW",
+        results: {
+            spiral_square:  "T/93",
+            spiral_diamond: "BM",
+            wedge_folded:   "FC",
+            wedge_flat:     "F/100%",
+        },
     },
 
     violent_stag: {
@@ -2607,6 +2825,10 @@ let pieces = {
         parent: "rook",
     },
 
+    western_barbarian: {
+        parent: "eastern_barbarian",
+    },
+
     whale: {
         betza: "vRbB",
         results: {
@@ -2623,6 +2845,10 @@ let pieces = {
             spiral_square:  "F/25%",
             spiral_diamond: "F/25%",
         }
+    },
+
+    white_elephant: {
+        parent: "sorcerer",
     },
 
     white_horse: {
@@ -2659,6 +2885,16 @@ let pieces = {
 
     wolf: {
         parent: "chancellor",
+    },
+
+    wood_general: {
+        betza: "fF2",
+        results: {
+            spiral_square:   sqrt (2),
+            spiral_diamond:  frac (1),
+            wedge_folded:    frac (1),
+            wedge_flat:      sqrt (2),
+        },
     },
 
     woody_rook: {
@@ -3043,6 +3279,34 @@ let set_info = {
                  "lion", "phoenix_chu", "reverse_chariot", "side_mover",
                  "silver_general", "soaring_eagle", "vertical_mover",
                  "whale", "white_horse", "pawn"],
+    },
+
+    taikyoku_shogi: {
+        name:    "Taikyoku Sh&#x14d;gi",
+        href:    "https://en.wikipedia.org/wiki/Taikyoku_shogi",
+        pieces: ["angry_boar", "bears_eyes", "beast_cadet",
+                 "blind_bear", "blind_dog", "blind_monkey", "blind_tiger",
+                 "cat_sword", "chinese_cock", "climbing_monkey",
+                 "coiled_serpent", "copper_general", "dark_spirit",
+                 "deva", "dog", "donkey", "drunk_elephant",
+                 "earth_general", "eastern_barbarian",
+                 "enchanted_badger", "evil_wolf",
+                 "ferocious_leopard",
+                 "flying_cock", "flying_goose", "flying_horse",
+                 "fragant_elephant", "go_between",
+                 "gold_general", "iron_general", "king_taikyoku",
+                 "left_general", "old_kite",
+                 "old_monkey", "old_rat", "prince",
+                 "neighbouring_king", "northern_barbarian", "poisonous_snake",
+                 "prancing_stag", "reclining_dragon",
+                 "right_general", "running_bird", "rushing_boar",
+                 "silver_general", "southern_barbarian", "stone_general",
+                 "strutting_crow", "sword_soldier",
+                 "swooping_owl", "tile_general", "violent_stag",
+                 "venomous_wolf", "violent_bear", "violent_wolf",
+                 "western_barbarian", "white_elephant",
+                 "wood_general",
+                 "pawn"],
     },
 
     xiangqi: {

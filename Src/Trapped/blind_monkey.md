@@ -14,20 +14,22 @@ sideways (to the right or left). That is, it makes the same moves
 as a [*King*](king.html), except for stepping straight forward or backward.
 
 |====
-%%PIECE_HEADERS%%
-  {th = 1}  [*Dai dai sh&#x14d;gi*](#wiki:Dai_dai_shogi)
-            (&#x5927;&#x5927;&#x5c06;&#x68cb;)
-&           **Blind Monkey** & &#x76f2;&#x733f;
-&           \\
-  {th = 1}  [*Taikyoku sh&#x14d;gi*](#wiki:Taikyoku_shogi)
-& {cs = 2}  **Blind Bear**
-&           \\
-  {th = 1}  [*Taikyoku sh&#x14d;gi*](#wiki:Taikyoku_shogi)
-& {cs = 2}  **Diabolo**
-&           \\
-  {th = 1}  [*Taikyoku sh&#x14d;gi*](#wiki:Taikyoku_shogi)
-& {cs = 2}  **Drunken Ferz**
-&           \\
+%%PIECE_INFO%%
+  **Blind Bear**
+& %%TAIKYOKU%%
+& \\
+
+  **Blind Monkey**
+& %%DAI_DAI%%; %%TAIKYOKU%%
+& \\
+
+  **Diabolo**
+&
+& \\
+ 
+  **Drunken Ferz**
+&
+& \\
 ====|
 
 ### Spiral

@@ -721,8 +721,7 @@ class Piece {
     file (args = {}) {
         if (!this . _file) {
             if (this . parent) {
-                this . _file = this . parent + ".html?piece=" +
-                               this . piece_name
+                this . _file = this . parent + ".html"
             }
             else {
                 this . _file = this . piece_name + ".html"

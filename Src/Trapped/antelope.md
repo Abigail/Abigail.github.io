@@ -19,10 +19,10 @@ That is, the **Antelope** jumps to a square which is three away in
 one orthogonal direction, and four in the other.
 
 |====
-%%PIECE_HEADERS%%
-  {th = 1}  %%BASIC_LEAPERS%%
-& {cs = 2}  **Antelope**
-&           \\
+%%PIECE_INFO%%
+  **Antelope**
+& %%BASIC_LEAPERS%%
+& \\
 ====|
 
 Link: [%%CHESS_V%%](#piece:antelope)

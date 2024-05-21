@@ -15,11 +15,14 @@ or to a square which is one away diagonally forward
 (like a forward [*Ferz*](ferz.html)).
 
 |====
-%%PIECE_HEADERS%%
-  {th = 1}  %%WA_SHOGI%%
-&           **Blind Dog** & &#x76F2;&#x72AC;
-&           %%PROMOTES_TO%%
-            [*Violent Wolf*](gold_general.html?piece=violent_wolf) \\
+%%PIECE_INFO%%
+  **Blind Dog** 
+& %%TAIKYOKU%%; %%WA_SHOGI%%
+& \\
+
+  **Chinese Cock**
+& %%TAIKYOKU%%
+& \\
 ====|
 
 ### Spiral

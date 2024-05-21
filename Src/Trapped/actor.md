@@ -18,10 +18,10 @@ The **Actor** combines the movements of the
 the movements of the [*Knight*](knight.html) and [*Camel*](camel.html).)
 
 |====
-%%PIECE_HEADERS%%
-  {th = 1}  %%OVERKILL%%
-& {cs = 2}  **Actor**
-&           \\
+%%PIECE_INFO%%
+  **Actor**
+& %%OVERKILL%%
+& \\
 ====|
 
 

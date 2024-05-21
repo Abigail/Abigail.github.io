@@ -27,10 +27,10 @@ number of squares away from the starting position). The
 **Alfilrider** is %%COLOUR_BOUND%%.
 
 |====
-%%PIECE_HEADERS%%
-  {th = 1}  %%RIDERS%%
-& {cs = 2}  **Alfilrider** 
-&           \\
+%%PIECE_INFO%%
+  **Alfilrider** 
+& %%RIDERS%%
+& \\
 ====|
 
 ### Spiral

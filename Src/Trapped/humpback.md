@@ -6,6 +6,7 @@
 . . S . .
 . * * * .
 . . . . .
+Shogi: 1
 </div>
 
 The **Humpback** either moves one square diagonally, or one
@@ -15,10 +16,14 @@ The **Humpback** moves mirror those of the
 [*Silver General*](silver_general.html).
 
 |====
-%%PIECE_HEADERS%%
-  {th = 1}  %%WHALE_SHOGI%%
-& {cs = 2}  **Humpback**
-&           \\
+%%PIECE_INFO%%
+  **Humpback**
+& %%WHALE_SHOGI%%
+& \\
+
+  **Old Monkey**
+& %%TAIKYOKU%%
+& \\
 ====|
 
 ### Spiral

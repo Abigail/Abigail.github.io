@@ -18,37 +18,31 @@ slides over are not occupied.
 
 Due to its diagonal movement, the **Bishop** is %%COLOUR_BOUND%%.
 
+The **Bishop** appears in many Chess and Sh&#x14d;gi variants,
+sometimes under a different name.
+
 |====
-%%PIECE_HEADERS%%
-  {th = 1}  %%MICRO_SHOGI%%
-& {rs = 4; cs = 2}
-            **Bishop**
-&           Becomes a [*Tokin*](gold_general.html?piece=tokin) when capturing \\
-  {th = 1}  %%EURO_SHOGI%%
-&           \\
-  {th = 1}  %%SCIROCCO%%
-&           %%PROMOTED%% [*Alfil*](alfil.html) \\
-  {th = 1}  %%TYPHOON%%
-&           %%PROMOTED%% [*Guard*](guard.html) \\
-  {th = 1}  %%CHESS%%; %%CAGLIOSTRO%%; %%FALCON_HUNTER%%; %%RENN_CHESS%%;
-            %%WILDEBEEST%%; %%WOLF%%; Other Chess variants
-& {rs = 2}  **Bishop**  & {rs = 2} &#x2657;
-&           \\
-  {th = 1}  %%GANYMEDE%%
-&           %%PROMOTES_TO%% [*Cardinal*](cardinal_bwh.html) \\
-  {th = 1}  %%SHOGI%%; %%CHU_SHOGI%%
-&           **Bishop**  & &#x89D2;&#x884C;
-&           &#x89D2;&#x884C; meaning *Angle Mover*;
-            %%PROMOTES_TO%% [*Dragon Horse*](dragon_horse.html) \\
-  {th = 1}  %%RIDERS%%
-& {cs = 2}  **Ferzrider**
-&           Moves likes [*Ferz*](ferz.html), without a limit on the number
-            of squares it moves over, as long as the squares are unoccupied \\
-  {th = 1}  %%SHATAR%%; %%HIASHATAR%%
-& {cs = 2}  **Teme**
-&           \\
+%%PIECE_INFO%%
+  {rs = 2}
+  **Bishop**
+& %%CHESS%%; %%CAGLIOSTRO%%; %%FALCON_HUNTER%%;
+  %%GANYMEDE%%; %%RENN_CHESS%%; %%SCIROCCO%%; %%TYPHOON%%; 
+  %%WILDEBEEST%%; %%WOLF%%; Other Chess variants;
+  %%EURO_SHOGI%%; %%MICRO_SHOGI%%
+& \\
+  %%SHOGI%%; %%CHU_SHOGI%%
+& &#x89D2;&#x884C;, meaning *Angle Mover*. \\
+
+  **Ferz Rider**
+& %%RIDERS%%
+& Moves likes [*Ferz*](ferz.html), without a limit on the number
+  of squares it moves over, as long as the squares are unoccupied. \\
+
+  **Teme**
+& %%SHATAR%%; %%HIASHATAR%%
+& \\
 ====|
-      
+
 Links: [%%WIKI%%](#wiki:Bishop_(chess)),
        [%%CHESS_V%%](#piece:bishop)
 

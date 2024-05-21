@@ -27,16 +27,18 @@ reachable by the **Alibaba**) the **Alibaba** moves like the
 There are several pieces which move this way:
 
 |====
-%%PIECE_HEADERS%%
-  {th = 1}  %%COMPOUND_LEAPERS%%
-& {cs = 2}  **Alibaba**
+%%PIECE_INFO%%
+  **Alibaba**
+& %%COMPOUND_LEAPERS%%
 &           \\
-  {th = 1}  %%SCIROCCO%%; %%TYPHOON%%
-& {cs = 2}  **Dervish**
-&           %%PROMOTES_TO%% [*Harpy*](genie.html?piece=harpy); %%ABILITIES%% \\
-  {th = 1}  %%INTERDEPENDENT%%
-& {cs = 2}  **Spider**
-&           %%CAPTURE%% \\
+
+  **Dervish**
+& %%SCIROCCO%%; %%TYPHOON%%
+& %%OTHER_MOVES%% \\
+
+  **Spider**
+& %%INTERDEPENDENT%%
+& %%OTHER_MOVES%% \\
 ====|
 
 Link: [%%CHESS_V%%](#piece:alibaba)

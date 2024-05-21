@@ -18,31 +18,35 @@ The [*Knight-Bishop compound*](archbishop.html) is sometimes called a
 **Wazir** as well.
 
 |====
-%%PIECE_HEADERS%%
-  {th = 1}  %%RENN_CHESS%%
-& {cs = 2}  **Fox**
-&           \\
-  {th = 1}  %%XIANGQI%%
-&           **General**  & &#x5C07;/&#x5E25;
-&           %%ROYAL%%; This piece is normally limited to a 3 x 3 box,
-            but we ignore this \\
-  {th = 1}  %%DOBUTSU%%
-& {cs = 2}  **Giraffe**
-&           Not to be confused with the (4,1)-leaper [*Giraffe*](giraffe.html),
-            or the [Queen + Knight compound](amazon.html?piece=giraffe) also
-            named *Giraffe* \\
-  {th = 1}  %%SCIROCCO%%; %%TYPHOON%%
-& {cs = 2}  **Guard**
-&           %%PROMOTES_TO%% [*Zebra*](zebra.html); %%CAPTURE%% \\
-  {th = 1}  %%INTERDEPENDENT%%
-& {cs = 2}  **Steward**
-&           %%CAPTURE%% \\
-  {th = 1}  %%BASIC_LEAPERS%%
-& {rs = 2; cs = 2}
-            **Wazir**
-&           \\
-  {th = 1}  %%SCIROCCO%%; %%TYPHOON%%
-&           %%PROMOTES_TO%% [*Zag*](modern_elephant.html?piece=zag) \\
+%%PIECE_INFO%%
+  **Fox**
+& %%RENN_CHESS%%
+& \\
+
+  **General**
+& %%XIANGQI%%
+& This piece is normally limited to a 3 x 3 box, but we ignore this \\
+
+  **Giraffe**
+& %%DOBUTSU%%
+& Not to be confused with the (4,1)-leaper [*Giraffe*](giraffe.html), or the
+  [Queen + Knight compound](amazon.html?piece=giraffe) also named *Giraffe*. \\
+
+  **Guard**
+& %%SCIROCCO%%; %%TYPHOON%%
+& %%OTHER_MOVES%% \\
+
+  **Reclining Dragon**
+& %%TAIKYOKU%%
+& \\
+
+  **Steward**
+& %%INTERDEPENDENT%%
+& %%OTHER_MOVES%% \\
+
+  **Wazir**
+& %%BASIC_LEAPERS%%; %%SCIROCCO%%; %%TYPHOON%%
+& \\
 ====|
 
 ### Spiral

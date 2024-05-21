@@ -30,11 +30,12 @@ our %MACROS = (
         CHESS          =>  '[Chess](#wiki)',
         CAGLIOSTRO     =>  "[Cagliostro's Chess]" .
                            '(#chess-v:large.dir/cagliostro.html)',
-        CHU_SHOGI      =>  '[Chu&nbsp;Sh&#x014d;gi ' .
-                           '(&#x4E2D;&#x5C06;&#x68CB;)](#wiki:chu_shogi)',
+        CHU_SHOGI      =>  '[Chu&nbsp;Sh&#x014d;gi](#wiki:chu_shogi)',
         GANYMEDE       =>  '[Ganymede Chess](#chess-v:large.dir/ganymede.html)',
         GRAND_CAVALIER =>  '[Grand&nbsp;Cavalier&nbsp;Chess]' .
                            '(#chess-v:large.dir/grandcavalier.html)',
+        DAI_DAI        =>  '[Dai dai sh&#x14d;gi]'               .
+                           '(#wiki:Dai_dai_shogi)',
         DICKENS        =>   tooltip ("*A Guide To Fairy Chess*",
                                      "Anothy Dickens, 1969",
                                      "underline"),
@@ -44,7 +45,7 @@ our %MACROS = (
         FALCON_HUNTER  =>  '[Falcon-Hunter Chess](#wiki:Falcon-hunter_chess)',
         INTERDEPENDENT =>  '[Interdependent Chess]' .
                            '(#chess-v:42.dir/interdependent/)',
-        JANGGI         =>  '[Janggi (&#xC7A5;&#xAE30;)](#wiki:Janggi)',
+        JANGGI         =>  '[Janggi](#wiki:Janggi)',
         HIASHATAR      =>  '[Hiashatar](#wiki)',
         KYOTO_SHOGI    =>  '[Ky&#x014D;to Sh&#x014D;gi](#wiki:Kyoto_shogi)',
         MAKRUK         =>  '[Makruk](#wiki)',
@@ -61,19 +62,19 @@ our %MACROS = (
                            'historic.dir/HistoricalChessVariants.pdf)]',
         SHATAR         =>  "[Shatar](#wiki) [[$CHESS_V_TOKEN](#chess-v:" .
                            'oriental.dir/shatar.html)]',
-        SHOGI          =>  '[Sh&#x14d;gi (&#x5c06;&#x68cb;)](#wiki:Shogi)',
+        SHOGI          =>  '[Sh&#x14d;gi](#wiki:Shogi)',
+        TAIKYOKU       =>  '[Taikyoku Sh&#x14d;gi]'              .
+                           '(#wiki:Taikyoku_shogi)',
         TYPHOON        =>  '[Typhoon](#chess-v:rules/typhoon-revised)',
         TORI_SHOGI     =>  '[Tori&nbsp;Sh&#x14d;gi](#wiki:Tori_Shogi)',
-        WA_SHOGI       =>  '[Wa&nbsp;Sh&#x14d;gi (&#x548C;&#x5C06;&#x68CB;)]' . 
-                           '(#wiki:Wa_shogi)',
-        WHALE_SHOGI    =>  '[Whale&nbsp;Sh&#x14d;gi ' .
-                           '(&#x9be8;&#x5c06;&#x68cb;)]' .
+        WA_SHOGI       =>  '[Wa&nbsp;Sh&#x14d;gi](#wiki:Wa_shogi)',
+        WHALE_SHOGI    =>  '[Whale&nbsp;Sh&#x14d;gi]' .
                            '(#chess-v:shogivariants.dir/whale.html)',
         WILDEBEEST     =>  "[Wildebeest&nbsp;Chess](#wiki) [[$CHESS_V_TOKEN]" .
                            "(#chess-v:large.dir/wildebeest.html)]",
         WOLF           =>  '[Wolf&nbsp;Chess](#chess-v:large.dir/wolf.html) ' .
                            "[[$WIKI_TOKEN](#wiki:Wolf_chess)]",
-        XIANGQI        =>  '[Xiangqi (&#x8C61;&#x68CB;)](#wiki:xiangqi)',
+        XIANGQI        =>  '[Xiangqi](#wiki:xiangqi)',
         YARI_SHOGI     =>  '[Yari&nbsp;Sh&#x14d;gi](#wiki:Yari_shogi)',
 
         #
@@ -158,6 +159,15 @@ our %MACROS = (
         CHESS_V        =>  $CHESS_V_TOKEN,
 
         CLEAR          =>  "<div style = 'clear: both'></div>",
+
+        #
+        # MathJax
+        #
+        HALF           => '\(\frac{1}{2}\)',
+        SQRT_2         => '\(\sqrt{2}\)',
+        SQRT_2_OVER_2  => '\(\frac{\sqrt{2}}{2}\)',
+        SQRT_2_OVER_3  => '\(\frac{\sqrt{2}}{3}\)',
+        SQRT_2_OVER_4  => '\(\frac{\sqrt{2}}{4}\)',
     },
 
     our $TYPE_TALK => {

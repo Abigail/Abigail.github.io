@@ -17,34 +17,21 @@ Pieces moving like the **Silver General** appear in several games,
 under different names.
 
 |====
-%%PIECE_HEADERS%%
-  {th = 1}  %%MAKRUK%%
-&           **Bishop** & &#x0E04;
-&  Not to be confused with the Chess [*Bishop*](bishop.html) \\
-  {th = 1}  %%TYPHOON%%
-& {cs = 2}  **Silver General**
-&  %%PROMOTES_TO%% [*Vulture*](dragon_horse.html?piece=vulture) \\
-  {th = 1}  %%SHOGI%%
-& {rs = 3}  **Silver General** & {rs = 3} &#x9280;&#x5c07;
-&  %%PROMOTES_TO%% [*Gold General*](gold_general.html) \\
-  {th = 1}  %%MICRO_SHOGI%%
-&           Becomes a [*Lance*](lance.html) when capturing \\
-  {th = 1}  %%CHU_SHOGI%%
-&           %%PROMOTES_TO%% [*Vertical Mover*](vertical_mover.html) \\
-  {th = 1}  %%WA_SHOGI%%
-&           **Violent Stag** & &#x731B;&#x9E7F;
-&           %%PROMOTED%%
-            [*Climbing Monkey*](copper_general.html?piece=climbing_monkey);
-            %%PROMOTES_TO%%
-            [*Roaming Bear*](drunk_elephant.html?piece=roaming_bear);
-            A promoted
-            [*Climbing Monkey*](copper_general.html?piece=climbing_monkey)
-            will not promote again \\
+%%PIECE_INFO%%
+  **Bishop**
+& %%MAKRUK%%
+& Not to be confused with the Chess [*Bishop*](bishop.html) \\
+
+  **Silver General**
+& %%SHOGI%%; %%CHU_SHOGI%%; %%MICRO_SHOGI%%; %%TAIKYOKU%%; %%TYPHOON%%
+& %%PROMOTES_TO%% [*Vulture*](dragon_horse.html?piece=vulture) \\
+
+  **Violent Stag**
+& %%TAIKYOKU%%; %%WA_SHOGI%%
+& \\
 ====|
 
 Link: [%%CHESS_V%%](#piece:silvergeneral)
-
-The [*Humpback*](humpback.html) mirrors the movements of the %%PIECE%%.
 
 ### Spiral
 

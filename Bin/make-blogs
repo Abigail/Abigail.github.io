@@ -648,7 +648,7 @@ sub pre_process ($text, $directives) {
     #
     # Handle macros
     #
-    $text =~ s {(%%([A-Z_]+)%%)} {$MACROS {$type} {$2} || $1}eg;
+    $text =~ s {(%%([A-Z0-9_]+)%%)} {$MACROS {$type} {$2} || $1}eg;
 
     #
     # Scan for directives, which are of the format

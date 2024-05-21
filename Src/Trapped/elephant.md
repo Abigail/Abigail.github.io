@@ -2,11 +2,11 @@
 
 <div class = "movement">
 . . . . . . .
-. * . . . * .
+. L . . . L .
 . . * . * . .
 . . . S . . .
 . . * . * . .
-. * . . . * .
+. L . . . L .
 . . . . . . .
 Line: 3,3 1,1
 Line: 3,3 5,1
@@ -30,15 +30,20 @@ as it's derived from the Persian word for elephant.
 Pieces moving like the **Elephant**:
 
 |====
-%%PIECE_HEADERS%%
-  {th = 1}  %%XIANGQI%%
-&           **Elphant** & &#x8C61;/&#x76F8;
-&           In the game, this piece cannot cross the river, restricting
-            it to 7 squares on the board (but we do not have a river here);
-            Also known as *Bishop* \\
-  {th = 1}  %%TYPHOON%%
-& {cs = 2}  **Missionary**
-&           %%PROMOTES_TO%% [*Otter*](otter.html) \\
+%%PIECE_INFO%%
+  **Elphant**
+& %%XIANGQI%%
+& In the game, this piece cannot cross the river, restricting
+  it to 7 squares on the board (but we do not have a river here);
+  Also known as *Bishop* \\
+
+  **Flying Horse**
+& %%TAIKYOKU%%
+& \\
+
+  **Missionary**
+& %%TYPHOON%%
+& \\
 ====|
 
 ### Spiral

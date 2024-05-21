@@ -1,0 +1,14 @@
+#!/opt/perl/bin/perl -CI
+
+use 5.038;
+
+use strict;
+use warnings;
+no  warnings 'syntax';
+
+while (<>) {
+    s/([^\n !-~])/sprintf "&#x%04x;" => ord ($1)/ge;
+    print;
+}
+
+__END__
