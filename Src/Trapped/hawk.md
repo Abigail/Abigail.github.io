@@ -21,8 +21,7 @@ directions.
 |====
 %%PIECE_INFO%%
   **Hawk**
-& [Chess on an infinite plane](#wiki:Infinite_chess#Variations);
-  Musketeer Chess
+& Musketeer Chess
 &           \\
 ====|
 

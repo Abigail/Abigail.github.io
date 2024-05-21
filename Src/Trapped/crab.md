@@ -16,10 +16,10 @@ moves a [*Knight*](knight.html) has, and it mirrors the movements
 of the [*Barc*](barc.html).
 
 |====
-%%PIECE_HEADERS%%
-  {th = 1}
-& {cs = 2}  **Crab**
-&           \\
+%%PIECE_INFO%%
+  **Crab**
+&
+& \\
 ====|
 
 Link: [%%CHESS_V%%](#piece:crab)
