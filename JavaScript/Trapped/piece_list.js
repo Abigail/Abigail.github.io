@@ -2009,6 +2009,10 @@ let pieces = {
         parent: "knight",
     },
 
+    mountain_general: {
+        parent: "water_general",
+    },
+
     //
     // N pieces
     //
@@ -2836,6 +2840,16 @@ let pieces = {
         _index_name: "War Machine (Rook + Knight)",
     },
 
+    water_general: {
+        betza: "fF3vW",
+        results: {
+            spiral_square:   sqrt (2, 3),
+            spiral_diamond: "E = 1",
+            wedge_folded:    sqrt (2, 3),
+            wedge_flat:      sqrt (2),
+        },
+    },
+
     wazir: {        // (1, 0)-leaper
         betza:    "W",
         results: {
@@ -3330,7 +3344,7 @@ let set_info = {
                  "fragant_elephant", "go_between",
                  "gold_general", "guardian_of_the_gods", "horse_general",
                  "iron_general", "king_taikyoku",
-                 "left_general", "old_kite",
+                 "left_general", "mountain_general", "old_kite",
                  "old_monkey", "old_rat", "ox_general", "prince",
                  "neighbouring_king", "northern_barbarian", "poisonous_snake",
                  "prancing_stag", "reclining_dragon",
@@ -3340,6 +3354,7 @@ let set_info = {
                  "strutting_crow", "sword_soldier",
                  "swooping_owl", "tile_general", "violent_stag",
                  "venomous_wolf", "violent_bear", "violent_wolf",
+                 "water_general",
                  "western_barbarian", "white_elephant", "wind_general",
                  "wood_general", "wrestler",
                  "pawn"],
