@@ -1,0 +1,108 @@
+<html>
+<head>
+<title>Mountain Stag</title>
+<meta charset = "utf-8">
+<link rel  = 'preconnect' href = 'https://fonts.gstatic.com'>
+<link rel = 'stylesheet' href =      'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
+<link rel = 'stylesheet' href = '../../Styles/main.css'>
+<link rel = 'stylesheet' href = '../../Styles/Trapped/main.css'>
+<script src = "../../JavaScript/jquery.js"></script>
+<script id  = 'MathJax-script' async src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.js'></script>
+<script id = 'svg-script' src = 'https://cdn.jsdelivr.net/npm/@svgdotjs/svg.js@3.0/dist/svg.min.js'></script>
+<script src = '../../JavaScript/navigation.js'></script>
+<script src = '../../JavaScript/Trapped/piece_list.js'></script>
+<script src = '../../JavaScript/Trapped/trapped.js'></script>
+<script src = '../../JavaScript/Trapped/pieces.js'></script>
+<script src = '../../JavaScript/Trapped/boxset.js'></script>
+<script src = '../../JavaScript/Trapped/movement.js'></script>
+<script src = '../../JavaScript/Trapped/pages.js'></script>
+</head>
+
+<body><h1>Mountain Stag</h1><div class = "byline">
+by Abigail<br>
+<img src = "../../Images/jan_sluiters.jpg">
+</div>
+
+
+<div class = "movement">
+. . . . . . . . .
+. L . . . . . L .
+. . * . . . * . .
+. . . * * * . . .
+. . L * S * L . .
+. . . . * . . . .
+. . . . * . . . .
+. . . . * . . . .
+. . . . L . . . .
+. . . . . . . . .
+Shogi: 1
+</div>
+
+<p>The <strong>Mountain Stag</strong> either slides up to two unoccupied squares
+diagonally forward (like a limited forward <a href="bishop.html"><em>Bishop</em></a>),
+slides up to four unoccupied squares orthogonally
+backward (like a limited backward <a href="rook.html"><em>Rook</em></a>), slides up to two
+unoccupied orthogonally sideways (like a very limited horizontal <a href="rook.html"><em>Rook</em></a>),
+or steps one square orthogonally forward (like a forward <a href="wazir.html"><em>Wazir</em></a>).</p>
+
+<table class = 'piece_info'>
+  <tr class = 'row-0' markdown = '1'>
+    <th class = 'cell-0-0 col-0 ' markdown = '1'>Name</td>
+    <th class = 'cell-0-1 col-1 ' markdown = '1'>Game(s)</td>
+    <th class = 'cell-0-2 col-2 ' markdown = '1'>Info</td>
+  </tr>
+  <tr class = 'row-1' markdown = '1'>
+    <td class = 'cell-1-0 col-0 ' markdown = '1'><strong>Mountain Stag</strong></td>
+    <td class = 'cell-1-1 col-1 ' markdown = '1'><a href="https://en.wikipedia.org/wiki/Taikyoku_shogi">Taikyoku Sh&#x14d;gi</a></td>
+    <td class = 'cell-1-2 col-2 ' markdown = '1'></td>
+  </tr>
+</table>
+
+<h3 id = 'spiral'>Spiral</h3>
+
+<h4 id = 'square'>Square</h4>
+
+<div class = "section">
+<p>On the Square Spiral, the <strong>Mountain Stag</strong> gets trapped quickly, after
+36 steps.</p>
+</div>
+
+<h4 id = 'diamond'>Diamond</h4>
+
+<div class = "section">
+<p>On the Diamond Spiral, the <strong>Mountain Stag</strong> uses an eight step
+loop to move four squares forward, for an escape velocity of <span class = 'latex-inline'>\(\frac{1}{2}\)</span>.
+Only squares in two files will be visited.</p>
+</div>
+
+<h3 id = 'wedge'>Wedge</h3>
+
+<h4 id = 'folded'>Folded</h4>
+
+<div class = "section">
+<p>On the Folded Wedge, the <strong>Mountain Stag</strong> uses a six step loop to
+move two squares diagonally forward, giving it an escape velocity
+of <span class = 'latex-inline'>\(\frac{\sqrt{2}}{3}\)</span>. The three most squares on each row will be
+visited.</p>
+</div>
+
+<h4 id = 'flat'>Flat</h4>
+
+<p>On the Flat Wedge, the <strong>Mountain Stag</strong> escapes with a velocity
+of <span class = 'latex-inline'>\(\sqrt{2}\)</span> by visiting the right most square on each row.</p>
+
+<div class = 'trapped' data-piece = 'mountain_stag'></div>
+
+<div class = 'boxset' data-piece = 'mountain_stag'></div>
+
+<hr id = 'last-line'>
+<div class = 'trailer'>
+<p class = 'prev'><a class = "prev" href = "">&#x261C;</a></p>
+<p class = 'issue'>Please leave any comments as a
+  <a href = 'https://github.com/Abigail/Abigail.github.io/issues'
+     title = 'GitHub issue'>GitHub issue</a>.
+<p class = 'next'><a class = "next" href = "">&#x261E;</a></p>
+</div>
+
+</body>
+</html>

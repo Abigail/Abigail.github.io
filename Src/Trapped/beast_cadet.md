@@ -31,7 +31,7 @@ The **Bear Cadet** gets trapped after 323 steps on the Square Spiral.
 #### Diamond
 
 The **Beast Cadet** can move as the %%BM%%, and as such,
-if will follow the Spiral.
+it will follow the Spiral.
 
 ### Wedge
 

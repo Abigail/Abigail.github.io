@@ -247,6 +247,16 @@ let pieces = {
         },
     },
 
+    beast_officer: {
+        betza: "F3sW2fW3",
+        results: {
+            spiral_square:  "T/260",
+            spiral_diamond: "BM",
+            wedge_folded:   "FC", 
+            wedge_flat:     "F/100%",
+        },
+    },
+
     beaver: {
         betza:    "fFfWsW4bW0",
         results: {
@@ -367,6 +377,16 @@ let pieces = {
         },
     },
 
+    buddist_devil: {
+        betza: "fF3bsW",
+        results: {
+            spiral_square:  "T/337",
+            spiral_diamond:  sqrt (2, 2),
+            wedge_folded:   "FC",
+            wedge_flat:     "F/100%",
+        },
+    },
+
     buffalo: {
         betza:    "NCZ",
         results: {
@@ -455,6 +475,16 @@ let pieces = {
         betza:  "F3fsW3",
         results: {
             spiral_square:  "T/420", 
+            spiral_diamond: "BM",
+            wedge_folded:   "FC", 
+            wedge_flat:     "F/100%",
+        },
+    },
+
+    captive_officer: {
+        betza:  "F3fsW2",
+        results: {
+            spiral_square:  "T/333",
             spiral_diamond: "BM",
             wedge_folded:   "FC", 
             wedge_flat:     "F/100%",
@@ -613,6 +643,16 @@ let pieces = {
     dobutsu_chick: {
         parent: "pawn",
         _name: "Chick",
+    },
+
+    chicken_general: {
+        betza:    "bFfW4",
+        results: {
+            spiral_square:  "T/44", 
+            spiral_diamond:  frac (1, 2),
+            wedge_folded:    sqrt (2, 3),
+            wedge_flat:      sqrt (2, 3),
+        },
     },
 
     chinese_cock: {
@@ -1634,6 +1674,16 @@ let pieces = {
         },
     },
 
+    heavenly_tetrarch: {
+        betza: "F4W4",
+        results:    {
+            spiral_square:  "W",
+            spiral_diamond: "BM",
+            wedge_folded:   "FC",
+            wedge_flat:     "F/100%",
+        },
+    },
+
     dobutsu_hen: {
         parent: "gold_general",
         _name: "Hen",
@@ -1875,6 +1925,16 @@ let pieces = {
         },
     },
 
+    leopard_king: {
+        betza: "F5W5",
+        results:    {
+            spiral_square:  "W",
+            spiral_diamond: "BM",
+            wedge_folded:   "FC",
+            wedge_flat:     "F/100%",
+        },
+    },
+
     liberated_horse: {
         betza: "bW2fW0",
         results: {
@@ -2011,6 +2071,16 @@ let pieces = {
 
     mountain_general: {
         parent: "water_general",
+    },
+
+    mountain_stag: {
+        betza: "fF3vWsW2bW4",
+        results: {
+            spiral_square:  "W",
+            spiral_diamond:  frac (1, 2),
+            wedge_folded:   "FC",
+            wedge_flat:     "F/100%",
+        },
     },
 
     //
@@ -2181,6 +2251,16 @@ let pieces = {
         _index_name: "Phoenix (Tori&nbsp;Sh&#x014d;gi)",
     },
 
+    pig_general: {
+        betza: "fF4bW2",
+        results: {
+            spiral_square:  "T/36",
+            spiral_diamond:  frac (1, 2),
+            wedge_folded:    sqrt (2, 3),
+            wedge_flat:      sqrt (2),
+        },
+    },
+
     pikeman: {
         parent: "flying_ox",
     },
@@ -2255,6 +2335,10 @@ let pieces = {
         parent: "gold_general",
         _name: "Promoted Pawn",
         _index_name: "Promoted Pawn (EuroShogi)",
+    },
+
+    pup_general: {
+        parent: "chicken_general",
     },
 
     //
@@ -2617,6 +2701,16 @@ let pieces = {
         parent: "queen",
     },
 
+    sword_general: {
+        betza: "fF3fW3bW",
+        results: {
+            spiral_square:   sqrt (2, 3),
+            spiral_diamond: "E = 1",
+            wedge_folded:    sqrt (2, 3),
+            wedge_flat:      sqrt (2),
+        },
+    },
+
     sword_soldier: {
         parent: "tile_general",
     },
@@ -2951,6 +3045,16 @@ let pieces = {
     //
     // Y pieces
     //
+
+    yaksha: {
+        betza: "fFbWsW3",
+        results: {
+            spiral_square:   "T/51",
+            spiral_diamond:   sqrt (2, 2),
+            wedge_folded:    "FC",
+            wedge_flat:       sqrt (2, 11, 2),
+        },
+    },
 
     yari_bishop: {
         betza: "fFfR",
@@ -3331,10 +3435,11 @@ let set_info = {
     taikyoku_shogi: {
         name:    "Taikyoku Sh&#x14d;gi",
         href:    "https://en.wikipedia.org/wiki/Taikyoku_shogi",
-        pieces: ["angry_boar", "bears_eyes", "beast_cadet",
+        pieces: ["angry_boar", "bears_eyes", "beast_cadet", "beast_officer",
                  "blind_bear", "blind_dog", "blind_monkey", "blind_tiger",
-                 "captive_cadet",
-                 "cat_sword", "chinese_cock", "climbing_monkey",
+                 "buddist_devil", "captive_cadet", "captive_officer",
+                 "cat_sword", "chicken_general",
+                 "chinese_cock", "climbing_monkey",
                  "coiled_serpent", "copper_general", "dark_spirit",
                  "deva", "dog", "donkey", "drunk_elephant",
                  "earth_general", "eastern_barbarian",
@@ -3342,21 +3447,23 @@ let set_info = {
                  "ferocious_leopard", "fierce_eagle", "fire_general",
                  "flying_cock", "flying_goose", "flying_horse",
                  "fragant_elephant", "go_between",
-                 "gold_general", "guardian_of_the_gods", "horse_general",
-                 "iron_general", "king_taikyoku",
-                 "left_general", "mountain_general", "old_kite",
+                 "gold_general", "guardian_of_the_gods", "heavenly_tetrarch",
+                 "horse_general",
+                 "iron_general", "king_taikyoku", "left_general",
+                 "leopard_king", "mountain_general", "mountain_stag",
+                 "old_kite",
                  "old_monkey", "old_rat", "ox_general", "prince",
                  "neighbouring_king", "northern_barbarian", "poisonous_snake",
-                 "prancing_stag", "reclining_dragon",
-                 "right_general", "river_general",
+                 "pig_general", "prancing_stag", "pup_general",
+                 "reclining_dragon", "right_general", "river_general",
                  "running_bird", "rushing_boar",
                  "silver_general", "southern_barbarian", "stone_general",
-                 "strutting_crow", "sword_soldier",
+                 "strutting_crow", "sword_general", "sword_soldier",
                  "swooping_owl", "tile_general", "violent_stag",
                  "venomous_wolf", "violent_bear", "violent_wolf",
                  "water_general",
                  "western_barbarian", "white_elephant", "wind_general",
-                 "wood_general", "wrestler",
+                 "wood_general", "wrestler", "yaksha",
                  "pawn"],
     },
 
