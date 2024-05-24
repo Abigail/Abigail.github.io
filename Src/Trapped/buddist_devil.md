@@ -12,7 +12,7 @@ Shogi: 1
 </div>
 
 The **Buddist Devil** either slides up to three unoccupied squares
-diagonally forward (like a limited forward %%FERZ%%), or steps
+diagonally forward (like a limited forward %%BISHOP%%), or steps
 one square orthogonally right, left or backward
 (like a backward-horizontal %%WAZIR%%).
 
@@ -33,7 +33,7 @@ quickly. It gets trapped after 337 steps.
 #### Diamond
 
 The **Buddist Devil** escapes using a two step loop to move one
-square forward, giving it an escape velocity of %%SQRT_2_OVER_2%%.
+square forward, giving it an escape velocity of %%HALF%%.
 
 ### Wedge
 

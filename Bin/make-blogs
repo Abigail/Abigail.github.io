@@ -1049,6 +1049,8 @@ foreach my $todo (@todo) {
     my $source_file = "$SRC_DIR/$dir/$base.md";
     my $html_file   = "$HTML_DIR/$dir/$base.html";
 
+    die "$source_file does not exist" unless -f $source_file;
+
     my $week = $type == $TYPE_PWC    && $base =~ /^week-(.*)/  ? $1 : 0;
     my $year = $type == $TYPE_ADVENT && $base =~ m{^([0-9]+)/} ? $1 : 0;
     my $day  = $type == $TYPE_ADVENT && $base =~ m{/day-(.*)}  ? $1 : 0;

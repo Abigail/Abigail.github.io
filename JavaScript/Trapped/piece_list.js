@@ -381,7 +381,7 @@ let pieces = {
         betza: "fF3bsW",
         results: {
             spiral_square:  "T/337",
-            spiral_diamond:  sqrt (2, 2),
+            spiral_diamond:  frac (1, 2),
             wedge_folded:   "FC",
             wedge_flat:     "F/100%",
         },
@@ -2837,6 +2837,16 @@ let pieces = {
         },
     },
 
+    turtle_dove: {
+        betza: "fF5sbW",
+        results: {
+            spiral_square:  "T/337",
+            spiral_diamond:  frac (1, 2),
+            wedge_folded:   "FC",
+            wedge_flat:     "F/100%",
+        },
+    },
+
     typhoon: {
         parent:   "genie",
     },
@@ -3459,7 +3469,7 @@ let set_info = {
                  "running_bird", "rushing_boar",
                  "silver_general", "southern_barbarian", "stone_general",
                  "strutting_crow", "sword_general", "sword_soldier",
-                 "swooping_owl", "tile_general", "violent_stag",
+                 "swooping_owl", "tile_general", "turtle_dove", "violent_stag",
                  "venomous_wolf", "violent_bear", "violent_wolf",
                  "water_general",
                  "western_barbarian", "white_elephant", "wind_general",
