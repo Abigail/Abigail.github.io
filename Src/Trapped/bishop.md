@@ -28,10 +28,10 @@ sometimes under a different name.
 & %%CHESS%%; %%CAGLIOSTRO%%; %%FALCON_HUNTER%%;
   %%GANYMEDE%%; %%RENN_CHESS%%; %%SCIROCCO%%; %%TYPHOON%%; 
   %%WILDEBEEST%%; %%WOLF%%; Other Chess variants;
-  %%EURO_SHOGI%%; %%MICRO_SHOGI%%
 & \\
-  %%SHOGI%%; %%CHU_SHOGI%%
-& &#x89D2;&#x884C;, meaning *Angle Mover*. \\
+  %%SHOGI%%; %%CHU_SHOGI%%; %%EURO_SHOGI%%; %%MICRO_SHOGI%%;
+  %%TAIKYOKU%%
+& \\
 
   **Ferz Rider**
 & %%RIDERS%%

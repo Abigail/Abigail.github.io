@@ -1,6 +1,6 @@
 <html>
 <head>
-<title>Whale</title>
+<title>Free Wolf</title>
 <meta charset = "utf-8">
 <link rel  = 'preconnect' href = 'https://fonts.gstatic.com'>
 <link rel = 'stylesheet' href =      'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
@@ -18,33 +18,26 @@
 <script src = '../../JavaScript/Trapped/pages.js'></script>
 </head>
 
-<body><h1>Whale</h1><div class = "byline">
+<body><h1>Free Wolf</h1><div class = "byline">
 by Abigail<br>
 <img src = "../../Images/jan_sluiters.jpg">
 </div>
 
 
 <div class = "movement">
-. . . . A . . . .
-. . . . * . . . .
-. . . . * . . . .
-. . . . * . . . .
-. . . . S . . . .
-. . . * * * . . .
-. . * . * . * . .
-. * . . * . . * .
 A . . . A . . . A
+. * . . * . . * .
+. . * . * . * . .
+. . . * * * . . .
+A * * * S * * * A
+. . . . . . . . .
 Shogi: 1
 </div>
 
-<p>The <strong>Whale</strong> combines the movements of a vertical <a href="rook.html"><em>Rook</em></a>
-with a backward <a href="bishop.html"><em>Bishop</em></a>. That is, the <strong>Whale Horse</strong> either moves
-an unlimited amount of unoccupied squares orthogonally forward or
-backward, or an unlimited amount of unoccupied squares diagonally
-backward.</p>
-
-<p>The movements of the <strong>Whale</strong> is the mirror image of the 
-movements of the <a href="white_horse.html"><em>White Horse</em></a>.</p>
+<p>The <strong>Free Wolf</strong> can slide an unlimited number of squares in
+each of the two forward diagonal directions (like a forward <a href="bishop.html"><em>Bishop</em></a>),
+or slide an unlimited number of squares orthogonally forward or
+sideways (like a forward/horizontal <a href="rook.html"><em>Rook</em></a>).</p>
 
 <table class = 'piece_info'>
   <tr class = 'row-0' markdown = '1'>
@@ -53,18 +46,13 @@ movements of the <a href="white_horse.html"><em>White Horse</em></a>.</p>
     <th class = 'cell-0-2 col-2 ' markdown = '1'>Info</td>
   </tr>
   <tr class = 'row-1' markdown = '1'>
-    <td class = 'cell-1-0 col-0 ' markdown = '1'><strong>Coiled Dragon</strong></td>
+    <td class = 'cell-1-0 col-0 ' markdown = '1'><strong>Free Wolf</strong></td>
     <td class = 'cell-1-1 col-1 ' markdown = '1' rowspan = '2'><a href="https://en.wikipedia.org/wiki/Taikyoku_shogi">Taikyoku Sh&#x14d;gi</a></td>
     <td class = 'cell-1-2 col-2 ' markdown = '1'></td>
   </tr>
   <tr class = 'row-2' markdown = '1'>
-    <td class = 'cell-2-0 col-0 ' markdown = '1'><strong>Free Serpent</strong></td>
+    <td class = 'cell-2-0 col-0 ' markdown = '1'><strong>Running Leopard</strong></td>
     <td class = 'cell-2-2 col-2 ' markdown = '1'></td>
-  </tr>
-  <tr class = 'row-3' markdown = '1'>
-    <td class = 'cell-3-0 col-0 ' markdown = '1'><strong>Whale</strong></td>
-    <td class = 'cell-3-1 col-1 ' markdown = '1'><a href="https://en.wikipedia.org/wiki/chu_shogi">Chu&nbsp;Sh&#x014d;gi</a>; <a href="https://en.wikipedia.org/wiki/Taikyoku_shogi">Taikyoku Sh&#x14d;gi</a></td>
-    <td class = 'cell-3-2 col-2 ' markdown = '1'></td>
   </tr>
 </table>
 
@@ -73,18 +61,19 @@ movements of the <a href="white_horse.html"><em>White Horse</em></a>.</p>
 <h4 id = 'square'>Square</h4>
 
 <div class = "section">
-<p>The <strong>Whale</strong> will visit almost all squares in a wedge to the
-left of the origin. As such, in the limit, the <strong>Whale</strong> will
-visit <span class = 'latex-inline'>\(25\%\)</span> of the squares on the board.</p>
-
-<p>This mirrors the squares visited by the <a href="white_horse.html"><em>White Horse</em></a>.</p>
+<p>On the Spiral, the <strong>Free Wolf</strong> moves in an interesting and regular pattern.
+Half the squares in the wedge forward of the starting square are visited,
+with the number of squares visited on each row decreasing, until it reaches
+a minimum, after which is visits all square of the next row (but still only
+the squares inside the wedge). This means, <span class = 'latex-inline'>\(12.5\%\)</span> of the squares are
+visited.</p>
 </div>
 
 <h4 id = 'diamond'>Diamond</h4>
 
 <div class = "section">
-<p>The <strong>Whale</strong> makes half a revolution around the origin, then escapes
-backward in a one step loop. The escape velocity is <span class = 'latex-inline'>\(1\)</span>.</p>
+<p>On the Diamond Spiral, the <strong>Free Wolf</strong> uses a two step loop to advance
+one square forward, giving it an escape velocity of <span class = 'latex-inline'>\(\frac{1}{2}\)</span>.</p>
 </div>
 
 <h3 id = 'wedge'>Wedge</h3>
@@ -92,22 +81,21 @@ backward in a one step loop. The escape velocity is <span class = 'latex-inline'
 <h4 id = 'folded'>Folded</h4>
 
 <div class = "section">
-<p>On the Folded Wedge, the <strong>Whale</strong> escapes to the upper left, 
-by visiting the three left most squares of each row. A three step
-loop brings the piece one square upward and to the left, for
-an escape velocity of <span class = 'latex-inline'>\(\frac{\sqrt{2}}{3}\)</span>.</p>
+<p>On the Folded Wedge, the <strong>Free Wolf</strong> can move like the <a href="flying_cock.html"><em>Flying Cock</em></a>,
+and hence, visits all the squares on the board.</p>
 </div>
 
 <h4 id = 'flat'>Flat</h4>
 
-<p>On the Folded Wedge, the <strong>Whale</strong> escapes to the upper right, 
-by visiting the three right most squares of each row. A three step
-loop brings the piece one square upward and to the right, for
-an escape velocity of <span class = 'latex-inline'>\(\frac{\sqrt{2}}{3}\)</span>.</p>
+<p>On the Flat Wedge, the <strong>Free Wolf</strong> moves very similar to how it moves
+on the Spiral Square: visiting all the squares on a row, then one less on each
+subsequent row until two squares on a row are visited, after it visits all
+the squares on the next row, restarting the sequence. Which means the
+<strong>Free Wolf</strong> visits <span class = 'latex-inline'>\(50\%\)</span> of the squares.</p>
 
-<div class = 'trapped' data-piece = 'whale'></div>
+<div class = 'trapped' data-piece = 'free_wolf'></div>
 
-<div class = 'boxset' data-piece = 'whale'></div>
+<div class = 'boxset' data-piece = 'free_wolf'></div>
 
 <hr id = 'last-line'>
 <div class = 'trailer'>

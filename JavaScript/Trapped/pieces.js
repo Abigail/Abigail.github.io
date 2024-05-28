@@ -690,7 +690,9 @@ class Piece {
                 this . move_lists = [this . move_list]
             }
             else if (this . betza) {
-                this . move_lists = [betza (this . betza)]
+                this . move_lists = this . betza . split (/\//)
+                                                 . map (b => betza (b))
+            //  this . move_lists = [betza (this . betza)]
             }
             else if (this . betza_list) {
                 this . move_lists = this . betza_list . map (b => betza (b))
