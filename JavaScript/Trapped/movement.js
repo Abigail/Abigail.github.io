@@ -27,6 +27,7 @@ let TRANSFORM = {     // [Scale, Translate X, Translate Y]
     caliph:              [    0,       0.20],
     chariot:             [  850,     -13.32],
     crab:                [  850,     -13.32],
+    crossbow_soldier:    [  850,     -13.32],
     dabbaba:             [    0,       0.22],
     dragon_a2c:          [  850,     -13.40],
     dragon_horse:        [   50],

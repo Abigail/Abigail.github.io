@@ -1,6 +1,6 @@
 <html>
 <head>
-<title>Reverse Chariot</title>
+<title>Side Dragon</title>
 <meta charset = "utf-8">
 <link rel  = 'preconnect' href = 'https://fonts.gstatic.com'>
 <link rel = 'stylesheet' href =      'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
@@ -18,27 +18,25 @@
 <script src = '../../JavaScript/Trapped/pages.js'></script>
 </head>
 
-<body><h1>Reverse Chariot</h1><div class = "byline">
+<body><h1>Side Dragon</h1><div class = "byline">
 by Abigail<br>
 <img src = "../../Images/jan_sluiters.jpg">
 </div>
 
 
 <div class = "movement">
-. A .
-. * .
-. * .
-. * .
-. S .
-. * .
-. * .
-. * .
-. A .
+. . . . A . . . .
+. . . . * . . . .
+. . . . * . . . .
+. . . . * . . . .
+A * * * S * * * A
+. . . . . . . . .
 Shogi: 1
 </div>
 
-<p>The <strong>Reverse Chariot</strong> moves an unlimited number of unoccupied squares
-orthogonally forward or backward (like a vertical <a href="rook.html"><em>Rook</em></a>).</p>
+<p>The <strong>Side Dragon</strong> slides an unlimited number of unoccupied squares
+orthogonally forward or sideways. This makes it move like a <a href="rook.html"><em>Rook</em></a>,
+except that it may not go backward.</p>
 
 <table class = 'piece_info'>
   <tr class = 'row-0' markdown = '1'>
@@ -47,27 +45,47 @@ orthogonally forward or backward (like a vertical <a href="rook.html"><em>Rook</
     <th class = 'cell-0-2 col-2 ' markdown = '1'>Info</td>
   </tr>
   <tr class = 'row-1' markdown = '1'>
-    <td class = 'cell-1-0 col-0 ' markdown = '1'><strong>Reverse Chariot</strong></td>
-    <td class = 'cell-1-1 col-1 ' markdown = '1'><a href="https://en.wikipedia.org/wiki/chu_shogi">Chu&nbsp;Sh&#x014d;gi</a>; <a href="https://en.wikipedia.org/wiki/Taikyoku_shogi">Taikyoku Sh&#x14d;gi</a></td>
+    <td class = 'cell-1-0 col-0 ' markdown = '1'><strong>Side Dragon</strong></td>
+    <td class = 'cell-1-1 col-1 ' markdown = '1'><a href="https://en.wikipedia.org/wiki/Taikyoku_shogi">Taikyoku Sh&#x14d;gi</a></td>
     <td class = 'cell-1-2 col-2 ' markdown = '1'></td>
   </tr>
 </table>
 
 <h3 id = 'spiral'>Spiral</h3>
 
+<h4 id = 'square'>Square</h4>
+
 <div class = "section">
-<p>On either Spiral, the <strong>Reverse Chariot</strong> escapes in a straight line forward,
-with an escape velocity of <span class = 'latex-inline'>\(1\)</span>.</p>
+<p>On the Square Spiral, the <strong>Side Dragon</strong> uses a four step loop to
+move on square diagonally forward, giving it an escape velocity
+of <span class = 'latex-inline'>\(\frac{\sqrt{2}}{4}\)</span>.</p>
+</div>
+
+<h4 id = 'diamond'>Diamond</h4>
+
+<div class = "section">
+<p>On the <strong>Diamond Spiral</strong>, the <strong>Side Dragon</strong> moves in a straight
+line to the right, with an escape velocity of <span class = 'latex-inline'>\(1\)</span>.</p>
 </div>
 
 <h3 id = 'wedge'>Wedge</h3>
 
-<p>On both the Folded and Flat Wedge, the <strong>Reverse Chariot</strong> escapes in a
-straight line forward, with an escape velocity of <span class = 'latex-inline'>\(1\)</span>.</p>
+<h4 id = 'folded'>Folded</h4>
 
-<div class = 'trapped' data-piece = 'reverse_chariot'></div>
+<div class = "section">
+<p>On the Folded Wedge, the <strong>Side Dragon</strong> visits half the squares
+of each row, alternating visiting the left and right half of
+each row. <span class = 'latex-inline'>\(50\%\)</span> of the squares will be visited.</p>
+</div>
 
-<div class = 'boxset' data-piece = 'reverse_chariot'></div>
+<h4 id = 'flat'>Flat</h4>
+
+<p>On the Flat Wedge, the <strong>Side Dragon</strong> visits the two right most
+squares of each row, which gives it an escape velocity of <span class = 'latex-inline'>\(\frac{\sqrt{2}}{2}\)</span>.</p>
+
+<div class = 'trapped' data-piece = 'side_dragon'></div>
+
+<div class = 'boxset' data-piece = 'side_dragon'></div>
 
 <hr id = 'last-line'>
 <div class = 'trailer'>

@@ -397,6 +397,16 @@ let pieces = {
         },
     },
 
+    burning_soldier: {
+        betza: "fF5fW7sW3bW",
+        results: {
+            spiral_square:  "W",
+            spiral_diamond:  frac (1, 2),
+            wedge_folded:   "FC",
+            wedge_flat:     "F/100%"
+        },
+    },
+
     //
     // C pieces
     //
@@ -804,6 +814,16 @@ let pieces = {
             spiral_diamond: "?/10k",
             wedge_folded:   "T/358",
             wedge_flat:     "T/122",
+        },
+    },
+
+    crossbow_soldier: {
+        betza: "fF3fW5sW3bW",
+        results: {
+            spiral_square:  "W",
+            spiral_diamond:  frac (1, 2),
+            wedge_folded:   "FC",
+            wedge_flat:     "F/100%"
         },
     },
 
@@ -2083,6 +2103,16 @@ let pieces = {
         },
     },
 
+    mountain_witch: {
+        betza: "bFFbWW",
+        results: {
+            spiral_square:   sqrt (2),
+            spiral_diamond: "E = 1",
+            wedge_folded:   "",
+            wedge_flat:     "",
+        },
+    },
+
     //
     // N pieces
     //
@@ -2521,6 +2551,10 @@ let pieces = {
         parent:   "king",
     },
 
+    savage_tiger: {
+        parent:  "lance",
+    },
+
     scirocco: {
         parent:  "dragon_horse",
     },
@@ -2532,6 +2566,16 @@ let pieces = {
             spiral_diamond:  frac (1),
             wedge_folded:    frac (1),
             wedge_flat:      sqrt (2),
+        },
+    },
+
+    side_dragon: {
+        betza: "fsR",
+        results: {
+            spiral_square:   sqrt (2, 4),
+            spiral_diamond: "E = 1",
+            wedge_folded:   "F*/50%",
+            wedge_flat:      sqrt (2, 2),
         },
     },
 
@@ -3447,10 +3491,12 @@ let set_info = {
         href:    "https://en.wikipedia.org/wiki/Taikyoku_shogi",
         pieces: ["angry_boar", "bears_eyes", "beast_cadet", "beast_officer",
                  "blind_bear", "blind_dog", "blind_monkey", "blind_tiger",
-                 "buddist_devil", "captive_cadet", "captive_officer",
+                 "buddist_devil", "burning_soldier",
+                 "captive_cadet", "captive_officer",
                  "cat_sword", "chicken_general",
                  "chinese_cock", "climbing_monkey",
-                 "coiled_serpent", "copper_general", "dark_spirit",
+                 "coiled_serpent", "copper_general", "crossbow_soldier",
+                 "dark_spirit",
                  "deva", "dog", "donkey", "drunk_elephant",
                  "earth_general", "eastern_barbarian",
                  "enchanted_badger", "evil_wolf",
@@ -3459,14 +3505,16 @@ let set_info = {
                  "fragant_elephant", "go_between",
                  "gold_general", "guardian_of_the_gods", "heavenly_tetrarch",
                  "horse_general",
-                 "iron_general", "king_taikyoku", "left_general",
+                 "iron_general", "king_taikyoku", "lance", "left_general",
                  "leopard_king", "mountain_general", "mountain_stag",
+                 "mountain_witch", "neighbouring_king", "northern_barbarian",
                  "old_kite",
-                 "old_monkey", "old_rat", "ox_general", "prince",
-                 "neighbouring_king", "northern_barbarian", "poisonous_snake",
-                 "pig_general", "prancing_stag", "pup_general",
-                 "reclining_dragon", "right_general", "river_general",
-                 "running_bird", "rushing_boar",
+                 "old_monkey", "old_rat", "ox_general", "oxcart", "prince",
+                 "poisonous_snake", "pig_general",
+                 "prancing_stag", "pup_general",
+                 "reclining_dragon", "reverse_chariot",
+                 "right_general", "river_general",
+                 "running_bird", "rushing_boar", "savage_tiger", "side_dragon",
                  "silver_general", "southern_barbarian", "stone_general",
                  "strutting_crow", "sword_general", "sword_soldier",
                  "swooping_owl", "tile_general", "turtle_dove", "violent_stag",

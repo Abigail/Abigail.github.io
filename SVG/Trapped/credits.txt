@@ -4,7 +4,7 @@ abbot:
     url: https://www.svgrepo.com/svg/321699/abbot-meeple
 
 acropolis, actress, antelope, barc, beaver, blind_tiger, chariot, crab,
-fire_horse:
+crossbow_soldier, fire_horse:
     license: CC0 License
     url: https://www.svgrepo.com/svg/197101/parthenon
     url: https://www.svgrepo.com/svg/97210/actress
@@ -14,6 +14,7 @@ fire_horse:
     url: https://www.svgrepo.com/svg/191140/tiger
     url: https://www.svgrepo.com/svg/120360/chariot
     url: https://www.svgrepo.com/svg/176704/crab-food
+    url: https://www.svgrepo.com/svg/224442/crossbow
     url: https://www.svgrepo.com/svg/176552/horse-head-facing-right-outline-variant
 
 blind_dog:

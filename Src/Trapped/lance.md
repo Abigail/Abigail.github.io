@@ -19,11 +19,15 @@ See also the [*Ky&#x014D;to*](kyoto.html), which moves like the
 |====
 %%PIECE_INFO%%
   **Lance**
-& %%SHOGI%%; %%CHU_SHOGI%%; %%MICRO_SHOGI%%
+& %%SHOGI%%; %%CHU_SHOGI%%; %%MICRO_SHOGI%%; %%TAIKYOKU%%
 & \\
 
   **Oxcart**
-& %%WA_SHOGI%%
+& %%TAIKYOKU%%; %%WA_SHOGI%%
+& \\
+
+  **Savage Tiger**
+& %%TAIKYOKU%%
 & \\
 ====|
 

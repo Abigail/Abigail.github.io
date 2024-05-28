@@ -1,6 +1,6 @@
 <html>
 <head>
-<title>Reverse Chariot</title>
+<title>Mountain Witch</title>
 <meta charset = "utf-8">
 <link rel  = 'preconnect' href = 'https://fonts.gstatic.com'>
 <link rel = 'stylesheet' href =      'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
@@ -18,27 +18,25 @@
 <script src = '../../JavaScript/Trapped/pages.js'></script>
 </head>
 
-<body><h1>Reverse Chariot</h1><div class = "byline">
+<body><h1>Mountain Witch</h1><div class = "byline">
 by Abigail<br>
 <img src = "../../Images/jan_sluiters.jpg">
 </div>
 
 
 <div class = "movement">
-. A .
-. * .
-. * .
-. * .
-. S .
-. * .
-. * .
-. * .
-. A .
+. . . . . . . . .
+. . . . S . . . .
+. . . * * * . . .
+. . * . * . * . .
+. * . . * . . * .
+A . . . A . . . A
 Shogi: 1
 </div>
 
-<p>The <strong>Reverse Chariot</strong> moves an unlimited number of unoccupied squares
-orthogonally forward or backward (like a vertical <a href="rook.html"><em>Rook</em></a>).</p>
+<p>The <strong>Mountain Witch</strong> slides an unlimited number of unoccupied squares
+orthogonally or diagonally backward, combining the movements of
+a backward <a href="rook.html"><em>Rook</em></a> and a backward <a href="bishop.html"><em>Bishop</em></a>.</p>
 
 <table class = 'piece_info'>
   <tr class = 'row-0' markdown = '1'>
@@ -47,27 +45,35 @@ orthogonally forward or backward (like a vertical <a href="rook.html"><em>Rook</
     <th class = 'cell-0-2 col-2 ' markdown = '1'>Info</td>
   </tr>
   <tr class = 'row-1' markdown = '1'>
-    <td class = 'cell-1-0 col-0 ' markdown = '1'><strong>Reverse Chariot</strong></td>
-    <td class = 'cell-1-1 col-1 ' markdown = '1'><a href="https://en.wikipedia.org/wiki/chu_shogi">Chu&nbsp;Sh&#x014d;gi</a>; <a href="https://en.wikipedia.org/wiki/Taikyoku_shogi">Taikyoku Sh&#x14d;gi</a></td>
+    <td class = 'cell-1-0 col-0 ' markdown = '1'><strong>Mountain Witch</strong></td>
+    <td class = 'cell-1-1 col-1 ' markdown = '1'><a href="https://en.wikipedia.org/wiki/Taikyoku_shogi">Taikyoku Sh&#x14d;gi</a></td>
     <td class = 'cell-1-2 col-2 ' markdown = '1'></td>
   </tr>
 </table>
 
 <h3 id = 'spiral'>Spiral</h3>
 
+<h4 id = 'square'>Square</h4>
+
 <div class = "section">
-<p>On either Spiral, the <strong>Reverse Chariot</strong> escapes in a straight line forward,
-with an escape velocity of <span class = 'latex-inline'>\(1\)</span>.</p>
+<p>On the Square Spiral, the <strong>Mountain Witch</strong> escapes in a straight
+diagonally line backwards, with an escape velocity of <span class = 'latex-inline'>\(\sqrt{2}\)</span>.</p>
+</div>
+
+<h4 id = 'diamond'>Diamond</h4>
+
+<div class = "section">
+<p>On the Square Spiral, the <strong>Mountain Witch</strong> escapes in a straight
+orthogonally line backwards, with an escape velocity of <span class = 'latex-inline'>\(1\)</span>.</p>
 </div>
 
 <h3 id = 'wedge'>Wedge</h3>
 
-<p>On both the Folded and Flat Wedge, the <strong>Reverse Chariot</strong> escapes in a
-straight line forward, with an escape velocity of <span class = 'latex-inline'>\(1\)</span>.</p>
+<p>The <strong>Mountain Witch</strong> cannot move on either Wedge.</p>
 
-<div class = 'trapped' data-piece = 'reverse_chariot'></div>
+<div class = 'trapped' data-piece = 'mountain_witch'></div>
 
-<div class = 'boxset' data-piece = 'reverse_chariot'></div>
+<div class = 'boxset' data-piece = 'mountain_witch'></div>
 
 <hr id = 'last-line'>
 <div class = 'trailer'>

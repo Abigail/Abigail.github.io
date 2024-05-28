@@ -17,10 +17,10 @@ The **Reverse Chariot** moves an unlimited number of unoccupied squares
 orthogonally forward or backward (like a vertical [*Rook*](rook.html)).
 
 |====
-%%PIECE_HEADERS%%
-  {th = 1}  %%CHU_SHOGI%%
-&           **Reverse Chariot** & &#x53CD;&#x8ECA;
-&           %%PROMOTES_TO%% [*Whale*](whale.html) \\
+%%PIECE_INFO%%
+  **Reverse Chariot**
+& %%CHU_SHOGI%%; %%TAIKYOKU%%
+& \\
 ====|
 
 ### Spiral
