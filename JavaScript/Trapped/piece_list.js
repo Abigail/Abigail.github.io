@@ -1952,7 +1952,7 @@ let pieces = {
     // L pieces
     //
     lance: {
-        betza:  "fR",
+        betza:  "fWW",
         results: {
             spiral_square:   frac (1),
             spiral_diamond:  frac (1),
@@ -1976,7 +1976,7 @@ let pieces = {
     },
 
     left_quail: {
-        betza:  "blFbrBfR",
+        betza:  "blFbrFFfWW",
         results: {
             spiral_square:  "T/146", 
             spiral_diamond:  frac (1, 2),
@@ -1996,7 +1996,7 @@ let pieces = {
     },
 
     liberated_horse: {
-        betza: "bW2fR",
+        betza: "bW2fWW",
         results: {
             spiral_square:   frac (1),
             spiral_diamond:  frac (1),
@@ -2017,7 +2017,7 @@ let pieces = {
     },
 
     lioness: {
-        betza: "FWFAND",
+        betza: "FWAND",
         results: {
             spiral_square:  "W", 
             spiral_diamond: "BM",
@@ -2219,7 +2219,7 @@ let pieces = {
     // O pieces
     //
     octopus: {
-        betza:      "t[FR]",
+        betza:      "t[FWW]",
         results:   {
             spiral_square:   sqrt (2, 20, 7),
             spiral_diamond: "T/52",
@@ -2304,7 +2304,7 @@ let pieces = {
     },
 
     pheasant: {
-        betza:  "fDbF",
+        betza:  "bFfD",
         results: {
             spiral_square:   sqrt (2, 2),
             spiral_diamond: "F*/25%",
@@ -2419,7 +2419,7 @@ let pieces = {
     // Q pieces
     //
     queen: {
-        betza:  "Q",
+        betza:  "FFWW",
         results: {
             spiral_square:  "W", 
             spiral_diamond: "BM",
@@ -2465,7 +2465,7 @@ let pieces = {
     },
 
     raiding_falcon: {
-        betza: "sWfFvR",
+        betza: "fFvWWsW",
         results: {
             spiral_square:  "W",
             spiral_diamond:  frac (1, 2),
@@ -2479,7 +2479,7 @@ let pieces = {
     },
 
     reverse_chariot: {
-        betza: "vR",
+        betza: "vWW",
         results: {
             spiral_square:   frac (1),
             spiral_diamond:  frac (1),
@@ -2493,7 +2493,7 @@ let pieces = {
     },
 
     right_quail: {
-        betza:  "fRblBbrF",
+        betza:  "blFFbrFfWW",
         results: {
             spiral_square:  "F*/25%", 
             spiral_diamond:  frac (1, 2),
@@ -2511,7 +2511,7 @@ let pieces = {
     },
 
     roc: {
-        betza: "D0t[FR]",
+        betza: "t[FWW]DD",
         results:   {
             spiral_square:  "F/50%",
             spiral_diamond: "F/100%",
@@ -2521,7 +2521,7 @@ let pieces = {
     },
 
     rook: {
-        betza:  "R",
+        betza:  "WW",
         results: {
             spiral_square:  "W", 
             spiral_diamond: "F/62.5%",
@@ -2561,7 +2561,7 @@ let pieces = {
     },
 
     running_bird: {
-        betza: "FsWfW2",
+        betza: "FfW2sW",
         results: {
             spiral_square:  "F*/100%",
             spiral_diamond: "BM",
@@ -2579,7 +2579,7 @@ let pieces = {
     },
 
     running_rabbit: {
-        betza:   "bWFfR",
+        betza:   "FfWWbW",
         results: {
             spiral_square:  "F*/100%",
             spiral_diamond: "F/100%",
@@ -2612,7 +2612,7 @@ let pieces = {
     },
 
     sergeant: {
-        betza: "fWfF",
+        betza: "fFfW",
         results: {
             spiral_square:   sqrt (2),
             spiral_diamond:  frac (1),
@@ -2622,7 +2622,7 @@ let pieces = {
     },
 
     side_dragon: {
-        betza: "fsR",
+        betza: "fsWW",
         results: {
             spiral_square:   sqrt (2, 4),
             spiral_diamond: "E = 1",
@@ -2632,7 +2632,7 @@ let pieces = {
     },
 
     side_mover: {
-        betza: "vWsR",
+        betza: "vWsWW",
         results: {
             spiral_square:  "W",
             spiral_diamond: "F*/87.5%",
@@ -2653,7 +2653,7 @@ let pieces = {
     },
 
     soaring_eagle: {
-        betza: "fFfAbBR",
+        betza: "fFbFFWWfA",
         results: {
             spiral_square:  "W",
             spiral_diamond: "BM",
@@ -2680,7 +2680,7 @@ let pieces = {
     },
 
     sorcerer: {
-        betza:    "W2F2",
+        betza:    "F2W2",
         results: {
             spiral_square:  "W", 
             spiral_diamond: "BM",
@@ -2698,7 +2698,7 @@ let pieces = {
     },
 
     spearman: {
-        betza_list: ["vR", "frblB", "flbrB"],
+        betza: "vWW/frblFF/flFFbrFF",
         results: {
             spiral_square:   sqrt (2, 3),
             spiral_diamond: "T/18",
@@ -2708,7 +2708,7 @@ let pieces = {
     },
 
     spider: {
-        betza: "t[WB]",
+        betza: "t[WFF]",
         results: {
             spiral_square:  "W",
             spiral_diamond: "F*/100%",
@@ -2728,7 +2728,7 @@ let pieces = {
     },
 
     squire: {
-        betza: "WFDA",
+        betza: "FWAD",
         results: {
             spiral_square:  "W",
             spiral_diamond: "BM",
@@ -2744,7 +2744,7 @@ let pieces = {
     },
 
     squirrel: {
-        betza:    "DNA",
+        betza:    "AND",
         results: {
             spiral_square:  "?/1G",
             spiral_diamond: "F*/100%",
@@ -2786,7 +2786,7 @@ let pieces = {
     },
 
     strutting_crow: {
-        betza: "fWbF",
+        betza: "bFfW",
         results: {
             spiral_square:   sqrt (2, 3),
             spiral_diamond:  frac (1, 2),
@@ -2843,7 +2843,7 @@ let pieces = {
     },
 
     tenacious_falcon: {
-        betza: "sWvRB",
+        betza: "FFvWWsW",
         results: {
             spiral_square:  "W",
             spiral_diamond: "BM",
@@ -2900,7 +2900,7 @@ let pieces = {
     },
 
     tile_general: {
-        betza:  "bWfF",
+        betza:  "fFbW",
         results: {
             spiral_square:  sqrt (2, 3),
             spiral_diamond: frac (1, 2),
@@ -2910,7 +2910,7 @@ let pieces = {
     },
 
     treacherous_fox: {
-        betza: "vWFvDA",
+        betza: "FvWAvD",
         results: {
             spiral_square:  "F*/100%",
             spiral_diamond: "F*/100%",
@@ -2976,7 +2976,7 @@ let pieces = {
     },
 
     vertical_mover: {
-        betza: "sWvR",
+        betza: "vWWsW",
         results: {
             spiral_square:  "W",
             spiral_diamond: "F/75%",
@@ -3079,7 +3079,7 @@ let pieces = {
     },
 
     whale: {
-        betza: "vRbB",
+        betza: "bFFvWW",
         results: {
             spiral_square:  "F*/25%",
             spiral_diamond:  frac (1),
@@ -3137,7 +3137,7 @@ let pieces = {
     },
 
     wizard_stork: {
-        betza: "fBbsR",
+        betza: "fFFbsWW",
         results: {
             spiral_square:  "T/74",
             spiral_diamond:  frac (1, 2),
@@ -3183,7 +3183,7 @@ let pieces = {
     },
 
     yari_bishop: {
-        betza: "fFfR",
+        betza: "fFfWW",
         results: {
             spiral_square:   sqrt (2),
             spiral_diamond:  frac (1),
@@ -3193,7 +3193,7 @@ let pieces = {
     },
 
     yari_gold: {
-        betza: "WfFbR",
+        betza: "fFWbWW",
         results: {
             spiral_square:  "W", 
             spiral_diamond:  frac (1, 2),
@@ -3203,7 +3203,7 @@ let pieces = {
     },
 
     yari_knight: {
-        betza: "fNfR",
+        betza: "fWWfN",
         results: {
             spiral_square:   frac (1),
             spiral_diamond:  frac (1),
@@ -3213,7 +3213,7 @@ let pieces = {
     },
 
     yari_rook: {
-        betza: "frlR",
+        betza: "fsWW",
         results: {
             spiral_square:   sqrt (2, 5),
             spiral_diamond:  frac (1),
@@ -3223,7 +3223,7 @@ let pieces = {
     },
 
     yari_silver: {
-        betza: "fWfFbR",
+        betza: "fFfWbWW",
         results: {
             spiral_square:  "F*/25%", 
             spiral_diamond:  frac (1),
