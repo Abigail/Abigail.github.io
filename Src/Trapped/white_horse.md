@@ -23,10 +23,18 @@ The movements of the **White Horse** is the mirror image of the
 movements of the [*Whale*](whale.html).
 
 |====
-%%PIECE_HEADERS%%
-  {th = 1}  %%CHU_SHOGI%%
-&           **White Horse** & &#x767D;&#x99D2;
-&           %%PROMOTED%% [*Lance*](lance.html) \\
+%%PIECE_INFO%%
+  **Bird of Paradise**
+& %%TAIKYOKU%%
+& \\
+
+  **Multi General**
+& %%TAIKYOKU%%
+& \\
+
+  **White Horse**
+& %%CHU_SHOGI%%; %%TAIKYOKU%%
+& \\
 ====|
 
 

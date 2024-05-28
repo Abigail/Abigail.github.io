@@ -23,10 +23,17 @@ The movements of the **Whale** is the mirror image of the
 movements of the [*White Horse*](white_horse.html).
 
 |====
-%%PIECE_HEADERS%%
-  {th = 1}  %%CHU_SHOGI%%
-&           **Whale** & &#x9BE8;&#x9BE2;
-&           %%PROMOTED%% [*Reverse Chariot*](reverse_chariot.html) \\
+%%PIECE_INFO%%
+  **Coiled Dragon**
+& {rs = 2} %%TAIKYOKU%%
+& \\
+
+  **Free Serpent**
+& \\
+
+  **Whale**
+& %%CHU_SHOGI%%; %%TAIKYOKU%%
+& \\
 ====|
 
 ### Spiral

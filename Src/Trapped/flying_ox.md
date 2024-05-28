@@ -10,26 +10,35 @@ A . . . A . . . A
 . . * . * . * . .
 . * . . * . . * .
 A . . . A . . . A
+Shogi: 1
 </div>
 
 The **Flying Ox** moves either has a %%BISHOP%%, or a vertical %%ROOK%%.
-The %%PIECE%% moves an unlimited amount of unoccupied squares
+The **Flying Ox** moves an unlimited amount of unoccupied squares
 diagonally, or orthogonally forward or backward.
 
 Compare with the [*Free Boar*](free_boar.html) which has the same
 movements, rotated 90&deg;.
 
 |====
-%%PIECE_HEADERS%%
-  {th = 1}  %%TYPHOON%%
-& {cs = 2}  **Flying Ox**
-&           %%PROMOTED%% [*Fire Horse*](fire_horse.html) \\
-  {th = 1}  %%CHU_SHOGI%%
-&           **Flying Ox** & &#x98DB;&#x725B;
-&           %%PROMOTED%% [*Vertical Mover*](vertical_mover.html) \\
-  {th = 1}  %%GANYMEDE%%
-& {cs = 2}  **Pikeman**
-&           %%PROMOTED%% [*Spearman*](spearman.html) \\
+%%PIECE_INFO%%
+  **Flying Ox**
+& %%CHU_SHOGI%%; %%TAIKYOKU%%; %%TYPHOON%%
+& \\
+
+  **Free Bear**
+& {rs = 3} %%TAIKYOKU%%;
+& \\
+
+  **Free Leopard**
+& \\
+
+  **Great Whale**
+& \\
+
+  **Pikeman**
+& %%GANYMEDE%%
+& \\
 ====|
 
 ### Spiral
