@@ -45,13 +45,15 @@ function make_index_table () {
     let div = $("div.index")
 
     let table  = "<table class = 'index'>"
-        table += "<tr><th rowspan = 2>Piece</th>"  +
+        table += "<tr><th colspan = 2>Piece</th>"  +
                      "<th colspan = 2>Spiral</th>" +
                      "<th colspan = 2>Wedge</th>"  + 
                  "</tr>\n" 
-        table += "<tr><th>Square</th>" +
+        table += "<tr><th>Name</th>"    +
+                     "<th>Betza</th>"   +
+                     "<th>Square</th>"  +
                      "<th>Diamond</th>" +
-                     "<th>Folded</th>" +
+                     "<th>Folded</th>"  +
                      "<th>Flat</th></tr>\n"
 
     Object . keys (pieces) . map ((piece_name) => {
@@ -70,6 +72,9 @@ function make_index_table () {
 
         table += `<tr><td class = 'piece-name'>`               +
                  linkify ({name: name, href: piece . file ()}) + "</td>"
+
+        let betza = piece . betza || ""
+        table += `<td class = "betza">${betza}</td>`
 
         if (piece . results) {
             ["spiral_square",
