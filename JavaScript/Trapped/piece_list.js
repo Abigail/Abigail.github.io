@@ -1363,28 +1363,6 @@ let pieces = {
         },
     },
 
-    fragant_elephant: {
-        parent: "sorcerer"
-    },
-
-    free_bear: {
-        parent: "flying_ox",
-    },
-
-    free_leapard: {
-        parent: "flying_ox",
-    },
-
-    free_wolf: {
-        betza: "fFFfsWW",
-        results: {
-            spiral_square:  "F*/12.5%",
-            spiral_diamond:  frac (1, 2),
-            wedge_folded:   "FC", 
-            wedge_flat:     "F*/50%",
-        },
-    },
-
     fort: {
         betza: "FWWG",
         results: {
@@ -1415,6 +1393,10 @@ let pieces = {
         _index_name: "Fox (Wazir)",
     },
 
+    fragant_elephant: {
+        parent: "sorcerer"
+    },
+
     free_bear: {
         parent: "flying_ox",
     },
@@ -1429,12 +1411,40 @@ let pieces = {
         },
     },
 
+    free_dragon: {
+        betza:    "FFsbWW",
+        results: {
+            spiral_square:  "T/1079", 
+            spiral_diamond: "BM",
+            wedge_folded:   "FC", 
+            wedge_flat:     "F/100%",
+        },
+    },
+
     free_leopard: {
         parent: "flying_ox",
     },
 
     free_serpent: {
         parent: "whale",
+    },
+
+    free_stag: {
+        parent: "queen",
+    },
+
+    free_tiger: {
+        parent: "free_dragon",
+    },
+
+    free_wolf: {
+        betza: "fFFfsWW",
+        results: {
+            spiral_square:  "F*/12.5%",
+            spiral_diamond:  frac (1, 2),
+            wedge_folded:   "FC", 
+            wedge_flat:     "F*/50%",
+        },
     },
 
     frog: {
@@ -2791,6 +2801,10 @@ let pieces = {
         parent:  "alfil",
     },
 
+    strong_eagle: {
+        parent: "queen",
+    },
+
     strong_chariot: {
         betza: "fFFWW",
         results: {
@@ -3604,8 +3618,9 @@ let set_info = {
                  "ferocious_leopard", "fierce_eagle", "fire_general",
                  "flying_cock", "flying_goose", "flying_horse",
                  "flying_ox",
-                 "fragant_elephant", "free_bear", "free_leopard",
-                 "free_serpent", "free_wolf",
+                 "fragant_elephant", "free_bear", "free_dragon",
+                 "free_leopard", "free_serpent", "free_stag",
+                 "free_tiger", "free_wolf",
                  "gliding_swallow", "go_between",
                  "gold_general", "great_whale",
                  "guardian_of_the_gods", "heavenly_tetrarch",
@@ -3617,7 +3632,7 @@ let set_info = {
                  "old_kite",
                  "old_monkey", "old_rat", "ox_general", "oxcart", "prince",
                  "poisonous_snake", "pig_general",
-                 "prancing_stag", "pup_general",
+                 "prancing_stag", "pup_general", "queen",
                  "reclining_dragon", "reverse_chariot",
                  "right_general", "river_general",
                  "rook", "running_bird", "running_chariot", "running_leopard",
