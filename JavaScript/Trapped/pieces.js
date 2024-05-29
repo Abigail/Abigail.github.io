@@ -491,6 +491,8 @@ function rose (betza) {
 function betza_leaper (betza) {
     let out = [];
 
+    console . log (`betza = ${betza}`)
+
     //
     // We cannot deal with:
     //    - capture moves   ("c" modifier)
@@ -510,7 +512,7 @@ function betza_leaper (betza) {
     }
 
     //
-    // Hard code t[WF] and t[FW]
+    // Hard code the t[..] we use. This needs to be improved
     //
     if (betza == "t[FW]") { // Moa
         return [
@@ -536,30 +538,41 @@ function betza_leaper (betza) {
             {dr:  2, dc:  1, us: [[ 1,  0]], max: 1},
         ]
     }
-    if (betza == "t[FWW]" || betza == "t[FR]") { // Octopus
+    if (betza == "t[FWW]" || betza == "t[FR]" || // Octopus
+        betza == "t[GWW]" || betza == "t[GR]") { // Treacherous Fox
+        let jump = 1
+        if (betza . match ("G")) {jump = 3}
         return [
-            {dr: -1, dc:  0, or: -1, oc:  1},
-            {dr:  0, dc:  1, or: -1, oc:  1},
-            {dr: -1, dc:  0, or: -1, oc: -1},
-            {dr:  0, dc: -1, or: -1, oc: -1},
-            {dr:  1, dc:  0, or:  1, oc:  1},
-            {dr:  0, dc:  1, or:  1, oc:  1},
-            {dr:  1, dc:  0, or:  1, oc: -1},
-            {dr:  0, dc: -1, or:  1, oc: -1},
+            {dr: -jump, dc:     0, or: -1, oc:  1},
+            {dr:     0, dc:  jump, or: -1, oc:  1},
+            {dr: -jump, dc:     0, or: -1, oc: -1},
+            {dr:     0, dc: -jump, or: -1, oc: -1},
+            {dr:  jump, dc:     0, or:  1, oc:  1},
+            {dr:     0, dc:  jump, or:  1, oc:  1},
+            {dr:  jump, dc:     0, or:  1, oc: -1},
+            {dr:     0, dc: -jump, or:  1, oc: -1},
         ]
     }
-    if (betza == "t[WFF]" || betza == "t[WB]") { // Spider
+    if (betza == "t[WFF]" || betza == "t[WB]" || // Spider
+        betza == "t[HFF]" || betza == "t[HB]") { // Treacherous Fox
+        let jump = 1
+        if (betza . match ("H")) {jump = 3}
         return [
-            {dr: -1, dc:  1, or: -1, oc:  0},
-            {dr: -1, dc: -1, or: -1, oc:  0},
-            {dr:  1, dc:  1, or:  1, oc:  0},
-            {dr:  1, dc: -1, or:  1, oc:  0},
-            {dr: -1, dc: -1, or:  0, oc: -1},
-            {dr: -1, dc: -1, or:  0, oc: -1},
-            {dr:  1, dc:  1, or:  0, oc:  1},
-            {dr:  1, dc:  1, or:  0, oc:  1},
+            {dr: -jump, dc:  jump, or: -1, oc:  0},
+            {dr: -jump, dc: -jump, or: -1, oc:  0},
+            {dr:  jump, dc:  jump, or:  1, oc:  0},
+            {dr:  jump, dc: -jump, or:  1, oc:  0},
+            {dr: -jump, dc: -jump, or:  0, oc: -1},
+            {dr: -jump, dc: -jump, or:  0, oc: -1},
+            {dr:  jump, dc:  jump, or:  0, oc:  1},
+            {dr:  jump, dc:  jump, or:  0, oc:  1},
         ]
     }
+    if (betza . match (/t/)) {
+        console . log (`Cannot parse ${betza}`)
+        return []
+    }
+
 
     if (betza . match (/A/)) {out . push (... fold ({move: step (2, 2)}))} else
     if (betza . match (/C/)) {out . push (... fold ({move: step (3, 1)}))} else
@@ -608,9 +621,9 @@ function betza (betza) {
           . replaceAll ('Q', 'FFWW') // Queen  = Sliding Ferz + Sliding Wazir
           . replaceAll ('R', 'WW')   // Rook   = Sliding Wazir
 
-          . match (new RegExp (`(?:${modifier_class}*` +
+          . match (new RegExp (`(?:${modifier_class}*`              +
                                  `(${leaper_pat})(?:\\1|[0-9]+)?)|` +
-                                 "t\\[(?:WF|WFF|WB|FW|FWW|FR)\\]", 'g'))
+                                 "t\\[[A-Z]+\\]", 'g'))
           . forEach  ((leaper) => moves . push (... betza_leaper (leaper)))
 
     return moves

@@ -563,6 +563,12 @@ let pieces = {
         parent: "mao",
     },
 
+    cavalier_taik: {
+        _name: "Cavalier",
+        _index_name: "Cavalier (Taikyoku Sh&#x14d;gi)",
+        parent: "strong_chariot",
+    },
+
     centaur: {
         betza:    "WFN",
         results: {
@@ -1870,7 +1876,7 @@ let pieces = {
     king_taikyoku: {
         parent: "sorcerer",
         _name: "King",
-        _index_name: "King (Taikyoku)",
+        _index_name: "King (Taikyoku Sh&#x14d;gi)",
     },
 
     kinkei: {
@@ -2676,7 +2682,7 @@ let pieces = {
     soldier_taikyoku: {
         parent: "rook",
         _name: "Soldier",
-        _index_name: "Soldier (Taikyoku)",
+        _index_name: "Soldier (Taikyoku Sh&#x14d;gi)",
     },
 
     sorcerer: {
@@ -2783,6 +2789,16 @@ let pieces = {
 
     stork: {
         parent:  "alfil",
+    },
+
+    strong_chariot: {
+        betza: "fFFWW",
+        results: {
+            spiral_square:   "W",
+            spiral_diamond:   frac (1, 2),
+            wedge_folded:    "FC",
+            wedge_flat:      "F/100%",
+        },
     },
 
     strutting_crow: {
@@ -2917,6 +2933,18 @@ let pieces = {
             wedge_folded:    sqrt (2, 3),
             wedge_flat:      sqrt (2),
         },
+    },
+
+    treacherous_fox_taik: {
+        betza: "FvWADt[GFF]t[HWW]",
+        results: {
+            spiral_square:  "?/10k",
+            spiral_diamond: "F/100%",
+            wedge_folded:   "?/10k",
+            wedge_flat:     "F/100%",
+        },
+        _name: "Treacherous Fox",
+        _index_name: "Treacherous Fox (Taikyoku Sh&#x14d;gi)",
     },
 
     tripper:   {    // (3, 3)-leaper
@@ -3566,7 +3594,7 @@ let set_info = {
                  "blind_bear", "blind_dog", "blind_monkey", "blind_tiger",
                  "buddist_devil", "burning_soldier",
                  "captive_cadet", "captive_officer",
-                 "cat_sword", "chicken_general",
+                 "cat_sword", "cavalier_taik", "chicken_general",
                  "chinese_cock", "climbing_monkey", "coiled_dragon",
                  "coiled_serpent", "copper_general", "crossbow_soldier",
                  "dark_spirit",
@@ -3596,8 +3624,10 @@ let set_info = {
                  "rushing_boar", "savage_tiger", "side_dragon",
                  "silver_general", "soldier_taikyoku",
                  "southern_barbarian", "square_mover", "stone_general",
+                 "strong_chariot",
                  "strutting_crow", "sword_general", "sword_soldier",
-                 "swooping_owl", "tile_general", "turtle_dove", "violent_stag",
+                 "swooping_owl", "tile_general", "treacherous_fox_taik",
+                 "turtle_dove", "violent_stag",
                  "venomous_wolf", "violent_bear", "violent_wolf",
                  "water_general",
                  "western_barbarian", "whale", "white_elephant",

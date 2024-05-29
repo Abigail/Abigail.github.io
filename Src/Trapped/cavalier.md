@@ -34,13 +34,13 @@ Compare with the [*Octopus*](octopus.html), which moves in the
 same way as the **Cavalier**, except that it may finish its
 move next to its starting square.
 
-The [*Mao*](mao.html) goes by the name of *Cavalier* as well.
-
 |====
-%%PIECE_HEADERS%%
-  {th = 1}  %%RENN_CHESS%%
-& {cs = 2}  **Cavalier**
-&           \\
+%%PIECE_INFO%%
+  **Cavalier**
+& %%RENN_CHESS%%
+& This is a different piece than the [*Cavalier*](strong_chariot.html)
+  from %%TAIKYOKU%%. The [*Mao*](mao.html) goes by the name of *Cavalier*
+  as well.
 ====|
 
 ### Spiral

@@ -39,6 +39,13 @@ movements, rotated 90&deg;.
   **Pikeman**
 & %%GANYMEDE%%
 & \\
+
+  **Treacherous Fox**
+& %%TAIKYOKU%%
+& There are conflicting rules on how the **Treacherous Fox** moves. 
+  See the [alternative way](treacherous_fox_taik.html) this piece
+  may move. %%WA_SHOGI%% also has a [*Treacherous Fox*](treacherous.html),
+  but that moves differently. \\
 ====|
 
 ### Spiral
