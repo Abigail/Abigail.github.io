@@ -20,55 +20,54 @@ movements of the [*Rook*](rook.html) and [*Bishop*](bishop.html).
 It's common in many Chess variant, using different names:
 
 |====
-%%PIECE_HEADERS%%
-  {th = 1}  %%ROCOCO%%
-& {cs = 2}  **Advancer** <sup>[%%CHESS_V%%](#piece:advancer)</sup>
-&           %%CAPTURE%%; %%ABILITIES%% \\
-  {th = 1}  %%HIASHATAR%%
-& {cs = 2}  **Bers**
-&           \\
-  {th = 1}  %%ROCOCO%%
-& {cs = 2}  **Chameleon**
-&           %%CAPTURE%%; %%ABILITIES%% \\
-  {th = 1}  %%QUANTUM%%
-& {cs = 2}  **Duke**
-&           Not to be confused with the [*Duke*](centaur.html?piece=duke_cobra)
-            from [Cobra Chess](#chess-v:large.dir/cobra.html),
-            or the [*Duke*](duke.html) from %%SCIROCCO%%. \\
-  {th = 1}  %%ROCOCO%%
-& {cs = 2; rs = 2}  **Immobilizer**
-&           %%CAPTURE%%; %%ABILITIES%% \\
-  {th = 1}  %%TYPHOON%%
-&           %%PROMOTED%% [*Hummingbird*](hummingbird.html);
-            %%CAPTURE%%; %%ABILITIES%% \\
-  {th = 1}  %%ROCOCO%%
-& {cs = 2; rs = 2}
-            **Longleaper**
-&           %%HOPPER%% \\
-  {th = 1}  %%TYPHOON%%
-&           %%PROMOTED%% [*Cuckoo*](cuckoo.html); %%HOPPER%% \\
-  {th = 1}  %%SCIROCCO%%; %%TYPHOON%%
-& {cs = 2}  **Queen**
-&           %%PROMOTED%% [*Stork*](alfil.html?piece=stork) \\
-  {th = 1}  %%CHESS%%; %%CAGLIOSTRO%%; %%FALCON_HUNTER%%; %%RENN_CHESS%%;
-            %%WOLF%%; Other chess variants
-& {rs = 3}  **Queen** & {rs = 3} &#x2655;
-&           \\
-  {th = 1}  %%GANYMEDE%%
-&           %%PROMOTES_TO%% [*Empress*](amazon.html?piece=empress) \\
-  {th = 1}  %%WILDEBEEST%%
-&           The *Queen* is one of two pieces a [*Pawn*](pawn.html)
-            may promote to \\
-  {th = 1}  %%CHU_SHOGI%%
-&           **Queen** & &#x5954;&#x738B;
-&           &#x5954;&#x738B; meaning *Free King* \\
-  {th = 1; rs = 2}
-            %%ROCOCO%%
-& {cs = 2}  **Swapper**
-&           %%CAPTURE%%; %%ABILITIES%% \\
+%%PIECE_INFO%%
+  **Advancer** <sup>[%%CHESS_V%%](#piece:advancer)</sup>
+& %%ROCOCO%%
+& %%OTHER_MOVES%% \\
 
-  {cs = 2}  **Withdrawer**
-&           %%CAPTURE%%; %%ABILITIES%% \\
+  **Bers**
+& %%HIASHATAR%%
+& \\
+
+  **Chameleon**
+& %%ROCOCO%%
+& %%OTHER_MOVES%% \\
+
+  **Duke**
+& %%QUANTUM%%
+& Not to be confused with the [*Duke*](centaur.html?piece=duke_cobra)
+  from [Cobra Chess](#chess-v:large.dir/cobra.html),
+  or the [*Duke*](duke.html) from %%SCIROCCO%%. \\
+
+  **Free&nbsp;Stag**
+& %%TAIKYOKU%%
+& \\
+
+  **Immobilizer**
+& {rs = 2} %%ROCOCO%%; %%TYPHOON%%
+& %%OTHER_MOVES%% \\
+
+  **Longleaper**
+& %%OTHER_MOVES%% \\
+
+  {rs = 3} **Queen**
+& %%CHESS%%; %%CAGLIOSTRO%%; %%FALCON_HUNTER%%; %%RENN_CHESS%%;
+  %%WOLF%%; Other chess variants 
+& \\
+  %%GANYMEDE%%; %%SCIROCCO%%; %%TYPHOON%%; %%WILDEBEEST%%
+& \\
+  %%CHU_SHOGI%%; %%TAIKYOKU%%
+& &#x5954;&#x738B;, which means *Free King* \\
+
+  **Strong&nbsp;Eagle**
+& %%TAIKYOKU%%
+& \\
+
+  **Swapper**
+& {rs = 2} %%ROCOCO%%
+& {rs = 2} %%OTHER_MOVES%% \\
+
+  **Withdrawer** \\
 ====|
       
 Links: [%%WIKI%%](#wiki:Queen_(chess)),

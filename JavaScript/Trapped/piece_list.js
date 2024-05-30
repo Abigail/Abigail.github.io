@@ -1991,6 +1991,16 @@ let pieces = {
         parent: "king",
     },
 
+    left_howling_dog: {
+        betza: "fWWbW",
+        results: {
+            spiral_square:    frac (1),
+            spiral_diamond:   frac (1),
+            wedge_folded:     frac (1),
+            wedge_flat:       frac (1),
+        },
+    },
+
     left_quail: {
         betza:  "blFbrFFfWW",
         results: {
@@ -2508,6 +2518,10 @@ let pieces = {
         parent: "king",
     },
 
+    right_howling_dog: {
+        parent: "left_howling_dog",
+    },
+
     right_quail: {
         betza:  "blFFbrFfWW",
         results: {
@@ -2720,6 +2734,16 @@ let pieces = {
             spiral_diamond: "T/18",
             wedge_folded:    sqrt (2, 3),
             wedge_flat:      sqrt (2, 3),
+        },
+    },
+
+    spear_soldier: {
+        betza: "fWWbsW",
+        results: {
+            spiral_square:  "W",
+            spiral_diamond: "F/87.5%",
+            wedge_folded:   "T/6",
+            wedge_flat:      sqrt (2, 2),
         },
     },
 
@@ -3015,6 +3039,16 @@ let pieces = {
 
     venomous_wolf: {
         parent: "king",
+    },
+
+    vertical_horse: {
+        betza: "fFfWWbW",
+        results: {
+            spiral_square:   sqrt (2, 3),
+            spiral_diamond:  frac (1),
+            wedge_folded:    sqrt (2, 3),
+            wedge_flat:      sqrt (2),
+        },
     },
 
     vertical_mover: {
@@ -3626,6 +3660,7 @@ let set_info = {
                  "guardian_of_the_gods", "heavenly_tetrarch",
                  "horse_general",
                  "iron_general", "king_taikyoku", "lance", "left_general",
+                 "left_howling_dog",
                  "leopard_king", "mountain_general", "mountain_stag",
                  "mountain_witch", "multi_general",
                  "neighbouring_king", "northern_barbarian",
@@ -3634,16 +3669,18 @@ let set_info = {
                  "poisonous_snake", "pig_general",
                  "prancing_stag", "pup_general", "queen",
                  "reclining_dragon", "reverse_chariot",
-                 "right_general", "river_general",
+                 "right_general", "right_howling_dog", "river_general",
                  "rook", "running_bird", "running_chariot", "running_leopard",
                  "rushing_boar", "savage_tiger", "side_dragon",
                  "silver_general", "soldier_taikyoku",
-                 "southern_barbarian", "square_mover", "stone_general",
-                 "strong_chariot",
+                 "southern_barbarian", "spear_soldier",
+                 "square_mover", "stone_general",
+                 "strong_chariot", "strong_eagle",
                  "strutting_crow", "sword_general", "sword_soldier",
                  "swooping_owl", "tile_general", "treacherous_fox_taik",
                  "turtle_dove", "violent_stag",
-                 "venomous_wolf", "violent_bear", "violent_wolf",
+                 "venomous_wolf", "vertical_horse",
+                 "violent_bear", "violent_wolf",
                  "water_general",
                  "western_barbarian", "whale", "white_elephant",
                  "white_horse", "wind_general", "wizard_stork",
