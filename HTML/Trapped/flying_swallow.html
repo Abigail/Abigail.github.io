@@ -1,6 +1,6 @@
 <html>
 <head>
-<title>Spear Soldier</title>
+<title>Flying Swallow</title>
 <meta charset = "utf-8">
 <link rel  = 'preconnect' href = 'https://fonts.gstatic.com'>
 <link rel = 'stylesheet' href =      'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
@@ -18,27 +18,27 @@
 <script src = '../../JavaScript/Trapped/pages.js'></script>
 </head>
 
-<body><h1>Spear Soldier</h1><div class = "byline">
+<body><h1>Flying Swallow</h1><div class = "byline">
 by Abigail<br>
 <img src = "../../Images/jan_sluiters.jpg">
 </div>
 
 
 <div class = "movement">
-. . A . .
-. . * . .
-. . * . .
-. . * . .
-. * S * .
-. . * . .
-. . . . .
+A . . . . . . . A
+. * . . . . . * .
+. . * . . . * . .
+. . . * . * . . .
+. . . . S . . . .
+. . . . * . . . .
+. . . . . . . . .
 Shogi: 1
 </div>
 
-<p>The <strong>Spear Soldier</strong> either steps one square orthogonally sideways
-or backwards (like a horizontal-backward <a href="wazir.html"><em>Wazir</em></a>), or slides an
-unlimited amount of unoccupied squares orthogonally forward (like
-a forward <a href="rook.html"><em>Rook</em></a>).</p>
+<p>The <strong>Flying Swallow</strong> combines the movements of a backward <a href="wazir.html"><em>Wazir</em></a>
+with a forward <a href="bishop.html"><em>Bishop</em></a>. That is, the <strong>Flying Swallow</strong> either moves
+an unlimited amount of unoccupied squares diagonally forward or
+steps a single square orthogonally backward.</p>
 
 <table class = 'piece_info'>
   <tr class = 'row-0' markdown = '1'>
@@ -47,9 +47,13 @@ a forward <a href="rook.html"><em>Rook</em></a>).</p>
     <th class = 'cell-0-2 col-2 ' markdown = '1'>Info</td>
   </tr>
   <tr class = 'row-1' markdown = '1'>
-    <td class = 'cell-1-0 col-0 ' markdown = '1'><strong>Spear Soldier</strong></td>
-    <td class = 'cell-1-1 col-1 ' markdown = '1'><a href="https://en.wikipedia.org/wiki/Taikyoku_shogi">Taikyoku Sh&#x14d;gi</a></td>
+    <td class = 'cell-1-0 col-0 ' markdown = '1'><strong>Flying Swallow</strong></td>
+    <td class = 'cell-1-1 col-1 ' markdown = '1' rowspan = '2'><a href="https://en.wikipedia.org/wiki/Taikyoku_shogi">Taikyoku Sh&#x14d;gi</a></td>
     <td class = 'cell-1-2 col-2 ' markdown = '1'></td>
+  </tr>
+  <tr class = 'row-2' markdown = '1'>
+    <td class = 'cell-2-0 col-0 ' markdown = '1'><strong>Ram's Head Soldier</strong></td>
+    <td class = 'cell-2-2 col-2 ' markdown = '1'></td>
   </tr>
 </table>
 
@@ -58,16 +62,18 @@ a forward <a href="rook.html"><em>Rook</em></a>).</p>
 <h4 id = 'square'>Square</h4>
 
 <div class = "section">
-<p>On the Square Spiral, the <strong>Spear Soldier</strong> moves like the <a href="wazir.html"><em>Wazir</em></a>,
-hence, it visits all squares in order.</p>
+<p>The <strong>Flying Swallow</strong> circles the origin twice, in a clockwise
+direction, then enters a three step loop to move on square
+diagonally backwards. This gives it an escape velocity of
+<span class = 'latex-inline'>\(\frac{\sqrt{2}}{3}\)</span>.</p>
 </div>
 
 <h4 id = 'diamond'>Diamond</h4>
 
 <div class = "section">
-<p>On the Diamond Spiral, the <strong>Spear Soldier</strong> follows a square, clockwise
-spiral, skipping half the squares on the lower left quadrant. As such
-it visits <span class = 'latex-inline'>\(87.5\%\)</span> of the squares.</p>
+<p>On the Diamond Spiral, the <strong>Flying Swallow</strong> uses an eight step
+loop to move four squares orthogonally forward, giving it an
+escape velocity <span class = 'latex-inline'>\(\frac{1}{2}\)</span>.</p>
 </div>
 
 <h3 id = 'wedge'>Wedge</h3>
@@ -75,20 +81,20 @@ it visits <span class = 'latex-inline'>\(87.5\%\)</span> of the squares.</p>
 <h4 id = 'folded'>Folded</h4>
 
 <div class = "section">
-<p>On the Folded Wedge the <strong>Spear Soldier</strong> gets trapped after 6 steps,
-like the <a href="wazir.html"><em>Wazir</em></a>.</p>
+<p>On the Folded Wedge, the <strong>Flying Swallow</strong> escapes to the upper right, 
+by visiting the three right most squares of each row. The six
+step loop to move the piece to a square two forward-right results
+in an escape velocity of <span class = 'latex-inline'>\(\frac{\sqrt{2}}{3}\)</span>.</p>
 </div>
 
 <h4 id = 'flat'>Flat</h4>
 
-<p>On the Flat Wedge, the <strong>Spear Soldier</strong> uses a two step loop to move
-one square diagonally forward, giving it an escape velocity of
-of <span class = 'latex-inline'>\(\frac{\sqrt{2}}{2}\)</span>. The two right most square of every row are
-visited.</p>
+<p>On the Flat Wedge, the <strong>Flying Swallow</strong> escapes by clinging to the
+right edge of the Wedge, with an escape velocity of <span class = 'latex-inline'>\(\sqrt{2}\)</span>.</p>
 
-<div class = 'trapped' data-piece = 'spear_soldier'></div>
+<div class = 'trapped' data-piece = 'flying_swallow'></div>
 
-<div class = 'boxset' data-piece = 'spear_soldier'></div>
+<div class = 'boxset' data-piece = 'flying_swallow'></div>
 
 <hr id = 'last-line'>
 <div class = 'trailer'>

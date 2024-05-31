@@ -1,6 +1,6 @@
 <html>
 <head>
-<title>Spear Soldier</title>
+<title>Vertical Pup</title>
 <meta charset = "utf-8">
 <link rel  = 'preconnect' href = 'https://fonts.gstatic.com'>
 <link rel = 'stylesheet' href =      'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
@@ -18,7 +18,7 @@
 <script src = '../../JavaScript/Trapped/pages.js'></script>
 </head>
 
-<body><h1>Spear Soldier</h1><div class = "byline">
+<body><h1>Vertical Pup</h1><div class = "byline">
 by Abigail<br>
 <img src = "../../Images/jan_sluiters.jpg">
 </div>
@@ -29,14 +29,14 @@ by Abigail<br>
 . . * . .
 . . * . .
 . . * . .
-. * S * .
-. . * . .
+. . S . .
+. * * * .
 . . . . .
 Shogi: 1
 </div>
 
-<p>The <strong>Spear Soldier</strong> either steps one square orthogonally sideways
-or backwards (like a horizontal-backward <a href="wazir.html"><em>Wazir</em></a>), or slides an
+<p>The <strong>Vertical Pup</strong> either steps one square orthogonally or diagonally
+backwards (like a backward <a href="wazir.html"><em>Wazir</em></a> or a backward <a href="ferz.html"><em>Ferz</em></a>), or slides an
 unlimited amount of unoccupied squares orthogonally forward (like
 a forward <a href="rook.html"><em>Rook</em></a>).</p>
 
@@ -47,7 +47,7 @@ a forward <a href="rook.html"><em>Rook</em></a>).</p>
     <th class = 'cell-0-2 col-2 ' markdown = '1'>Info</td>
   </tr>
   <tr class = 'row-1' markdown = '1'>
-    <td class = 'cell-1-0 col-0 ' markdown = '1'><strong>Spear Soldier</strong></td>
+    <td class = 'cell-1-0 col-0 ' markdown = '1'><strong>Vertical Pup</strong></td>
     <td class = 'cell-1-1 col-1 ' markdown = '1'><a href="https://en.wikipedia.org/wiki/Taikyoku_shogi">Taikyoku Sh&#x14d;gi</a></td>
     <td class = 'cell-1-2 col-2 ' markdown = '1'></td>
   </tr>
@@ -58,16 +58,15 @@ a forward <a href="rook.html"><em>Rook</em></a>).</p>
 <h4 id = 'square'>Square</h4>
 
 <div class = "section">
-<p>On the Square Spiral, the <strong>Spear Soldier</strong> moves like the <a href="wazir.html"><em>Wazir</em></a>,
-hence, it visits all squares in order.</p>
+<p>On the Square Spiral, the <strong>Vertical Pup</strong> visits almost all squares
+in a wedge left of the origin. <span class = 'latex-inline'>\(25\%\)</span> of the squares will be visited.</p>
 </div>
 
 <h4 id = 'diamond'>Diamond</h4>
 
 <div class = "section">
-<p>On the Diamond Spiral, the <strong>Spear Soldier</strong> follows a square, clockwise
-spiral, skipping half the squares on the lower left quadrant. As such
-it visits <span class = 'latex-inline'>\(87.5\%\)</span> of the squares.</p>
+<p>On the Diamond Spiral, the <strong>Vertical Pup</strong> escapes orthogonally 
+backward, with an escape velocity of <span class = 'latex-inline'>\(1\)</span>.</p>
 </div>
 
 <h3 id = 'wedge'>Wedge</h3>
@@ -75,20 +74,21 @@ it visits <span class = 'latex-inline'>\(87.5\%\)</span> of the squares.</p>
 <h4 id = 'folded'>Folded</h4>
 
 <div class = "section">
-<p>On the Folded Wedge the <strong>Spear Soldier</strong> gets trapped after 6 steps,
-like the <a href="wazir.html"><em>Wazir</em></a>.</p>
+<p>On the Folded Wedge the <strong>Vertical Pup</strong> uses a three step loop
+to move on square diagonally forward, for an escape velocity of
+<span class = 'latex-inline'>\(\frac{\sqrt{2}}{3}\)</span>.</p>
 </div>
 
 <h4 id = 'flat'>Flat</h4>
 
-<p>On the Flat Wedge, the <strong>Spear Soldier</strong> uses a two step loop to move
-one square diagonally forward, giving it an escape velocity of
-of <span class = 'latex-inline'>\(\frac{\sqrt{2}}{2}\)</span>. The two right most square of every row are
-visited.</p>
+<p>On the Flat Wedge the <strong>Vertical Pup</strong> uses a three step loop
+to move on square diagonally forward, for an escape velocity of
+<span class = 'latex-inline'>\(\frac{\sqrt{2}}{3}\)</span>. The movement pattern is a mirror image of
+how the piece moves on the Folded Wedge.</p>
 
-<div class = 'trapped' data-piece = 'spear_soldier'></div>
+<div class = 'trapped' data-piece = 'vertical_pup'></div>
 
-<div class = 'boxset' data-piece = 'spear_soldier'></div>
+<div class = 'boxset' data-piece = 'vertical_pup'></div>
 
 <hr id = 'last-line'>
 <div class = 'trailer'>

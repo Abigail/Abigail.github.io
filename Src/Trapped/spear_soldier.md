@@ -34,7 +34,7 @@ hence, it visits all squares in order.
 
 On the Diamond Spiral, the **Spear Soldier** follows a square, clockwise
 spiral, skipping half the squares on the lower left quadrant. As such
-it visits \(87.5\%) of the squares.
+it visits \(87.5\%\) of the squares.
 
 ### Wedge
 

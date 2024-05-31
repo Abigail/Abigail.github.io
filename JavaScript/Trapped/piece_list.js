@@ -1363,6 +1363,16 @@ let pieces = {
         },
     },
 
+    flying_swallow: {
+        betza: "fFFbW",
+        results: {
+            spiral_square:   sqrt (2, 3),
+            spiral_diamond:  frac (1, 2),
+            wedge_folded:    sqrt (2, 3),
+            wedge_flat:      sqrt (2),
+        },
+    },
+
     fort: {
         betza: "FWWG",
         results: {
@@ -1987,6 +1997,16 @@ let pieces = {
         },
     },
 
+    left_dog: {
+        betza:  "brFFfWWbW",
+        results: {
+            spiral_square:   frac (1),
+            spiral_diamond:  frac (1),
+            wedge_folded:    sqrt (2, 3),
+            wedge_flat:      sqrt (2, 3),
+        },
+    },
+
     left_general: {
         parent: "king",
     },
@@ -1998,6 +2018,16 @@ let pieces = {
             spiral_diamond:   frac (1),
             wedge_folded:     frac (1),
             wedge_flat:       frac (1),
+        },
+    },
+
+    left_iron_chariot: {
+        betza: "brFFW",
+        results: {
+            spiral_square:  "W",
+            spiral_diamond: "F*/75%",
+            wedge_folded:   "T/13",
+            wedge_flat:      sqrt (2, 2),
         },
     },
 
@@ -2498,6 +2528,24 @@ let pieces = {
             wedge_folded:   "FC", 
             wedge_flat:     "F/100%",
         },
+        _index_name: "Raiding Falcon (Wa Sh&#x14d;gi)",
+    },
+
+    raiding_falcon_taik: {
+        betza: "fFfWWsW",
+        results: {
+            spiral_square:  "F/25%",
+            spiral_diamond:  frac (1, 2),
+            wedge_folded:   "FC",
+            wedge_flat:     "F/100%",
+        },
+        _name: "Raiding Falcon",
+        _index_name: "Raiding Falcon (Taikyoku Sh&#x14d;gi)",
+    },
+
+    rams_head_soldier: {
+        parent: "flying_swallow",
+        _name: "Ram's Head Soldier",
     },
 
     reclining_dragon: {
@@ -2514,12 +2562,32 @@ let pieces = {
         },
     },
 
+    right_dog: {
+        betza:  "blFFfWWbW",
+        results: {
+            spiral_square:   sqrt (2, 3),
+            spiral_diamond:  frac (1, 2),
+            wedge_folded:    sqrt (2, 3),
+            wedge_flat:      sqrt (2, 3),
+        },
+    },
+
     right_general: {
         parent: "king",
     },
 
     right_howling_dog: {
         parent: "left_howling_dog",
+    },
+
+    right_iron_chariot: {
+        betza: "blFFW",
+        results: {
+            spiral_square:  "W",
+            spiral_diamond:  frac (1, 2),
+            wedge_folded:   "T/6",
+            wedge_flat:      sqrt (2, 2),
+        },
     },
 
     right_quail: {
@@ -3041,6 +3109,16 @@ let pieces = {
         parent: "king",
     },
 
+    vertical_leopard: {
+        betza: "fFfWWbsW",
+        results: {
+            spiral_square:  "W",
+            spiral_diamond:  frac (1, 2),
+            wedge_folded:   "FC",
+            wedge_flat:     "F/100%",
+        },
+    },
+
     vertical_horse: {
         betza: "fFfWWbW",
         results: {
@@ -3058,6 +3136,16 @@ let pieces = {
             spiral_diamond: "F/75%",
             wedge_folded:   "T/6",
             wedge_flat:      sqrt (2),
+        },
+    },
+
+    vertical_pup: {
+        betza: "bFfWWbW",
+        results: {
+            spiral_square:  "F*/25%",
+            spiral_diamond:  frac (1),
+            wedge_folded:    sqrt (2, 3),
+            wedge_flat:      sqrt (2, 3),
         },
     },
 
@@ -3651,7 +3739,7 @@ let set_info = {
                  "enchanted_badger", "evil_wolf",
                  "ferocious_leopard", "fierce_eagle", "fire_general",
                  "flying_cock", "flying_goose", "flying_horse",
-                 "flying_ox",
+                 "flying_ox", "flying_swallow",
                  "fragant_elephant", "free_bear", "free_dragon",
                  "free_leopard", "free_serpent", "free_stag",
                  "free_tiger", "free_wolf",
@@ -3659,8 +3747,9 @@ let set_info = {
                  "gold_general", "great_whale",
                  "guardian_of_the_gods", "heavenly_tetrarch",
                  "horse_general",
-                 "iron_general", "king_taikyoku", "lance", "left_general",
-                 "left_howling_dog",
+                 "iron_general", "king_taikyoku", "lance", "left_dog",
+                 "left_general",
+                 "left_howling_dog", "left_iron_chariot",
                  "leopard_king", "mountain_general", "mountain_stag",
                  "mountain_witch", "multi_general",
                  "neighbouring_king", "northern_barbarian",
@@ -3668,8 +3757,11 @@ let set_info = {
                  "old_monkey", "old_rat", "ox_general", "oxcart", "prince",
                  "poisonous_snake", "pig_general",
                  "prancing_stag", "pup_general", "queen",
+                 "raiding_falcon_taik", "rams_head_soldier",
                  "reclining_dragon", "reverse_chariot",
-                 "right_general", "right_howling_dog", "river_general",
+                 "right_general", "right_dog",
+                 "right_howling_dog", "right_iron_chariot",
+                 "river_general",
                  "rook", "running_bird", "running_chariot", "running_leopard",
                  "rushing_boar", "savage_tiger", "side_dragon",
                  "silver_general", "soldier_taikyoku",
@@ -3679,7 +3771,8 @@ let set_info = {
                  "strutting_crow", "sword_general", "sword_soldier",
                  "swooping_owl", "tile_general", "treacherous_fox_taik",
                  "turtle_dove", "violent_stag",
-                 "venomous_wolf", "vertical_horse",
+                 "venomous_wolf", "vertical_horse", "vertical_leopard",
+                 "vertical_pup",
                  "violent_bear", "violent_wolf",
                  "water_general",
                  "western_barbarian", "whale", "white_elephant",
