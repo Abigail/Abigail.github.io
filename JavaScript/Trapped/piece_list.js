@@ -195,7 +195,7 @@ let pieces = {
         betza:    "fsW",
         results: {
             spiral_square:  "F/25%",
-            spiral_diamond: "E = 1",
+            spiral_diamond:  frac (1),
             wedge_folded:   "F/100%", 
             wedge_flat:      sqrt (2, 2),
         },
@@ -703,7 +703,7 @@ let pieces = {
         betza: "bFvW",
         results: {
             spiral_square:   sqrt (2, 3),
-            spiral_diamond: "E = 1",
+            spiral_diamond:  frac (1),
             wedge_folded:    sqrt (2, 3),
             wedge_flat:      sqrt (2, 3),
         },
@@ -1091,6 +1091,10 @@ let pieces = {
         },
     },
 
+    earth_chariot: {
+        parent: "vertical_mover",
+    },
+
     earth_general: {
         parent: "go_between",
     },
@@ -1281,7 +1285,7 @@ let pieces = {
         betza:   "fFvW3",
         results: {
             spiral_square:   sqrt (2, 3),
-            spiral_diamond: "E = 1",
+            spiral_diamond:  frac (1),
             wedge_folded:    sqrt (2, 3),
             wedge_flat:      sqrt (2),
         },
@@ -1824,7 +1828,7 @@ let pieces = {
         betza:   "fFfW3bW",
         results: {
             spiral_square:   sqrt (2, 3),
-            spiral_diamond: "E = 1",
+            spiral_diamond:  frac (1),
             wedge_folded:    sqrt (2, 3),
             wedge_flat:      sqrt (2),
         },
@@ -1940,7 +1944,7 @@ let pieces = {
         _index_name: "Knight (EuroShogi)",
         results: {
             spiral_square:   sqrt (2, 2),
-            spiral_diamond:  "E = 1",
+            spiral_diamond:   frac (1),
             wedge_folded:    sqrt (2, 2),
             wedge_flat:      sqrt (2, 2),
         },
@@ -2207,7 +2211,7 @@ let pieces = {
         betza: "bFFbWW",
         results: {
             spiral_square:   sqrt (2),
-            spiral_diamond: "E = 1",
+            spiral_diamond:  frac (1),
             wedge_folded:   "",
             wedge_flat:     "",
         },
@@ -2668,12 +2672,20 @@ let pieces = {
         },
     },
 
+    running_boar: {
+        parent: "vertical_mover",
+    },
+
     running_chariot: {
         parent: "rook",
     },
 
     running_leopard: {
         parent: "free_wolf",
+    },
+
+    running_pup: {
+        parent: "vertical_mover",
     },
 
     running_rabbit: {
@@ -2684,6 +2696,10 @@ let pieces = {
             wedge_folded:    sqrt (2, 3),
             wedge_flat:      sqrt (2),
         },
+    },
+
+    running_serpent: {
+        parent: "vertical_mover",
     },
 
     rushing_boar: {
@@ -2723,7 +2739,7 @@ let pieces = {
         betza: "fsWW",
         results: {
             spiral_square:   sqrt (2, 4),
-            spiral_diamond: "E = 1",
+            spiral_diamond:  frac (1),
             wedge_folded:   "F*/50%",
             wedge_flat:      sqrt (2, 2),
         },
@@ -2737,7 +2753,26 @@ let pieces = {
             wedge_folded:   "T/6",
             wedge_flat:      sqrt (2, 2),
         },
-        _name: "Swallow's Wings",
+    },
+
+    side_ox: {
+        betza: "frFblFsWW",
+        results: {
+            spiral_square:  "F/100%",
+            spiral_diamond: "F/100%",
+            wedge_folded:   "F/100%",
+            wedge_flat:     "F/100%",
+        },
+    },
+
+    side_wolf: {
+        betza: "flFbrFsWW",
+        results: {
+            spiral_square:  "F*/50%",
+            spiral_diamond: "F/100%",
+            wedge_folded:   "F/100%",
+            wedge_flat:     "F/50%",
+        },
     },
 
     silver_general: {
@@ -2923,6 +2958,7 @@ let pieces = {
 
     swallows_wings: {
         parent: "side_mover",
+        _name: "Swallow's Wings",
     },
 
     swapper: {
@@ -2933,7 +2969,7 @@ let pieces = {
         betza: "fF3fW3bW",
         results: {
             spiral_square:   sqrt (2, 3),
-            spiral_diamond: "E = 1",
+            spiral_diamond:  frac (1),
             wedge_folded:    sqrt (2, 3),
             wedge_flat:      sqrt (2),
         },
@@ -3019,6 +3055,16 @@ let pieces = {
 
     tiger_prince: {
         parent:   "king",
+    },
+
+    tile_chariot: {
+        betza: "frFblFvWW",
+        results: {
+            spiral_square:  "F*/50%",
+            spiral_diamond: "F/100%",
+            wedge_folded:    sqrt (2, 2),
+            wedge_flat:      sqrt (2)
+        },
     },
 
     tile_general: {
@@ -3163,6 +3209,16 @@ let pieces = {
         },
     },
 
+    violent_ox: {
+        betza: "fFFvW",
+        results: {
+            spiral_square:   sqrt (2, 3),
+            spiral_diamond:  frac (1),
+            wedge_folded:    sqrt (2, 3),
+            wedge_flat:      sqrt (2),
+        },
+    },
+
     violent_stag: {
         parent: "silver_general",
     },
@@ -3218,7 +3274,7 @@ let pieces = {
         betza: "fF3vW",
         results: {
             spiral_square:   sqrt (2, 3),
-            spiral_diamond: "E = 1",
+            spiral_diamond:  frac (1),
             wedge_folded:    sqrt (2, 3),
             wedge_flat:      sqrt (2),
         },
@@ -3312,6 +3368,16 @@ let pieces = {
 
     wolf: {
         parent: "chancellor",
+    },
+
+    wood_chariot: {
+        betza: "flFbrFvWW",
+        results: {
+            spiral_square:  "F*/100%",
+            spiral_diamond: "F/100%",
+            wedge_folded:    sqrt (2, 4),
+            wedge_flat:      sqrt (2, 3),
+        },
     },
 
     wood_general: {
@@ -3735,7 +3801,7 @@ let set_info = {
                  "coiled_serpent", "copper_general", "crossbow_soldier",
                  "dark_spirit",
                  "deva", "dog", "donkey", "drunk_elephant",
-                 "earth_general", "eastern_barbarian",
+                 "earth_chariot", "earth_general", "eastern_barbarian",
                  "enchanted_badger", "evil_wolf",
                  "ferocious_leopard", "fierce_eagle", "fire_general",
                  "flying_cock", "flying_goose", "flying_horse",
@@ -3762,22 +3828,26 @@ let set_info = {
                  "right_general", "right_dog",
                  "right_howling_dog", "right_iron_chariot",
                  "river_general",
-                 "rook", "running_bird", "running_chariot", "running_leopard",
+                 "rook", "running_bird", "running_boar",
+                 "running_chariot", "running_leopard", "running_pup",
+                 "running_serpent",
                  "rushing_boar", "savage_tiger", "side_dragon",
+                 "side_ox", "side_wolf",
                  "silver_general", "soldier_taikyoku",
                  "southern_barbarian", "spear_soldier",
                  "square_mover", "stone_general",
                  "strong_chariot", "strong_eagle",
                  "strutting_crow", "sword_general", "sword_soldier",
-                 "swooping_owl", "tile_general", "treacherous_fox_taik",
+                 "swooping_owl", "tile_chariot",
+                 "tile_general", "treacherous_fox_taik",
                  "turtle_dove", "violent_stag",
                  "venomous_wolf", "vertical_horse", "vertical_leopard",
-                 "vertical_pup",
-                 "violent_bear", "violent_wolf",
+                 "vertical_mover", "vertical_pup",
+                 "violent_bear", "violent_ox", "violent_wolf",
                  "water_general",
                  "western_barbarian", "whale", "white_elephant",
                  "white_horse", "wind_general", "wizard_stork",
-                 "wood_general", "wrestler", "yaksha",
+                 "wood_chariot", "wood_general", "wrestler", "yaksha",
                  "pawn"],
     },
 

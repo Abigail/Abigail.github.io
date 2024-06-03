@@ -21,20 +21,30 @@ Compare with the [*Side Mover*](side_mover.html) which moves
 the same way, but rotated by 90&deg;.
 
 |====
-%%PIECE_HEADERS%%
-  {th = 1}  %%CHU_SHOGI%%
-&           **Vertical Mover** & &#x7AEA;&#x884C;
-&           %%PROMOTED%% [*Silver General*](silver_general.html);
-            %%PROMOTES_TO%% [*Flying Ox*](flying_ox.html);
-            A promoted [*Silver General*](silver_general.html) will
-            not promote again \\
+%%PIECE_INFO%%
+  **Earth Chariot**
+& {rs = 4} %%TAIKYOKU%%
+& \\
+
+  **Running Boar**
+& \\
+
+  **Running Pup**
+& \\
+
+  **Running Serpent**
+& \\
+
+  **Vertical Mover**
+& %%CHU_SHOGI%%; %%TAIKYOKU%%
+& \\          
 ====|
 
 ### Spiral
 
 #### Square
 
-The %%**Vertical Mover** can move as the [*Wazir*](wazir.html) so it visits
+The **Vertical Mover** can move as the [*Wazir*](wazir.html) so it visits
 all the squares by following the Spiral.
 
 #### Diamond

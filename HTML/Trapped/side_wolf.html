@@ -1,0 +1,107 @@
+<html>
+<head>
+<title>Side Wolf</title>
+<meta charset = "utf-8">
+<link rel  = 'preconnect' href = 'https://fonts.gstatic.com'>
+<link rel = 'stylesheet' href =      'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
+<link rel = 'stylesheet' href = '../../Styles/main.css'>
+<link rel = 'stylesheet' href = '../../Styles/Trapped/main.css'>
+<script src = "../../JavaScript/jquery.js"></script>
+<script id  = 'MathJax-script' async src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.js'></script>
+<script id = 'svg-script' src = 'https://cdn.jsdelivr.net/npm/@svgdotjs/svg.js@3.0/dist/svg.min.js'></script>
+<script src = '../../JavaScript/navigation.js'></script>
+<script src = '../../JavaScript/Trapped/piece_list.js'></script>
+<script src = '../../JavaScript/Trapped/trapped.js'></script>
+<script src = '../../JavaScript/Trapped/pieces.js'></script>
+<script src = '../../JavaScript/Trapped/boxset.js'></script>
+<script src = '../../JavaScript/Trapped/movement.js'></script>
+<script src = '../../JavaScript/Trapped/pages.js'></script>
+</head>
+
+<body><h1>Side Wolf</h1><div class = "byline">
+by Abigail<br>
+<img src = "../../Images/jan_sluiters.jpg">
+</div>
+
+
+<div class = "movement">
+. . . . . . . . .
+. . . * . . . . .
+A * * * S * * * A
+. . . . . * . . .
+. . . . . . . . .
+Shogi: 1
+</div>
+
+<p>The <strong>Side Wolf</strong> either slides an unlimited amount of unoccupied
+squares to the right of left (like a sideways <a href="rook.html"><em>Rook</em></a>),
+or steps one square diagonally forward to the left, or diagonally
+backward to the right (like a limited <a href="ferz.html"><em>Ferz</em></a>).</p>
+
+<p>Compare with the <a href="side_ox.html"><em>Side Ox</em></a> whose movements
+are mirrored, and the <a href="tile_chariot.html"><em>Tile Chariot</em></a> which
+moves in the same way, but rotated by 90&deg;.</p>
+
+<table class = 'piece_info'>
+  <tr class = 'row-0' markdown = '1'>
+    <th class = 'cell-0-0 col-0 ' markdown = '1'>Name</td>
+    <th class = 'cell-0-1 col-1 ' markdown = '1'>Game(s)</td>
+    <th class = 'cell-0-2 col-2 ' markdown = '1'>Info</td>
+  </tr>
+  <tr class = 'row-1' markdown = '1'>
+    <td class = 'cell-1-0 col-0 ' markdown = '1'><strong>Side Wolf</strong></td>
+    <td class = 'cell-1-1 col-1 ' markdown = '1'><a href="https://en.wikipedia.org/wiki/Taikyoku_shogi">Taikyoku Sh&#x14d;gi</a></td>
+    <td class = 'cell-1-2 col-2 ' markdown = '1'></td>
+  </tr>
+</table>
+
+<h3 id = 'spiral'>Spiral</h3>
+
+<h4 id = 'square'>Square</h4>
+
+<div class = "section">
+<p>On the Square Spiral, the <strong>Side Wolf</strong> visits all the squares
+in the two wedged right and left of the starting square, alternating
+adding a column to them. <span class = 'latex-inline'>\(50\%\)</span> of the board will be filled that way.</p>
+
+<p>This is similar to the <a href="tile_chariot.html"><em>Tile Chariot</em></a>, which fills
+wedges forward and backward from the starting square.</p>
+</div>
+
+<h4 id = 'diamond'>Diamond</h4>
+
+<div class = "section">
+<p>On the Diamond Spiral, the <strong>Side Wolf</strong> follows a skewed anti-clockwise
+spiral, visiting all squares on the board.</p>
+</div>
+
+<h3 id = 'wedge'>Wedge</h3>
+
+<h4 id = 'folded'>Folded</h4>
+
+<div class = "section">
+<p>On the Folded Wedge, the <strong>Side Wolf</strong> will visit all the squares
+on the board.</p>
+</div>
+
+<h4 id = 'flat'>Flat</h4>
+
+<p>On the Flat Wedge, the <strong>Side Wolf</strong> visits all the squares on
+the right half of each row, plus the square directly left of
+the middle. This results in visiting <span class = 'latex-inline'>\(50\%\)</span> of the squares.</p>
+
+<div class = 'trapped' data-piece = 'side_wolf'></div>
+
+<div class = 'boxset' data-piece = 'side_wolf'></div>
+
+<hr id = 'last-line'>
+<div class = 'trailer'>
+<p class = 'prev'><a class = "prev" href = "">&#x261C;</a></p>
+<p class = 'issue'>Please leave any comments as a
+  <a href = 'https://github.com/Abigail/Abigail.github.io/issues'
+     title = 'GitHub issue'>GitHub issue</a>.
+<p class = 'next'><a class = "next" href = "">&#x261E;</a></p>
+</div>
+
+</body>
+</html>
