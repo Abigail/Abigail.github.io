@@ -54,7 +54,7 @@ On the Spiral, the **Bishop** moves in a regular pattern. However,
 despite the possible moves of the **Bishop** being four fold symmetric,
 the resulting pattern isn't, making the **Bishop** slightly interesting.
 
-If we take the limit, we see that the %%PIECE%% will visit
+If we take the limit, we see that the **Bishop** will visit
 \(\frac{1}{2} \cdot (\frac{1}{2} \cdot \frac{3}{4} + \frac{1}{4}) =
   \frac{5}{16} = 31.25 \%\) of the squares on the board.
 
@@ -73,7 +73,7 @@ on the board.
 
 On the Folded Wedge, the **Bishop** escapes to infinity, using a 
 three step loop to move one square to the upper right. This gives
-the %%PIECE%% an escape velocity of \(\frac{\sqrt{2}}{3}\).
+the **Bishop** an escape velocity of \(\frac{\sqrt{2}}{3}\).
 
 #### Flat
 

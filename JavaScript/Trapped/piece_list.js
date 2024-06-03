@@ -930,6 +930,30 @@ let pieces = {
         parent: "blind_monkey",
     },
 
+    divine_sparrow_I: {
+        betza: "lFFW",
+        results: {
+            spiral_square:  "W", 
+            spiral_diamond:  frac (1, 2),
+            wedge_folded:   "",
+            wedge_flat:     "",
+        },
+        _name: "Divine Sparrow",
+        _index_name: "Divine Sparrow (I)",
+    },
+
+    divine_sparrow_II: {
+        betza: "lFFbrFFW",
+        results: {
+            spiral_square:  "W", 
+            spiral_diamond: "50%",
+            wedge_folded:   "100%",
+            wedge_flat:      sqrt (2, 2),
+        },
+        _name: "Divine Sparrow",
+        _index_name: "Divine Sparrow (II)",
+    },
+
     diving_osprey: {
         betza:    "fFW4A",
         results: {
@@ -3799,8 +3823,9 @@ let set_info = {
                  "cat_sword", "cavalier_taik", "chicken_general",
                  "chinese_cock", "climbing_monkey", "coiled_dragon",
                  "coiled_serpent", "copper_general", "crossbow_soldier",
-                 "dark_spirit",
-                 "deva", "dog", "donkey", "drunk_elephant",
+                 "dark_spirit", "deva",
+                 "divine_sparrow_I", "divine_sparrow_II",
+                 "dog", "donkey", "drunk_elephant",
                  "earth_chariot", "earth_general", "eastern_barbarian",
                  "enchanted_badger", "evil_wolf",
                  "ferocious_leopard", "fierce_eagle", "fire_general",
