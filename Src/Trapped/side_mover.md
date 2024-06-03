@@ -17,21 +17,14 @@ Compare with the [*Vertical Mover*](vertical_mover.html) which moves
 the same way, but rotated by 90&deg;.
 
 |====
-%%PIECE_HEADERS%%
-  {th = 1}  %%CHU_SHOGI%%
-&           **Side Mover** & &#x6A2A;&#x884C;
-&           %%PROMOTED%% [*Copper General*](copper_general.html);
-            %%PROMOTES_TO%% [*Free Boar*](free_boar.html);
-            A promoted [*Copper General*](copper_general.html) will 
-            not promote again \\
-  {th = 1}  %%WA_SHOGI%%
-&           **Swallow's Wings** & &#x71D5;&#x7FBD;
-&           %%PROMOTED%%
-            [*Flying Goose*](copper_general.html?piece=flying_goose);
-            %%PROMOTES_TO%%
-            [*Gliding Swallow*](rook.html?piece=gliding_swallow);
-            A promoted [*Flying Goose*](copper_general.html?piece=flying_goose)
-            will not promote again. \\
+%%PIECE_INFO%%
+  **Side Mover**
+& %%CHU_SHOGI%%; %%TAIKYOKU%%
+& \\
+
+  **Swallow's Wings**
+& %%WA_SHOGI%%
+& \\
 ====|
 
 ### Spiral

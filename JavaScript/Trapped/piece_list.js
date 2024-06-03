@@ -3832,7 +3832,7 @@ let set_info = {
                  "running_chariot", "running_leopard", "running_pup",
                  "running_serpent",
                  "rushing_boar", "savage_tiger", "side_dragon",
-                 "side_ox", "side_wolf",
+                 "side_ox", "side_mover", "side_wolf",
                  "silver_general", "soldier_taikyoku",
                  "southern_barbarian", "spear_soldier",
                  "square_mover", "stone_general",
