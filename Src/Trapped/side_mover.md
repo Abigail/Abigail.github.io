@@ -24,7 +24,8 @@ the same way, but rotated by 90&deg;.
 
   **Swallow's Wings**
 & %%WA_SHOGI%%
-& \\
+& This is a different piece than the [*Swallow's Wings*](swallows_wings.html)
+  from %%TAIKYOKU%%. \\
 ====|
 
 ### Spiral

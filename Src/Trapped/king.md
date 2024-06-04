@@ -16,11 +16,11 @@ Of course, for our investigation, Royalness plays no part.
 
 |====
 %%PIECE_INFO%%
-  **Bear's Eyes**
+  **Bear's&nbsp;Eyes**
 & %%TAIKYOKU%%; %%WA_SHOGI%%
 & \\
 
-  **Cannon Pawn**
+  **Cannon&nbsp;Pawn**
 & %%ROCOCO%%
 & %%OTHER_MOVES%% \\
 
@@ -32,11 +32,11 @@ Of course, for our investigation, Royalness plays no part.
 & %%SCIROCCO%%; %%TYPHOON%%
 & \\
 
-  **Crane King**
+  **Crane&nbsp;King**
 & %%WA_SHOGI%%
 & \\
 
-  **Elephant Prince**
+  **Elephant&nbsp;Prince**
 & %%TYPHOON%%
 & %%OTHER_MOVES%% \\
 
@@ -71,7 +71,7 @@ Of course, for our investigation, Royalness plays no part.
 & In Sh&#x014d;gi and Sh&#x014d;gi variants, the **Kings** may also
   be refer to as *King General* and *Jeweled* or *Jade General*. \\
 
-  **Left General**
+  **Left&nbsp;General**
 & %%TAIKYOKU%%
 & \\
 
@@ -100,35 +100,34 @@ Of course, for our investigation, Royalness plays no part.
 & This is a different piece than the 
   [*Phoenix*](caliph.html) from %%CHU_SHOGI%% \\
   
-  **Plodding Ox**
+  **Plodding&nbsp;Ox**
 & %%WA_SHOGI%%
-& \\
+& This is a different piece than the [*Plodding Ox*](plodding_ox.html)
+  from %%TAIKYOKU%%. \\
 
   **Prince**
 & %%CHU_SHOGI%%; %%TAIKYOKU%%
 & \\
 
-  **Right General**
+  **Right&nbsp;General**
 & %%TAIKYOKU%%
 & \\
 
   **Salamander**
-& %%TYPHOON%%
+& {rs = 3} %%TYPHOON%%
 & %%OTHER_MOVES%% \\
   
-  **Tiger Prince**
-& %%TYPHOON%%
+  **Tiger&nbsp;Prince**
 & %%OTHER_MOVES%% \\
 
   **Undertaker**
-& %%TYPHOON%%
 & %%OTHER_MOVES%% \\
 
-  **Venomous Wolf**
+  **Venomous&nbsp;Wolf**
 & %%TAIKYOKU%%
 & \\
 
-  **White Whale**
+  **White&nbsp;Whale**
 & %%WHALE_SHOGI%%
 & \\
 ====|

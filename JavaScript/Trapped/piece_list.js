@@ -2424,7 +2424,18 @@ let pieces = {
     },
 
     plodding_ox: {
+        betza: "FvWW",
+        results: {
+            spiral_square:  "F*/100%",
+            spiral_diamond: "F/100%",
+            wedge_folded:    sqrt (2, 3),
+            wedge_flat:      sqrt (2),
+        },
+    },
+
+    plodding_ox_wa: {
         parent: "king",
+        _name: "Plodding Ox",
     },
 
     poisonous_snake: {
@@ -2981,6 +2992,17 @@ let pieces = {
     },
 
     swallows_wings: {
+        betza: "fFvWsWW",
+        results: {
+            spiral_square:  "W",
+            spiral_diamond:  frac (1, 2),
+            wedge_folded:   "FC",
+            wedge_flat:     "F/100%",
+        },
+        _name: "Swallow's Wings",
+    },
+
+    swallows_wings_wa: {
         parent: "side_mover",
         _name: "Swallow's Wings",
     },
@@ -3789,14 +3811,14 @@ let set_info = {
     wa_shogi: {
         name:    "Wa Sh&#x14d;gi",
         href:    "https://en.wikipedia.org/wiki/Wa_shogi",
-        pieces: ["crane_king", "gliding_swallow",
-                 "bears_eyes", "blind_dog", "climbing_monkey", "cloud_eagle",
-                 "flying_cock", "flying_falcon", "flying_goose", "golden_bird",
-                 "heavenly_horse", "liberated_horse", "oxcart", "plodding_ox",
-                 "raiding_falcon", "roaming_bear", "running_rabbit",
-                 "strutting_crow", "swallows_wings", "swooping_owl",
-                 "tenacious_falcon", "treacherous_fox", "violent_stag",
-                 "violent_wolf", "sparrow_pawn"],
+        pieces: ["crane_king", "gliding_swallow", "bears_eyes", "blind_dog",
+                 "climbing_monkey", "cloud_eagle", "flying_cock",
+                 "flying_falcon", "flying_goose", "golden_bird",
+                 "heavenly_horse", "liberated_horse", "oxcart",
+                 "plodding_ox_wa", "raiding_falcon", "roaming_bear",
+                 "running_rabbit", "strutting_crow", "swallows_wings_wa",
+                 "swooping_owl", "tenacious_falcon", "treacherous_fox",
+                 "violent_stag", "violent_wolf", "sparrow_pawn"],
     },
 
     chu_shogi: {
@@ -3844,8 +3866,8 @@ let set_info = {
                  "leopard_king", "mountain_general", "mountain_stag",
                  "mountain_witch", "multi_general",
                  "neighbouring_king", "northern_barbarian",
-                 "old_kite",
-                 "old_monkey", "old_rat", "ox_general", "oxcart", "prince",
+                 "old_kite", "old_monkey", "old_rat", "ox_general",
+                 "oxcart", "plodding_ox", "prince",
                  "poisonous_snake", "pig_general",
                  "prancing_stag", "pup_general", "queen",
                  "raiding_falcon_taik", "rams_head_soldier",
@@ -3862,7 +3884,8 @@ let set_info = {
                  "southern_barbarian", "spear_soldier",
                  "square_mover", "stone_general",
                  "strong_chariot", "strong_eagle",
-                 "strutting_crow", "sword_general", "sword_soldier",
+                 "strutting_crow", "swallows_wings",
+                 "sword_general", "sword_soldier",
                  "swooping_owl", "tile_chariot",
                  "tile_general", "treacherous_fox_taik",
                  "turtle_dove", "violent_stag",
