@@ -1,4 +1,4 @@
-# %%PIECE%%
+# Flying Stag
 
 <div class = "movement">
 . . A . .
@@ -10,6 +10,7 @@
 . . * . .
 . . * . .
 . . A . .
+Shogi: 1
 </div>
 
 The **Flying Stag** combines the movements of the %%KING%%, and
@@ -19,10 +20,14 @@ an unlimited amount of unoccupied squares orthogonally forward
 or backward.
 
 |====
-%%PIECE_HEADERS%%
-  {th = 1}  %%CHU_SHOGI%%
-&           **Flying Stag** & &#x98DB;&#x9E7F;
-&           %%PROMOTED%% [*Blind Tiger*](blind_tiger.html) \\
+%%PIECE_INFO%%
+  **Copper Elephant**
+& %%TAIKYOKU%%
+& \\
+
+  **Flying Stag**
+& %%CHU_SHOGI%%; %%TAIKYOKU%%
+& \\
 ====|
 
 ### Spiral

@@ -723,6 +723,10 @@ let pieces = {
         },
     },
 
+    copper_elephant: {
+        parent: "flying_stag",
+    },
+
     copper_general: {
         betza:    "fFvW",
         results: {
@@ -2780,6 +2784,16 @@ let pieces = {
         },
     },
 
+    side_flyer: {
+        betza: "FsWW",
+        results: {
+            spiral_square:  "F*/100%",
+            spiral_diamond: "BM",
+            wedge_folded:   "FC",
+            wedge_flat:     "F/100%",
+        },
+    },
+
     side_mover: {
         betza: "vWsWW",
         results: {
@@ -3179,6 +3193,16 @@ let pieces = {
         },
     },
 
+    turtle_snake: {
+        betza: "frFFblFFFW",
+        results: {
+            spiral_square:  "W",
+            spiral_diamond: "BM",
+            wedge_folded:   "FC",
+            wedge_flat:     "",
+        },
+    },
+
     typhoon: {
         parent:   "genie",
     },
@@ -3199,6 +3223,16 @@ let pieces = {
 
     venomous_wolf: {
         parent: "king",
+    },
+
+    vermillion_sparrow: {
+        betza: "flFFbrFFFW",
+        results: {
+            spiral_square:  "W",
+            spiral_diamond: "BM",
+            wedge_folded:   "FC",
+            wedge_flat:     "F/100%",
+        },
     },
 
     vertical_leopard: {
@@ -3844,7 +3878,8 @@ let set_info = {
                  "captive_cadet", "captive_officer",
                  "cat_sword", "cavalier_taik", "chicken_general",
                  "chinese_cock", "climbing_monkey", "coiled_dragon",
-                 "coiled_serpent", "copper_general", "crossbow_soldier",
+                 "coiled_serpent", "copper_elephant",
+                 "copper_general", "crossbow_soldier",
                  "dark_spirit", "deva",
                  "divine_sparrow_I", "divine_sparrow_II",
                  "dog", "donkey", "drunk_elephant",
@@ -3852,7 +3887,7 @@ let set_info = {
                  "enchanted_badger", "evil_wolf",
                  "ferocious_leopard", "fierce_eagle", "fire_general",
                  "flying_cock", "flying_goose", "flying_horse",
-                 "flying_ox", "flying_swallow",
+                 "flying_ox", "flying_stag", "flying_swallow",
                  "fragant_elephant", "free_bear", "free_dragon",
                  "free_leopard", "free_serpent", "free_stag",
                  "free_tiger", "free_wolf",
@@ -3879,7 +3914,7 @@ let set_info = {
                  "running_chariot", "running_leopard", "running_pup",
                  "running_serpent",
                  "rushing_boar", "savage_tiger", "side_dragon",
-                 "side_ox", "side_mover", "side_wolf",
+                 "side_flyer", "side_mover", "side_ox", "side_wolf",
                  "silver_general", "soldier_taikyoku",
                  "southern_barbarian", "spear_soldier",
                  "square_mover", "stone_general",
@@ -3888,8 +3923,9 @@ let set_info = {
                  "sword_general", "sword_soldier",
                  "swooping_owl", "tile_chariot",
                  "tile_general", "treacherous_fox_taik",
-                 "turtle_dove", "violent_stag",
-                 "venomous_wolf", "vertical_horse", "vertical_leopard",
+                 "turtle_dove", "turtle_snake", "violent_stag",
+                 "venomous_wolf", "vermillion_sparrow",
+                 "vertical_horse", "vertical_leopard",
                  "vertical_mover", "vertical_pup",
                  "violent_bear", "violent_ox", "violent_wolf",
                  "water_general",
