@@ -168,6 +168,7 @@ our %MACROS = (
         SQRT_2_OVER_2  => '\(\frac{\sqrt{2}}{2}\)',
         SQRT_2_OVER_3  => '\(\frac{\sqrt{2}}{3}\)',
         SQRT_2_OVER_4  => '\(\frac{\sqrt{2}}{4}\)',
+        SQRT_2_OVER_5  => '\(\frac{\sqrt{2}}{5}\)',
     },
 
     our $TYPE_TALK => {

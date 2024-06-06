@@ -950,8 +950,8 @@ let pieces = {
         betza: "lFFbrFFW",
         results: {
             spiral_square:  "W", 
-            spiral_diamond: "50%",
-            wedge_folded:   "100%",
+            spiral_diamond: "F/50%",
+            wedge_folded:   "F/100%",
             wedge_flat:      sqrt (2, 2),
         },
         _name: "Divine Sparrow",
@@ -1386,7 +1386,7 @@ let pieces = {
     },
 
     flying_stag: {
-        betza: "FsWvWW",
+        betza: "FvWWsW",
         results: {
             spiral_square:  "W",
             spiral_diamond: "BM",
@@ -2029,6 +2029,16 @@ let pieces = {
         },
     },
 
+    left_chariot: {
+        betza: "flFFbrFFfWWlW",
+        results: {
+            spiral_square:   sqrt (2, 5),
+            spiral_diamond:  frac (1, 2),
+            wedge_folded:   "T/11",
+            wedge_flat:      sqrt (2, 2),
+        },
+    },
+
     left_dog: {
         betza:  "brFFfWWbW",
         results: {
@@ -2605,6 +2615,16 @@ let pieces = {
         },
     },
 
+    right_chariot: {
+        betza: "frFFblFFfWWlW",
+        results: {
+            spiral_square:   sqrt (2, 3),
+            spiral_diamond: "F*/12.5%",
+            wedge_folded:    sqrt (2, 5, 2),
+            wedge_flat:      sqrt (2, 3),
+        },
+    },
+
     right_dog: {
         betza:  "blFFfWWbW",
         results: {
@@ -2771,6 +2791,16 @@ let pieces = {
             spiral_diamond:  frac (1),
             wedge_folded:    frac (1),
             wedge_flat:      sqrt (2),
+        },
+    },
+
+    side_boar: {
+        betza: "FvWsWW",
+        results: {
+            spiral_square:  "W",
+            spiral_diamond: "BM",
+            wedge_folded:   "FC",
+            wedge_flat:     "F/100%",
         },
     },
 
@@ -3199,7 +3229,7 @@ let pieces = {
             spiral_square:  "W",
             spiral_diamond: "BM",
             wedge_folded:   "FC",
-            wedge_flat:     "",
+            wedge_flat:     "F/100%",
         },
     },
 
@@ -3895,8 +3925,8 @@ let set_info = {
                  "gold_general", "great_whale",
                  "guardian_of_the_gods", "heavenly_tetrarch",
                  "horse_general",
-                 "iron_general", "king_taikyoku", "lance", "left_dog",
-                 "left_general",
+                 "iron_general", "king_taikyoku", "lance", "left_chariot",
+                 "left_dog", "left_general",
                  "left_howling_dog", "left_iron_chariot",
                  "leopard_king", "mountain_general", "mountain_stag",
                  "mountain_witch", "multi_general",
@@ -3906,14 +3936,14 @@ let set_info = {
                  "poisonous_snake", "pig_general",
                  "prancing_stag", "pup_general", "queen",
                  "raiding_falcon_taik", "rams_head_soldier",
-                 "reclining_dragon", "reverse_chariot",
-                 "right_general", "right_dog",
+                 "reclining_dragon", "reverse_chariot", "right_chariot",
+                 "right_dog", "right_general",
                  "right_howling_dog", "right_iron_chariot",
                  "river_general",
                  "rook", "running_bird", "running_boar",
                  "running_chariot", "running_leopard", "running_pup",
                  "running_serpent",
-                 "rushing_boar", "savage_tiger", "side_dragon",
+                 "rushing_boar", "savage_tiger", "side_boar", "side_dragon",
                  "side_flyer", "side_mover", "side_ox", "side_wolf",
                  "silver_general", "soldier_taikyoku",
                  "southern_barbarian", "spear_soldier",

@@ -19,6 +19,8 @@ one square away in each of the eight cardinal directions, or slides
 an unlimited amount of unoccupied squares orthogonally forward
 or backward.
 
+Compare with the [*Side Boar*](side_boar.html) which moves
+
 |====
 %%PIECE_INFO%%
   **Copper Elephant**
