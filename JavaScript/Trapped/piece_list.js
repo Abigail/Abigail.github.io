@@ -1695,6 +1695,16 @@ let pieces = {
         },
     },
 
+    great_tiger: {
+        betza: "fWbsWW",
+        results: {
+            spiral_square:  "W",
+            spiral_diamond: "F/75%",
+            wedge_folded:   "T/6",
+            wedge_flat:      sqrt (2, 2),
+        },
+    },
+
     great_whale: {
         parent: "flying_ox",
     },
@@ -3922,7 +3932,7 @@ let set_info = {
                  "free_leopard", "free_serpent", "free_stag",
                  "free_tiger", "free_wolf",
                  "gliding_swallow", "go_between",
-                 "gold_general", "great_whale",
+                 "gold_general", "great_tiger", "great_whale",
                  "guardian_of_the_gods", "heavenly_tetrarch",
                  "horse_general",
                  "iron_general", "king_taikyoku", "lance", "left_chariot",
