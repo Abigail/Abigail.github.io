@@ -1695,6 +1695,16 @@ let pieces = {
         },
     },
 
+    great_bear: {
+        betza: "fFFfWWsbW",
+        results: {
+            spiral_square:  "W",
+            spiral_diamond:  frac (1, 2),
+            wedge_folded:   "FC",
+            wedge_flat:     "F/100%",
+        },
+    },
+
     great_tiger: {
         betza: "fWbsWW",
         results: {
@@ -2090,6 +2100,16 @@ let pieces = {
             spiral_diamond:  frac (1, 2),
             wedge_folded:    sqrt (2, 3),
             wedge_flat:      sqrt (2, 3),
+        },
+    },
+
+    left_tiger: {
+        betza: "lFrFFrWW",
+        results: {
+            spiral_square:   sqrt (2, 3),
+            spiral_diamond: "F/100%",
+            wedge_folded:   "F/100%",
+            wedge_flat:      sqrt (2),
         },
     },
 
@@ -2673,6 +2693,16 @@ let pieces = {
         },
     },
 
+    right_tiger: {
+        betza: "lFFrFlWW",
+        results: {
+            spiral_square:   sqrt (2, 3),
+            spiral_diamond: "T/459",
+            wedge_folded:    sqrt (2, 4),
+            wedge_flat:      sqrt (2, 3),
+        },
+    },
+
     river_general: {
         parent: "horse_general"
     },
@@ -2757,6 +2787,18 @@ let pieces = {
         parent: "vertical_mover",
     },
 
+    running_rabbit_taik: {
+        betza:   "fFFbFfWWbW",
+        results: {
+            spiral_square:  "T/315",
+            spiral_diamond: "F*/75%",   // Needs more research
+            wedge_folded:    sqrt (2, 3),
+            wedge_flat:      sqrt (2),
+        },
+        _name: "Running Rabbit",
+        _index_name: "Running Rabbit (Taikyoku Sh&#x14d;gi)",
+    },
+
     running_rabbit: {
         betza:   "FfWWbW",
         results: {
@@ -2765,6 +2807,8 @@ let pieces = {
             wedge_folded:    sqrt (2, 3),
             wedge_flat:      sqrt (2),
         },
+        _name: "Running Rabbit",
+        _index_name: "Running Rabbit (Wa Sh&#x14d;gi)",
     },
 
     running_serpent: {
@@ -3932,12 +3976,12 @@ let set_info = {
                  "free_leopard", "free_serpent", "free_stag",
                  "free_tiger", "free_wolf",
                  "gliding_swallow", "go_between",
-                 "gold_general", "great_tiger", "great_whale",
+                 "gold_general", "great_bear", "great_tiger", "great_whale",
                  "guardian_of_the_gods", "heavenly_tetrarch",
                  "horse_general",
                  "iron_general", "king_taikyoku", "lance", "left_chariot",
                  "left_dog", "left_general",
-                 "left_howling_dog", "left_iron_chariot",
+                 "left_howling_dog", "left_iron_chariot", "left_tiger",
                  "leopard_king", "mountain_general", "mountain_stag",
                  "mountain_witch", "multi_general",
                  "neighbouring_king", "northern_barbarian",
@@ -3948,11 +3992,11 @@ let set_info = {
                  "raiding_falcon_taik", "rams_head_soldier",
                  "reclining_dragon", "reverse_chariot", "right_chariot",
                  "right_dog", "right_general",
-                 "right_howling_dog", "right_iron_chariot",
+                 "right_howling_dog", "right_iron_chariot", "right_tiger",
                  "river_general",
                  "rook", "running_bird", "running_boar",
                  "running_chariot", "running_leopard", "running_pup",
-                 "running_serpent",
+                 "running_rabbit_taik", "running_serpent",
                  "rushing_boar", "savage_tiger", "side_boar", "side_dragon",
                  "side_flyer", "side_mover", "side_ox", "side_wolf",
                  "silver_general", "soldier_taikyoku",

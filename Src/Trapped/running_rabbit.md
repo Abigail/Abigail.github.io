@@ -18,10 +18,11 @@ of unoccupied squares orthogonally forward (like a forward
 [*Rook*](rook.html)).
 
 |====
-%%PIECE_HEADERS%%
-  {th = 1}  %%WA_SHOGI%%
-&           **Running Rabbit** & &#x8D70;&#x514E;
-&           %%PROMOTES_TO%% [*Treacherous Fox*](treacherous_fox.html) \\
+%%PIECE_INFO%%
+  **Running Rabbit**
+& %%WA_SHOGI%%
+& This is a different piece than the
+  [*Running Rabbit*](running_rabbit_taik.html) from %%TAIKYOKU%%.
 ====|
 
 ### Spiral
