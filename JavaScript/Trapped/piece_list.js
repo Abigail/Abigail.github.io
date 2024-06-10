@@ -2049,6 +2049,16 @@ let pieces = {
         },
     },
 
+    left_army: {
+        betza: "lFFrFlWWvWrW",
+        results: {
+            spiral_square:  "W",
+            spiral_diamond: "BM",
+            wedge_folded:   "FC",
+            wedge_flat:     "F/100%",
+        },
+    },
+
     left_chariot: {
         betza: "flFFbrFFfWWlW",
         results: {
@@ -2642,6 +2652,16 @@ let pieces = {
             spiral_diamond:  frac (1),
             wedge_folded:    frac (1),
             wedge_flat:      frac (1),
+        },
+    },
+
+    right_army: {
+        betza: "rFFlFrWWvWlW",
+        results: {
+            spiral_square:  "",
+            spiral_diamond: "",
+            wedge_folded:   "",
+            wedge_flat:     "",
         },
     },
 
@@ -3979,8 +3999,8 @@ let set_info = {
                  "gold_general", "great_bear", "great_tiger", "great_whale",
                  "guardian_of_the_gods", "heavenly_tetrarch",
                  "horse_general",
-                 "iron_general", "king_taikyoku", "lance", "left_chariot",
-                 "left_dog", "left_general",
+                 "iron_general", "king_taikyoku", "lance", "left_army",
+                 "left_chariot", "left_dog", "left_general",
                  "left_howling_dog", "left_iron_chariot", "left_tiger",
                  "leopard_king", "mountain_general", "mountain_stag",
                  "mountain_witch", "multi_general",
@@ -3990,8 +4010,8 @@ let set_info = {
                  "poisonous_snake", "pig_general",
                  "prancing_stag", "pup_general", "queen",
                  "raiding_falcon_taik", "rams_head_soldier",
-                 "reclining_dragon", "reverse_chariot", "right_chariot",
-                 "right_dog", "right_general",
+                 "reclining_dragon", "reverse_chariot", "right_army",
+                 "right_chariot", "right_dog", "right_general",
                  "right_howling_dog", "right_iron_chariot", "right_tiger",
                  "river_general",
                  "rook", "running_bird", "running_boar",
