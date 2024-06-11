@@ -958,6 +958,16 @@ let pieces = {
         _index_name: "Divine Sparrow (II)",
     },
 
+    divine_turtle: {
+        betza: "frFFbFFflFW",
+        results: {
+            spiral_square:  "W", 
+            spiral_diamond: "BM",
+            wedge_folded:   "FC", 
+            wedge_flat:     "F/100%",
+        },
+    },
+
     diving_osprey: {
         betza:    "fFW4A",
         results: {
@@ -2658,10 +2668,10 @@ let pieces = {
     right_army: {
         betza: "rFFlFrWWvWlW",
         results: {
-            spiral_square:  "",
-            spiral_diamond: "",
-            wedge_folded:   "",
-            wedge_flat:     "",
+            spiral_square:  "W",
+            spiral_diamond: "BM",
+            wedge_folded:   "FC",
+            wedge_flat:     "F/100%",
         },
     },
 
@@ -3985,7 +3995,7 @@ let set_info = {
                  "coiled_serpent", "copper_elephant",
                  "copper_general", "crossbow_soldier",
                  "dark_spirit", "deva",
-                 "divine_sparrow_I", "divine_sparrow_II",
+                 "divine_sparrow_I", "divine_sparrow_II", "divine_turtle",
                  "dog", "donkey", "drunk_elephant",
                  "earth_chariot", "earth_general", "eastern_barbarian",
                  "enchanted_badger", "evil_wolf",
