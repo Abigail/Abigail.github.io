@@ -400,6 +400,16 @@ let pieces = {
         },
     },
 
+    burning_chariot: {
+        betza:   "fFFvWWsW",
+        results: {
+            spiral_square:  "W",
+            spiral_diamond:  frac (1, 2),
+            wedge_folded:   "FC",
+            wedge_flat:     "F/100%",
+        },
+    },
+
     burning_soldier: {
         betza: "fF5fW7sW3bW",
         results: {
@@ -2845,6 +2855,16 @@ let pieces = {
         parent: "vertical_mover",
     },
 
+    running_wolf: {
+        betza: "fFFfWsWW",
+        results: {
+            spiral_square:  "F*/12.5%",
+            spiral_diamond:  frac (1, 2),
+            wedge_folded:   "FC",
+            wedge_flat:     "F*/50%",
+        },
+    },
+
     rushing_boar: {
         parent: "drunk_elephant",
     },
@@ -3988,7 +4008,7 @@ let set_info = {
         pieces: ["angry_boar", "bears_eyes", "beast_cadet", "beast_officer",
                  "bird_of_paradise", "bishop",
                  "blind_bear", "blind_dog", "blind_monkey", "blind_tiger",
-                 "buddist_devil", "burning_soldier",
+                 "buddist_devil", "burning_chariot", "burning_soldier",
                  "captive_cadet", "captive_officer",
                  "cat_sword", "cavalier_taik", "chicken_general",
                  "chinese_cock", "climbing_monkey", "coiled_dragon",
@@ -4000,8 +4020,8 @@ let set_info = {
                  "earth_chariot", "earth_general", "eastern_barbarian",
                  "enchanted_badger", "evil_wolf",
                  "ferocious_leopard", "fierce_eagle", "fire_general",
-                 "flying_cock", "flying_goose", "flying_horse",
-                 "flying_ox", "flying_stag", "flying_swallow",
+                 "flying_cock", "flying_falcon", "flying_goose",
+                 "flying_horse", "flying_ox", "flying_stag", "flying_swallow",
                  "fragant_elephant", "free_bear", "free_dragon",
                  "free_leopard", "free_serpent", "free_stag",
                  "free_tiger", "free_wolf",
@@ -4026,7 +4046,7 @@ let set_info = {
                  "river_general",
                  "rook", "running_bird", "running_boar",
                  "running_chariot", "running_leopard", "running_pup",
-                 "running_rabbit_taik", "running_serpent",
+                 "running_rabbit_taik", "running_serpent", "running_wolf",
                  "rushing_boar", "savage_tiger", "side_boar", "side_dragon",
                  "side_flyer", "side_mover", "side_ox", "side_wolf",
                  "silver_general", "soldier_taikyoku",

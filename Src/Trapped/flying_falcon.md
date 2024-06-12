@@ -18,13 +18,10 @@ orthogonally forward, or slides an unlimited number of unoccupied
 squares diagonally.
 
 |====
-%%PIECE_HEADERS%%
-  {th = 1}  %%WA_SHOGI%%
-&           **Flying Falcon** & &#x98DB;&#x9DF9;
-&           %%PROMOTED%% [*Strutting Crow*](strutting_crow.html);
-            %%PROMOTES_TO%% [*Tenacious Falcon*](tenacious_falcon.html);
-            A promoted [*Strutting Crow*](strutting_crow.html) will
-            not promote again \\
+%%PIECE_INFO%%
+  **Flying Falcon**
+& %%TAIKYOKU%%; %%WA_SHOGI%%
+& \\
 ====|
 
 ### Spiral
