@@ -1,0 +1,49 @@
+<html>
+<head>
+<title>Regexp limitations</title>
+<meta charset = "utf-8">
+<link rel  = 'preconnect' href = 'https://fonts.gstatic.com'>
+<link rel = 'stylesheet' href = 'https://fonts.googleapis.com/css2?family=Source+Code Pro&display=swap'>
+<link rel = 'stylesheet' href = '../../../Styles/main.css'>
+<link rel = 'stylesheet' href = '../../../Styles/Talks/main.css'>
+<link rel = 'stylesheet' href = '../../../Styles/Talks/Logic_Puzzles/main.css'>
+<link rel = 'stylesheet' href = '../../../Styles/svg-grid.css'>
+<link rel = 'stylesheet' href = '../../../Styles/Talks/Logic_Puzzles/intro-09.css'>
+<script src = "../../../JavaScript/jquery.js"></script>
+<script id  = 'MathJax-script' async src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.js'></script>
+<script src = '../../../JavaScript/Talks/Logic_Puzzles/intro-09.js'></script>
+<script src = '../../../JavaScript/Talks/main-font-fiddle.js'></script>
+<script src = '../../../JavaScript/Talks/navigation.js'></script>
+<script src = '../../../JavaScript/Talks/Logic_Puzzles/pages.js'></script>
+</head>
+
+<body><h1>Regexp limitations</h1><div class = 'svg_box_none'>
+<div class = 'bogus'></div>
+<div class = 'bogus'></div>
+<div class = 'bogus'></div>
+<div class = 'svg_box_info_left'></div>
+<div class = 'svg_box_info_middle content'>
+
+
+<ul>
+<li>No execution of code: <code>(?{code})</code>, <code>(??{code})</code></li>
+<li>No look around: <code>(?= )</code>, <code>(?! )</code>, <code>(?&lt;= )</code>, <code>(?&lt;! )</code></li>
+<li>No recursion: <code>(?&amp;RULE)</code>, <code>(?R)</code></li>
+<li>No if/then/else: <code>(?(con)pat|pat)</code></li>
+<li>No control verbs: <code>(*PRUNE)</code>, <code>(*THEN)</code>, <code>(*COMMIT)</code>, ...</li>
+<li>Nothing which is not POSIX 1003.2 (Extended Regular Expression Syntax)
+<ul>
+<li>... except for named captures</li>
+</ul></li>
+<li>Subject/pattern size should be <span class = 'latex-inline'>\(\mathcal{O} (N^p)\)</span></li>
+</ul>
+</div>
+<div class = 'svg_box_info_right'></div>
+<div class = 'bogus'></div>
+<div class = 'bogus'></div>
+<div class = 'bogus'></div>
+</div>
+
+
+</body>
+</html>

@@ -1,0 +1,4 @@
+table, td {border: solid black 1px; border-collapse: collapse}
+td {width: 1em; height: 1em; text-align: center; padding-top: .2em;}
+table {margin-right: 2em;}
+div.rules {font-size: 70%; width: 50%;}

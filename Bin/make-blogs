@@ -983,6 +983,7 @@ sub init_link_group () {
 GetOptions  "sv"   =>  \my $sudoku_variants,
             "tr"   =>  \my $trapped,
             "nq"   =>  \my $n_queens,
+            "lp"   =>  \my $logic_puzzles,
 ;
 
 die "$0 source-file ..." unless @ARGV;
@@ -996,6 +997,10 @@ foreach my $arg (@ARGV) {
     elsif ($n_queens) {
         $type = $TYPE_TALK;
         $base = "N-Queens/$arg";
+    }
+    elsif ($logic_puzzles) {
+        $type = $TYPE_TALK;
+        $base = "Logic_Puzzles/$arg";
     }
     elsif ($trapped) {
         $type = $TYPE_TRAPPED;
