@@ -768,8 +768,9 @@ sub idify ($str) {
 }
 
 sub post_process ($text, $directives) {
-    my $type = $$directives {type};
-    my $base = $$directives {base};
+    my $type  = $$directives {type};
+    my $base  = $$directives {base};
+    my $pre2p = $$directives {"pre-to-p"};
 
     #
     # Add a line after the first <h1>
@@ -924,6 +925,11 @@ sub post_process ($text, $directives) {
                           "<!--\n" . $svg . "\n-->\n</div>";
             }
         }
+    }
+
+    if ($pre2p) {
+        $text =~ s/<pre><code>/<p><code>/g;
+        $text =~ s!</pre></code>!</p></code>!g;
     }
 
     $text;

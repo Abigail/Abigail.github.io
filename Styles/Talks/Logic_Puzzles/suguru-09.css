@@ -1,0 +1,14 @@
+html {
+    background:                         black;
+}
+
+.content {
+    text-align:                       justify;
+    text-justify:             inter-character;
+}
+
+code {
+    word-break:                     break-all;
+    color:                         lightgreen;
+    background:                         black;
+}

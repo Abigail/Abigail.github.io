@@ -26,6 +26,22 @@ let pages = [
     ["binairo-13",        "Binairo"],
     ["binairo-14",        "Binairo"],
     ["binairo-15",        "Binairo"],
+    ["suguru-01",         "Suguru"],
+    ["suguru-02",         "Suguru"],
+    ["suguru-03",         "Suguru"],
+    ["suguru-04",         "Suguru"],
+    ["suguru-05",         "Suguru"],
+    ["suguru-06",         "Suguru"],
+    ["suguru-07",         "Suguru"],
+    ["suguru-08",         "Suguru"],
+    ["suguru-09",         "Suguru"],
+    ["suguru-10",         "Suguru"],
+    ["suguru-11",         "Suguru"],
+    ["suguru-12",         "Suguru"],
+    ["suguru-13",         "Suguru"],
+    ["suguru-14",         "Suguru"],
+    ["suguru-15",         "Suguru"],
+    ["suguru-16",         "Suguru"],
 ];
 
 

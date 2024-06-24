@@ -1,0 +1,155 @@
+#!/opt/perl/bin/perl
+
+use 5.038;
+
+use strict;
+use warnings;
+no  warnings 'syntax';
+
+use Getopt::Long;
+
+GetOptions 'table'   =>  \my $do_table,
+           'subject' =>  \my $do_subject,
+           'pattern' =>  \my $do_pattern,
+           'solve'   =>  \my $do_solve,
+;
+
+$do_solve = 1 unless $do_table || $do_subject || $do_pattern;
+
+my $rows = 0;
+my $cols = 0;
+my %groups;
+my %given;
+my $board;
+
+my $r = 0;
+while (<>) {
+    last if /^\s*$/;
+    my $c = 0;
+    foreach my $group (/\S+/g) {
+        my $label = "R${r}C${c}";
+        push @{$groups {$group}} => $label;
+        $$board [$r] [$c] = $group;
+        $c ++;
+        $cols = $c if $cols < $c;
+    }
+    $r ++;
+    $rows = $r if $rows < $r;
+}
+$r = 0;
+while (<>) {
+    my $c = 0;
+    foreach my $given (/\S+/g) {
+        if ($given ne ".") {
+            my $label = "R${r}C${c}";
+            $given {$label} = $given;
+        }
+        $c ++;
+    }
+    $r ++;
+}
+
+my $subject = "";
+my $pattern = "";
+my $table = "<table>";
+
+my @done;
+
+my sub label ($p) {"R" . $$p [0] . "C" . $$p [1]}
+
+
+foreach my $r (0 .. $rows - 1) {
+    $table .= "<tr>\n";
+    foreach my $c (0 .. $cols - 1) {
+        my $label = "R${r}C${c}";
+        my $given = $given {$label};
+        my $name  = $$board [$r] [$c];
+        if ($given) {
+            $subject .= "$given;";
+            $pattern .= "(?<$label>$given);"
+        }
+        else {
+            my @group = @{$groups {$name}};
+            my $size  = @group;
+            my $list  = join "" => 1 .. $size;
+            $subject .= "$list;";
+            my $range = "[1-$size]";
+            $pattern .= "$range*(?<$label>$range)$range*;";
+        }
+
+        my @classes = "cell-$r-$c";
+        my $up    = [$r - 1, $c];      my $u_label = label $up;
+        my $down  = [$r + 1, $c];      my $d_label = label $down;
+        my $left  = [$r,     $c - 1];  my $l_label = label $left;
+        my $right = [$r,     $c + 1];  my $r_label = label $right;
+
+        push @classes => "tb" if $r == 0 ||
+            $$board [$$up   [0]] [$$up    [1]] ne $name;
+ 
+        push @classes => "bb" if $r == $rows - 1 ||
+           $$board [$$down  [0]] [$$down  [1]] ne $name;
+
+        push @classes => "lb" if $c == 0 ||
+           $$board [$$left  [0]] [$$left  [1]] ne $name;
+
+        push @classes => "rb" if $c == $cols - 1 ||
+           $$board [$$right [0]] [$$right [1]] ne $name;
+
+        local $" = " ";
+        $table .= "    <td class = '@classes'>";
+        $table .= $given // "&nbsp;";
+        $table .= "</td>\n";
+
+        #
+        # If this cell touches an already seen cell, or is in the
+        # same group as this cell, the values must differ
+        #
+        foreach my $done (@done) {
+            my ($dr, $dc) = @$done;
+            my $name  = $$board [$r]  [$c];
+            my $dname = $$board [$dr] [$dc];
+            if (abs ($r - $dr) <= 1 && abs ($c - $dc) <= 1 || $name eq $dname) {
+                #
+                # Must be unequal
+                #
+                my $size  = @{$groups {$name}};
+                my $dsize = @{$groups {$dname}};
+                foreach my $v1 (1 .. $size) {
+                    foreach my $v2 (1 .. $dsize) {
+                        next if $v1 == $v2;
+                        $subject .= "$v1$v2";
+                    }
+                }
+                $subject  .= ";";
+                my $range  = "[1-$size]";
+                my $drange = "[1-$dsize]";
+                my $dlabel = "R${dr}C${dc}";
+                $pattern  .= "(?:$range$drange)*\\g{$label}\\g{$dlabel}" .
+                             "(?:$range$drange)*;";
+            }
+        }
+         push @done => [$r, $c];
+    }
+    $table .= "</tr>\n";
+}
+$table .= "</table>";
+
+say $table   if $do_table;
+say $subject if $do_subject;
+say $pattern if $do_pattern;
+
+if ($do_solve) {
+    if ($subject =~ /^$pattern$/) {
+        for my $r (0 .. $rows - 1) {
+            for my $c (0 .. $cols - 1) {
+                print $+ {"R${r}C${c}"}, " ";
+            }
+            print "\n";
+        }
+    }
+    else {
+        say "No solution";
+    }
+}
+
+__END__
