@@ -6,9 +6,4 @@ $(document) . ready (function () {
         text = text . replace ('/\(', '/<span class = "pattern">(')
         text = text . replace (';/', ";</span>/")
     element . html (text)
-    font_fiddle (".content")
-})
-
-$(window) . resize (() => {
-    font_fiddle (".content")
 })

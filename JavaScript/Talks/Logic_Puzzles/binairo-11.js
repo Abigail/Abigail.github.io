@@ -4,11 +4,4 @@ $(document) . ready (function () {
     let text = element . html ()
         text = text . replace ("<pre>", "<p>")
         text = text . replace ("</pre>", "</p>")
-
-    font_fiddle (".content")
 })
-
-
-// $(window) . resize (() => {
-//     font_fiddle (".content")
-// })

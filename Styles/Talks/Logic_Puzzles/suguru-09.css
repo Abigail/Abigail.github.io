@@ -8,6 +8,7 @@ html {
 }
 
 code {
+    font-size:                         0.95vw;
     word-break:                     break-all;
     color:                         lightgreen;
     background:                         black;

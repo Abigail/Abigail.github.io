@@ -1,0 +1,14 @@
+body {font-size: 60%}
+table, td {
+    border: solid black 1px;
+    border-collapse: collapse;
+}
+td {width: 3vw; height: 3vw; text-align: center;}
+
+td.lb {border-left:   solid black 5px;}
+td.rb {border-right:  solid black 5px;}
+td.tb {border-top:    solid black 5px;}
+td.bb {border-bottom: solid black 5px;}
+
+table {margin-right: 2em;}
+div.rules {font-size: 70%; width: 50%;}
