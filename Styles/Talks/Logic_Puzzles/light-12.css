@@ -1,0 +1,15 @@
+html {
+    background:                         black;
+}
+
+.content {
+    text-align:                       justify;
+    text-justify:             inter-character;
+}
+
+code {
+    font-size:                         0.40vw;
+    word-break:                     break-all;
+    color:                         lightgreen;
+    background:                         black;
+}

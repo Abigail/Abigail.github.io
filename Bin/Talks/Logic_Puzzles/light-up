@@ -1,0 +1,246 @@
+#!/opt/perl/bin/perl
+
+use 5.038;
+
+use strict;
+use warnings;
+no  warnings 'syntax';
+
+use Getopt::Long;
+
+GetOptions 'table'    =>  \my $do_table,
+           'subject'  =>  \my $do_subject,
+           'pattern'  =>  \my $do_pattern,
+           'solve'    =>  \my $do_solve,
+           'escape'   =>  \my $escape,
+;
+
+binmode STDOUT, ":utf8";
+
+$do_solve = 1 unless $do_table || $do_subject || $do_pattern;
+
+my $rows = 0;
+my $cols = 0;
+my $board;
+
+my sub same_group ($r1, $c1, $r2, $c2) {
+    return if $r1 < 0 || $r1 >= $rows ||
+              $c1 < 0 || $c1 >= $cols ||
+              $r2 < 0 || $r2 >= $rows ||
+              $c2 < 0 || $c2 >= $cols;
+    return 1;
+}
+
+my sub on_board ($r1, $c1) {
+    return $r1 >= 0 && $r1 < $rows &&
+           $c1 >= 0 && $c1 < $cols;
+}
+
+my sub can_touch ($r1, $c1, $r2, $c2) {
+    return abs ($r1 - $r2) <= 1 && abs ($c1 - $c2) <= 1
+}
+
+#
+# Return true if the two cells can see each other
+#
+use List::Util qw [min max];
+my sub can_see ($r1, $c1, $r2, $c2) {
+    return if $$board [$r1] [$c1] ne "." ||
+              $$board [$r2] [$c2] ne ".";
+    if ($r1 == $r2) {
+        for my $cd (min ($c1, $c2) .. max ($c1, $c2)) {
+            return if $$board [$r1] [$cd] ne ".";
+        }
+        return 1;
+    }
+    if ($c1 == $c2) {
+        for my $rd (min ($r1, $r2) .. max ($r1, $r2)) {
+            return if $$board [$rd] [$c1] ne ".";
+        }
+        return 1;
+    }
+    return;
+}
+
+my sub label ($r, $c) {"R${r}C${c}"}
+
+my $r = 0;
+while (<>) {
+    my $c = 0;
+    foreach my $cell (/\S+/g) {
+        my $label = "R${r}C${c}";
+        $$board [$r] [$c] = $cell;
+        $c ++;
+        $cols = $c if $cols < $c;
+    }
+    $r ++;
+    $rows = $r if $rows < $r;
+}
+
+my $LAMP    = "\x{1F4A1}";
+
+my $subject = "";
+my $pattern = "";
+my $table   = "<table>";
+
+my @done;
+my %sees;
+my %final;
+my %block_sees;
+my %block_final;
+my %block_amount;
+
+
+#
+# Parse the input. Build the table, and some structures
+#
+foreach my $r (0 .. $rows - 1) {
+    $table .= "<tr>\n";
+    foreach my $c (0 .. $cols - 1) {
+        my $label = label $r, $c;
+        my $group = $$board [$r] [$c];
+
+        my @classes = "cell-$r-$c";
+        my $up    = [$r - 1, $c];
+        my $down  = [$r + 1, $c];
+        my $left  = [$r,     $c - 1];
+        my $right = [$r,     $c + 1];
+        my $content = $$board [$r] [$c];
+        my $empty   = $content eq ".";
+
+        push @classes => "tb"    unless same_group $r, $c, @$up;
+        push @classes => "bb"    unless same_group $r, $c, @$down;
+        push @classes => "lb"    unless same_group $r, $c, @$left;
+        push @classes => "rb"    unless same_group $r, $c, @$right;
+        push @classes => "block" unless $empty;
+ 
+        local $" = " ";
+        $table  .= "    <td class = '@classes'>";
+        $table  .= $empty || $content eq "*" ? "" : $content;
+        $table  .= "</td>\n";
+
+        if (!$empty) {
+            if ($content ne "*") {
+                #
+                # This is a block with a number. Find the "last"
+                # spot which is on the board. This is the first 
+                # of the cells below, right, left or above the 
+                # block. Note that two blocks can share the same
+                # "last" cell.
+                #
+                my @sees;
+                foreach my $try ([$r + 1, $c], [$r, $c + 1],
+                                 [$r, $c - 1], [$r - 1, $c]) {
+                    push @sees => label @$try if on_board @$try;
+                }
+                $block_sees {$label}   = \@sees;
+                $block_amount {$label} = $content;
+                push @{$block_final {$sees [0]}} => $label;
+            }
+            next;
+        }
+
+        #
+        # For each (empty) cell, determine which cells it sees,
+        # and which is the "last" cell it sees.
+        #
+        my @sees;
+        foreach my $r2 (0 .. $rows - 1) {
+            foreach my $c2 (0 .. $cols - 1) {
+                push @sees => label $r2, $c2 if can_see $r, $c, $r2, $c2;
+            }
+        }
+        $sees {$label} = \@sees;
+        push @{$final {$sees [-1]}} => $label;
+    }
+    $table .= "</tr>\n";
+}
+$table .= "</table>";
+
+#
+# Construct the subject and pattern
+#
+
+foreach my $r (0 .. $rows - 1) {
+    foreach my $c (0 .. $cols - 1) {
+        next unless $$board [$r] [$c] eq ".";
+        my $label = label $r, $c;
+
+        #
+        # Pick up a value
+        #
+        $subject .= "$LAMP;";
+        $pattern .= "(?<$label>$LAMP?)$LAMP?;";
+
+        #
+        # If this cell sees an already seen cell, then they cannot
+        # both contain a lamp.
+        #
+        foreach my $done (@done) {
+            my ($dr, $dc) = @$done;
+
+            if (can_see ($r, $c, $dr, $dc)) {
+                my $dlabel = label ($dr, $dc);
+                $subject  .= "$LAMP;";
+                $pattern  .= "\\g{$label}\\g{$dlabel}$LAMP?;";
+            }
+        }
+
+        #
+        # If this is the last cell surrounding a block
+        # we check whether we have enough.
+        #
+        if ($block_final {$label}) {
+            foreach my $block (@{$block_final {$label}}) {
+                my $amount = $block_amount {$block};
+                $subject .= "$LAMP" x $amount;
+                $subject .= ";";
+                $pattern .= join "" => map {"\\g{$_}"} @{$block_sees {$block}};
+                $pattern .= ";";
+            }
+        }
+
+        #
+        # If this is the last cell that is visible from a partical cell,
+        # check if at least one of the cells it sees has a lamp.
+        #
+        if ($final {$label}) {
+            foreach my $cell (@{$final {$label}}) {
+                $subject .= "$LAMP;";
+                foreach my $sees (@{$sees {$cell}}) {
+                    $pattern .= "\\g{$sees}?";
+                }
+                $pattern .= ";"
+            }
+        }
+
+        push @done => [$r, $c];
+    }
+}
+
+if ($do_solve) {
+    if ($subject =~ /^$pattern$/) {
+        for my $r (0 .. $rows - 1) {
+            for my $c (0 .. $cols - 1) {
+                print $+ {"R${r}C${c}"} ? $escape ? "%%LAMP%%"
+                                                  :   $LAMP
+             : exists $+ {"R${r}C${c}"} ? "."
+                                        : $$board [$r] [$c];
+                print " ";
+            }
+            print "\n";
+        }
+    }
+    else {
+        say "No solution";
+    }
+}
+
+$subject =~ s/$LAMP/%%LAMP%%/g if $escape;
+$pattern =~ s/$LAMP/%%LAMP%%/g if $escape;
+
+say $table   if $do_table;
+say $subject if $do_subject;
+say $pattern if $do_pattern;
+
+__END__
