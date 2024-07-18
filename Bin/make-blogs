@@ -41,6 +41,7 @@ my  $INFO_NAV       = 1;
 my  $INFO_UP        = 2;
 my  $INFO_IS_TALK   = 3;
 my  $INFO_JS        = 4;
+my  $INFO_CSS       = 5;
 
 my $TYPE_INFO = {
     $TYPE_PWC      =>  {
@@ -214,6 +215,12 @@ sub header ($title, $directives) {
     my @style_files  = @files;
     my @script_files = @files;
 
+    use YAML;
+    print Dump $$TYPE_INFO {$type};
+    if ($$TYPE_INFO {$type} {$INFO_CSS}) {
+        push @style_files => @{$$TYPE_INFO {$type} {$INFO_CSS}}
+    }
+
     my $styles = join "\n" =>
         map  {"<link rel = 'stylesheet' href = '$up/$_'>"}
         grep {-f}
@@ -244,7 +251,7 @@ sub header ($title, $directives) {
     if ($$TYPE_INFO {$type} {$INFO_JS}) {
         my $dir = $$TYPE_INFO {$type} {$INFO_DIR};
         push @typed_scripts =>
-              map {"$dir/$_"} @{$$TYPE_INFO {$type} {$INFO_JS}}
+              map {"$dir/$_"} @{$$TYPE_INFO {$type} {$INFO_JS}};
     }
     
     my $scripts = join "\n" =>
@@ -1007,6 +1014,10 @@ foreach my $arg (@ARGV) {
     elsif ($logic_puzzles) {
         $type = $TYPE_TALK;
         $base = "Logic_Puzzles/$arg";
+        $$TYPE_INFO {$type} {$INFO_JS}  ||= [];
+        push @{$$TYPE_INFO {$type} {$INFO_JS}}  => "../logic_puzzle";
+        $$TYPE_INFO {$type} {$INFO_CSS} ||= [];
+        push @{$$TYPE_INFO {$type} {$INFO_CSS}} => "logic_puzzle";
     }
     elsif ($trapped) {
         $type = $TYPE_TRAPPED;
