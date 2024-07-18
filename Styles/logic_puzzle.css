@@ -1,0 +1,9 @@
+table.logic_puzzle td.solution {
+    color:   blue;
+}
+table.logic_puzzle span.solution {
+    visibility: hidden;
+}
+table.logic_puzzle td.clue {
+    background: lightgray;
+}
