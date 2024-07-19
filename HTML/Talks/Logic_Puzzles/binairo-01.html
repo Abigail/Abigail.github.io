@@ -9,12 +9,14 @@
 <link rel = 'stylesheet' href = '../../../Styles/Talks/Logic_Puzzles/main.css'>
 <link rel = 'stylesheet' href = '../../../Styles/svg-grid.css'>
 <link rel = 'stylesheet' href = '../../../Styles/Talks/Logic_Puzzles/binairo-01.css'>
+<link rel = 'stylesheet' href = '../../../Styles/logic_puzzle.css'>
 <script src = "../../../JavaScript/jquery.js"></script>
 <script src = '../../../JavaScript/Talks/Logic_Puzzles/binairo-01.js'></script>
 <script src = '../../../JavaScript/Talks/main-font-fiddle.js'></script>
 <script src = '../../../JavaScript/Talks/navigation.js'></script>
 <script src = '../../../JavaScript/Talks/Logic_Puzzles/pages.js'></script>
 <script src = '../../../JavaScript/Talks/hide.js'></script>
+<script src = '../../../JavaScript/Talks/../logic_puzzle.js'></script>
 </head>
 
 <body><h1>Binairo</h1><div class = 'svg_box_none'>
@@ -25,72 +27,26 @@
 <div class = 'svg_box_info_middle content'>
 
 
-<table>
-  <tr class = 'row-0' markdown = '1'>
-    <td class = 'cell-0-0 col-0 ' markdown = '1'></td>
-    <td class = 'cell-0-1 col-1 ' markdown = '1'></td>
-    <td class = 'cell-0-2 col-2 ' markdown = '1'>0</td>
-    <td class = 'cell-0-3 col-3 ' markdown = '1'></td>
-    <td class = 'cell-0-4 col-4 ' markdown = '1'></td>
-    <td class = 'cell-0-5 col-5 ' markdown = '1'>1</td>
-  </tr>
-  <tr class = 'row-1' markdown = '1'>
-    <td class = 'cell-1-0 col-0 ' markdown = '1'></td>
-    <td class = 'cell-1-1 col-1 ' markdown = '1'>0</td>
-    <td class = 'cell-1-2 col-2 ' markdown = '1'></td>
-    <td class = 'cell-1-3 col-3 ' markdown = '1'></td>
-    <td class = 'cell-1-4 col-4 ' markdown = '1'>1</td>
-    <td class = 'cell-1-5 col-5 ' markdown = '1'></td>
-  </tr>
-  <tr class = 'row-2' markdown = '1'>
-    <td class = 'cell-2-0 col-0 ' markdown = '1'></td>
-    <td class = 'cell-2-1 col-1 ' markdown = '1'>1</td>
-    <td class = 'cell-2-2 col-2 ' markdown = '1'></td>
-    <td class = 'cell-2-3 col-3 ' markdown = '1'></td>
-    <td class = 'cell-2-4 col-4 ' markdown = '1'>1</td>
-    <td class = 'cell-2-5 col-5 ' markdown = '1'></td>
-  </tr>
-  <tr class = 'row-3' markdown = '1'>
-    <td class = 'cell-3-0 col-0 ' markdown = '1'>0</td>
-    <td class = 'cell-3-1 col-1 ' markdown = '1'></td>
-    <td class = 'cell-3-2 col-2 ' markdown = '1'></td>
-    <td class = 'cell-3-3 col-3 ' markdown = '1'></td>
-    <td class = 'cell-3-4 col-4 ' markdown = '1'></td>
-    <td class = 'cell-3-5 col-5 ' markdown = '1'></td>
-  </tr>
-  <tr class = 'row-4' markdown = '1'>
-    <td class = 'cell-4-0 col-0 ' markdown = '1'>0</td>
-    <td class = 'cell-4-1 col-1 ' markdown = '1'></td>
-    <td class = 'cell-4-2 col-2 ' markdown = '1'></td>
-    <td class = 'cell-4-3 col-3 ' markdown = '1'></td>
-    <td class = 'cell-4-4 col-4 ' markdown = '1'></td>
-    <td class = 'cell-4-5 col-5 ' markdown = '1'></td>
-  </tr>
-  <tr class = 'row-5' markdown = '1'>
-    <td class = 'cell-5-0 col-0 ' markdown = '1'></td>
-    <td class = 'cell-5-1 col-1 ' markdown = '1'></td>
-    <td class = 'cell-5-2 col-2 ' markdown = '1'>1</td>
-    <td class = 'cell-5-3 col-3 ' markdown = '1'>1</td>
-    <td class = 'cell-5-4 col-4 ' markdown = '1'></td>
-    <td class = 'cell-5-5 col-5 ' markdown = '1'></td>
-  </tr>
-  <tr class = 'row-6' markdown = '1'>
-    <td class = 'cell-6-0 col-0 ' markdown = '1'>1</td>
-    <td class = 'cell-6-1 col-1 ' markdown = '1'></td>
-    <td class = 'cell-6-2 col-2 ' markdown = '1'></td>
-    <td class = 'cell-6-3 col-3 ' markdown = '1'></td>
-    <td class = 'cell-6-4 col-4 ' markdown = '1'>1</td>
-    <td class = 'cell-6-5 col-5 ' markdown = '1'></td>
-  </tr>
-  <tr class = 'row-7' markdown = '1'>
-    <td class = 'cell-7-0 col-0 ' markdown = '1'></td>
-    <td class = 'cell-7-1 col-1 ' markdown = '1'></td>
-    <td class = 'cell-7-2 col-2 ' markdown = '1'></td>
-    <td class = 'cell-7-3 col-3 ' markdown = '1'>0</td>
-    <td class = 'cell-7-4 col-4 ' markdown = '1'></td>
-    <td class = 'cell-7-5 col-5 ' markdown = '1'></td>
-  </tr>
-</table>
+<div class = "logic_puzzle" data-type = "binairo">
+%% clues
+. . 0 . . 1
+. 0 . . 1 .
+. 1 . . 1 .
+0 . . . . .
+0 . . . . .
+. . 1 1 . .
+1 . . . 1 .
+. . . 0 . .
+%% solution
+0 1 0 1 0 1
+1 0 1 0 1 0
+1 1 0 0 1 0
+0 0 1 1 0 1
+0 1 0 0 1 1
+1 0 1 1 0 0
+1 0 0 1 1 0
+0 1 1 0 0 1
+</div>
 
 <div class = 'rules'>
 <ul>

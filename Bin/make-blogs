@@ -215,8 +215,6 @@ sub header ($title, $directives) {
     my @style_files  = @files;
     my @script_files = @files;
 
-    use YAML;
-    print Dump $$TYPE_INFO {$type};
     if ($$TYPE_INFO {$type} {$INFO_CSS}) {
         push @style_files => @{$$TYPE_INFO {$type} {$INFO_CSS}}
     }

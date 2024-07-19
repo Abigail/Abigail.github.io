@@ -7,3 +7,21 @@ table.logic_puzzle span.solution {
 table.logic_puzzle td.clue {
     background: lightgray;
 }
+
+table.logic_puzzle, table.logic_puzzle td {
+    border: solid black 1px;
+    border-collapse: collapse;
+}
+table.logic_puzzle td {
+    width:        1em;
+    height:       1em;
+    text-align:   center;
+    padding-top: .2em;
+}
+
+table.logic_puzzle td.lb {border-left:   solid black 5px;}
+table.logic_puzzle td.rb {border-right:  solid black 5px;}
+table.logic_puzzle td.tb {border-top:    solid black 5px;}
+table.logic_puzzle td.bb {border-bottom: solid black 5px;}
+
+table.logic_puzzle {margin-right: 2em;}

@@ -6,60 +6,6 @@ $(document) . ready (function () {
 })
 
 function reveal () {
-    $(".cell-0-0") . html ("0")
-    $(".cell-0-1") . html ("1")
-//  $(".cell-0-2") . html ("0")
-    $(".cell-0-3") . html ("1")
-    $(".cell-0-4") . html ("0")
-//  $(".cell-0-5") . html ("1")
-
-    $(".cell-1-0") . html ("1")
-//  $(".cell-1-1") . html ("0")
-    $(".cell-1-2") . html ("1")
-    $(".cell-1-3") . html ("0")
-//  $(".cell-1-4") . html ("1")
-    $(".cell-1-5") . html ("0")
-
-    $(".cell-2-0") . html ("1")
-//  $(".cell-2-1") . html ("1")
-    $(".cell-2-2") . html ("0")
-    $(".cell-2-3") . html ("0")
-//  $(".cell-2-4") . html ("1")
-    $(".cell-2-5") . html ("0")
-
-//  $(".cell-3-0") . html ("0")
-    $(".cell-3-1") . html ("0")
-    $(".cell-3-2") . html ("1")
-    $(".cell-3-3") . html ("1")
-    $(".cell-3-4") . html ("0")
-    $(".cell-3-5") . html ("1")
-
-//  $(".cell-4-0") . html ("0")
-    $(".cell-4-1") . html ("1")
-    $(".cell-4-2") . html ("0")
-    $(".cell-4-3") . html ("0")
-    $(".cell-4-4") . html ("1")
-    $(".cell-4-5") . html ("1")
-
-    $(".cell-5-0") . html ("1")
-    $(".cell-5-1") . html ("0")
-//  $(".cell-5-2") . html ("1")
-//  $(".cell-5-3") . html ("1")
-    $(".cell-5-4") . html ("0")
-    $(".cell-5-5") . html ("0")
-
-//  $(".cell-6-0") . html ("1")
-    $(".cell-6-1") . html ("0")
-    $(".cell-6-2") . html ("0")
-    $(".cell-6-3") . html ("1")
-//  $(".cell-6-4") . html ("1")
-    $(".cell-6-5") . html ("0")
-
-    $(".cell-7-0") . html ("0")
-    $(".cell-7-1") . html ("1")
-    $(".cell-7-2") . html ("1")
-//  $(".cell-7-3") . html ("0")
-    $(".cell-7-4") . html ("0")
-    $(".cell-7-5") . html ("1")
+    $("span.solution") . css ({visibility: "visible"})
 
 }
