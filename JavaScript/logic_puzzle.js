@@ -1,11 +1,3 @@
-$(window) . on ("load", () => {
-    $("div.logic_puzzle") . each ((i, e) => {
-        let puzzle = new LogicPuzzle ({element: e})
-        puzzle . build ()
-    })
-})
-
-
 class LogicPuzzle {
     static parse (data) {
         let out = []
@@ -31,7 +23,14 @@ class LogicPuzzle {
     }
 
     constructor (args = {}) {
-        let element = args . element
+        let element
+        if (args . id) {
+            element = $(`div#${args . id}`)
+        }
+        if (!element && args . class) {
+            element = $(`div#${args . class}`)
+        }
+
         if (!element) {
             return
         }
@@ -141,5 +140,14 @@ class LogicPuzzle {
         if (puzzle_type == "star-battle") {return "&#x2735;"}
         if (puzzle_type == "light-up")    {return "<small>&#x1F4A1;</small>"}
         return solution
+    }
+
+    reveal (args = {}) {
+        let delay = args . delay || 50
+        $(this . element) . find ("span.solution") . each ((i, span) => {
+            setTimeout (() => {
+                $(span) . css ({visibility: "visible"})
+            }, delay * i)
+        })
     }
 }

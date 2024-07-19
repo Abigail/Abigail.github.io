@@ -3,7 +3,7 @@
 <!-- %% svg-grid: none -->
 <!-- %% hide           -->
 
-<div class = "logic_puzzle" data-type = "binairo">
+<div id = "binairo" data-type = "binairo">
 %% clues
 . . 0 . . 1
 . 0 . . 1 .

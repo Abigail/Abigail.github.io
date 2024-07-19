@@ -3,7 +3,7 @@
 <!-- %% svg-grid: none -->
 <!-- %% hide           -->
 
-<div class = "logic_puzzle" data-type = "suguru">
+<div id = "suguru" data-type = "suguru">
 %% groups
 A A A A B
 C C C D B
