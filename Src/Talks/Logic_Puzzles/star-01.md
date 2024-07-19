@@ -3,55 +3,22 @@
 <!-- %% svg-grid: none -->
 <!-- %% hide           -->
 
-<table><tr>
-    <td class = 'cell-0-0 tb lb'>&nbsp;</td>
-    <td class = 'cell-0-1 tb'>&nbsp;</td>
-    <td class = 'cell-0-2 tb rb'>&nbsp;</td>
-    <td class = 'cell-0-3 tb bb lb'>&nbsp;</td>
-    <td class = 'cell-0-4 tb bb rb'>&nbsp;</td>
-    <td class = 'cell-0-5 tb lb rb'>&nbsp;</td>
-</tr>
-<tr>
-    <td class = 'cell-1-0 lb'>&nbsp;</td>
-    <td class = 'cell-1-1'>&nbsp;</td>
-    <td class = 'cell-1-2 rb'>&nbsp;</td>
-    <td class = 'cell-1-3 tb bb lb'>&nbsp;</td>
-    <td class = 'cell-1-4 tb bb'>&nbsp;</td>
-    <td class = 'cell-1-5 bb rb'>&nbsp;</td>
-</tr>
-<tr>
-    <td class = 'cell-2-0 lb'>&nbsp;</td>
-    <td class = 'cell-2-1'>&nbsp;</td>
-    <td class = 'cell-2-2 bb rb'>&nbsp;</td>
-    <td class = 'cell-2-3 tb lb rb'>&nbsp;</td>
-    <td class = 'cell-2-4 tb lb'>&nbsp;</td>
-    <td class = 'cell-2-5 tb rb'>&nbsp;</td>
-</tr>
-<tr>
-    <td class = 'cell-3-0 bb lb'>&nbsp;</td>
-    <td class = 'cell-3-1 bb rb'>&nbsp;</td>
-    <td class = 'cell-3-2 tb lb'>&nbsp;</td>
-    <td class = 'cell-3-3 rb'>&nbsp;</td>
-    <td class = 'cell-3-4 bb lb'>&nbsp;</td>
-    <td class = 'cell-3-5 rb'>&nbsp;</td>
-</tr>
-<tr>
-    <td class = 'cell-4-0 tb lb'>&nbsp;</td>
-    <td class = 'cell-4-1 tb rb'>&nbsp;</td>
-    <td class = 'cell-4-2 bb lb'>&nbsp;</td>
-    <td class = 'cell-4-3'>&nbsp;</td>
-    <td class = 'cell-4-4 tb rb'>&nbsp;</td>
-    <td class = 'cell-4-5 lb rb'>&nbsp;</td>
-</tr>
-<tr>
-    <td class = 'cell-5-0 bb lb'>&nbsp;</td>
-    <td class = 'cell-5-1 bb'>&nbsp;</td>
-    <td class = 'cell-5-2 tb bb rb'>&nbsp;</td>
-    <td class = 'cell-5-3 bb lb'>&nbsp;</td>
-    <td class = 'cell-5-4 bb rb'>&nbsp;</td>
-    <td class = 'cell-5-5 bb lb rb'>&nbsp;</td>
-</tr>
-</table>
+<div id = "star-battle" data-type = "star-battle">
+%% groups
+1 1 1 2 2 3
+1 1 1 3 3 3
+1 1 1 4 5 5
+1 1 4 4 5 5
+6 6 4 4 4 5
+6 6 6 4 4 5
+%% solution
+. . . * . .
+. . . . . *
+. * . . . .
+. . . . * .
+. . * . . .
+* . . . . .
+</div>
 
 <div markdown="1" class = 'rules'>
 * Place &#x2735;'s such that each row, column or group contains

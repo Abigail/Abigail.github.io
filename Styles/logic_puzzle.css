@@ -13,10 +13,11 @@ table.logic_puzzle, table.logic_puzzle td {
     border-collapse: collapse;
 }
 table.logic_puzzle td {
-    width:        1em;
-    height:       1em;
+    font-size:    4vw;
+    width:        5vw;
+    height:       4vw;
+    padding-top:  1vw;
     text-align:   center;
-    padding-top: .2em;
 }
 
 table.logic_puzzle td.lb {border-left:   solid black 5px;}

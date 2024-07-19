@@ -219,6 +219,14 @@ sub header ($title, $directives) {
         push @style_files => @{$$TYPE_INFO {$type} {$INFO_CSS}}
     }
 
+    #
+    # Sort the style files. The most significants should come last.
+    #
+    @style_files = map  {$$_ [0]}
+                   sort {$$a [1] <=> $$b [1]}
+                   map  {[$_, s!.*/Styles/!!r =~ y!/!/!]}
+                   @style_files;
+
     my $styles = join "\n" =>
         map  {"<link rel = 'stylesheet' href = '$up/$_'>"}
         grep {-f}
