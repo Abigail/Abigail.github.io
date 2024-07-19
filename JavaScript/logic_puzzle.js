@@ -129,6 +129,8 @@ class LogicPuzzle {
         out += `</table>`
 
         $(this . element) . html (out)
+
+        return this
     }
 
     //
