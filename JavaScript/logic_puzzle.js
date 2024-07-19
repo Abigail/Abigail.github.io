@@ -110,13 +110,14 @@ class LogicPuzzle {
                 if (solution             &&
                     solution [row] [col] &&
                     solution [row] [col] != ".") {
-                    content    = this . translate (solution [row] [col])
+                    content    = this . translate ("solution",
+                                                    solution [row] [col])
                     class_name = 'solution'
                 }
                 if (clues                &&
                     clues    [row] [col] &&
                     clues    [row] [col] != ".") {
-                    content    = clues [row] [col]
+                    content    = this . translate ("clue", clues [row] [col])
                     class_name = 'clue'
                 }
                 let span = `<span class = ${class_name}>${content}</span>`
@@ -137,11 +138,17 @@ class LogicPuzzle {
     // For some puzzles, the solution will show fancy characters.
     // BY default, there is no translation.
     //
-    translate (solution) {
+    translate (type, content) {
         let puzzle_type =   this . puzzle_type
         if (puzzle_type == "star-battle") {return "&#x2735;"}
-        if (puzzle_type == "light-up")    {return "<small>&#x1F4A1;</small>"}
-        return solution
+        if (puzzle_type == "light-up")    {
+            if (type == "solution") {return "&#x1F4A1;"}
+            if (type == "clue") {
+                if (content == "*") {return ""}
+                return content
+            }
+        }
+        return content
     }
 
     reveal (args = {}) {

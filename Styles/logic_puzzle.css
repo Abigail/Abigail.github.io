@@ -26,3 +26,15 @@ table.logic_puzzle td.tb {border-top:    solid black 5px;}
 table.logic_puzzle td.bb {border-bottom: solid black 5px;}
 
 table.logic_puzzle {margin-right: 2em;}
+
+/*
+ * Puzzle type specific CSS
+ */
+
+table.logic_puzzle.light-up td.clue {
+    background: black;
+    color:      white;
+}
+table.logic_puzzle.light-up td span.solution {
+    font-size:    3vw;  /* The lamp symbol is larger than a normal character */
+}

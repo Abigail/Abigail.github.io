@@ -1,20 +1,6 @@
-table, td {
-    border: solid black 1px;
-    border-collapse: collapse;
+table.logic_puzzle td {
+    font-size:    2.75vw;
+    width:        3.25vw;
+    height:       2.25vw;
+    padding-top:   .50vw;
 }
-td {width: 3vw; height: 3vw; font-size: 3vw; text-align: center;}
-
-td.lb {border-left:   solid black 5px;}
-td.rb {border-right:  solid black 5px;}
-td.tb {border-top:    solid black 5px;}
-td.bb {border-bottom: solid black 5px;}
-td.block {
-    background:   black;
-    color:        white;
-}
-small {
-    font-size: 50%;
-}
-
-table {margin-right: 2em;}
-div.rules {font-size: 70%; width: 50%;}
