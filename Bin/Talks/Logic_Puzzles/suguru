@@ -81,8 +81,8 @@ foreach my $cell (@givens, @blanks) {
         $subject .= "$list;";
         my $range = "[1-$size]";
         $pattern .= "$range*(?<$label>$range)$range*;";
+        $pattern .= qq <(?{say '$label = ', \$^N})> if $playback;
     }
-    $pattern .= qq <(?{say '$label = ', \$^N})> if $playback;
 
     #
     # If this cell touches an already seen cell, or is in the
