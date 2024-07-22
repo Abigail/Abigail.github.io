@@ -28,7 +28,7 @@ class LogicPuzzle {
         for (const tokens of list .
                              matchAll (/R([0-9]+)C([0-9]+)\s*=\s*(\S+)/g)) {
             let [match, row, col, content] = tokens
-            out . push ([+row + 1, +col + 1, content])
+            out . push ([+row, +col, content])
         }
         return out
     }

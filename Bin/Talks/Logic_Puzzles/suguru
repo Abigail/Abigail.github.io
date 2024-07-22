@@ -31,20 +31,20 @@ my sub label ($r, $c) {"R${r}C${c}"}
 my $r = 0;
 while (<>) {
     last if /^\s*$/;
+    $r ++;
     my $c = 0;
     foreach my $group (/\S+/g) {
+        $c ++;
         my $label = label $r, $c;
         push @{$groups {$group}} => $label;
         $$board [$r] [$c] = $group;
-        $c ++;
         $cols = $c if $cols < $c;
     }
-    $r ++;
     $rows = $r if $rows < $r;
 }
-$r = 0;
+$r = 1;
 while (<>) {
-    my $c = 0;
+    my $c = 1;
     foreach my $given (/\S+/g) {
         if ($given ne ".") {
             my $label = label $r, $c;
@@ -121,8 +121,8 @@ say $pattern if $do_pattern;
 if ($do_solve) {
     use re 'eval';
     if ($subject =~ /^$pattern$/) {
-        for my $r (0 .. $rows - 1) {
-            for my $c (0 .. $cols - 1) {
+        for my $r (1 .. $rows) {
+            for my $c (1 .. $cols) {
                 print $+ {"R${r}C${c}"}, " ";
             }
             print "\n";
