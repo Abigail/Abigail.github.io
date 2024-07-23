@@ -6,171 +6,172 @@ use strict;
 use warnings;
 no  warnings 'syntax';
 
-local $/;
+use Getopt::Long;
+
+GetOptions 'subject'  =>  \my $do_subject,
+           'pattern'  =>  \my $do_pattern,
+           'solve'    =>  \my $do_solve,
+           'playback' =>  \my $playback,
+;
+
+$do_solve   = 1 unless $do_subject || $do_pattern;
+$do_solve ||= 1 if $playback;
+
+my $rows = 0;
+my $cols = 0;
+my %given;
+
+my sub label ($r, $c) {"R${r}C${c}"}
 
 my $board = [];
-my $input = <>;
-foreach my $row (split /\n/ => $input) {
-    push @$board => [split /\s/ => $row]
+
+my $r = 0;
+while (<>) {
+    $r ++;
+    my $c = 0;
+    foreach my $given (/\S+/g) {
+        $c ++;
+        if ($given ne ".") {
+            my $label = label $r, $c;
+            $given {$label} = $given;
+        }
+        $cols = $c if $cols < $c;
+    }
+    $rows = $r if $rows < $r;
 }
 
 my $subject = "";
 my $pattern = "";
-my $count   = 0;
-my $cell_count = 0;
-my $three = 0;
-my $equal = 0;
-my $unequal = 0;
-my $back = 0;
 
-foreach my $r (keys @$board) {
-    foreach my $c (keys @{$$board [$r]}) {
-        my $label = "R${r}C${c}";
+my @done;
+
+foreach my $r (1 .. $rows) {
+    foreach my $c (1 .. $cols) {
+        my $label = label $r, $c;
         my $cell  = $$board [$r] [$c];
-        if ($cell eq ".") {
-            $subject .= "01;";
-            $pattern .= "0?(?<$label>[01])1?;";
+
+        if ($given {$label}) {
+            my $given =  $given {$label};
+            $subject .= "$given;";
+            $pattern .= "(?<$label>$given);"
         }
         else {
-            $subject .= "$cell;";
-            $pattern .= "(?<$label>$cell);"
+            $subject .= "01;";
+            $pattern .= "0?(?<$label>[01])1?;";
+            $pattern .= qq <(?{say '$label = ', \$^N})> if $playback;
         }
-        $cell_count ++;
-        $count ++;
+
         #
         # No three in a row horizontally
         #
-        if ($c >= 2) {
+        if ($c > 2) {
             $subject .= "01;";
             my $pat = "";
             foreach my $cp ($c - 2 .. $c) {
-                my $label = "R${r}C${cp}";
+                my $label = label $r, $cp;
                 $pat .= "\\g{$label}?";
-                $back += 2;
             }
             $pattern .= $pat . $pat . ";";
-            $count ++;
-            $three ++;
         }
+
         #
         # No three in a row vertically
         #
-        if ($r >= 2) {
+        if ($r > 2) {
             $subject .= "01;";
             my $pat = "";
             foreach my $rp ($r - 2 .. $r) {
-                my $label = "R${rp}C${c}";
+                my $label = label $rp, $c;
                 $pat .= "\\g{$label}?";
-                $back += 2;
             }
             $pattern .= $pat . $pat . ";";
-            $count ++;
-            $three ++;
         }
+
         #
         # Equal number of symbols in a row
         #
-        if ($c == $#{$$board [$r]}) {
+        if ($c == $cols) {
             foreach my $t ("0", "1") {
-                $subject .= "$t" x (@{$$board [$r]} / 2);
+                $subject .= "$t" x ($cols / 2);
                 $subject .= ";";
                 my $pat = "";
-                foreach my $cp (0 .. $c) {
-                    $pat .= "\\g{R${r}C${cp}}?";
-                    $back ++;
+                foreach my $cp (1 .. $cols) {
+                    my $label = label $r, $cp;
+                    $pat     .= "\\g{$label}?";
                 }
                 $pattern .= "$pat;";
-                $count ++;
-                $equal ++;
             }
         }
         #
         # Equal number of symbols in a column
         #
-        if ($r == $#{$board}) {
+        if ($r == $rows) {
             foreach my $t ("0", "1") {
-                $subject .= "$t" x (@$board / 2);
+                $subject .= "$t" x ($rows / 2);
                 $subject .= ";";
                 my $pat = "";
-                foreach my $rp (0 .. $r) {
-                    $pat .= "\\g{R${rp}C${c}}?";
-                    $back ++;
+                foreach my $rp (1 .. $r) {
+                    my $label = label $rp, $c;
+                    $pat .= "\\g{$label}?";
                 }
                 $pattern .= "$pat;";
-                $count ++;
-                $equal ++;
             }
         }
         #
         # Unequal rows; make sure previous rows differ
         #
-        if ($c == $#{$$board [$r]}) {
-            foreach my $rp (0 .. $r - 1) {
+        if ($c == $cols) {
+            foreach my $rp (1 .. $r - 1) {
                 $subject .= "01;";
                 my $pat   = "";
-                foreach my $cc (0 .. $c) {
-                    my $label1 = "R${rp}C${cc}";
-                    my $label2 = "R${r}C${cc}";
+                foreach my $cc (1 .. $cols) {
+                    my $label1 = label $rp, $cc;
+                    my $label2 = label $r,  $cc;
                     $pat .= "\\g{$label1}\\g{$label2}|" .
                             "\\g{$label2}\\g{$label1}|";
-                    $back += 4;
                 }
                 $pat =~ s/\|$//;
-                $pattern .= "($pat);";
-                $count ++;
-                $unequal ++;
+                $pattern .= "(?:$pat);";
             }
         }
         #
         # Unequal columns; make sure previous columns differ
         #
-        if ($r == $#{$board}) {
-            foreach my $cp (0 .. $c - 1) {
+        if ($r == $rows) {
+            foreach my $cp (1 .. $c - 1) {
                 $subject .= "01;";
                 my $pat   = "";
-                foreach my $rr (0 .. $r) {
-                    my $label1 = "R${rr}C${cp}";
-                    my $label2 = "R${rr}C${c}";
+                foreach my $rr (1 .. $rows) {
+                    my $label1 = label $rr, $cp;
+                    my $label2 = label $rr, $c;
                     $pat .= "\\g{$label1}\\g{$label2}|" .
                             "\\g{$label2}\\g{$label1}|";
-                    $back += 4;
                 }
                 $pat =~ s/\|$//;
-                $pattern .= "($pat);";
-                $count ++;
-                $unequal ++;
+                $pattern .= "(?:$pat);";
             }
         }
     }
 }
 
-# say $subject;
-# say $pattern;
 
-say $count;
-# say $cell_count;
-# say $three;
-# say $equal;
-# say $unequal;
-say $back;
+say $subject if $do_subject;
+say $pattern if $do_pattern;
 
-exit;
-
-if ($subject =~ /^$pattern$/) {
-    foreach my $label (sort keys %+) {
-        say "$label -> ", $+ {$label}
-    }
-    foreach my $r (keys @$board) {
-        foreach my $c (keys @{$$board [$r]}) {
-            my $label = "R${r}C${c}";
-            print $+ {$label} // "?", " ";
+if ($do_solve) {
+    use re 'eval';
+    if ($subject =~ /^$pattern$/) {
+        for my $r (1 .. $rows) {
+            for my $c (1 .. $cols) {
+                my $label = label $r, $c;
+                print $+ {$label}, " ";
+            }
+            print "\n";
         }
-        print "\n";
+    }
+    else {
+        say "No solution";
     }
 }
-else {
-    print "No solution";
-}
-
 
 __END__
