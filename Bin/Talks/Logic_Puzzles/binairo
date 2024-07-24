@@ -82,26 +82,26 @@ foreach my $r (1 .. $rows) {
         # No three in a row horizontally
         #
         if ($c > 2) {
-            $subject .= "${WHITE}${BLACK};";
+            $subject .= "${WHITE};${BLACK};";
             my $pat = "";
             foreach my $cp ($c - 2 .. $c) {
                 my $label = label $r, $cp;
                 $pat .= "\\g{$label}?";
             }
-            $pattern .= $pat . $pat . ";";
+            $pattern .= $pat . ";" . $pat . ";";
         }
 
         #
         # No three in a row vertically
         #
         if ($r > 2) {
-            $subject .= "${WHITE}${BLACK};";
+            $subject .= "${WHITE};${BLACK};";
             my $pat = "";
             foreach my $rp ($r - 2 .. $r) {
                 my $label = label $rp, $c;
                 $pat .= "\\g{$label}?";
             }
-            $pattern .= $pat . $pat . ";";
+            $pattern .= $pat . ";" . $pat . ";";
         }
 
         #

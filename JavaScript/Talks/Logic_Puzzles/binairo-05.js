@@ -1,11 +1,14 @@
 $(document) . ready (function () {
     let element = $(".content")
+    console . log (element . html ())
     let text = element . html ()
                        . replaceAll ("%%WHITE%%", "&#x25CB;")
                        . replaceAll ("%%BLACK%%", "&#x25CF;")
-                       . replace ('"', '"' + "<span class = 'subject'>")
-                       . replace (';"', ';</span>"')
-                       . replace ('/\\', '/<span class = "pattern">\\')
-                       . replace (';/', ";</span>/")
+                       . replaceAll (/((?:^|<code>)")/gm,
+                                     "$1<span class = 'subject'>")
+                       . replaceAll (/;"/g, ';</span>"')
+                       . replaceAll (/(\s\/)/g, '$1<span class = "pattern">')
+                       . replaceAll (/;\//g, ";</span>/")
+    console . log (text)
     element . html (text)
 })
