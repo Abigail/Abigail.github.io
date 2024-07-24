@@ -5,14 +5,16 @@
 <link rel  = 'preconnect' href = 'https://fonts.gstatic.com'>
 <link rel = 'stylesheet' href = 'https://fonts.googleapis.com/css2?family=Source+Code Pro&display=swap'>
 <link rel = 'stylesheet' href = '../../../Styles/main.css'>
+<link rel = 'stylesheet' href = '../../../Styles/svg-grid.css'>
+<link rel = 'stylesheet' href = '../../../Styles/logic_puzzle.css'>
 <link rel = 'stylesheet' href = '../../../Styles/Talks/main.css'>
 <link rel = 'stylesheet' href = '../../../Styles/Talks/Logic_Puzzles/main.css'>
-<link rel = 'stylesheet' href = '../../../Styles/svg-grid.css'>
 <script src = "../../../JavaScript/jquery.js"></script>
 <script src = '../../../JavaScript/Talks/Logic_Puzzles/binairo-10.js'></script>
 <script src = '../../../JavaScript/Talks/main-font-fiddle.js'></script>
 <script src = '../../../JavaScript/Talks/navigation.js'></script>
 <script src = '../../../JavaScript/Talks/Logic_Puzzles/pages.js'></script>
+<script src = '../../../JavaScript/Talks/../logic_puzzle.js'></script>
 <style>html {background: black;}</style>
 </head>
 
@@ -24,14 +26,14 @@
 <div class = 'svg_box_info_middle content'>
 
 
-<pre><code>"01;"
+<pre><code>"%%WHITE%%%%BLACK%%;"
 =~
-/(?:\g{R0C0}\g{R1C0}|\g{R1C0}\g{R0C0}|
-    \g{R0C1}\g{R1C1}|\g{R1C1}\g{R0C1}|
-    \g{R0C2}\g{R1C2}|\g{R1C2}\g{R0C2}|
-    \g{R0C3}\g{R1C3}|\g{R1C3}\g{R0C3}|
-    \g{R0C4}\g{R1C4}|\g{R1C4}\g{R0C4}|
-    \g{R0C5}\g{R1C5}|\g{R1C5}\g{R0C5});/x
+/(?:\g{R1C1}\g{R2C1}|\g{R2C1}\g{R1C1}|
+    \g{R1C2}\g{R2C2}|\g{R2C2}\g{R1C2}|
+    \g{R1C3}\g{R2C3}|\g{R2C3}\g{R1C3}|
+    \g{R1C4}\g{R2C4}|\g{R2C4}\g{R1C4}|
+    \g{R1C5}\g{R2C5}|\g{R2C5}\g{R1C5}|
+    \g{R1C6}\g{R2C6}|\g{R2C6}\g{R1C6});/x
 </code></pre>
 </div>
 <div class = 'svg_box_info_right'></div>

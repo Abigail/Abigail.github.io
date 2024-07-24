@@ -4,8 +4,8 @@
 
 ~~~~
 "subject" =~ /pattern/;
-foreach my $r (0 .. 7) {
-    foreach my $c (0 .. 5) {
+foreach my $r (1 .. 6) {
+    foreach my $c (1 .. 6) {
         print $+ {"R${r}C${c}"}
     }
     print "\n";

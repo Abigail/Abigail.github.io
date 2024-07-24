@@ -5,14 +5,17 @@
 <link rel  = 'preconnect' href = 'https://fonts.gstatic.com'>
 <link rel = 'stylesheet' href = 'https://fonts.googleapis.com/css2?family=Source+Code Pro&display=swap'>
 <link rel = 'stylesheet' href = '../../../Styles/main.css'>
+<link rel = 'stylesheet' href = '../../../Styles/svg-grid.css'>
+<link rel = 'stylesheet' href = '../../../Styles/logic_puzzle.css'>
 <link rel = 'stylesheet' href = '../../../Styles/Talks/main.css'>
 <link rel = 'stylesheet' href = '../../../Styles/Talks/Logic_Puzzles/main.css'>
-<link rel = 'stylesheet' href = '../../../Styles/svg-grid.css'>
 <script src = "../../../JavaScript/jquery.js"></script>
+<script src = '../../../JavaScript/Talks/Logic_Puzzles/binairo-03.js'></script>
 <script src = '../../../JavaScript/Talks/main-font-fiddle.js'></script>
 <script src = '../../../JavaScript/Talks/navigation.js'></script>
 <script src = '../../../JavaScript/Talks/Logic_Puzzles/pages.js'></script>
 <script src = '../../../JavaScript/Talks/hide.js'></script>
+<script src = '../../../JavaScript/Talks/../logic_puzzle.js'></script>
 </head>
 
 <body><h1>Statements: Cell is blank</h1><div class = 'svg_box_none'>
@@ -24,9 +27,10 @@
 
 
 <ul>
-<li><p>Assume the cell <code>R0C3</code> is blank.</p></li>
-<li><p>Add <code class = "subject">01;</code> to the subject.</p></li>
-<li><p>Add <code class = "pattern">0?(?&lt;R0C3&gt;[01])1?;</code> to the pattern.</p></li>
+<li><p>Assume the cell <code>R2C2</code> is blank.</p></li>
+<li><p>Add <code class = "subject">%%WHITE%%%%BLACK%%;</code> to the subject.</p></li>
+<li><p>Add <code class = "pattern">%%WHITE%%?(?&lt;R2C2&gt;[%%WHITE%%%%BLACK%%])%%BLACK%%?;</code>
+to the pattern.</p></li>
 </ul>
 </div>
 <div class = 'svg_box_info_right'></div>

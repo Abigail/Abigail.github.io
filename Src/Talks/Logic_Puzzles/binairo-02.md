@@ -3,8 +3,8 @@
 <!-- %% svg-grid: none -->
 <!-- %% hide           -->
 
-* Assume the clue is `1` for cell `R0C2`.
+* Assume the clue is `%%WHITE%%` for cell `R1C1`.
 
-* The subject part of the statement will be !!subject!! `1;`
+* The subject part of the statement will be !!subject!! `%%WHITE%%;`
 
-* The pattern part will be !!pattern!! `(?<R0C2>1);`
+* The pattern part will be !!pattern!! `(?<R1C1>%%WHITE%%);`

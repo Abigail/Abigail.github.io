@@ -3,8 +3,8 @@
 <!-- %% svg-grid: code -->
 
 ~~~~
-"01;"
+"%%WHITE%%%%BLACK%%;"
 =~
-/\g{R0C2}?\g{R0C3}?\g{R0C4}?
- \g{R0C2}?\g{R0C3}?\g{R0C4}?;/x
+/\g{R1C2}?\g{R1C3}?\g{R1C4}?
+ \g{R1C2}?\g{R1C3}?\g{R1C4}?;/x
 ~~~~

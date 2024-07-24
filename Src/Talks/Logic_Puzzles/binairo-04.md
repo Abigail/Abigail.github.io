@@ -3,6 +3,7 @@
 <!-- %% svg-grid: none -->
 <!-- %% hide           -->
 
-* No three same symbols in `R0C2`, `R0C3`, and `R0C4`.
+* Not thrice the same symbol in `R1C2`, `R1C3`, and `R1C4`.
 
-* At least one of them is a `0`, and at least one of them is a `1`.
+* At least one of them is a `%%WHITE%%`, and at least
+  one of them is a `%%BLACK%%`.

@@ -3,8 +3,8 @@
 <!-- %% svg-grid: code -->
 
 ~~~~
-"111;"
+"%%BLACK%%%%BLACK%%%%BLACK%%;"
 =~
-/\g{R0C0}?\g{R0C1}?\g{R0C2}?
- \g{R0C3}?\g{R0C4}?\g{R0C5}?;/x
+/\g{R1C1}?\g{R1C2}?\g{R1C3}?
+ \g{R1C4}?\g{R1C5}?\g{R1C6}?;/x
 ~~~~

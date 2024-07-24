@@ -38,3 +38,8 @@ table.logic_puzzle.light-up td.clue {
 table.logic_puzzle.light-up td span.solution {
     font-size:    3vw;  /* The lamp symbol is larger than a normal character */
 }
+
+table.logic_puzzle.binairo td {
+    height:       5vw;
+    padding-top:  0vw;
+}

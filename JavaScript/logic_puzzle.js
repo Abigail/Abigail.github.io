@@ -161,6 +161,10 @@ class LogicPuzzle {
                 return content
             }
         }
+        if (puzzle_type == "binairo") {
+            if (content == "0") {return "&#x25CB;"}
+            if (content == "1") {return "&#x25CF;"}
+        }
         return content
     }
 

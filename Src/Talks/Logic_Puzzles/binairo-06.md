@@ -2,6 +2,6 @@
 
 <!-- %% svg-grid: none -->
 
-* In each row, half the cells are `0`, half are `1`.
+* In each row, half the cells are `%%WHITE%%`, half are `%%BLACK%%`.
 
-* Same for columns
+* Same for columns.

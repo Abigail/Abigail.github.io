@@ -5,11 +5,11 @@
 <link rel  = 'preconnect' href = 'https://fonts.gstatic.com'>
 <link rel = 'stylesheet' href = 'https://fonts.googleapis.com/css2?family=Source+Code Pro&display=swap'>
 <link rel = 'stylesheet' href = '../../../Styles/main.css'>
+<link rel = 'stylesheet' href = '../../../Styles/svg-grid.css'>
+<link rel = 'stylesheet' href = '../../../Styles/logic_puzzle.css'>
 <link rel = 'stylesheet' href = '../../../Styles/Talks/main.css'>
 <link rel = 'stylesheet' href = '../../../Styles/Talks/Logic_Puzzles/main.css'>
-<link rel = 'stylesheet' href = '../../../Styles/svg-grid.css'>
 <link rel = 'stylesheet' href = '../../../Styles/Talks/Logic_Puzzles/binairo-01.css'>
-<link rel = 'stylesheet' href = '../../../Styles/logic_puzzle.css'>
 <script src = "../../../JavaScript/jquery.js"></script>
 <script src = '../../../JavaScript/Talks/Logic_Puzzles/binairo-01.js'></script>
 <script src = '../../../JavaScript/Talks/main-font-fiddle.js'></script>
@@ -29,30 +29,26 @@
 
 <div id = "binairo" data-type = "binairo">
 %% clues
-. . 0 . . 1
-. 0 . . 1 .
-. 1 . . 1 .
-0 . . . . .
-0 . . . . .
+0 . 1 1 . .
+. . . . . 1
 . . 1 1 . .
-1 . . . 1 .
-. . . 0 . .
+. . . . . .
+0 . . . 0 .
+. . 1 . . .
 %% solution
-0 1 0 1 0 1
-1 0 1 0 1 0
-1 1 0 0 1 0
 0 0 1 1 0 1
 0 1 0 0 1 1
 1 0 1 1 0 0
-1 0 0 1 1 0
-0 1 1 0 0 1
+1 1 0 0 1 0
+0 1 0 1 0 1
+1 0 1 0 1 0
 </div>
 
 <div class = 'rules'>
 <ul>
-<li>Each cell contains either a <strong>0</strong> or a <strong>1</strong>.</li>
+<li>Each cell contains either a <strong>%%WHITE%%</strong> or a <strong>%%BLACK%%</strong>.</li>
 <li>Each row and column contain an equal number of
-<strong>0</strong>s and <strong>1</strong>s.</li>
+<strong>%%WHITE%%</strong>s and <strong>%%BLACK%%</strong>s.</li>
 <li>No three equal symbols next to each other, horizontally
 or vertically.</li>
 <li>Each row and column is unique.</li>

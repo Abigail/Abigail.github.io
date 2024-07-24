@@ -3,8 +3,9 @@
 <!-- %% svg-grid: none -->
 <!-- %% hide           -->
 
-* Assume the cell `R0C3` is blank.
+* Assume the cell `R2C2` is blank.
 
-* Add !!subject!! `01;` to the subject.
+* Add !!subject!! `%%WHITE%%%%BLACK%%;` to the subject.
 
-* Add !!pattern!! `0?(?<R0C3>[01])1?;` to the pattern.
+* Add !!pattern!! `%%WHITE%%?(?<R2C2>[%%WHITE%%%%BLACK%%])%%BLACK%%?;`
+  to the pattern.
