@@ -8,11 +8,23 @@ no  warnings 'syntax';
 
 use Getopt::Long;
 
+binmode STDOUT, ":utf8";
+
+my $WHITE = "\x{25CB}";
+my $BLACK = "\x{25CF}";
+
 GetOptions 'subject'  =>  \my $do_subject,
            'pattern'  =>  \my $do_pattern,
            'solve'    =>  \my $do_solve,
+           'escape'   =>  \my $escape,
            'playback' =>  \my $playback,
+           'fake'     =>  \my $fake,
 ;
+
+if ($fake) {
+    $WHITE = 0;
+    $BLACK = 1;
+}
 
 $do_solve   = 1 unless $do_subject || $do_pattern;
 $do_solve ||= 1 if $playback;
@@ -33,7 +45,9 @@ while (<>) {
         $c ++;
         if ($given ne ".") {
             my $label = label $r, $c;
-            $given {$label} = $given;
+            $given {$label} = $given eq "0" ? $WHITE
+                            : $given eq "1" ? $BLACK
+                            :  die "Don't know how to parse $given";
         }
         $cols = $c if $cols < $c;
     }
@@ -56,8 +70,8 @@ foreach my $r (1 .. $rows) {
             $pattern .= "(?<$label>$given);"
         }
         else {
-            $subject .= "01;";
-            $pattern .= "0?(?<$label>[01])1?;";
+            $subject .= "${WHITE}${BLACK};";
+            $pattern .= "${WHITE}?(?<$label>[${WHITE}${BLACK}])${BLACK}?;";
             $pattern .= qq <(?{say '$label = ', \$^N})> if $playback;
         }
 
@@ -65,7 +79,7 @@ foreach my $r (1 .. $rows) {
         # No three in a row horizontally
         #
         if ($c > 2) {
-            $subject .= "01;";
+            $subject .= "${WHITE}${BLACK};";
             my $pat = "";
             foreach my $cp ($c - 2 .. $c) {
                 my $label = label $r, $cp;
@@ -78,7 +92,7 @@ foreach my $r (1 .. $rows) {
         # No three in a row vertically
         #
         if ($r > 2) {
-            $subject .= "01;";
+            $subject .= "${WHITE}${BLACK};";
             my $pat = "";
             foreach my $rp ($r - 2 .. $r) {
                 my $label = label $rp, $c;
@@ -91,7 +105,7 @@ foreach my $r (1 .. $rows) {
         # Equal number of symbols in a row
         #
         if ($c == $cols) {
-            foreach my $t ("0", "1") {
+            foreach my $t ($WHITE, $BLACK) {
                 $subject .= "$t" x ($cols / 2);
                 $subject .= ";";
                 my $pat = "";
@@ -106,7 +120,7 @@ foreach my $r (1 .. $rows) {
         # Equal number of symbols in a column
         #
         if ($r == $rows) {
-            foreach my $t ("0", "1") {
+            foreach my $t ($WHITE, $BLACK) {
                 $subject .= "$t" x ($rows / 2);
                 $subject .= ";";
                 my $pat = "";
@@ -122,7 +136,7 @@ foreach my $r (1 .. $rows) {
         #
         if ($c == $cols) {
             foreach my $rp (1 .. $r - 1) {
-                $subject .= "01;";
+                $subject .= "${WHITE}${BLACK};";
                 my $pat   = "";
                 foreach my $cc (1 .. $cols) {
                     my $label1 = label $rp, $cc;
@@ -139,7 +153,7 @@ foreach my $r (1 .. $rows) {
         #
         if ($r == $rows) {
             foreach my $cp (1 .. $c - 1) {
-                $subject .= "01;";
+                $subject .= "${WHITE}${BLACK};";
                 my $pat   = "";
                 foreach my $rr (1 .. $rows) {
                     my $label1 = label $rr, $cp;
@@ -155,16 +169,22 @@ foreach my $r (1 .. $rows) {
 }
 
 
-say $subject if $do_subject;
-say $pattern if $do_pattern;
-
 if ($do_solve) {
     use re 'eval';
     if ($subject =~ /^$pattern$/) {
         for my $r (1 .. $rows) {
             for my $c (1 .. $cols) {
                 my $label = label $r, $c;
-                print $+ {$label}, " ";
+                my $value = $+ {$label};
+                if ($fake) {
+                    $value = $value =~ s/0/\x{25CB}/gr
+                                    =~ s/1/\x{25CF}/gr;
+                }
+                if ($escape) {
+                    $value = $value =~ s/\x{25CB}/&#x25CB;/gr
+                                    =~ s/\x{25CF}/&#x25CF;/gr;
+                }
+                print $value, " ";
             }
             print "\n";
         }
@@ -173,5 +193,14 @@ if ($do_solve) {
         say "No solution";
     }
 }
+
+if ($escape) {
+    $_ =  s/$WHITE/%%WHITE%%/gr
+       =~ s/$BLACK/%%BLACK%%/gr for $subject, $pattern
+}
+
+
+say $subject if $do_subject;
+say $pattern if $do_pattern;
 
 __END__
