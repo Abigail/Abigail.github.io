@@ -14,8 +14,8 @@
 <script src = '../../../JavaScript/Talks/main-font-fiddle.js'></script>
 <script src = '../../../JavaScript/Talks/navigation.js'></script>
 <script src = '../../../JavaScript/Talks/Logic_Puzzles/pages.js'></script>
-<script src = '../../../JavaScript/Talks/hide.js'></script>
 <script src = '../../../JavaScript/Talks/../logic_puzzle.js'></script>
+<style>html {background: black;}</style>
 </head>
 
 <body><h1>Statement: Cell is a clue</h1><div class = 'svg_box_none'>
@@ -26,11 +26,10 @@
 <div class = 'svg_box_info_middle content'>
 
 
-<ul>
-<li><p>Assume the clue is <code>%%WHITE%%</code> for cell <code>R1C1</code>.</p></li>
-<li><p>The subject part of the statement will be <code class = "subject">%%WHITE%%;</code></p></li>
-<li><p>The pattern part will be <code class = "pattern">(?&lt;R1C1&gt;%%WHITE%%);</code></p></li>
-</ul>
+<pre><code>"%%WHITE%%;" =~ /(?&lt;R1C1&gt;%%WHITE%%);/  # If clue is '%%WHITE%%'
+
+"%%BLACK%%;" =~ /(?&lt;R1C1&gt;%%BLACK%%);/  # If clue is '%%BLACK%%'
+</code></pre>
 </div>
 <div class = 'svg_box_info_right'></div>
 <div class = 'bogus'></div>

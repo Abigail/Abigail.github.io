@@ -1,6 +1,5 @@
 $(document) . ready (function () {
     let element = $(".content")
-    console . log (element . html ())
     let text = element . html ()
                        . replaceAll ("%%WHITE%%", "&#x25CB;")
                        . replaceAll ("%%BLACK%%", "&#x25CF;")
@@ -9,6 +8,5 @@ $(document) . ready (function () {
                        . replaceAll (/;"/g, ';</span>"')
                        . replaceAll (/(\s\/)/g, '$1<span class = "pattern">')
                        . replaceAll (/;\//g, ";</span>/")
-    console . log (text)
     element . html (text)
 })

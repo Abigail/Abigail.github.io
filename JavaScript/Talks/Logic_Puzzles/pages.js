@@ -17,7 +17,6 @@ let pages = [
     ["binairo-04",        "Binairo"],
     ["binairo-05",        "Binairo"],
     ["binairo-06",        "Binairo"],
-    ["binairo-07",        "Binairo"],
     ["binairo-08",        "Binairo"],
     ["binairo-09",        "Binairo"],
     ["binairo-10",        "Binairo"],

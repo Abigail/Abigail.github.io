@@ -1,10 +1,9 @@
 # Statement: Cell is a clue
 
-<!-- %% svg-grid: none -->
-<!-- %% hide           -->
+<!-- %% svg-grid: code -->
 
-* Assume the clue is `%%WHITE%%` for cell `R1C1`.
+~~~~
+"%%WHITE%%;" =~ /(?<R1C1>%%WHITE%%);/  # If clue is '%%WHITE%%'
 
-* The subject part of the statement will be !!subject!! `%%WHITE%%;`
-
-* The pattern part will be !!pattern!! `(?<R1C1>%%WHITE%%);`
+"%%BLACK%%;" =~ /(?<R1C1>%%BLACK%%);/  # If clue is '%%BLACK%%'
+~~~~
