@@ -3,7 +3,9 @@
 <!-- %% svg-grid: code -->
 
 ~~~~
-"%%WHITE%%;" =~ /\g{R1C2}?\g{R1C3}?\g{R1C4}?;/x
-
-"%%BLACK%%;" =~ /\g{R1C2}?\g{R1C3}?\g{R1C4}?;/x
+"%%WHITE%%%%WHITE%%%%BLACK%% %%WHITE%%%%BLACK%%%%WHITE%% %%WHITE%%%%BLACK%%%%BLACK%% %%BLACK%%%%WHITE%%%%WHITE%% %%BLACK%%%%WHITE%%%%BLACK%% %%BLACK%%%%BLACK%%%%WHITE%%;"
+            =~
+/(?:[%%WHITE%%%%BLACK%%]{3})*
+ \g{R1C1}\g{R1C2}\g{R1C3}
+ (?:[%%WHITE%%%%BLACK%%]{3})*;/x
 ~~~~

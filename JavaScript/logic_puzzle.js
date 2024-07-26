@@ -245,7 +245,8 @@ class LogicPuzzle {
                         }
                     }
                 }
-                this . set_content (row, col, content)
+                this . set_content (row, col,
+                                    this . translate ("playback", content))
                 stack . push ([row, col])
             }, i * delay)
         }

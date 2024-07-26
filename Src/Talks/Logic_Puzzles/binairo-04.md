@@ -2,8 +2,10 @@
 
 <!-- %% svg-grid: none -->
 <!-- %% hide           -->
+<!-- %% mathjax        -->
 
-* Not thrice the same symbol in `R1C2`, `R1C3`, and `R1C4`.
+* There are \(2^3 = 8\) ways to to have three symbols in a row.
 
-* At least one of them is a `%%WHITE%%`, and at least
-  one of them is a `%%BLACK%%`.
+* Two of them have thrice the same symbol.
+
+* So, just pick one of the valid six.
