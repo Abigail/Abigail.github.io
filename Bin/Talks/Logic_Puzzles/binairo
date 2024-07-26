@@ -23,6 +23,7 @@ GetOptions 'subject'           =>  \my $do_subject,
            'cols'              =>  \my $columns,
            'type=i'            =>  \my $type,
            'statistics|stats'  =>  \my $statistics,
+           'optimize'          =>  \my $optimize,
 ;
 
 if ($fake) {
@@ -127,6 +128,13 @@ sub no_3_in_a_row ($type, @cells) {
     return ($subject, $pattern)
 }
 
+
+sub optimize ($pattern) {
+    $pattern =~ s/;$//;
+    return $optimize ? "(?>$pattern);" : "(?:$pattern);"
+}
+
+
 foreach my $r (1 .. $rows) {
     foreach my $c (1 .. $cols) {
         my $label = label $r, $c;
@@ -173,7 +181,7 @@ foreach my $r (1 .. $rows) {
                     my $label = label $r, $cp;
                     $pat     .= "\\g{$label}?";
                 }
-                $pattern .= "$pat;";
+                $pattern .= optimize $pat;
             }
         }
         #
@@ -188,7 +196,7 @@ foreach my $r (1 .. $rows) {
                     my $label = label $rp, $c;
                     $pat .= "\\g{$label}?";
                 }
-                $pattern .= "$pat;";
+                $pattern .= optimize $pat;
             }
         }
         #
@@ -205,7 +213,7 @@ foreach my $r (1 .. $rows) {
                             "\\g{$label2}\\g{$label1}|";
                 }
                 $pat =~ s/\|$//;
-                $pattern .= "(?:$pat);";
+                $pattern .= optimize $pat;
             }
         }
         #
@@ -222,7 +230,7 @@ foreach my $r (1 .. $rows) {
                             "\\g{$label2}\\g{$label1}|";
                 }
                 $pat =~ s/\|$//;
-                $pattern .= "(?:$pat);";
+                $pattern .= optimize $pat;
             }
         }
     }
