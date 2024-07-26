@@ -7,20 +7,22 @@ use warnings;
 no  warnings 'syntax';
 
 use Getopt::Long;
+use Time::HiRes qw [time];
 
 binmode STDOUT, ":utf8";
 
 my $WHITE = "\x{25CB}";
 my $BLACK = "\x{25CF}";
 
-GetOptions 'subject'  =>  \my $do_subject,
-           'pattern'  =>  \my $do_pattern,
-           'solve'    =>  \my $do_solve,
-           'escape'   =>  \my $escape,
-           'playback' =>  \my $playback,
-           'fake'     =>  \my $fake,
-           'cols'     =>  \my $columns,
-           'type=i'   =>  \my $type,
+GetOptions 'subject'           =>  \my $do_subject,
+           'pattern'           =>  \my $do_pattern,
+           'solve'             =>  \my $do_solve,
+           'escape'            =>  \my $escape,
+           'playback'          =>  \my $playback,
+           'fake'              =>  \my $fake,
+           'cols'              =>  \my $columns,
+           'type=i'            =>  \my $type,
+           'statistics|stats'  =>  \my $statistics,
 ;
 
 if ($fake) {
@@ -31,11 +33,13 @@ if ($fake) {
 $do_subject  ||= 1 if $columns;
 $do_pattern  ||= 1 if $columns;
 $do_solve      = 1 unless $do_subject || $do_pattern;
-$do_solve    ||= 1 if $playback;
+$do_solve    ||= 1 if $playback || $statistics;
 $type        ||= 1;
 
 my $rows = 0;
 my $cols = 0;
+my $start;
+my $end;
 my %given;
 
 my sub label ($r, $c) {"R${r}C${c}"}
@@ -227,7 +231,10 @@ foreach my $r (1 .. $rows) {
 
 if ($do_solve) {
     use re 'eval';
-    if ($subject =~ /^$pattern$/) {
+    $start = time;
+    my $r = $subject =~ /^$pattern$/;
+    $end = time;
+    if ($r) {
         for my $r (1 .. $rows) {
             for my $c (1 .. $cols) {
                 my $label = label $r, $c;
@@ -266,6 +273,21 @@ if ($columns) {
 else {
     say $subject if $do_subject;
     say $pattern if $do_pattern;
+}
+
+if ($statistics) {
+    my @args = (length ($subject),
+                length ($pattern),
+                $subject =~ y/;/;/,
+                $pattern =~ y/g/g/,
+                $end - $start);
+    printf <<~ "--" => @args;
+        Subject: %d characters
+        Pattern: %d characters
+        Number of statements: %d
+        Number of backreferences: %d
+        Run time: %.3f seconds
+        --
 }
 
 __END__
