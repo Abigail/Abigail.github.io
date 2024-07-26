@@ -7,3 +7,4 @@
 * Number of statements: 138
 * Number of backreferences: 1,008
 * Run time: 0.005 seconds
+* Non-clue capture settings: 760
