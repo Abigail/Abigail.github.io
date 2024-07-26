@@ -9,6 +9,8 @@ no  warnings 'syntax';
 use Getopt::Long;
 use Time::HiRes qw [time];
 
+sub optimize;
+
 binmode STDOUT, ":utf8";
 
 my $WHITE = "\x{25CB}";
@@ -90,37 +92,41 @@ sub no_3_in_a_row ($type, @cells) {
         # "01" =~ /(?:\g{1}\g{2}|\g{1}\g{3}|\g{2}\g{1}|
         #             \g{2}\g{3}|\g{3}\g{1}|\g{3}\g{2})/
         $subject .= "${WHITE}${BLACK};";
-        $pattern .= "(?:\\g{$label1}\\g{$label2}|" .
-                       "\\g{$label1}\\g{$label3}|" .
-                       "\\g{$label2}\\g{$label1}|" .
-                       "\\g{$label2}\\g{$label3}|" .
-                       "\\g{$label3}\\g{$label1}|" .
-                       "\\g{$label3}\\g{$label2});";
+        $pattern .= optimize "\\g{$label1}\\g{$label2}|" .
+                             "\\g{$label1}\\g{$label3}|" .
+                             "\\g{$label2}\\g{$label1}|" .
+                             "\\g{$label2}\\g{$label3}|" .
+                             "\\g{$label3}\\g{$label1}|" .
+                             "\\g{$label3}\\g{$label2}";
     }
     elsif ($type == 3 || $type == 4) {
         $subject .= "${WHITE};${BLACK};";
         if ($type == 3) {
             # "0;" =~ /\g{1}?\g{2}?\g{3}?;/
             # "1;" =~ /\g{1}?\g{2}?\g{3}?;/
-            $pattern .= "\\g{$label1}?\\g{$label2}?\\g{$label3}?;" x 2;
+            my $pat = optimize "\\g{$label1}?\\g{$label2}?\\g{$label3}?";
+            $pattern .= $pat x 2;
         }
         else {
             # "0;" =~ /(?:\g{1}|\g{2}|\g{3});/
             # "1;" =~ /(?:\g{1}|\g{2}|\g{3});/
-            $pattern .= "(?:\\g{$label1}|\\g{$label2}|\\g{$label3});" x 2;
+            my $pat = optimize "\\g{$label1}|\\g{$label2}|\\g{$label3}";
+            $pattern .= $pat x 2;
         }
     }
     elsif ($type == 5 || $type == 6) {
         $subject .= "${WHITE}${BLACK};";
         if ($type == 5) {
             # "01;" =~ /\g{1}?\g{2}?\g{3}?\g{1}?\g{2}?\g{3}?;/
-            $pattern .= "\\g{$label1}?\\g{$label2}?\\g{$label3}?" x 2;
+            my $pat = "\\g{$label1}?\\g{$label2}?\\g{$label3}?" x 2;
+            $pattern .= optimize $pat;
         }
         else {
             # "01;" =~ /(?:\g{1}|\g{2}|\g{3})(?:\g{1}|\g{2}|\g{3});/
-            $pattern .= "(?:\\g{$label1}|\\g{$label2}|\\g{$label3})" x 2;
+            my $pat = optimize "\\g{$label1}|\\g{$label2}|\\g{$label3}";
+               $pat =~ s/;$//;
+            $pattern .= "$pat$pat;";
         }
-        $pattern .= ";"
     }
     else {
         ...
@@ -129,6 +135,32 @@ sub no_3_in_a_row ($type, @cells) {
 }
 
 
+sub equal (%args) {
+    my @labels;
+    my $subject;
+    my $pattern;
+    if ($args {row}) {
+        @labels = map {label $args {row}, $_} 1 .. $cols;
+    }
+    elsif ($args {col}) {
+        @labels = map {label $_, $args {col}} 1 .. $rows;
+    }
+    else {
+        ...
+    }
+    foreach my $t ($WHITE, $BLACK) {
+        $subject .= $t x (@labels / 2) . ";";
+        my $pat = join "" => map {"\\g{$_}?"} @labels;
+        $pattern .= optimize $pat;
+    }
+    return ($subject, $pattern)
+}
+
+
+#
+# Surround a pattern with (?>) if the optimize flag has been given.
+# Else, just use (?:)
+#
 sub optimize ($pattern) {
     $pattern =~ s/;$//;
     return $optimize ? "(?>$pattern);" : "(?:$pattern);"
@@ -173,31 +205,17 @@ foreach my $r (1 .. $rows) {
         # Equal number of symbols in a row
         #
         if ($c == $cols) {
-            foreach my $t ($WHITE, $BLACK) {
-                $subject .= "$t" x ($cols / 2);
-                $subject .= ";";
-                my $pat = "";
-                foreach my $cp (1 .. $cols) {
-                    my $label = label $r, $cp;
-                    $pat     .= "\\g{$label}?";
-                }
-                $pattern .= optimize $pat;
-            }
+            my ($s, $p) = equal row => $r;
+            $subject .= $s;
+            $pattern .= $p;
         }
         #
         # Equal number of symbols in a column
         #
         if ($r == $rows) {
-            foreach my $t ($WHITE, $BLACK) {
-                $subject .= "$t" x ($rows / 2);
-                $subject .= ";";
-                my $pat = "";
-                foreach my $rp (1 .. $r) {
-                    my $label = label $rp, $c;
-                    $pat .= "\\g{$label}?";
-                }
-                $pattern .= optimize $pat;
-            }
+            my ($s, $p) = equal col => $c;
+            $subject .= $s;
+            $pattern .= $p;
         }
         #
         # Unequal rows; make sure previous rows differ
