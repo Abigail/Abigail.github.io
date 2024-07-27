@@ -1,6 +1,6 @@
 <html>
 <head>
-<title>Statistics</title>
+<title>Binairo</title>
 <meta charset = "utf-8">
 <link rel  = 'preconnect' href = 'https://fonts.gstatic.com'>
 <link rel = 'stylesheet' href = 'https://fonts.googleapis.com/css2?family=Source+Code Pro&display=swap'>
@@ -9,15 +9,16 @@
 <link rel = 'stylesheet' href = '../../../Styles/logic_puzzle.css'>
 <link rel = 'stylesheet' href = '../../../Styles/Talks/main.css'>
 <link rel = 'stylesheet' href = '../../../Styles/Talks/Logic_Puzzles/main.css'>
-<link rel = 'stylesheet' href = '../../../Styles/Talks/Logic_Puzzles/binairo-15.css'>
 <script src = "../../../JavaScript/jquery.js"></script>
+<script src = '../../../JavaScript/Talks/Logic_Puzzles/binairo-20.js'></script>
 <script src = '../../../JavaScript/Talks/main-font-fiddle.js'></script>
 <script src = '../../../JavaScript/Talks/navigation.js'></script>
 <script src = '../../../JavaScript/Talks/Logic_Puzzles/pages.js'></script>
+<script src = '../../../JavaScript/Talks/hide.js'></script>
 <script src = '../../../JavaScript/Talks/../logic_puzzle.js'></script>
 </head>
 
-<body><h1>Statistics</h1><div class = 'svg_box_none'>
+<body><h1>Binairo</h1><div class = 'svg_box_none'>
 <div class = 'bogus'></div>
 <div class = 'bogus'></div>
 <div class = 'bogus'></div>
@@ -25,15 +26,31 @@
 <div class = 'svg_box_info_middle content'>
 
 
-<ul>
-<li>Subject: 1,197 characters</li>
-<li>Pattern: 10,593 characters</li>
-<li>Number of statements: 138</li>
-<li>Number of backreferences: 1,008</li>
-<li>Run time: 0.006 seconds</li>
-<li>Non-clue capture settings: 760</li>
-</ul>
-</div>
+<div id = "binairo" data-type = "binairo">
+%% clues
+. . . 1 1 . . . . .
+. 1 . 0 0 . . 1 . .
+0 . . . . . . 0 . .
+. 0 . 0 . . . . 1 .
+. . . . 0 . 0 . . .
+0 0 . . 0 . . . . .
+. . . 1 . . 0 . . 0
+0 . . . 0 . 0 . . .
+. . . 0 . . . . 1 1
+. . 0 . . . 0 0 . 0
+%% solution
+1 0 0 1 1 0 1 1 0 0 
+0 1 1 0 0 1 0 1 0 1 
+0 1 0 1 0 0 1 0 1 1 
+1 0 1 0 1 0 1 0 1 0 
+1 1 0 1 0 1 0 1 0 0 
+0 0 1 0 0 1 1 0 1 1 
+1 1 0 1 1 0 0 1 0 0 
+0 0 1 1 0 1 0 1 0 1 
+0 0 1 0 1 0 1 0 1 1 
+1 1 0 0 1 1 0 0 1 0
+
+</div></div>
 <div class = 'svg_box_info_right'></div>
 <div class = 'bogus'></div>
 <div class = 'bogus'></div>

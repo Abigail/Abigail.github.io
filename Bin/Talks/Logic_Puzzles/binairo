@@ -26,6 +26,7 @@ GetOptions 'subject'           =>  \my $do_subject,
            'type=i'            =>  \my $type,
            'statistics|stats'  =>  \my $statistics,
            'optimize'          =>  \my $optimize,
+           'plain'             =>  \my $plain,
 ;
 
 if ($fake) {
@@ -265,7 +266,7 @@ if ($do_solve) {
             for my $c (1 .. $cols) {
                 my $label = label $r, $c;
                 my $value = $+ {$label};
-                if ($fake) {
+                if ($fake && !$plain) {
                     $value = $value =~ s/0/\x{25CB}/gr
                                     =~ s/1/\x{25CF}/gr;
                 }
