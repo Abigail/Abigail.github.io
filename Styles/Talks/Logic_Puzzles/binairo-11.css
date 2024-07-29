@@ -1,15 +1,3 @@
-html {
-    background:                         black;
-}
-
-.content {
-    text-align:                       justify;
-    text-justify:             inter-character;
-}
-
 code {
     font-size:                          2.1vw;
-    word-break:                     break-all;
-    color:                         lightgreen;
-    background:                         black;
 }

@@ -38,3 +38,31 @@ span.focus {
 pre, pre code {
     font-size:              3vw;
 }
+
+
+code, code.wavy {
+    color:                         lightgreen;
+    background:                         black;
+}
+
+
+/*
+ * subject/pattern should be formatted as a block.
+ * With the appropriate colours.
+ */
+code.subject, .content.subject code {
+    color:                             yellow;
+}
+
+code.pattern, .content.pattern code {
+    color:                             orange;
+}
+
+.content.subject, .content.pattern {
+    text-align:                       justify; 
+    text-justify:             inter-character;
+}
+
+.content.subject code, .content.pattern code {
+    word-break:                     break-all;
+}

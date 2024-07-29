@@ -685,10 +685,19 @@ sub pre_process ($text, $directives) {
         }
     }
 
+    #
+    # "code", "subject" and "pattern", are like none, but with some
+    # extras
+    #
     if ($$directives {"svg-grid"} &&
-        $$directives {"svg-grid"} eq "code") {
-        $$directives {"svg-grid"} =  "none";
-        $$directives {"code-page"} //= 1
+        $$directives {"svg-grid"} =~ /^(?:code|subject|pattern)$/) {
+        my $value = $$directives {"svg-grid"};
+        $$directives {"subject"}     = 1 if $value eq "subject";
+        $$directives {"pattern"}     = 1 if $value eq "pattern";
+        $$directives {"svg-grid"}    =  "none";
+        $$directives {"code-page"} //= 1;
+        $$directives {"pre-to-p"}  //= 1 if $value eq "subject" ||
+                                            $value eq "pattern";
     }
 
     my @tokens = (["\Q~~~~",  "\Q~~~~",  \&code_block],
@@ -846,17 +855,23 @@ sub post_process ($text, $directives) {
         my $width = $svg_grid eq "middle" || $svg_grid eq "none" ? 3 : 2;
         my $empty = "<div class = 'bogus'></div>\n" x $width;
         my $svg   = "<div class = 'svg-box'></div>\n";
+        my @content_class = qw [content];
+        push @content_class => "subject"   if $$directives {"subject"};
+        push @content_class => "pattern"   if $$directives {"pattern"};
+        push @content_class => "code-page" if $$directives {"code-page"};
 
-           $pre  .= "<div class = '$class'>\n";
-           $pre  .= $empty;
+        $pre  .= "<div class = '$class'>\n";
+        $pre  .= $empty;
+
+        local $" = " ";
 
         if ($svg_grid eq "left") {
             #
             # We then have first an SVG images then (optionally) some
-            # test to the right of it.
+            # text to the right of it.
             #
             $pre  .= $svg;
-            $pre  .= "<div class = 'svg_box_info_right content'>\n";
+            $pre  .= "<div class = 'svg_box_info_right @content_class'>\n";
             $post .= "</div>\n";
         }
 
@@ -875,7 +890,7 @@ sub post_process ($text, $directives) {
             # We first (optionally) have some text to the left, then
             # an SVG image.
             #
-            $pre  .= "<div class = 'svg_box_info_left content'>\n";
+            $pre  .= "<div class = 'svg_box_info_left @content_class'>\n";
             $post .= "</div>\n";
             $post .= $svg;
         }
@@ -886,7 +901,7 @@ sub post_process ($text, $directives) {
             # Content will be in the middle box
             #
             $pre  .= "<div class = 'svg_box_info_left'></div>\n";
-            $pre  .= "<div class = 'svg_box_info_middle content'>\n";
+            $pre  .= "<div class = 'svg_box_info_middle @content_class'>\n";
             $post .= "</div>\n";
             $post .= "<div class = 'svg_box_info_right'></div>\n";
         }
