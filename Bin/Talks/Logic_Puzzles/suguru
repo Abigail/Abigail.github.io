@@ -7,18 +7,22 @@ use warnings;
 no  warnings 'syntax';
 
 use Getopt::Long;
+use Time::HiRes qw [time];
 
-GetOptions 'subject'  =>  \my $do_subject,
-           'pattern'  =>  \my $do_pattern,
-           'solve'    =>  \my $do_solve,
-           'playback' =>  \my $playback,
+GetOptions 'subject'           =>  \my $do_subject,
+           'pattern'           =>  \my $do_pattern,
+           'solve'             =>  \my $do_solve,
+           'playback'          =>  \my $playback,
+           'statistics|stats'  =>  \my $statistics,
 ;
 
 $do_solve   = 1 unless $do_subject || $do_pattern;
-$do_solve ||= 1 if $playback;
+$do_solve ||= 1 if $playback || $statistics;
 
 my $rows = 0;
 my $cols = 0;
+my $start;
+my $end;
 my %groups;
 my %given;
 my $board;
@@ -90,6 +94,13 @@ foreach my $cell (@givens, @blanks) {
     #
     foreach my $done (@done) {
         my ($dr, $dc) = @$done;
+        my $dlabel = label $dr, $dc;
+        #
+        # If both the current cell, and the cell touching are givens,
+        # we can skip this.
+        #
+        next if $given {$label} && $given {$dlabel};
+
         my $name  = $$board [$r]  [$c];
         my $dname = $$board [$dr] [$dc];
         if (abs ($r - $dr) <= 1 && abs ($c - $dc) <= 1 || $name eq $dname) {
@@ -107,7 +118,6 @@ foreach my $cell (@givens, @blanks) {
             $subject  .= ";";
             my $range  = "[1-$size]";
             my $drange = "[1-$dsize]";
-            my $dlabel = label $dr, $dc;
             $pattern  .= "(?:$range$drange)*\\g{$label}\\g{$dlabel}" .
                          "(?:$range$drange)*;";
         }
@@ -120,7 +130,10 @@ say $pattern if $do_pattern;
 
 if ($do_solve) {
     use re 'eval';
-    if ($subject =~ /^$pattern$/) {
+    $start = time;
+    my $r  = $subject =~ /^$pattern$/;
+    $end   = time;
+    if ($r) {
         for my $r (1 .. $rows) {
             for my $c (1 .. $cols) {
                 print $+ {"R${r}C${c}"}, " ";
@@ -131,6 +144,21 @@ if ($do_solve) {
     else {
         say "No solution";
     }
+}
+
+if ($statistics) {
+    my @args = (length ($subject),
+                length ($pattern),
+                $subject =~ y/;/;/,
+                $pattern =~ y/g/g/,
+                $end - $start);
+    printf <<~ "--" => @args;
+        Subject: %d characters
+        Pattern: %d characters
+        Number of statements: %d
+        Number of backreferences: %d
+        Run time: %.3f seconds
+        --
 }
 
 __END__
