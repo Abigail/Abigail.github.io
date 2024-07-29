@@ -177,3 +177,11 @@ our %MACROS = (
     },
 
 );
+
+
+our %POST_MACROS = (
+    $TYPE_TALK => {
+        WHITE     =>  "&#x25CB;",
+        BLACK     =>  "&#x25CF;",
+    }
+);

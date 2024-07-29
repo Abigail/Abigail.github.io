@@ -63,6 +63,7 @@ my $TYPE_INFO = {
         $INFO_DIR      =>  $DIR_TALK,
         $INFO_NAV      =>  "nav_talks",
         $INFO_UP       =>  "../../..",
+        $INFO_JS       =>  ["utils"],
         $INFO_IS_TALK  =>  1,
     },
     $TYPE_TRAPPED  =>  {
@@ -164,7 +165,9 @@ my %WHERE_INFO = (
 );
 
 
-our %MACROS; require "$BIN_DIR/macros.pl";
+our %MACROS;
+our %POST_MACROS;
+require "$BIN_DIR/macros.pl";
 
 my %LINK_GROUP; init_link_group ();
 
@@ -959,6 +962,11 @@ sub post_process ($text, $directives) {
         $text =~ s/<pre><code>/<p><code>/g;
         $text =~ s!</pre></code>!</p></code>!g;
     }
+
+    #
+    # Handle post macros
+    #
+    $text =~ s {(%%([A-Z0-9_]+)%%)} {$POST_MACROS {$type} {$2} || $1}eg;
 
     $text;
 }

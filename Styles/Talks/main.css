@@ -50,11 +50,11 @@ code, code.wavy {
  * subject/pattern should be formatted as a block.
  * With the appropriate colours.
  */
-code.subject, .content.subject code {
+code.subject, .content.subject code, code span.subject {
     color:                             yellow;
 }
 
-code.pattern, .content.pattern code {
+code.pattern, .content.pattern code, code span.pattern {
     color:                             orange;
 }
 
