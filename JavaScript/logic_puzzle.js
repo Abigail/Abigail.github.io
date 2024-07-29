@@ -85,6 +85,7 @@ class LogicPuzzle {
         let clues    = this . clues
         let solution = this . solution
         let out = `<table class = 'logic_puzzle ${this . puzzle_type}'>\n`
+        console . log (`rows = ${this . rows}; cols = ${this . cols}`)
         for (let row = 1; row <= this . rows; row ++) {
             out += `  <tr class = 'row-${row}'>\n`
             for (let col = 1; col <= this . cols; col ++) {
