@@ -43,7 +43,7 @@ let pages = [
     ["suguru-10",         "Suguru"],
     ["suguru-11",         "Suguru"],
     ["suguru-12",         "Suguru"],
-    ["suguru-12a",        "Suguru"],
+    ["suguru-13",         "Suguru"],
     ["suguru-18",         "Suguru"],
     ["suguru-19",         "Suguru"],
     ["suguru-20",         "Suguru"],
