@@ -5,14 +5,16 @@
 <link rel  = 'preconnect' href = 'https://fonts.gstatic.com'>
 <link rel = 'stylesheet' href = 'https://fonts.googleapis.com/css2?family=Source+Code Pro&display=swap'>
 <link rel = 'stylesheet' href = '../../../Styles/main.css'>
-<link rel = 'stylesheet' href = '../../../Styles/Talks/main.css'>
-<link rel = 'stylesheet' href = '../../../Styles/Talks/Logic_Puzzles/main.css'>
 <link rel = 'stylesheet' href = '../../../Styles/svg-grid.css'>
+<link rel = 'stylesheet' href = '../../../Styles/logic_puzzle.css'>
+<link rel = 'stylesheet' href = '../../../Styles/Talks/main.css'>
 <script src = "../../../JavaScript/jquery.js"></script>
 <script src = '../../../JavaScript/Talks/main-font-fiddle.js'></script>
 <script src = '../../../JavaScript/Talks/navigation.js'></script>
 <script src = '../../../JavaScript/Talks/Logic_Puzzles/pages.js'></script>
 <script src = '../../../JavaScript/Talks/hide.js'></script>
+<script src = '../../../JavaScript/Talks/utils.js'></script>
+<script src = '../../../JavaScript/Talks/../logic_puzzle.js'></script>
 </head>
 
 <body><h1>Statement: Cells must differ</h1><div class = 'svg_box_none'>
@@ -24,9 +26,11 @@
 
 
 <ul>
-<li><p>All values in a group must differ from each other.</p></li>
-<li><p>Each pair of cells in a group must differ.</p></li>
-<li><p>So must each pair of cells which touch each other.</p></li>
+<li>All values in a group must differ from each other.</li>
+<li>Each pair of cells in a group must differ.</li>
+<li>So must each pair of cells which touch each other.</li>
+<li>List all pairs of values which are different (hence, allowed),
+then match a pair.</li>
 </ul>
 </div>
 <div class = 'svg_box_info_right'></div>

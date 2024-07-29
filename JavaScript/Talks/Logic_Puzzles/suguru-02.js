@@ -1,3 +1,3 @@
 $(document) . ready (function () {
-    $("code") . addClass ("pattern")
+    Utils . subject_pattern ()
 })

@@ -5,14 +5,17 @@
 <link rel  = 'preconnect' href = 'https://fonts.gstatic.com'>
 <link rel = 'stylesheet' href = 'https://fonts.googleapis.com/css2?family=Source+Code Pro&display=swap'>
 <link rel = 'stylesheet' href = '../../../Styles/main.css'>
-<link rel = 'stylesheet' href = '../../../Styles/Talks/main.css'>
-<link rel = 'stylesheet' href = '../../../Styles/Talks/Logic_Puzzles/main.css'>
 <link rel = 'stylesheet' href = '../../../Styles/svg-grid.css'>
+<link rel = 'stylesheet' href = '../../../Styles/logic_puzzle.css'>
+<link rel = 'stylesheet' href = '../../../Styles/Talks/main.css'>
 <script src = "../../../JavaScript/jquery.js"></script>
+<script src = '../../../JavaScript/Talks/Logic_Puzzles/suguru-02.js'></script>
 <script src = '../../../JavaScript/Talks/main-font-fiddle.js'></script>
 <script src = '../../../JavaScript/Talks/navigation.js'></script>
 <script src = '../../../JavaScript/Talks/Logic_Puzzles/pages.js'></script>
-<script src = '../../../JavaScript/Talks/hide.js'></script>
+<script src = '../../../JavaScript/Talks/utils.js'></script>
+<script src = '../../../JavaScript/Talks/../logic_puzzle.js'></script>
+<style>html {background: black;}</style>
 </head>
 
 <body><h1>Statement: Cell is a clue</h1><div class = 'svg_box_none'>
@@ -20,14 +23,13 @@
 <div class = 'bogus'></div>
 <div class = 'bogus'></div>
 <div class = 'svg_box_info_left'></div>
-<div class = 'svg_box_info_middle content'>
+<div class = 'svg_box_info_middle content code-page'>
 
 
-<ul>
-<li><p>Assume the clue is <code>4</code> for cell <code>R1C2</code>.</p></li>
-<li><p>The subject part of the statement will be <code class = "subject">4;</code></p></li>
-<li><p>The pattern part will be <code class = "pattern">(?&lt;R1C2&gt;4);</code></p></li>
-</ul>
+<pre><code># Clue '4' for cell 'R1C2'
+
+"4;"  =~  /(?&lt;R1C2&gt;4);/
+</code></pre>
 </div>
 <div class = 'svg_box_info_right'></div>
 <div class = 'bogus'></div>
