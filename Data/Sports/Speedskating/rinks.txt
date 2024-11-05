@@ -1,0 +1,138 @@
+alkmaar         IJsstadion De Meent
+                Alkmaar                 NED     ARTIFICIAL         0
+
+beijing         National Speed Skating Oval
+                Beijing                 CHN     INDOOR            49
+berlin          Sportforum Hohensch\u{F6}nhausen
+                Berlin                  GER     INDOOR            34
+bislett         Bislett Statium
+                Oslo                    NOR     NATURAL           37
+brandbu         Rosendalbanen
+                Brandbu                 NOR     NATURAL          178
+
+calgary         Olympic Oval
+                Calgary                 CAN     INDOOR          1034
+cortina         Pista Fiames
+                Cortina d'Ampezzo       ITA     NATURAL         1401
+
+davos           Eisstadion
+                Davos                   SUI     NATURAL         1506
+deventer        IJsselstation
+                Deventer                NED     ARTIFICIAL         5
+
+eskilstuna      Isstadion
+                Eskilstuna              SWE     ARTIFICIAL        16
+engelberg       Eisbahn
+                Engelberg               SUI     NATURAL         1138
+
+frogner         Frogner Stadium
+                Oslo                    NOR     NATURAL           42
+
+gamle           Gamle Frogner Stadion
+                Oslo                    NOR     NATURAL           42
+geithus         Farumo Stadion
+                Geithus                 NOR     ARTIFICIAL        116
+gjovik          Gj\u{F8}vik Stadion
+                Gj\u{F8}vik             NOR     NATURAL          149
+grenoble        Parc Paul Mistral
+                Grenoble                FRA     ARTIFICIAL       220
+groningen       IJsstadion Stadspark
+                Groningen               NED     ARTIFICIAL         1
+goteborg        Nya Ullevi
+                G\u{F6}teborg           SWE     ARTIFICIAL        10
+
+haarlem         Kennemerland
+                Haarlem                 NED     ARTIFICIAL         0
+hamar           Olympia Hall
+                Hamar                   NOR     INDOOR           125
+hamar-mjosen    Mj\u{F8}sen
+                Hamar                   NOR     NATURAL          123
+hamar-stadion   Hamar Stadion
+                Hamar                   NOR     NATURAL          113
+helsinki        T\u{F6}\u{F6}l\u{F6}n Pallokentt\u{E4}
+                Helsinki                FIN     NATURAL           10
+horten          Lystlunden Gressbane
+                Horten                  NOR     NATURAL            2
+
+inzell          Ludwig Schwabl Stadion
+                Inzell                  FRG     ARTIFICIAL       690
+
+jaap_eden       Jaap Edenbaan
+                Amsterdam               NED     ARTIFICIAL         0
+
+karuizawa       Skating Center
+                Karuizawa               JPN     ARTIFICIAL       980
+kvarnsveden     Idrottsplatsen
+                Kvarnsveden             SWE     NATURAL          165
+kirov           Dinamo
+                Kirov                   URS     NATURAL          166
+kongsberg       Idr\u{E6}tsplassen
+                Kongsberg               NOR     NATURAL          233
+kuchwald        K\u{FC}chwald
+  1974-00-00    Karl-Marx-Stadt         GDR     ARTIFICIAL       410
+  1990-06-01    Chemnitz                GDR     ARTIFICIAL       410
+
+lake_placid     James B. Sheffield Olympic Skating Rink
+                Lake Placid             USA     ARTIFICIAL       568
+
+madonna         Pista Olimpica
+                Madonna di Campiglio    ITA     NATURAL         1450
+medeo           Kompleks Medeo
+  1951-02-05    Medeo                   URS     NATURAL         1691
+  1972-08-00    Medeo                   URS     ARTIFICIAL      1691
+  1991-12-26    Medeo                   KAZ     ARTIFICIAL      1691
+misurina        Lagua Misurina
+                Misurina                ITA     NATURAL         1756
+moscow          Dinamo
+                Moscow                  URS     NATURAL          167
+museumplein     Museumplein
+                Amsterdam               NED     NATURAL            0
+
+nagano          M-Wave
+                Nagano                  JPN     INDOOR           342
+neglingeviken   Saltsj\u{F6}banen
+                Neglingeviken           NOR     NATURAL            8
+notodden        Notodden Sportsplass
+                Notodden                NOR     NATURAL          103
+
+obihiro         Meiji Hokkaido-Tokachi Oval
+                Obihiro                 JPN     INDOOR            79
+
+paterswolde     Paterswoldsche Meer
+                Paterswolde             NED     NATURAL            0
+
+salt_lake_city  Utah Olympic Oval
+                Salt Lake City          USA     INDOOR          1423
+sarajevo        Zetra
+                Sarajevo                YUG     ARTIFICIAL       564
+savalen         Idrettsplass
+                Savalen                 NOR     NATURAL          724
+squaw_valley    Olympic Skating Ring
+                Squaw Valley            USA     ARTIFICIAL      1876
+st_moritz       Badrutss Park
+                St. Moritz              SUI     NATURAL         1856
+stockholm       Stockholm Stadion
+                Stockholm               SWE     NATURAL           25
+sverdlovsk      Tsentrainyu
+                Sverdlovsk              URS     NATURAL          292
+
+thialf          Thialf
+  1967-10-14    Heerenveen              NED     ARTIFICIAL         0
+  1986-10-00    Heerenveen              NED     INDOOR             0
+tolga           Tolga Idrettsplass
+                Tolga                   NOR     NATURAL          543
+tonsberg        T\u{F8}nsberg Stadion
+                T\u{F8}nsberg           NOR     NATURAL           66
+trondheim-kal   Kalvskindet
+                Trondheim               NOR     NATURAL            0
+trondheim-oya   \u{D8}ya Stadion
+                Trondheim               NOR     NATURAL            5
+
+vienna          WEV-Eisbahn
+                Vienna                  AUT     NATURAL          172
+
+warsaw          Tor Polonii
+                Warsaw                  POL     NATURAL          188
+
+zakopane        Toporowy Staw Nizni
+                Zakopane                POL     NATURAL         1110

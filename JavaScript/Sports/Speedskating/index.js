@@ -1,7 +1,8 @@
 window . addEventListener ("load", function () {
-    Rink   . init ()
-    Skater . init ()
-    Event  . init ()
+    Flags_Data . init ()
+    Rinks   . init ()
+    Skaters . init ()
+    Event   . init ()
     init_progression ()
 
     //

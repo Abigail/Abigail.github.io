@@ -40,14 +40,14 @@ function add_record (event, skater, time, date, rink, extra = {}) {
     const [year, month, mday] = date . split ("-") . map (x => +x)
     let new_entry = {
         event:       event,
-        skater:      Skater . skater (skater),
+        skater:      Athlete . athlete (skater),
         time:        time,
         date:        date,
         year:        year,
         month:       month,
         mday:        mday,
         season:      month >= 8 ? year - 1 : year,
-        rink:        Rink . rink (rink),
+        rink:        Venue . venue (rink),
         improvement: 0,
         x:           date2value (date),
         y:           time ? event . is_combination () ? +time
@@ -60,7 +60,7 @@ function add_record (event, skater, time, date, rink, extra = {}) {
 
     if (new_entry . members) {
         const names = new_entry . members
-                                . map (member => Skater . skater (member))
+                                . map (member => Athlete . athlete (member))
         new_entry  . members = names
     }
 
@@ -168,26 +168,26 @@ function init_progression () {
     // Men   500m
     //
     add_record (m500, "grunden",     "0:50.8",  "1891-02-28", "neglingeviken")
-    add_record (m500, "halvorsen",   "0:50.2",  "1892-02-28", "hamar mjosen")
-    add_record (m500, "naess",       "0:49.4",  "1893-02-05", "hamar mjosen")
-    add_record (m500, "halvorsen",   "0:48.0",  "1893-02-26", "hamar mjosen")
+    add_record (m500, "halvorsen",   "0:50.2",  "1892-02-28", "hamar-mjosen")
+    add_record (m500, "naess",       "0:49.4",  "1893-02-05", "hamar-mjosen")
+    add_record (m500, "halvorsen",   "0:48.0",  "1893-02-26", "hamar-mjosen")
     add_record (m500, "fredriksen",  "0:47.8",  "1894-01-21", "gamle")
 
-    add_record (m500, "halvorsen",   "0:47.0",  "1894-02-24", "hamar mjosen")
-    add_record (m500, "mauseth",     "0:46.8",  "1895-02-03", "trondheim_kal")
-    add_record (m500, "ostlund",     "0:46.6",  "1897-02-07", "trondheim_kal")
+    add_record (m500, "halvorsen",   "0:47.0",  "1894-02-24", "hamar-mjosen")
+    add_record (m500, "mauseth",     "0:46.8",  "1895-02-03", "trondheim-kal")
+    add_record (m500, "ostlund",     "0:46.6",  "1897-02-07", "trondheim-kal")
     add_record (m500, "ostlund",     "0:45.2",  "1900-02-10", "davos")
     add_record (m500, "gundersen",   "0:44.8",  "1906-01-27", "davos")
 
     add_record (m500, "vikander",    "0:44.4",  "1908-02-09", "davos")
     add_record (m500, "mathisen",    "0:44.2",  "1912-02-17", "gamle")
-    add_record (m500, "mathisen",    "0:44.0",  "1913-03-16", "hamar mjosen")
+    add_record (m500, "mathisen",    "0:44.0",  "1913-03-16", "hamar-mjosen")
     add_record (m500, "mathisen",    "0:43.7",  "1914-01-10", "gamle")
     add_record (m500, "mathisen",    "0:43.4",  "1914-01-17", "davos")
 
     add_record (m500, "larsen",      "0:43.1",  "1928-02-04", "davos")
     add_record (m500, "thunberg",    "0:42.8",  "1929-01-19", "davos")
-    add_record (m500, "thunberg",    "0:42.6",  "1931-01-13", "st. moritz")
+    add_record (m500, "thunberg",    "0:42.6",  "1931-01-13", "st_moritz")
     add_record (m500, "engnestangen","0:42.5",  "1933-01-21", "davos")
     add_record (m500, "potts",       "0:42.4",  "1936-01-18", "bislett")
 
@@ -246,14 +246,14 @@ function init_progression () {
     add_record (m500, "wotherspoon", "0:34.76", "1999-02-20", "calgary")
 
     add_record (m500, "wotherspoon", "0:34.63", "2000-01-29", "calgary")
-    add_record (m500, "shimizu",     "0:34.32", "2001-03-10", "salt lake city")
-    add_record (m500, "kato",        "0:34.30", "2005-11-19", "salt lake city")
-    add_record (m500, "kang-seok",   "0:34.25", "2007-03-09", "salt lake city")
-    add_record (m500, "wotherspoon", "0:34.03", "2007-11-09", "salt lake city")
+    add_record (m500, "shimizu",     "0:34.32", "2001-03-10", "salt_lake_city")
+    add_record (m500, "kato",        "0:34.30", "2005-11-19", "salt_lake_city")
+    add_record (m500, "kang-seok",   "0:34.25", "2007-03-09", "salt_lake_city")
+    add_record (m500, "wotherspoon", "0:34.03", "2007-11-09", "salt_lake_city")
 
     add_record (m500, "kulizhnikov", "0:34.00", "2015-11-15", "calgary")
-    add_record (m500, "kulizhnikov", "0:33.98", "2015-11-20", "salt lake city")
-    add_record (m500, "kulizhnikov", "0:33.61", "2019-03-09", "salt lake city")
+    add_record (m500, "kulizhnikov", "0:33.98", "2015-11-20", "salt_lake_city")
+    add_record (m500, "kulizhnikov", "0:33.61", "2019-03-09", "salt_lake_city")
 
     //
     // Men  1000m
@@ -299,25 +299,25 @@ function init_progression () {
     add_record (m1000, "wotherspoon", "1:08.49", "2000-01-12", "calgary")
     add_record (m1000, "wotherspoon", "1:08.35", "2000-03-18", "calgary")
     add_record (m1000, "ireland",     "1:08.34", "2001-03-03", "calgary")
-    add_record (m1000, "wotherspoon", "1:08.28", "2001-03-11", "salt lake city")
-    add_record (m1000, "wotherspoon", "1:07.72", "2001-12-01", "salt lake city")
-    add_record (m1000, "velde",       "1:07.18", "2002-02-16", "salt lake city")
-    add_record (m1000, "davis",       "1:07.03", "2005-11-20", "salt lake city")
-    add_record (m1000, "koskela",     "1:07.00", "2007-11-10", "salt lake city")
-    add_record (m1000, "davis",       "1:06.42", "2009-03-07", "salt lake city")
-    add_record (m1000, "nuis",        "1:06.18", "2019-03-09", "salt lake city")
-    add_record (m1000, "kulizhnikov", "1:05.69", "2020-02-15", "salt lake city")
-    add_record (m1000, "stolz",       "1:05.37", "2024-01-26", "salt lake city")
+    add_record (m1000, "wotherspoon", "1:08.28", "2001-03-11", "salt_lake_city")
+    add_record (m1000, "wotherspoon", "1:07.72", "2001-12-01", "salt_lake_city")
+    add_record (m1000, "velde",       "1:07.18", "2002-02-16", "salt_lake_city")
+    add_record (m1000, "davis",       "1:07.03", "2005-11-20", "salt_lake_city")
+    add_record (m1000, "koskela",     "1:07.00", "2007-11-10", "salt_lake_city")
+    add_record (m1000, "davis",       "1:06.42", "2009-03-07", "salt_lake_city")
+    add_record (m1000, "nuis",        "1:06.18", "2019-03-09", "salt_lake_city")
+    add_record (m1000, "kulizhnikov", "1:05.69", "2020-02-15", "salt_lake_city")
+    add_record (m1000, "stolz",       "1:05.37", "2024-01-26", "salt_lake_city")
 
     //
     // Men  1500m
     //
     add_record (m1500, "eden",        "2:35.0",  "1893-01-11", "paterswolde")
-    add_record (m1500, "ostlund",     "2:32.6",  "1893-02-25", "hamar mjosen")
-    add_record (m1500, "ostlund",     "2:31.4",  "1894-02-24", "hamar mjosen")
-    add_record (m1500, "halvorsen",   "2:29.6",  "1894-02-24", "hamar mjosen")
-    add_record (m1500, "ostlund",     "2:28.8",  "1894-02-25", "hamar mjosen")
-    add_record (m1500, "eden",        "2:25.4",  "1895-02-23", "hamar mjosen")
+    add_record (m1500, "ostlund",     "2:32.6",  "1893-02-25", "hamar-mjosen")
+    add_record (m1500, "ostlund",     "2:31.4",  "1894-02-24", "hamar-mjosen")
+    add_record (m1500, "halvorsen",   "2:29.6",  "1894-02-24", "hamar-mjosen")
+    add_record (m1500, "ostlund",     "2:28.8",  "1894-02-25", "hamar-mjosen")
+    add_record (m1500, "eden",        "2:25.4",  "1895-02-23", "hamar-mjosen")
     add_record (m1500, "ostlund",     "2:23.6",  "1898-02-07", "davos")
     add_record (m1500, "ostlund",     "2:22.6",  "1900-02-11", "davos")
     add_record (m1500, "mathisen",    "2:20.8",  "1908-02-09", "davos")
@@ -330,7 +330,7 @@ function init_progression () {
     add_record (m1500, "grishin",     "2:09.8",  "1955-01-10", "medeo")
     add_record (m1500, "mikhaylov",   "2:09.1",  "1956-01-20", "davos")
     add_record (m1500, "mikhaylov",   "2:08.6",  "1956-01-30", "misurina")
-    add_record (m1500, "jarvinen",    "2:06.3",  "1959-03-01", "squaw valley")
+    add_record (m1500, "jarvinen",    "2:06.3",  "1959-03-01", "squaw_valley")
     add_record (m1500, "schenk",      "2:06.2",  "1966-01-26", "davos")
     add_record (m1500, "schenk",      "2:05.3",  "1966-01-30", "inzell")
     add_record (m1500, "verkerk",     "2:03.9",  "1967-02-26", "inzell")
@@ -358,23 +358,23 @@ function init_progression () {
     add_record (m1500, "sondral",     "1:46.43", "1998-03-28", "calgary")
     add_record (m1500, "leeuwangh",   "1:45.56", "2000-01-29", "calgary")
     add_record (m1500, "kyou-hyuk",   "1:45.20", "2001-03-16", "calgary")
-    add_record (m1500, "parra",       "1:43.95", "2002-02-19", "salt lake city")
-    add_record (m1500, "davis",       "1:43.33", "2005-01-09", "salt lake city")
-    add_record (m1500, "hedrick",     "1:42.78", "2005-11-18", "salt lake city")
+    add_record (m1500, "parra",       "1:43.95", "2002-02-19", "salt_lake_city")
+    add_record (m1500, "davis",       "1:43.33", "2005-01-09", "salt_lake_city")
+    add_record (m1500, "hedrick",     "1:42.78", "2005-11-18", "salt_lake_city")
     add_record (m1500, "davis",       "1:42.68", "2006-03-19", "calgary")
     add_record (m1500, "davis",       "1:42.32", "2007-03-04", "calgary")
-    add_record (m1500, "wennemars",   "1:42.32", "2007-11-09", "salt lake city")
+    add_record (m1500, "wennemars",   "1:42.32", "2007-11-09", "salt_lake_city")
     add_record (m1500, "morrison",    "1:42.01", "2008-03-14", "calgary")
-    add_record (m1500, "davis",       "1:41.80", "2009-03-06", "salt lake city")
-    add_record (m1500, "davis",       "1:41.04", "2009-12-11", "salt lake city")
-    add_record (m1500, "yuskov",      "1:41.02", "2017-12-09", "salt lake city")
-    add_record (m1500, "nuis",        "1:40.17", "2019-03-10", "salt lake city")
+    add_record (m1500, "davis",       "1:41.80", "2009-03-06", "salt_lake_city")
+    add_record (m1500, "davis",       "1:41.04", "2009-12-11", "salt_lake_city")
+    add_record (m1500, "yuskov",      "1:41.02", "2017-12-09", "salt_lake_city")
+    add_record (m1500, "nuis",        "1:40.17", "2019-03-10", "salt_lake_city")
 
     //
     // Men  3000m
     //
     add_record (m3000, "thunberg",    "5:19.2",  "1932-01-08", "davos")
-    add_record (m3000, "staksrud",    "4:59.1",  "1933-02-25", "hamar stadion")
+    add_record (m3000, "staksrud",    "4:59.1",  "1933-02-25", "hamar-stadion")
     add_record (m3000, "ballangrud",  "4:49.6",  "1935-01-29", "davos")
     add_record (m3000, "seyffarth",   "4:45.6",  "1942-02-03", "davos")
     add_record (m3000, "huiskes",     "4:40.2",  "1953-01-24", "davos")
@@ -412,24 +412,24 @@ function init_progression () {
     // Men  5000m
     //
     add_record (m5000, "fredriksen",  "9:29.8",  "1890-03-02", "neglingeviken")
-    add_record (m5000, "halvorsen",   "9:10.2",  "1892-02-28", "hamar mjosen")
-    add_record (m5000, "halvorsen",   "9:07.2",  "1893-02-26", "hamar mjosen")
-    add_record (m5000, "eden",        "8:37.6",  "1894-02-25", "hamar mjosen")
+    add_record (m5000, "halvorsen",   "9:10.2",  "1892-02-28", "hamar-mjosen")
+    add_record (m5000, "halvorsen",   "9:07.2",  "1893-02-26", "hamar-mjosen")
+    add_record (m5000, "eden",        "8:37.6",  "1894-02-25", "hamar-mjosen")
     add_record (m5000, "strunnikov",  "8:37.2",  "1911-02-04", "gamle")
     add_record (m5000, "mathisen",    "8:36.6",  "1914-01-17", "davos")
     add_record (m5000, "mathisen",    "8:36.3",  "1916-01-23", "frogner")
     add_record (m5000, "strom_kristian",
-                                      "8:33.7",  "1917-02-04", "trondheim_oya")
+                                      "8:33.7",  "1917-02-04", "trondheim-oya")
     add_record (m5000, "strom_harald","8:27.7",  "1921-02-21", "frogner")
     add_record (m5000, "strom_harald","8:26.5",  "1922-02-18", "frogner")
     add_record (m5000, "ballangrud",  "8:24.2",  "1929-01-19", "davos")
     add_record (m5000, "ballangrud",  "8:21.6",  "1930-01-11", "davos")
     add_record (m5000, "heiden_siem", "8:19.2",  "1933-01-22", "davos")
-    add_record (m5000, "stiepl",      "8:18.9",  "1934-02-03", "hamar stadion")
+    add_record (m5000, "stiepl",      "8:18.9",  "1934-02-03", "hamar-stadion")
     add_record (m5000, "ballangrud",  "8:17.2",  "1936-01-18", "bislett")
     add_record (m5000, "seyffarth",   "8:13.7",  "1941-02-03", "davos")
     add_record (m5000, "pajor",       "8:13.5",  "1949-02-05", "davos")
-    add_record (m5000, "andersen",    "8:07.3",  "1951-01-13", "trondheim_oya")
+    add_record (m5000, "andersen",    "8:07.3",  "1951-01-13", "trondheim-oya")
     add_record (m5000, "mamonov",     "8:03.7",  "1952-01-23", "medeo")
     add_record (m5000, "shilkov",     "7:45.6",  "1955-01-09", "medeo")
     add_record (m5000, "johannesen",  "7:37.8",  "1963-01-26", "bislett")
@@ -464,14 +464,14 @@ function init_progression () {
     add_record (m5000, "romme",       "6:22.20", "1998-02-08", "nagano")
     add_record (m5000, "romme",       "6:21.49", "1998-03-27", "calgary")
     add_record (m5000, "romme",       "6:18.72", "2000-01-30", "calgary")
-    add_record (m5000, "uytdehaage",  "6:14.66", "2002-02-09", "salt lake city")
+    add_record (m5000, "uytdehaage",  "6:14.66", "2002-02-09", "salt_lake_city")
     add_record (m5000, "hedrick",     "6:09.68", "2005-11-13", "calgary")
-    add_record (m5000, "kramer",      "6:08.78", "2005-11-19", "salt lake city")
+    add_record (m5000, "kramer",      "6:08.78", "2005-11-19", "salt_lake_city")
     add_record (m5000, "kramer",      "6:07.48", "2007-03-03", "calgary")
-    add_record (m5000, "fabris",      "6:07.40", "2007-11-10", "salt lake city")
+    add_record (m5000, "fabris",      "6:07.40", "2007-11-10", "salt_lake_city")
     add_record (m5000, "kramer",      "6:03.32", "2007-11-17", "calgary")
-    add_record (m5000, "bloemen",     "6:01.86", "2017-12-10", "salt lake city")
-    add_record (m5000, "poel",        "6:01.56", "2021-12-03", "salt lake city")
+    add_record (m5000, "bloemen",     "6:01.86", "2017-12-10", "salt_lake_city")
+    add_record (m5000, "poel",        "6:01.56", "2021-12-03", "salt_lake_city")
 
     //
     // Men 10000m
@@ -480,18 +480,18 @@ function init_progression () {
     add_record (m10000, "nielsen",    "19:47.4",  "1893-02-13", "neglingeviken")
     add_record (m10000, "ericson",    "19:22.8",  "1894-01-07", "neglingeviken")
     add_record (m10000, "eden",       "19:12.4",  "1894-02-10", "neglingeviken")
-    add_record (m10000, "eden",       "17:56.0",  "1895-02-23", "hamar mjosen")
+    add_record (m10000, "eden",       "17:56.0",  "1895-02-23", "hamar-mjosen")
     add_record (m10000, "ostlund",    "17:50.6",  "1900-02-11", "davos")
     add_record (m10000, "mathisen",   "17:46.3",  "1912-02-18", "gamle")
-    add_record (m10000, "mathisen",   "17:36.4",  "1913-01-25", "trondheim_oya")
+    add_record (m10000, "mathisen",   "17:36.4",  "1913-01-25", "trondheim-oya")
     add_record (m10000, "mathisen",   "17:22.6",  "1913-02-01", "gamle")
     add_record (m10000, "carlsen",    "17:17.4",  "1928-02-05", "davos")
     add_record (m10000, "ballangrud", "17:14.4",  "1938-02-06", "davos")
-    add_record (m10000, "mathiesen",  "17:01.5",  "1940-03-03", "hamar stadion")
+    add_record (m10000, "mathiesen",  "17:01.5",  "1940-03-03", "hamar-stadion")
     add_record (m10000, "andersen",   "16:57.4",  "1949-02-06", "davos")
     add_record (m10000, "andersen",   "16:51.4",  "1952-01-27", "gjovik")
-    add_record (m10000, "andersen",   "16:32.6",  "1952-02-10", "hamar stadion")
-    add_record (m10000, "johannesen", "15:46.6",  "1960-02-27", "squaw valley")
+    add_record (m10000, "andersen",   "16:32.6",  "1952-02-10", "hamar-stadion")
+    add_record (m10000, "johannesen", "15:46.6",  "1960-02-27", "squaw_valley")
     add_record (m10000, "nilsson_johnny",
                                       "15:33.0",  "1963-02-24", "karuizawa")
     add_record (m10000, "maier",      "15:32.2",  "1966-02-06", "bislett")
@@ -507,7 +507,7 @@ function init_progression () {
     add_record (m10000, "kleine",     "14:43.92", "1976-03-13", "inzell")
     add_record (m10000, "stensen",    "14:38.08", "1976-03-21", "medeo")
     add_record (m10000, "lyoshkin",   "14:34.33", "1977-04-03", "medeo")
-    add_record (m10000, "heiden_eric","14:28.13", "1980-02-23", "lake placid")
+    add_record (m10000, "heiden_eric","14:28.13", "1980-02-23", "lake_placid")
     add_record (m10000, "ogloblin",   "14:26.71", "1980-03-29", "medeo")
     add_record (m10000, "gustafson",  "14:23.59", "1982-01-31", "bislett")
     add_record (m10000, "malkov",     "14:21.51", "1984-03-24", "medeo")
@@ -521,18 +521,18 @@ function init_progression () {
     add_record (m10000, "romme",      "13:08.71", "1998-03-29", "calgary")
     add_record (m10000, "romme",      "13:03.40", "2000-11-16", "thialf")
     add_record (m10000, "uytdehaage", "12:58.92", "2002-02-22",
-                                                               "salt lake city")
+                                                               "salt_lake_city")
     add_record (m10000, "verheijen",  "12:57.92", "2005-12-04", "thialf");
     add_record (m10000, "hedrick",    "12:55.11", "2005-12-31",
-                                                               "salt lake city")
+                                                               "salt_lake_city")
     add_record (m10000, "kramer",     "12:51.60", "2006-03-19", "calgary")
     add_record (m10000, "kramer",     "12:49.88", "2007-02-11", "thialf")
     add_record (m10000, "kramer",     "12:41.69", "2007-03-10",
-                                                               "salt lake city")
+                                                               "salt_lake_city")
     add_record (m10000, "bloemen",    "12:36.30", "2015-11-21",
-                                                               "salt lake city")
+                                                               "salt_lake_city")
     add_record (m10000, "fish",       "12:33.86", "2020-02-14",
-                                                               "salt lake city")
+                                                               "salt_lake_city")
     add_record (m10000, "poel",       "12:32.95", "2021-02-14", "thialf")
     add_record (m10000, "poel",       "12:30.74", "2022-02-11", "beijing")
 
@@ -620,7 +620,7 @@ function init_progression () {
                        weekend: 3})
     add_record (mBIG, "hedrick",     "150.478", "2004-02-08", "hamar",
                       {times: ["0:36.49", "6:20.69", "1:47.51", "13:21.67"]})
-    add_record (mBIG, "davis",       "149.359", "2005-01-09", "salt lake city",
+    add_record (mBIG, "davis",       "149.359", "2005-01-09", "salt_lake_city",
                       {times: ["0:35.85", "6:24.21", "1:43.33", "13:32.90"]})
 
     add_record (mBIG, "hedrick",     "148.799", "2006-01-22", "calgary",
@@ -715,10 +715,10 @@ function init_progression () {
     add_record (mSPRINT, "wotherspoon", "138.310", "1999-02-21", "calgary",
                          {times: ["0:34.76", "1:08.66", "0:34.93", "1:08.58"]})
     add_record (mSPRINT, "wotherspoon", "137.285", "2002-12-02",
-                                                               "salt lake city",
+                                                               "salt_lake_city",
                          {times: ["0:34.85", "1:07.72", "0:34.66", "1:07.83"]})
     add_record (mSPRINT, "wotherspoon", "137.270", "2003-01-12",
-                                                               "salt lake city",
+                                                               "salt_lake_city",
                          {times: ["0:34.41", "1:07.89", "0:34.77", "1:08.29"]})
 
     add_record (mSPRINT, "wotherspoon", "137.230", "2003-01-19", "calgary",
@@ -727,7 +727,7 @@ function init_progression () {
                          {times: ["0:34.84", "1:07.50", "0:34.74", "1:06.96"]})
     add_record (mSPRINT, "mulder_michel",
                                         "136.790", "2013-01-27",
-                                                              "salt lake city",
+                                                              "salt_lake_city",
                          {times: ["0:34.47", "1:07.49", "0:34.75", "1:07.65"]})
     add_record (mSPRINT, "verbij",      "136.065", "2017-02-26", "calgary",
                          {times: ["0:34.48", "1:06.73", "0:34.25", "1:07.94"]})
@@ -737,9 +737,9 @@ function init_progression () {
     //
     // Men   2x500m
     //
-    add_record (mD500, "shimizu",      "68.960", "2001-03-10", "salt lake city",
+    add_record (mD500, "shimizu",      "68.960", "2001-03-10", "salt_lake_city",
                        {times: ["0:34.64", "0:34.32"]})
-    add_record (mD500, "kang-seok",    "68.690", "2007-03-09", "salt lake city",
+    add_record (mD500, "kang-seok",    "68.690", "2007-03-09", "salt_lake_city",
                        {times: ["0:34.44", "0:34.25"]})
     add_record (mD500, "wotherspoon",  "68.310", "2008-03-15", "calgary",
                        {times: ["0:34.26", "0:34.05"]})
@@ -756,19 +756,19 @@ function init_progression () {
                        {members: ["verheijen", "wennemars", "tuitert"]})
     add_record (mTP,   "CAN",         "3:39.69", "2005-11-12", "calgary",
                        {members: ["elm", "dankers", "morrison"]})
-    add_record (mTP,   "NED",         "3:37.80", "2007-03-11", "salt lake city",
+    add_record (mTP,   "NED",         "3:37.80", "2007-03-11", "salt_lake_city",
                        {members: ["verheijen", "wennemars", "kramer"]})
     add_record (mTP,   "NED",         "3:37.17", "2013-11-09", "calgary",
                        {members: ["kramer", "blokhuijsen", "verweij"]})
-    add_record (mTP,   "NED",         "3:35.60", "2013-11-16", "salt lake city",
+    add_record (mTP,   "NED",         "3:35.60", "2013-11-16", "salt_lake_city",
                        {members: ["kramer", "blokhuijsen", "verweij"]})
-    add_record (mTP,   "NED",         "3:34.68", "2020-02-16", "salt lake city",
-                       {members: ["kramer", "de vries", "bosker"]})
-    add_record (mTP,   "USA",         "3:34.47", "2021-12-05", "salt lake city",
+    add_record (mTP,   "NED",         "3:34.68", "2020-02-16", "salt_lake_city",
+                       {members: ["kramer", "vries", "bosker"]})
+    add_record (mTP,   "USA",         "3:34.47", "2021-12-05", "salt_lake_city",
                        {members: ["mantia", "lehman", "dawson"]})
     add_record (mTP,   "NOR",         "3:34.22", "2024-01-05", "thialf",
                        {members: ["eitrem", "kongshaug", "pederson"]})
-    add_record (mTP,   "USA",         "3:33.66", "2024-01-27", "salt lake city",
+    add_record (mTP,   "USA",         "3:33.66", "2024-01-27", "salt_lake_city",
                        {members: ["dawson", "lehman", "cepuran"]})
 
     //
@@ -789,7 +789,7 @@ function init_progression () {
     add_record (w500, "nilsen",      "0:49.3",  "1935-02-27", "frogner")
     add_record (w500, "nilsen",      "0:46.4",  "1937-01-30", "davos")
     add_record (w500, "rylova",      "0:45.6",  "1955-01-11", "medeo")
-    add_record (w500, "voronina artamonova","0:44.9","1962-01-27","medeo")
+    add_record (w500, "voronina-artamonova","0:44.9","1962-01-27","medeo")
 
     add_record (w500, "sidorova",    "0:44.7",  "1968-02-03", "davos")
     add_record (w500, "schleiermacher","0:44.6","1969-02-04", "davos")
@@ -817,24 +817,24 @@ function init_progression () {
 
     add_record (w500, "blair",       "0:38.99", "1994-03-26", "calgary")
     add_record (w500, "blair",       "0:38.69", "1995-02-02", "calgary")
-    add_record (w500, "le may",      "0:37.90", "1997-11-22", "calgary")
-    add_record (w500, "le may",      "0:37.90", "1997-11-23", "calgary")
-    add_record (w500, "le may",      "0:37.71", "1997-12-28", "calgary")
+    add_record (w500, "may",         "0:37.90", "1997-11-22", "calgary")
+    add_record (w500, "may",         "0:37.90", "1997-11-23", "calgary")
+    add_record (w500, "may",         "0:37.71", "1997-12-28", "calgary")
 
-    add_record (w500, "le may",      "0:37.55", "1997-12-29", "calgary")
-    add_record (w500, "le may",      "0:37.40", "2001-01-06", "calgary")
-    add_record (w500, "le may",      "0:37.29", "2001-03-09", "salt lake city")
-    add_record (w500, "le may",      "0:37.22", "2001-12-09", "calgary")
-    add_record (w500, "wolf",        "0:37.04", "2007-03-10", "salt lake city")
+    add_record (w500, "may",         "0:37.55", "1997-12-29", "calgary")
+    add_record (w500, "may",         "0:37.40", "2001-01-06", "calgary")
+    add_record (w500, "may",         "0:37.29", "2001-03-09", "salt_lake_city")
+    add_record (w500, "may",         "0:37.22", "2001-12-09", "calgary")
+    add_record (w500, "wolf",        "0:37.04", "2007-03-10", "salt_lake_city")
 
     add_record (w500, "wolf",        "0:37.02", "2007-11-16", "calgary")
-    add_record (w500, "wolf",        "0:37.00", "2009-12-11", "salt lake city")
+    add_record (w500, "wolf",        "0:37.00", "2009-12-11", "salt_lake_city")
     add_record (w500, "jing",        "0:36.94", "2012-01-29", "calgary")
     add_record (w500, "sang-hwa",    "0:36.80", "2013-01-20", "calgary")
     add_record (w500, "sang-hwa",    "0:36.74", "2013-11-09", "calgary")
 
-    add_record (w500, "sang-hwa",    "0:36.57", "2013-11-15", "salt lake city")
-    add_record (w500, "sang-hwa",    "0:36.36", "2013-11-16", "salt lake city")
+    add_record (w500, "sang-hwa",    "0:36.57", "2013-11-15", "salt_lake_city")
+    add_record (w500, "sang-hwa",    "0:36.36", "2013-11-16", "salt_lake_city")
 
 
 
@@ -880,25 +880,25 @@ function init_progression () {
     add_record (w1000, "enke",        "1:18.84", "1986-02-22", "karuizawa")
     add_record (w1000, "enke",        "1:18.11", "1987-12-05", "calgary")
     add_record (w1000, "rothenburger","1:17.65", "1988-02-26", "calgary")
-    add_record (w1000, "le may",      "1:16.07", "1997-11-22", "calgary")
+    add_record (w1000, "may",         "1:16.07", "1997-11-22", "calgary")
     add_record (w1000, "witty",       "1:15.43", "1997-11-23", "calgary")
 
     add_record (w1000, "witty",       "1:14.96", "1998-03-28", "calgary")
     add_record (w1000, "garbrecht",   "1:14.61", "1999-02-21", "calgary")
     add_record (w1000, "witty",       "1:14.58", "2001-03-03", "calgary")
-    add_record (w1000, "garbrecht",   "1:14.13", "2001-03-10", "salt lake city")
-    add_record (w1000, "volker",      "1:14.06", "2001-12-02", "salt lake city")
+    add_record (w1000, "garbrecht",   "1:14.13", "2001-03-10", "salt_lake_city")
+    add_record (w1000, "volker",      "1:14.06", "2001-12-02", "salt_lake_city")
 
-    add_record (w1000, "witty",       "1:13.83", "2002-02-17", "salt lake city")
+    add_record (w1000, "witty",       "1:13.83", "2002-02-17", "salt_lake_city")
     add_record (w1000, "klassen",     "1:13.46", "2006-03-24", "calgary")
     add_record (w1000, "klassen",     "1:13.11", "2006-03-25", "calgary")
     add_record (w1000, "nesbitt",     "1:12.68", "2012-01-28", "calgary")
-    add_record (w1000, "bowe",        "1:12.58", "2013-11-17", "salt lake city")
+    add_record (w1000, "bowe",        "1:12.58", "2013-11-17", "salt_lake_city")
 
     add_record (w1000, "richardson",  "1:12.51", "2015-11-14", "calgary")
-    add_record (w1000, "bowe",        "1:12.18", "2015-11-22", "salt lake city")
-    add_record (w1000, "kodaira",     "1:12.09", "2017-12-09", "salt lake city")
-    add_record (w1000, "bowe",        "1:11.61", "2019-03-09", "salt lake city")
+    add_record (w1000, "bowe",        "1:12.18", "2015-11-22", "salt_lake_city")
+    add_record (w1000, "kodaira",     "1:12.09", "2017-12-09", "salt_lake_city")
+    add_record (w1000, "bowe",        "1:11.61", "2019-03-09", "salt_lake_city")
 
     //
     // Women  1500m
@@ -915,11 +915,11 @@ function init_progression () {
     add_record (w1500, "isakova",     "2:29.5",  "1951-02-12", "medeo")
     add_record (w1500, "shchegoleyeva","2:25.5", "1953-01-30", "medeo")
 
-    add_record (w1500, "skoblikova",  "2:25.2",  "1960-02-21", "squaw valley")
-    add_record (w1500, "voronina artamonova","2:19.0","1962-01-27","medeo")
+    add_record (w1500, "skoblikova",  "2:25.2",  "1960-02-21", "squaw_valley")
+    add_record (w1500, "voronina-artamonova","2:19.0","1962-01-27","medeo")
     add_record (w1500, "schut",       "2:18.5",  "1969-02-22", "inzell")
     add_record (w1500, "statkevich",  "2:17.8",  "1970-01-17", "medeo")
-    add_record (w1500, "keulen deelstra","2:17.2","1970-03-14","inzell")
+    add_record (w1500, "keulen",      "2:17.2",  "1970-03-14", "inzell")
 
     add_record (w1500, "kaiser",      "2:15.8",  "1971-01-15", "davos")
     add_record (w1500, "averina",     "2:14.00", "1974-04-01", "medeo")
@@ -934,21 +934,21 @@ function init_progression () {
     add_record (w1500, "enke",        "2:02.23", "1986-03-06", "inzell")
 
     add_record (w1500, "enke",        "1:59.30", "1986-03-22", "medeo")
-    add_record (w1500, "le may",      "1:57.87", "1997-11-29", "calgary")
+    add_record (w1500, "may",         "1:57.87", "1997-11-29", "calgary")
     add_record (w1500, "timmer",      "1:57.58", "1998-02-16", "nagano")
     add_record (w1500, "friesinger",  "1:56.95", "1998-03-29", "calgary")
     add_record (w1500, "thomas",      "1:55.50", "1999-03-20", "calgary")
 
     add_record (w1500, "friesinger",  "1:54.38", "2001-03-04", "calgary")
-    add_record (w1500, "friesinger",  "1:54.02", "2002-02-20", "salt lake city")
-    add_record (w1500, "klassen",     "1:53.87", "2005-01-09", "salt lake city")
+    add_record (w1500, "friesinger",  "1:54.02", "2002-02-20", "salt_lake_city")
+    add_record (w1500, "klassen",     "1:53.87", "2005-01-09", "salt_lake_city")
     add_record (w1500, "klassen",     "1:53.77", "2005-10-28", "calgary")
     add_record (w1500, "friesinger",  "1:53.22", "2005-11-06", "calgary")
 
-    add_record (w1500, "klassen",     "1:51.79", "2005-11-20", "salt lake city")
+    add_record (w1500, "klassen",     "1:51.79", "2005-11-20", "salt_lake_city")
     add_record (w1500, "bowe",        "1:51.59", "2015-11-15", "calgary")
-    add_record (w1500, "richardson",  "1:50.85", "2015-11-21", "salt lake city")
-    add_record (w1500, "takagi_miho", "1:49.84", "2019-03-10", "salt lake city")
+    add_record (w1500, "richardson",  "1:50.85", "2015-11-21", "salt_lake_city")
+    add_record (w1500, "takagi_miho", "1:49.84", "2019-03-10", "salt_lake_city")
 
     //
     // Women  3000m
@@ -963,7 +963,7 @@ function init_progression () {
     add_record (w3000, "akifyeva",    "5:22.2",  "1951-02-16", "medeo")
     add_record (w3000, "zhukova",     "5:21.3",  "1952-01-08", "medeo")
     add_record (w3000, "zhukova",     "5:13.8",  "1953-01-23", "medeo")
-    add_record (w3000, "voronina artamonova","5:06.0","1962-01-28","medeo")
+    add_record (w3000, "voronina-artamonova","5:06.0","1962-01-28","medeo")
 
     add_record (w3000, "skoblikova",  "5:05.9",  "1967-01-15", "bislett")
     add_record (w3000, "kaiser",      "5:04.8",  "1967-01-29", "davos")
@@ -997,12 +997,12 @@ function init_progression () {
 
     add_record (w3000, "niemann",     "4:00.26", "2001-02-17", "hamar")
     add_record (w3000, "pechstein",   "3:59.26", "2001-03-02", "calgary")
-    add_record (w3000, "pechstein",   "3:57.70", "2002-02-10", "salt lake city")
+    add_record (w3000, "pechstein",   "3:57.70", "2002-02-10", "salt_lake_city")
     add_record (w3000, "klassen",     "3:55.75", "2005-11-12", "calgary")
     add_record (w3000, "klassen",     "3:53.34", "2006-03-18", "calgary")
 
     add_record (w3000, "sablikova",   "3:53.31", "2019-03-02", "calgary")
-    add_record (w3000, "sablikova",   "3:52.02", "2019-03-09", "salt lake city")
+    add_record (w3000, "sablikova",   "3:52.02", "2019-03-09", "salt_lake_city")
 
     //
     // Women  5000m
@@ -1038,13 +1038,13 @@ function init_progression () {
     add_record (w5000, "niemann",     "6:57.24", "1999-02-07", "hamar")
     add_record (w5000, "niemann",     "6:56.84", "2000-01-16", "hamar")
     add_record (w5000, "niemann",     "6:55.34", "2000-11-15", "thialf")
-    add_record (w5000, "niemann",     "6:52.44", "2001-03-10", "salt lake city")
-    add_record (w5000, "pechstein",   "6:46.91", "2002-02-23", "salt lake city")
+    add_record (w5000, "niemann",     "6:52.44", "2001-03-10", "salt_lake_city")
+    add_record (w5000, "pechstein",   "6:46.91", "2002-02-23", "salt_lake_city")
 
-    add_record (w5000, "sablikova",   "6:45.61", "2007-03-11", "salt lake city")
-    add_record (w5000, "sablikova",   "6:42.66", "2011-02-18", "salt lake city")
+    add_record (w5000, "sablikova",   "6:45.61", "2007-03-11", "salt_lake_city")
+    add_record (w5000, "sablikova",   "6:42.66", "2011-02-18", "salt_lake_city")
     add_record (w5000, "sablikova",   "6:42.01", "2019-03-03", "calgary")
-    add_record (w5000, "voronina",    "6:39.02", "2020-02-15", "salt lake city")
+    add_record (w5000, "voronina",    "6:39.02", "2020-02-15", "salt_lake_city")
 
     //
     // Women 10000m
@@ -1055,7 +1055,7 @@ function init_progression () {
                                    "of 1953 onwards; the following " +
                                    "records are not official"})
     add_record (w10000, "niemczyk",   "22:46.4",  "1953-02-10", "zakopane")
-    add_record (w10000, "donker",     "21:52.1",  "1972-01-27", "jaap eden")
+    add_record (w10000, "donker",     "21:52.1",  "1972-01-27", "jaap_eden")
     add_record (w10000, "pasveer",    "19:48.3",  "1980-03-04", "groningen")
     add_record (w10000, "swider",     "17:37.35", "1980-03-16", "savalen")
 
@@ -1086,9 +1086,9 @@ function init_progression () {
     add_record (wSMALL, "niemann",     "163.020", "1998-03-15", "thialf", W3)
     add_record (wSMALL, "niemann",     "161.479", "1999-02-07", "hamar")
     add_record (wSMALL, "klassen",     "159.723", "2003-01-26",
-                                                              "salt lake city")
+                                                              "salt_lake_city")
     add_record (wSMALL, "klassen",     "159.605", "2005-01-09",
-                                                              "salt lake city")
+                                                              "salt_lake_city")
 
     add_record (wSMALL, "klassen",     "157.177", "2006-01-22", "calgary")
     add_record (wSMALL, "klassen",     "154.580", "2006-03-19", "calgary")
@@ -1103,15 +1103,14 @@ function init_progression () {
     add_record (wMINI, "haase",       "202.834", "1960-01-20", "davos")
     add_record (wMINI, "rylova",      "196.416", "1960-01-21", "medeo")
 
-    add_record (wMINI, "voronina artamonova",
+    add_record (wMINI, "voronina-artamonova",
                                          "189.033", "1962-01-28", "medeo")
     add_record (wMINI, "kaiser",      "188.634", "1967-03-05", "inzell")
     add_record (wMINI, "schut",       "185.500", "1969-02-23", "inzell")
     add_record (wMINI, "statkevich",  "184.053", "1970-01-18", "medeo")
     add_record (wMINI, "kaiser",      "182.817", "1971-01-16", "davos")
 
-    add_record (wMINI, "keulen deelstra",
-                                         "182.805", "1972-01-16", "inzell")
+    add_record (wMINI, "keulen",      "182.805", "1972-01-16", "inzell")
     add_record (wMINI, "averina",     "180.090", "1974-04-02", "medeo")
     add_record (wMINI, "averina",     "176.930", "1975-03-12", "medeo")
     add_record (wMINI, "burka",       "176.468", "1976-03-13", "inzell")
@@ -1132,9 +1131,9 @@ function init_progression () {
     add_record (wMINI, "thomas",      "158.183", "1999-03-21", "calgary")
     add_record (wMINI, "klassen",     "155.576", "2001-03-17", "calgary", W3)
     add_record (wMINI, "klassen",     "155.456", "2006-12-30", "calgary", W3)
-    add_record (wMINI, "nesbitt",     "153.856", "2007-11-11", "salt lake city",
+    add_record (wMINI, "nesbitt",     "153.856", "2007-11-11", "salt_lake_city",
                                                                    W3)
-    add_record (wMINI, "beune",       "153.776", "2018-03-10", "salt lake city")
+    add_record (wMINI, "beune",       "153.776", "2018-03-10", "salt_lake_city")
 
 
     //
@@ -1170,14 +1169,14 @@ function init_progression () {
     add_record (wSPRINT, "blair",       "157.405", "1994-01-30", "calgary")
     add_record (wSPRINT, "blair",       "156.505", "1994-03-26", "calgary")
     add_record (wSPRINT, "blair",       "156.435", "1995-02-11", "calgary", W1)
-    add_record (wSPRINT, "le may",      "151.690", "1997-11-23", "calgary")
+    add_record (wSPRINT, "may",         "151.690", "1997-11-23", "calgary")
     add_record (wSPRINT, "garbrecht",   "151.605", "1999-02-21", "calgary")
 
-    add_record (wSPRINT, "le may",      "150.085", "2001-01-07", "calgary")
+    add_record (wSPRINT, "may",         "150.085", "2001-01-07", "calgary")
     add_record (wSPRINT, "volker",      "149.915", "2001-12-02",
-                                                              "salt lake city")
+                                                              "salt_lake_city")
     add_record (wSPRINT, "garbrecht",   "149.305", "2003-01-12",
-                                                              "salt lake city")
+                                                              "salt_lake_city")
     add_record (wSPRINT, "klassen",     "149.305", "2006-03-25", "calgary")
     add_record (wSPRINT, "jing",        "148.610", "2012-01-29", "calgary")
 
@@ -1188,11 +1187,11 @@ function init_progression () {
     //
     // Women 2x500m
     //
-    add_record (wD500, "le may",       "74.720", "2001-03-09", "salt lake city",
+    add_record (wD500, "may",          "74.720", "2001-03-09", "salt_lake_city",
                        {times: ["0:37.43", "0:37.29"]})
-    add_record (wD500, "wolf",         "74.420", "2007-03-10", "salt lake city",
+    add_record (wD500, "wolf",         "74.420", "2007-03-10", "salt_lake_city",
                        {times: ["0:37.38", "0:37.04"]})
-    add_record (wD500, "richardson",   "74.190", "2013-12-28", "salt lake city",
+    add_record (wD500, "richardson",   "74.190", "2013-12-28", "salt_lake_city",
                        {times: ["0:37.10", "0:37.09"]})
                        // https://www.guinnessworldrecords.com/world-records/
                        // fastest-speed-skating-2-x-500-metres-(female)
@@ -1212,16 +1211,16 @@ function init_progression () {
                        {members: ["takagi_miho", "sato", "takagi_nana"]})
     add_record (wTP,   "JPN",         "2:53.88", "2017-12-02", "calgary",
                        {members: ["takagi_miho", "kikuchi", "takagi_nana"]})
-    add_record (wTP,   "JPN",         "2:50.87", "2017-12-08", "salt lake city",
+    add_record (wTP,   "JPN",         "2:50.87", "2017-12-08", "salt_lake_city",
                        {members: ["takagi_miho", "sato", "takagi_nana"]})
-    add_record (wTP,   "JPN",         "2:50.76", "2020-02-16", "salt lake city",
+    add_record (wTP,   "JPN",         "2:50.76", "2020-02-16", "salt_lake_city",
                        {members: ["takagi_miho", "sato", "takagi_nana"]})
 
     //
     // Women Team Sprint
     //
     add_record (wTS,   "RUS",         "1:24.84", "2017-12-01", "calgary")
-    add_record (wTS,   "NED",         "1:24.02", "2020-02-13", "salt lake city")
+    add_record (wTS,   "NED",         "1:24.02", "2020-02-13", "salt_lake_city")
 
 
     //
@@ -1229,7 +1228,7 @@ function init_progression () {
     //
     add_record (RELAY, "NED",         "2:55.53", "2023-11-12", "obihiro",
                        {members: ["kok", "dijs"]})
-    add_record (RELAY, "CHN",         "2:54.90", "2024-01-28", "salt lake city",
+    add_record (RELAY, "CHN",         "2:54.90", "2024-01-28", "salt_lake_city",
                        {members: ["sun", "jin"]})
 
 

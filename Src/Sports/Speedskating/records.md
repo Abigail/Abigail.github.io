@@ -1,13 +1,16 @@
 # Record Progression
 
-<!-- %%% style:  ~/nav_bar     -->
-<!-- %%% script: ~/nav_bar     -->
-<!-- %%% script: ~/countries   -->
-<!-- %%% script: ~/events      -->
-<!-- %%% script: ~/flags       -->
-<!-- %%% script: ~/progression -->
-<!-- %%% script: ~/rinks       -->
-<!-- %%% script: ~/skaters     -->
+<!-- %%% style:  ~/nav_bar       -->
+<!-- %%% script: ~/nav_bar       -->
+<!-- %%% script: ~/../Flags      -->
+<!-- %%% script: ~/../Flags_Data -->
+<!-- %%% script: ~/../Athlete    -->
+<!-- %%% script: ~/../Venue      -->
+<!-- %%% script: ~/countries     -->
+<!-- %%% script: ~/events        -->
+<!-- %%% script: ~/progression   -->
+<!-- %%% script: ~/rinks         -->
+<!-- %%% script: ~/skaters       -->
 
 <div id = "navigation"></div>
 

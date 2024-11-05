@@ -291,6 +291,9 @@ function rink_type_td (rink, date) {
 //
 function pad (time) {
     const pad = "<span style = 'visibility: hidden'>0</span>"
+    if (!time) {
+        return "?"
+    }
     return time . match (/\.[0-9]$/) ? time + pad : time
 }
 
@@ -324,7 +327,7 @@ function item_to_row (item) {
     //
     // Special case for suspended records
     //
-    if (item . skater == "SUSPENDED") {
+    if (item . suspended) {
         return `<tr><td class = 'suspended' colspan = '9'>` +
                  item . suspended_message + `</td></tr>`
     }
@@ -485,14 +488,14 @@ function make_count_table (type, count, event, current, last) {
                       "class = 'count'>" + value + "</td>"
         }
         if (type == "skater" || type == "duration" || type == "improvement") {
-            const skater = Skater . skater (list [i])
+            const skater = Athlete . athlete (list [i])
             const date   = last [list [i]]
             const img    = Flags . img (skater . nationality (date), date)
             table += "<td class = 'name'>"   + skater . name (date) + "</td>"
                   +  "<td class = 'nation'>" + img                  + "</td>"
         }
         else if (type == "rink") {
-            const rink = Rink . rink (list [i])
+            const rink = Venue . venue (list [i])
             table += "<td class = 'city'>"    + rink . city ("now") + "</td>"
                   +  "<td class = 'stadion'>" + rink . name ()      + "</td>"
         }
@@ -591,9 +594,10 @@ function load_chart () {
 
 
 window . addEventListener ("load", function () {
-    Rink   . init ()
-    Skater . init ()
-    Event  . init ()
+    Rinks      . init ()
+    Flags_Data . init ()
+    Skaters    . init ()
+    Event      . init ()
     init_progression ()
 
     const params   = new URLSearchParams (window . location . search)
