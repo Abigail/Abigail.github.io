@@ -3,7 +3,8 @@ akifyeva                Olga Akifyeva                   URS
 andersen                Hjalmar Andersen                NOR
 anschutz                Daniela Ansch\u{FC}tz           GER
 antson                  Ants Antson                     URS
-artamonova              Inga Artamonova                 URS
+artamonova              1936-08-29 Inga Artamonova
+                        1959-07-00 Inga Voronina-Artamonova     URS
 averina                 Tatyana Averina                 URS
 
 backman                 Kjell B\u{E4}ckman              NOR
@@ -278,7 +279,6 @@ visser                  Leo Visser                      NED
 volker                  Sabine V\u{F6}lker              GER
 vorobyeva               Khalida Vorobyeva               URS
 voronina                Natalya Voronina                RUS
-voronina-artamonova     Inga Voronina-Artamonova        URS
 vries                   Douwe de Vries                  NED
 
 wennemars               Erben Wennemars                 NED

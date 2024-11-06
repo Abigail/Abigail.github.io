@@ -20,7 +20,8 @@ class Skaters {
                                 name:        "Ants Antson",
                                 nationality: "URS"})
         Athlete . add_athlete ({key:         "artamonova",
-                                name:        "Inga Artamonova",
+                                name:       ["1936-08-29", "Inga Artamonova",
+                                             "1959-07-00", "Inga Voronina-Artamonova"],
                                 nationality: "URS"})
         Athlete . add_athlete ({key:         "averina",
                                 name:        "Tatyana Averina",
@@ -776,9 +777,6 @@ class Skaters {
         Athlete . add_athlete ({key:         "voronina",
                                 name:        "Natalya Voronina",
                                 nationality: "RUS"})
-        Athlete . add_athlete ({key:         "voronina-artamonova",
-                                name:        "Inga Voronina-Artamonova",
-                                nationality: "URS"})
         Athlete . add_athlete ({key:         "vries",
                                 name:        "Douwe de Vries",
                                 nationality: "NED"})

@@ -789,7 +789,7 @@ function init_progression () {
     add_record (w500, "nilsen",      "0:49.3",  "1935-02-27", "frogner")
     add_record (w500, "nilsen",      "0:46.4",  "1937-01-30", "davos")
     add_record (w500, "rylova",      "0:45.6",  "1955-01-11", "medeo")
-    add_record (w500, "voronina-artamonova","0:44.9","1962-01-27","medeo")
+    add_record (w500, "artamonova",  "0:44.9",  "1962-01-27", "medeo")
 
     add_record (w500, "sidorova",    "0:44.7",  "1968-02-03", "davos")
     add_record (w500, "schleiermacher","0:44.6","1969-02-04", "davos")
@@ -916,7 +916,7 @@ function init_progression () {
     add_record (w1500, "shchegoleyeva","2:25.5", "1953-01-30", "medeo")
 
     add_record (w1500, "skoblikova",  "2:25.2",  "1960-02-21", "squaw_valley")
-    add_record (w1500, "voronina-artamonova","2:19.0","1962-01-27","medeo")
+    add_record (w1500, "artamonova",  "2:19.0",  "1962-01-27", "medeo")
     add_record (w1500, "schut",       "2:18.5",  "1969-02-22", "inzell")
     add_record (w1500, "statkevich",  "2:17.8",  "1970-01-17", "medeo")
     add_record (w1500, "keulen",      "2:17.2",  "1970-03-14", "inzell")
@@ -963,7 +963,7 @@ function init_progression () {
     add_record (w3000, "akifyeva",    "5:22.2",  "1951-02-16", "medeo")
     add_record (w3000, "zhukova",     "5:21.3",  "1952-01-08", "medeo")
     add_record (w3000, "zhukova",     "5:13.8",  "1953-01-23", "medeo")
-    add_record (w3000, "voronina-artamonova","5:06.0","1962-01-28","medeo")
+    add_record (w3000, "artamonova",  "5:06.0",  "1962-01-28", "medeo")
 
     add_record (w3000, "skoblikova",  "5:05.9",  "1967-01-15", "bislett")
     add_record (w3000, "kaiser",      "5:04.8",  "1967-01-29", "davos")
@@ -1103,8 +1103,7 @@ function init_progression () {
     add_record (wMINI, "haase",       "202.834", "1960-01-20", "davos")
     add_record (wMINI, "rylova",      "196.416", "1960-01-21", "medeo")
 
-    add_record (wMINI, "voronina-artamonova",
-                                         "189.033", "1962-01-28", "medeo")
+    add_record (wMINI, "artamonova",  "189.033", "1962-01-28", "medeo")
     add_record (wMINI, "kaiser",      "188.634", "1967-03-05", "inzell")
     add_record (wMINI, "schut",       "185.500", "1969-02-23", "inzell")
     add_record (wMINI, "statkevich",  "184.053", "1970-01-18", "medeo")
