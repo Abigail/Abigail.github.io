@@ -246,7 +246,7 @@ stolz                   Jordan Stolz                    USA
 storholt                Jan Egil Storholt               NOR
 strom_harald            Harald Str\u{F8}m               NOR
 strom_kristian          Kristian Str\u{F8}m             NOR
-strunnikov              Nikolay Strunnikov              RU1
+strunnikov              Nikolay Strunnikov              RUS
 sun                     Chuanyi Sun                     CHN
 sundstrom               Becky Sundstrom                 USA
 suzuki                  Keiichi Suzuki                  JPN

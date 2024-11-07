@@ -83,12 +83,11 @@ POL     1919-06-28      POL-1919        # Date??, using Treaty of Versailles
         1927-12-13      POL-1927
         1980-01-31      POL-1980
 
-RU1     1696            RUS-1696        # Russian Empire
+RUS     1696            RUS-1696        # Russian Empire
         1858-06-23      RUS-1858
         1883-05-08      RUS-1696
-        1922-12-30      undefined
-
-RUS     1991-12-21      RUS-1991        # Post Soviet Era
+        1922-12-30      undefined       # Soviet Era
+        1991-12-21      RUS-1991        # Post Soviet Era
         1993            RUS-1696
 
 SWE     1818            SWE-1818

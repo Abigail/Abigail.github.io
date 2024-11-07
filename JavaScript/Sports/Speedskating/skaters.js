@@ -686,7 +686,7 @@ class Skaters {
                                 nationality: "NOR"})
         Athlete . add_athlete ({key:         "strunnikov",
                                 name:        "Nikolay Strunnikov",
-                                nationality: "RU1"})
+                                nationality: "RUS"})
         Athlete . add_athlete ({key:         "sun",
                                 name:        "Chuanyi Sun",
                                 nationality: "CHN"})
