@@ -430,7 +430,7 @@ function count_records (progression) {
             last_record [skater_key] = item . date
         }
         
-        if (item . improvement) {
+        if (!item . no_improvement) {
             if (!improvement_count [skater_key]) {
                 improvement_count [skater_key] = 0
             }

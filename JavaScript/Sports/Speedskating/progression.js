@@ -65,10 +65,14 @@ function add_record (event, skater, time, date, rink, extra = {}) {
     }
 
     new_entry . suspended = skater == "SUSPENDED"
+    new_entry . no_improvement     = 1
 
     if (__progression . length) {
         const last = __progression [__progression . length - 1]
-        if (last . event . equal (new_entry . event)) {
+        if (last      . event . equal (new_entry . event) &&
+           !last      . suspended                         &&
+           !new_entry . suspended) {
+            new_entry . no_improvement = 0
             const improvement = last . y - new_entry . y
             if (improvement > 0) {
                 //
@@ -95,7 +99,6 @@ function add_record (event, skater, time, date, rink, extra = {}) {
                         new_entry . time . length == new_dot + 3 ? 2 : 1;
 
                     new_entry . precision = precision
-                //  new_entry . improvement = sec2time (improvement, precision)
                 }
             }
         }
