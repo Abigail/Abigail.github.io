@@ -395,7 +395,7 @@ function count_records (progression) {
     let last_record       = {}
 
     progression . forEach ((item) => {
-        if (item . skater == "SUSPENDED") {
+        if (item . suspended) {
             return;
         }
         const country = item . skater . nationality (item . date)
