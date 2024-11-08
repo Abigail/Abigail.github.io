@@ -1,10 +1,37 @@
 //
-// Do not modify. Modify flags.txt and regenerate this file
-// by running flags.pl.
+// Do not modify. Modify country_flags.txt and regenerate this file
+// by running country_flags.pl.
 //
-class Flags_Data {
+class Country_Data {
     static init () {
-        Flags . info = {
+        Country . name_info = {
+            AUT: "Austria",
+            BEL: "Belgium",
+            CAN: "Canada",
+            CHN: "China",
+            CZE: "Czech Republic",
+            GDR: "East Germany",
+            GER: "Germany",
+            FRA: "France",
+            FRG: "West Germany",
+            FIN: "Finland",
+            HUN: "Hungary",
+            ITA: "Italy",
+            JPN: "Japan",
+            KAZ: "Kazakhstan",
+            KOR: "South Korea",
+            NED: "Netherlands",
+            NOR: "Norway",
+            POL: "Poland",
+            RUS: "Russia",
+            SUI: "Switzerland",
+            SWE: "Sweden",
+            URS: "Soviet Union",
+            USA: "United States",
+            YUG: "Yugoslavia",
+        }
+
+        Country . flag_info = {
             AUT: [
                 "1804-08-11", "AUT-1804.svg",
                 "1867-03-30", "AUT-1804.svg",
@@ -27,6 +54,11 @@ class Flags_Data {
             CZE: [
                 "1920-03-30", "CZE-1920.svg",
             ],
+            GDR: [
+                "1949-10-07", "GER-1949.svg",
+                "1959-10-01", "GER-1959.svg",
+                "1990-10-03",  undefined,
+            ],
             GER: [
                 "1867-04-16", "GER-1867.svg",
                 "1919-07-03", "GER-1919.svg",
@@ -34,11 +66,6 @@ class Flags_Data {
                 "1935-09-15", "GER-1935.svg",
                 "1945-05-09",  undefined,
                 "1990-10-03", "GER-1949.svg",
-            ],
-            GDR: [
-                "1949-10-07", "GER-1949.svg",
-                "1959-10-01", "GER-1959.svg",
-                "1990-10-03",  undefined,
             ],
             FRA: [
                 "1790",       "FRA-1790.svg",
@@ -116,14 +143,14 @@ class Flags_Data {
                 "1991-12-21", "RUS-1991.svg",
                 "1993",       "RUS-1696.svg",
             ],
+            SUI: [
+                "1841",       "SUI-1841.svg",
+            ],
             SWE: [
                 "1818",       "SWE-1818.svg",
                 "1844",       "SWE-1844.svg",
                 "1905-11-01", "SWE-1905.svg",
                 "1906-06-22", "SWE-1906.svg",
-            ],
-            SUI: [
-                "1841",       "SUI-1841.svg",
             ],
             URS: [
                 "1922-12-30", "URS-1922.svg",

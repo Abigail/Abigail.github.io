@@ -259,7 +259,7 @@ function rink_type_td (rink, date) {
                : rink . is_artificial (date) ? "Artificial"
                : rink . is_indoor     (date) ? "Indoor" : "???"
 
-    const flag = Flags . img (rink . country (date), date)
+    const flag = rink . flag_img (date)
 
     const alt  = rink . is_lowland       () ? "LL"
                : rink . is_high_altitude () ? "HA" : ""
@@ -338,9 +338,7 @@ function item_to_row (item) {
     const skater   = item . skater
     const rink     = item . rink
     const event    = item . event
-
-    let nationality = skater . nationality (date)
-    let img = Flags . img (nationality, date)
+    const img      = skater . flag_img (date)
 
     if (item . current) {
         duration = `<span class = 'current'>${duration}</span>`
@@ -490,7 +488,7 @@ function make_count_table (type, count, event, current, last) {
         if (type == "skater" || type == "duration" || type == "improvement") {
             const skater = Athlete . athlete (list [i])
             const date   = last [list [i]]
-            const img    = Flags . img (skater . nationality (date), date)
+            const img    = skater . flag_img (date)
             table += "<td class = 'name'>"   + skater . name (date) + "</td>"
                   +  "<td class = 'nation'>" + img                  + "</td>"
         }
@@ -500,8 +498,9 @@ function make_count_table (type, count, event, current, last) {
                   +  "<td class = 'stadion'>" + rink . name ()      + "</td>"
         }
         else if (type == "country") {
-            const name = Country . name (list [i])
-            const img  = Flags . img (list [i], "last")
+            const country = new Country (list [i])
+            const name    = country . name ()
+            const img     = country . flag_img ("last")
             table += "<td class = 'country'>" + name + "</td>"
                   +  "<td class = 'nation'>"  + img  + "</td>"
         }
@@ -594,10 +593,10 @@ function load_chart () {
 
 
 window . addEventListener ("load", function () {
-    Rinks      . init ()
-    Flags_Data . init ()
-    Skaters    . init ()
-    Event      . init ()
+    Country_Data . init ()
+    Rinks        . init ()
+    Skaters      . init ()
+    Event        . init ()
     init_progression ()
 
     const params   = new URLSearchParams (window . location . search)

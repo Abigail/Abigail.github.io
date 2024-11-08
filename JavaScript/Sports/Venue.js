@@ -47,6 +47,10 @@ class Venue {
     is_lowland       ()     {return this . __elevation <   300}
     is_high_altitude ()     {return this . __elevation >  1000}
 
+    flag_img (date) {
+        return new Country (this . country (date)) . flag_img (date)
+    }
+
     //
     // Derived values
     //

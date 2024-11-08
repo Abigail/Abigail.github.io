@@ -49,6 +49,15 @@ class Athlete {
         return nat
     }
 
+    country (date = 0) {
+        const nat = this . nationality (date)
+        return new Country (nat)
+    }
+
+    flag_img (date = 0) {
+        return this . country (date) . flag_img (date)
+    }
+
     static add_athlete (keys) {
         const key         = keys . key
         const name        = keys . name
@@ -60,9 +69,5 @@ class Athlete {
         return Athlete . athletes [key] ||
                Country . country (key)  ||
                new Athlete (key, "")
-    }
-
-    static init () {
-        console . log ("Athlete . init () called")
     }
 }

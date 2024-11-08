@@ -1,8 +1,8 @@
 window . addEventListener ("load", function () {
-    Flags_Data . init ()
-    Rinks   . init ()
-    Skaters . init ()
-    Event   . init ()
+    Country_Data . init ()
+    Rinks        . init ()
+    Skaters      . init ()
+    Event        . init ()
     init_progression ()
 
     //
@@ -57,8 +57,8 @@ function build_current_records () {
                 table_str += `<td class = 'record'>${item . time}</td>`
                 const skater = item   . skater
                 const name   = skater . name (date)
-                const img    = Flags  . img (skater . nationality (date), date)
-                const city   = item   . rink   . city (date)
+                const img    = skater . flag_img (date)
+                const city   = item   . rink . city (date)
                 table_str += `<td class = 'name'>${name}</td>`
                 table_str += `<td class = 'flag'>${img}</td>`
                 table_str += `<td class = 'city'>${city}</td>`

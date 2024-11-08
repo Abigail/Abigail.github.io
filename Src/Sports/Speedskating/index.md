@@ -1,16 +1,15 @@
 # Speedskating
 
-<!-- %%% style:  ~/nav_bar       -->
-<!-- %%% script: ~/nav_bar       -->
-<!-- %%% script: ~/../Flags      -->
-<!-- %%% script: ~/../Flags_Data -->
-<!-- %%% script: ~/../Venue      -->
-<!-- %%% script: ~/../Athlete    -->
-<!-- %%% script: ~/events        -->
-<!-- %%% script: ~/progression   -->
-<!-- %%% script: ~/skaters       -->
-<!-- %%% script: ~/countries     -->
-<!-- %%% script: ~/rinks         -->
+<!-- %%% style:  ~/nav_bar          -->
+<!-- %%% script: ~/nav_bar          -->
+<!-- %%% script: ~/../Country_Data  -->
+<!-- %%% script: ~/../Country       -->
+<!-- %%% script: ~/../Venue         -->
+<!-- %%% script: ~/../Athlete       -->
+<!-- %%% script: ~/rinks            -->
+<!-- %%% script: ~/skaters          -->
+<!-- %%% script: ~/events           -->
+<!-- %%% script: ~/progression      -->
 
 ## Current World Records
 
