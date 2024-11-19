@@ -1,0 +1,9 @@
+kholshchevnikova 212.890        1949-02-12/2    kongsberg
+kondakova       210.431         1951-02-04/2    medeo
+karelina        208.820         1951-02-11/2    medeo
+zhukova         208.750         1952-01-21/2    medeo
+zhukova         204.010         1953-01-23/2    medeo
+rylova          203.920         1955-01-21/2    medeo
+SUSPENDED                       1955-04-01
+        Record suspended from the ISU Congress of 1955 onwards
+

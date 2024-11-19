@@ -6,6 +6,7 @@
 <!-- %%% script: ~/../Country       -->
 <!-- %%% script: ~/../Athlete       -->
 <!-- %%% script: ~/../Venue         -->
+<!-- %%% script: ~/../Events        -->
 <!-- %%% script: ~/rinks            -->
 <!-- %%% script: ~/skaters          -->
 <!-- %%% script: ~/events           -->

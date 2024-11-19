@@ -1,0 +1,8 @@
+may             74.720          2001-03-09      salt_lake_city
+                0:37.43 0:37.29
+wolf            74.420          2007-03-10      salt_lake_city
+                0:37.38 0:37.04
+# https://www.guinnessworldrecords.com/world-records/
+#         fastest-speed-skating-2-x-500-metres-(female)
+richardson      74.190          2013-12-28      salt_lake_city
+                0:37.10 0:37.09

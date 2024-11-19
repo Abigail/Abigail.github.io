@@ -3,6 +3,7 @@ window . addEventListener ("load", function () {
     Rinks        . init ()
     Skaters      . init ()
     Event        . init ()
+    Record       . init ()
     init_progression ()
 
     //
