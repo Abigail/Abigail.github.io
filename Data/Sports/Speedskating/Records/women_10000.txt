@@ -1,3 +1,5 @@
+%% full_name:  10000 Meter
+%% short_name: 10000m
 nehringowa      23:48.5         1935-12-30      vienna
 SUSPENDED                       1953-01-01
         Record suspended from the ISU Congress of 1953 onwards; 

@@ -1,3 +1,5 @@
+%% full_name:  2 x 500m Combination
+%% short_name: 2 x 500m
 shimizu         68.960          2001-03-10      salt_lake_city
                 0:34.64 0:34.32
 kang-seok       68.690          2007-03-09      salt_lake_city

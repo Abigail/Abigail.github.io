@@ -1,3 +1,5 @@
+%% full_name:  Small Combination
+%% short_name: Small
 mitscherlich    177.669         1983-01-22/2    thialf
 schonbrunn      174.710         1984-01-14/2    medeo
 mitscherlich    171.760         1984-03-23/2    medeo

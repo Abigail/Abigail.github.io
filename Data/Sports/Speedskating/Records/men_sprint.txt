@@ -1,3 +1,5 @@
+%% full_name:  Sprint Combination
+%% short_name: Sprint
 borjes          163.300         1971-12-11/2    kongsberg
                 0:40.1  1:23.8  0:39.6  1:23.4
 linkovesi       156.500         1972-01-07/2    davos

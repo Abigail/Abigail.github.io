@@ -1,3 +1,5 @@
+%% full_name:  Mini Combination
+%% short_name: Mini
 kondakova       207.484         1956-02-04/2    kvarnsveden
 artamonova      206.016         1956-02-05/2    sverdlovsk
 romanova        203.299         1958-01-26/2    medeo

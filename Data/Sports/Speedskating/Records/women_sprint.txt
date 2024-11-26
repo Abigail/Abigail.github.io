@@ -1,3 +1,5 @@
+%% full_name:  Sprint Combination
+%% short_name: Sprint
 pflug           183.085         1972-02-26/2    eskilstuna
 burka           175.050         1973-01-13/2    davos
 young           173.450         1973-01-19/2    davos

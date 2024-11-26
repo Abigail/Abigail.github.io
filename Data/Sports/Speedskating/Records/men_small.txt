@@ -1,3 +1,5 @@
+%% full_name:  Small Combination
+%% short_name: Small
 dietel          163.244         1981-01-16/2    davos
                 0:38.16 4:07.28 1:57.83 7:25.95
 falk-larssen    162.734         1982-01-16/2    davos

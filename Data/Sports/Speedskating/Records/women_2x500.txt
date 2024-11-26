@@ -1,3 +1,5 @@
+%% full_name:  2 x 500m Combination
+%% short_name: 2 x 500m
 may             74.720          2001-03-09      salt_lake_city
                 0:37.43 0:37.29
 wolf            74.420          2007-03-10      salt_lake_city

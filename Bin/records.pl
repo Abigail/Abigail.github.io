@@ -65,18 +65,35 @@ sub process_file ($input, $o_fh) {
     my $gender         = $+ {gender};
     my $discipline     = $+ {discipline};
     my $result_is_time = $discipline =~ /^(?:\d+|pursuit|team_sprint|relay)$/;
-    my $event = encode_json {
+
+    my $event = {
         sport      => 'speedskating',
         age        => 'senior',
         type       => 'world',
         gender     =>  $gender,
         discipline =>  $discipline,
     };
-    print $o_fh "    Record . event ($event)\n";
 
     open my $i_fh, "<", $input or die "Failed to open $input: $!";
     local $/ = undef;
-    my @entries = split /^(?=[a-z])/im => <$i_fh> =~ s/^\h*#.*\n//gr;
+
+    my $text = <$i_fh>;
+       $text =~ s/^\h*#.*\n//gm;
+
+    while ($text =~ s/^ \h* %% \h* (?<key>[a-z_]+): \h*
+                                   (?<value>\S.*\S) \h* \n//mx) {
+        my $key   = $+ {key};
+        my $value = $+ {value};
+
+        $$event {$key} = $value;
+    }
+
+    $event = encode_json ($event);
+
+    print $o_fh "    Record . event ($event)\n";
+
+
+    my @entries = split /^(?=[a-z])/im => $text;
     my @output;
     foreach my $entry (@entries) {
         if ($entry =~ /^SUSPENDED \h+ (?<date> $p_date) \h* \n

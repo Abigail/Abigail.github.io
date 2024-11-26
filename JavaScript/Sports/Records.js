@@ -6,25 +6,6 @@ let disciplines  = {
                    'big', 'small', 'old_small', 'mini', 'sprint', '2x500',
                    'pursuit', 'team_sprint', 'relay'],
 }
-let names        = {
-    speedskating: {
-       '500':        ["500 meter",                "500m"],
-       '1000':       ["1000 meter",               "1000m"],
-       '1500':       ["1500 meter",               "1500m"],
-       '3000':       ["3000 meter",               "3000m"],
-       '5000':       ["5000 meter",               "5000m"],
-       '10000':      ["10000 meter",              "10000m"],
-        big:         ["Big Combination",          "Big"],
-        small:       ["Small Combination",        "Small"],
-        old_small:   ["Old Small Combination",    "Old Small"],
-        mini:        ["Mini Combination",         "Mini"],
-        sprint:      ["Sprint Combination",       "Sprint"],
-       '2x500':      ["2 x 500m Combination",     "2 x 500m"],
-        pursuit:     ["Team Pursuit",             "Pursuit"],
-        team_sprint: ["Team Sprint",              "Sprint"],
-        relay:       ["Team Relay",               "Relay"],
-    }
-}
 class Record {
     static records = []
 
@@ -34,6 +15,8 @@ class Record {
         this . __gender      = args . gender
         this . __type        = args . type
         this . __age         = args . age
+        this . __full_name   = args . full_name
+        this . __short_name  = args . short_name
         this . __progression = []
     }
 
@@ -153,11 +136,10 @@ class Record {
     }
 
     //
-    // Full name of the discipline
+    // (Full) name of the discipline
     //
     name (short = false) {
-        let index = short ? 1 : 0
-        return names [this . sport ()] [this . discipline ()] [index]
+        return short ? this . __short_name : this . __full_name
     }
 }
 

@@ -1,3 +1,5 @@
+%% full_name:  Team Pursuit
+%% short_name: Pursuit
 USA             3:48.56         2004-11-13      hamar
                 boutiette       hedrick         parra
 NED             3:46.44         2004-11-21      berlin

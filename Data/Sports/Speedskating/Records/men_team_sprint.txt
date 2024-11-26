@@ -1,1 +1,3 @@
+%% full_name:  Team Sprint
+%% short_name: Sprint
 CAN             1:17.31         2017-12-01      calgary

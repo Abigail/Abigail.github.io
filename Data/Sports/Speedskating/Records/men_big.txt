@@ -1,3 +1,5 @@
+%% full_name:  Big Combination
+%% short_name: Big
 farstad                 188.958         1949-02-05/2    davos
                         0:41.8  8:15.4  2:13.9  17:39.7
 sakunenko               184.638         1955-01-09/2    medeo

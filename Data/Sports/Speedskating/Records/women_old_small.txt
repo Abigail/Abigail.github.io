@@ -1,3 +1,5 @@
+%% full_name:  Old Small Combination
+%% short_name: Old Small
 kholshchevnikova 212.890        1949-02-12/2    kongsberg
 kondakova       210.431         1951-02-04/2    medeo
 karelina        208.820         1951-02-11/2    medeo

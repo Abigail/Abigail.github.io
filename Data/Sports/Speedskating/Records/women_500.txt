@@ -1,3 +1,5 @@
+%% full_name:  500 Meter
+%% short_name: 500m
 nehringowa      1:02.0          1931-02-15      warsaw
 landbeck        0:58.7          1932-01-09      davos
 lie             0:56.0          1932-03-20      brandbu
