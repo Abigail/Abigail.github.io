@@ -4,7 +4,6 @@ window . addEventListener ("load", function () {
     Skaters      . init ()
     Event        . init ()
     Record       . init ()
-    init_progression ()
 
     //
     // Get rid of the hands at the bottom
@@ -31,42 +30,49 @@ function build_current_records () {
     let table_str = ""
     table_str += "<table class = 'current'>"
     table_str += "<tr><th>Event</th>"  +
-                     "<th>Date</th>"   +
                      "<th>Record</th>" +
+                     "<th>Date</th>"   +
                      "<th colspan = '2'>Skater</th>" +
                      "<th>Rink</th></tr>"
 
-    Event . all_genders . forEach ((gender) => {
-        const gender_name = Event . gender_name (gender)
-        table_str += `<tr><th colspan = '6'>${gender_name}</th></tr>`
-        const events = Event . events ({gender:    gender,
-                                        suspended: 0,
-                                        record:    1})
-        events . forEach ((event) => {
-            const current_records = progression ({current: 1,
-                                                  suspended: 0,
-                                                  event: event})
-            const amount = current_records . length
-            table_str += `<tr><th rowspan = '${amount}' class = 'event'>` +
-                              `${event . full_name (0)}</th>`
-            current_records . forEach ((item, index) => {
-                if (index > 1) {
+    Record . genders () . forEach ((gender) => {
+        table_str += `<tr><th colspan = '6'>${Utils . uc_first (gender)}` +
+                     `</th></tr>`
+
+        Record . disciplines ('speedskating') . forEach ((discipline) => {
+            let progression = Record . exists ({sport:     "speedskating",
+                                                discipline: discipline,
+                                                gender:     gender})
+            if (!progression) {
+                return
+            }
+            let current = progression . current ()
+            if (!current || !current . length) {
+                return
+            }
+            let rows = current . length
+            table_str += "<tr>";
+            table_str += `<th class = 'event' rowspan = '${rows}'>` +
+                         `${progression . name ()}</th>`
+            table_str += `<td class = 'record' rowspan = '${rows}'>` +
+                         `${current [0] . result ()}</td>`
+            current . forEach ((entry, index) => {
+                let date = entry . date    ()
+                let name = entry . athlete_or_team () . name     (date)
+                let flag = entry . athlete_or_team () . flag_img (date)
+                let city = entry . venue           () . city     (date)
+                if (index > 0) {
                     table_str += `<tr>`
                 }
-                const date = item . date
-                table_str += `<td class = 'date'>${item . date}</td>` 
-                table_str += `<td class = 'record'>${item . time}</td>`
-                const skater = item   . skater
-                const name   = skater . name (date)
-                const img    = skater . flag_img (date)
-                const city   = item   . rink . city (date)
-                table_str += `<td class = 'name'>${name}</td>`
-                table_str += `<td class = 'flag'>${img}</td>`
-                table_str += `<td class = 'city'>${city}</td>`
+                table_str += `<td class = 'date'>${date}</td>`
+                          +  `<td class = 'name'>${name}</td>`
+                          +  `<td class = 'flag'>${flag}</td>`
+                          +  `<td class = 'city'>${city}</td>`
                 table_str += `</tr>`
             })
         })
     })
+
     table_str += "</table>"
 
     $("div#current") . html (table_str)

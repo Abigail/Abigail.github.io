@@ -190,6 +190,16 @@ sub process_file ($input, $o_fh) {
         }
     }
 
+    #
+    # Find the "current" records. Walk from the end, as long as there is
+    # neither an improvement, or a suspension, it's current.
+    #
+    for (my $i = @output - 1; $i >= 0; $i --) {
+        my $entry = $output [$i];
+        last if $$entry {suspended} || $$entry {duration};
+        $$entry {current} = 1;
+    }
+
     foreach my $entry (@output) {
         my $json = encode_json ($entry);
         my $method = $$entry {suspended} ? "add_suspension" : "add_record";

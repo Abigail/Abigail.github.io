@@ -46,3 +46,4 @@ bowe            1:12.58         2013-11-17      salt_lake_city
 richardson      1:12.51         2015-11-14      calgary
 bowe            1:12.18         2015-11-22      salt_lake_city
 kodaira         1:12.09         2017-12-09      salt_lake_city
+bowe            1:11.61         2019-03-09      salt_lake_city

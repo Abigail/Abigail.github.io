@@ -11,7 +11,6 @@
 <!-- %%% script: ~/rinks              -->
 <!-- %%% script: ~/skaters            -->
 <!-- %%% script: ~/events             -->
-<!-- %%% script: ~/progression        -->
 <!-- %%% script: ~/record_progression -->
 
 ## Current World Records

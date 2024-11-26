@@ -12,4 +12,9 @@ class Utils {
         return 60 * min + sec
     }
 
+    //
+    // Upper case the first letter of a string
+    static uc_first (str) {
+        return str . charAt (0) . toUpperCase () + str . slice (1)
+    }
 }

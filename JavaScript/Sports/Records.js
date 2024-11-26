@@ -3,12 +3,27 @@ let ages         = ['senior']
 let types        = ['world']
 let disciplines  = {
     speedskating: ['500', '1000', '1500', '3000', '5000', '10000',
-                   'big', 'small', 'mini', 'old_small', 'sprint', '2x500',
+                   'big', 'small', 'old_small', 'mini', 'sprint', '2x500',
                    'pursuit', 'team_sprint', 'relay'],
 }
-let uses_time    = {
-    speedskating: ['500', '1000', '1500', '3000', '5000', '10000',
-                   'pursuit', 'team_sprint', 'relay'],
+let names        = {
+    speedskating: {
+       '500':        ["500 meter",                "500m"],
+       '1000':       ["1000 meter",               "1000m"],
+       '1500':       ["1500 meter",               "1500m"],
+       '3000':       ["3000 meter",               "3000m"],
+       '5000':       ["5000 meter",               "5000m"],
+       '10000':      ["10000 meter",              "10000m"],
+        big:         ["Big Combination",          "Big"],
+        small:       ["Small Combination",        "Small"],
+        old_small:   ["Old Small Combination",    "Old Small"],
+        mini:        ["Mini Combination",         "Mini"],
+        sprint:      ["Sprint Combination",       "Sprint"],
+       '2x500':      ["2 x 500m Combination",     "2 x 500m"],
+        pursuit:     ["Team Pursuit",             "Pursuit"],
+        team_sprint: ["Team Sprint",              "Sprint"],
+        relay:       ["Team Relay",               "Relay"],
+    }
 }
 class Record {
     static records = []
@@ -20,6 +35,14 @@ class Record {
         this . __type        = args . type
         this . __age         = args . age
         this . __progression = []
+    }
+
+    static genders () {
+        return genders
+    }
+
+    static disciplines (sport) {
+        return disciplines [sport]
     }
 
     //
@@ -99,29 +122,20 @@ class Record {
     //
     // Getters
     //
-    sport  () {return this . __sport}
-    event  () {return this . __event}
-    gender () {return this . __gender}
-    type   () {return this . __type}
-    age    () {return this . __age}
-
-    //
-    // Return true if the record is measured in time (as opposed to 
-    // length or points)
-    //
-    is_time () {
-        return uses_time [this . sport ()] [this . event ()]
-    }
+    sport      () {return this . __sport}
+    discipline () {return this . __discipline}
+    gender     () {return this . __gender}
+    type       () {return this . __type}
+    age        () {return this . __age}
 
     //
     // Return the current record
     //
     current () {
-        let current = this . __progression [this . __progression . length - 1]
-        if (current && !current . is_suspended ()) {
-            return current
-        }
-        return null
+        return this . __progression . filter ((entry) => {
+            return !entry . is_suspension () &&
+                    entry . is_current    ()
+        })
     }
 
     //
@@ -137,6 +151,14 @@ class Record {
         this . __progression . push (new_entry)
         return this
     }
+
+    //
+    // Full name of the discipline
+    //
+    name (short = false) {
+        let index = short ? 1 : 0
+        return names [this . sport ()] [this . discipline ()] [index]
+    }
 }
 
 
@@ -147,6 +169,7 @@ class Record_Entry {
         this . __result       =                    args . result
         this . __date         =                    args . date
         this . __first_date   =                    args . first_date
+        this . __current      = args . current ? true : false
         if (args . improvement) {
             this . __improvement  =                args . improvement
         }
@@ -179,24 +202,26 @@ class Record_Entry {
                      new Date (this . __date) . setHours (12)) /
                     (24 * 3600 * 1000))
         }
-
-        console . log (this)
     }
 
     //
     // Getters
     //
-    athlete     () {return this . __athlete}
-    country     () {return this . __country}
-    venue       () {return this . __venue}
-    result      () {return this . __result}
-    date        () {return this . __date}
-    first_date  () {return this . __first_date}
-    time_in_sec () {return this . __time_in_sec}
-    improvement () {return this . __improvement}
-    times       () {return this . __times || []}
-    members     () {return this . __members}
-    duration    () {return this . __duration}
+    athlete         () {return this . __athlete}
+    country         () {return this . __country}
+    venue           () {return this . __venue}
+    result          () {return this . __result}
+    date            () {return this . __date}
+    first_date      () {return this . __first_date}
+    time_in_sec     () {return this . __time_in_sec}
+    improvement     () {return this . __improvement}
+    times           () {return this . __times || []}
+    members         () {return this . __members}
+    duration        () {return this . __duration}
+    is_current      () {return this . __current}
+
+    athlete_or_team () {return this . __athlete ||
+                               this . __country}
 
     is_suspension () {return false}
 }
