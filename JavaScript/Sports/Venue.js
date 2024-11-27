@@ -88,4 +88,51 @@ class Venue {
     static add_venue (args) {
         Venue . venues [args . key] = new Venue (args)
     }
+
+    //
+    // Create the td content of the rink type column. This includes a
+    // tooltip with info about the rink.
+    //
+    // Once we venture outside of Ice Rinks, we'll probably put this
+    // into a subclass
+    //
+    rink_type_td (date) {
+        const rink_symbol = this . is_natural    (date) ? "\u{25A0}"
+                          : this . is_artificial (date) ? "\u{25B2}"
+                          : this . is_indoor     (date) ? "\u{25CF}"
+                          :                               ""
+        const rink_span   = "<span style = 'color: " + this . point_colour () +
+                            "'>" + rink_symbol + "</span>"
+
+        const type = this . is_natural    (date) ? "Natural"
+                   : this . is_artificial (date) ? "Artificial"
+                   : this . is_indoor     (date) ? "Indoor" : "???"
+
+        const flag = this . flag_img (date)
+
+        const alt  = this . is_lowland       () ? "LL"
+                   : this . is_high_altitude () ? "HA" : ""
+
+        const td = "<div class = 'tooltip'>" + rink_span +
+                   "<div class = 'tooltiptext rink_info'>" +
+                   "<table class = 'rink_info'>" +
+                      `<tr><th>City</th>`                                  +
+                          `<td>${this . city (date)}</td>`                 +
+                          `<td class = 'flag'>${flag}</td></tr>`           +
+                      `<tr><th>Name</th>`                                  + 
+                          `<td colspan = '2'>${this . name ()}</td></tr>`  +
+                      `<tr><th>Ice Type</th>`                              + 
+                          `<td colspan = '2'>${type}</td></tr>`            +
+                      `<tr><th>Elevation</th>`                             + 
+                          `<td>${this . elevation ()}m</td>`               +
+                          `<td>${alt}</td></tr>`                           +
+                   "</table></div></div>"
+
+        if (rink_symbol == "") {
+            console . log (this)
+            console . log (`Type on date ${date} is ${this . type (date)}`)
+        }
+
+        return td
+    }
 }

@@ -20,4 +20,5 @@
 ## Progression of World Records
 
 <div id = "navigation"></div>
+<div id = "navigation2"></div>
 

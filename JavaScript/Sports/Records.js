@@ -10,14 +10,17 @@ class Record {
     static records = []
 
     constructor (args) {
-        this . __sport       = args . sport
-        this . __discipline  = args . discipline
-        this . __gender      = args . gender
-        this . __type        = args . type
-        this . __age         = args . age
-        this . __full_name   = args . full_name
-        this . __short_name  = args . short_name
-        this . __progression = []
+        this . __sport          = args . sport
+        this . __discipline     = args . discipline
+        this . __gender         = args . gender
+        this . __type           = args . type
+        this . __age            = args . age
+        this . __full_name      = args . full_name
+        this . __short_name     = args . short_name
+        this . __is_combination = args . is_combination
+        this . __is_team        = args . is_team
+        this . __distances      = args . distances
+        this . __progression    = []
     }
 
     static genders () {
@@ -105,11 +108,15 @@ class Record {
     //
     // Getters
     //
-    sport      () {return this . __sport}
-    discipline () {return this . __discipline}
-    gender     () {return this . __gender}
-    type       () {return this . __type}
-    age        () {return this . __age}
+    sport          () {return this . __sport}
+    discipline     () {return this . __discipline}
+    gender         () {return this . __gender}
+    type           () {return this . __type}
+    age            () {return this . __age}
+    is_combination () {return this . __is_combination}
+    is_team        () {return this . __is_team}
+    distances      () {return this . __distances}
+    progression    () {return this . __progression}
 
     //
     // Return the current record
@@ -152,8 +159,12 @@ class Record_Entry {
         this . __date         =                    args . date
         this . __first_date   =                    args . first_date
         this . __current      = args . current ? true : false
+        this . __precision    =                    args . precision
         if (args . improvement) {
             this . __improvement  =                args . improvement
+        }
+        if (args . improvement_formatted) {
+            this . __improvement_formatted =       args . improvement_formatted
         }
         if (args . time_in_sec) {
             this . __time_in_sec  =                args . time_in_sec
@@ -189,23 +200,26 @@ class Record_Entry {
     //
     // Getters
     //
-    athlete         () {return this . __athlete}
-    country         () {return this . __country}
-    venue           () {return this . __venue}
-    result          () {return this . __result}
-    date            () {return this . __date}
-    first_date      () {return this . __first_date}
-    time_in_sec     () {return this . __time_in_sec}
-    improvement     () {return this . __improvement}
-    times           () {return this . __times || []}
-    members         () {return this . __members}
-    duration        () {return this . __duration}
-    is_current      () {return this . __current}
+    athlete               () {return this . __athlete}
+    country               () {return this . __country}
+    venue                 () {return this . __venue}
+    result                () {return this . __result}
+    date                  () {return this . __date}
+    first_date            () {return this . __first_date}
+    time_in_sec           () {return this . __time_in_sec}
+    improvement           () {return this . __improvement}
+    improvement_formatted () {return this . __improvement_formatted}
+    times                 () {return this . __times || []}
+    members               () {return this . __members}
+    duration              () {return this . __duration}
+    is_current            () {return this . __current}
+    precision             () {return this . __precision}
+    record                () {return this . __record}
 
-    athlete_or_team () {return this . __athlete ||
-                               this . __country}
+    athlete_or_team       () {return this . __athlete ||
+                                     this . __country}
 
-    is_suspension () {return false}
+    is_suspension       () {return false}
 }
 
 

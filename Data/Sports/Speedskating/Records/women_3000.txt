@@ -40,5 +40,5 @@ pechstein       3:59.26         2001-03-02      calgary
 pechstein       3:57.70         2002-02-10      salt_lake_city
 klassen         3:55.75         2005-11-12      calgary
 klassen         3:53.34         2006-03-18      calgary
-sablikova       3:53.31         2019-03-02      calgar
+sablikova       3:53.31         2019-03-02      calgary
 sablikova       3:52.02         2019-03-09      salt_lake_city

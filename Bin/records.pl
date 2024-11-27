@@ -14,6 +14,16 @@ use Date::Calc qw [Add_Delta_Days Delta_Days];
 use JSON;
 
 sub process_file;
+sub sec2time;
+
+my $distances = {
+    big       => [qw [500m 5000m 1500m 10000m]],
+    small     => [qw [500m 3000m 1500m  5000m]],
+    old_small => [qw [500m 3000m 1000m  5000m]],
+    mini      => [qw [500m 1500m 1000m  3000m]],
+    sprint    => [qw [500m 1000m  500m  1000m]],
+   '2x500'    => [qw [500m  500m]],
+};
 
 GetOptions ("input-dir=s"  =>  \my $input_dir,
             "output=s"     =>  \my $output,);
@@ -67,12 +77,18 @@ sub process_file ($input, $o_fh) {
     my $result_is_time = $discipline =~ /^(?:\d+|pursuit|team_sprint|relay)$/;
 
     my $event = {
-        sport      => 'speedskating',
-        age        => 'senior',
-        type       => 'world',
-        gender     =>  $gender,
-        discipline =>  $discipline,
+        sport          => 'speedskating',
+        age            => 'senior',
+        type           => 'world',
+        gender         =>  $gender,
+        discipline     =>  $discipline,
+        is_combination => scalar (grep {$_ eq $discipline} @$combination),
+        is_team        => scalar (grep {$_ eq $discipline} @$team),
     };
+
+    if ($$distances {$discipline}) {
+        $$event {distances} = $$distances {$discipline};
+    }
 
     open my $i_fh, "<", $input or die "Failed to open $input: $!";
     local $/ = undef;
@@ -179,10 +195,14 @@ sub process_file ($input, $o_fh) {
                 my $key = $result_is_time ? "time_in_sec" : "result";
                 my $improvement = $$previous {$key} - $$new {$key};
                    $improvement = 0 if $improvement < 0;
-                my $width = $$previous {precision} < $$new {precision}
-                          ? $$previous {precision} : $$new {precision};
-                $$new {improvement} = sprintf "%.${width}f" => $improvement
-                                  if $improvement && $improvement > 0;
+                if ($improvement && $improvement > 0) {
+                    my $width = $$previous {precision} < $$new {precision}
+                              ? $$previous {precision} : $$new {precision};
+                    $$new {improvement} = sprintf "%.${width}f" => $improvement;
+                    $$new {improvement_formatted} =
+                       $result_is_time ? sec2time ($$new {improvement}, $width)
+                                       :           $$new {improvement};
+                }
             }
         }
         push @output => $new;
@@ -226,3 +246,19 @@ sub process_file ($input, $o_fh) {
     close $i_fh or die "Failed to close $input: $!";
 }
 
+
+
+sub sec2time ($seconds, $precision) {
+    my $time = "";
+    if ($seconds >= 3600) {
+        my $hours = int ($seconds / 3600);
+        $seconds -= $hours * 3600;
+        $time = "$hours:";
+    }
+    my $minutes = int ($seconds / 60);
+    $seconds -= $minutes * 60;
+    $time .= "0" if $time && $minutes < 10;
+    $time .= "$minutes:";
+    my $width = 3 + $precision;
+    $time .= sprintf "%0${width}.${precision}f" => $seconds;
+}

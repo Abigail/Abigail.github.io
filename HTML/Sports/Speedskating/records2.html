@@ -1,15 +1,16 @@
 <html>
 <head>
-<title>Speedskating</title>
+<title>Record Progression</title>
 <meta charset = "utf-8">
 <link rel  = 'preconnect' href = 'https://fonts.gstatic.com'>
 <link rel = 'stylesheet' href =      'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
 <link rel = 'stylesheet' href = '../../../Styles/main.css'>
 <link rel = 'stylesheet' href = '../../../Styles/Sports/Speedskating/main.css'>
-<link rel = 'stylesheet' href = '../../../Styles/Sports/Speedskating/index.css'>
 <link rel = 'stylesheet' href = '../../../Styles/Sports/Speedskating/nav_bar.css'>
+<link rel = 'stylesheet' href = '../../../Styles/Sports/Speedskating/records.css'>
 <script src = "../../../JavaScript/jquery.js"></script>
 <script id  = 'MathJax-script' async src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.js'></script>
+<script id = 'chart-script' async src = 'https://cdn.jsdelivr.net/npm/chart.js'></script>
 <script src = '../../../JavaScript/Sports/Speedskating/../Athlete.js'></script>
 <script src = '../../../JavaScript/Sports/Speedskating/../Country.js'></script>
 <script src = '../../../JavaScript/Sports/Speedskating/../Country_Data.js'></script>
@@ -17,30 +18,63 @@
 <script src = '../../../JavaScript/Sports/Speedskating/../Utils.js'></script>
 <script src = '../../../JavaScript/Sports/Speedskating/../Venue.js'></script>
 <script src = '../../../JavaScript/Sports/Speedskating/events.js'></script>
-<script src = '../../../JavaScript/Sports/Speedskating/index.js'></script>
 <script src = '../../../JavaScript/Sports/Speedskating/nav_bar.js'></script>
 <script src = '../../../JavaScript/Sports/Speedskating/record_progression.js'></script>
+<script src = '../../../JavaScript/Sports/Speedskating/records2.js'></script>
 <script src = '../../../JavaScript/Sports/Speedskating/rinks.js'></script>
 <script src = '../../../JavaScript/Sports/Speedskating/skaters.js'></script>
 <script src = '../../../JavaScript/navigation.js'></script>
 <script src = '../../../JavaScript/Sports/Speedskating/pages.js'></script>
 </head>
 
-<body><h1>Speedskating</h1><div class = "byline">
+<body><h1>Record Progression</h1><div class = "byline">
 by Abigail<br>
 <img src = "../../../Images/jan_sluiters.jpg">
 </div>
 
 
-<h2 id = 'current_world_records'>Current World Records</h2>
+<div id = "navigation2"></div>
 
-<div id = "current"></div>
+<div id = 'description'></div>
 
-<h2 id = 'progression_of_world_records'>Progression of World Records</h2>
+<h3 id = 'record_progression'>Record progression</h3>
 
-<div id = "navigation"></div>
+<div id = "record_table"></div>
 
-<div id = "navigation2">
+<p><canvas id = "record_chart"></canvas></p>
+
+<p>Start year: <span id = 'start_year_span'></span>
+<button type = 'button' onclick = 'load_chart ()'>Apply</button></p>
+
+<h3 class = "records-header" id = 'lists_of_records'>Lists of Records</h3>
+
+<div class = "number-of-records">
+
+<section class = "by-skater">
+<h4 id = 'by_skater'> By Skater </h4>
+<div id = "skater_count" class = "padded"></div>
+</section>
+
+<section class = "by-duration">
+<h4 id = 'by_duration'> By Duration </h4>
+<div id = "duration_count" class = "padded"></div>
+</section>
+
+<section class = "by-improvement">
+<h4 id = 'by_improvement'> By Improvement </h4>
+<div id = "improvement_count" class = "padded"></div>
+</section>
+
+<section class = "by-country">
+<h4 id = 'by_country'> By Country </h4>
+<div id = "country_count" class = "padded"></div>
+</section>
+
+<section class = "by-rink">
+<h4 id = 'by_rink'> By Rink </h4>
+<div id = "rink_count" class = "padded"></div>
+</section>
+
 </div>
 <hr id = 'last-line'>
 <div class = 'trailer'>

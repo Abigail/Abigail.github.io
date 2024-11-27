@@ -19,12 +19,15 @@ RECORDS_IN := $(wildcard ${RECORDS_SS}/*.txt)
 
 all: $(JS_SS)/skaters.js $(JS_SS)/rinks.js $(JS)/Country_Data.js \
      $(HTML_SS)/index.html $(HTML_SS)/records.html \
+     $(HTML_SS)/records2.html \
      $(JS_SS)/record_progression.js
 
 $(HTML_SS)/index.html: $(SRC_SS)/index.md
 	$(MD2HTML) $(SRC_SS)/index.md
 $(HTML_SS)/records.html: $(SRC_SS)/records.md
 	$(MD2HTML) $(SRC_SS)/records.md
+$(HTML_SS)/records2.html: $(SRC_SS)/records2.md
+	$(MD2HTML) $(SRC_SS)/records2.md
 
 $(JS_SS)/skaters.js: $(DATA_SS)/skaters.txt $(ATHLETE)
 	$(ATHLETE) --input $(DATA_SS)/skaters --output $@
