@@ -35,17 +35,17 @@ class Venue {
     // Simple getters
     //
     key       ()     {return                this . __key}
-    name      ()     {return                this . __name}
-    city      (date) {return value_by_date (this . __city,    date)}
-    country   (date) {return value_by_date (this . __country, date)}
-    elevation ()     {return                this . __elevation}
-    type      (date) {return value_by_date (this . __type,    date)}
+    name      (date) {return value_by_date (this . __name,      date)}
+    city      (date) {return value_by_date (this . __city,      date)}
+    country   (date) {return value_by_date (this . __country,   date)}
+    elevation (date) {return value_by_date (this . __elevation, date)}
+    type      (date) {return value_by_date (this . __type,      date)}
 
     is_natural       (date) {return this . type (date) == Venue . NATURAL}
     is_artificial    (date) {return this . type (date) == Venue . ARTIFICIAL}
     is_indoor        (date) {return this . type (date) == Venue . INDOOR}
-    is_lowland       ()     {return this . __elevation <   300}
-    is_high_altitude ()     {return this . __elevation >  1000}
+    is_lowland       (date) {return this . elevation (date) <   300}
+    is_high_altitude (date) {return this . elevation (date) >  1000}
 
     flag_img (date) {
         return new Country (this . country (date)) . flag_img (date)
@@ -62,11 +62,11 @@ class Venue {
     }
 
     point_style (date) {
-        return this . city          () == ""  ? 'star'
-             : this . is_natural    (date)    ? 'rect' 
-             : this . is_artificial (date)    ? 'triangle'
-             : this . is_indoor     (date)    ? 'circle'
-             :                                  'star'
+        return this . city          (date) == ""  ? 'star'
+             : this . is_natural    (date)        ? 'rect' 
+             : this . is_artificial (date)        ? 'triangle'
+             : this . is_indoor     (date)        ? 'circle'
+             :                                      'star'
     }
 
     //
@@ -116,20 +116,21 @@ class Venue {
         const td = "<div class = 'tooltip'>" + rink_span +
                    "<div class = 'tooltiptext rink_info'>" +
                    "<table class = 'rink_info'>" +
-                      `<tr><th>City</th>`                                  +
-                          `<td>${this . city (date)}</td>`                 +
-                          `<td class = 'flag'>${flag}</td></tr>`           +
-                      `<tr><th>Name</th>`                                  + 
-                          `<td colspan = '2'>${this . name ()}</td></tr>`  +
-                      `<tr><th>Ice Type</th>`                              + 
-                          `<td colspan = '2'>${type}</td></tr>`            +
-                      `<tr><th>Elevation</th>`                             + 
-                          `<td>${this . elevation ()}m</td>`               +
-                          `<td>${alt}</td></tr>`                           +
+                      `<tr><th>City</th>`                                     +
+                          `<td>${this . city (date)}</td>`                    +
+                          `<td class = 'flag'>${flag}</td></tr>`              +
+                      `<tr><th>Name</th>`                                     +
+                          `<td colspan = '2'>${this . name (date)}</td></tr>` +
+                      `<tr><th>Ice Type</th>`                                 + 
+                          `<td colspan = '2'>${type}</td></tr>`               +
+                      `<tr><th>Elevation</th>`                                + 
+                          `<td>${this . elevation (date)}m</td>`              +
+                          `<td>${alt}</td></tr>`                              +
                    "</table></div></div>"
 
         if (rink_symbol == "") {
             console . log (this)
+            console . log (`this . is_indoor (${date}) = ${this . is_indoor (date)}`)
             console . log (`Type on date ${date} is ${this . type (date)}`)
         }
 

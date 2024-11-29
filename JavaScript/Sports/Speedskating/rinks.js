@@ -4,371 +4,82 @@
 //
 class Rinks {
     static init () {
-        Venue . add_venue ({key:       "alkmaar",
-                            name:      "IJsstadion De Meent",
-                            city:      "Alkmaar",
-                            country:   "NED",
-                            type:       Venue . ARTIFICIAL,
-                            elevation:     0})
-        
-        Venue . add_venue ({key:       "beijing",
-                            name:      "National Speed Skating Oval",
-                            city:      "Beijing",
-                            country:   "CHN",
-                            type:       Venue . INDOOR,
-                            elevation:    49})
-        Venue . add_venue ({key:       "berlin",
-                            name:      "Sportforum Hohensch\u{F6}nhausen",
-                            city:      "Berlin",
-                            country:   "GER",
-                            type:       Venue . INDOOR,
-                            elevation:    34})
-        Venue . add_venue ({key:       "bislett",
-                            name:      "Bislett Statium",
-                            city:      "Oslo",
-                            country:   "NOR",
-                            type:       Venue . NATURAL,
-                            elevation:    37})
-        Venue . add_venue ({key:       "brandbu",
-                            name:      "Rosendalbanen",
-                            city:      "Brandbu",
-                            country:   "NOR",
-                            type:       Venue . NATURAL,
-                            elevation:   178})
-        
-        Venue . add_venue ({key:       "calgary",
-                            name:      "Olympic Oval",
-                            city:      "Calgary",
-                            country:   "CAN",
-                            type:       Venue . INDOOR,
-                            elevation:  1034})
-        Venue . add_venue ({key:       "cortina",
-                            name:      "Pista Fiames",
-                            city:      "Cortina d'Ampezzo",
-                            country:   "ITA",
-                            type:       Venue . NATURAL,
-                            elevation:  1401})
-        
-        Venue . add_venue ({key:       "davos",
-                            name:      "Eisstadion",
-                            city:      "Davos",
-                            country:   "SUI",
-                            type:       Venue . NATURAL,
-                            elevation:  1506})
-        Venue . add_venue ({key:       "deventer",
-                            name:      "IJsselstation",
-                            city:      "Deventer",
-                            country:   "NED",
-                            type:       Venue . ARTIFICIAL,
-                            elevation:     5})
-        
-        Venue . add_venue ({key:       "eskilstuna",
-                            name:      "Isstadion",
-                            city:      "Eskilstuna",
-                            country:   "SWE",
-                            type:       Venue . ARTIFICIAL,
-                            elevation:    16})
-        Venue . add_venue ({key:       "engelberg",
-                            name:      "Eisbahn",
-                            city:      "Engelberg",
-                            country:   "SUI",
-                            type:       Venue . NATURAL,
-                            elevation:  1138})
-        
-        Venue . add_venue ({key:       "frogner",
-                            name:      "Frogner Stadium",
-                            city:      "Oslo",
-                            country:   "NOR",
-                            type:       Venue . NATURAL,
-                            elevation:    42})
-        
-        Venue . add_venue ({key:       "gamle",
-                            name:      "Gamle Frogner Stadion",
-                            city:      "Oslo",
-                            country:   "NOR",
-                            type:       Venue . NATURAL,
-                            elevation:    42})
-        Venue . add_venue ({key:       "geithus",
-                            name:      "Farumo Stadion",
-                            city:      "Geithus",
-                            country:   "NOR",
-                            type:       Venue . ARTIFICIAL,
-                            elevation:   116})
-        Venue . add_venue ({key:       "gjovik",
-                            name:      "Gj\u{F8}vik Stadion",
-                            city:      "Gj\u{F8}vik",
-                            country:   "NOR",
-                            type:       Venue . NATURAL,
-                            elevation:   149})
-        Venue . add_venue ({key:       "grenoble",
-                            name:      "Parc Paul Mistral",
-                            city:      "Grenoble",
-                            country:   "FRA",
-                            type:       Venue . ARTIFICIAL,
-                            elevation:   220})
-        Venue . add_venue ({key:       "groningen",
-                            name:      "IJsstadion Stadspark",
-                            city:      "Groningen",
-                            country:   "NED",
-                            type:       Venue . ARTIFICIAL,
-                            elevation:     1})
-        Venue . add_venue ({key:       "goteborg",
-                            name:      "Nya Ullevi",
-                            city:      "G\u{F6}teborg",
-                            country:   "SWE",
-                            type:       Venue . ARTIFICIAL,
-                            elevation:    10})
-        
-        Venue . add_venue ({key:       "haarlem",
-                            name:      "Kennemerland",
-                            city:      "Haarlem",
-                            country:   "NED",
-                            type:       Venue . ARTIFICIAL,
-                            elevation:     0})
-        Venue . add_venue ({key:       "hamar",
-                            name:      "Olympia Hall",
-                            city:      "Hamar",
-                            country:   "NOR",
-                            type:       Venue . INDOOR,
-                            elevation:   125})
-        Venue . add_venue ({key:       "hamar-mjosen",
-                            name:      "Mj\u{F8}sen",
-                            city:      "Hamar",
-                            country:   "NOR",
-                            type:       Venue . NATURAL,
-                            elevation:   123})
-        Venue . add_venue ({key:       "hamar-stadion",
-                            name:      "Hamar Stadion",
-                            city:      "Hamar",
-                            country:   "NOR",
-                            type:       Venue . NATURAL,
-                            elevation:   113})
-        Venue . add_venue ({key:       "helsinki",
-                            name:      "T\u{F6}\u{F6}l\u{F6}n Pallokentt\u{E4}",
-                            city:      "Helsinki",
-                            country:   "FIN",
-                            type:       Venue . NATURAL,
-                            elevation:    10})
-        Venue . add_venue ({key:       "horten",
-                            name:      "Lystlunden Gressbane",
-                            city:      "Horten",
-                            country:   "NOR",
-                            type:       Venue . NATURAL,
-                            elevation:     2})
-        
-        Venue . add_venue ({key:       "inzell",
-                            name:      "Ludwig Schwabl Stadion",
-                            city:      "Inzell",
-                            country:   "FRG",
-                            type:       Venue . ARTIFICIAL,
-                            elevation:   690})
-        
-        Venue . add_venue ({key:       "jaap_eden",
-                            name:      "Jaap Edenbaan",
-                            city:      "Amsterdam",
-                            country:   "NED",
-                            type:       Venue . ARTIFICIAL,
-                            elevation:     0})
-        
-        Venue . add_venue ({key:       "karuizawa",
-                            name:      "Skating Center",
-                            city:      "Karuizawa",
-                            country:   "JPN",
-                            type:       Venue . ARTIFICIAL,
-                            elevation:   980})
-        Venue . add_venue ({key:       "kvarnsveden",
-                            name:      "Idrottsplatsen",
-                            city:      "Kvarnsveden",
-                            country:   "SWE",
-                            type:       Venue . NATURAL,
-                            elevation:   165})
-        Venue . add_venue ({key:       "kirov",
-                            name:      "Dinamo",
-                            city:      "Kirov",
-                            country:   "URS",
-                            type:       Venue . NATURAL,
-                            elevation:   166})
-        Venue . add_venue ({key:       "kongsberg",
-                            name:      "Idr\u{E6}tsplassen",
-                            city:      "Kongsberg",
-                            country:   "NOR",
-                            type:       Venue . NATURAL,
-                            elevation:   233})
-        Venue . add_venue ({key:       "kuchwald",
-                            name:      "K\u{FC}chwald",
-                            city:      ["1974-00-00", "Karl-Marx-Stadt",
-                                        "1990-06-01", "Chemnitz",],
-                            country:   "GDR",
-                            type:       Venue . ARTIFICIAL,
-                            elevation:   410})
-        
-        Venue . add_venue ({key:       "lake_placid",
-                            name:      "James B. Sheffield Olympic Skating Rink",
-                            city:      "Lake Placid",
-                            country:   "USA",
-                            type:       Venue . ARTIFICIAL,
-                            elevation:   568})
-        
-        Venue . add_venue ({key:       "madonna",
-                            name:      "Pista Olimpica",
-                            city:      "Madonna di Campiglio",
-                            country:   "ITA",
-                            type:       Venue . NATURAL,
-                            elevation:  1450})
-        Venue . add_venue ({key:       "medeo",
-                            name:      "Kompleks Medeo",
-                            city:      "Medeo",
-                            country:   ["1951-02-05", "URS",
-                                        "1991-12-26", "KAZ",],
-                            type:      ["1951-02-05", Venue . NATURAL,
-                                        "1972-08-00", Venue . ARTIFICIAL,],
-                            elevation:  1691})
-        Venue . add_venue ({key:       "misurina",
-                            name:      "Lagua Misurina",
-                            city:      "Misurina",
-                            country:   "ITA",
-                            type:       Venue . NATURAL,
-                            elevation:  1756})
-        Venue . add_venue ({key:       "moscow",
-                            name:      "Dinamo",
-                            city:      "Moscow",
-                            country:   "URS",
-                            type:       Venue . NATURAL,
-                            elevation:   167})
-        Venue . add_venue ({key:       "museumplein",
-                            name:      "Museumplein",
-                            city:      "Amsterdam",
-                            country:   "NED",
-                            type:       Venue . NATURAL,
-                            elevation:     0})
-        
-        Venue . add_venue ({key:       "nagano",
-                            name:      "M-Wave",
-                            city:      "Nagano",
-                            country:   "JPN",
-                            type:       Venue . INDOOR,
-                            elevation:   342})
-        Venue . add_venue ({key:       "neglingeviken",
-                            name:      "Saltsj\u{F6}banen",
-                            city:      "Neglingeviken",
-                            country:   "NOR",
-                            type:       Venue . NATURAL,
-                            elevation:     8})
-        Venue . add_venue ({key:       "notodden",
-                            name:      "Notodden Sportsplass",
-                            city:      "Notodden",
-                            country:   "NOR",
-                            type:       Venue . NATURAL,
-                            elevation:   103})
-        
-        Venue . add_venue ({key:       "obihiro",
-                            name:      "Meiji Hokkaido-Tokachi Oval",
-                            city:      "Obihiro",
-                            country:   "JPN",
-                            type:       Venue . INDOOR,
-                            elevation:    79})
-        
-        Venue . add_venue ({key:       "paterswolde",
-                            name:      "Paterswoldsche Meer",
-                            city:      "Paterswolde",
-                            country:   "NED",
-                            type:       Venue . NATURAL,
-                            elevation:     0})
-        
-        Venue . add_venue ({key:       "salt_lake_city",
-                            name:      "Utah Olympic Oval",
-                            city:      "Salt Lake City",
-                            country:   "USA",
-                            type:       Venue . INDOOR,
-                            elevation:  1423})
-        Venue . add_venue ({key:       "sarajevo",
-                            name:      "Zetra",
-                            city:      "Sarajevo",
-                            country:   "YUG",
-                            type:       Venue . ARTIFICIAL,
-                            elevation:   564})
-        Venue . add_venue ({key:       "savalen",
-                            name:      "Idrettsplass",
-                            city:      "Savalen",
-                            country:   "NOR",
-                            type:       Venue . NATURAL,
-                            elevation:   724})
-        Venue . add_venue ({key:       "squaw_valley",
-                            name:      "Olympic Skating Ring",
-                            city:      "Squaw Valley",
-                            country:   "USA",
-                            type:       Venue . ARTIFICIAL,
-                            elevation:  1876})
-        Venue . add_venue ({key:       "st_moritz",
-                            name:      "Badrutss Park",
-                            city:      "St. Moritz",
-                            country:   "SUI",
-                            type:       Venue . NATURAL,
-                            elevation:  1856})
-        Venue . add_venue ({key:       "stockholm",
-                            name:      "Stockholm Stadion",
-                            city:      "Stockholm",
-                            country:   "SWE",
-                            type:       Venue . NATURAL,
-                            elevation:    25})
-        Venue . add_venue ({key:       "sverdlovsk",
-                            name:      "Tsentrainyu",
-                            city:      "Sverdlovsk",
-                            country:   "URS",
-                            type:       Venue . NATURAL,
-                            elevation:   292})
-        
-        Venue . add_venue ({key:       "thialf",
-                            name:      "Thialf",
-                            city:      "Heerenveen",
-                            country:   "NED",
-                            type:      ["1967-10-14", Venue . ARTIFICIAL,
-                                        "1986-10-00", Venue . INDOOR,],
-                            elevation:     0})
-        Venue . add_venue ({key:       "tolga",
-                            name:      "Tolga Idrettsplass",
-                            city:      "Tolga",
-                            country:   "NOR",
-                            type:       Venue . NATURAL,
-                            elevation:   543})
-        Venue . add_venue ({key:       "tonsberg",
-                            name:      "T\u{F8}nsberg Stadion",
-                            city:      "T\u{F8}nsberg",
-                            country:   "NOR",
-                            type:       Venue . NATURAL,
-                            elevation:    66})
-        Venue . add_venue ({key:       "trondheim-kal",
-                            name:      "Kalvskindet",
-                            city:      "Trondheim",
-                            country:   "NOR",
-                            type:       Venue . NATURAL,
-                            elevation:     0})
-        Venue . add_venue ({key:       "trondheim-oya",
-                            name:      "\u{D8}ya Stadion",
-                            city:      "Trondheim",
-                            country:   "NOR",
-                            type:       Venue . NATURAL,
-                            elevation:     5})
-        
-        Venue . add_venue ({key:       "vienna",
-                            name:      "WEV-Eisbahn",
-                            city:      "Vienna",
-                            country:   "AUT",
-                            type:       Venue . NATURAL,
-                            elevation:   172})
-        
-        Venue . add_venue ({key:       "warsaw",
-                            name:      "Tor Polonii",
-                            city:      "Warsaw",
-                            country:   "POL",
-                            type:       Venue . NATURAL,
-                            elevation:   188})
-        
-        Venue . add_venue ({key:       "zakopane",
-                            name:      "Toporowy Staw Nizni",
-                            city:      "Zakopane",
-                            country:   "POL",
-                            type:       Venue . NATURAL,
-                            elevation:  1110})
+        Venue . add_venue ({"name":"IJsstadion De Meent","key":"alkmaar","type":2,"city":"Alkmaar","country":"NED","elevation":"0"})
+
+        Venue . add_venue ({"key":"beijing","type":3,"name":"National Speed Skating Oval","elevation":"49","city":"Beijing","country":"CHN"})
+        Venue . add_venue ({"city":"Berlin","country":"GER","elevation":"34","type":3,"key":"berlin","name":"Sportforum Hohenschönhausen"})
+        Venue . add_venue ({"city":"Oslo","country":"NOR","elevation":"37","key":"bislett","type":1,"name":"Bislett Statium"})
+        Venue . add_venue ({"name":"Rosendalbanen","key":"brandbu","type":1,"elevation":"178","country":"NOR","city":"Brandbu"})
+
+        Venue . add_venue ({"name":"Olympic Oval","type":3,"key":"calgary","elevation":"1034","country":"CAN","city":"Calgary"})
+        Venue . add_venue ({"city":"Cortina d'Ampezzo","country":"ITA","elevation":"1401","key":"cortina","type":1,"name":"Pista Fiames"})
+
+        Venue . add_venue ({"country":"SUI","city":"Davos","elevation":"1506","name":"Eisstadion","key":"davos","type":1})
+        Venue . add_venue ({"name":"IJsselstation","key":"deventer","type":2,"city":"Deventer","country":"NED","elevation":"5"})
+
+        Venue . add_venue ({"country":"SWE","city":"Eskilstuna","elevation":"16","key":"eskilstuna","type":2,"name":"Isstadion"})
+        Venue . add_venue ({"elevation":"1138","country":"SUI","city":"Engelberg","name":"Eisbahn","type":1,"key":"engelberg"})
+
+        Venue . add_venue ({"key":"frogner","type":1,"name":"Frogner Stadium","country":"NOR","city":"Oslo","elevation":"42"})
+
+        Venue . add_venue ({"city":"Oslo","country":"NOR","elevation":"42","key":"gamle","type":1,"name":"Gamle Frogner Stadion"})
+        Venue . add_venue ({"country":"NOR","city":"Geithus","elevation":"116","name":"Farumo Stadion","type":2,"key":"geithus"})
+        Venue . add_venue ({"key":"gjovik","type":1,"name":"Gjøvik Stadion","country":"NOR","city":"Gjøvik","elevation":"149"})
+        Venue . add_venue ({"elevation":"220","country":"FRA","city":"Grenoble","name":"Parc Paul Mistral","key":"grenoble","type":2})
+        Venue . add_venue ({"elevation":"1","country":"NED","city":"Groningen","type":2,"key":"groningen","name":"IJsstadion Stadspark"})
+        Venue . add_venue ({"name":"Nya Ullevi","key":"goteborg","type":2,"elevation":"10","country":"SWE","city":"Göteborg"})
+
+        Venue . add_venue ({"elevation":"0","country":"NED","city":"Haarlem","name":"Kennemerland","key":"haarlem","type":2})
+        Venue . add_venue ({"elevation":"125","country":"NOR","city":"Hamar","type":3,"key":"hamar","name":"Olympia Hall"})
+        Venue . add_venue ({"key":"hamar-mjosen","type":1,"name":"Mjøsen","country":"NOR","city":"Hamar","elevation":"123"})
+        Venue . add_venue ({"elevation":"113","city":"Hamar","country":"NOR","type":1,"key":"hamar-stadion","name":"Hamar Stadion"})
+        Venue . add_venue ({"name":"Töölön Pallokenttä","key":"helsinki","type":1,"city":"Helsinki","country":"FIN","elevation":"10"})
+        Venue . add_venue ({"elevation":"2","city":"Horten","country":"NOR","name":"Lystlunden Gressbane","type":1,"key":"horten"})
+
+        Venue . add_venue ({"key":"inzell","type":["1965-08-00",2,"2011-00-00",3],"name":["1965-08-00","Ludwig Schwabl Stadion","2011-00-00","Max Aicher Arena"],"country":["1965-08-00","FRG","1990-10-03","GER"],"city":"Inzell","elevation":"690"})
+
+        Venue . add_venue ({"name":"Jaap Edenbaan","type":2,"key":"jaap_eden","city":"Amsterdam","country":"NED","elevation":"0"})
+
+        Venue . add_venue ({"city":"Karuizawa","country":"JPN","elevation":"980","type":2,"key":"karuizawa","name":"Skating Center"})
+        Venue . add_venue ({"city":"Kvarnsveden","country":"SWE","elevation":"165","type":1,"key":"kvarnsveden","name":"Idrottsplatsen"})
+        Venue . add_venue ({"type":1,"key":"kirov","name":"Dinamo","city":"Kirov","country":"URS","elevation":"166"})
+        Venue . add_venue ({"country":"NOR","city":"Kongsberg","elevation":"233","key":"kongsberg","type":1,"name":"Idrætsplassen"})
+        Venue . add_venue ({"elevation":"410","country":["1974-00-00","GDR","1990-10-03","GER"],"city":["1974-00-00","Karl-Marx-Stadt","1990-06-01","Chemnitz"],"name":"Küchwald","key":"kuchwald","type":2})
+
+        Venue . add_venue ({"elevation":"568","city":"Lake Placid","country":"USA","name":"James B. Sheffield Olympic Skating Rink","key":"lake_placid","type":2})
+
+        Venue . add_venue ({"key":"madonna","type":1,"name":"Pista Olimpica","country":"ITA","city":"Madonna di Campiglio","elevation":"1450"})
+        Venue . add_venue ({"key":"medeo","type":["1951-02-05",1,"1972-08-00",2],"name":"Kompleks Medeo","city":"Medeo","country":["1951-02-05","URS","1991-12-26","KAZ"],"elevation":"1691"})
+        Venue . add_venue ({"elevation":"1756","city":"Misurina","country":"ITA","name":"Lagua Misurina","key":"misurina","type":1})
+        Venue . add_venue ({"name":"Dinamo","type":1,"key":"moscow","elevation":"167","city":"Moscow","country":"URS"})
+        Venue . add_venue ({"name":"Museumplein","key":"museumplein","type":1,"elevation":"0","city":"Amsterdam","country":"NED"})
+
+        Venue . add_venue ({"elevation":"342","city":"Nagano","country":"JPN","key":"nagano","type":3,"name":"M-Wave"})
+        Venue . add_venue ({"city":"Neglingeviken","country":"NOR","elevation":"8","type":1,"key":"neglingeviken","name":"Saltsjöbanen"})
+        Venue . add_venue ({"elevation":"103","city":"Notodden","country":"NOR","name":"Notodden Sportsplass","type":1,"key":"notodden"})
+
+        Venue . add_venue ({"city":"Obihiro","country":"JPN","elevation":"79","name":"Meiji Hokkaido-Tokachi Oval","type":3,"key":"obihiro"})
+
+        Venue . add_venue ({"city":"Paterswolde","country":"NED","elevation":"0","name":"Paterswoldsche Meer","key":"paterswolde","type":1})
+
+        Venue . add_venue ({"city":"Salt Lake City","country":"USA","elevation":"1423","key":"salt_lake_city","type":3,"name":"Utah Olympic Oval"})
+        Venue . add_venue ({"elevation":"564","country":"YUG","city":"Sarajevo","name":"Zetra","key":"sarajevo","type":2})
+        Venue . add_venue ({"type":1,"key":"savalen","name":"Idrettsplass","elevation":"724","city":"Savalen","country":"NOR"})
+        Venue . add_venue ({"city":"Squaw Valley","country":"USA","elevation":"1876","name":"Olympic Skating Ring","type":2,"key":"squaw_valley"})
+        Venue . add_venue ({"key":"st_moritz","type":1,"name":"Badrutss Park","city":"St. Moritz","country":"SUI","elevation":"1856"})
+        Venue . add_venue ({"city":"Stockholm","country":"SWE","elevation":"25","name":"Stockholm Stadion","key":"stockholm","type":1})
+        Venue . add_venue ({"name":"Tsentrainyu","key":"sverdlovsk","type":1,"elevation":"292","city":"Sverdlovsk","country":"URS"})
+
+        Venue . add_venue ({"type":["1967-10-14",2,"1986-10-00",3],"key":"thialf","name":"Thialf","city":"Heerenveen","country":"NED","elevation":"0"})
+        Venue . add_venue ({"elevation":"543","city":"Tolga","country":"NOR","key":"tolga","type":1,"name":"Tolga Idrettsplass"})
+        Venue . add_venue ({"type":1,"key":"tonsberg","name":"Tønsberg Stadion","elevation":"66","country":"NOR","city":"Tønsberg"})
+        Venue . add_venue ({"city":"Trondheim","country":"NOR","elevation":"0","type":1,"key":"trondheim-kal","name":"Kalvskindet"})
+        Venue . add_venue ({"name":"Øya Stadion","key":"trondheim-oya","type":1,"city":"Trondheim","country":"NOR","elevation":"5"})
+
+        Venue . add_venue ({"country":"AUT","city":"Vienna","elevation":"172","name":"WEV-Eisbahn","type":1,"key":"vienna"})
+
+        Venue . add_venue ({"type":1,"key":"warsaw","name":"Tor Polonii","elevation":"188","country":"POL","city":"Warsaw"})
+
+        Venue . add_venue ({"city":"Zakopane","country":"POL","elevation":"1110","type":1,"key":"zakopane","name":"Toporowy Staw Nizni"})
     }
 }

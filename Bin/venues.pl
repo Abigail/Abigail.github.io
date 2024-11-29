@@ -6,10 +6,17 @@ use strict;
 use warnings;
 no  warnings 'syntax';
 
+use JSON;
+
 use experimental 'signatures';
 use experimental 'lexical_subs';
 
 use Getopt::Long;
+
+my $VENUE_TYPES = {NATURAL    =>  1,
+                   ARTIFICIAL =>  2,
+                   INDOOR     =>  3,};
+            
 
 GetOptions ("input=s"  =>  \my $input,
             "output=s" =>  \my $output,);
@@ -41,23 +48,15 @@ class Rinks {
     static init () {
 --
 
-my sub str ($thingy, $quote //= 1) {
-    if (ref $thingy) {
-        return str ($$thingy [0] [1]) if @$thingy == 1;
-        my $out = '[';
-        foreach my $item (@$thingy) {
-            my ($date, $name) = @$item;
-            $out .= qq ["$date", ];
-            $out .= $quote ? qq ["$name"] : $name;
-            $out .= ",\n                                ";
-        }
-        $out =~ s/\n\h+$/]/;
-        return $out;
-    }
-    else {
-        return $quote ? qq ["$thingy"] : " $thingy";
-    }
-}
+my $key_p       = qr /[-a-z_]+/;
+my $name_p      = qr /\S.*\S/;
+my $city_p      = qr /\S.*\S/;
+my $country_p   = qr /[A-Z]{3}/;
+my $type_p      = qr /NATURAL|ARTIFICIAL|INDOOR/;
+my $elevation_p = qr /-?[0-9]{1,4}/;
+my $date_p      = qr /[0-9]{4}-[0-9]{2}-[0-9]{2}/;
+
+my sub esc ($str) {$str =~ s/\\u\{([0-9a-fA-F]+)\}/chr hex $1/ger}
 
 foreach my $entry (@entries) {
     my $blank = 0;
@@ -70,70 +69,85 @@ foreach my $entry (@entries) {
     #
     my @lines = split /\n\s*/ => $entry;
 
-    #
-    # First line has the key and the name of the rink.
-    #
-    my ($key, $name) = split /\h+/ => shift @lines, 2;
+    my ($key, $name, $city, $country, $type, $elevation);
 
     #
-    # Now, we either have a single line with city, country, type, elevation,
-    # or set of lines with the same, each preceeded by a date
+    # We either have two lines, or more; in the latter case,
+    # name, city, country or type will change on a particular date.
     #
-    my ($city, $country, $type, $elevation);
-    my  $seen_date;
-    foreach my $line (@lines) {
-        my $date;
-        if ($line =~ s/^\h*(\d{4}-\d{2}-\d{2})\h+//) {
-            $date      = $1;
-            if (!$seen_date) {
-                $city      = [];
-                $country   = [];
-                $type      = [];
-                $seen_date = 1;
+    if (@lines == 2) {
+        ($key, $name) = $lines [0] =~ /^($key_p) \h+ ($name_p) \h* $/x
+              or die "Failed to parse: ", $entry;
+        ($city, $country, $type, $elevation) = 
+                $lines [1] =~ /^\h* ($city_p) \h+ ($country_p)   \h+
+                                    ($type_p) \h+ ($elevation_p) \h*/x
+              or die "Failed to parse ", $entry;
+        $city = esc $city;
+        $name = esc $name;
+        $type = $$VENUE_TYPES {$type};
+    }
+    else {
+        #
+        # First line has the key
+        #
+        ($key) = $lines [0] =~ /^($key_p) \h* $/x
+               or die "Failed to parse ", $entry;
+
+        my ($date, $name_d, $city_d, $country_d, $type_d, $elevation_d);
+        $name      = [];
+        $city      = [];
+        $country   = [];
+        $type      = [];
+        $elevation = [];
+
+        for (my $i = 1; $i < @lines; $i += 2) {
+            ($date, $name_d) = $lines [$i] =~
+                        /^\h* ($date_p) \h+ ($name_p) \h* $/x
+                 or die "Failed to parse: ", $entry;
+            ($city_d, $country_d, $type_d, $elevation_d) = 
+                    $lines [$i + 1] =~ /^\h* ($city_p) \h+ ($country_p)   \h+
+                                        ($type_p) \h+ ($elevation_p) \h*/x
+                  or die "Failed to parse ", $entry;
+            push @$name      => [$date, esc $name_d];
+            push @$city      => [$date, esc $city_d];
+            push @$country   => [$date, $country_d];
+            push @$type      => [$date, $$VENUE_TYPES {$type_d}];
+            push @$elevation => [$date, $elevation_d];
+        }
+
+        #
+        # Now, eliminate duplicates, and flatten
+        #
+        foreach my $thingy ($name, $city, $country, $type, $elevation) {
+            my @old = @$thingy;
+            my @new = shift @old;
+            foreach my $old (@old) {
+                push @new => $old unless $$old [1] eq $new [-1] [1];
             }
+            @$thingy = map {@$_} @new;
         }
-        $line =~ /^\h* (\S.*\S)                    \h+
-                       ([A-Z1]{3})                 \h+
-                       (NATURAL|ARTIFICIAL|INDOOR) \h+
-                       (\d+)/x or die "Failed to parse $line";
-        my ($e_city, $e_country, $e_type, $e_elevation) = 
-           ($1, $2, "Venue . $3", $4);
-        if ($date) {
-            push @$city    => [$date, $e_city]    unless
-                 @$city    && $$city [-1] [1]     eq $e_city;
-            push @$country => [$date, $e_country] unless
-                 @$country && $$country [-1] [1]  eq $e_country;
-            push @$type    => [$date, $e_type]    unless
-                 @$type    && $$type [-1] [1]     eq $e_type;
-        }
-        else {
-            $city    = $e_city;;
-            $country = $e_country;;
-            $type    = $e_type;
-        }
-        $elevation = $e_elevation;;
-    }
-    if ($seen_date) {
-        if (@$city == 1) {
-            $city = $$city [0] [1];
-        }
-        if (@$country == 1) {
-            $country = $$country [0] [1];
-        }
-        if (@$type == 1) {
-            $type = $$type [0] [1];
-        }
+
+        #
+        # Just one left?
+        #
+        $name      = $$name      [1] if @$name      == 2;
+        $city      = $$city      [1] if @$city      == 2;
+        $country   = $$country   [1] if @$country   == 2;
+        $type      = $$type      [1] if @$type      == 2;
+        $elevation = $$elevation [1] if @$elevation == 2;
     }
 
-    my $out  = sprintf qq [Venue . add_venue ({key:       "%s",\n],  $key;
-       $out .= sprintf qq [                    name:      "%s",\n],  $name;
-       $out .= sprintf qq [                    city:      %s,\n],  str $city;
-       $out .= sprintf qq [                    country:   %s,\n],  str $country;
-       $out .= sprintf qq [                    type:      %s,\n],  str $type, 0;
-       $out .= sprintf qq [                    elevation:  %4d})\n], $elevation;
-       $out .= "\n" if $blank;
+    my $args = encode_json {
+        key       => $key,
+        name      => $name,
+        city      => $city,
+        country   => $country,
+        type      => $type,
+        elevation => $elevation,
+    };
 
-    print $o_fh $out =~ s/^/        /gmr;
+    print $o_fh "        Venue . add_venue ($args)\n";
+    print $o_fh "\n" if $blank;
 }
 
 print $o_fh <<~ "--";

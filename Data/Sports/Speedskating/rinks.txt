@@ -54,8 +54,13 @@ helsinki        T\u{F6}\u{F6}l\u{F6}n Pallokentt\u{E4}
 horten          Lystlunden Gressbane
                 Horten                  NOR     NATURAL            2
 
-inzell          Ludwig Schwabl Stadion
+inzell          
+  1965-08-00    Ludwig Schwabl Stadion
                 Inzell                  FRG     ARTIFICIAL       690
+  1990-10-03    Ludwig Schwabl Stadion
+                Inzell                  GER     ARTIFICIAL       690
+  2011-00-00    Max Aicher Arena
+                Inzell                  GER     INDOOR           690
 
 jaap_eden       Jaap Edenbaan
                 Amsterdam               NED     ARTIFICIAL         0
@@ -68,19 +73,26 @@ kirov           Dinamo
                 Kirov                   URS     NATURAL          166
 kongsberg       Idr\u{E6}tsplassen
                 Kongsberg               NOR     NATURAL          233
-kuchwald        K\u{FC}chwald
-  1974-00-00    Karl-Marx-Stadt         GDR     ARTIFICIAL       410
-  1990-06-01    Chemnitz                GDR     ARTIFICIAL       410
+kuchwald     
+  1974-00-00    K\u{FC}chwald
+                Karl-Marx-Stadt         GDR     ARTIFICIAL       410
+  1990-06-01    K\u{FC}chwald
+                Chemnitz                GDR     ARTIFICIAL       410
+  1990-10-03    K\u{FC}chwald
+                Chemnitz                GER     ARTIFICIAL       410
 
 lake_placid     James B. Sheffield Olympic Skating Rink
                 Lake Placid             USA     ARTIFICIAL       568
 
 madonna         Pista Olimpica
                 Madonna di Campiglio    ITA     NATURAL         1450
-medeo           Kompleks Medeo
-  1951-02-05    Medeo                   URS     NATURAL         1691
-  1972-08-00    Medeo                   URS     ARTIFICIAL      1691
-  1991-12-26    Medeo                   KAZ     ARTIFICIAL      1691
+medeo
+  1951-02-05    Kompleks Medeo
+                Medeo                   URS     NATURAL         1691
+  1972-08-00    Kompleks Medeo
+                Medeo                   URS     ARTIFICIAL      1691
+  1991-12-26    Kompleks Medeo
+                Medeo                   KAZ     ARTIFICIAL      1691
 misurina        Lagua Misurina
                 Misurina                ITA     NATURAL         1756
 moscow          Dinamo
@@ -116,9 +128,11 @@ stockholm       Stockholm Stadion
 sverdlovsk      Tsentrainyu
                 Sverdlovsk              URS     NATURAL          292
 
-thialf          Thialf
-  1967-10-14    Heerenveen              NED     ARTIFICIAL         0
-  1986-10-00    Heerenveen              NED     INDOOR             0
+thialf
+  1967-10-14    Thialf
+                Heerenveen              NED     ARTIFICIAL         0
+  1986-10-00    Thialf
+                Heerenveen              NED     INDOOR             0
 tolga           Tolga Idrettsplass
                 Tolga                   NOR     NATURAL          543
 tonsberg        T\u{F8}nsberg Stadion
