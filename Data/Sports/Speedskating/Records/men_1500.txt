@@ -1,5 +1,6 @@
 %% full_name:  1500 Meter
 %% short_name: 1500m
+%% summary: This is the world record progression of the men's 1500 meter.
 eden                    2:35.0          1893-01-11      paterswolde
 ostlund                 2:32.6          1893-02-25      hamar-mjosen
 ostlund                 2:31.4          1894-02-24      hamar-mjosen

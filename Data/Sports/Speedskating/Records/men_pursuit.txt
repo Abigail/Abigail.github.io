@@ -1,5 +1,8 @@
 %% full_name:  Team Pursuit
 %% short_name: Pursuit
+%% summary: This is the world record progression of the men's team pursuit.
+            The team pursuit is skated by a team of three, over 8 (inner) laps.
+            The time of the third skater crossing the finish counts.
 USA             3:48.56         2004-11-13      hamar
                 boutiette       hedrick         parra
 NED             3:46.44         2004-11-21      berlin

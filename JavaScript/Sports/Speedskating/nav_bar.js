@@ -154,9 +154,9 @@ class Navigation {
         men_tr   += "</tr>"
         women_tr += "</tr>"
 
-        let table = "<table id = 'nav_bar2'>" + top_tr
-                                              + men_tr
-                                              + women_tr + "</table>"
+        let table = "<table id = 'nav_bar'>" + top_tr
+                                             + men_tr
+                                             + women_tr + "</table>"
         $("div#navigation2") . html (table)
     }
 }

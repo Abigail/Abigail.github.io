@@ -1,5 +1,6 @@
 %% full_name:  1000 Meter
 %% short_name: 1000m
+%% summary: This is the world record progression of the men's 1000 meter.
 ostlund         1:38.0          1899-01-16      davos
 ostlund         1:34.0          1900-02-10      davos
 mathisen        1:31.8          1909-01-30      davos

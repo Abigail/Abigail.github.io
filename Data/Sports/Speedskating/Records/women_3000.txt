@@ -1,5 +1,6 @@
 %% full_name:  3000 Meter
 %% short_name: 3000m
+%% summary: This is the world record progression of the women's 3000 meter.
 nehringowa      6:52.8          1931-02-08      warsaw
 nehringowa      6:22.4          1935-02-09      warsaw
 klein           6:12.0          1936-02-01      stockholm

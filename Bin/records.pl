@@ -97,9 +97,10 @@ sub process_file ($input, $o_fh) {
        $text =~ s/^\h*#.*\n//gm;
 
     while ($text =~ s/^ \h* %% \h* (?<key>[a-z_]+): \h*
-                                   (?<value>\S.*\S) \h* \n//mx) {
+                                   (?<value> \S .* (?:\n\h{4,} .*)* \S)
+                                             \h*\n//mx) {
         my $key   = $+ {key};
-        my $value = $+ {value};
+        my $value = $+ {value} =~ s/\n\h{4,}/ /gr;
 
         $$event {$key} = $value;
     }

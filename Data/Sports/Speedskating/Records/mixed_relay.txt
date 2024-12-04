@@ -1,5 +1,9 @@
 %% full_name:  Team Relay
 %% short_name: Relay
+%% summary: This is the world record progression of the mixed gender relay.
+            A team of two skaters, one male and one female, skate six laps.
+            Skater skate one or two lap, then they exchange. Each skater
+            skates twice.
 NED             2:55.53         2023-11-12      obihiro
                 kok     dijs
 CHN             2:54.90         2024-01-28      salt_lake_city

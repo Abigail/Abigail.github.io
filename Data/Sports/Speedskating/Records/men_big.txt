@@ -1,5 +1,9 @@
 %% full_name:  Big Combination
 %% short_name: Big
+%% summary: This is the world record progression of the men's big
+            combination. The big combination consists of
+            combined results of the 500m, 5000m, 1500m and 10000m,
+            achieved in the same tournament.
 farstad                 188.958         1949-02-05/2    davos
                         0:41.8  8:15.4  2:13.9  17:39.7
 sakunenko               184.638         1955-01-09/2    medeo

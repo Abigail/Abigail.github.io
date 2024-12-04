@@ -1,5 +1,9 @@
 %% full_name:  Mini Combination
 %% short_name: Mini
+%% summary: This is the world record progression of the women's mini
+            combination. The mini combination consists of
+            combined results of the 500m, 1500m, 1000m and 3000m,
+            achieved in the same tournament.
 kondakova       207.484         1956-02-04/2    kvarnsveden
 artamonova      206.016         1956-02-05/2    sverdlovsk
 romanova        203.299         1958-01-26/2    medeo

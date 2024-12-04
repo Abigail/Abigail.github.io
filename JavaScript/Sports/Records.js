@@ -21,6 +21,7 @@ class Record {
         this . __is_team        = args . is_team
         this . __distances      = args . distances
         this . __progression    = []
+        this . __summary        = args . summary || ""
     }
 
     static genders () {
@@ -117,6 +118,7 @@ class Record {
     is_team        () {return this . __is_team}
     distances      () {return this . __distances}
     progression    () {return this . __progression}
+    summary        () {return this . __summary}
 
     //
     // Return the current record

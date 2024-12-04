@@ -1,5 +1,9 @@
 %% full_name:  Small Combination
 %% short_name: Small
+%% summary: This is the world record progression of the men's small
+            combination. The small combination consists of
+            combined results of the 500m, 3000m, 1500m and 5000m,
+            achieved in the same tournament.
 dietel          163.244         1981-01-16/2    davos
                 0:38.16 4:07.28 1:57.83 7:25.95
 falk-larssen    162.734         1982-01-16/2    davos

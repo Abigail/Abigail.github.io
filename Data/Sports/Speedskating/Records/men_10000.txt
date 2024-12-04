@@ -1,5 +1,6 @@
 %% full_name:  10000 Meter
 %% short_name: 10000m
+%% summary: This is the world record progression of the men's 10000 meter.
 fredriksen      20:21.4         1893-01-14      museumplein
 nielsen         19:47.4         1893-02-13      neglingeviken
 ericson         19:22.8         1894-01-07      neglingeviken

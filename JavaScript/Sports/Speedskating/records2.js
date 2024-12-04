@@ -910,10 +910,6 @@ function build_by_xxx_table (args) {
     })
     table += "</table>"
 
-    if (type == "venue") {
-        console . log (table)
-    }
-
     element . html (table)
 
 }
@@ -996,5 +992,5 @@ window . addEventListener ("load", function () {
         $("section.by-skater h4") . html ("By Team")
     }
 
- // $("div#description") . html (page_event . description ())
+    $("div#description") . html (record . summary ())
 })

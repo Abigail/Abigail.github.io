@@ -1,4 +1,8 @@
 %% full_name:  Team Sprint
 %% short_name: Sprint
+%% summary: This is the world record progression of the women's team sprint.
+            In a team sprint, a team of three skaters skaters skate three
+            laps, dropping one rider after each lap. The time of the final
+            skater crossing the finish counts.
 RUS             1:24.84         2017-12-01      calgary
 NED             1:24.02         2020-02-13      salt_lake_city

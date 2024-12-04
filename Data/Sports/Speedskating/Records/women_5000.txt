@@ -1,5 +1,7 @@
 %% full_name:  5000 Meter
 %% short_name: 5000m
+%% summary: This is the world record progression of the women's 5000 meter.
+            This record was suspended in 1955, and reestablished in 1982.
 nehringowa      11:30.5         1931-02-15      warsaw
 nehringowa      10:54.8         1935-02-10      warsaw
 lesche          10:15.3         1936-02-02      stockholm

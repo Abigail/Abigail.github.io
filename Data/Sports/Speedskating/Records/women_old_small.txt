@@ -1,5 +1,10 @@
 %% full_name:  Old Small Combination
 %% short_name: Old Small
+%% summary: This is the world record progression of the old women's small
+            combination. The old small combination consists of
+            combined results of the 500m, 3000m, 1000m and 5000m,
+            achieved in the same tournament. It suspended in 1955,
+            at the same time the record for the 5000m was suspended.
 kholshchevnikova 212.890        1949-02-12/2    kongsberg
 kondakova       210.431         1951-02-04/2    medeo
 karelina        208.820         1951-02-11/2    medeo

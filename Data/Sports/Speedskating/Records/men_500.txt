@@ -1,5 +1,6 @@
 %% full_name:  500 Meter
 %% short_name: 500m
+%% summary: This is the world record progression of the men's 500 meter.
 grunden         0:50.8          1891-02-28      neglingeviken
 halvorsen       0:50.2          1892-02-28      hamar-mjosen
 naess           0:49.4          1893-02-05      hamar-mjosen

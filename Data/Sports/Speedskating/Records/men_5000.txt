@@ -1,5 +1,6 @@
 %% full_name:  5000 Meter
 %% short_name: 5000m
+%% summary: This is the world record progression of the men's 5000 meter.
 fredriksen              9:29.8          1890-03-02              neglingeviken
 halvorsen               9:10.2          1892-02-28              hamar-mjosen
 halvorsen               9:07.2          1893-02-26              hamar-mjosen
