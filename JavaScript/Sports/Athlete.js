@@ -1,6 +1,6 @@
 function value_by_date (value, date = "0000-00-00") {
     if (typeof (value) === "object") {
-        if (date == "now" || date == "today") {
+        if (date == "now" || date == "today" || date == "last") {
             return value [value . length - 1]  // Most recent value
         }
         for (let i = value . length - 2; i >= 0; i -= 2) {

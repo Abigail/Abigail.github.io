@@ -383,7 +383,7 @@ function item_to_row (item) {
 //
 // Count the number of records by skater, and rink
 //
-function count_records (progression) {
+function count_records2 (progression) {
     let skater_count      = {}
     let rink_count        = {}
     let country_count     = {}
@@ -522,7 +522,7 @@ function build_tables (event, season = 0) {
     const type = event . is_combination () ? "Points" : "Time"
     const [skater_count, rink_count, country_count, duration_count,
            improvement_count, current, last] =
-           count_records (my_progression)
+           count_records2 (my_progression)
 
     const what = event . is_team () ? "Team" : "Skater"
 
@@ -674,6 +674,9 @@ function athlete_td (entry) {
     return td
 }
 
+//
+// Given a record, return the table row ('tr') for this record
+//
 function entry_to_row (entry) {
     if (entry . is_suspension ()) {
         return "<tr><td colspan = '8' class = 'suspended'>" + 
@@ -734,6 +737,187 @@ function build_main_table (record) {
     $("#record_table") . html (table)
 }
 
+//
+// Given the records, build by skater/duration/improvement/country/rink buckets
+//
+function count_records (record) {
+    let athlete_bucket = {}
+    let country_bucket = {}
+    let venue_bucket   = {}
+
+    const COUNT          = 0
+    const DURATION       = 1
+    const IMPROVEMENT    = 2
+    const LAST_DATE      = 3
+    const IS_IMPROVEMENT = 4
+
+    const C_COUNT        = 0
+    const C_LAST_DATE    = 1
+
+    const V_COUNT        = 0
+    const V_LAST_DATE    = 1
+
+    record . progression () . forEach ((entry) => {
+        if (entry . is_suspension ()) {
+            return
+        }
+        let athlete = entry   . athlete_or_team ()
+        let date    = entry   . date  ()
+        let venue   = entry   . venue () . key ()
+        let country = athlete . country (date) . key ()
+        let key     = athlete . key ()
+        if (!athlete_bucket [key]) {athlete_bucket [key] = [0, 0, 0, "", false]}
+        athlete_bucket [key] [COUNT]       ++
+        athlete_bucket [key] [DURATION]    +=  entry . duration    ()
+        athlete_bucket [key] [IMPROVEMENT] += +entry . improvement () || 0
+        athlete_bucket [key] [LAST_DATE]    =  date
+        if (entry . improvement () != null) {
+            athlete_bucket [key] [IS_IMPROVEMENT] = true
+        }
+
+        if (!country_bucket [country]) {
+             country_bucket [country] = [0, ""]
+        }
+        country_bucket [country] [C_COUNT] ++
+        country_bucket [country] [C_LAST_DATE] = date
+
+        if (!venue_bucket [venue]) {
+             venue_bucket [venue] = [0, ""]
+        }
+        venue_bucket [venue] [V_COUNT] ++
+        venue_bucket [venue] [V_LAST_DATE] = date
+    })
+
+    //
+    // Fix the precision
+    //
+    let prec = record . is_combination () ? 3 : 2
+    for (const key in athlete_bucket) {
+        athlete_bucket [key] [IMPROVEMENT] =
+             athlete_bucket [key] [IMPROVEMENT] . toFixed (prec)
+    }
+
+    //
+    // Reverse the entries, so we have "value" -> [athletes]
+    //
+    let by_count       = {}
+    let by_duration    = {}
+    let by_improvement = {}
+    let by_country     = {}
+    let by_venue       = {}
+    let last_date      = {}   // Used for athletes, countries and venues
+    let first_date     = {}   // Used for athletes, countries and venues
+    for (const key in athlete_bucket) {
+        let [count, duration, improvement, date, is_improvement] =
+                              athlete_bucket [key]
+        if (!by_count       [count])       {by_count       [count]       = []}
+        if (!by_duration    [duration])    {by_duration    [duration]    = []}
+        by_count       [count]       . push (key)
+        by_duration    [duration]    . push (key)
+
+        //
+        // By improvement is slightly different. We don't classify skaters
+        // whose only record(s) are the first one, or right after a suspension
+        //
+        // But we need to consider that skaters *can* have a zero improvement
+        // yet still be classified; this happens for skaters equalling an
+        // existing record.
+        //
+        if (is_improvement) {
+            if (!by_improvement [improvement]) {
+                by_improvement [improvement] = []
+            }
+            by_improvement [improvement] . push (key)
+        }
+        last_date [key] = date
+        if (!first_date [key]) {
+             first_date [key] = date
+        }
+    }
+    for (const key in country_bucket) {
+        let [count, date] = country_bucket [key]
+        if (!by_country [count]) {by_country [count] = []}
+        by_country [count] . push (key)
+        last_date [key] = date
+        if (!first_date [key]) {
+             first_date [key] = date
+        }
+    }
+    for (const key in venue_bucket) {
+        let [count, date] = venue_bucket [key]
+        if (!by_venue [count]) {by_venue [count] = []}
+        by_venue [count] . push (key)
+        last_date [key] = date
+        if (!first_date [key]) {
+             first_date [key] = date
+        }
+    }
+
+    //
+    // Sort the lists by date of first record
+    //
+    [by_count, by_duration, by_improvement, by_country, by_venue] .
+        forEach ((bucket) => {
+            Object . values (bucket) 
+                   . forEach (list => list . sort ((a, b) => {
+                        if (first_date [a] < first_date [b]) {return -1}
+                        if (first_date [a] > first_date [b]) {return  1}
+                        return 0
+                     }))
+    })
+
+    return [by_count, by_duration, by_improvement, by_country, by_venue,
+            last_date]
+}
+
+//
+// Build the "by XXX" tables
+//
+function build_by_xxx_table (args) {
+    let buckets    = args . buckets
+    let type       = args . type
+    let id         = args . id
+    let element    = args . element
+    let last_dates = args . last_dates
+
+    let table = `<table id = '${id}' class = 'count'>`
+
+    Object . keys (buckets)
+           . sort ((a, b) => b - a)
+           . forEach ((key) => {
+        let list = buckets [key]
+        table += "<tr>"
+        table += `<td rowspan = '${list . length}' class = 'count'>` +
+                                `${key}</td>`
+
+        for (let i = 0; i < list . length; i ++) {
+            let item   = list [i]
+            let thingy = type == "athlete" ? Athlete . athlete (item)
+                       : type == "country" ? Country . country (item)
+                       : type == "venue"   ? Venue   . venue   (item)
+                       : null
+            let last_date = last_dates [item]
+            if (i > 0) {
+                table += "<tr>"
+            }
+            if (type == "venue") {
+                table += `<td class = 'city'>${thingy . city (last_date)}</td>`
+            }
+            table += `<td class = 'name'>  ${thingy . name    (last_date)}</td>`
+                  +  `<td class = 'nation'>${thingy . flag_img(last_date)}</td>`
+        }
+        table += "</tr>"
+    })
+    table += "</table>"
+
+    if (type == "venue") {
+        console . log (table)
+    }
+
+    element . html (table)
+
+}
+
 
 window . addEventListener ("load", function () {
     Country_Data . init ()
@@ -772,17 +956,45 @@ window . addEventListener ("load", function () {
 
     build_main_table (record)
 
+    let [by_count, by_duration, by_improvement, by_country, by_venue,
+         last_dates] = count_records (record)
+    build_by_xxx_table ({buckets:    by_count,
+                         type:      'athlete',
+                         id:        'skaters',
+                         element:   $("#skater_count"),
+                         last_dates: last_dates})
+    build_by_xxx_table ({buckets:    by_duration,
+                         type:      'athlete',
+                         id:        'durations',
+                         element:   $("#duration_count"),
+                         last_dates: last_dates})
+    build_by_xxx_table ({buckets:    by_improvement,
+                         type:      'athlete',
+                         id:        'improvements',
+                         element:   $("#improvement_count"),
+                         last_dates: last_dates})
+    build_by_xxx_table ({buckets:    by_country,
+                         type:      'country',
+                         id:        'countrys',
+                         element:   $("#country_count"),
+                         last_dates: last_dates})
+    build_by_xxx_table ({buckets:    by_venue,
+                         type:      'venue',
+                         id:        'rinks',
+                         element:   $("#rink_count"),
+                         last_dates: last_dates})
+
  // build_tables       (page_event)
  // build_chart        (page_event, title)
 
-    $("#start_year_span") . html (`<input id = 'start_year' type = 'number' ` +
-                                  `value = '1960' size = '5'>`)
+ // $("#start_year_span") . html (`<input id = 'start_year' type = 'number' ` +
+ //                               `value = '1960' size = '5'>`)
                                   
 
- // if (page_event . is_team ()) {
- //     $("section.by-country") . css ({display: "none"})
- //     $("section.by-skater h4") . html ("By Team")
- // }
+    if (record . is_team ()) {
+        $("section.by-country") . css ({display: "none"})
+        $("section.by-skater h4") . html ("By Team")
+    }
 
  // $("div#description") . html (page_event . description ())
 })
