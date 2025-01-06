@@ -1,6 +1,8 @@
 %% full_name:  3000 Meter
 %% short_name: 3000m
 %% summary: This is the world record progression of the men's 3000 meter.
+%% step_size:      10
+%% scale_y_min:  3:30
 thunberg        5:19.2          1932-01-08      davos
 staksrud        4:59.1          1933-02-25      hamar-stadion
 ballangrud      4:49.6          1935-01-29      davos

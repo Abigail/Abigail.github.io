@@ -121,6 +121,8 @@ function make_config (event, season = 0) {
         return
     }
 
+    console . log (my_progression)
+
     //
     // Wrap this into a set
     //

@@ -22,6 +22,8 @@ class Record {
         this . __distances      = args . distances
         this . __progression    = []
         this . __summary        = args . summary || ""
+        this . __step_size      = args . step_size   || 1
+        this . __scale_y_min    = args . scale_y_min || 1
     }
 
     static genders () {
@@ -117,8 +119,19 @@ class Record {
     is_combination () {return this . __is_combination}
     is_team        () {return this . __is_team}
     distances      () {return this . __distances}
-    progression    () {return this . __progression}
     summary        () {return this . __summary}
+    step_size      () {return this . __step_size}
+    scale_y_min    () {return this . __scale_y_min}
+
+    //
+    // Return the progression, optionally filtered by a start date
+    //
+    progression (args = {}) {
+        const start_date = args . start_date || "0000-00-00";
+        return this . __progression . filter ((item) => {
+            return item . date () > start_date
+        })
+    }
 
     //
     // Return the current record
@@ -128,6 +141,14 @@ class Record {
             return !entry . is_suspension () &&
                     entry . is_current    ()
         })
+    }
+
+    //
+    // Config for plotting
+    //
+    config () {
+        return {step_size:   this . step_size (),
+                scale_y_min: this . scale_y_min ()}
     }
 
     //
@@ -159,9 +180,14 @@ class Record_Entry {
         this . __venue        = Venue   . venue   (args . venue)
         this . __result       =                    args . result
         this . __date         =                    args . date
+        this . __year         =                    args . year
+        this . __month        =                    args . month
+        this . __day          =                    args . day
         this . __first_date   =                    args . first_date
         this . __current      = args . current ? true : false
         this . __precision    =                    args . precision
+        this . x              =                    args . x
+        this . y              =                    args . y
         if (args . improvement) {
             this . __improvement  =                args . improvement
         }
@@ -183,6 +209,11 @@ class Record_Entry {
         if (args . members) {
             this . __members  =  args . members . map ((ath) =>
                                      Athlete . athlete (ath))
+        }
+
+        if (this . __record . gender ()     == "male" &&
+            this . __record . discipline () == "500m") {
+            console . log (`x = ${this . x}; y = ${this . y}`)
         }
 
         //
@@ -207,6 +238,9 @@ class Record_Entry {
     venue                 () {return this . __venue}
     result                () {return this . __result}
     date                  () {return this . __date}
+    year                  () {return this . __year}
+    month                 () {return this . __month}
+    day                   () {return this . __day}
     first_date            () {return this . __first_date}
     time_in_sec           () {return this . __time_in_sec}
     improvement           () {return this . __improvement}
@@ -221,7 +255,7 @@ class Record_Entry {
     athlete_or_team       () {return this . __athlete ||
                                      this . __country}
 
-    is_suspension       () {return false}
+    is_suspension         () {return false}
 }
 
 
@@ -231,6 +265,8 @@ class Suspension {
         this . __date    = args . date
         this . __message = args . message
         this . __record  = args . record
+        this . x         = args . x
+        this . y         = undefined
     }
 
     is_suspension () {return true}

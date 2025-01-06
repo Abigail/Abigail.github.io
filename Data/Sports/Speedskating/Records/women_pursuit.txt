@@ -3,6 +3,8 @@
 %% summary: This is the world record progression of the women's team pursuit.
             The team pursuit is skated by a team of three, over 6 (inner) laps.
             The time of the third skater crossing the finish counts.
+%% step_size:       1
+%% scale_y_min:  2:50
 CAN             3:05.49         2004-11-14      hamar
                 groves          hughes          klassen
 CAN             3:03.07         2004-11-20      berlin

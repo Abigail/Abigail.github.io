@@ -10,11 +10,12 @@ use experimental 'signatures';
 use experimental 'lexical_subs';
 
 use Getopt::Long;
-use Date::Calc qw [Add_Delta_Days Delta_Days];
+use Date::Calc qw [Add_Delta_Days Delta_Days leap_year Day_of_Year];
 use JSON;
 
 sub process_file;
 sub sec2time;
+sub date2value;
 
 my $distances = {
     big       => [qw [500m 5000m 1500m 10000m]],
@@ -97,10 +98,13 @@ sub process_file ($input, $o_fh) {
        $text =~ s/^\h*#.*\n//gm;
 
     while ($text =~ s/^ \h* %% \h* (?<key>[a-z_]+): \h*
-                                   (?<value> \S .* (?:\n\h{4,} .*)* \S)
+                                   (?<value> (?:\S .* (?:\n\h{4,} .*)*)? \S)
                                              \h*\n//mx) {
         my $key   = $+ {key};
         my $value = $+ {value} =~ s/\n\h{4,}/ /gr;
+        if ($key eq "scale_y_min" && $value =~ /([0-9]+):([0-9]+)/) {
+            $value = 60 * $1 + $2;
+        }
 
         $$event {$key} = $value;
     }
@@ -121,6 +125,7 @@ sub process_file ($input, $o_fh) {
                 date      => $date,
                 message   => $message,
                 suspended => 1,
+                x         => date2value ($date),
             };
             push @output => $new;
             next;
@@ -183,6 +188,9 @@ sub process_file ($input, $o_fh) {
         }
         $$new {first_date} = $first_date;
         $$new {date}       = $last_date;
+        $$new {year}       = $year;
+        $$new {month}      = $month;
+        $$new {day}        = $day;
 
         #
         # Calculate the improvement. This can only be done if:
@@ -206,6 +214,13 @@ sub process_file ($input, $o_fh) {
                 }
             }
         }
+
+        #
+        # x and y values are required for the plotting.
+        #
+        $$new {x} = date2value ($last_date);  # Date as a float.
+        $$new {y} = $result_is_time ? $$new {time_in_sec} : $$new {result};
+
         push @output => $new;
     }
 
@@ -262,4 +277,12 @@ sub sec2time ($seconds, $precision) {
     $time .= "$minutes:";
     my $width = 3 + $precision;
     $time .= sprintf "%0${width}.${precision}f" => $seconds;
+}
+
+
+sub date2value ($date) {
+    my ($year, $month, $day) = split /-/ => $date;
+    my $doy  = Day_of_Year ($year, $month, $day) - 1;
+    my $days = 365 + (leap_year ($year) ? 1 : 0);
+    $year + $doy / $days;
 }

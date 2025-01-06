@@ -1,6 +1,8 @@
 %% full_name:  1500 Meter
 %% short_name: 1500m
 %% summary: This is the world record progression of the women's 1500 meter.
+%% step_size:       5
+%% scale_y_min:  1:40
 nehringowa      3:28.0          1929-01-27      warsaw
 nehringowa      3:10.4          1932-01-10      davos
 lie             3:08.1          1932-03-07      frogner

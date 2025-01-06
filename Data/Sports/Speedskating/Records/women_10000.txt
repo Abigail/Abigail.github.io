@@ -3,6 +3,8 @@
 %% summary: This is the world record progression of the women's 10000 meter.
             This record was suspended in 1953. All records after that are
             so called "world bests", as they are not recognized by the ISU.
+%% step_size:      30
+%% scale_y_min: 13:30
 nehringowa      23:48.5         1935-12-30      vienna
 SUSPENDED                       1953-01-01
         Record suspended from the ISU Congress of 1953 onwards; 

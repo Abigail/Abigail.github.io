@@ -5,6 +5,8 @@
             twice in the same event; only results achieved in events where
             the final result is determined by the total time after two races
             qualify.
+%% step_size:    0.25
+%% scale_y_min:    68
 shimizu         68.960          2001-03-10      salt_lake_city
                 0:34.64 0:34.32
 kang-seok       68.690          2007-03-09      salt_lake_city

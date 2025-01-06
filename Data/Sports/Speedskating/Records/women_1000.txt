@@ -1,6 +1,8 @@
 %% full_name:  1000 Meter
 %% short_name: 1000m
 %% summary: This is the world record progression of the women's 1000 meter.
+%% step_size:       3
+%% scale_y_min:  1:09
 nehringowa      2:26.4          1929-01-26      warsaw
 landbeck        2:08.8          1932-01-10      davos
 nehringowa      2:03.4          1932-01-17      engelberg

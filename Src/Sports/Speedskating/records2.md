@@ -24,8 +24,7 @@
 
 <canvas id = "record_chart"></canvas>
 
-Start year: <span id = 'start_year_span'></span>
-<button type = 'button' onclick = 'load_chart ()'>Apply</button>
+<button id = "toggle" type = 'button' onclick = 'load_chart ()'>Toggle</button>
 
 <h3 class = "records-header">Lists of Records</h3>
 

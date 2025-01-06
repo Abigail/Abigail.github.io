@@ -4,6 +4,8 @@
             combination. The mini combination consists of
             combined results of the 500m, 1500m, 1000m and 3000m,
             achieved in the same tournament.
+%% step_size:       5
+%% scale_y_min:   150
 kondakova       207.484         1956-02-04/2    kvarnsveden
 artamonova      206.016         1956-02-05/2    sverdlovsk
 romanova        203.299         1958-01-26/2    medeo

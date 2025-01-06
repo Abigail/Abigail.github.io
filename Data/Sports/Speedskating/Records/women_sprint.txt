@@ -4,6 +4,8 @@
             combination. The sprint combination consists of
             combined results of the 500m, 1000m, 500m and 1000m,
             achieved in the same tournament.
+%% step_size:       5
+%% scale_y_min:   140
 pflug           183.085         1972-02-26/2    eskilstuna
 burka           175.050         1973-01-13/2    davos
 young           173.450         1973-01-19/2    davos

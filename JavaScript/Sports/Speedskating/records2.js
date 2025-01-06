@@ -43,6 +43,9 @@ function config_config () {
     return config
 }
 
+const DAWN   = "0000-00-00"
+const MODERN = "1960-08-01"
+
 //
 // sec2time
 //
@@ -64,9 +67,9 @@ function sec2time (seconds, precision = 0) {
 // Given a tooltip context, format the rink
 //
 function format_rink (context) {
-    const  rink = context . raw . rink
-    const  date = context . raw . date
-    return rink . name () + " \u{2014} " + rink . city (date)
+    const  venue = context . raw . __venue
+    const  date = context . raw . __date
+    return venue . name (date) + " \u{2014} " + venue . city (date)
 }
 
 //
@@ -75,12 +78,13 @@ function format_rink (context) {
 // Given a tooltip context, format the time and skater
 //
 function format_record (context) {
-    const skater  = context . raw . skater
-    const time    = context . raw . time
-    const date    = context . raw . date
+    const skater  = context . raw . __athlete
+    const result  = context . raw . __result
+    const date    = context . raw . __date
 
-    return time + " " + skater . name        (date) + ", "
-                      + skater . nationality (date)
+    return result + " " + skater . name        (date) + ", "
+                        + skater . nationality (date)
+                       
 }
 
 //
@@ -103,20 +107,41 @@ function format_point_value (value) {
 
 
 function point_style (context) {
-    const date = context . raw . date
-    const rink = context . raw . rink
-    return rink . point_style (date)
+    const date  = context . raw . __date
+    const venue = context . raw . __venue
+    return venue ? venue . point_style (date) : ""
 }
 
 
 function point_colour (context) {
-    return context . raw . rink . point_colour ()
+    const venue = context . raw . __venue
+    return venue ? venue . point_colour () : ""
 }
 
 
-function make_config (event, season = 0) {
-    const my_progression = progression ({event:  event,
-                                         season: season})
+//
+// today2value
+//
+// Give today as a fractional year value.
+// 
+function today2value () {
+    const date = new Date ()
+    const year = date . getFullYear ()
+    const jan1 = new Date (year, 0, 1, 12, 0, 0)
+    const diy  = Math . round ((date - jan1) / (1000 * 60 * 60 * 24))
+
+    const is_leap = year % 400 == 0 ? 1
+                  : year % 100 == 0 ? 0
+                  : year %   4 == 0 ? 1 : 0
+
+    return year + diy / (365 + is_leap)
+}
+
+
+function make_config (args = {}) {
+    const record         = args   . record
+    const start_date     = args   . start_date || DAWN
+    const my_progression = record . progression ({start_date: DAWN})
     if (!my_progression . length) {
         return
     }
@@ -139,7 +164,7 @@ function make_config (event, season = 0) {
             callbacks: {
                 beforeLabel: function (context) {
                     const raw = context . raw
-                    return raw . date
+                    return raw . __date
                 },
                 label:      format_record,
                 afterLabel: format_rink,
@@ -149,7 +174,7 @@ function make_config (event, season = 0) {
 
     const line_data_set = {
         data:             my_progression . concat ([{
-                              x: date2value (),   // Today
+                              x: today2value (),   // Today
                               y: my_progression [my_progression . length - 1]
                                                 . y
                           }]),
@@ -158,9 +183,9 @@ function make_config (event, season = 0) {
         borderColor:     'black',
         borderWidth:      1,
         tooltip: {
-            enabled: 1,
+            enabled: false,
             callbacks: {
-                label: "",
+                label: function () {return ""},
             }
         }
     }
@@ -168,15 +193,18 @@ function make_config (event, season = 0) {
     //
     // Calculate the first and last years
     //
-    const years    = my_progression . map (item => item . year)
+    const years    = my_progression . filter (item => !item . is_suspension ())
+                                    . map    (item =>  item . year ())
     let first_year = Math . min (... years) - 1
     let last_year  = new Date () . getFullYear () + 1
-        
+    if (start_date != DAWN) {
+        first_year = + start_date . substring (0, 4)
+    }
+
     //
     // Create the configuration
     //
-    const my_config_config       = config_config () [event . gender ()]
-                                                    [event . type   ()]
+    const my_config_config       = record . config ()
     const scale_title_font_size  = 16;
     const legend_title_font_size = 16;
 
@@ -208,7 +236,7 @@ function make_config (event, season = 0) {
                     type: 'linear',
                     ticks: {
                         callback: function (value, index, ticks) {
-                            return event . is_combination ()
+                            return record . is_combination ()
                                                 ? format_point_value (value)
                                                 : sec2time (value)
                         },
@@ -217,7 +245,7 @@ function make_config (event, season = 0) {
                     },
                     min: my_config_config . scale_y_min,
                     title: {
-                        text: event . is_combination ()  ? "Points" : "Time",
+                        text: record . is_combination ()  ? "Points" : "Time",
                         display: true,
                         font: {
                             size: scale_title_font_size,
@@ -401,21 +429,12 @@ function count_records2 (progression) {
         const skater_key = item . skater . key ()
         const rink_key   = item . rink   . key ()
 
-        if (!skater_count [skater_key]) {
-            skater_count [skater_key] = 0
-        }
-        if (!rink_count [rink_key]) {
-            rink_count [rink_key] = 0
-        }
-        if (!country_count [country]) {
-            country_count [country] = 0
-        }
-        if (!duration_count [skater_key]) {
-            duration_count [skater_key] = 0
-        }
-        if (!last_record [skater_key]) {
-            last_record [skater_key] = "0000-00-00"
-        }
+        if (!skater_count   [skater_key]) {skater_count   [skater_key] = 0}
+        if (!rink_count     [rink_key])   {rink_count     [rink_key]   = 0}
+        if (!country_count  [country])    {country_count  [country]    = 0}
+        if (!duration_count [skater_key]) {duration_count [skater_key] = 0}
+        if (!last_record    [skater_key]) {last_record    [skater_key] = DAWN}
+
         if (item . current) {
             current [skater_key] = 1
         }
@@ -583,12 +602,12 @@ function build_chart (event, title, start_year = 0) {
     window . __private . chart = chart
 }
 
+
 function load_chart () {
-    const start_year = + $("#start_year") . val ();
     const title      = window . __private . title
-    const event      = window . __private . event
-    build_chart  (event, title, start_year)
-    build_tables (event, start_year)
+    const record     = window . __private . record
+    const start_date = window . __private . start_date == DAWN ? MODERN : DAWN
+    build_chart2 ({record: record, title: title, start_date: start_date})
 }
 
 
@@ -597,6 +616,36 @@ function load_chart () {
 //
 // New functions appear below
 //
+
+//
+// build_chart: Build the chart
+//
+function build_chart2 (args = {}) {
+    const chart_config = make_config (args)
+    if (!chart_config) {
+        return
+    }
+
+    chart_config . options . plugins . title . text = args . title || "Title"
+
+    if (window . __private . chart) {
+        window . __private . chart . destroy ()
+    }
+
+    const chart = new Chart (
+        document . getElementById ('record_chart'),
+        chart_config
+    );
+
+    $("#toggle") . html (
+        args . start_date == DAWN ? "Toggle to modern era"
+                                  : "Toggle to all"
+    )
+    
+    window . __private . start_date = args . start_date
+    window . __private . chart      = chart
+}
+
 
 //
 // Create a tooltip
@@ -922,6 +971,10 @@ window . addEventListener ("load", function () {
     Event        . init ()
     Record       . init ()
 
+    if (!window . __private) {
+        window . __private = {}
+    }
+
     const params     = new URLSearchParams (window . location . search)
     const sport      = params . get ('sport')
     const discipline = params . get ('discipline')
@@ -944,12 +997,22 @@ window . addEventListener ("load", function () {
         return
     }
 
-//  window . __private = {title: title, event: page_event}
+    const title = Utils . uc_first (gender) + ", " + record . name ()
+    $("h1") . html (title)
 
-    $("h1") . html (Utils . uc_first (gender) + ", " + record . name ())
+    window . __private . record     =  record
+    window . __private . start_date =  DAWN
+    window . __private . title      =  title
 
+    //
+    // Build the navigation
+    //
     Navigation . build2 (args)
 
+    //
+    // Build the tables
+    //
+    $("div#description") . html (record . summary ())
     build_main_table (record)
 
     let [by_count, by_duration, by_improvement, by_country, by_venue,
@@ -980,17 +1043,23 @@ window . addEventListener ("load", function () {
                          element:   $("#rink_count"),
                          last_dates: last_dates})
 
- // build_tables       (page_event)
- // build_chart        (page_event, title)
-
- // $("#start_year_span") . html (`<input id = 'start_year' type = 'number' ` +
- //                               `value = '1960' size = '5'>`)
-                                  
 
     if (record . is_team ()) {
         $("section.by-country") . css ({display: "none"})
         $("section.by-skater h4") . html ("By Team")
     }
 
-    $("div#description") . html (record . summary ())
+    //
+    // Build the chart
+    //
+    build_chart2 ({record: record, title: title, start_date: DAWN})
+
+    //
+    // If the first record is in the modern era, do not allow toggling
+    //
+    const progression = record . progression ()
+    if (progression [0] .                        date () > MODERN ||
+        progression [progression . length - 1] . date () < MODERN) {
+        $("#toggle") . remove ()
+    }
 })
