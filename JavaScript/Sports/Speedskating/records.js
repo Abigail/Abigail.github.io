@@ -1,65 +1,6 @@
-//
-// Return the config for the config
-//
-function config_config () {
-    const config = {
-        [Event . MEN]: {
-            [Event . M500]:     {step_size:  1,    scale_y_min:      33,     },
-            [Event . M1000]:    {step_size:  3,    scale_y_min:  1 * 60 +  3,},
-            [Event . M1500]:    {step_size:  5,    scale_y_min:  1 * 60 + 35,},
-            [Event . M3000]:    {step_size: 10,    scale_y_min:  3 * 60 + 30,},
-            [Event . M5000]:    {step_size: 15,    scale_y_min:  6 * 60,     },
-            [Event . M10000]:   {step_size: 30,    scale_y_min: 12 * 60,     },
-            [Event . BIG]:      {step_size:  5,    scale_y_min:     140      },
-            [Event . SMALL]:    {step_size:  5,    scale_y_min:     140      },
-            [Event . SPRINT]:   {step_size:  5,    scale_y_min:     135      },
-            [Event . D500]:     {step_size:  0.25, scale_y_min:      68      },
-            [Event . TEAM_PURSUIT]:
-                                {step_size:  1,    scale_y_min:  3 * 60 + 30,},
-            [Event . TEAM_SPRINT]:
-                                {step_size:  1,    scale_y_min:  1 * 60 + 15,},
-        },
-        [Event . WOMEN]: {
-            [Event . M500]:     {step_size:  1,    scale_y_min:      36,     },
-            [Event . M1000]:    {step_size:  3,    scale_y_min:  1 * 60 +  9,},
-            [Event . M1500]:    {step_size:  5,    scale_y_min:  1 * 60 + 40,},
-            [Event . M3000]:    {step_size: 10,    scale_y_min:  3 * 60 + 40,},
-            [Event . M5000]:    {step_size: 15,    scale_y_min:  6 * 60 + 30,},
-            [Event . M10000]:   {step_size: 30,    scale_y_min: 13 * 60 + 30,},
-            [Event . SMALL]:    {step_size:  5,    scale_y_min:     150      },
-            [Event . OLD_SMALL]:{step_size:  2,    scale_y_min:     202      },
-            [Event . MINI]:     {step_size:  5,    scale_y_min:     150      },
-            [Event . SPRINT]:   {step_size:  5,    scale_y_min:     140      },
-            [Event . D500]:     {step_size:  0.25, scale_y_min:      74      },
-            [Event . TEAM_PURSUIT]:
-                                {step_size:  1,    scale_y_min:  2 * 60 + 50,},
-            [Event . TEAM_SPRINT]:
-                                {step_size:  1,    scale_y_min:  1 * 60 + 20,},
-        },
-        [Event . MIXED]: {
-            [Event . RELAY]:    {step_size:  1,    scale_y_min:  2 * 60 + 50,},
-        }
-    }
-    return config
-}
-
 const DAWN   = "0000-00-00"
 const MODERN = "1960-08-01"
 
-//
-// sec2time
-//
-// Given a number of seconds, format them as a time
-//
-function sec2time (seconds, precision = 0) {
-    const min = Math . floor (seconds / 60)
-    let   sec = seconds - min * 60
-    if (precision) {
-        sec = sec . toFixed (precision)
-    }
-
-    return min + ":" + (sec < 10 ? "0" : "") + sec
-}
 
 //
 // format_rink (context)
@@ -119,23 +60,6 @@ function point_colour (context) {
 }
 
 
-//
-// today2value
-//
-// Give today as a fractional year value.
-// 
-function today2value () {
-    const date = new Date ()
-    const year = date . getFullYear ()
-    const jan1 = new Date (year, 0, 1, 12, 0, 0)
-    const diy  = Math . round ((date - jan1) / (1000 * 60 * 60 * 24))
-
-    const is_leap = year % 400 == 0 ? 1
-                  : year % 100 == 0 ? 0
-                  : year %   4 == 0 ? 1 : 0
-
-    return year + diy / (365 + is_leap)
-}
 
 
 function make_config (args = {}) {
@@ -174,7 +98,7 @@ function make_config (args = {}) {
 
     const line_data_set = {
         data:             my_progression . concat ([{
-                              x: today2value (),   // Today
+                              x: Utils . today2value (),   // Today
                               y: my_progression [my_progression . length - 1]
                                                 . y
                           }]),
@@ -238,7 +162,7 @@ function make_config (args = {}) {
                         callback: function (value, index, ticks) {
                             return record . is_combination ()
                                                 ? format_point_value (value)
-                                                : sec2time (value)
+                                                : Utils . sec2time (value)
                         },
                         stepSize: my_config_config . step_size,
                         autoSkip: false,
@@ -271,356 +195,19 @@ function make_config (args = {}) {
 }
 
 
-//
-// Create the td content of the rink type column. This includes a
-// tooltip with info about the rink.
-//
-function rink_type_td (rink, date) {
-    const rink_symbol = rink . is_natural    (date) ? "\u{25A0}"
-                      : rink . is_artificial (date) ? "\u{25B2}"
-                      : rink . is_indoor     (date) ? "\u{25CF}"
-                      :                               ""
-    const rink_span   = "<span style = 'color: " + rink . point_colour () +
-                        "'>" + rink_symbol + "</span>"
-
-    const type = rink . is_natural    (date) ? "Natural"
-               : rink . is_artificial (date) ? "Artificial"
-               : rink . is_indoor     (date) ? "Indoor" : "???"
-
-    const flag = rink . flag_img (date)
-
-    const alt  = rink . is_lowland       () ? "LL"
-               : rink . is_high_altitude () ? "HA" : ""
-
-    const td = "<div class = 'tooltip'>" + rink_span +
-               "<div class = 'tooltiptext rink_info'>" +
-               "<table class = 'rink_info'>" +
-                  `<tr><th>City</th>`                                  +
-                      `<td>${rink . city (date)}</td>`                 +
-                      `<td class = 'flag'>${flag}</td></tr>`           +
-                  `<tr><th>Name</th>`                                  + 
-                      `<td colspan = '2'>${rink . name ()}</td></tr>`  +
-                  `<tr><th>Ice Type</th>`                              + 
-                      `<td colspan = '2'>${type}</td></tr>`            +
-                  `<tr><th>Elevation</th>`                             + 
-                      `<td>${rink . elevation ()}m</td>`               +
-                      `<td>${alt}</td></tr>`                           +
-               "</table></div></div>"
-
-    return td
-}
-
-//
-// function pad (time)
-//
-// Take a time value, and add an invisible '0' if the time only has a single
-// digit after the decimal dot. This makes sure times will be lined up
-// nicely when right aligned.
-//
-function pad (time) {
-    const pad = "<span style = 'visibility: hidden'>0</span>"
-    if (!time) {
-        return "?"
-    }
-    return time . match (/\.[0-9]$/) ? time + pad : time
-}
-
-//
-// format_time_td
-//
-function format_time_td (item) {
-    const event = item . event
-    const time  = item . time
-    let td      = pad (time)
-
-    const distances = event . distances ()
-    if (distances && item . times) {
-        const name = distances . length == 4 ? "times" : "times2"
-        td = `<div class = 'tooltip'>${td}` +
-             `<div class = 'tooltiptext ${name}'>` +
-             `<table class = 'times'>` +
-             item . times . map ((item, i) => {
-                return `<tr><th>${distances [i]}m</th>` +
-                           `<td>${pad (item)}</td></tr>` 
-             }) . join ("") +
-             `</table></div></div>`
-    }
-    return td
-}
-
-//
-// Given a record, return the HTML table row representing it
-//
-function item_to_row (item) {
-    //
-    // Special case for suspended records
-    //
-    if (item . suspended) {
-        return `<tr><td class = 'suspended' colspan = '9'>` +
-                 item . suspended_message + `</td></tr>`
-    }
-
-    let   time     = item . time
-    const date     = item . date
-    let   duration = item . duration
-    const skater   = item . skater
-    const rink     = item . rink
-    const event    = item . event
-    const img      = skater . flag_img (date)
-
-    if (item . current) {
-        duration = `<span class = 'current'>${duration}</span>`
-    }
-    const improvement =
-          item  . improvement 
-       ?  event . is_combination ()
-               ?           item . improvement . toFixed (item . precision)
-               : sec2time (item . improvement,           item . precision)
-       : ""
-
-    let name = skater . name (date)
-    if (event . is_team () && item . members) {
-        const m_names = item . members . map (skater => skater . name (date))
-        const c_name  = `team-members-${m_names . length}`
-        name = "<div class = 'tooltip'>" + 
-               `<div class = 'tooltiptext team-members ${c_name}'>` +
-               "<table class = 'team-members'>" +
-                   m_names . map (item => `<tr><td>${item}</td></tr>`)
-                           . join ("") +
-               "</table></div>" + name + "</div>"
-    }
-
-    const rink_td = rink_type_td (rink, date)
-    const time_td = format_time_td (item)
-    const city    = rink . city (date)
-
-    return "<tr>" +
-           "<td class = 'date'>"        + date        + "</td>" +
-           "<td class = 'time'>"        + time_td     + "</td>" +
-           "<td class = 'improvement'>" + improvement + "</td>" +
-           "<td class = 'name'>"        + name        + "</td>" +
-           "<td class = 'nation'>"      + img         + "</td>" +
-           "<td class = 'city'>"        + city        + "</td>" +
-           "<td class = 'rinktype'>"    + rink_td     + "</td>" +
-           "<td class = 'duration'>"    + duration    + "</td>" +
-          "</tr>"
-}
-
-//
-// function count_records
-//
-// Count the number of records by skater, and rink
-//
-function count_records2 (progression) {
-    let skater_count      = {}
-    let rink_count        = {}
-    let country_count     = {}
-    let duration_count    = {}
-    let improvement_count = {}
-    let current           = {}
-    let last_record       = {}
-
-    progression . forEach ((item) => {
-        if (item . suspended) {
-            return;
-        }
-        const country = item . skater . nationality (item . date)
-
-        const skater_key = item . skater . key ()
-        const rink_key   = item . rink   . key ()
-
-        if (!skater_count   [skater_key]) {skater_count   [skater_key] = 0}
-        if (!rink_count     [rink_key])   {rink_count     [rink_key]   = 0}
-        if (!country_count  [country])    {country_count  [country]    = 0}
-        if (!duration_count [skater_key]) {duration_count [skater_key] = 0}
-        if (!last_record    [skater_key]) {last_record    [skater_key] = DAWN}
-
-        if (item . current) {
-            current [skater_key] = 1
-        }
-
-        skater_count      [skater_key] ++
-        rink_count        [rink_key]   ++
-        country_count     [country]    ++
-        duration_count    [skater_key] += item . duration
-        if (item . date > last_record [skater_key]) {
-            last_record [skater_key] = item . date
-        }
-        
-        if (!item . no_improvement) {
-            if (!improvement_count [skater_key]) {
-                improvement_count [skater_key] = 0
-            }
-            //
-            // Some trickery to make sure we will classify the
-            // improvements into the same bucket if they only
-            // differ in floating point roundoffs.
-            //
-            improvement_count [skater_key] += +item . improvement . toFixed (3)
-        }
-    })
-
-    return [skater_count, rink_count, country_count, duration_count,
-            improvement_count, current, last_record]
-}
-
-//
-// function make_count_table 
-//
-// Given a list of skater or rinks with their number of records, 
-// create a table showing them.
-//
-function make_count_table (type, count, event, current, last) {
-    let table = `<table id = '${type}s' class = 'count'>`
-
-    let count_count = {}
-    Object . values (count) . map ((count) => {
-        if (!count_count [count]) {
-            count_count [count] = 0
-        }
-        count_count [count] ++
-    })
-
-    const list = Object . keys (count) .
-                          sort ((a, b) => count [b] - count [a])
-
-    for (let i = 0; i < list . length; i ++) {
-        table += "<tr>";
-        if (i == 0 || count [list [i]] != count [list [i - 1]]) {
-            let value = count [list [i]]
-            if (type == "duration") {
-                if (current [list [i]]) {
-                    value = `<span class = 'current'>${value}</span>`
-                }
-            }
-            if (type == "improvement") {
-                if (event . is_combination ()) {
-                    value = value . toFixed (3)
-                }
-                else {
-                    value = sec2time (value, 2)
-                }
-            }
-            table += `<td rowspan = '${count_count [count [list [i]]]}' ` +
-                      "class = 'count'>" + value + "</td>"
-        }
-        if (type == "skater" || type == "duration" || type == "improvement") {
-            const skater = Athlete . athlete (list [i])
-            const date   = last [list [i]]
-            const img    = skater . flag_img (date)
-            table += "<td class = 'name'>"   + skater . name (date) + "</td>"
-                  +  "<td class = 'nation'>" + img                  + "</td>"
-        }
-        else if (type == "rink") {
-            const rink = Venue . venue (list [i])
-            table += "<td class = 'city'>"    + rink . city ("now") + "</td>"
-                  +  "<td class = 'stadion'>" + rink . name ()      + "</td>"
-        }
-        else if (type == "country") {
-            const country = new Country (list [i])
-            const name    = country . name ()
-            const img     = country . flag_img ("last")
-            table += "<td class = 'country'>" + name + "</td>"
-                  +  "<td class = 'nation'>"  + img  + "</td>"
-        }
-        table += "</tr>"
-    }
-    table += "</table>"
-
-    const class_name = `${type}_count`
-    $("#" + class_name) . html (table)
-}
-
-//
-// Build the tables with records
-//
-function build_tables (event, season = 0) {
-    const my_progression = progression ({event:    event,
-                                         season:   season})
-
-    const type = event . is_combination () ? "Points" : "Time"
-    const [skater_count, rink_count, country_count, duration_count,
-           improvement_count, current, last] =
-           count_records2 (my_progression)
-
-    const what = event . is_team () ? "Team" : "Skater"
-
-    const table = "<table id = 'records'>" +
-                  "<tr><th colspan = '3'>Record</th>"  +
-                      `<th colspan = '2'>${what}</th>` +
-                      "<th colspan = '2'>Rink</th>"    +
-                      "<th rowspan = '2'>Duration<br>(Days)</th></tr>"
-                                                       +
-
-                  "<tr><th>Date</th>"                  +
-                      `<th>${type}</th>`               +
-                      "<th>Diff.</th>"                 +
-                      "<th>Name</th>"                  +
-                      "<th>N</th>"                     +
-                      "<th>City</th>"                  +
-                      "<th>Type</th></tr>"             +
-
-                    my_progression . map  (item => item_to_row (item))
-                                   . join ("\n") +
-                  "</table>";
-
-    $("#record_table") . html (table)
-
-    make_count_table ("skater",      skater_count,      event, current, last)
-    make_count_table ("duration",    duration_count,    event, current, last)
-    make_count_table ("improvement", improvement_count, event, current, last)
-    make_count_table ("rink",        rink_count,        event, current, last)
-    make_count_table ("country",     country_count,     event, current, last)
-}
-
-
-
-
-function build_chart (event, title, start_year = 0) {
-    const chart_config = make_config (event, start_year)
-
-    if (!chart_config) {
-        return
-    }
-
-    chart_config . options . plugins . title . text = title
-
-    if (start_year) {
-        chart_config . options . plugins . title . text +=
-                                         ` since ${start_year}`
-    }
-
-    if (window . __private . chart) {
-        window . __private . chart . destroy ()
-    }
-
-    const chart = new Chart (
-        document . getElementById ('record_chart'),
-        chart_config
-    );
-    
-    window . __private . chart = chart
-}
-
-
 function load_chart () {
     const title      = window . __private . title
     const record     = window . __private . record
     const start_date = window . __private . start_date == DAWN ? MODERN : DAWN
-    build_chart2 ({record: record, title: title, start_date: start_date})
+    build_chart  ({record: record, title: title, start_date: start_date})
 }
 
 
 
-
-//
-// New functions appear below
-//
-
 //
 // build_chart: Build the chart
 //
-function build_chart2 (args = {}) {
+function build_chart (args = {}) {
     const chart_config = make_config (args)
     if (!chart_config) {
         return
@@ -645,6 +232,13 @@ function build_chart2 (args = {}) {
     window . __private . start_date = args . start_date
     window . __private . chart      = chart
 }
+
+
+
+
+//
+// Given a record, return the HTML table row representing it
+//
 
 
 //
@@ -672,8 +266,8 @@ function result_td (entry) {
     // it's padded with an invisible '0', this causes the results to
     // line up correctly.
     //
-    let result = entry . time_in_sec () ? pad (entry . result ())
-                                        :      entry . result ()
+    let result = entry . time_in_sec () ? Utils . pad (entry . result ())
+                                        :              entry . result ()
 
     //
     // Do we need a tooltip? We do if the record is a combination, we
@@ -687,7 +281,7 @@ function result_td (entry) {
         let tooltip   = `<table class = 'times'>` +
                             times . map ((time, i) => {
                                return `<tr><th>${distances [i]}</th>` +
-                                          `<td>${pad (time)}</td></tr>`
+                                          `<td>${Utils . pad (time)}</td></tr>`
                             }) . join ("") + `</table>`
         result = make_tooltip ({content:       result,
                                 tooltip:       tooltip,
@@ -1052,13 +646,13 @@ window . addEventListener ("load", function () {
     //
     // Build the chart
     //
-    build_chart2 ({record: record, title: title, start_date: DAWN})
+    load_chart ()
 
     //
     // If the first record is in the modern era, do not allow toggling
     //
     const progression = record . progression ()
-    if (progression [0] .                        date () > MODERN ||
+    if (progression [0]                        . date () > MODERN ||
         progression [progression . length - 1] . date () < MODERN) {
         $("#toggle") . remove ()
     }
