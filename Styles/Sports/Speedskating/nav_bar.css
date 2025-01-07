@@ -16,6 +16,10 @@ table#nav_bar tr.top-line th {
         text-align: center;
 }
 
+table#nav_bar tr.top-line th.index {
+        text-align: left;
+}
+
 table#nav_bar {
         margin-bottom: 3ex;
 }

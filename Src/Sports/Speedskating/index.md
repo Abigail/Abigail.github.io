@@ -12,10 +12,10 @@
 <!-- %%% script: ~/skaters            -->
 <!-- %%% script: ~/record_progression -->
 
+<div id = "navigation"></div>
+
 ## Current World Records
 
 <div id = "current"></div>
 
-## Progression of World Records
 
-<div id = "navigation"></div>

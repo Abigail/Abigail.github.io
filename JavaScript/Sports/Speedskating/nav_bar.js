@@ -31,11 +31,18 @@ class Navigation {
         let age        = args . arg         || "senior"
         let type       = args . type        || "world"
 
+        let is_index   = args . is_index    || 0
+
         let top_tr     = "<tr class = 'top-line'>"
         let men_tr     = "<tr class = 'men'><th>Men</th>"
         let women_tr   = "<tr class = 'women'><th>Women</th>"
 
-        top_tr += "<th></th>"
+        let index      = "Index"
+        if (!is_index) {
+            index = `<a href = "index.html">${index}</a>`
+        }
+
+        top_tr += `<th class = 'index'>${index}</th>`
         top_tr += "<th colspan = '6'>Individual Distances</th>"
         top_tr += "<th colspan = '6'>Combinations</th>"
         top_tr += "<th colspan = '3'>Team Events</th>"
