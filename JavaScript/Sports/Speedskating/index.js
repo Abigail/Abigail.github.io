@@ -2,7 +2,6 @@ window . addEventListener ("load", function () {
     Country_Data . init ()
     Rinks        . init ()
     Skaters      . init ()
-    Event        . init ()
     Record       . init ()
 
     //
@@ -14,7 +13,6 @@ window . addEventListener ("load", function () {
     //
     // Build the navigation bar
     //
-    Navigation . build ()
     Navigation . build2 ({sport: 'speedskating', type: 'world', age: 'senior'})
 
     //

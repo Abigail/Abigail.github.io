@@ -327,7 +327,6 @@ window . addEventListener ("load", function () {
     Country_Data . init ()
     Rinks        . init ()
     Skaters      . init ()
-    Event        . init ()
     Record       . init ()
 
     if (!window . __private) {

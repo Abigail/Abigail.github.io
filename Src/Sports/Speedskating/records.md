@@ -12,7 +12,6 @@
 <!-- %%% script: ~/../Graph           -->
 <!-- %%% script: ~/rinks              -->
 <!-- %%% script: ~/skaters            -->
-<!-- %%% script: ~/events             -->
 <!-- %%% script: ~/record_progression -->
 
 <div id = "navigation"></div>
