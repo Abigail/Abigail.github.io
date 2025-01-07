@@ -31,7 +31,7 @@ averina         1:25.28         1975-03-22      medeo
 averina         1:23.46         1975-03-29      medeo
 petrusyova      1:23.01         1980-03-27      medeo
 rothenburger    1:20.95         1981-03-27      medeo
-petrusyova      1:20.81         1980-03-28      medeo
+petrusyova      1:20.81         1981-03-28      medeo
 petrusyova      1:19.31         1983-03-26      medeo
 enke            1:18.84         1986-02-22      karuizawa
 enke            1:18.11         1987-12-05      calgary
