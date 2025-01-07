@@ -3,11 +3,6 @@ const MODERN = "1960-08-01"
 
 
 //
-// Given a record, return the HTML table row representing it
-//
-
-
-//
 // Create a tooltip
 //
 function make_tooltip (args) {
@@ -123,6 +118,10 @@ function entry_to_row (entry) {
          + "</tr>"
 }
 
+
+//
+// Build the main table, listing all the records
+//
 function build_main_table (record) {
     let who   = record . is_team ()        ? "Team"   : "Skater"
     let what  = record . is_combination () ? "Points" : "Time"
@@ -404,6 +403,10 @@ window . addEventListener ("load", function () {
                          last_dates: last_dates})
 
 
+    //
+    // Since teams are always country teams, there is no need for
+    // a "by country" tables for team events
+    //
     if (record . is_team ()) {
         $("section.by-country") . css ({display: "none"})
         $("section.by-skater h4") . html ("By Team")
@@ -416,6 +419,7 @@ window . addEventListener ("load", function () {
 
     //
     // If the first record is in the modern era, do not allow toggling
+    // Nor if the last record isn't in the modern era
     //
     const progression = record . progression ()
     if (progression [0]                        . date () > MODERN ||
