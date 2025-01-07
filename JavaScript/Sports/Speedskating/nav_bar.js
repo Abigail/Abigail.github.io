@@ -89,7 +89,7 @@ class Navigation {
         const table_str = "<table id = 'nav_bar'>" + header_tr
                                                    + men_tr
                                                    + women_tr + "</table>"
-        $("div#navigation") . html (table_str)
+        $("div#old-navigation") . html (table_str)
     }
 
     static td_content (record, args) {
@@ -105,7 +105,7 @@ class Navigation {
         //
         // Create the link
         //
-        let link = "records2.html"
+        let link = "records.html"
                  + "?sport="      + record . sport      ()
                  + "&discipline=" + record . discipline ()
                  + "&gender="     + record . gender     ()
@@ -157,6 +157,6 @@ class Navigation {
         let table = "<table id = 'nav_bar'>" + top_tr
                                              + men_tr
                                              + women_tr + "</table>"
-        $("div#navigation2") . html (table)
+        $("div#navigation") . html (table)
     }
 }

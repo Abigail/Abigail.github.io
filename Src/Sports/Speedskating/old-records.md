@@ -1,18 +1,16 @@
 # Record Progression
 
-<!-- %%% style:  ~/nav_bar            -->
-<!-- %%% style:  ~/records            -->
-<!-- %%% script: ~/nav_bar            -->
-<!-- %%% script: ~/../Utils           -->
-<!-- %%% script: ~/../Country_Data    -->
-<!-- %%% script: ~/../Country         -->
-<!-- %%% script: ~/../Venue           -->
-<!-- %%% script: ~/../Athlete         -->
-<!-- %%% script: ~/../Records         -->
-<!-- %%% script: ~/rinks              -->
-<!-- %%% script: ~/skaters            -->
-<!-- %%% script: ~/events             -->
-<!-- %%% script: ~/record_progression -->
+<!-- %%% style:  ~/nav_bar          -->
+<!-- %%% script: ~/nav_bar          -->
+<!-- %%% script: ~/../Country_Data  -->
+<!-- %%% script: ~/../Country       -->
+<!-- %%% script: ~/../Athlete       -->
+<!-- %%% script: ~/../Venue         -->
+<!-- %%% script: ~/../Events        -->
+<!-- %%% script: ~/rinks            -->
+<!-- %%% script: ~/skaters          -->
+<!-- %%% script: ~/events           -->
+<!-- %%% script: ~/progression      -->
 
 <div id = "navigation"></div>
 
@@ -24,19 +22,20 @@
 
 <canvas id = "record_chart"></canvas>
 
-<button id = "toggle" type = 'button' onclick = 'load_chart ()'>Toggle</button>
+Start year: <span id = 'start_year_span'></span>
+<button type = 'button' onclick = 'load_chart ()'>Apply</button>
 
 <h3 class = "records-header">Lists of Records</h3>
 
 <div class = "number-of-records">
 
 <section class = "by-skater">
-<h4> By Athlete</h4>
+<h4> By Skater </h4>
 <div id = "skater_count" class = "padded"></div>
 </section>
 
 <section class = "by-duration">
-<h4> By Duration</h4>
+<h4> By Duration </h4>
 <div id = "duration_count" class = "padded"></div>
 </section>
 
@@ -46,12 +45,12 @@
 </section>
 
 <section class = "by-country">
-<h4> By Country</h4>
+<h4> By Country </h4>
 <div id = "country_count" class = "padded"></div>
 </section>
 
 <section class = "by-rink">
-<h4> By Venue</h4>
+<h4> By Rink </h4>
 <div id = "rink_count" class = "padded"></div>
 </section>
 </div>
