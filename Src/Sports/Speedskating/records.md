@@ -9,6 +9,7 @@
 <!-- %%% script: ~/../Venue           -->
 <!-- %%% script: ~/../Athlete         -->
 <!-- %%% script: ~/../Records         -->
+<!-- %%% script: ~/../Graph           -->
 <!-- %%% script: ~/rinks              -->
 <!-- %%% script: ~/skaters            -->
 <!-- %%% script: ~/events             -->
@@ -24,7 +25,8 @@
 
 <canvas id = "record_chart"></canvas>
 
-<button id = "toggle" type = 'button' onclick = 'load_chart ()'>Toggle</button>
+<button id = "toggle" type = 'button'
+        onclick = 'Graph . load_chart ()'>Toggle</button>
 
 <h3 class = "records-header">Lists of Records</h3>
 
