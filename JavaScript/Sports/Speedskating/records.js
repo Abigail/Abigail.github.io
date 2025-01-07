@@ -365,7 +365,7 @@ window . addEventListener ("load", function () {
     //
     // Build the navigation
     //
-    Navigation . build2 (args)
+    Navigation . build (args)
 
     //
     // Build the tables

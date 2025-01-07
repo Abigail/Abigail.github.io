@@ -13,7 +13,7 @@ window . addEventListener ("load", function () {
     //
     // Build the navigation bar
     //
-    Navigation . build2 ({sport: 'speedskating', type: 'world', age: 'senior'})
+    Navigation . build ({sport: 'speedskating', type: 'world', age: 'senior'})
 
     //
     // Build the table with the current records
