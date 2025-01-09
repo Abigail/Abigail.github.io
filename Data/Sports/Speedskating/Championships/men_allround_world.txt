@@ -1,0 +1,111 @@
+1889    museumplein              8-10 Jan
+
+1890    museumplein              3- 5 Jan
+1891    museumplein              6- 7 Jan
+        donoghue
+1892    museumplein Cancelled due to ice conditions
+1893    museumplein             13-14 Jan
+        eden
+1894    neglingeviken           10-11 Feb
+1895    mjosen                  23-24 Feb
+        eden
+1896    st_petersburg-jp         7- 8 Feb
+        eden
+1897    montreal                 5-10 Feb
+        mcculloch
+1898    davos                    6- 7 Feb
+        ostlund
+1899    berlin-west              4- 5 Feb
+        ostlund
+
+1900    frognerkilen            24-25 Feb
+        engelsaas
+1901    stockholm-dj             9-10 Feb
+        wathen
+1902    helsinki-poh            22-23 Feb
+1903    st_petersburg-mp        20-21 Mar
+1904    frogner                  6- 7 Feb
+        mathisen_sigurd
+1905    groningen               21-22 Jan
+        koning
+1906    helsinki-poh            24-25 Feb
+1907    trondheim-oen           21-22 Feb
+1908    davos                    8- 9 Feb
+        mathisen
+        saeterhaug
+        oholm
+1909    frogner                 27-28 Feb
+        mathisen
+        steen
+        andersson
+
+1910    helsinki-poh             5- 6 Mar
+        strunnikov
+        mathisen
+        saeterhaug
+1911    thondheim-oen           25-26 Feb
+        strunnikov
+        saeterhaug
+        olsen
+1912    frogner                 17-18 Feb
+        mathisen
+        stromsten
+        lundgreen
+1913    helsinki-poh             1- 2 Mar
+        mathisen
+        ippolitov
+        naydenov
+1914    frogner                 14-15 Feb
+        mathisen
+        ippolitov
+        wickstrom
+
+1922    frogner                 18-19 Feb
+        strom_harald
+        larsen
+        thunberg
+1923    stockholm-ost           10-11 Feb
+        thunberg
+        strom
+        melnikov
+1924    helsinki-poh             1- 2 Mar
+        larsen
+        pietila
+        skutnabb
+1925    bislett                 21-22 Feb
+        thunberg
+        pietila
+        larsen
+1926    trondheim-oen           20-21 Feb
+        ballangrud
+        larsen
+        evensen
+1927    tampere                 26-27 Feb
+        evensen
+        thunberg
+        carlsen
+1928    davos                    4- 5 Feb
+        thunberg
+        ballangrud
+        evensen
+1929    frogner                  9-10 Feb
+        thunberg
+        ballangrud
+        staksrud
+
+1930    frogner                  8- 9 Feb
+        staksrud
+        ballangrud
+        scheer
+1931    helsinki-tool           21-22 Feb
+        thunberg
+        evensen
+        ballangrud
+1932    lake_placid             19-20 Feb
+        ballangrud
+        staksrud
+        evensen        
+1933    trondheim-oen           18-19 Feb
+        engnestangen
+        staksrud
+        ballangrud

@@ -1,6 +1,7 @@
 aaness                  Nils Aaness                     NOR
 akifyeva                Olga Akifyeva                   URS
 andersen                Hjalmar Andersen                NOR
+andersson               Otto Andersson                  SWE
 anschutz                Daniela Ansch\u{FC}tz           GER
 antson                  Ants Antson                     URS
 artamonova              1936-08-29 Inga Artamonova
@@ -41,6 +42,7 @@ dawson                  Casey Dawson                    USA
 dietel                  Andreas Dietel                  GDR
 dijs                    Wesly Dijs                      NED
 donker                  Gr\u{E9} Donker                 NED
+donoghue                Joe Donoghue                    USA
 
 eden                    Jaap Eden                       NED
 efskind                 Lasse Efskind                   NOR
@@ -55,6 +57,7 @@ enke                    1961-06-20 Karin Enke
 ericson                 Frithiof Ericson                SWE
 eriksen                 Ivar Eriksen                    NOR
 ervik                   Eskil Ervik                     NOR
+evensen                 Bernt Evensen                   NOR
 
 fabris                  Enrico Fabris                   ITA
 falk-larssen            Rolf Falk-Larssen               NOR
@@ -93,6 +96,7 @@ hughes                  Clara Hughes                    CAN
 huiskes                 Anton Huiskes                   NED
 hunyady                 Emese Hunyady                   AUT
 
+ippolitov               Vasily Ippolitov                RUS
 ireland                 Mike Ireland                    CAN
 isakova                 Mariya Isakova                  URS
 
@@ -125,6 +129,7 @@ kondakova               Sofya Kondakova                 URS
 kongshaug               Peder Kongshaug                 NOR
 kooiman                 Ineke Kooiman-van Homoet        NED
 kondakova               Sofya Kondakova                 URS
+koning                  Coen de Koning                  NED
 kosichkin               Viktor Kosichkin                URS
 koskela                 Pekka Koskela                   FIN
 koss                    Johann Olav Koss                NOR
@@ -145,6 +150,7 @@ lesche                  Vern\u{E9} Lesche               FIN
 lie                     Synn\u{F8}ve Lie                NOR
 liebrechts              Rudie Liebrechts                NED
 linkovesi               Leo Linkovesi                   FIN
+lundgreen               Trygve Lundgreen                NOR
 lyoshkin                Viktor Lyoshkin                 URS
 
 maier                   Fred Anton Maier                NOR
@@ -153,10 +159,13 @@ mamonov                 Nikolay Mamonov                 URS
 mantia                  Joey Mantia                     USA
 mathiesen               Charles Mathiesen               NOR
 mathisen                Oscar Mathisen                  NOR
+mathisen_sigurd         Sigurd Mathisen                 NOR
 marshall                Neal Marshall                   CAN
 mauseth                 Wilhelm Mauseth                 NOR
 may                     1970-12-23 Catriona Le May
                         1996-07-00 Catriona Le May Doan CAN
+mcculloch               Jack McCulloch                  CAN
+melnikov                Yakov Melnikov                  URS
 mey                     Uwe-Jens Mey                    GDR
 mitscherlich            1960-12-01 Andrea Mitscherlich
                         1980-07-00 Andrea Sch\u{F6}ne
@@ -170,6 +179,7 @@ mulder_michel           Michel Mulder                   NED
 muratov                 Valery Muratov                  URS
 
 naess                   Alfred N\u{E6}ss                NOR
+naydenov                Nikita Naydenov                 RUS
 nehringowa              Zofia Nehringowa                POL
 nesbitt                 Christine Nesbitt               CAN
 nielsen                 Halfan Nielsen                  NOR
@@ -184,6 +194,8 @@ noake                   Hiroyuki Noake                  JPN
 nuis                    Kjeld Nuis                      NED
 
 ogloblin                Dmitry Ogloblin                 URS
+oholm                   Moje \u{D6}holm                 SWE
+olsen                   Henning Olsen                   NOR
 ostlund                 Peter \u{D8}stlund              NOR
 overland                Kevin Overland                  CAN
 
@@ -195,6 +207,7 @@ pederson                Sverre Lunde Pederson           NOR
 pegov                   Pagel Pegov                     URS
 petrusyova              Natalya Petrusyova              URS
 pflug                   Monika Pflug                    FRG
+pietila                 Uuno Pietil\u{E4}               FIN
 poel                    Niels van der Poel              SWE
 postma                  Ids Postma                      NED
 potts                   Allan Potts                     USA
@@ -214,6 +227,8 @@ safronov                Aleksandr Safronov              URS
 sakunenko               Dmitry Sakunenko                URS
 sato                    Ayano Sato                      JPN
 sang-hwa                Lee Sang-hwa                    KOR
+saeterhaug              Martin S\u{E6}terhaug           NOR
+scheer                  Dolf van der Scheer             NED
 schenk                  Ard Schenk                      NED
 schleiermacher          Ruth Schleiermacher             GDR
 schonbrunn              1961-06-01 Gabi Sch\u{F6}nbrunn
@@ -232,10 +247,12 @@ shirahata               Keiji Shirahata                 JPN
 sidorova                Tatyana Sidorova                URS
 sighel                  Roberto Sighel                  ITA
 skoblikova              Lidiya Skoblikova               URS
+skutnabb                Julius Skutnabb                 FIN
 sondral                 \u{C5}dne S\u{F8}ndr\u{E5}l     NOR
 staksrud                Michael Staksrud                NOR
 stam                    Marieke Stam                    NED
 statkevich              Nina Statkevich                 URS
+steen                   Oluf Steen                      NOR
 stenin                  Boris Stenin                    URS
 stensen                 Sten Stensen                    NOR
 stenshjemmet            Kay Arne Stenshjemmet           NOR
@@ -246,6 +263,7 @@ stolz                   Jordan Stolz                    USA
 storholt                Jan Egil Storholt               NOR
 strom_harald            Harald Str\u{F8}m               NOR
 strom_kristian          Kristian Str\u{F8}m             NOR
+stromsten               Gunnar Str\u{F8}mst\u{E9}n      FIN
 strunnikov              Nikolay Strunnikov              RUS
 sun                     Chuanyi Sun                     CHN
 sundstrom               Becky Sundstrom                 USA
@@ -281,7 +299,9 @@ vorobyeva               Khalida Vorobyeva               URS
 voronina                Natalya Voronina                RUS
 vries                   Douwe de Vries                  NED
 
+wathen                  Franz Frederik Wath\u{E9}n      FIN
 wennemars               Erben Wennemars                 NED
+wickstrom               V\u{E4}in\u{F6} Wickstr\u{F6}m  FIN
 witty                   Chris Witty                     USA
 wolf                    Jenny Wolf                      GER
 wotherspoon             Jeremy Wotherspoon              CAN
