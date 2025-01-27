@@ -7,3 +7,4 @@
 %% step_size:       1
 %% scale_y_min:  1:15
 CAN             1:17.31         2017-12-01      calgary
+USA             1:16.68         2025-01-26      calgary

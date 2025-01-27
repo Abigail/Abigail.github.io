@@ -56,3 +56,4 @@ bloemen         12:36.30        2015-11-21      salt_lake_city
 fish            12:33.86        2020-02-14      salt_lake_city
 poel            12:32.95        2021-02-14      thialf
 poel            12:30.74        2022-02-11      beijing
+ghiotto         12:25.69        2025-01-25      calgary

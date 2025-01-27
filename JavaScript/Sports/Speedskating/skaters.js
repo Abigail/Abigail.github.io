@@ -13,6 +13,9 @@ class Skaters {
         Athlete . add_athlete ({key:         "andersen",
                                 name:        "Hjalmar Andersen",
                                 nationality: "NOR"})
+        Athlete . add_athlete ({key:         "andersson",
+                                name:        "Otto Andersson",
+                                nationality: "SWE"})
         Athlete . add_athlete ({key:         "anschutz",
                                 name:        "Daniela Ansch\u{FC}tz",
                                 nationality: "GER"})
@@ -125,6 +128,9 @@ class Skaters {
         Athlete . add_athlete ({key:         "donker",
                                 name:        "Gr\u{E9} Donker",
                                 nationality: "NED"})
+        Athlete . add_athlete ({key:         "donoghue",
+                                name:        "Joe Donoghue",
+                                nationality: "USA"})
         
         Athlete . add_athlete ({key:         "eden",
                                 name:        "Jaap Eden",
@@ -156,6 +162,9 @@ class Skaters {
                                 nationality: "NOR"})
         Athlete . add_athlete ({key:         "ervik",
                                 name:        "Eskil Ervik",
+                                nationality: "NOR"})
+        Athlete . add_athlete ({key:         "evensen",
+                                name:        "Bernt Evensen",
                                 nationality: "NOR"})
         
         Athlete . add_athlete ({key:         "fabris",
@@ -191,6 +200,9 @@ class Skaters {
         Athlete . add_athlete ({key:         "gennip",
                                 name:        "Yvonne van Gennip",
                                 nationality: "NED"})
+        Athlete . add_athlete ({key:         "ghiotto",
+                                name:        "Davide Ghiotto",
+                                nationality: "ITA"})
         Athlete . add_athlete ({key:         "grift",
                                 name:        "Henk van der Grift",
                                 nationality: "NED"})
@@ -259,6 +271,9 @@ class Skaters {
                                 name:        "Emese Hunyady",
                                 nationality: "AUT"})
         
+        Athlete . add_athlete ({key:         "ippolitov",
+                                name:        "Vasily Ippolitov",
+                                nationality: "RUS"})
         Athlete . add_athlete ({key:         "ireland",
                                 name:        "Mike Ireland",
                                 nationality: "CAN"})
@@ -349,6 +364,9 @@ class Skaters {
         Athlete . add_athlete ({key:         "kondakova",
                                 name:        "Sofya Kondakova",
                                 nationality: "URS"})
+        Athlete . add_athlete ({key:         "koning",
+                                name:        "Coen de Koning",
+                                nationality: "NED"})
         Athlete . add_athlete ({key:         "kosichkin",
                                 name:        "Viktor Kosichkin",
                                 nationality: "URS"})
@@ -407,6 +425,9 @@ class Skaters {
         Athlete . add_athlete ({key:         "linkovesi",
                                 name:        "Leo Linkovesi",
                                 nationality: "FIN"})
+        Athlete . add_athlete ({key:         "lundgreen",
+                                name:        "Trygve Lundgreen",
+                                nationality: "NOR"})
         Athlete . add_athlete ({key:         "lyoshkin",
                                 name:        "Viktor Lyoshkin",
                                 nationality: "URS"})
@@ -429,6 +450,9 @@ class Skaters {
         Athlete . add_athlete ({key:         "mathisen",
                                 name:        "Oscar Mathisen",
                                 nationality: "NOR"})
+        Athlete . add_athlete ({key:         "mathisen_sigurd",
+                                name:        "Sigurd Mathisen",
+                                nationality: "NOR"})
         Athlete . add_athlete ({key:         "marshall",
                                 name:        "Neal Marshall",
                                 nationality: "CAN"})
@@ -439,6 +463,12 @@ class Skaters {
                                 name:       ["1970-12-23", "Catriona Le May",
                                              "1996-07-00", "Catriona Le May Doan"],
                                 nationality: "CAN"})
+        Athlete . add_athlete ({key:         "mcculloch",
+                                name:        "Jack McCulloch",
+                                nationality: "CAN"})
+        Athlete . add_athlete ({key:         "melnikov",
+                                name:        "Yakov Melnikov",
+                                nationality: "URS"})
         Athlete . add_athlete ({key:         "mey",
                                 name:        "Uwe-Jens Mey",
                                 nationality: "GDR"})
@@ -472,6 +502,9 @@ class Skaters {
         Athlete . add_athlete ({key:         "naess",
                                 name:        "Alfred N\u{E6}ss",
                                 nationality: "NOR"})
+        Athlete . add_athlete ({key:         "naydenov",
+                                name:        "Nikita Naydenov",
+                                nationality: "RUS"})
         Athlete . add_athlete ({key:         "nehringowa",
                                 name:        "Zofia Nehringowa",
                                 nationality: "POL"})
@@ -508,6 +541,12 @@ class Skaters {
         Athlete . add_athlete ({key:         "ogloblin",
                                 name:        "Dmitry Ogloblin",
                                 nationality: "URS"})
+        Athlete . add_athlete ({key:         "oholm",
+                                name:        "Moje \u{D6}holm",
+                                nationality: "SWE"})
+        Athlete . add_athlete ({key:         "olsen",
+                                name:        "Henning Olsen",
+                                nationality: "NOR"})
         Athlete . add_athlete ({key:         "ostlund",
                                 name:        "Peter \u{D8}stlund",
                                 nationality: "NOR"})
@@ -539,6 +578,9 @@ class Skaters {
         Athlete . add_athlete ({key:         "pflug",
                                 name:        "Monika Pflug",
                                 nationality: "FRG"})
+        Athlete . add_athlete ({key:         "pietila",
+                                name:        "Uuno Pietil\u{E4}",
+                                nationality: "FIN"})
         Athlete . add_athlete ({key:         "poel",
                                 name:        "Niels van der Poel",
                                 nationality: "SWE"})
@@ -590,6 +632,12 @@ class Skaters {
         Athlete . add_athlete ({key:         "sang-hwa",
                                 name:        "Lee Sang-hwa",
                                 nationality: "KOR"})
+        Athlete . add_athlete ({key:         "saeterhaug",
+                                name:        "Martin S\u{E6}terhaug",
+                                nationality: "NOR"})
+        Athlete . add_athlete ({key:         "scheer",
+                                name:        "Dolf van der Scheer",
+                                nationality: "NED"})
         Athlete . add_athlete ({key:         "schenk",
                                 name:        "Ard Schenk",
                                 nationality: "NED"})
@@ -642,6 +690,9 @@ class Skaters {
         Athlete . add_athlete ({key:         "skoblikova",
                                 name:        "Lidiya Skoblikova",
                                 nationality: "URS"})
+        Athlete . add_athlete ({key:         "skutnabb",
+                                name:        "Julius Skutnabb",
+                                nationality: "FIN"})
         Athlete . add_athlete ({key:         "sondral",
                                 name:        "\u{C5}dne S\u{F8}ndr\u{E5}l",
                                 nationality: "NOR"})
@@ -654,6 +705,9 @@ class Skaters {
         Athlete . add_athlete ({key:         "statkevich",
                                 name:        "Nina Statkevich",
                                 nationality: "URS"})
+        Athlete . add_athlete ({key:         "steen",
+                                name:        "Oluf Steen",
+                                nationality: "NOR"})
         Athlete . add_athlete ({key:         "stenin",
                                 name:        "Boris Stenin",
                                 nationality: "URS"})
@@ -684,6 +738,9 @@ class Skaters {
         Athlete . add_athlete ({key:         "strom_kristian",
                                 name:        "Kristian Str\u{F8}m",
                                 nationality: "NOR"})
+        Athlete . add_athlete ({key:         "stromsten",
+                                name:        "Gunnar Str\u{F8}mst\u{E9}n",
+                                nationality: "FIN"})
         Athlete . add_athlete ({key:         "strunnikov",
                                 name:        "Nikolay Strunnikov",
                                 nationality: "RUS"})
@@ -781,9 +838,15 @@ class Skaters {
                                 name:        "Douwe de Vries",
                                 nationality: "NED"})
         
+        Athlete . add_athlete ({key:         "wathen",
+                                name:        "Franz Frederik Wath\u{E9}n",
+                                nationality: "FIN"})
         Athlete . add_athlete ({key:         "wennemars",
                                 name:        "Erben Wennemars",
                                 nationality: "NED"})
+        Athlete . add_athlete ({key:         "wickstrom",
+                                name:        "V\u{E4}in\u{F6} Wickstr\u{F6}m",
+                                nationality: "FIN"})
         Athlete . add_athlete ({key:         "witty",
                                 name:        "Chris Witty",
                                 nationality: "USA"})
