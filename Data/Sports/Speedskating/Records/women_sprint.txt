@@ -1,0 +1,30 @@
+%% full_name:  Sprint Combination
+%% short_name: Sprint
+%% summary: This is the world record progression of the women's sprint
+            combination. The sprint combination consists of
+            combined results of the 500m, 1000m, 500m and 1000m,
+            achieved in the same tournament.
+%% step_size:       5
+%% scale_y_min:   140
+pflug           183.085         1972-02-26/2    eskilstuna
+burka           175.050         1973-01-13/2    davos
+young           173.450         1973-01-19/2    davos
+averina         168.285         1975-03-28/2    medeo
+young           166.210         1976-03-12/2    inzell
+rothenburger    162.275         1981-03-27/2    medeo
+rothenburger    161.120         1983-03-25/2    medeo
+enke            160.060         1986-02-22/2    karuizawa
+blair           159.435         1989-02-25/2    thialf
+blair           159.390         1992-01-18/2    davos
+blair           157.405         1994-01-29/2    calgary
+blair           156.505         1994-03-25/2    calgary
+blair           156.435         1995-02-11/1    calgary
+may             151.690         1997-11-22/2    calgary
+garbrecht       151.605         1999-02-20/2    calgary
+may             150.085         2001-01-06/2    calgary
+volker          149.915         2001-12-01/2    salt_lake_city
+garbrecht       149.305         2003-01-11/2    salt_lake_city
+klassen         149.305         2006-03-24/2    calgary
+jing            148.610         2012-01-28/2    calgary
+richardson      147.735         2013-01-19/2    calgary
+kodaira         146.390         2017-02-25/2    calgary

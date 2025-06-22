@@ -1,0 +1,21 @@
+/*
+ * Style for tha main navigation bar
+ */
+@media (max-width: 1400px) {
+        table#nav_bar td {
+                font-size: 110%;
+        }
+}
+
+table#nav_bar th {
+        text-align: left;
+        text-transform: capitalize;
+}
+
+table#nav_bar tr.top-line th {
+        text-align: center;
+}
+
+table#nav_bar {
+        margin-bottom: 3ex;
+}

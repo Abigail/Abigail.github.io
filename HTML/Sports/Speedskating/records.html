@@ -1,0 +1,89 @@
+<html>
+<head>
+<title>Record Progression</title>
+<meta charset = "utf-8">
+<link rel  = 'preconnect' href = 'https://fonts.gstatic.com'>
+<link rel = 'stylesheet' href =      'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
+<link rel = 'stylesheet' href = '../../../Styles/main.css'>
+<link rel = 'stylesheet' href = '../../../Styles/Sports/Speedskating/main.css'>
+<link rel = 'stylesheet' href = '../../../Styles/Sports/Speedskating/records.css'>
+<link rel = 'stylesheet' href = '../../../Styles/Sports/Speedskating/nav_bar.css'>
+<link rel = 'stylesheet' href = '../../../Styles/Sports/Speedskating/records.css'>
+<script src = "../../../JavaScript/jquery.js"></script>
+<script id  = 'MathJax-script' async src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.js'></script>
+<script id = 'chart-script' async src = 'https://cdn.jsdelivr.net/npm/chart.js'></script>
+<script src = '../../../JavaScript/Sports/Speedskating/../Athlete.js'></script>
+<script src = '../../../JavaScript/Sports/Speedskating/../Country.js'></script>
+<script src = '../../../JavaScript/Sports/Speedskating/../Country_Data.js'></script>
+<script src = '../../../JavaScript/Sports/Speedskating/../Graph.js'></script>
+<script src = '../../../JavaScript/Sports/Speedskating/../Records.js'></script>
+<script src = '../../../JavaScript/Sports/Speedskating/../Utils.js'></script>
+<script src = '../../../JavaScript/Sports/Speedskating/../Venue.js'></script>
+<script src = '../../../JavaScript/Sports/Speedskating/nav_bar.js'></script>
+<script src = '../../../JavaScript/Sports/Speedskating/record_progression.js'></script>
+<script src = '../../../JavaScript/Sports/Speedskating/records.js'></script>
+<script src = '../../../JavaScript/Sports/Speedskating/rinks.js'></script>
+<script src = '../../../JavaScript/Sports/Speedskating/skaters.js'></script>
+<script src = '../../../JavaScript/navigation.js'></script>
+</head>
+
+<body><h1>Record Progression</h1><div class = "byline">
+by Abigail<br>
+<img src = "../../../Images/jan_sluiters.jpg">
+</div>
+
+
+<div id = "navigation"></div>
+
+<div id = 'description'></div>
+
+<h3 id = 'record_progression'>Record progression</h3>
+
+<div id = "record_table"></div>
+
+<p><canvas id = "record_chart"></canvas></p>
+
+<p><button id = "toggle" type = 'button'
+        onclick = 'Graph . load_chart ()'>Toggle</button></p>
+
+<h3 class = "records-header" id = 'lists_of_records'>Lists of Records</h3>
+
+<div class = "number-of-records">
+
+<section class = "by-skater">
+<h4 id = 'by_athlete'> By Athlete</h4>
+<div id = "skater_count" class = "padded"></div>
+</section>
+
+<section class = "by-duration">
+<h4 id = 'by_duration'> By Duration</h4>
+<div id = "duration_count" class = "padded"></div>
+</section>
+
+<section class = "by-improvement">
+<h4 id = 'by_improvement'> By Improvement </h4>
+<div id = "improvement_count" class = "padded"></div>
+</section>
+
+<section class = "by-country">
+<h4 id = 'by_country'> By Country</h4>
+<div id = "country_count" class = "padded"></div>
+</section>
+
+<section class = "by-rink">
+<h4 id = 'by_venue'> By Venue</h4>
+<div id = "rink_count" class = "padded"></div>
+</section>
+
+</div>
+<hr id = 'last-line'>
+<div class = 'trailer'>
+<p class = 'prev'><a class = "prev" href = "">&#x261C;</a></p>
+<p class = 'issue'>Please leave any comments as a
+  <a href = 'https://github.com/Abigail/Abigail.github.io/issues'
+     title = 'GitHub issue'>GitHub issue</a>.
+<p class = 'next'><a class = "next" href = "">&#x261E;</a></p>
+</div>
+
+</body>
+</html>

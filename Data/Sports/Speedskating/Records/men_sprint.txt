@@ -1,0 +1,56 @@
+%% full_name:  Sprint Combination
+%% short_name: Sprint
+%% summary: This is the world record progression of the men's sprint
+            combination. The sprint combination consists of
+            combined results of the 500m, 1000m, 500m and 1000m,
+            achieved in the same tournament.
+%% step_size:       5
+%% scale_y_min:   135
+borjes          163.300         1971-12-11/2    kongsberg
+                0:40.1  1:23.8  0:39.6  1:23.4
+linkovesi       156.500         1972-01-07/2    davos
+                0:38.7  1:19.3  0:38.0  1:20.3
+keller          155.800         1972-03-04/2    inzell
+                0:38.0  1:18.5  0:38.5  1:20.1
+efskind         154.400         1973-01-13/2    davos
+                0:38.0  1:17.6  0:38.2  1:18.8
+muratov         153.390         1975-03-17/2    medeo
+                0:37.98 1:16.92 0:37.85 1:18.20
+kulikov         153.250         1975-03-28/2    medeo
+                0:37.20 1:19.12 0:37.00 1:18.98
+kulikov         151.190         1976-03-20/2    medeo
+                0:37.24 1:15.70 0:38.10 1:16.00
+heiden_eric     150.250         1980-01-12/2    davos
+                0:38.25 1:15.14 0:37.23 1:13.60
+boucher         148.785         1981-01-30/2    davos
+                0:37.88 1:13.96 0:37.23 1:13.39
+pegov           146.955         1983-03-25/2    medeo
+                0:36.68 1:12.58 0:36.57 1:14.83
+zhelezovsky     145.945         1989-02-25/2    thialf
+                0:36.52 1:12.58 0:36.83 1:12.61
+jansen          145.580         1993-03-19/2    calgary
+                0:36.41 1:13.14 0:36.02 1:13.16
+jansen          144.815         1994-01-29/2    calgary
+                0:35.96 1:13.04 0:35.76 1:13.15
+miyabe          144.445         1994-03-25/2    calgary
+                0:35.86 1:12.62 0:36.09 1:12.37
+horii           143.425         1996-03-02/2    calgary
+                0:35.87 1:11.67 0:35.67 1:12.10
+wotherspoon     141.995         1997-11-22/2    calgary
+                0:35.50 1:10.76 0:35.77 1:10.69
+wotherspoon     140.050         1999-01-15/2    calgary
+                35:27   1:09.09 35:53   1:09.41
+wotherspoon     138.310         1999-02-20/2    calgary
+                0:34.76 1:08.66 0:34.93 1:08.58
+wotherspoon     137.285         2002-12-01/2    salt_lake_city
+                0:34.85 1:07.72 0:34.66 1:07.83
+wotherspoon     137.270         2003-01-11/2    salt_lake_city
+                0:34.41 1:07.89 0:34.77 1:08.29
+wotherspoon     137.230         2003-01-18/2    calgary
+                0:34.41 1:08.41 0:34.49 1:08.25
+groothuis       136.810         2012-01-28/2    calgary
+                0:34.84 1:07.50 0:34.74 1:06.96
+mulder_michel   136.790         2013-01-26/2    salt_lake_city
+                0:34.47 1:07.49 0:34.75 1:07.65
+verbij          136.065         2017-02-25/2    calgary
+                0:34.48 1:06.73 0:34.25 1:07.94
