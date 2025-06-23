@@ -1,0 +1,18 @@
+%% full_name:  2 x 500m Combination
+%% short_name: 2 x 500m
+%% summary: This is the world record progression of the men's 2 x 500 meter
+            combination. This is the combined result of skating the 500 meter
+            twice in the same event; only results achieved in events where
+            the final result is determined by the total time after two races
+            qualify.
+%% step_size:    0.25
+%% scale_y_min:    68
+shimizu         68.960          2001-03-10      salt_lake_city
+                0:34.64 0:34.32
+kang-seok       68.690          2007-03-09      salt_lake_city
+                0:34.44 0:34.25
+# https://www.guinnessworldrecords.com/world-records/
+#         fastest-speed-skating-2-x-500-metres-(male)
+wotherspoon     68.310          2008-03-15      calgary
+                0:34.26 0:34.05
+

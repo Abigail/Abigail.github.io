@@ -128,6 +128,8 @@ function navigation (type, pagename, pages) {
         return
     }
 
+    if (!pages) {return}
+
     let up = type == "ADV" ? "../../" : "../"
 
     //
@@ -204,6 +206,7 @@ function navigation (type, pagename, pages) {
 function make_index (type, pages) {
     let up = type == "ADV" ? "../.." : ".."
     let list = pages
+    if (!list) {return}
     if (type != "Trapped") {
         list = list . reverse ()
     }

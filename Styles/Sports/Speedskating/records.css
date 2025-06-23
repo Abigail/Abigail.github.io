@@ -1,0 +1,151 @@
+table#records td.rinktype {
+        text-align: center;
+}
+
+table#records td.suspended {
+        text-align: center;
+        font-style: italic;
+}
+
+td.nation {
+        width: 2em;
+        padding-left:   0;
+        padding-right:  0;
+}
+
+td.nation img {
+        width: 2em;
+}
+
+td.duration {
+        text-align: right;
+}
+span.current {
+        color: red;
+}
+table#records td.time {
+        text-align: right;
+}
+
+table#records td.time, table#records td.name {
+        font-weight: bold;
+}
+
+table#rink_type td {
+        text-align: center;
+}
+
+table#rink_type td.symbol {
+        padding-left:  1em;
+        padding-right: 1em;
+}
+
+tr.low    td.symbol {
+        color: #EDC9AF;
+}
+tr.middle td.symbol {
+        color: #DAA06D;
+}
+tr.high   td.symbol {
+        color: #832A0D;
+}
+
+
+table.count td.count {
+        padding-right: .5em;
+        padding-left: .5em;
+        text-align: right;
+}
+
+table.rink_info th {
+        text-align: left;
+}
+table.rink_info td, table.team-members td {
+        white-space:    nowrap;
+}
+table.rink_info td.flag img {
+        width: 1.5em;
+}
+
+
+table.times td, table.times th {
+        text-align: right;
+}
+
+/*
+ * Multi-column layout
+ */
+h3.records-header {
+        text-align: center;
+}
+.number-of-records {
+        display:         flex;
+        flex-wrap:       wrap;
+        justify-content: space-between;
+}
+.number-of-records h4 {
+        text-align: center;
+}
+
+
+/*
+ * Tooltips
+ *
+ * See https://www.w3schools.com/css/css_tooltip.asp
+ */
+
+.tooltip {
+        position:       relative;
+        display:        inline-block;
+}
+
+.tooltip .tooltiptext {
+        visibility:     hidden;
+        text-align:     left;
+        padding:        5px 5px 5px 5px;
+        border-radius:  6px;
+        border:         solid black 1px;
+        font-weight:    normal;
+        width:          auto;
+        white-space:    nowrap;
+        background:     rgba(238,238,238,1);
+        color:          inherit;
+
+        position:       absolute;
+        z-index:        1;
+        left:           115%;
+}
+
+.tooltip .team-members-3 {
+        top:           -1.5em;
+}
+.tooltip .team-members-2 {
+        top:           -1em;
+}
+
+.tooltip .rink_info {
+        top:           -2.25em;
+}
+
+.tooltip .times {
+        top:           -2.25em;
+}
+
+.tooltip .times2 {
+        top:           -1.125em;
+}
+
+.tooltip:hover .tooltiptext {
+        visibility:     visible;
+}
+
+.tooltip .tooltiptext::after {
+        content:        "";
+        position:       absolute;
+        top:            50%;
+        right:          100%;
+        margin-top:    -10px;
+        border-width:   10px;
+        border-style:   solid;
+        border-color:   transparent black transparent transparent;
+}

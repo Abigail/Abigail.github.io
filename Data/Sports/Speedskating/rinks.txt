@@ -1,0 +1,181 @@
+alkmaar         IJsstadion De Meent
+                Alkmaar                 NED     ARTIFICIAL         0
+
+beijing         National Speed Skating Oval
+                Beijing                 CHN     INDOOR            49
+berlin          Sportforum Hohensch\u{F6}nhausen
+                Berlin                  GER     INDOOR            34
+berlin-west     West-Eisbahn
+                Berlin                  GER     NATURAL           38
+bislett         Bislett Statium
+                Oslo                    NOR     NATURAL           37
+brandbu         Rosendalbanen
+                Brandbu                 NOR     NATURAL          178
+
+calgary         Olympic Oval
+                Calgary                 CAN     INDOOR          1034
+cortina         Pista Fiames
+                Cortina d'Ampezzo       ITA     NATURAL         1401
+
+davos           Eisstadion
+                Davos                   SUI     NATURAL         1506
+deventer        IJsselstation
+                Deventer                NED     ARTIFICIAL         5
+
+eskilstuna      Isstadion
+                Eskilstuna              SWE     ARTIFICIAL        16
+engelberg       Eisbahn
+                Engelberg               SUI     NATURAL         1138
+
+frogner
+  0000-00-00    Gamle Frogner Stadion
+                Oslo                    NOR     NATURAL           42
+  1914-00-00    Frogner Stadium
+                Oslo                    NOR     NATURAL           42
+frognerkilen    Frognerkilen
+                Oslo                    NOR     NATURAL            2
+
+geithus         Farumo Stadion
+                Geithus                 NOR     ARTIFICIAL        116
+gjovik          Gj\u{F8}vik Stadion
+                Gj\u{F8}vik             NOR     NATURAL          149
+grenoble        Parc Paul Mistral
+                Grenoble                FRA     ARTIFICIAL       220
+groningen
+  0000-00-00    IJsstadion Stadspark
+                Groningen               NED     NATURAL            1
+  1970-12-00    IJsstadion Stadspark
+                Groningen               NED     ARTIFICIAL         1
+goteborg        Nya Ullevi
+                G\u{F6}teborg           SWE     ARTIFICIAL        10
+
+haarlem         Kennemerland
+                Haarlem                 NED     ARTIFICIAL         0
+hamar           Olympia Hall
+                Hamar                   NOR     INDOOR           125
+hamar-mjosen    Mj\u{F8}sen
+                Hamar                   NOR     NATURAL          123
+hamar-stadion   Hamar Stadion
+                Hamar                   NOR     NATURAL          113
+helsinki        T\u{F6}\u{F6}l\u{F6}n Pallokentt\u{E4}
+                Helsinki                FIN     NATURAL           10
+helsinki-tool   T\u{F6}\u{F6}l\u{F6}nlahti
+                Helsinki                FIN     NATURAL            0
+helsinki-poh    Pohjoissatama
+                Helsinki                FIN     NATURAL           10
+horten          Lystlunden Gressbane
+                Horten                  NOR     NATURAL            2
+
+inzell          
+  1965-08-00    Ludwig Schwabl Stadion
+                Inzell                  FRG     ARTIFICIAL       690
+  1990-10-03    Ludwig Schwabl Stadion
+                Inzell                  GER     ARTIFICIAL       690
+  2011-00-00    Max Aicher Arena
+                Inzell                  GER     INDOOR           690
+
+jaap_eden       Jaap Edenbaan
+                Amsterdam               NED     ARTIFICIAL         0
+
+karuizawa       Skating Center
+                Karuizawa               JPN     ARTIFICIAL       980
+kvarnsveden     Idrottsplatsen
+                Kvarnsveden             SWE     NATURAL          165
+kirov           Dinamo
+                Kirov                   URS     NATURAL          166
+kongsberg       Idr\u{E6}tsplassen
+                Kongsberg               NOR     NATURAL          233
+kuchwald     
+  1974-00-00    K\u{FC}chwald
+                Karl-Marx-Stadt         GDR     ARTIFICIAL       410
+  1990-06-01    K\u{FC}chwald
+                Chemnitz                GDR     ARTIFICIAL       410
+  1990-10-03    K\u{FC}chwald
+                Chemnitz                GER     ARTIFICIAL       410
+
+lake_placid
+  1932-00-00    James B. Sheffield Olympic Skating Rink
+                Lake Placid             USA     NATURAL          568
+  1977-00-00    James B. Sheffield Olympic Skating Rink
+                Lake Placid             USA     ARTIFICIAL       568
+
+madonna         Pista Olimpica
+                Madonna di Campiglio    ITA     NATURAL         1450
+medeo
+  1951-02-05    Kompleks Medeo
+                Medeo                   URS     NATURAL         1691
+  1972-08-00    Kompleks Medeo
+                Medeo                   URS     ARTIFICIAL      1691
+  1991-12-26    Kompleks Medeo
+                Medeo                   KAZ     ARTIFICIAL      1691
+misurina        Lagua Misurina
+                Misurina                ITA     NATURAL         1756
+montreal        Crystal Stadium
+                Montr\u{C9}al           CAN     NATURAL           30
+moscow          Dinamo
+                Moscow                  URS     NATURAL          167
+museumplein     Museumplein
+                Amsterdam               NED     NATURAL            0
+
+nagano          M-Wave
+                Nagano                  JPN     INDOOR           342
+neglingeviken   Saltsj\u{F6}banen
+                Neglingeviken           SWE     NATURAL            8
+notodden        Notodden Sportsplass
+                Notodden                NOR     NATURAL          103
+
+obihiro         Meiji Hokkaido-Tokachi Oval
+                Obihiro                 JPN     INDOOR            79
+
+paterswolde     Paterswoldsche Meer
+                Paterswolde             NED     NATURAL            0
+
+salt_lake_city  Utah Olympic Oval
+                Salt Lake City          USA     INDOOR          1423
+sarajevo        Zetra
+                Sarajevo                YUG     ARTIFICIAL       564
+savalen         Idrettsplass
+                Savalen                 NOR     NATURAL          724
+squaw_valley    Olympic Skating Ring
+                Squaw Valley            USA     ARTIFICIAL      1876
+st_moritz       Badrutss Park
+                St. Moritz              SUI     NATURAL         1856
+st_petersburg-jp Joesoepovski Park
+                Saint Petersburg        RUS     NATURAL           20
+st_petersburg-mp  Market Place
+                Saint Petersburg        RUS     NATURAL           20
+stockholm       Stockholm Stadion
+                Stockholm               SWE     NATURAL           25
+stockholm-dj    Djurg\u{E5}rdsbrunnsviken
+                Stockholm               SWE     NATURAL           14
+stockholm-ost   \u{D6}stermalms Idrottsplatz
+                Stockholm               SWE     NATURAL           10
+sverdlovsk      Tsentrainyu
+                Sverdlovsk              URS     NATURAL          292
+
+tampere         Ratina
+                Tampere                 FIN     NATURAL           79
+thialf
+  1967-10-14    Thialf
+                Heerenveen              NED     ARTIFICIAL         0
+  1986-10-00    Thialf
+                Heerenveen              NED     INDOOR             0
+tolga           Tolga Idrettsplass
+                Tolga                   NOR     NATURAL          543
+tonsberg        T\u{F8}nsberg Stadion
+                T\u{F8}nsberg           NOR     NATURAL           66
+trondheim-kal   Kalvskindet
+                Trondheim               NOR     NATURAL            0
+trondheim-oen   \u{D8}en
+                Trondheim               NOR     NATURAL            5
+trondheim-oya   \u{D8}ya Stadion
+                Trondheim               NOR     NATURAL            5
+
+vienna          WEV-Eisbahn
+                Vienna                  AUT     NATURAL          172
+
+warsaw          Tor Polonii
+                Warsaw                  POL     NATURAL          188
+
+zakopane        Toporowy Staw Nizni
+                Zakopane                POL     NATURAL         1110

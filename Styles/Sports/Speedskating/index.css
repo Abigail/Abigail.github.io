@@ -1,0 +1,17 @@
+table.current th.event {
+        text-align: right;
+}
+
+table.current td.record {
+        text-align: right;
+        font-weight: bold;
+}
+
+table.current td.flag {
+        padding-left: 0;
+        padding-right: 0;
+}
+
+table.current td.flag img {
+        width: 2em;
+}

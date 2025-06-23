@@ -1,0 +1,38 @@
+%% full_name:  5000 Meter
+%% short_name: 5000m
+%% summary: This is the world record progression of the women's 5000 meter.
+            This record was suspended in 1955, and reestablished in 1982.
+%% step_size:      15
+%% scale_y_min:  6:30
+nehringowa      11:30.5         1931-02-15      warsaw
+nehringowa      10:54.8         1935-02-10      warsaw
+lesche          10:15.3         1936-02-02      stockholm
+nilsen           9:28.3         1937-01-31      davos
+lesche           9:26.8         1949-02-13      kongsberg
+zhukova          9:22.3         1950-03-17      kirov
+karelina         9:10.7         1951-02-12      medeo
+zhukova          9:01.6         1953-01-24      medeo
+SUSPENDED                       1955-01-01
+        Record suspended from the ISU Congress of 1955 till 
+        the ISU Congress of 1982
+mitscherlich     7:40.97        1983-01-23      thialf
+schonbrunn       7:39.44        1984-01-15      medeo
+mitscherlich     7:34.52        1984-03-24      medeo
+mitscherlich     7:32.82        1985-02-10      sarajevo
+mitscherlich     7:31.45        1986-01-12      geithus
+mitscherlich     7:20.99        1986-03-22      medeo
+gennip           7:20.36        1987-03-20      thialf
+gennip           7:14.13        1988-02-28      calgary
+niemann          7:13.29        1993-12-06      hamar
+niemann          7:03.26        1994-03-26      calgary
+pechstein        6:59.61        1998-02-20      nagano
+niemann          6:58.63        1998-03-28      calgary
+niemann          6:57.24        1999-02-07      hamar
+niemann          6:56.84        2000-01-16      hamar
+niemann          6:55.34        2000-11-15      thialf
+niemann          6:52.44        2001-03-10      salt_lake_city
+pechstein        6:46.91        2002-02-23      salt_lake_city
+sablikova        6:45.61        2007-03-11      salt_lake_city
+sablikova        6:42.66        2011-02-18      salt_lake_city
+sablikova        6:42.01        2019-03-03      calgary
+voronina         6:39.02        2020-02-15      salt_lake_city
