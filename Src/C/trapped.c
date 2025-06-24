@@ -10,14 +10,15 @@
 # define STEPS   BILLION
 # define HEATMAP_ROW_SIZE 10
 # define HEATMAP_COL_SIZE 10
+# define HEATMAP_NONE      0
+# define HEATMAP_ABS       1
+# define HEATMAP_PERC      2
 
 typedef long long unsigned value_t;
 typedef int                rowcol_t;
 typedef long long unsigned step_t;
 typedef bool            ** board_t;
-
-typedef int unsigned       heatmap_count_t;
-typedef heatmap_count_t ** heatmap_t;
+typedef step_t          ** heatmap_t;
 
 /*
  * A struct defining a "move part". A move part describes one direction
@@ -301,13 +302,13 @@ void init_heatmap (int max_rows, int max_cols) {
     heatmap_col_offset = max_cols     + 1;
 
     if ((heatmap = (heatmap_t) malloc (heatmap_rows *
-            sizeof (heatmap_count_t *))) == NULL) {
+            sizeof (step_t *))) == NULL) {
         perror ("Malloc failed");
         exit (1);
     }
     for (int row = 0; row < heatmap_rows; row ++) {
-        if ((heatmap [row] = (heatmap_count_t *) malloc (heatmap_cols *
-                      sizeof (heatmap_count_t))) == NULL) {
+        if ((heatmap [row] = (step_t *) malloc (heatmap_cols *
+                      sizeof (step_t))) == NULL) {
             perror ("Malloc failed");
             exit (1);
         }
@@ -318,19 +319,22 @@ void init_heatmap (int max_rows, int max_cols) {
 }
 
 
-void print_heatmap () {
+void print_heatmap (int show_heatmap) {
     printf ("\n");
     /*
-     * Find the maximum value to be printed
+     * Find the maximum value to be printed, and the total number
+     * of steps.
      */
-    int max_value = 0;
+    step_t max_value   = 0;
+    step_t total_steps = 0;
     for (int row = max_heatmap_row; row >= min_heatmap_row; row --) {
         for (int col = min_heatmap_col; col <= max_heatmap_col; col ++) {
-            int value = heatmap [row + heatmap_row_offset]
-                                [col + heatmap_col_offset];
+            step_t value = heatmap [row + heatmap_row_offset]
+                                   [col + heatmap_col_offset];
             if (value > max_value) {
                 max_value = value;
             }
+            total_steps += value;
         }
     }
 
@@ -342,7 +346,8 @@ void print_heatmap () {
         perror ("Malloc failed");
         exit (1);
     }
-    int size = sprintf (temp, "%d", max_value);
+    int size = sprintf (temp, "%llu", show_heatmap == HEATMAP_PERC ? 100
+                                                                   : max_value);
 
     char * i_format = (char *) NULL;
     char * s_format = (char *) NULL;
@@ -397,10 +402,13 @@ void print_heatmap () {
                 printf ("| %s ", center);
             }
             else {
-                heatmap_count_t value = heatmap [row + heatmap_row_offset]
-                                                [col + heatmap_col_offset];
+                step_t value = heatmap [row + heatmap_row_offset]
+                                       [col + heatmap_col_offset];
                 if (value) {
-                    printf (i_format, (int) value);
+                    printf (i_format,
+                           show_heatmap == HEATMAP_PERC
+                                         ? 100 * value / total_steps
+                                         :       value);
                 }
                 else {
                     printf (s_format, " ");
@@ -439,9 +447,9 @@ int main (int argc, char ** argv) {
     int ch;
     step_t max_steps   = BILLION;
     bool debug         = false;
-    bool show_heatmap  = false;
+    int show_heatmap   = HEATMAP_NONE;
 
-    while ((ch = getopt (argc, argv, "b:m:M:dh")) != -1) {
+    while ((ch = getopt (argc, argv, "b:m:M:dhH")) != -1) {
         bool match = false;
         if (ch == 'b') {
             if (!strcmp (optarg, "spiral_square") ||
@@ -483,8 +491,8 @@ int main (int argc, char ** argv) {
         if (ch == 'd') {
             debug = true;
         }
-        if (ch == 'h') {
-            show_heatmap = true;
+        if (ch == 'h' || ch == 'H') {
+            show_heatmap = ch == 'h' ? HEATMAP_ABS : HEATMAP_PERC;
         }
     }
 
@@ -695,7 +703,7 @@ int main (int argc, char ** argv) {
     }
 
     if (show_heatmap) {
-        print_heatmap ();
+        print_heatmap (show_heatmap);
     }
 
     return 1;
