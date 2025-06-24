@@ -7,11 +7,16 @@
 # define SIZE    ((long long) 1024 * 1024 * 1024)
 # define STEPS   ((long long) 1000 * 1000 * 1000)
 # define MILLION             (1000 * 1000)
+# define HEATMAP_ROW_SIZE 10
+# define HEATMAP_COL_SIZE 10
 
-typedef long    value_t;
-typedef int     rowcol_t;
-typedef long    step_t;
-typedef bool ** board_t;
+typedef long               value_t;
+typedef int                rowcol_t;
+typedef long               step_t;
+typedef bool            ** board_t;
+
+typedef int unsigned       heatmap_count_t;
+typedef heatmap_count_t ** heatmap_t;
 
 /*
  * A struct defining a "move part". A move part describes one direction
@@ -275,6 +280,154 @@ move_part * add_leaper_moves (move_part * move_list, size_t * n,
 }
 
 
+/*
+ * Functions dealing with the heat map
+ */
+heatmap_t heatmap      = (heatmap_t) NULL;
+int heatmap_rows       = 0;   /* Size of heatmap */
+int heatmap_cols       = 0;
+int heatmap_row_offset = 0;   /* Offset to go from external coordinates */
+int heatmap_col_offset = 0;   /* to internal coordinates                */
+int min_heatmap_row    = 0;   /* min/max values in the heat map         */
+int max_heatmap_row    = 0;   /* In outside coordinates                 */
+int min_heatmap_col    = 0;
+int max_heatmap_col    = 0;
+
+void init_heatmap (int max_rows, int max_cols) {
+    heatmap_rows       = max_rows * 2 + 3;
+    heatmap_cols       = max_cols * 2 + 3;
+    heatmap_row_offset = max_rows     + 1;
+    heatmap_col_offset = max_cols     + 1;
+
+    if ((heatmap = (heatmap_t) malloc (heatmap_rows *
+            sizeof (heatmap_count_t *))) == NULL) {
+        perror ("Malloc failed");
+        exit (1);
+    }
+    for (int row = 0; row < heatmap_rows; row ++) {
+        if ((heatmap [row] = (heatmap_count_t *) malloc (heatmap_cols *
+                      sizeof (heatmap_count_t))) == NULL) {
+            perror ("Malloc failed");
+            exit (1);
+        }
+        for (int col = 0; col < heatmap_cols; col ++) {
+            heatmap [row] [col] = 0;
+        }
+    }
+}
+
+
+void print_heatmap () {
+    printf ("\n");
+    /*
+     * Find the maximum value to be printed
+     */
+    int max_value = 0;
+    for (int row = max_heatmap_row; row >= min_heatmap_row; row --) {
+        for (int col = min_heatmap_col; col <= max_heatmap_col; col ++) {
+            int value = heatmap [row + heatmap_row_offset]
+                                [col + heatmap_col_offset];
+            if (value > max_value) {
+                max_value = value;
+            }
+        }
+    }
+
+    /*
+     * Create format strings to print the values and the spaces/star
+     */
+    char * temp = (char *) NULL;
+    if ((temp = (char *) malloc (32 * sizeof (char))) == NULL) {
+        perror ("Malloc failed");
+        exit (1);
+    }
+    int size = sprintf (temp, "%d", max_value);
+
+    char * i_format = (char *) NULL;
+    char * s_format = (char *) NULL;
+
+    if ((i_format = (char *) malloc ((size + 7) * sizeof (char))) == NULL) {
+        perror ("Malloc failed");
+        exit (1);
+    }
+    if ((s_format = (char *) malloc ((size + 6) * sizeof (char))) == NULL) {
+        perror ("Malloc failed");
+        exit (1);
+    }
+
+    sprintf (i_format, "| %%%dlu ", size);
+    sprintf (s_format, "| %%%ds ",  size);
+
+    /*
+     * Line out the center dot
+     */
+    char * center = (char *) NULL;
+    if ((center = (char *) malloc ((size + 1) * sizeof (char))) == NULL) {
+        perror ("Malloc");
+        exit (1);
+    }
+    for (int i = 0; i < size; i ++) {
+        center [i] = ' ';
+    }
+    center [size / 2] = '*';
+
+    /*
+     * Now that we have the size of each column, and we know the number
+     * of columns, we can create a dividing line. 
+     */
+    char * line = (char *) NULL;
+    int width = 1 + (max_heatmap_col - min_heatmap_col + 1) * (size + 3);
+    if ((line = (char *) malloc ((width + 1) * sizeof (char))) == NULL) {
+        perror ("Malloc failed");
+        exit (1);
+    }
+    for (int c = 0; c < width; c ++) {
+        line [c] = '-';
+    }
+    line [width] = '\0';
+    for (int col = 0; col < max_heatmap_col - min_heatmap_col + 2; col ++) {
+        line [col * (size + 3)] = '+';
+    }
+
+    for (int row = max_heatmap_row; row >= min_heatmap_row; row --) {
+        printf ("%s\n", line);
+        for (int col = min_heatmap_col; col <= max_heatmap_col; col ++) {
+            if (row == 0 && col == 0) {
+                printf ("| %s ", center);
+            }
+            else {
+                heatmap_count_t value = heatmap [row + heatmap_row_offset]
+                                                [col + heatmap_col_offset];
+                if (value) {
+                    printf (i_format, (int) value);
+                }
+                else {
+                    printf (s_format, " ");
+                }
+            }
+        }
+        printf ("|\n");
+    }
+    printf ("%s\n", line);
+}
+
+
+void record_move (int dr, int dc) {
+    if (dr < -HEATMAP_ROW_SIZE) {dr = -HEATMAP_ROW_SIZE - 1;}
+    if (dr >  HEATMAP_ROW_SIZE) {dr =  HEATMAP_ROW_SIZE + 1;}
+    if (dc < -HEATMAP_ROW_SIZE) {dc = -HEATMAP_ROW_SIZE - 1;}
+    if (dc >  HEATMAP_ROW_SIZE) {dc =  HEATMAP_ROW_SIZE + 1;}
+    if (dr < min_heatmap_row) {min_heatmap_row = dr;}
+    if (dr > max_heatmap_row) {max_heatmap_row = dr;}
+    if (dc < min_heatmap_col) {min_heatmap_col = dc;}
+    if (dc > max_heatmap_col) {max_heatmap_col = dc;}
+
+    int row = dr + heatmap_row_offset;
+    int col = dc + heatmap_col_offset;
+
+    heatmap [row] [col] ++;
+}
+
 
 int main (int argc, char ** argv) {
     /*
@@ -283,10 +436,11 @@ int main (int argc, char ** argv) {
     value_t (* to_value) (rowcol_t, rowcol_t) = &spiral_square;
     char * board_type = "spiral square";
     int ch;
-    int max_steps = 1;
-    bool debug    = false;
+    int max_steps     = 1;
+    bool debug        = false;
+    bool show_heatmap = false;
 
-    while ((ch = getopt (argc, argv, "b:m:d")) != -1) {
+    while ((ch = getopt (argc, argv, "b:m:dh")) != -1) {
         bool match = false;
         if (ch == 'b') {
             if (!strcmp (optarg, "spiral_square") ||
@@ -325,6 +479,16 @@ int main (int argc, char ** argv) {
         if (ch == 'd') {
             debug = true;
         }
+        if (ch == 'h') {
+            show_heatmap = true;
+        }
+    }
+
+    /*
+     * Initialize the heatmap
+     */
+    if (show_heatmap) {
+        init_heatmap (HEATMAP_ROW_SIZE, HEATMAP_COL_SIZE);
     }
 
     /*
@@ -497,6 +661,9 @@ int main (int argc, char ** argv) {
 
         if (found) {
             steps ++;
+            if (show_heatmap) {
+                record_move (row - best_row, col - best_col);
+            }
             row      = best_row;
             col      = best_col;
             set_value (best_value);
@@ -521,6 +688,10 @@ int main (int argc, char ** argv) {
                                  (int) (max_value / MILLION));
             fflush (NULL);
         }
+    }
+
+    if (show_heatmap) {
+        print_heatmap ();
     }
 
     return 1;
