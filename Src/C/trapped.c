@@ -5,14 +5,15 @@
 # include <string.h>
 
 # define SIZE    ((long long) 1024 * 1024 * 1024)
-# define STEPS   ((long long) 1000 * 1000 * 1000)
+# define BILLION ((long long) 1000 * 1000 * 1000)
 # define MILLION             (1000 * 1000)
+# define STEPS   BILLION
 # define HEATMAP_ROW_SIZE 10
 # define HEATMAP_COL_SIZE 10
 
-typedef long               value_t;
+typedef long long unsigned value_t;
 typedef int                rowcol_t;
-typedef long               step_t;
+typedef long long unsigned step_t;
 typedef bool            ** board_t;
 
 typedef int unsigned       heatmap_count_t;
@@ -44,12 +45,12 @@ move_part new_move_part () {
     return out;
 }
 
-
 value_t spiral_square (rowcol_t row, rowcol_t col) {
     rowcol_t abs_row = abs (row);
     rowcol_t abs_col = abs (col);
     rowcol_t max     = abs_col > abs_row ? abs_col : abs_row;
-    rowcol_t base    = (2 * max - 1) * (2 * max - 1);
+    value_t  base    = (2 * (value_t) max - 1) *
+                       (2 * (value_t) max - 1);
 
     value_t result = row ==   max ? base + 7 * max + col
                    : col == - max ? base + 5 * max + row
@@ -63,15 +64,15 @@ value_t spiral_square (rowcol_t row, rowcol_t col) {
 value_t spiral_diamond (rowcol_t row, rowcol_t col) {
     rowcol_t abs_row = abs (row);
     rowcol_t abs_col = abs (col);
-    rowcol_t ring    = abs_row + abs_col;
+    value_t  ring    = (value_t) abs_row + abs_col;
     if (ring == 0) {
         return 1;
     }
 
-    rowcol_t p_max   = ring * ring + (ring - 1) * (ring - 1);
-    rowcol_t max     = ring * ring + (ring + 1) * (ring + 1);
-    rowcol_t size    = max - p_max;
-    rowcol_t e_size  = size / 4;
+    value_t p_max   = ring * ring + (ring - 1) * (ring - 1);
+    value_t max     = ring * ring + (ring + 1) * (ring + 1);
+    value_t size    = max - p_max;
+    value_t e_size  = size / 4;
 
     value_t result = row >  0 && col <= 0 ? max - 0 * e_size - abs_col
                    : row <= 0 && col <  0 ? max - 1 * e_size - abs_row
@@ -93,7 +94,7 @@ value_t wedge_folded (rowcol_t row, rowcol_t col) {
     if (row > 0)           {return 0;}
     if (abs_col > abs_row) {return 0;}
 
-    value_t result = (row - 1) * (row - 1);
+    value_t result = ((value_t) row - 1) * ((value_t) row - 1);
     if (result % 2 == 1) {
         result += row - col;
     }
@@ -114,8 +115,8 @@ value_t wedge_flat (rowcol_t row, rowcol_t col) {
     if (row > 0)           {return 0;}
     if (abs_col > abs_row) {return 0;}
 
-    value_t result = (row - 1) * (row - 1) +
-                      row -       col;
+    value_t result = ((value_t) row - 1) * ((value_t) row - 1) +
+                                row -                 col;
 
     return result;
 }
@@ -129,7 +130,7 @@ char * f (step_t steps) {
     char * result_p = result;
     size_t tail;
 
-    snprintf (result, sizeof (result), "%ld", steps);
+    snprintf (result, sizeof (result), "%llu", steps);
     while (* result_p) {
         result_p ++;
     }
@@ -434,13 +435,13 @@ int main (int argc, char ** argv) {
      * Parse options, if any
      */
     value_t (* to_value) (rowcol_t, rowcol_t) = &spiral_square;
-    char * board_type = "spiral square";
+    char * board_type  = "spiral square";
     int ch;
-    int max_steps     = 1;
-    bool debug        = false;
-    bool show_heatmap = false;
+    step_t max_steps   = BILLION;
+    bool debug         = false;
+    bool show_heatmap  = false;
 
-    while ((ch = getopt (argc, argv, "b:m:dh")) != -1) {
+    while ((ch = getopt (argc, argv, "b:m:M:dh")) != -1) {
         bool match = false;
         if (ch == 'b') {
             if (!strcmp (optarg, "spiral_square") ||
@@ -475,6 +476,9 @@ int main (int argc, char ** argv) {
         }
         if (ch == 'm') {
             max_steps = atol (optarg);
+        }
+        if (ch == 'M') {
+            max_steps = BILLION * atol (optarg);
         }
         if (ch == 'd') {
             debug = true;
@@ -650,9 +654,9 @@ int main (int argc, char ** argv) {
         }
 
         if (out_of_bounds) {
-            printf ("\nRan out of bounds on step %ld\n", steps);
+            printf ("\nRan out of bounds on step %llu\n", steps);
             if (debug) {
-                printf ("Tried to jump to point (%d, %d) value %lu = %lluG\n",
+                printf ("Tried to jump to point (%d, %d) value %llu = %lluG\n",
                          out_of_bounds_row, out_of_bounds_col,
                          out_of_bounds_value, out_of_bounds_value / SIZE);
             }
@@ -676,9 +680,9 @@ int main (int argc, char ** argv) {
             break;
         }
 
-        if (max_steps && steps >= max_steps * STEPS) {
+        if (max_steps && steps >= max_steps) {
             printf ("\nTerminating search after %s steps\n",
-                       f (max_steps * STEPS));
+                       f (max_steps));
             break;
         }
 
