@@ -68,11 +68,11 @@ value_t spiral_diamond (rowcol_t row, rowcol_t col) {
     rowcol_t size    = max - p_max;
     rowcol_t e_size  = size / 4;
 
-    value_t result = row >  0 & col <= 0 ? max - 0 * e_size - abs_col
-                   : row <= 0 & col <  0 ? max - 1 * e_size - abs_row
-                   : row <  0 & col >= 0 ? max - 2 * e_size - abs_col
-                   : row >= 0 & col >  0 ? max - 3 * e_size - abs_row
-                   :                      -1;
+    value_t result = row >  0 && col <= 0 ? max - 0 * e_size - abs_col
+                   : row <= 0 && col <  0 ? max - 1 * e_size - abs_row
+                   : row <  0 && col >= 0 ? max - 2 * e_size - abs_col
+                   : row >= 0 && col >  0 ? max - 3 * e_size - abs_row
+                   :                       -1;
 
     return result;
 }
