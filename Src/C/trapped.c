@@ -515,7 +515,7 @@ int main (int argc, char ** argv) {
             break;
         }
 
-        if (steps > 0 && steps % 1000000 == 0) {
+        if (steps > 0 && steps % MILLION == 0) {
             printf (" %3dM steps, max_value = %4dM\r",
                                  (int) (steps     / MILLION),
                                  (int) (max_value / MILLION));
