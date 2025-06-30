@@ -1,0 +1,5 @@
+table, td {border: solid black 1px; border-collapse: collapse}
+td        {font-size: 5vw;
+           padding-left: 1vw;
+           padding-right: 1vw;
+           text-align: left;}

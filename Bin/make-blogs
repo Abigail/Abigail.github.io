@@ -285,14 +285,14 @@ sub header ($title, $directives) {
     #
     my $svg_js = "";
     if ($is_talk) {
-       $svg_js = "<script src = '$up/$JAVASCRIPT_DIR/svg.js'></script>"
-                     if $$directives {"svg-grid"} &&
-                        $$directives {"svg-grid"} ne "none";
+        $svg_js = "<script src = '$up/$JAVASCRIPT_DIR/svg.js'></script>"
+                      if $$directives {"svg-grid"} &&
+                         $$directives {"svg-grid"} ne "none";
     }
     else {
-       $svg_js = "<script id = 'svg-script' src = '$SVG_URL'>" .
-                "</script>\n" if $$directives {"svg-grid"} ||
-                                 $type == $TYPE_TRAPPED;
+        $svg_js = "<script id = 'svg-script' src = '$SVG_URL'>" .
+                 "</script>\n" if $$directives {"svg-grid"} ||
+                                  $type == $TYPE_TRAPPED;
     }
 
     my @fonts = ("<link rel  = 'preconnect' " .
@@ -323,6 +323,23 @@ sub header ($title, $directives) {
         $inline_styles = "<style>html {background: black;}</style>";
     }
 
+    my $hide_li = "";
+    if (exists $$directives {"li-hides"}) {
+        my $unhides = $$directives {"li-hides"};
+        $hide_li = <<~ '--';
+        <script>
+            $(document) . ready (function () {
+                $("li") . addClass ("hidden")
+        --
+        for (1 .. $unhides) {
+            $hide_li .= "    unhide ()\n";
+        }
+        $hide_li .= <<~ '--';
+        })
+        </script>
+        --
+    }
+
     return <<~ "--" =~ s/^\s*\n//gmr;
         <head>
         <title>$title</title>
@@ -335,6 +352,7 @@ sub header ($title, $directives) {
         $svg_js
         $scripts
         $inline_styles
+        $hide_li
         </head>
         --
 }
@@ -1009,6 +1027,7 @@ GetOptions  "sv"   =>  \my $sudoku_variants,
             "tr"   =>  \my $trapped,
             "nq"   =>  \my $n_queens,
             "lp"   =>  \my $logic_puzzles,
+            "sh"   =>  \my $sharding,
 ;
 
 die "$0 source-file ..." unless @ARGV;
@@ -1026,6 +1045,10 @@ foreach my $arg (@ARGV) {
     elsif ($logic_puzzles) {
         $type = $TYPE_TALK;
         $base = "Logic_Puzzles/$arg";
+    }
+    elsif ($sharding) {
+        $type = $TYPE_TALK;
+        $base = "Sharding/$arg";
     }
     elsif ($trapped) {
         $type = $TYPE_TRAPPED;
