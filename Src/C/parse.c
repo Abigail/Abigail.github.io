@@ -50,7 +50,7 @@
  *   int * steps: The maximum number of steps the piece may take;
  *                '0' signals an unlimited number of steps.
  */
-void parse_piece (char piece, int * dr, int * dc, step_t * steps) {
+void parse_piece (char piece, int * dr, int * dc, step_repeat_t * steps) {
     * steps = 1;
     switch (piece) {
         case 'W': * dr = 1; * dc = 0;  break;  /* Wazir       */
@@ -349,15 +349,16 @@ int parse_modifiers_oblique (char * modifiers) {
 /*
  * Process a parsed move, and add it to the move list.
  *
- * Input: move_t  move:      move struct to add to
- *        int dr, int dc:    number of rows/columns the piece moves
- *        step_t steps:      maximum number of steps to take
- *        step_t min_steps:  the minimum number of steps to take;
- *                           this is currently unused
- *        char * modifiers:  betza modifier string
+ * Input: move_t  move:             move struct to add to
+ *        int dr, int dc:           number of rows/columns the piece moves
+ *        step_repeat_t steps:      maximum number of steps to take
+ *        step_repeat_t min_steps:  the minimum number of steps to take;
+ *                                  this is currently unused
+ *        char * modifiers:         betza modifier string
  */
 move_t process_move (move_t move,
-                     int dr, int dc, step_t steps, step_t min_steps,
+                     int dr, int dc, step_repeat_t steps,
+                                     step_repeat_t min_steps,
                      char * modifiers) {
     /*
      * Determine what kind of move this is
@@ -448,12 +449,12 @@ move_t parse_betza (char * betza) {
     char * start = betza;  /* Start of a sub move */
     move_t move = new_move ();
     while (* start) {
-        int unsigned i =  0;
-        int dc         =  0;
-        int dr         =  0;
-        step_t steps   =  1;
-        char * prefix  = (char *) NULL;
-        char piece     =  0;
+        int unsigned i       =  0;
+        int dc               =  0;
+        int dr               =  0;
+        step_repeat_t steps  =  1;
+        char * prefix        = (char *) NULL;
+        char piece           =  0;
         while (* start && islower (* start)) {i ++; start ++;}
         if ((prefix = (char *) malloc ((i + 1) * sizeof (char))) == NULL) {
             perror ("Malloc failed");

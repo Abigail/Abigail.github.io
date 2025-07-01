@@ -13,14 +13,14 @@
  *
  * Create a new move part given the parameters.
  *
- * Input: int dr:     number of rows moved
- *        int dc:     number of cols moved
- *        step_t max: maximum number of squares moved
- *        step_t min: minimum number of squares moved
+ * Input: int dr:            number of rows moved
+ *        int dc:            number of cols moved
+ *        step_repeat_t max: maximum number of squares moved
+ *        step_repeat_t min: minimum number of squares moved
  *
  */
-move_part_t new_move_part (int dr, int dc, step_t max,
-                                           step_t min) {
+move_part_t new_move_part (int dr, int dc, step_repeat_t max,
+                                           step_repeat_t min) {
     move_part_t new_move_part;
     new_move_part . dr  = dr;
     new_move_part . dc  = dc;
@@ -145,7 +145,7 @@ move_part_t * mirror_move_parts (move_part_t part) {
 void dump_move (move_t move) {
     for (size_t i = 0; i < move . size; i ++) {
         move_part_t part = move . list [i];
-        printf ("dr = %d; dc = %d; max = %llu; min = %llu\n",
+        printf ("dr = %d; dc = %d; max = %hu; min = %hu\n",
                  part . dr, part . dc, part . max, part . min);
     }
 }
