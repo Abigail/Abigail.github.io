@@ -1,7 +1,11 @@
 all: trapped 
 
-trapped: trapped.c trapped.h parse.c parse.h moves.c moves.h heatmap.c heatmap.h
-	gcc -o trapped parse.c moves.c heatmap.c trapped.c
+SRC   = trapped parse moves heatmap layout
+SRC_C = $(addsuffix .c, $(SRC))
+SRC_H = $(addsuffix .h, $(SRC))
+
+trapped: $(SRC_C) $(SRC_H)
+	gcc -o $@ $(SRC_C)
 
 parse: parse.c moves.h moves.c
 	gcc -o parse parse.c moves.c
