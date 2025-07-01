@@ -4,47 +4,27 @@
 # include <unistd.h>
 # include <string.h>
 
+# include "moves.h"
+# include "parse.h"
+# include "trapped.h"
+# include "heatmap.h"
+
 # define SIZE    ((long long) 1024 * 1024 * 1024)
-# define STEPS   ((long long) 1000 * 1000 * 1000)
+# define BILLION ((long long) 1000 * 1000 * 1000)
 # define MILLION             (1000 * 1000)
+# define STEPS   BILLION
 
-typedef long    value_t;
-typedef int     rowcol_t;
-typedef long    step_t;
-typedef bool ** board_t;
-
-/*
- * A struct defining a "move part". A move part describes one direction
- * a particular piece can move in. So, a Knight or a Queen will have 
- * eight move parts, a Rook four, and a Pawn one.
- */
-typedef struct move_part {
-    int dr;
-    int dc;
-    int min;
-    int max;
-} move_part;
-
-/*
- * Return an empty move_part struct, initialized with some defaults.
- */
-move_part new_move_part () {
-    move_part out;
-
-    out . dr  = 0;
-    out . dc  = 0;
-    out . min = 1;
-    out . max = 1;
-
-    return out;
-}
+typedef long long unsigned value_t;
+typedef int                rowcol_t;
+typedef bool            ** board_t;
 
 
 value_t spiral_square (rowcol_t row, rowcol_t col) {
     rowcol_t abs_row = abs (row);
     rowcol_t abs_col = abs (col);
     rowcol_t max     = abs_col > abs_row ? abs_col : abs_row;
-    rowcol_t base    = (2 * max - 1) * (2 * max - 1);
+    value_t  base    = (2 * (value_t) max - 1) *
+                       (2 * (value_t) max - 1);
 
     value_t result = row ==   max ? base + 7 * max + col
                    : col == - max ? base + 5 * max + row
@@ -58,21 +38,21 @@ value_t spiral_square (rowcol_t row, rowcol_t col) {
 value_t spiral_diamond (rowcol_t row, rowcol_t col) {
     rowcol_t abs_row = abs (row);
     rowcol_t abs_col = abs (col);
-    rowcol_t ring    = abs_row + abs_col;
+    value_t  ring    = (value_t) abs_row + abs_col;
     if (ring == 0) {
         return 1;
     }
 
-    rowcol_t p_max   = ring * ring + (ring - 1) * (ring - 1);
-    rowcol_t max     = ring * ring + (ring + 1) * (ring + 1);
-    rowcol_t size    = max - p_max;
-    rowcol_t e_size  = size / 4;
+    value_t p_max   = ring * ring + (ring - 1) * (ring - 1);
+    value_t max     = ring * ring + (ring + 1) * (ring + 1);
+    value_t size    = max - p_max;
+    value_t e_size  = size / 4;
 
-    value_t result = row >  0 & col <= 0 ? max - 0 * e_size - abs_col
-                   : row <= 0 & col <  0 ? max - 1 * e_size - abs_row
-                   : row <  0 & col >= 0 ? max - 2 * e_size - abs_col
-                   : row >= 0 & col >  0 ? max - 3 * e_size - abs_row
-                   :                      -1;
+    value_t result = row >  0 && col <= 0 ? max - 0 * e_size - abs_col
+                   : row <= 0 && col <  0 ? max - 1 * e_size - abs_row
+                   : row <  0 && col >= 0 ? max - 2 * e_size - abs_col
+                   : row >= 0 && col >  0 ? max - 3 * e_size - abs_row
+                   :                       -1;
 
     return result;
 }
@@ -88,7 +68,7 @@ value_t wedge_folded (rowcol_t row, rowcol_t col) {
     if (row > 0)           {return 0;}
     if (abs_col > abs_row) {return 0;}
 
-    value_t result = (row - 1) * (row - 1);
+    value_t result = ((value_t) row - 1) * ((value_t) row - 1);
     if (result % 2 == 1) {
         result += row - col;
     }
@@ -109,8 +89,8 @@ value_t wedge_flat (rowcol_t row, rowcol_t col) {
     if (row > 0)           {return 0;}
     if (abs_col > abs_row) {return 0;}
 
-    value_t result = (row - 1) * (row - 1) +
-                      row -       col;
+    value_t result = ((value_t) row - 1) * ((value_t) row - 1) +
+                                row -                 col;
 
     return result;
 }
@@ -124,7 +104,7 @@ char * f (step_t steps) {
     char * result_p = result;
     size_t tail;
 
-    snprintf (result, sizeof (result), "%ld", steps);
+    snprintf (result, sizeof (result), "%llu", steps);
     while (* result_p) {
         result_p ++;
     }
@@ -186,107 +166,19 @@ bool has_value (value_t value) {
 
 
 
-/*
- * Add a single move (a leap) to a list of move parts
- */
-move_part * add_move (move_part * move_list, size_t * n, int d_row, int d_col) {
-    size_t m = * n + 1;
-    if ((move_list = (move_part *) realloc (move_list, m * sizeof (move_part)))
-                   == NULL) {
-        perror ("Realloc failed");
-        exit (1);
-    }
-
-    move_part new = new_move_part ();
-    new . dr = d_row;
-    new . dc = d_col;
-
-    move_list [* n] = new;
-
-    * n = m;
-
-    return move_list;
-}
-
-
-/*
- * Add a full set of leaper move parts to a list of move parts:
- * full rotational symmetry.
- */
-move_part * add_leaper_moves (move_part * move_list, size_t * n,
-                             int d_row, int d_col,
-                             int steps) {
-
-    size_t m = * n + ((d_row == 0 || d_col == 0 ||
-                       abs (d_row) == abs (d_col)) ? 4 : 8);
-    if ((move_list = (move_part *) realloc (move_list, m * sizeof (move_part)))
-                   == NULL) {
-        perror ("Realloc failed");
-        exit (1);
-    }
-
-    /*
-     * Handle the case of an orthogonal leaper
-     */
-    if (d_row == 0 || d_col == 0) {
-        int d = d_row + d_col;
-        for (size_t i = 0; i < 4; i ++) {
-            move_part new = new_move_part ();
-            new . max = steps;
-            switch (i) {
-                case (0): new . dr =   d; break;
-                case (1): new . dr = - d; break;
-                case (2): new . dc =   d; break;
-                case (3): new . dc = - d; break;
-            }
-            move_list [* n + i] = new;
-        }
-    }
-    else {
-        for (size_t i = 0; i < 4; i ++) {
-            move_part new = new_move_part ();
-            new . max = steps;
-            switch (i) {
-                case (0): new . dr =   d_row; new . dc =   d_col; break;
-                case (1): new . dr = - d_row; new . dc =   d_col; break;
-                case (2): new . dr = - d_row; new . dc = - d_col; break;
-                case (3): new . dr =   d_row; new . dc = - d_col; break;
-            }
-            move_list [* n + i] = new;
-        }
-        if (m - * n == 8) {
-            for (size_t i = 4; i < 8; i ++) {
-                move_part new = new_move_part ();
-                new . max = steps;
-                switch (i) {
-                    case (4): new . dc =   d_row; new . dr =   d_col; break;
-                    case (5): new . dc = - d_row; new . dr =   d_col; break;
-                    case (6): new . dc = - d_row; new . dr = - d_col; break;
-                    case (7): new . dc =   d_row; new . dr = - d_col; break;
-                }
-                move_list [* n + i] = new;
-            }
-        }
-    }
-
-    * n = m;
-
-    return move_list;;
-}
-
-
 
 int main (int argc, char ** argv) {
     /*
      * Parse options, if any
      */
     value_t (* to_value) (rowcol_t, rowcol_t) = &spiral_square;
-    char * board_type = "spiral square";
+    char * board_type  = "spiral square";
     int ch;
-    int max_steps = 1;
-    bool debug    = false;
+    step_t max_steps   = BILLION;
+    bool debug         = false;
+    int show_heatmap   = HEATMAP_NONE;
 
-    while ((ch = getopt (argc, argv, "b:m:d")) != -1) {
+    while ((ch = getopt (argc, argv, "b:m:M:dhH")) != -1) {
         bool match = false;
         if (ch == 'b') {
             if (!strcmp (optarg, "spiral_square") ||
@@ -322,9 +214,22 @@ int main (int argc, char ** argv) {
         if (ch == 'm') {
             max_steps = atol (optarg);
         }
+        if (ch == 'M') {
+            max_steps = BILLION * atol (optarg);
+        }
         if (ch == 'd') {
             debug = true;
         }
+        if (ch == 'h' || ch == 'H') {
+            show_heatmap = ch == 'h' ? HEATMAP_ABS : HEATMAP_PERC;
+        }
+    }
+
+    /*
+     * Initialize the heatmap
+     */
+    if (show_heatmap) {
+        init_heatmap (HEATMAP_ROW_SIZE, HEATMAP_COL_SIZE);
     }
 
     /*
@@ -344,55 +249,18 @@ int main (int argc, char ** argv) {
     rowcol_t out_of_bounds_col   = 0;
     step_t   steps               = 0;
 
-    move_part * move_list        = (move_part *) NULL;
     size_t nr_of_moves           = 0;
+    move_t move;
 
-    for (int i = optind; i < argc; i ++) {
-        int dr    = 0;
-        int dc    = 0;
-        int steps = 1;
-        switch (* argv [i]) {
-            case 'W': dr = 1; dc = 0;            break;  /* Wazir       */
-            case 'F': dr = 1; dc = 1;            break;  /* Ferz        */
-            case 'D': dr = 2; dc = 0;            break;  /* Dabbaba     */
-            case 'N': dr = 2; dc = 1;            break;  /* Knight      */
-            case 'A': dr = 2; dc = 2;            break;  /* Alfil       */
-            case 'H': dr = 3; dc = 0;            break;  /* Threeleaper */
-            case 'C': dr = 3; dc = 1;            break;  /* Camel       */
-            case 'Z': dr = 3; dc = 2;            break;  /* Zebra       */
-            case 'G': dr = 3; dc = 3;            break;  /* Tripper     */
-
-            case 'B': dr = 1; dc = 1; steps = 0; break;  /* Bishop      */
-            case 'R': dr = 1; dc = 0; steps = 0; break;  /* Rook        */
-        }
-        if (dr > 0 || dc > 0) {
-            if (* (argv [i] + 1)) {
-                steps = atoi (argv [i] + 1);
-            }
-            move_list = add_leaper_moves (move_list, &nr_of_moves,
-                                                     dr, dc, steps);
-            continue;
-        }
-        if (!strcmp (argv [i], "p")) { /* pawn moves */
-            move_list = add_move (move_list, &nr_of_moves, -1, 0);
-            continue;
-        }
-
-        if (i < argc - 1) {
-            move_list  = add_leaper_moves (move_list, &nr_of_moves,
-                                           atoi (argv [i]),
-                                           atoi (argv [i + 1]),
-                                           1);
-            i ++;
-        }
+    if (optind < argc) {
+        move = parse_betza (argv [optind]);
+    }
+    else {
+        exit (0);  /* Nothing to do */
     }
 
     if (debug) {
-        for (int i = 0; i < nr_of_moves; i ++) {
-            move_part this = move_list [i];
-            printf ("Move %2d: dr = %2d; dc = %2d; min = %2d; max = %2d\n",
-                     i, this . dr, this . dc, this . min, this . max);
-        }
+        dump_move (move);
     }
 
     while (1) {
@@ -404,8 +272,8 @@ int main (int argc, char ** argv) {
         value_t  best_value = 0;
         bool     found      = false;
 
-        for (int i = 0; i < nr_of_moves; i ++) {
-            move_part this = move_list [i];
+        for (int i = 0; i < move . size; i ++) {
+            move_part_t this = move . list [i];
 
             value_t  move_best = 0;  /* Best value within this move     */
             rowcol_t move_row  = 0;
@@ -486,9 +354,9 @@ int main (int argc, char ** argv) {
         }
 
         if (out_of_bounds) {
-            printf ("\nRan out of bounds on step %ld\n", steps);
+            printf ("\nRan out of bounds on step %llu\n", steps);
             if (debug) {
-                printf ("Tried to jump to point (%d, %d) value %lu = %lluG\n",
+                printf ("Tried to jump to point (%d, %d) value %llu = %lluG\n",
                          out_of_bounds_row, out_of_bounds_col,
                          out_of_bounds_value, out_of_bounds_value / SIZE);
             }
@@ -497,6 +365,9 @@ int main (int argc, char ** argv) {
 
         if (found) {
             steps ++;
+            if (show_heatmap) {
+                record_move (row - best_row, col - best_col);
+            }
             row      = best_row;
             col      = best_col;
             set_value (best_value);
@@ -509,18 +380,22 @@ int main (int argc, char ** argv) {
             break;
         }
 
-        if (max_steps && steps >= max_steps * STEPS) {
+        if (max_steps && steps >= max_steps) {
             printf ("\nTerminating search after %s steps\n",
-                       f (max_steps * STEPS));
+                       f (max_steps));
             break;
         }
 
-        if (steps > 0 && steps % 1000000 == 0) {
+        if (steps > 0 && steps % MILLION == 0) {
             printf (" %3dM steps, max_value = %4dM\r",
                                  (int) (steps     / MILLION),
                                  (int) (max_value / MILLION));
             fflush (NULL);
         }
+    }
+
+    if (show_heatmap) {
+        print_heatmap (show_heatmap);
     }
 
     return 1;
