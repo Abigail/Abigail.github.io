@@ -6,6 +6,7 @@
 # include <ctype.h>
 
 # include "moves.h"
+# include "parse.h"
 
 # define ORTHOGONAL 1
 # define DIAGONAL   2
@@ -499,7 +500,7 @@ move_t parse_betza (char * betza) {
         }
         start = end;
 
-        move = process_move (move, dc, dr, steps, 0, prefix);
+        move = process_move (move, dc, dr, steps, 1, prefix);
         free (prefix);
 
     }
@@ -507,6 +508,7 @@ move_t parse_betza (char * betza) {
 }
 
 
+/*
 
 int main (int argc, char ** argv) {
     if (argc < 2) {
@@ -515,3 +517,4 @@ int main (int argc, char ** argv) {
     dump_move (parse_betza (argv [1]));
 }
 
+*/

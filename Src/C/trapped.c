@@ -4,6 +4,9 @@
 # include <unistd.h>
 # include <string.h>
 
+# include "moves.h"
+# include "parse.h"
+
 # define SIZE    ((long long) 1024 * 1024 * 1024)
 # define BILLION ((long long) 1000 * 1000 * 1000)
 # define MILLION             (1000 * 1000)
@@ -16,7 +19,6 @@
 
 typedef long long unsigned value_t;
 typedef int                rowcol_t;
-typedef long long unsigned step_t;
 typedef bool            ** board_t;
 typedef step_t          ** heatmap_t;
 
@@ -32,19 +34,6 @@ typedef struct move_part {
     int max;
 } move_part;
 
-/*
- * Return an empty move_part struct, initialized with some defaults.
- */
-move_part new_move_part () {
-    move_part out;
-
-    out . dr  = 0;
-    out . dc  = 0;
-    out . min = 1;
-    out . max = 1;
-
-    return out;
-}
 
 value_t spiral_square (rowcol_t row, rowcol_t col) {
     rowcol_t abs_row = abs (row);
@@ -190,96 +179,6 @@ bool has_value (value_t value) {
                                       : board [value / SIZE] [value % SIZE];
 }
 
-
-
-
-/*
- * Add a single move (a leap) to a list of move parts
- */
-move_part * add_move (move_part * move_list, size_t * n, int d_row, int d_col) {
-    size_t m = * n + 1;
-    if ((move_list = (move_part *) realloc (move_list, m * sizeof (move_part)))
-                   == NULL) {
-        perror ("Realloc failed");
-        exit (1);
-    }
-
-    move_part new = new_move_part ();
-    new . dr = d_row;
-    new . dc = d_col;
-
-    move_list [* n] = new;
-
-    * n = m;
-
-    return move_list;
-}
-
-
-/*
- * Add a full set of leaper move parts to a list of move parts:
- * full rotational symmetry.
- */
-move_part * add_leaper_moves (move_part * move_list, size_t * n,
-                             int d_row, int d_col,
-                             int steps) {
-
-    size_t m = * n + ((d_row == 0 || d_col == 0 ||
-                       abs (d_row) == abs (d_col)) ? 4 : 8);
-    if ((move_list = (move_part *) realloc (move_list, m * sizeof (move_part)))
-                   == NULL) {
-        perror ("Realloc failed");
-        exit (1);
-    }
-
-    /*
-     * Handle the case of an orthogonal leaper
-     */
-    if (d_row == 0 || d_col == 0) {
-        int d = d_row + d_col;
-        for (size_t i = 0; i < 4; i ++) {
-            move_part new = new_move_part ();
-            new . max = steps;
-            switch (i) {
-                case (0): new . dr =   d; break;
-                case (1): new . dr = - d; break;
-                case (2): new . dc =   d; break;
-                case (3): new . dc = - d; break;
-            }
-            move_list [* n + i] = new;
-        }
-    }
-    else {
-        for (size_t i = 0; i < 4; i ++) {
-            move_part new = new_move_part ();
-            new . max = steps;
-            switch (i) {
-                case (0): new . dr =   d_row; new . dc =   d_col; break;
-                case (1): new . dr = - d_row; new . dc =   d_col; break;
-                case (2): new . dr = - d_row; new . dc = - d_col; break;
-                case (3): new . dr =   d_row; new . dc = - d_col; break;
-            }
-            move_list [* n + i] = new;
-        }
-        if (m - * n == 8) {
-            for (size_t i = 4; i < 8; i ++) {
-                move_part new = new_move_part ();
-                new . max = steps;
-                switch (i) {
-                    case (4): new . dc =   d_row; new . dr =   d_col; break;
-                    case (5): new . dc = - d_row; new . dr =   d_col; break;
-                    case (6): new . dc = - d_row; new . dr = - d_col; break;
-                    case (7): new . dc =   d_row; new . dr = - d_col; break;
-                }
-                move_list [* n + i] = new;
-            }
-        }
-    }
-
-    * n = m;
-
-    return move_list;;
-}
 
 
 /*
@@ -522,53 +421,17 @@ int main (int argc, char ** argv) {
 
     move_part * move_list        = (move_part *) NULL;
     size_t nr_of_moves           = 0;
+    move_t move;
 
-    for (int i = optind; i < argc; i ++) {
-        int dr    = 0;
-        int dc    = 0;
-        int steps = 1;
-        switch (* argv [i]) {
-            case 'W': dr = 1; dc = 0;            break;  /* Wazir       */
-            case 'F': dr = 1; dc = 1;            break;  /* Ferz        */
-            case 'D': dr = 2; dc = 0;            break;  /* Dabbaba     */
-            case 'N': dr = 2; dc = 1;            break;  /* Knight      */
-            case 'A': dr = 2; dc = 2;            break;  /* Alfil       */
-            case 'H': dr = 3; dc = 0;            break;  /* Threeleaper */
-            case 'C': dr = 3; dc = 1;            break;  /* Camel       */
-            case 'Z': dr = 3; dc = 2;            break;  /* Zebra       */
-            case 'G': dr = 3; dc = 3;            break;  /* Tripper     */
-
-            case 'B': dr = 1; dc = 1; steps = 0; break;  /* Bishop      */
-            case 'R': dr = 1; dc = 0; steps = 0; break;  /* Rook        */
-        }
-        if (dr > 0 || dc > 0) {
-            if (* (argv [i] + 1)) {
-                steps = atoi (argv [i] + 1);
-            }
-            move_list = add_leaper_moves (move_list, &nr_of_moves,
-                                                     dr, dc, steps);
-            continue;
-        }
-        if (!strcmp (argv [i], "p")) { /* pawn moves */
-            move_list = add_move (move_list, &nr_of_moves, -1, 0);
-            continue;
-        }
-
-        if (i < argc - 1) {
-            move_list  = add_leaper_moves (move_list, &nr_of_moves,
-                                           atoi (argv [i]),
-                                           atoi (argv [i + 1]),
-                                           1);
-            i ++;
-        }
+    if (optind < argc) {
+        move = parse_betza (argv [optind]);
+    }
+    else {
+        exit (0);  /* Nothing to do */
     }
 
     if (debug) {
-        for (int i = 0; i < nr_of_moves; i ++) {
-            move_part this = move_list [i];
-            printf ("Move %2d: dr = %2d; dc = %2d; min = %2d; max = %2d\n",
-                     i, this . dr, this . dc, this . min, this . max);
-        }
+        dump_move (move);
     }
 
     while (1) {
@@ -580,8 +443,8 @@ int main (int argc, char ** argv) {
         value_t  best_value = 0;
         bool     found      = false;
 
-        for (int i = 0; i < nr_of_moves; i ++) {
-            move_part this = move_list [i];
+        for (int i = 0; i < move . size; i ++) {
+            move_part_t this = move . list [i];
 
             value_t  move_best = 0;  /* Best value within this move     */
             rowcol_t move_row  = 0;

@@ -25,7 +25,7 @@ move_part_t new_move_part (int dr, int dc, step_t max,
     new_move_part . dr  = dr;
     new_move_part . dc  = dc;
     new_move_part . max = max;
-    new_move_part . min = min;
+    new_move_part . min = min || 1;
 
     return (new_move_part);
 }
@@ -145,7 +145,7 @@ move_part_t * mirror_move_parts (move_part_t part) {
 void dump_move (move_t move) {
     for (size_t i = 0; i < move . size; i ++) {
         move_part_t part = move . list [i];
-        printf ("dr = %d; dc = %d; max = %u; min = %u\n",
+        printf ("dr = %d; dc = %d; max = %llu; min = %llu\n",
                  part . dr, part . dc, part . max, part . min);
     }
 }
