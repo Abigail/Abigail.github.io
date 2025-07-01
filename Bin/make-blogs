@@ -710,6 +710,12 @@ sub pre_process ($text, $directives) {
     }
 
     if ($$directives {"svg-grid"} &&
+        $$directives {"svg-grid"} eq "plain") {
+        $$directives {"svg-grid"} =  "none";
+        $$directives {"plain-div"} = 1;
+    }
+
+    if ($$directives {"svg-grid"} &&
         $$directives {"svg-grid"} eq "code") {
         $$directives {"svg-grid"} =  "none";
         $$directives {"code-page"} //= 1
@@ -865,9 +871,11 @@ sub post_process ($text, $directives) {
     # Add divs to make a responsive svg grid
     #
     if (my $svg_grid = $$directives {"svg-grid"}) {
+        my  $is_plain = $$directives {"plain-div"};
         my ($pre, $post) = ("", "");
         my $class = "svg_box_$svg_grid";
-        my $width = $svg_grid eq "middle" || $svg_grid eq "none" ? 3 : 2;
+        my $width = $svg_grid eq "middle" ||
+                    $svg_grid eq "none" ? 3 : 2;
         my $empty = "<div class = 'bogus'></div>\n" x $width;
         my $svg   = "<div class = 'svg-box'></div>\n";
 
@@ -909,8 +917,13 @@ sub post_process ($text, $directives) {
             # We keep the same grid, but we don't have an image.
             # Content will be in the middle box
             #
+            # If we're plain, we add an extra div which uses display block
+            # internally.
+            #
             $pre  .= "<div class = 'svg_box_info_left'></div>\n";
             $pre  .= "<div class = 'svg_box_info_middle content'>\n";
+            $pre  .= "<div class = 'plain'>\n" if $is_plain;
+            $post .= "</div>\n"                if $is_plain;
             $post .= "</div>\n";
             $post .= "<div class = 'svg_box_info_right'></div>\n";
         }

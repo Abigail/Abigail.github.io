@@ -69,7 +69,7 @@ div.svg_box_none div.content {
     align-items:                     center;
 }
 
-div.svg_box_plain div.content {
+div.svg_box_none div.content div.plain {
     display:                          block;
     justify-content:                 center;
     align-items:                     center;
