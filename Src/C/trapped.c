@@ -15,7 +15,7 @@
 # define MILLION             (1000 * 1000)
 # define STEPS   BILLION
 
-typedef bool            ** board_t;
+typedef bool ** board_t;
 
 
 /*
