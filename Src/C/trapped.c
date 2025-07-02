@@ -93,7 +93,7 @@ int main (int argc, char ** argv) {
     /*
      * Parse options, if any
      */
-    value_t (* to_value) (rowcol_t, rowcol_t) = &spiral_square;
+    value_t (* to_value) (rowcol_t, rowcol_t) = layout ("");
     char * board_type  = "spiral square";
     int ch;
     step_t max_steps   = BILLION;
@@ -101,37 +101,8 @@ int main (int argc, char ** argv) {
     int show_heatmap   = HEATMAP_NONE;
 
     while ((ch = getopt (argc, argv, "b:m:M:dhH")) != -1) {
-        bool match = false;
         if (ch == 'b') {
-            if (!strcmp (optarg, "spiral_square") ||
-                !strcmp (optarg, "s_sq")) {
-                to_value   = &spiral_square;
-                board_type = "spiral square";
-                match      = true;
-            }
-            if (!strcmp (optarg, "spiral_diamond") ||
-                !strcmp (optarg, "s_d")) {
-                to_value   = &spiral_diamond;
-                board_type = "spiral diamond";
-                match      = true;
-            }
-            if (!strcmp (optarg, "wedge_folded") ||
-                !strcmp (optarg, "w_fo")) {
-                to_value   = &wedge_folded;
-                board_type = "wedge folded";
-                match      = true;
-            }
-            if (!strcmp (optarg, "wedge_flat") ||
-                !strcmp (optarg, "w_fl")) {
-                to_value   = &wedge_flat;
-                board_type = "wedge flat";
-                match      = true;
-            }
-            if (!match) {
-                printf ("Do not know what to do with board type %s\n",
-                                board_type);
-                exit (1);
-            }
+            to_value = layout (optarg);
         }
         if (ch == 'm') {
             max_steps = atol (optarg);

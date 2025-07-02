@@ -1,8 +1,45 @@
 # include <stdlib.h>
 # include <stdio.h>
+# include <string.h>
 
 # include "trapped.h"
 # include "layout.h"
+
+/*
+ * value_t (* layout (char * input)) (rowcol_t, rowcol_t)
+ *
+ * Map the parameter of the -b option to the function which maps
+ * coordinates to a value.
+ *
+ * If the string is empty, we return the default
+ *
+ * Input: char * input: The argument given to -b (or "" for the default)
+ *
+ * Out: Appropriate function pointer.
+ *
+ */
+value_t (* layout (char * input)) (rowcol_t, rowcol_t) {
+    if (!strcmp (input, "spiral_square") ||
+        !strcmp (input, "s_sq")          ||
+        !strcmp (input, "")) {
+        return (&spiral_square);
+    }
+    if (!strcmp (input, "spiral_diamond") ||
+        !strcmp (input, "s_d")) {
+        return (&spiral_diamond);
+    }
+    if (!strcmp (input, "wedge_folded") ||
+        !strcmp (input, "w_fo")) {
+        return (&wedge_folded);
+    }
+    if (!strcmp (input, "wedge_flat") ||
+        !strcmp (input, "w_fl")) {
+        return (&wedge_flat);
+    }
+    fprintf (stderr, "Do not know what to do with '-b %s'\n", input);
+    exit (1);
+}
+
 
 
 /*
