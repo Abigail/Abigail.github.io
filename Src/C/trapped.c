@@ -3,6 +3,8 @@
 # include <stdbool.h>
 # include <unistd.h>
 # include <string.h>
+# include <getopt.h>
+# include <ctype.h>
 
 # include "moves.h"
 # include "parse.h"
@@ -86,7 +88,15 @@ bool has_value (value_t value) {
 }
 
 
-
+static struct option longopts [] = {
+    {"layout",    required_argument, NULL, 'l'},
+    {"max-steps", required_argument, NULL, 'm'},
+    {"Max-steps", required_argument, NULL, 'M'},
+    {"debug",     no_argument,       NULL, 'd'},
+    {"heatmap",   required_argument, NULL, 256},
+    {"Heatmap",   no_argument,       NULL, 'H'},
+    { NULL,       0,                 NULL,   0},
+};
 
 
 int main (int argc, char ** argv) {
@@ -100,7 +110,7 @@ int main (int argc, char ** argv) {
     bool debug         = false;
     int show_heatmap   = HEATMAP_NONE;
 
-    while ((ch = getopt (argc, argv, "b:m:M:dhH")) != -1) {
+    while ((ch = getopt_long (argc, argv, "b:m:M:dhH", longopts, NULL)) != -1) {
         if (ch == 'b') {
             to_value = layout (optarg);
         }
@@ -115,6 +125,18 @@ int main (int argc, char ** argv) {
         }
         if (ch == 'h' || ch == 'H') {
             show_heatmap = ch == 'h' ? HEATMAP_ABS : HEATMAP_PERC;
+        }
+        if (ch == 256) {
+            switch (tolower (* optarg)) {
+                case 'a': show_heatmap = HEATMAP_ABS;  break;
+                case 'p':
+                case '%': show_heatmap = HEATMAP_PERC; break;
+                default:
+                    fprintf (stderr,
+                       "Do not know what to do with '--heatmap=%s'\n", optarg);
+                    exit (1);
+                    break;
+            }
         }
     }
 
