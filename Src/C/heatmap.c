@@ -1,5 +1,6 @@
 # include <stdlib.h>
 # include <stdio.h>
+# include <stdbool.h>
 
 # include "heatmap.h"
 
@@ -53,21 +54,26 @@ void init_heatmap (short unsigned max_rows, short unsigned max_cols) {
 }
 
 /*
- * void print_heatmap (int show_heatmap)
+ * void print_heatmap (int unsigned show_heatmap)
  *
  * Show the heatmap, either in raw numbers, or percentages.
  *
  * Input: int show_heatmap: One of HEATMAP_NONE, HEATMAP_ABS, or HEATMAP_PERC
  *
  */
-void print_heatmap (int show_heatmap) {
+void print_heatmap (int unsigned show_heatmap) {
     printf ("\n");
+
+    bool show_percentage =  show_heatmap & HEATMAP_PERC;
+    bool show_absolute   = !show_percentage;
+    bool show_compact    =  show_heatmap & HEATMAP_COMPACT;
+
     /*
      * Find the maximum value to be printed, and the total number
      * of steps.
      */
-    step_t max_value   = 0;
-    step_t total_steps = 0;
+    step_t max_value    = 0;
+    step_t total_steps  = 0;
     for (int row = max_heatmap_row; row >= min_heatmap_row; row --) {
         for (int col = min_heatmap_col; col <= max_heatmap_col; col ++) {
             step_t value = heatmap [row + heatmap_row_offset]
@@ -87,8 +93,8 @@ void print_heatmap (int show_heatmap) {
         perror ("Malloc failed");
         exit (1);
     }
-    int size = sprintf (temp, "%llu", show_heatmap == HEATMAP_PERC ? 100
-                                                                   : max_value);
+    int size = sprintf (temp, "%llu", show_percentage ? 100
+                                                      : max_value);
 
     char * i_format = (char *) NULL;
     char * s_format = (char *) NULL;
@@ -102,21 +108,26 @@ void print_heatmap (int show_heatmap) {
         exit (1);
     }
 
-    sprintf (i_format, "| %%%dlu ", size);
-    sprintf (s_format, "| %%%ds ",  size);
+    sprintf (i_format, show_compact ? "%%lu " : "| %%%dlu ", size);
+    sprintf (s_format, show_compact ? "%%s "  : "| %%%ds ",  size);
 
     /*
      * Line out the center dot
      */
     char * center = (char *) NULL;
-    if ((center = (char *) malloc ((size + 1) * sizeof (char))) == NULL) {
-        perror ("Malloc");
-        exit (1);
+    if (show_compact) {
+        center = "*";
     }
-    for (int i = 0; i < size; i ++) {
-        center [i] = ' ';
+    else {
+        if ((center = (char *) malloc ((size + 1) * sizeof (char))) == NULL) {
+            perror ("Malloc");
+            exit (1);
+        }
+        for (int i = 0; i < size; i ++) {
+            center [i] = ' ';
+        }
+        center [size / 2] = '*';
     }
-    center [size / 2] = '*';
 
     /*
      * Now that we have the size of each column, and we know the number
@@ -136,29 +147,38 @@ void print_heatmap (int show_heatmap) {
         line [col * (size + 3)] = '+';
     }
 
+    /*
+     * Print the heatmap
+     */
     for (int row = max_heatmap_row; row >= min_heatmap_row; row --) {
-        printf ("%s\n", line);
+        if (!show_compact) {
+            printf ("%s\n", line);
+        }
         for (int col = min_heatmap_col; col <= max_heatmap_col; col ++) {
             if (row == 0 && col == 0) {
-                printf ("| %s ", center);
+                printf (show_compact ? "%s " : "| %s ", center);
             }
             else {
                 step_t value = heatmap [row + heatmap_row_offset]
                                        [col + heatmap_col_offset];
                 if (value) {
                     printf (i_format,
-                           show_heatmap == HEATMAP_PERC
-                                         ? 100 * value / total_steps
-                                         :       value);
+                            show_percentage ? 100 * value / total_steps
+                                            :       value);
                 }
                 else {
-                    printf (s_format, " ");
+                    printf (s_format, show_compact ? "." : " ");
                 }
             }
         }
-        printf ("|\n");
+        if (!show_compact) {
+            printf ("|");
+        }
+        printf ("\n");
     }
-    printf ("%s\n", line);
+    if (!show_compact) {
+        printf ("%s\n", line);
+    }
 }
 
 

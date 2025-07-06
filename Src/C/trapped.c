@@ -94,7 +94,6 @@ static struct option longopts [] = {
     {"Max-steps", required_argument, NULL, 'M'},
     {"debug",     no_argument,       NULL, 'd'},
     {"heatmap",   required_argument, NULL, 256},
-    {"Heatmap",   no_argument,       NULL, 'H'},
     { NULL,       0,                 NULL,   0},
 };
 
@@ -112,26 +111,34 @@ int main (int argc, char ** argv) {
      * Parse options, if any
      */
     int ch;
-    while ((ch = getopt_long (argc, argv, "b:m:M:dhH", longopts, NULL)) != -1) {
+    while ((ch = getopt_long (argc, argv, "b:m:M:dhHc",
+                              longopts, NULL)) != -1) {
         switch (ch) {
             case 'b': to_value =          layout (optarg); break;
             case 'm': max_steps =           atol (optarg); break;
             case 'M': max_steps = BILLION * atol (optarg); break;
             case 'd': debug = true;                        break;
-            case 'h': show_heatmap = HEATMAP_ABS;          break;
-            case 'H': show_heatmap = HEATMAP_PERC;         break;
-            case 256:
-                switch (tolower (* optarg)) {
-                    case 'a': show_heatmap = HEATMAP_ABS;  break;
-                    case 'p':
-                    case '%': show_heatmap = HEATMAP_PERC; break;
-                    default:
-                        fprintf (stderr,
-                           "Do not know what to do with '--heatmap=%s'\n",
-                            optarg);
-                        exit (1);
-                        break;
-                }
+            case 'h': show_heatmap |= HEATMAP_ABS;         break;
+            case 'H': show_heatmap |= HEATMAP_PERC;        break;
+            case 'c': show_heatmap |= HEATMAP_COMPACT;     break;
+            case 256: {
+                char * arg = optarg;
+                while (* arg) {
+                    switch (tolower (* arg ++)) {
+                        case 'a': show_heatmap |= HEATMAP_ABS;     break;
+                        case 'p':
+                        case '%': show_heatmap |= HEATMAP_PERC;    break;
+                        case 'c': show_heatmap |= HEATMAP_COMPACT; break;
+                        default:
+                            fprintf (stderr,
+                               "Do not know what to do with '--heatmap=%s'\n",
+                                optarg);
+                            exit (1);
+                            break;
+                    }
+                };
+                break;
+            }
         }
     }
 
