@@ -101,43 +101,46 @@ static struct option longopts [] = {
 
 int main (int argc, char ** argv) {
     /*
-     * Parse options, if any
+     * Defaults, can be overridden by options
      */
     value_t (* to_value) (rowcol_t, rowcol_t) = layout ("");
-    char * board_type  = "spiral square";
-    int ch;
     step_t max_steps   = BILLION;
     bool debug         = false;
     int show_heatmap   = HEATMAP_NONE;
 
+    /*
+     * Parse options, if any
+     */
+    int ch;
     while ((ch = getopt_long (argc, argv, "b:m:M:dhH", longopts, NULL)) != -1) {
-        if (ch == 'b') {
-            to_value = layout (optarg);
+        switch (ch) {
+            case 'b': to_value =          layout (optarg); break;
+            case 'm': max_steps =           atol (optarg); break;
+            case 'M': max_steps = BILLION * atol (optarg); break;
+            case 'd': debug = true;                        break;
+            case 'h': show_heatmap = HEATMAP_ABS;          break;
+            case 'H': show_heatmap = HEATMAP_PERC;         break;
+            case 256:
+                switch (tolower (* optarg)) {
+                    case 'a': show_heatmap = HEATMAP_ABS;  break;
+                    case 'p':
+                    case '%': show_heatmap = HEATMAP_PERC; break;
+                    default:
+                        fprintf (stderr,
+                           "Do not know what to do with '--heatmap=%s'\n",
+                            optarg);
+                        exit (1);
+                        break;
+                }
         }
-        if (ch == 'm') {
-            max_steps = atol (optarg);
-        }
-        if (ch == 'M') {
-            max_steps = BILLION * atol (optarg);
-        }
-        if (ch == 'd') {
-            debug = true;
-        }
-        if (ch == 'h' || ch == 'H') {
-            show_heatmap = ch == 'h' ? HEATMAP_ABS : HEATMAP_PERC;
-        }
-        if (ch == 256) {
-            switch (tolower (* optarg)) {
-                case 'a': show_heatmap = HEATMAP_ABS;  break;
-                case 'p':
-                case '%': show_heatmap = HEATMAP_PERC; break;
-                default:
-                    fprintf (stderr,
-                       "Do not know what to do with '--heatmap=%s'\n", optarg);
-                    exit (1);
-                    break;
-            }
-        }
+    }
+
+    /*
+     * Parse the betza string, and turn it into a move
+     */
+    move_t move = parse_betza (optind < argc ? argv [optind] : "N");
+    if (debug) {
+        dump_move (move);
     }
 
     /*
@@ -164,19 +167,6 @@ int main (int argc, char ** argv) {
     rowcol_t out_of_bounds_col   = 0;
     step_t   steps               = 0;
 
-    size_t nr_of_moves           = 0;
-    move_t move;
-
-    if (optind < argc) {
-        move = parse_betza (argv [optind]);
-    }
-    else {
-        exit (0);  /* Nothing to do */
-    }
-
-    if (debug) {
-        dump_move (move);
-    }
 
     while (1) {
         /*
