@@ -61,7 +61,8 @@ void init_heatmap (short unsigned max_rows, short unsigned max_cols) {
  * Input: int show_heatmap: One of HEATMAP_NONE, HEATMAP_ABS, or HEATMAP_PERC
  *
  */
-void print_heatmap (int unsigned show_heatmap) {
+void print_heatmap (int unsigned show_heatmap, int unsigned show_div,
+                    int argc, char ** argv) {
     printf ("\n");
 
     bool show_percentage =  show_heatmap & HEATMAP_PERC;
@@ -150,6 +151,15 @@ void print_heatmap (int unsigned show_heatmap) {
     /*
      * Print the heatmap
      */
+    if (show_div) {
+        printf ("<div class = 'heatmap %s'>\n",
+                  show_div == HEATMAP_DIV_RIGHT ? "right" : "left");
+        printf ("%% ");
+        for (int i = 0; i < argc; i ++) {
+            printf ("%s ", argv [i]);
+        }
+        printf ("\n");
+    }
     for (int row = min_heatmap_row; row <= max_heatmap_row; row ++) {
         if (!show_compact) {
             printf ("%s\n", line);
@@ -167,7 +177,7 @@ void print_heatmap (int unsigned show_heatmap) {
                                             :       value);
                 }
                 else {
-                    printf (s_format, show_compact ? "." : " ");
+                    printf (s_format, show_compact || show_div ? "." : " ");
                 }
             }
         }
@@ -178,6 +188,9 @@ void print_heatmap (int unsigned show_heatmap) {
     }
     if (!show_compact) {
         printf ("%s\n", line);
+    }
+    if (show_div) {
+        printf ("</div>\n");
     }
 }
 

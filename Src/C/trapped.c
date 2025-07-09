@@ -94,6 +94,7 @@ static struct option longopts [] = {
     {"Max-steps", required_argument, NULL, 'M'},
     {"debug",     no_argument,       NULL, 'd'},
     {"heatmap",   required_argument, NULL, 256},
+    {"div",       required_argument, NULL, 257},
     { NULL,       0,                 NULL,   0},
 };
 
@@ -103,9 +104,10 @@ int main (int argc, char ** argv) {
      * Defaults, can be overridden by options
      */
     value_t (* to_value) (rowcol_t, rowcol_t) = layout ("");
-    step_t max_steps   = BILLION;
-    bool debug         = false;
-    int show_heatmap   = HEATMAP_NONE;
+    step_t max_steps          = BILLION;
+    bool debug                = false;
+    int unsigned show_heatmap = HEATMAP_NONE;
+    int unsigned show_div     = HEATMAP_DIV_NONE;
 
     /*
      * Parse options, if any
@@ -121,7 +123,7 @@ int main (int argc, char ** argv) {
             case 'h': show_heatmap |= HEATMAP_ABS;         break;
             case 'H': show_heatmap |= HEATMAP_PERC;        break;
             case 'c': show_heatmap |= HEATMAP_COMPACT;     break;
-            case 256: {
+            case 256: {   /* --heatmap */
                 char * arg = optarg;
                 while (* arg) {
                     switch (tolower (* arg ++)) {
@@ -138,8 +140,23 @@ int main (int argc, char ** argv) {
                     }
                 };
                 break;
-            }
+            };
+            case 257: {   /* --div */
+                char * arg = optarg;
+                switch (tolower (* arg)) {
+                    case 'r': show_div = HEATMAP_DIV_RIGHT; break;
+                    case 'l': show_div = HEATMAP_DIV_LEFT;  break;
+                };
+                break;
+            };
         }
+    }
+
+    /*
+     * --div implies --heatmap
+     */
+    if (show_div && !(show_heatmap & HEATMAP_TYPE)) {
+        show_heatmap |= HEATMAP_ABS;
     }
 
     /*
@@ -307,7 +324,7 @@ int main (int argc, char ** argv) {
     }
 
     if (show_heatmap) {
-        print_heatmap (show_heatmap);
+        print_heatmap (show_heatmap, show_div, argc, argv);
     }
 
     return 1;

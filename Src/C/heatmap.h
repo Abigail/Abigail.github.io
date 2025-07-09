@@ -12,11 +12,15 @@
 # define HEATMAP_COMPACT  (1 << 2)
 # define HEATMAP_TYPE     (HEATMAP_ABS | HEATMAP_PERC)
 
+# define HEATMAP_DIV_NONE  0
+# define HEATMAP_DIV_RIGHT 1
+# define HEATMAP_DIV_LEFT  2
+
 typedef step_t ** heatmap_t;
 
-extern void init_heatmap (short unsigned, short unsigned);
-extern void print_heatmap (int unsigned);
-extern void record_move (int, int);
+extern void init_heatmap  (short unsigned, short unsigned);
+extern void print_heatmap (int   unsigned,   int unsigned, int, char **);
+extern void record_move   (int,  int);
 
 
 # endif
