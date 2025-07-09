@@ -102,11 +102,18 @@ differently than the <strong>Knight</strong>.</p>
 <h4 id = 'square'>Square</h4>
 
 <div class = 'heatmap right'>
-. 320 . 172 . 
-96 . . . 399 
-. . * . . 
-437 . . . 163 
-. 164 . 264 . 
+% ./trapped -m 10000 -l s_sq &mdash;div r N 
++-----+-----+-----+-----+-----+
+|   . | 320 |   . | 172 |   . |
++-----+-----+-----+-----+-----+
+|  96 |   . |   . |   . | 399 |
++-----+-----+-----+-----+-----+
+|   . |   . |  *  |   . |   . |
++-----+-----+-----+-----+-----+
+| 437 |   . |   . |   . | 163 |
++-----+-----+-----+-----+-----+
+|   . | 164 |   . | 264 |   . |
++-----+-----+-----+-----+-----+
 </div>
 
 <p>Of the traditional Chess pieces, this is the only piece which gets
@@ -120,11 +127,18 @@ of the <strong>Knight</strong> are used, but some more than others.</p>
 <h4 id = 'diamond'>Diamond</h4>
 
 <div class = 'heatmap left'>
-. 355 . 652 . 
-538 . . . 295 
-. . * . . 
-416 . . . 531 
-. 494 . 441 . 
+% ./trapped -m 10000 -l s_d &mdash;div l N 
++-----+-----+-----+-----+-----+
+|   . | 355 |   . | 652 |   . |
++-----+-----+-----+-----+-----+
+| 538 |   . |   . |   . | 295 |
++-----+-----+-----+-----+-----+
+|   . |   . |  *  |   . |   . |
++-----+-----+-----+-----+-----+
+| 416 |   . |   . |   . | 531 |
++-----+-----+-----+-----+-----+
+|   . | 494 |   . | 441 |   . |
++-----+-----+-----+-----+-----+
 </div>
 
 <p>On the Diamond Spiral, the <strong>Knight</strong> remains free for almost twice
@@ -139,11 +153,18 @@ moves on the Square Spiral.</p>
 <h4 id = 'folded'>Folded</h4>
 
 <div class = 'heatmap right'>
-. 3 . 3 . 
-11 . . . 13 
-. . * . . 
-4 . . . 5 
-. 9 . 2 .
+% ./trapped -m 10000 -l w_fo &mdash;div r N 
++----+----+----+----+----+
+|  . |  3 |  . |  3 |  . |
++----+----+----+----+----+
+| 11 |  . |  . |  . | 13 |
++----+----+----+----+----+
+|  . |  . |  * |  . |  . |
++----+----+----+----+----+
+|  4 |  . |  . |  . |  5 |
++----+----+----+----+----+
+|  . |  9 |  . |  2 |  . |
++----+----+----+----+----+
 </div>
 
 <p>On the Folded Wedge, the <strong>Knight</strong> gets trapped quickly, after 50 steps. </p>
@@ -151,17 +172,25 @@ moves on the Square Spiral.</p>
 <h4 id = 'flat'>Flat</h4>
 
 <div class = 'heatmap left'>
-. . . 6 . 
-2497 . . . 4992 
-. . * . . 
-6 . . . 1 
-. 2493 . 5 .
+% ./trapped -m 10000 -l w_fl &mdash;div l N 
++------+------+------+------+------+
+|    . |    . |    . |    6 |    . |
++------+------+------+------+------+
+| 2497 |    . |    . |    . | 4992 |
++------+------+------+------+------+
+|    . |    . |   *  |    . |    . |
++------+------+------+------+------+
+|    6 |    . |    . |    . |    1 |
++------+------+------+------+------+
+|    . | 2493 |    . |    5 |    . |
++------+------+------+------+------+
 </div>
 
 <p>On the Flat Wedge, the <strong>Knight</strong> bounces around for the first 30 steps,
 then, making triangular shaped turns, escapes to infinity. It uses
 a four step cycle to move one square to the upper right, giving it
 an escape velocity of <span class = 'latex-inline'>\(\frac{\sqrt{2}}{4}\)</span>.</p>
+<h2 id = 'animation'>Animation</h2>
 
 <div class = 'trapped' data-piece = 'knight'></div>
 
