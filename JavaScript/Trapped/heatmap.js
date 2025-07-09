@@ -87,7 +87,7 @@ function make_heatmap (args = {}) {
         }
         row . forEach ((field) => {
             if (field == "*") {
-                table += "<td style = 'text-align: center'>*</td>"
+                table += "<td style = 'text-align: center'>&#x2735;</td>"
             }
             else if (field == ".") {
                 table += "<td></td>"
