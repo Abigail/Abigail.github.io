@@ -66,6 +66,7 @@ Links: [%%WIKI%%](#wiki:Knight_(chess)),
 
 <div class = 'heatmap right'>
 % ./trapped -m 10000 -l s_sq --div r N 
+% Box: [-2, 2] [-2, 2]
 +-----+-----+-----+-----+-----+
 |   . | 320 |   . | 172 |   . |
 +-----+-----+-----+-----+-----+
@@ -91,6 +92,7 @@ of the **Knight** are used, but some more than others.
 
 <div class = 'heatmap left'>
 % ./trapped -m 10000 -l s_d --div l N 
+% Box: [-2, 2] [-2, 2]
 +-----+-----+-----+-----+-----+
 |   . | 355 |   . | 652 |   . |
 +-----+-----+-----+-----+-----+
@@ -117,6 +119,7 @@ moves on the Square Spiral.
 
 <div class = 'heatmap right'>
 % ./trapped -m 10000 -l w_fo --div r N 
+% Box: [-2, 2] [-2, 2]
 +----+----+----+----+----+
 |  . |  3 |  . |  3 |  . |
 +----+----+----+----+----+
@@ -136,6 +139,7 @@ On the Folded Wedge, the **Knight** gets trapped quickly, after 50 steps.
 
 <div class = 'heatmap left'>
 % ./trapped -m 10000 -l w_fl --div l N 
+% Box: [-2, 2] [-2, 2]
 +------+------+------+------+------+
 |    . |    . |    . |    6 |    . |
 +------+------+------+------+------+
