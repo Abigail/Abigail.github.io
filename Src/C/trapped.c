@@ -111,10 +111,10 @@ int main (int argc, char ** argv) {
      * Parse options, if any
      */
     int ch;
-    while ((ch = getopt_long (argc, argv, "b:m:M:dhHc",
+    while ((ch = getopt_long (argc, argv, "l:m:M:dhHc",
                               longopts, NULL)) != -1) {
         switch (ch) {
-            case 'b': to_value =          layout (optarg); break;
+            case 'l': to_value =          layout (optarg); break;
             case 'm': max_steps =           atol (optarg); break;
             case 'M': max_steps = BILLION * atol (optarg); break;
             case 'd': debug = true;                        break;
