@@ -278,7 +278,7 @@ int main (int argc, char ** argv) {
         if (found) {
             steps ++;
             if (show_heatmap) {
-                record_move (row - best_row, col - best_col);
+                record_move (best_row - row, best_col - col);
             }
             row      = best_row;
             col      = best_col;

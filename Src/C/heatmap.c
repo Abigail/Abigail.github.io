@@ -74,7 +74,7 @@ void print_heatmap (int unsigned show_heatmap) {
      */
     step_t max_value    = 0;
     step_t total_steps  = 0;
-    for (int row = max_heatmap_row; row >= min_heatmap_row; row --) {
+    for (int row = min_heatmap_row; row <= max_heatmap_row; row ++) {
         for (int col = min_heatmap_col; col <= max_heatmap_col; col ++) {
             step_t value = heatmap [row + heatmap_row_offset]
                                    [col + heatmap_col_offset];
@@ -150,7 +150,7 @@ void print_heatmap (int unsigned show_heatmap) {
     /*
      * Print the heatmap
      */
-    for (int row = max_heatmap_row; row >= min_heatmap_row; row --) {
+    for (int row = min_heatmap_row; row <= max_heatmap_row; row ++) {
         if (!show_compact) {
             printf ("%s\n", line);
         }
