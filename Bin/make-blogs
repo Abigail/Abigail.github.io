@@ -955,6 +955,8 @@ sub post_process ($text, $directives) {
         !$$directives {no_piece}) {
         for my $class (qw [trapped boxset]) {
             if ($text !~ /<div[^>]*class\s*=\s*(["'])$class\1/) {
+                $text .= "<h2 id = 'animation'>Animation</h2>\n"
+                         if $class eq "trapped";
                 $text .= sprintf "\n<div class = '%s' data-piece = '%s'>" .
                                  "</div>\n" => $class, $base;
             }

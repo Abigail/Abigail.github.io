@@ -224,6 +224,8 @@ h2, h3, h4 {
     clear: both;
 }
 
-h3 {
-    margin-top:  2rem;
+h2#animation {
+    margin-left:                     0;
+    margin-top:                   2rem;
+    text-align:                 center;
 }
