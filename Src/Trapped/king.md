@@ -144,6 +144,7 @@ Links: [%%WIKI%%](#wiki:King_(chess)),
 
 <div class = 'heatmap right'>
 % ./trapped -m 5000 -l s_sq --div r FW
+% Box: [-1, 1] [-1, 1]
 +------+------+------+
 |    . | 1225 |    . |
 +------+------+------+
@@ -165,6 +166,7 @@ the same number of steps in each of the four orthogonal directions.
 
 <div class = 'heatmap left'>
 % ./trapped -m 10000 -l s_d --div l FW 
+% Box: [-1, 1] [-1, 1]
 +------+------+------+
 | 2485 |    . | 2474 |
 +------+------+------+
@@ -187,11 +189,12 @@ the four diagonal directions, and a single step to the right for each
 #### Folded
 
 <div class = 'heatmap right'>
-% ./trapped -m 10100 -l w_fo --div r FW 
+% ./trapped -m 10000 -l w_fo --div r FW 
+% Box: [-1, 0] [-1, 1]
 +------+------+------+
 |   50 |    . |   50 |
 +------+------+------+
-| 5000 |   *  | 5000 |
+| 4900 |   *  | 5000 |
 +------+------+------+
 </div>
 
@@ -206,15 +209,17 @@ when reaching the edge of the board.
 #### Flat
 
 <div class = 'heatmap left'>
-% ./trapped -m 10199 -l w_fl --div l FW
+% ./trapped -m 10000 -l w_fl --div l FW 
+% Box: [-1, 1] [-1, 1]
 +------+------+------+
-|    . |    . |  150 |
+|    . |    . |  149 |
 +------+------+------+
-| 5000 |   *  | 5000 |
+| 5000 |   *  | 4802 |
 +------+------+------+
 |   49 |    . |    . |
 +------+------+------+
 </div>
+
 
 On the Flat Wedge, the **King** fills the board row by row, alternating going
 with and against the numbers, with a small twist just before reaching

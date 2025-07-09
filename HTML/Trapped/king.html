@@ -6,6 +6,7 @@
 <link rel = 'stylesheet' href =      'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
 <link rel = 'stylesheet' href = '../../Styles/main.css'>
 <link rel = 'stylesheet' href = '../../Styles/Trapped/main.css'>
+<link rel = 'stylesheet' href = '../../Styles/Trapped/main-heatmap.css'>
 <link rel = 'stylesheet' href = '../../Styles/Trapped/king.css'>
 <script src = "../../JavaScript/jquery.js"></script>
 <script id  = 'MathJax-script' async src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.js'></script>
@@ -204,6 +205,7 @@ include <em>Mann</em> (not Royal).</p>
 
 <div class = 'heatmap right'>
 % ./trapped -m 5000 -l s_sq &mdash;div r FW
+% Box: [-1, 1] [-1, 1]
 +------+------+------+
 |    . | 1225 |    . |
 +------+------+------+
@@ -225,6 +227,7 @@ the same number of steps in each of the four orthogonal directions.</p>
 
 <div class = 'heatmap left'>
 % ./trapped -m 10000 -l s_d &mdash;div l FW 
+% Box: [-1, 1] [-1, 1]
 +------+------+------+
 | 2485 |    . | 2474 |
 +------+------+------+
@@ -247,11 +250,12 @@ the four diagonal directions, and a single step to the right for each
 <h4 id = 'folded'>Folded</h4>
 
 <div class = 'heatmap right'>
-% ./trapped -m 10100 -l w_fo &mdash;div r FW 
+% ./trapped -m 10000 -l w_fo &mdash;div r FW 
+% Box: [-1, 0] [-1, 1]
 +------+------+------+
 |   50 |    . |   50 |
 +------+------+------+
-| 5000 |   *  | 5000 |
+| 4900 |   *  | 5000 |
 +------+------+------+
 </div>
 
@@ -266,11 +270,12 @@ when reaching the edge of the board.</p>
 <h4 id = 'flat'>Flat</h4>
 
 <div class = 'heatmap left'>
-% ./trapped -m 10199 -l w_fl &mdash;div l FW
+% ./trapped -m 10000 -l w_fl &mdash;div l FW 
+% Box: [-1, 1] [-1, 1]
 +------+------+------+
-|    . |    . |  150 |
+|    . |    . |  149 |
 +------+------+------+
-| 5000 |   *  | 5000 |
+| 5000 |   *  | 4802 |
 +------+------+------+
 |   49 |    . |    . |
 +------+------+------+
