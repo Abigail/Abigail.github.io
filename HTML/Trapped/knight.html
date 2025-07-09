@@ -15,6 +15,7 @@
 <script src = '../../JavaScript/Trapped/pieces.js'></script>
 <script src = '../../JavaScript/Trapped/boxset.js'></script>
 <script src = '../../JavaScript/Trapped/movement.js'></script>
+<script src = '../../JavaScript/Trapped/heatmap.js'></script>
 <script src = '../../JavaScript/Trapped/pages.js'></script>
 </head>
 
@@ -48,7 +49,7 @@ one or more squares in the same direction as the <strong>Knight</strong>.</p>
 <p><em>Cavalry Chess</em> also has a piece called a <em>Knight</em>, but that moves 
 like the <a href="buffalo.html"><em>Buffalo</em></a>; it also has a piece called
 <em>Knight King</em> which moves like a <a href="centaur.html"><em>Centaur</em></a>.
-<a href="https://en.wikipedia.org/wiki/Shogi">Sh&#x14d;gi <span class = 'uni_name'>(&#x5c06;&#x68cb;)</span></a> also have a piece
+<a href="https://en.wikipedia.org/wiki/Shogi">Sh&#x14d;gi</a> also have a piece
 called <a href="shogi_knight.html"><em>Knight</em></a>, and there is also a 
 <a href="knight_euro.html"><em>Knight</em></a> in <a href="https://en.wikipedia.org/wiki/EuroShogi">EuroShogi</a>. Both pieces move
 differently than the <strong>Knight</strong>.</p>
@@ -100,30 +101,62 @@ differently than the <strong>Knight</strong>.</p>
 
 <h4 id = 'square'>Square</h4>
 
-<div class = "section">
+<div class = 'heatmap right'>
+. 320 . 172 . 
+96 . . . 399 
+. . * . . 
+437 . . . 163 
+. 164 . 264 . 
+</div>
+
 <p>Of the traditional Chess pieces, this is the only piece which gets
 trapped on the Square Spiral. Circling the starting point in an irregular
 way in the opposite direction as the spiral, the <strong>Knight</strong> gets
 trapped after 2,015 steps.</p>
-</div>
+
+<p>As you can see from the heatmap on the right, all eight possible movements
+of the <strong>Knight</strong> are used, but some more than others.</p>
 
 <h4 id = 'diamond'>Diamond</h4>
 
-<div class = "section">
+<div class = 'heatmap left'>
+. 355 . 652 . 
+538 . . . 295 
+. . * . . 
+416 . . . 531 
+. 494 . 441 . 
+</div>
+
 <p>On the Diamond Spiral, the <strong>Knight</strong> remains free for almost twice
 as long as it stays free on the Square Spiral, but it does get
 trapped after 3,722 steps.</p>
-</div>
+
+<p>All eight movements are used, in a more balanced way than the <strong>Knight</strong>
+moves on the Square Spiral.</p>
 
 <h3 id = 'wedge'>Wedge</h3>
 
 <h4 id = 'folded'>Folded</h4>
 
-<div class = "section">
-<p>On the Folded Wedge, the <strong>Knight</strong> gets trapped quickly, after 50 steps. </p>
+<div class = 'heatmap right'>
+. 3 . 3 . 
+11 . . . 13 
+. . * . . 
+4 . . . 5 
+. 9 . 2 .
 </div>
 
+<p>On the Folded Wedge, the <strong>Knight</strong> gets trapped quickly, after 50 steps. </p>
+
 <h4 id = 'flat'>Flat</h4>
+
+<div class = 'heatmap left'>
+. . . 6 . 
+2497 . . . 4992 
+. . * . . 
+6 . . . 1 
+. 2493 . 5 .
+</div>
 
 <p>On the Flat Wedge, the <strong>Knight</strong> bounces around for the first 30 steps,
 then, making triangular shaped turns, escapes to infinity. It uses

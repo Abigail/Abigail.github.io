@@ -64,26 +64,65 @@ Links: [%%WIKI%%](#wiki:Knight_(chess)),
 
 #### Square
 
+<div class = 'heatmap right'>
+. 320 . 172 . 
+96 . . . 399 
+. . * . . 
+437 . . . 163 
+. 164 . 264 . 
+</div>
+
 Of the traditional Chess pieces, this is the only piece which gets
 trapped on the Square Spiral. Circling the starting point in an irregular
 way in the opposite direction as the spiral, the **Knight** gets
 trapped after 2,015 steps.
 
+As you can see from the heatmap on the right, all eight possible movements
+of the **Knight** are used, but some more than others.
+
 #### Diamond
+
+<div class = 'heatmap left'>
+. 355 . 652 . 
+538 . . . 295 
+. . * . . 
+416 . . . 531 
+. 494 . 441 . 
+</div>
 
 On the Diamond Spiral, the **Knight** remains free for almost twice
 as long as it stays free on the Square Spiral, but it does get
 trapped after 3,722 steps.
 
+All eight movements are used, in a more balanced way than the **Knight**
+moves on the Square Spiral.
+
 ### Wedge
 
 #### Folded
+
+<div class = 'heatmap right'>
+. 3 . 3 . 
+11 . . . 13 
+. . * . . 
+4 . . . 5 
+. 9 . 2 .
+</div>
 
 On the Folded Wedge, the **Knight** gets trapped quickly, after 50 steps. 
 
 #### Flat
 
+<div class = 'heatmap left'>
+. . . 6 . 
+2497 . . . 4992 
+. . * . . 
+6 . . . 1 
+. 2493 . 5 .
+</div>
+
 On the Flat Wedge, the **Knight** bounces around for the first 30 steps,
 then, making triangular shaped turns, escapes to infinity. It uses
 a four step cycle to move one square to the upper right, giving it
 an escape velocity of \(\frac{\sqrt{2}}{4}\).
+
