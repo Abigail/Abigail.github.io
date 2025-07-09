@@ -212,3 +212,8 @@ span.mongolian {
     vertical-align:                    middle;
     padding-right:                    1.25rem;
 }
+
+
+a {
+    text-decoration:                     none;
+}
