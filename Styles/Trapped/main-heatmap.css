@@ -1,0 +1,40 @@
+table.heatmap {
+    border-collapse:          collapse;
+    text-align:                  right;
+}
+
+div.heatmap.right {
+    float:                       right;
+    margin-left:                   1em;
+    margin-bottom:                 1ex;
+}
+
+div.heatmap.left {
+    float:                        left;
+    margin-right:                  1em;
+    margin-bottom:                 1ex;
+}
+
+table.heatmap td {
+    border:            1px solid black;
+    border-collapse:          collapse;
+    width:                       4.4ex;
+    height:                      4.4ex;
+    text-align:                 center;
+}
+
+table.heatmap th {
+    text-align:                 center;
+}
+
+figure.heatmap {
+    margin: 0 0 0 0;
+}
+
+figure.heatmap figcaption {
+    background-color: #222;
+    color: #fff;
+    font: italic smaller sans-serif;
+    padding: 3px;
+    text-align: center;
+}

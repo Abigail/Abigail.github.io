@@ -12,6 +12,13 @@ $(window) . on ("load", () => {
 })
 
 
+function index_to_th (index) {
+    if (index < -10) {return "< -10"}
+    if (index >  10) {return "> 10"}
+    return index
+}
+
+
 function make_heatmap (args = {}) {
     let element = args . element
     if (!element) {
@@ -24,6 +31,22 @@ function make_heatmap (args = {}) {
     let description = $(element)  . text ()
     $(element) . html ("")
 
+    let min_row    = 0
+    let max_row    = 0
+    let min_col    = 0
+    let max_col    = 0
+    let has_border = false
+
+    const match = description . match (
+        /^%\s*Box:\s*\[(-?\d+),\s*(-?\d+)\],?\s*\[(-?\d+),\s*(-?\d+)\]/m)
+    if (match) {
+        min_row = +match [1]
+        max_row = +match [2]
+        min_col = +match [3]
+        max_col = +match [4]
+        has_border = true
+    }
+
     let board = description . replaceAll (/[-+|]+/g,     "")
                             . replaceAll (/^\s*%.*\n/gm, "")
                             . replaceAll (/^\s+/gm,      "")
@@ -32,8 +55,6 @@ function make_heatmap (args = {}) {
                             . filter     ((line) => line . match (/\S/))
                             . map        ((line) => line . split (/\s+/))
 
-    console . log (board)
-    
     //
     // Find the max and total
     //
@@ -49,11 +70,21 @@ function make_heatmap (args = {}) {
         })
     })
 
-    console . log (`max = ${max}; total = ${total}`)
-
-    let table = "<table class = 'heatmap'>"
-    board . forEach ((row) => {
+    let table = "<figure class = 'heatmap'><table class = 'heatmap'>"
+    if (has_border) {
+        table += "<tr><th></th>";
+        for (let i = min_col; i <= max_col; i ++) {
+            table += `<th>${index_to_th (i)}</th>`
+        }
+    }
+    board . forEach ((row, row_index) => {
         table += "<tr>"
+        if (has_border) {
+            //
+            // Flip the sign of the row difference, so positive is "up"
+            //
+            table += `<th>${index_to_th (-(min_row + row_index))}</th>`
+        }
         row . forEach ((field) => {
             if (field == "*") {
                 table += "<td style = 'text-align: center'>*</td>"
@@ -66,11 +97,17 @@ function make_heatmap (args = {}) {
                 let perc     = Math . round (100 * value / total)
                 let col_perc = 100 - (100 * value / max_value) / 2
                 let hsl      = `hsl(0, 100%, ${col_perc}%)`
-                table += `<td style = 'background-color: ${hsl}'>${perc}%</td>`
+                let content  = `${perc}%`
+                if (perc < 1) {
+                    content  = value
+                }
+                table += `<td style = 'background-color: ${hsl}'>` +
+                         `${content}</td>`
             }
         })
         table += "</tr>"
     })
     table += "</table>"
+    table += `<figcaption>Heatmap after ${total} moves</figcaption></fig>`
     $(element) . html (table)
 }

@@ -195,31 +195,6 @@ div.movement {
     visibility:           hidden;
 }
 
-table.heatmap {
-    border:            1px solid black;
-    border-collapse:          collapse;
-    text-align:                  right;
-}
-
-div.heatmap.right {
-    float:                       right;
-    margin-left:                   1em;
-    margin-bottom:                 1ex;
-}
-
-div.heatmap.left {
-    float:                        left;
-    margin-right:                  1em;
-    margin-bottom:                 1ex;
-}
-
-table.heatmap td {
-    border:            1px solid black;
-    border-collapse:          collapse;
-    width:                       4.4ex;
-    height:                      4.4ex;
-}
-
 h2, h3, h4 {
     clear: both;
 }

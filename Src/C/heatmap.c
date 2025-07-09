@@ -159,6 +159,9 @@ void print_heatmap (int unsigned show_heatmap, int unsigned show_div,
             printf ("%s ", argv [i]);
         }
         printf ("\n");
+        printf ("%% Box: [%d, %d] [%d, %d]\n",
+                    min_heatmap_row, max_heatmap_row,
+                    min_heatmap_col, max_heatmap_col);
     }
     for (int row = min_heatmap_row; row <= max_heatmap_row; row ++) {
         if (!show_compact) {
