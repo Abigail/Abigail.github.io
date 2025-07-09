@@ -24,11 +24,13 @@ function make_heatmap (args = {}) {
     let description = $(element)  . text ()
     $(element) . html ("")
 
-    let board = description . replaceAll (/[-+|]+/g, "")
-                            . replaceAll (/ +\n/g, "\n")
-                            . split   (/\n+/)
-                            . filter  ((line) => line . match (/\S/))
-                            . map     ((line) => line . split (/\s+/))
+    let board = description . replaceAll (/[-+|]+/g,     "")
+                            . replaceAll (/^\s*%.*\n/gm, "")
+                            . replaceAll (/^\s+/gm,      "")
+                            . replaceAll (/ +\n/g,     "\n")
+                            . split      (/\n+/)
+                            . filter     ((line) => line . match (/\S/))
+                            . map        ((line) => line . split (/\s+/))
 
     console . log (board)
     

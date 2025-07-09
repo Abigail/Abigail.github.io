@@ -223,3 +223,7 @@ table.heatmap td {
 h2, h3, h4 {
     clear: both;
 }
+
+h3 {
+    margin-top:  2rem;
+}
