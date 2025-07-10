@@ -86,9 +86,23 @@ Links: [%%WIKI%%](#wiki:Rook_(chess)),
 
 #### Square
 
+<div class = 'heatmap right'>
+% ./trapped -m 5000 -l s_sq --div r WW 
++------+------+------+
+|    . | 1225 |    . |
++------+------+------+
+| 1260 |   *  | 1255 |
++------+------+------+
+|    . | 1260 |    . |
++------+------+------+
+</div>
+
 Since the **Rook** movement is a superset of the movement of the
 [*Wazir*](wazir.html), it follows the Spiral, visiting all squares
 on the board.
+
+As can be seen from the heatmap on the right, it uses a roughly equal number
+of single steps in each orthogonal direction.
 
 #### Diamond
 
@@ -101,12 +115,36 @@ the Square Spiral.
 
 #### Folded
 
+<div class = 'heatmap right'>
+% ./trapped -m 1000 -l w_fo --div r WW 
+% Box: [-1, 1] [-1, 3]
++---+---+---+---+---+
+| . | 2 | . | . | . |
++---+---+---+---+---+
+| 2 | * | . | . | 1 |
++---+---+---+---+---+
+| . | 1 | . | . | . |
++---+---+---+---+---+
+</div>
+
 On the Folded Wedge, the **Rook** gets trapped very quickly, after 6 moves.
 This is the same number of moves that the [*Wazir*](wazir.html) takes before
 it gets trapped, but there is a slight difference in which squares
 are visited.
 
+All but one of its moves is a single orthogonal step.
+
 #### Flat
+
+<div class = 'heatmap left'>
+% ./trapped -m 5000 -l w_fl --div l WW 
+% Box: [-1, 0] [0, 1]
++------+------+
+| 2500 |    . |
++------+------+
+|   *  | 2500 |
++------+------+
+</div>
 
 On the Flat Wedge the **Rook** quickly escapes to infinity by alternating make 
 a step forward, and a step to the right. This gives it an escape
