@@ -18,6 +18,12 @@ function index_to_th (index) {
     return index
 }
 
+function pretty_total (total) {
+    return total . toString () 
+                 . replace (/000000000$/, "G")
+                 . replace (   /000000$/, "M")
+                 . replace (      /000$/, "k")
+}
 
 function make_heatmap (args = {}) {
     let element = args . element
@@ -108,6 +114,6 @@ function make_heatmap (args = {}) {
         table += "</tr>"
     })
     table += "</table>"
-    table += `<figcaption>Heatmap after ${total} moves</figcaption></fig>`
+    table += `<figcaption>Heatmap after ${pretty_total (total)} moves</figcaption></fig>`
     $(element) . html (table)
 }
