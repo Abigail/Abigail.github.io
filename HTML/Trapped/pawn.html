@@ -6,6 +6,7 @@
 <link rel = 'stylesheet' href =      'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
 <link rel = 'stylesheet' href = '../../Styles/main.css'>
 <link rel = 'stylesheet' href = '../../Styles/Trapped/main.css'>
+<link rel = 'stylesheet' href = '../../Styles/Trapped/main-heatmap.css'>
 <script src = "../../JavaScript/jquery.js"></script>
 <script id  = 'MathJax-script' async src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.js'></script>
 <script id = 'svg-script' src = 'https://cdn.jsdelivr.net/npm/@svgdotjs/svg.js@3.0/dist/svg.min.js'></script>
@@ -15,6 +16,7 @@
 <script src = '../../JavaScript/Trapped/pieces.js'></script>
 <script src = '../../JavaScript/Trapped/boxset.js'></script>
 <script src = '../../JavaScript/Trapped/movement.js'></script>
+<script src = '../../JavaScript/Trapped/heatmap.js'></script>
 <script src = '../../JavaScript/Trapped/pages.js'></script>
 </head>
 
@@ -122,7 +124,7 @@ captures differently than it moves.</p>
   <tr class = 'row-6' markdown = '1'>
     <td class = 'cell-6-0 col-0 ' markdown = '1' rowspan = '2'><strong>Pawn</strong></td>
     <td class = 'cell-6-1 col-1 ' markdown = '1' rowspan = '2'>&#x6B69;&#x5175;</td>
-    <td class = 'cell-6-2 col-2 ' markdown = '1'><a href="https://en.wikipedia.org/wiki/Shogi">Sh&#x14d;gi <span class = 'uni_name'>(&#x5c06;&#x68cb;)</span></a>; <a href="https://en.wikipedia.org/wiki/chu_shogi">Chu&nbsp;Sh&#x014d;gi <span class = 'uni_name'>(&#x4E2D;&#x5C06;&#x68CB;)</span></a></td>
+    <td class = 'cell-6-2 col-2 ' markdown = '1'><a href="https://en.wikipedia.org/wiki/Shogi">Sh&#x14d;gi</a>; <a href="https://en.wikipedia.org/wiki/chu_shogi">Chu&nbsp;Sh&#x014d;gi</a></td>
     <td class = 'cell-6-3 col-3 ' markdown = '1'><a href="gold_general.html?piece=tokin"><em>Tokin</em></a> (Gold General)</td>
     <td class = 'cell-6-4 col-4 ' markdown = '1'><span class =  "no">&#x2717;</span></td>
     <td class = 'cell-6-5 col-5 ' markdown = '1'><span class =  "no">&#x2717;</span></td>
@@ -164,7 +166,7 @@ captures differently than it moves.</p>
   </tr>
   <tr class = 'row-12' markdown = '1'>
     <td class = 'cell-12-0 col-0 ' markdown = '1' colspan = '2'><strong>Dolphin</strong></td>
-    <td class = 'cell-12-2 col-2 ' markdown = '1'><a href="https://www.chessvariants.com/shogivariants.dir/whale.html">Whale&nbsp;Sh&#x14d;gi <span class = 'uni_name'>(&#x9be8;&#x5c06;&#x68cb;)</span></a></td>
+    <td class = 'cell-12-2 col-2 ' markdown = '1'><a href="https://www.chessvariants.com/shogivariants.dir/whale.html">Whale&nbsp;Sh&#x14d;gi</a></td>
     <td class = 'cell-12-3 col-3 ' markdown = '1'></td>
     <td class = 'cell-12-4 col-4 ' markdown = '1'><span class =  "no">&#x2717;</span></td>
     <td class = 'cell-12-5 col-5 ' markdown = '1'><span class =  "no">&#x2717;</span></td>
@@ -199,7 +201,7 @@ captures differently than it moves.</p>
   </tr>
   <tr class = 'row-17' markdown = '1'>
     <td class = 'cell-17-0 col-0 ' markdown = '1' colspan = '2'><strong>Soldier</strong><sup>2</sup></td>
-    <td class = 'cell-17-2 col-2 ' markdown = '1'><a href="https://en.wikipedia.org/wiki/xiangqi">Xiangqi <span class = 'uni_name'>(&#x8C61;&#x68CB;)</span></a></td>
+    <td class = 'cell-17-2 col-2 ' markdown = '1'><a href="https://en.wikipedia.org/wiki/xiangqi">Xiangqi</a></td>
     <td class = 'cell-17-3 col-3 ' markdown = '1'></td>
     <td class = 'cell-17-4 col-4 ' markdown = '1'><span class =  "no">&#x2717;</span></td>
     <td class = 'cell-17-5 col-5 ' markdown = '1'><span class =  "no">&#x2717;</span></td>
@@ -207,7 +209,7 @@ captures differently than it moves.</p>
   <tr class = 'row-18' markdown = '1'>
     <td class = 'cell-18-0 col-0 ' markdown = '1'><strong>Sparrow Pawn</strong></td>
     <td class = 'cell-18-1 col-1 ' markdown = '1'>&#x8411;&#x6B69;</td>
-    <td class = 'cell-18-2 col-2 ' markdown = '1'><a href="https://en.wikipedia.org/wiki/Wa_shogi">Wa&nbsp;Sh&#x14d;gi <span class = 'uni_name'>(&#x548C;&#x5C06;&#x68CB;)</span></a></td>
+    <td class = 'cell-18-2 col-2 ' markdown = '1'><a href="https://en.wikipedia.org/wiki/Wa_shogi">Wa&nbsp;Sh&#x14d;gi</a></td>
     <td class = 'cell-18-3 col-3 ' markdown = '1'><a href="gold_general.html?piece=golden_bird"><em>Golden Bird</em></a></td>
     <td class = 'cell-18-4 col-4 ' markdown = '1'><span class =  "no">&#x2717;</span></td>
     <td class = 'cell-18-5 col-5 ' markdown = '1'><span class =  "no">&#x2717;</span></td>
@@ -224,7 +226,7 @@ captures differently than it moves.</p>
 <p><sup>1</sup> Except for the one in front of the
              <a href="dragon_king.html?piece=baras"><em>Baras</em></a>; each game starts
              with 1. d2-d4, d7-d5.<br>
-<sup>2</sup> In <a href="https://en.wikipedia.org/wiki/xiangqi">Xiangqi <span class = 'uni_name'>(&#x8C61;&#x68CB;)</span></a>, once the <strong>Soldier</strong> crosses the river,
+<sup>2</sup> In <a href="https://en.wikipedia.org/wiki/xiangqi">Xiangqi</a>, once the <strong>Soldier</strong> crosses the river,
              in addition to moving one square forward, it may also
              move one square sideways. This makes it move like the
              <a href="banner.html"><em>Banner</em></a>.</p>
@@ -232,9 +234,20 @@ captures differently than it moves.</p>
 
 <h3 id = 'spiral_and_wedge'>Spiral and Wedge</h3>
 
+<div class = 'heatmap right'>
+% ./trapped -m k -l s_sq &mdash;div r fW 
+% Box: [-1, 0] [0, 0]
++------+
+| 1000 |
++------+
+|   *  |
++------+
+</div>
+
 <p>On the Square and Diamond Spiral and both the Folded and Flat Wedge,
 the %%PIECE%% escapes to infinity in a straight line forward. Its
 escape velocity is <span class = 'latex-inline'>\(1\)</span> on all the boards.</p>
+<h2 id = 'animation'>Animation</h2>
 
 <div class = 'trapped' data-piece = 'pawn'></div>
 
