@@ -16,6 +16,8 @@ short          min_heatmap_row    = 0;   /* min/max values in the heat map */
 short          max_heatmap_row    = 0;   /* In outside coordinates         */
 short          min_heatmap_col    = 0;
 short          max_heatmap_col    = 0;
+short unsigned heatmap_max_rows   = 0;
+short unsigned heatmap_max_cols   = 0;
 
 
 /*
@@ -31,6 +33,8 @@ short          max_heatmap_col    = 0;
  */
 
 void init_heatmap (short unsigned max_rows, short unsigned max_cols) {
+    heatmap_max_rows   = max_rows;
+    heatmap_max_cols   = max_cols;
     heatmap_rows       = max_rows * 2 + 3;
     heatmap_cols       = max_cols * 2 + 3;
     heatmap_row_offset = max_rows     + 1;
@@ -159,9 +163,16 @@ void print_heatmap (int unsigned show_heatmap, int unsigned show_div,
             printf ("%s ", argv [i]);
         }
         printf ("\n");
-        printf ("%% Box: [%d, %d] [%d, %d]\n",
-                    min_heatmap_row, max_heatmap_row,
-                    min_heatmap_col, max_heatmap_col);
+        printf ("%% Box: [%d%s, %d%s] [%d%s, %d%s]\n",
+                    min_heatmap_row,
+                    min_heatmap_row == -heatmap_row_offset ? "*" : "",
+                    max_heatmap_row,
+                    max_heatmap_row ==  heatmap_row_offset ? "*" : "",
+                    min_heatmap_col,
+                    min_heatmap_col == -heatmap_col_offset ? "*" : "",
+                    max_heatmap_col,
+                    max_heatmap_col ==  heatmap_col_offset ? "*" : ""
+        );
     }
     for (int row = min_heatmap_row; row <= max_heatmap_row; row ++) {
         if (!show_compact) {
@@ -195,6 +206,12 @@ void print_heatmap (int unsigned show_heatmap, int unsigned show_div,
     if (show_div) {
         printf ("</div>\n");
     }
+
+    free (line);
+    free (temp);
+    free (s_format);
+    free (i_format);
+    free (center);
 }
 
 
@@ -208,10 +225,17 @@ void print_heatmap (int unsigned show_heatmap, int unsigned show_div,
  * 
  */
 void record_move (int dr, int dc) {
-    if (dr < -HEATMAP_ROW_SIZE) {dr = -HEATMAP_ROW_SIZE - 1;}
-    if (dr >  HEATMAP_ROW_SIZE) {dr =  HEATMAP_ROW_SIZE + 1;}
-    if (dc < -HEATMAP_ROW_SIZE) {dc = -HEATMAP_ROW_SIZE - 1;}
-    if (dc >  HEATMAP_ROW_SIZE) {dc =  HEATMAP_ROW_SIZE + 1;}
+    /*
+     * Make sure the move is inside
+     */
+    if (dr < -heatmap_max_rows) {dr = -heatmap_max_rows - 1;}
+    if (dr >  heatmap_max_rows) {dr =  heatmap_max_rows + 1;}
+    if (dc < -heatmap_max_cols) {dc = -heatmap_max_cols - 1;}
+    if (dc >  heatmap_max_cols) {dc =  heatmap_max_cols + 1;}
+
+    /*
+     * Adjust min/max values
+     */
     if (dr < min_heatmap_row) {min_heatmap_row = dr;}
     if (dr > max_heatmap_row) {max_heatmap_row = dr;}
     if (dc < min_heatmap_col) {min_heatmap_col = dc;}

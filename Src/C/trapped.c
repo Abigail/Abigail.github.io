@@ -89,13 +89,14 @@ bool has_value (value_t value) {
 
 
 static struct option longopts [] = {
-    {"layout",    required_argument, NULL, 'l'},
-    {"max-steps", required_argument, NULL, 'm'},
-    {"Max-steps", required_argument, NULL, 'M'},
-    {"debug",     no_argument,       NULL, 'd'},
-    {"heatmap",   required_argument, NULL, 256},
-    {"div",       required_argument, NULL, 257},
-    { NULL,       0,                 NULL,   0},
+    {"layout",       required_argument, NULL, 'l'},
+    {"max-steps",    required_argument, NULL, 'm'},
+    {"Max-steps",    required_argument, NULL, 'M'},
+    {"debug",        no_argument,       NULL, 'd'},
+    {"heatmap",      required_argument, NULL, 256},
+    {"div",          required_argument, NULL, 257},
+    {"heatmap-size", required_argument, NULL, 'z'},
+    { NULL,          0,                 NULL,   0},
 };
 
 
@@ -104,16 +105,18 @@ int main (int argc, char ** argv) {
      * Defaults, can be overridden by options
      */
     value_t (* to_value) (rowcol_t, rowcol_t) = layout ("");
-    step_t max_steps          = BILLION;
-    bool debug                = false;
-    int unsigned show_heatmap = HEATMAP_NONE;
-    int unsigned show_div     = HEATMAP_DIV_NONE;
+    step_t max_steps                 = BILLION;
+    bool   debug                     = false;
+    int    unsigned show_heatmap     = HEATMAP_NONE;
+    int    unsigned show_div         = HEATMAP_DIV_NONE;
+    short  unsigned heatmap_row_size = HEATMAP_ROW_SIZE;
+    short  unsigned heatmap_col_size = HEATMAP_COL_SIZE;
 
     /*
      * Parse options, if any
      */
     int ch;
-    while ((ch = getopt_long (argc, argv, "l:m:M:dhHc",
+    while ((ch = getopt_long (argc, argv, "l:m:M:z:dhHc",
                               longopts, NULL)) != -1) {
         switch (ch) {
             case 'l': to_value =          layout (optarg); break;
@@ -123,6 +126,9 @@ int main (int argc, char ** argv) {
             case 'h': show_heatmap |= HEATMAP_ABS;         break;
             case 'H': show_heatmap |= HEATMAP_PERC;        break;
             case 'c': show_heatmap |= HEATMAP_COMPACT;     break;
+            case 'z': heatmap_row_size =
+                      heatmap_col_size = (short unsigned) atoi (optarg);
+                                                           break;
             case 256: {   /* --heatmap */
                 char * arg = optarg;
                 while (* arg) {
@@ -171,7 +177,7 @@ int main (int argc, char ** argv) {
      * Initialize the heatmap
      */
     if (show_heatmap) {
-        init_heatmap (HEATMAP_ROW_SIZE, HEATMAP_COL_SIZE);
+        init_heatmap (heatmap_row_size, heatmap_col_size);
     }
 
     /*

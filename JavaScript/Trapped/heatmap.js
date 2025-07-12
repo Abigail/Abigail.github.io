@@ -12,9 +12,17 @@ $(window) . on ("load", () => {
 })
 
 
-function index_to_th (index) {
-    if (index < -10) {return "< -10"}
-    if (index >  10) {return "> 10"}
+function index_to_th (index, type, info) {
+    let [min_row, max_row, min_col, max_col] = info
+    if (type == "rows") {
+        if (min_row && index <= min_row) {return `< ${min_row + 1}`}
+        if (max_row && index >= max_row) {return `> ${max_row - 1}`}
+    }
+    if (type == "cols") {
+        if (min_col && index <= min_col) {return `< ${min_col + 1}`}
+        if (max_col && index >= max_col) {return `> ${max_col - 1}`}
+    }
+
     return index
 }
 
@@ -42,16 +50,28 @@ function make_heatmap (args = {}) {
     let min_col    = 0
     let max_col    = 0
     let has_border = false
+    let min_row_b  = false
+    let max_row_b  = false
+    let min_col_b  = false
+    let max_col_b  = false
 
-    const match = description . match (
-        /^%\s*Box:\s*\[(-?\d+),\s*(-?\d+)\],?\s*\[(-?\d+),\s*(-?\d+)\]/m)
+    const pattern = new RegExp (
+        /^%\s*Box:\s*\[(-?\d+)(\*?),\s*(-?\d+)(\*?)\],?/ . source +
+                 /\s*\[(-?\d+)(\*?),\s*(-?\d+)(\*?)\]/   . source, 'm')
+    const match = description . match (pattern)
     if (match) {
-        min_row = +match [1]
-        max_row = +match [2]
-        min_col = +match [3]
-        max_col = +match [4]
+        min_row   = +match [1]
+        max_row   = +match [3]
+        min_col   = +match [5]
+        max_col   = +match [7]
+        if (match [2] == "*") {min_row_b = min_row}
+        if (match [4] == "*") {max_row_b = max_row}
+        if (match [6] == "*") {min_col_b = min_col}
+        if (match [8] == "*") {max_col_b = max_col}
         has_border = true
     }
+
+    let minmax_b = [min_row_b, max_row_b, min_col_b, max_col_b];
 
     let board = description . replaceAll (/[-+|]+/g,     "")
                             . replaceAll (/^\s*%.*\n/gm, "")
@@ -80,18 +100,20 @@ function make_heatmap (args = {}) {
     if (has_border) {
         table += "<tr><th></th>";
         for (let i = min_col; i <= max_col; i ++) {
-            table += `<th>${index_to_th (i)}</th>`
+            table += `<th>${index_to_th (i, "cols", minmax_b)}</th>`
         }
     }
     board . forEach ((row, row_index) => {
         table += "<tr>"
+        let real_row = min_row + row_index
         if (has_border) {
             //
             // Flip the sign of the row difference, so positive is "up"
             //
-            table += `<th>${index_to_th (-(min_row + row_index))}</th>`
+            table += `<th>${index_to_th (-(real_row), "rows", minmax_b)}</th>`
         }
-        row . forEach ((field) => {
+        row . forEach ((field, col_index) => {
+            let real_col = min_col + col_index
             if (field == "*") {
                 table += "<td style = 'text-align: center'>&#x2735;</td>"
             }
@@ -102,18 +124,27 @@ function make_heatmap (args = {}) {
                 let value    = + field
                 let perc     = Math . round (100 * value / total)
                 let col_perc = 100 - (100 * value / max_value) / 2
-                let hsl      = `hsl(0, 100%, ${col_perc}%)`
+                let color    = `hsl(0, 100%, ${col_perc}%)`
                 let content  = `${perc}%`
                 if (perc < 1 || value < 100) {
                     content  = value
                 }
-                table += `<td style = 'background-color: ${hsl}'>` +
+
+                if (min_row_b && min_row_b == real_row ||
+                    max_row_b && max_row_b == real_row ||
+                    min_col_b && min_col_b == real_col ||
+                    max_col_b && max_col_b == real_col) {
+                    color = 'orange'
+                }
+
+                table += `<td style = 'background-color: ${color}'>` +
                          `${content}</td>`
             }
         })
         table += "</tr>"
     })
     table += "</table>"
-    table += `<figcaption>Heatmap after ${pretty_total (total)} moves</figcaption></fig>`
+    table += `<figcaption>Heatmap after ${pretty_total (total)} ` +
+             `moves</figcaption></fig>`
     $(element) . html (table)
 }
