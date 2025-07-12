@@ -149,12 +149,54 @@ of single steps in each orthogonal direction.</p>
 
 <h4 id = 'diamond'>Diamond</h4>
 
-<div class = "section">
+<div class = 'heatmap left'>
+% ./trapped -l s_d -m 10000 &mdash;div l -z 6 WW 
+% Box: [-7*, 7*] [-2, 7*]
++------+------+------+------+------+------+------+------+------+------+
+|    . |    . |   46 |    . |    . |    . |    . |    . |    . |    . |
++------+------+------+------+------+------+------+------+------+------+
+|    . |    . |    1 |    . |    . |    . |    . |    . |    . |    . |
++------+------+------+------+------+------+------+------+------+------+
+|    . |    . |    1 |    . |    . |    . |    . |    . |    . |    . |
++------+------+------+------+------+------+------+------+------+------+
+|    . |    . |    1 |    . |    . |    . |    . |    . |    . |    . |
++------+------+------+------+------+------+------+------+------+------+
+|    . |    . |    1 |    . |    . |    . |    . |    . |    . |    . |
++------+------+------+------+------+------+------+------+------+------+
+|    . |    . |    1 |    . |    . |    . |    . |    . |    . |    . |
++------+------+------+------+------+------+------+------+------+------+
+|    . |    . | 2724 |    . |    . |    . |    . |    . |    . |    . |
++------+------+------+------+------+------+------+------+------+------+
+|   52 | 2777 |   *  | 1484 |    1 |    1 |    1 |    1 |    1 |   46 |
++------+------+------+------+------+------+------+------+------+------+
+|    . |    . | 2810 |    . |    . |    . |    . |    . |    . |    . |
++------+------+------+------+------+------+------+------+------+------+
+|    . |    . |    1 |    . |    . |    . |    . |    . |    . |    . |
++------+------+------+------+------+------+------+------+------+------+
+|    . |    . |    1 |    . |    . |    . |    . |    . |    . |    . |
++------+------+------+------+------+------+------+------+------+------+
+|    . |    . |    1 |    . |    . |    . |    . |    . |    . |    . |
++------+------+------+------+------+------+------+------+------+------+
+|    . |    . |    1 |    . |    . |    . |    . |    . |    . |    . |
++------+------+------+------+------+------+------+------+------+------+
+|    . |    . |    1 |    . |    . |    . |    . |    . |    . |    . |
++------+------+------+------+------+------+------+------+------+------+
+|    . |    . |   46 |    . |    . |    . |    . |    . |    . |    . |
++------+------+------+------+------+------+------+------+------+------+
+</div>
+
 <p>On the Diamond Spiral, the <strong>Rook</strong> uses a regular pattern to fill
 <span class = 'latex-inline'>\(\frac{5}{8} = 62.5\%\)</span> of the board. This pattern is similar, but
 rotated 45&deg; of the pattern the <a href="bishop.html"><em>Bishop</em></a> uses on
 the Square Spiral.</p>
-</div>
+
+<p>Most of the moves of the <strong>Rook</strong> on the Diamond Spiral will be one
+step, orthogonal, moves. It will also make slide 2 or more squares 
+orthogonally forward, backward, and to the right. But it will do each
+distance at most once. So, it only once moves two squares forward, once
+three squares forward, once four squares forward, etc. It does so for
+each of the three in equal amounts. It does the same amount of multi-square
+steps orthogonally to the left, but then it steps just two squares.</p>
 
 <h3 id = 'wedge'>Wedge</h3>
 
