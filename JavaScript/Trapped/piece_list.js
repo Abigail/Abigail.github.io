@@ -290,7 +290,7 @@ let pieces = {
         results: {
             spiral_square:  "F/31.25%", 
             spiral_diamond: "F/50%",
-            wedge_folded:    sqrt (2, 3),
+            wedge_folded:    sqrt (2, 2),
             wedge_flat:      sqrt (2),
         },
     },

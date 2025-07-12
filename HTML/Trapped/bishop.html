@@ -6,6 +6,7 @@
 <link rel = 'stylesheet' href =      'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
 <link rel = 'stylesheet' href = '../../Styles/main.css'>
 <link rel = 'stylesheet' href = '../../Styles/Trapped/main.css'>
+<link rel = 'stylesheet' href = '../../Styles/Trapped/main-heatmap.css'>
 <script src = "../../JavaScript/jquery.js"></script>
 <script id  = 'MathJax-script' async src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.js'></script>
 <script id = 'svg-script' src = 'https://cdn.jsdelivr.net/npm/@svgdotjs/svg.js@3.0/dist/svg.min.js'></script>
@@ -15,6 +16,7 @@
 <script src = '../../JavaScript/Trapped/pieces.js'></script>
 <script src = '../../JavaScript/Trapped/boxset.js'></script>
 <script src = '../../JavaScript/Trapped/movement.js'></script>
+<script src = '../../JavaScript/Trapped/heatmap.js'></script>
 <script src = '../../JavaScript/Trapped/pages.js'></script>
 </head>
 
@@ -83,42 +85,124 @@ sometimes under a different name.</p>
 
 <h4 id = 'square'>Square</h4>
 
-<div class = "section">
+<div class = 'heatmap right'>
+% ./trapped -m 10000 -l s_sq &mdash;div r -z 6 FF 
+% Box: [-7*, 7*] [-7*, 7*]
++------+------+------+------+------+------+------+------+------+------+------+------+------+------+------+
+|   46 |    . |    . |    . |    . |    . |    . |    . |    . |    . |    . |    . |    . |    . |   46 |
++------+------+------+------+------+------+------+------+------+------+------+------+------+------+------+
+|    . |    1 |    . |    . |    . |    . |    . |    . |    . |    . |    . |    . |    . |    1 |    . |
++------+------+------+------+------+------+------+------+------+------+------+------+------+------+------+
+|    . |    . |    1 |    . |    . |    . |    . |    . |    . |    . |    . |    . |    1 |    . |    . |
++------+------+------+------+------+------+------+------+------+------+------+------+------+------+------+
+|    . |    . |    . |    1 |    . |    . |    . |    . |    . |    . |    . |    1 |    . |    . |    . |
++------+------+------+------+------+------+------+------+------+------+------+------+------+------+------+
+|    . |    . |    . |    . |    1 |    . |    . |    . |    . |    . |    1 |    . |    . |    . |    . |
++------+------+------+------+------+------+------+------+------+------+------+------+------+------+------+
+|    . |    . |    . |    . |    . |    1 |    . |    . |    . |    1 |    . |    . |    . |    . |    . |
++------+------+------+------+------+------+------+------+------+------+------+------+------+------+------+
+|    . |    . |    . |    . |    . |    . | 2724 |    . | 1484 |    . |    . |    . |    . |    . |    . |
++------+------+------+------+------+------+------+------+------+------+------+------+------+------+------+
+|    . |    . |    . |    . |    . |    . |    . |   *  |    . |    . |    . |    . |    . |    . |    . |
++------+------+------+------+------+------+------+------+------+------+------+------+------+------+------+
+|    . |    . |    . |    . |    . |    . | 2777 |    . | 2810 |    . |    . |    . |    . |    . |    . |
++------+------+------+------+------+------+------+------+------+------+------+------+------+------+------+
+|    . |    . |    . |    . |    . |   52 |    . |    . |    . |    1 |    . |    . |    . |    . |    . |
++------+------+------+------+------+------+------+------+------+------+------+------+------+------+------+
+|    . |    . |    . |    . |    . |    . |    . |    . |    . |    . |    1 |    . |    . |    . |    . |
++------+------+------+------+------+------+------+------+------+------+------+------+------+------+------+
+|    . |    . |    . |    . |    . |    . |    . |    . |    . |    . |    . |    1 |    . |    . |    . |
++------+------+------+------+------+------+------+------+------+------+------+------+------+------+------+
+|    . |    . |    . |    . |    . |    . |    . |    . |    . |    . |    . |    . |    1 |    . |    . |
++------+------+------+------+------+------+------+------+------+------+------+------+------+------+------+
+|    . |    . |    . |    . |    . |    . |    . |    . |    . |    . |    . |    . |    . |    1 |    . |
++------+------+------+------+------+------+------+------+------+------+------+------+------+------+------+
+|    . |    . |    . |    . |    . |    . |    . |    . |    . |    . |    . |    . |    . |    . |   46 |
++------+------+------+------+------+------+------+------+------+------+------+------+------+------+------+
+</div>
+
 <p>On the Spiral, the <strong>Bishop</strong> moves in a regular pattern. However, 
 despite the possible moves of the <strong>Bishop</strong> being four fold symmetric,
 the resulting pattern isn't, making the <strong>Bishop</strong> slightly interesting.</p>
 
-<p>If we take the limit, we see that the %%PIECE%% will visit
+<p>If we take the limit, we see that the <strong>Bishop</strong> will visit
 \(\frac{1}{2} \cdot (\frac{1}{2} \cdot \frac{3}{4} + \frac{1}{4}) =
   \frac{5}{16} = 31.25 \%\) of the squares on the board.</p>
 
 <p>The movement of <strong>Bishop</strong> on the Square Spiral is similar, but rotated
 45&deg; of the <a href="rook.html"><em>Rook</em></a> on the Diamond Spiral.</p>
-</div>
+
+<p>Most of the moves of the <strong>Bishop</strong> on the Square Spiral will be one
+step, diagonal, moves. It will also make slide 2 or more squares 
+diagonal forward (right and left), or backward right. But it will do each
+distance at most once. So, it only once moves two squares forward, once
+three squares forward, once four squares forward, etc. It does so for
+each of the three in equal amounts. It does the same amount of multi-square
+steps diagonally backward left, but then it steps just two squares.</p>
 
 <h4 id = 'diamond'>Diamond</h4>
 
-<div class = "section">
+<div class = 'heatmap left'>
+% ./trapped -m 10k -l s_d &mdash;div l FF 
+% Box: [-1, 1] [-1, 1]
++------+------+------+
+| 2550 |    . | 2500 |
++------+------+------+
+|    . |   *  |    . |
++------+------+------+
+| 2450 |    . | 2500 |
++------+------+------+
+</div>
+
 <p>On the Diamond Spiral, the <strong>Bishop</strong> moves in the same way as
 the <a href="ferz.html"><em>Ferz</em></a>, visiting <span class = 'latex-inline'>\(50\%\)</span> of the squares
 on the board.</p>
-</div>
+
+<p>As can be seen by the heatmap on the right, on the Diamond Square,
+the <strong>Bishop</strong> makes a roughly equal amount of single square steps
+in each of the four orthogonal directions.</p>
 
 <h3 id = 'wedge'>Wedge</h3>
 
 <h4 id = 'folded'>Folded</h4>
 
-<div class = "section">
-<p>On the Folded Wedge, the <strong>Bishop</strong> escapes to infinity, using a 
-three step loop to move one square to the upper right. This gives
-the %%PIECE%% an escape velocity of <span class = 'latex-inline'>\(\frac{\sqrt{2}}{3}\)</span>.</p>
+<div class = 'heatmap right'>
+% ./trapped -m 10k -l w_fo &mdash;div r FF 
+% Box: [-1, 1] [-1, 1]
++------+------+------+
+| 2500 |    . | 5000 |
++------+------+------+
+|    . |   *  |    . |
++------+------+------+
+|    . |    . | 2500 |
++------+------+------+
 </div>
 
+<p>On the Folded Wedge, the <strong>Bishop</strong> escapes to infinity, using a 
+four step loop to move two squares to the upper right. This gives
+the <strong>Bishop</strong> an escape velocity of <span class = 'latex-inline'>\(\frac{\sqrt{2}}{2}\)</span>.</p>
+
+<p>As seen from the heatmap on the right, on the Folded Wedge, the
+<strong>Bishop</strong> only uses three different moves. For two single square
+moves diagonally forward right, it make a single step forward left,
+and a single step backward right.</p>
+
 <h4 id = 'flat'>Flat</h4>
+
+<div class = 'heatmap left'>
+% ./trapped -m k -l w_fl &mdash;div l FF 
+% Box: [-1, 0] [0, 1]
++------+------+
+|    . | 1000 |
++------+------+
+|   *  |    . |
++------+------+
+</div>
 
 <p>On the Flat Wedge, the <strong>Bishop</strong> escapes as well, keep to the right
 edge of the Wedge, moving one square to the upper right in each step.
 This means an escape velocity of <span class = 'latex-inline'>\(\sqrt{2}\)</span>.</p>
+<h2 id = 'animation'>Animation</h2>
 
 <div class = 'trapped' data-piece = 'bishop'></div>
 
