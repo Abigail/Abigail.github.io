@@ -91,7 +91,6 @@ bool has_value (value_t value) {
 static struct option longopts [] = {
     {"layout",       required_argument, NULL, 'l'},
     {"max-steps",    required_argument, NULL, 'm'},
-    {"Max-steps",    required_argument, NULL, 'M'},
     {"debug",        no_argument,       NULL, 'd'},
     {"heatmap",      required_argument, NULL, 256},
     {"div",          required_argument, NULL, 257},
@@ -116,12 +115,10 @@ int main (int argc, char ** argv) {
      * Parse options, if any
      */
     int ch;
-    while ((ch = getopt_long (argc, argv, "l:m:M:z:dhHc",
+    while ((ch = getopt_long (argc, argv, "l:m:z:dhHc",
                               longopts, NULL)) != -1) {
         switch (ch) {
             case 'l': to_value =          layout (optarg); break;
-            case 'm': max_steps =           atol (optarg); break;
-            case 'M': max_steps = BILLION * atol (optarg); break;
             case 'd': debug = true;                        break;
             case 'h': show_heatmap |= HEATMAP_ABS;         break;
             case 'H': show_heatmap |= HEATMAP_PERC;        break;
@@ -129,6 +126,23 @@ int main (int argc, char ** argv) {
             case 'z': heatmap_row_size =
                       heatmap_col_size = (short unsigned) atoi (optarg);
                                                            break;
+            case 'm': {
+                char * end;
+                max_steps = strtoll (optarg, &end, 10);
+                if (max_steps == 0) {
+                    max_steps = 1;
+                }
+                switch (tolower (* end)) {
+                    case  0:  break;
+                    case 'g': max_steps *= 1000;
+                    case 'm': max_steps *= 1000;
+                    case 'k': max_steps *= 1000; break;
+                    default: fprintf (stderr, "Cannot parse -m %s\n", optarg);
+                             exit (1);
+                             break;
+                };
+                break;
+            };
             case 256: {   /* --heatmap */
                 char * arg = optarg;
                 while (* arg) {
