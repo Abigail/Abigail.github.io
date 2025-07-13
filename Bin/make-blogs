@@ -171,6 +171,7 @@ my %WHERE_INFO = (
 
 
 our %MACROS; require "$BIN_DIR/macros.pl";
+require "$BIN_DIR/Trapped.pm";
 
 my %LINK_GROUP; init_link_group ();
 
@@ -686,6 +687,11 @@ sub pre_process ($text, $directives) {
     # Handle macros
     #
     $text =~ s {(%%([A-Z0-9_]+)%%)} {$MACROS {$type} {$2} || $1}eg;
+
+    #
+    # Replace <!-- @@ CODE -->
+    #
+    1 while $text =~ s/<!--\s*\@\@\s*(.*?)-->/$1/ees;
 
     #
     # Scan for directives, which are of the format
