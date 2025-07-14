@@ -86,23 +86,7 @@ Links: [%%WIKI%%](#wiki:Rook_(chess)),
 
 #### Square
 
-<div class = 'heatmap right'>
-% ./trapped -m 5000 -l s_sq --div r WW 
-+------+------+------+
-|    . | 1225 |    . |
-+------+------+------+
-| 1260 |   *  | 1255 |
-+------+------+------+
-|    . | 1260 |    . |
-+------+------+------+
-</div>
-
-Since the **Rook** movement is a superset of the movement of the
-[*Wazir*](wazir.html), it follows the Spiral, visiting all squares
-on the board.
-
-As can be seen from the heatmap on the right, it uses a roughly equal number
-of single steps in each orthogonal direction.
+<!-- @@ Trapped::wazir        (piece => "Rook") -->
 
 #### Diamond
 

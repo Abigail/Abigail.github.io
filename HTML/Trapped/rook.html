@@ -130,7 +130,8 @@ names.</p>
 <h4 id = 'square'>Square</h4>
 
 <div class = 'heatmap right'>
-% ./trapped -m 5000 -l s_sq &mdash;div r WW 
+% ./trapped -m 5k -l s_sq &mdash;div r WW
+% Box: [-1, 1] [-1, 1]
 +------+------+------+
 |    . | 1225 |    . |
 +------+------+------+
@@ -140,12 +141,12 @@ names.</p>
 +------+------+------+
 </div>
 
-<p>Since the <strong>Rook</strong> movement is a superset of the movement of the
-<a href="wazir.html"><em>Wazir</em></a>, it follows the Spiral, visiting all squares
-on the board.</p>
+<p>The <strong>Rook</strong> can move as a <a href="wazir.html"><em>Wazir</em></a>. Hence, it will
+not get stuck, filling the entire board by just following the spiral.</p>
 
-<p>As can be seen from the heatmap on the right, it uses a roughly equal number
-of single steps in each orthogonal direction.</p>
+<p>As can be seen from the heatmap to the right, the <strong>Rook</strong> makes
+about the same number of steps in each of the four orthogonal
+directions.</p>
 
 <h4 id = 'diamond'>Diamond</h4>
 

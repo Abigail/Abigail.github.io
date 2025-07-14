@@ -77,63 +77,17 @@ Links: [%%WIKI%%](#wiki:Queen_(chess)),
 
 #### Square
 
-<div class = 'heatmap right'>
-% ./trapped -m 5000 -l s_sq --div r FFWW 
-% Box: [-1, 1] [-1, 1]
-+------+------+------+
-|    . | 1225 |    . |
-+------+------+------+
-| 1260 |   *  | 1255 |
-+------+------+------+
-|    . | 1260 |    . |
-+------+------+------+
-</div>
-
-The **Queen** can move like a [*Wazir*](wazir.html), and a *Wazir* 
-can follow the Spiral. Hence, the **Queen** will fill the entire board,
-and not get trapped.
-
-As can be seen from the heatmap to the right, the **Queen** makes about
-the same number of steps in each of the four orthogonal directions.
+<!-- @@ Trapped::wazir        (piece => "Queen") -->
 
 #### Diamond
 
-<div class = 'heatmap left'>
-% ./trapped -m 10000 -l s_d --div l FFWW 
-% Box: [-1, 1] [-1, 1]
-+------+------+------+
-| 2485 |    . | 2474 |
-+------+------+------+
-|    . |   *  |   71 |
-+------+------+------+
-| 2485 |    . | 2485 |
-+------+------+------+
-</div>
-
-The **Queen** can move like a [*Blind Monkey*](blind_monkey.html),
-and a *Blind Monkey* can follow the Spiral. Hence, the **Queen**
-will fill the entire board, and not get trapped.
-
-The **Queen** will make mostly diagonal moves, roughly the same in each of
-the four diagonal directions, and a single step to the right for each
-"layer" of the spiral. She will never slide more than one square.
+<!-- @@ Trapped::blind_monkey (piece => "Queen") -->
 
 ### Wedge
 
 #### Folded
 
-<div class = 'heatmap right'>
-% ./trapped -m 10000 -l w_fo --div r FFWW 
-% Box: [-1, 0] [-1, 1]
-+------+------+------+
-|   50 |    . |   50 |
-+------+------+------+
-| 4900 |   *  | 5000 |
-+------+------+------+
-</div>
-
-The **Queen** can move like the [*Flying Cock*](flying_cock.html), and
-hence will follow the Wedge, filling the entire board.
+<!-- @@ Trapped::flying_cock  (piece => "Queen") -->
 
 #### Flat
 

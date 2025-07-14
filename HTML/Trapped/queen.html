@@ -124,7 +124,7 @@ movements of the <a href="rook.html"><em>Rook</em></a> and <a href="bishop.html"
 <h4 id = 'square'>Square</h4>
 
 <div class = 'heatmap right'>
-% ./trapped -m 5000 -l s_sq &mdash;div r FFWW 
+% ./trapped -m 5k -l s_sq &mdash;div r FFWW
 % Box: [-1, 1] [-1, 1]
 +------+------+------+
 |    . | 1225 |    . |
@@ -135,51 +135,54 @@ movements of the <a href="rook.html"><em>Rook</em></a> and <a href="bishop.html"
 +------+------+------+
 </div>
 
-<p>The <strong>Queen</strong> can move like a <a href="wazir.html"><em>Wazir</em></a>, and a <em>Wazir</em> 
-can follow the Spiral. Hence, the <strong>Queen</strong> will fill the entire board,
-and not get trapped.</p>
+<p>The <strong>Queen</strong> can move as a <a href="wazir.html"><em>Wazir</em></a>. Hence, it will
+not get stuck, filling the entire board by just following the spiral.</p>
 
-<p>As can be seen from the heatmap to the right, the <strong>Queen</strong> makes about
-the same number of steps in each of the four orthogonal directions.</p>
+<p>As can be seen from the heatmap to the right, the <strong>Queen</strong> makes
+about the same number of steps in each of the four orthogonal
+directions.</p>
 
 <h4 id = 'diamond'>Diamond</h4>
 
 <div class = 'heatmap left'>
-% ./trapped -m 10000 -l s_d &mdash;div l FFWW 
+% ./trapped -m 5k -l s_d &mdash;div l FWW
 % Box: [-1, 1] [-1, 1]
 +------+------+------+
-| 2485 |    . | 2474 |
+| 1275 |    . | 1225 |
++------+------+------+      
+|    . |   *  |   50 |
 +------+------+------+
-|    . |   *  |   71 |
-+------+------+------+
-| 2485 |    . | 2485 |
+| 1225 |    . | 1225 |
 +------+------+------+
 </div>
 
-<p>The <strong>Queen</strong> can move like a <a href="blind_monkey.html"><em>Blind Monkey</em></a>,
-and a <em>Blind Monkey</em> can follow the Spiral. Hence, the <strong>Queen</strong>
-will fill the entire board, and not get trapped.</p>
+<p>The <strong>Queen</strong> can move as the <a href="blind_monkey.html"><em>Blind Monkey</em></a>.
+Hence, it will follow the spiral and visit all the squares on the board.</p>
 
-<p>The <strong>Queen</strong> will make mostly diagonal moves, roughly the same in each of
-the four diagonal directions, and a single step to the right for each
-"layer" of the spiral. She will never slide more than one square.</p>
+<p>The <strong>Queen</strong> will make mostly diagonal moves, roughly the
+same in each of the four diagonal directions, and a single step to
+the right for each "layer" of the spiral.</p>
 
 <h3 id = 'wedge'>Wedge</h3>
 
 <h4 id = 'folded'>Folded</h4>
 
 <div class = 'heatmap right'>
-% ./trapped -m 10000 -l w_fo &mdash;div r FFWW 
+% ./trapped -m 5k -l w_fo &mdash;div r FFWW
 % Box: [-1, 0] [-1, 1]
 +------+------+------+
-|   50 |    . |   50 |
+|   35 |    . |   35 |
 +------+------+------+
-| 4900 |   *  | 5000 |
+| 2480 |   *  | 2450 |
 +------+------+------+
 </div>
 
-<p>The <strong>Queen</strong> can move like the <a href="flying_cock.html"><em>Flying Cock</em></a>, and
-hence will follow the Wedge, filling the entire board.</p>
+<p>Since the <strong>Queen</strong> can move as the
+<a href="flying_cock.html"><em>Flying Cock</em></a>, it will do so, filling the
+entire board visiting all squares in value order.</p>
+
+<p>The <strong>Queen</strong> will mostly move sideways, and make one step
+diagonally forward when reaching the edge of the board.</p>
 
 <h4 id = 'flat'>Flat</h4>
 
