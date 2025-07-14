@@ -67,18 +67,18 @@ Link: [%%CHESS_V%%](#piece:dragonhorse)
 
 #### Square
 
-<!-- @@ Trapped::wazir        (piece => "Dragon Horse") -->
+<!-- Wazir Dragon_Horse Square_Spiral -->
 
 #### Spiral
 
-<!-- @@ Trapped::blind_monkey (piece => "Dragon Horse") -->
+<!-- Blind_Monkey Dragon_Horse Diamond_Spiral -->
 
 ### Wedge
 
 #### Folded
 
-<!-- @@ Trapped::flying_cock  (piece => "Dragon Horse") -->
+<!-- Flying_Cock Dragon_Horse Folded_Wedge -->
 
 #### Flat
 
-<!-- @@ Trapped::king_flat_wedge (piece => "Dragon Horse") -->
+<!-- King Dragon_Horse Flat_Wedge -->

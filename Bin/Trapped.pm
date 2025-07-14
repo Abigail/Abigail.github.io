@@ -15,12 +15,29 @@ my %piece2betza = (
     "Rook"            =>  "WW",
 );
 
+
+sub trapped (%args) {
+    my $parent = $args {parent};
+    my $piece  = $args {piece};
+    my $layout = $args {layout};
+
+    local $_ = $parent;
+
+    /^Wazir$/        ? wazir        (%args)
+  : /^Blind Monkey$/ ? blind_monkey (%args)
+  : /^Flying Cock$/  ? flying_cock  (%args)
+  : /^King$/         ? king         (%args)
+  : die "Do not know what to do with parent '$parent'\n";
+}
+
+
 #
 # Description for pieces which move like the Wazir on the Square Spiral.
 #
 sub wazir (%args) {
-    my $piece = $args {piece};
-    my $betza = $piece2betza {$piece};
+    my $piece  = $args {piece};
+    my $layout = $args {layout} // "Square Spiral";
+    my $betza  = $piece2betza {$piece};
     <<~ "--" =~ s/^\h+//gmr;
         <div class = 'heatmap right'>
         % ./trapped -m 5k -l s_sq --div r $betza
@@ -48,8 +65,9 @@ sub wazir (%args) {
 # Description for pieces which move like the Blind Monkey on the Diamond Spiral.
 #
 sub blind_monkey (%args) {
-    my $piece = $args {piece};
-    my $betza = $piece2betza {$piece};
+    my $piece  = $args {piece};
+    my $layout = $args {layout} // "Diamond Spiral";
+    my $betza  = $piece2betza {$piece};
     <<~ "--" =~ s/^\h+//gmr;
         <div class = 'heatmap left'>
         % ./trapped -m 5k -l s_d --div l FWW
@@ -77,8 +95,9 @@ sub blind_monkey (%args) {
 # Description for pieces which move like the Flying Cock on the Diamond Spiral.
 #
 sub flying_cock (%args) {
-    my $piece = $args {piece};
-    my $betza = $piece2betza {$piece};
+    my $piece  = $args {piece};
+    my $layout = $args {layout} // "Folded Wedge";
+    my $betza  = $piece2betza {$piece};
     <<~ "--" =~ s/^\h+//gmr;
         <div class = 'heatmap right'>
         % ./trapped -m 5k -l w_fo --div r ${betza}
@@ -103,30 +122,35 @@ sub flying_cock (%args) {
 #
 # Description for pieces which move like the King on the Flat Wedge
 #
-sub king_flat_wedge (%args) {
-    my $piece = $args {piece};
-    my $betza = $piece2betza {$piece};
-    my $text  = <<~ "--" =~ s/^\h+//gmr;
-        <div class = 'heatmap left'>
-        % ./trapped -m 10000 -l w_fl --div l ${betza}
-        % Box: [-1, 1] [-1, 1]
-        +------+------+------+
-        |    . |    . |  149 |
-        +------+------+------+
-        | 5000 |   *  | 4802 |
-        +------+------+------+
-        |   49 |    . |    . |
-        +------+------+------+
-        </div>
+sub king (%args) {
+    my $piece  = $args {piece};
+    my $layout = $args {layout} // "Flat Wedge";
+    my $betza  = $piece2betza {$piece};
+    my $text;
+    if ($layout eq "Flat Wedge") {
+        $text  = <<~ "--" =~ s/^\h+//gmr;
+            <div class = 'heatmap left'>
+            % ./trapped -m 10000 -l w_fl --div l ${betza}
+            % Box: [-1, 1] [-1, 1]
+            +------+------+------+
+            |    . |    . |  149 |
+            +------+------+------+
+            | 5000 |   *  | 4802 |
+            +------+------+------+
+            |   49 |    . |    . |
+            +------+------+------+
+            </div>
 
-        Just like the [*King*](king.html), on the Flat Wedge, the
-        **${piece}** fills the board row by row, with single step moves,
-        alternating going with and against the numbers, with a small twist
-        just before reaching the left hand side of the Wedge.
+            Just like the [*King*](king.html), on the Flat Wedge, the
+            **${piece}** fills the board row by row, with single step moves,
+            alternating going with and against the numbers, with a small twist
+            just before reaching the left hand side of the Wedge.
 
-        The **${piece}** will mostly move sideways, and makes a few moves
-        on one diagonal, while not touching the other diagonal.
-    --
+            The **${piece}** will mostly move sideways, and makes a few moves
+            on one diagonal, while not touching the other diagonal.
+        --
+    }
+    else {...}
 
     $text =~ s/^Just[^,]+, on/On/m if $piece eq "King";
 

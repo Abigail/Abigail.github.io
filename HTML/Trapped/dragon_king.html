@@ -116,66 +116,17 @@ several games:</p>
 
 <h4 id = 'square'>Square</h4>
 
-<div class = 'heatmap right'>
-% ./trapped -m 5k -l s_sq &mdash;div r FWW
-% Box: [-1, 1] [-1, 1]
-+------+------+------+
-|    . | 1225 |    . |
-+------+------+------+
-| 1260 |   *  | 1255 |
-+------+------+------+
-|    . | 1260 |    . |
-+------+------+------+
-</div>
-
-<p>The <strong>Dragon King</strong> can move as a <a href="wazir.html"><em>Wazir</em></a>. Hence, it will
-not get stuck, filling the entire board by just following the spiral.</p>
-
-<p>As can be seen from the heatmap to the right, the <strong>Dragon King</strong> makes
-about the same number of steps in each of the four orthogonal
-directions.</p>
+<!-- Wazir Dragon_King Square_Spiral -->
 
 <h4 id = 'diamond'>Diamond</h4>
 
-<div class = 'heatmap left'>
-% ./trapped -m 5k -l s_d &mdash;div l FWW
-% Box: [-1, 1] [-1, 1]
-+------+------+------+
-| 1275 |    . | 1225 |
-+------+------+------+      
-|    . |   *  |   50 |
-+------+------+------+
-| 1225 |    . | 1225 |
-+------+------+------+
-</div>
-
-<p>The <strong>Dragon King</strong> can move as the <a href="blind_monkey.html"><em>Blind Monkey</em></a>.
-Hence, it will follow the spiral and visit all the squares on the board.</p>
-
-<p>The <strong>Dragon King</strong> will make mostly diagonal moves, roughly the
-same in each of the four diagonal directions, and a single step to
-the right for each "layer" of the spiral.</p>
+<!-- Blind_Monkey Dragon_King Diamond_Spiral -->
 
 <h3 id = 'wedge'>Wedge</h3>
 
 <h4 id = 'folded'>Folded</h4>
 
-<div class = 'heatmap right'>
-% ./trapped -m 5k -l w_fo &mdash;div r FWW
-% Box: [-1, 0] [-1, 1]
-+------+------+------+
-|   35 |    . |   35 |
-+------+------+------+
-| 2480 |   *  | 2450 |
-+------+------+------+
-</div>
-
-<p>Since the <strong>Dragon King</strong> can move as the
-<a href="flying_cock.html"><em>Flying Cock</em></a>, it will do so, filling the
-entire board visiting all squares in value order.</p>
-
-<p>The <strong>Dragon King</strong> will mostly move sideways, and make one step
-diagonally forward when reaching the edge of the board.</p>
+<!-- Flying_Cock Dragon_King Folded_Wedge -->
 
 <h4 id = 'flat'>Flat</h4>
 

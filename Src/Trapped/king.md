@@ -142,18 +142,18 @@ Links: [%%WIKI%%](#wiki:King_(chess)),
 
 #### Square
 
-<!-- @@ Trapped::wazir        (piece => "King") -->
+<!-- @@ Wazir King Square_Spiral -->
 
 #### Diamond
 
-<!-- @@ Trapped::blind_monkey (piece => "King") -->
+<!-- @@ Blind_Monkey King Diamond_Spiral -->
 
 ### Wedge
 
 #### Folded
 
-<!-- @@ Trapped::flying_cock  (piece => "King") -->
+<!-- @@ Flying_Cock King Folded_Wedge -->
 
 #### Flat
 
-<!-- @@ Trapped::king_flat_wedge (piece => "King") -->
+<!-- @@ King King Flat_Wedge -->

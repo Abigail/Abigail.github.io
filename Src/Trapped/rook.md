@@ -86,7 +86,7 @@ Links: [%%WIKI%%](#wiki:Rook_(chess)),
 
 #### Square
 
-<!-- @@ Trapped::wazir        (piece => "Rook") -->
+<!-- @@ Wazir Rook Square_Spiral -->
 
 #### Diamond
 

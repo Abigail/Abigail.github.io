@@ -77,17 +77,17 @@ Links: [%%WIKI%%](#wiki:Queen_(chess)),
 
 #### Square
 
-<!-- @@ Trapped::wazir        (piece => "Queen") -->
+<!-- @@ Wazir Queen Square_Spiral -->
 
 #### Diamond
 
-<!-- @@ Trapped::blind_monkey (piece => "Queen") -->
+<!-- @@ Blind_Monkey Queen Diamond_Spiral -->
 
 ### Wedge
 
 #### Folded
 
-<!-- @@ Trapped::flying_cock  (piece => "Queen") -->
+<!-- @@ Flying_Cock Queen Folded_Wedge -->
 
 #### Flat
 

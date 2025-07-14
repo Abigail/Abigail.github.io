@@ -670,6 +670,19 @@ sub table ($text) {
 }
 
 
+#
+# Handle <!-- @@ DATA -->
+#
+sub replace ($type, $data) {
+    if ($type == $TYPE_TRAPPED) {
+        my ($parent, $piece, $layout) = map {s/_/ /gr} split /\s+/ => $data;
+        return Trapped::trapped (parent => $parent,
+                                 piece  => $piece,
+                                 layout => $layout);
+    }
+    ...
+}
+
 
 sub pre_process ($text, $directives) {
     state $lang_pat = join "|" => map {quotemeta $_} keys %LANGUAGE_INFO;
@@ -691,7 +704,7 @@ sub pre_process ($text, $directives) {
     #
     # Replace <!-- @@ CODE -->
     #
-    1 while $text =~ s/<!--\s*\@\@\s*(.*?)-->/$1/ees;
+    1 while $text =~ s/<!--\s*\@\@\s*(.*?)-->/replace ($type, $1)/es;
 
     #
     # Scan for directives, which are of the format
