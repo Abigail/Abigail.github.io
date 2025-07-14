@@ -156,23 +156,4 @@ Links: [%%WIKI%%](#wiki:King_(chess)),
 
 #### Flat
 
-<div class = 'heatmap left'>
-% ./trapped -m 10000 -l w_fl --div l FW 
-% Box: [-1, 1] [-1, 1]
-+------+------+------+
-|    . |    . |  149 |
-+------+------+------+
-| 5000 |   *  | 4802 |
-+------+------+------+
-|   49 |    . |    . |
-+------+------+------+
-</div>
-
-
-On the Flat Wedge, the **King** fills the board row by row, alternating going
-with and against the numbers, with a small twist just before reaching
-the left hand side of the Wedge.
-
-The **King** will mostly move sideways, and make a few moves on one
-diagonal, while not touching the other.
-
+<!-- @@ Trapped::king_flat_wedge (piece => "King") -->

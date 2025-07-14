@@ -7,6 +7,7 @@ use warnings;
 no  warnings 'syntax';
 
 my %piece2betza = (
+    "Dragon Horse"    =>  "FFW",
     "Dragon King"     =>  "FWW",
     "King"            =>  "FW",
     "Queen"           =>  "FFWW",
@@ -95,6 +96,40 @@ sub flying_cock (%args) {
         The **${piece}** will mostly move sideways, and make one step
         diagonally forward when reaching the edge of the board.
     --
+}
+
+
+#
+# Description for pieces which move like the King on the Flat Wedge
+#
+sub king_flat_wedge (%args) {
+    my $piece = $args {piece};
+    my $betza = $piece2betza {$piece};
+    my $text  = <<~ "--" =~ s/^\h+//gmr;
+        <div class = 'heatmap left'>
+        % ./trapped -m 10000 -l w_fl --div l ${betza}
+        % Box: [-1, 1] [-1, 1]
+        +------+------+------+
+        |    . |    . |  149 |
+        +------+------+------+
+        | 5000 |   *  | 4802 |
+        +------+------+------+
+        |   49 |    . |    . |
+        +------+------+------+
+        </div>
+
+        Just like the [*King*](king.html), on the Flat Wedge, the
+        **${piece}** fills the board row by row, with single step moves,
+        alternating going with and against the numbers, with a small twist
+        just before reaching the left hand side of the Wedge.
+
+        The **${piece}** will mostly move sideways, and makes a few moves
+        on one diagonal, while not touching the other diagonal.
+    --
+
+    $text =~ s/^Just[^,]+, on/On/m if $piece eq "King";
+
+    $text;
 }
 
 

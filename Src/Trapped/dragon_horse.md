@@ -67,24 +67,18 @@ Link: [%%CHESS_V%%](#piece:dragonhorse)
 
 #### Square
 
-The **Dragon Horse** can move as the [*Wazir*](wazir.html), and
-hence just follow the Spiral.
+<!-- @@ Trapped::wazir        (piece => "Dragon Horse") -->
 
 #### Spiral
 
-The **Dragon Horse** can move as the %%BM%%, and hence, just follows
-the Spiral.
+<!-- @@ Trapped::blind_monkey (piece => "Dragon Horse") -->
 
 ### Wedge
 
 #### Folded
 
-The **Dragon Horse** can move as the [*Flying Cock*](flying_cock.html), and
-hence just follow the Folded Wedge.
+<!-- @@ Trapped::flying_cock  (piece => "Dragon Horse") -->
 
 #### Flat
 
-Just like the [*King*](king.html), on the Flat Wedge, the
-**Dragon Horse** just goes left to right, and right to left, with a
-little sidestep before reaching the left hand side, filling the
-entire board.
+<!-- @@ Trapped::king_flat_wedge (piece => "Dragon Horse") -->
