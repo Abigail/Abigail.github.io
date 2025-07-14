@@ -142,69 +142,17 @@ Links: [%%WIKI%%](#wiki:King_(chess)),
 
 #### Square
 
-<div class = 'heatmap right'>
-% ./trapped -m 5000 -l s_sq --div r FW
-% Box: [-1, 1] [-1, 1]
-+------+------+------+
-|    . | 1225 |    . |
-+------+------+------+
-| 1260 |   *  | 1255 |
-+------+------+------+
-|    . | 1260 |    . |
-+------+------+------+
-</div>
-
-The **King** can move as the [*Wazir*](wazir.html), and the
-[*Wazir*](wazir.html)
-will follow the Spiral. Hence, the **King** will visit all the squares on
-the board.
-
-As can be seen from the heatmap to the right, the **King** makes about
-the same number of steps in each of the four orthogonal directions.
+<!-- @@ Trapped::wazir        (piece => "King") -->
 
 #### Diamond
 
-<div class = 'heatmap left'>
-% ./trapped -m 10000 -l s_d --div l FW 
-% Box: [-1, 1] [-1, 1]
-+------+------+------+
-| 2485 |    . | 2474 |
-+------+------+------+
-|    . |   *  |   71 |
-+------+------+------+
-| 2485 |    . | 2485 |
-+------+------+------+
-</div>
-
-The **King** can move as the [*Blind Monkey*](blind_monkey.html), and hence
-it will follow the Spiral. The **King** will visit all the squares on
-the board.
-
-The **King** will make mostly diagonal moves, roughly the same in each of
-the four diagonal directions, and a single step to the right for each
-"layer" of the spiral.
+<!-- @@ Trapped::blind_monkey (piece => "King") -->
 
 ### Wedge
 
 #### Folded
 
-<div class = 'heatmap right'>
-% ./trapped -m 10000 -l w_fo --div r FW 
-% Box: [-1, 0] [-1, 1]
-+------+------+------+
-|   50 |    . |   50 |
-+------+------+------+
-| 4900 |   *  | 5000 |
-+------+------+------+
-</div>
-
-The **King** can move as the [*Flying Cock*](flying_cock.html),
-and the [*Flying Cock*](flying_cock.html)
-will follow the Folded Wedge. Hence, the %%PIECE%% will visit all the squares on
-the board.
-
-The **King** will mostly move sideways, and make one step diagonally forward
-when reaching the edge of the board.
+<!-- @@ Trapped::flying_cock  (piece => "King") -->
 
 #### Flat
 

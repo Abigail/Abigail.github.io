@@ -8,6 +8,9 @@ no  warnings 'syntax';
 
 my %piece2betza = (
     "Dragon King"     =>  "FWW",
+    "King"            =>  "FW",
+    "Queen"           =>  "FFWW",
+    "Rook"            =>  "WW",
 );
 
 #
