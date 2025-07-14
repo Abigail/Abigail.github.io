@@ -6,6 +6,7 @@
 <link rel = 'stylesheet' href =      'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
 <link rel = 'stylesheet' href = '../../Styles/main.css'>
 <link rel = 'stylesheet' href = '../../Styles/Trapped/main.css'>
+<link rel = 'stylesheet' href = '../../Styles/Trapped/main-heatmap.css'>
 <script src = "../../JavaScript/jquery.js"></script>
 <script id  = 'MathJax-script' async src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.js'></script>
 <script id = 'svg-script' src = 'https://cdn.jsdelivr.net/npm/@svgdotjs/svg.js@3.0/dist/svg.min.js'></script>
@@ -15,6 +16,7 @@
 <script src = '../../JavaScript/Trapped/pieces.js'></script>
 <script src = '../../JavaScript/Trapped/boxset.js'></script>
 <script src = '../../JavaScript/Trapped/movement.js'></script>
+<script src = '../../JavaScript/Trapped/heatmap.js'></script>
 <script src = '../../JavaScript/Trapped/pages.js'></script>
 </head>
 
@@ -47,14 +49,14 @@ four diagonal directions. This makes the <strong>Ferz</strong> <span class = 'to
   </tr>
   <tr class = 'row-1' markdown = '1'>
     <td class = 'cell-1-0 col-0 ' markdown = '1'><strong>Advisor</strong></td>
-    <td class = 'cell-1-1 col-1 ' markdown = '1'><a href="https://en.wikipedia.org/wiki/xiangqi">Xiangqi <span class = 'uni_name'>(&#x8C61;&#x68CB;)</span></a></td>
+    <td class = 'cell-1-1 col-1 ' markdown = '1'><a href="https://en.wikipedia.org/wiki/xiangqi">Xiangqi</a></td>
     <td class = 'cell-1-2 col-2 ' markdown = '1'>In the game, the piece is restricted to 5 squares of the
   3x3 palace. Alternative names: <em>Assistant</em>, <em>Counsellor</em>,
   <em>Guard</em>, <em>Mandarin</em>, <em>Minister</em>, <em>Officer</em>, <em>Scholar</em>, <em>Warrior</em></td>
   </tr>
   <tr class = 'row-2' markdown = '1'>
     <td class = 'cell-2-0 col-0 ' markdown = '1'><strong>Cat Sword</strong></td>
-    <td class = 'cell-2-1 col-1 ' markdown = '1'><a href="https://en.wikipedia.org/wiki/Taikyoku_shogi">Taikyoku Sh&#x14d;gi <span class = 'uni_name'>(&#x5927;&#x5c40;&#x5c06;&#x68cb;)</span></a></td>
+    <td class = 'cell-2-1 col-1 ' markdown = '1'><a href="https://en.wikipedia.org/wiki/Taikyoku_shogi">Taikyoku Sh&#x14d;gi</a></td>
     <td class = 'cell-2-2 col-2 ' markdown = '1'></td>
   </tr>
   <tr class = 'row-3' markdown = '1'>
@@ -93,39 +95,86 @@ four diagonal directions. This makes the <strong>Ferz</strong> <span class = 'to
 
 <h4 id = 'square'>Square</h4>
 
-<div class = "section">
+<div class = 'heatmap right'>
+% ./trapped -m 10k -l s_sq &mdash;div r F 
+% Box: [-1, 1] [-1, 1]
++------+------+------+
+| 2450 |    . | 2500 |
++------+------+------+
+|    . |   *  |    . |
++------+------+------+
+| 2550 |    . | 2500 |
++------+------+------+
+</div>
+
 <p>On the Square Spiral the <strong>Ferz</strong> will not get trapped.
 It follows a regular path around
 the origin, creating spiral in the opposite direction of the 
 Spiral, and rotated 45&deg;. It will visited all the odd
 valued squares, so <span class = 'latex-inline'>\(50\%\)</span> of the squares on the board.</p>
-</div>
+
+<p>The <strong>Ferz</strong> makes diagonal steps, one square per move, in all
+of the four directions, in roughly equal amounts.</p>
 
 <h4 id = 'diamond'>Diamond</h4>
 
-<div class = "section">
+<div class = 'heatmap left'>
+% ./trapped -m 10k -l s_d &mdash;div r F 
+% Box: [-1, 1] [-1, 1]
++------+------+------+
+| 2550 |    . | 2500 |
++------+------+------+
+|    . |   *  |    . |
++------+------+------+
+| 2450 |    . | 2500 |
++------+------+------+
+</div>
+
 <p>On the Diamond Square, the <strong>Ferz</strong> follows the same regular
 path around the origin as the Square Spiral, except that it
 rotates the other way around. Hence, the pieces visits
 <span class = 'latex-inline'>\(50\%\)</span> of the squares on the board.</p>
-</div>
+
+<p>The <strong>Ferz</strong> makes diagonal steps, one square per move, in all
+of the four directions, in roughly equal amounts.</p>
 
 <h3 id = 'wedge'>Wedge</h3>
 
 <h4 id = 'folded'>Folded</h4>
 
-<div class = "section">
+<div class = 'heatmap right'>
+% ./trapped -m 1k -l w_fo &mdash;div r F 
+% Box: [-1, 1] [-1, 1]
++-----+-----+-----+
+| 250 |   . | 500 |
++-----+-----+-----+
+|   . |  *  |   . |
++-----+-----+-----+
+|   . |   . | 250 |
++-----+-----+-----+
+</div>
+
 <p>On the Folded Wedge, the <strong>Ferz</strong> quickly escapes to infinity, using
 a zig-zag pattern on the right hand side of the Wedge. It takes
-three steps to move one square diagonally upward, giving it an 
-escape speed of <span class = 'latex-inline'>\(\frac{\sqrt{2}}{3}\)</span>.</p>
-</div>
+four steps to move two squares diagonally upward, giving it an 
+escape velocity of <span class = 'latex-inline'>\(\frac{\sqrt{2}}{2}\)</span>.</p>
 
 <h4 id = 'flat'>Flat</h4>
 
+<div class = 'heatmap left'>
+% ./trapped -m 1k -l w_fl &mdash;div l F 
+% Box: [-1, 0] [0, 1]
++------+------+
+|    . | 1000 |
++------+------+
+|   *  |    . |
++------+------+
+</div>
+
 <p>On the Flat Wedge, the <strong>Ferz</strong> sticks the the right hand side
-edge of the board, escaping to infinity. The escape speed is
-<span class = 'latex-inline'>\(\sqrt{2}\)</span>.</p>
+edge of the board, escaping to infinity, moving one square forward
+right on each move. The escape velocity is <span class = 'latex-inline'>\(\sqrt{2}\)</span>.</p>
+<h2 id = 'animation'>Animation</h2>
 
 <div class = 'trapped' data-piece = 'ferz'></div>
 
