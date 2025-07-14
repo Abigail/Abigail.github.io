@@ -6,6 +6,7 @@
 <link rel = 'stylesheet' href =      'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
 <link rel = 'stylesheet' href = '../../Styles/main.css'>
 <link rel = 'stylesheet' href = '../../Styles/Trapped/main.css'>
+<link rel = 'stylesheet' href = '../../Styles/Trapped/main-heatmap.css'>
 <script src = "../../JavaScript/jquery.js"></script>
 <script id  = 'MathJax-script' async src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.js'></script>
 <script id = 'svg-script' src = 'https://cdn.jsdelivr.net/npm/@svgdotjs/svg.js@3.0/dist/svg.min.js'></script>
@@ -15,6 +16,7 @@
 <script src = '../../JavaScript/Trapped/pieces.js'></script>
 <script src = '../../JavaScript/Trapped/boxset.js'></script>
 <script src = '../../JavaScript/Trapped/movement.js'></script>
+<script src = '../../JavaScript/Trapped/heatmap.js'></script>
 <script src = '../../JavaScript/Trapped/pages.js'></script>
 </head>
 
@@ -53,12 +55,12 @@ to a piece moving like the <strong>Gold General</strong>.</p>
   </tr>
   <tr class = 'row-2' markdown = '1'>
     <td class = 'cell-2-0 col-0 ' markdown = '1'><strong>Gold General</strong></td>
-    <td class = 'cell-2-1 col-1 ' markdown = '1'><a href="https://en.wikipedia.org/wiki/Shogi">Sh&#x14d;gi <span class = 'uni_name'>(&#x5c06;&#x68cb;)</span></a>; <a href="https://en.wikipedia.org/wiki/chu_shogi">Chu&nbsp;Sh&#x014d;gi <span class = 'uni_name'>(&#x4E2D;&#x5C06;&#x68CB;)</span></a>; <a href="https://en.wikipedia.org/wiki/Micro_shogi">Micro&nbsp;Sh&#x14d;gi</a>; <a href="https://en.wikipedia.org/wiki/Taikyoku_shogi">Taikyoku Sh&#x14d;gi <span class = 'uni_name'>(&#x5927;&#x5c40;&#x5c06;&#x68cb;)</span></a>; <a href="https://www.chessvariants.com/rules/typhoon-revised">Typhoon</a></td>
+    <td class = 'cell-2-1 col-1 ' markdown = '1'><a href="https://en.wikipedia.org/wiki/Shogi">Sh&#x14d;gi</a>; <a href="https://en.wikipedia.org/wiki/chu_shogi">Chu&nbsp;Sh&#x014d;gi</a>; <a href="https://en.wikipedia.org/wiki/Micro_shogi">Micro&nbsp;Sh&#x14d;gi</a>; <a href="https://en.wikipedia.org/wiki/Taikyoku_shogi">Taikyoku Sh&#x14d;gi</a>; <a href="https://www.chessvariants.com/rules/typhoon-revised">Typhoon</a></td>
     <td class = 'cell-2-2 col-2 ' markdown = '1'></td>
   </tr>
   <tr class = 'row-3' markdown = '1'>
     <td class = 'cell-3-0 col-0 ' markdown = '1'><strong>Golden Bird</strong></td>
-    <td class = 'cell-3-1 col-1 ' markdown = '1'><a href="https://en.wikipedia.org/wiki/Wa_shogi">Wa&nbsp;Sh&#x14d;gi <span class = 'uni_name'>(&#x548C;&#x5C06;&#x68CB;)</span></a></td>
+    <td class = 'cell-3-1 col-1 ' markdown = '1'><a href="https://en.wikipedia.org/wiki/Wa_shogi">Wa&nbsp;Sh&#x14d;gi</a></td>
     <td class = 'cell-3-2 col-2 ' markdown = '1'></td>
   </tr>
   <tr class = 'row-4' markdown = '1'>
@@ -68,12 +70,12 @@ to a piece moving like the <strong>Gold General</strong>.</p>
   </tr>
   <tr class = 'row-5' markdown = '1'>
     <td class = 'cell-5-0 col-0 ' markdown = '1'><strong>Promoted Lance</strong></td>
-    <td class = 'cell-5-1 col-1 ' markdown = '1'><a href="https://en.wikipedia.org/wiki/Shogi">Sh&#x14d;gi <span class = 'uni_name'>(&#x5c06;&#x68cb;)</span></a></td>
+    <td class = 'cell-5-1 col-1 ' markdown = '1'><a href="https://en.wikipedia.org/wiki/Shogi">Sh&#x14d;gi</a></td>
     <td class = 'cell-5-2 col-2 ' markdown = '1'></td>
   </tr>
   <tr class = 'row-6' markdown = '1'>
     <td class = 'cell-6-0 col-0 ' markdown = '1'><strong>Promoted Knight</strong></td>
-    <td class = 'cell-6-1 col-1 ' markdown = '1'><a href="https://en.wikipedia.org/wiki/Shogi">Sh&#x14d;gi <span class = 'uni_name'>(&#x5c06;&#x68cb;)</span></a>; <a href="https://en.wikipedia.org/wiki/EuroShogi">EuroShogi</a></td>
+    <td class = 'cell-6-1 col-1 ' markdown = '1'><a href="https://en.wikipedia.org/wiki/Shogi">Sh&#x14d;gi</a>; <a href="https://en.wikipedia.org/wiki/EuroShogi">EuroShogi</a></td>
     <td class = 'cell-6-2 col-2 ' markdown = '1'></td>
   </tr>
   <tr class = 'row-7' markdown = '1'>
@@ -83,17 +85,17 @@ to a piece moving like the <strong>Gold General</strong>.</p>
   </tr>
   <tr class = 'row-8' markdown = '1'>
     <td class = 'cell-8-0 col-0 ' markdown = '1'><strong>Promoted Silver</strong></td>
-    <td class = 'cell-8-1 col-1 ' markdown = '1'><a href="https://en.wikipedia.org/wiki/Shogi">Sh&#x14d;gi <span class = 'uni_name'>(&#x5c06;&#x68cb;)</span></a></td>
+    <td class = 'cell-8-1 col-1 ' markdown = '1'><a href="https://en.wikipedia.org/wiki/Shogi">Sh&#x14d;gi</a></td>
     <td class = 'cell-8-2 col-2 ' markdown = '1'></td>
   </tr>
   <tr class = 'row-9' markdown = '1'>
     <td class = 'cell-9-0 col-0 ' markdown = '1'><strong>Tokin</strong></td>
-    <td class = 'cell-9-1 col-1 ' markdown = '1'><a href="https://en.wikipedia.org/wiki/Shogi">Sh&#x14d;gi <span class = 'uni_name'>(&#x5c06;&#x68cb;)</span></a>; <a href="https://en.wikipedia.org/wiki/Micro_shogi">Micro&nbsp;Sh&#x14d;gi</a></td>
+    <td class = 'cell-9-1 col-1 ' markdown = '1'><a href="https://en.wikipedia.org/wiki/Shogi">Sh&#x14d;gi</a>; <a href="https://en.wikipedia.org/wiki/Micro_shogi">Micro&nbsp;Sh&#x14d;gi</a></td>
     <td class = 'cell-9-2 col-2 ' markdown = '1'></td>
   </tr>
   <tr class = 'row-10' markdown = '1'>
     <td class = 'cell-10-0 col-0 ' markdown = '1'><strong>Violent Wolf</strong></td>
-    <td class = 'cell-10-1 col-1 ' markdown = '1'><a href="https://en.wikipedia.org/wiki/Taikyoku_shogi">Taikyoku Sh&#x14d;gi <span class = 'uni_name'>(&#x5927;&#x5c40;&#x5c06;&#x68cb;)</span></a>; <a href="https://en.wikipedia.org/wiki/Wa_shogi">Wa&nbsp;Sh&#x14d;gi <span class = 'uni_name'>(&#x548C;&#x5C06;&#x68CB;)</span></a></td>
+    <td class = 'cell-10-1 col-1 ' markdown = '1'><a href="https://en.wikipedia.org/wiki/Taikyoku_shogi">Taikyoku Sh&#x14d;gi</a>; <a href="https://en.wikipedia.org/wiki/Wa_shogi">Wa&nbsp;Sh&#x14d;gi</a></td>
     <td class = 'cell-10-2 col-2 ' markdown = '1'></td>
   </tr>
 </table>
@@ -104,36 +106,84 @@ to a piece moving like the <strong>Gold General</strong>.</p>
 
 <h4 id = 'square'>Square</h4>
 
-<div class = "section">
-<p>Since the <strong>Gold General</strong> can move like the <a href="wazir.html"><em>Wazir</em></a>,
-it does so, filling the board by following the Spiral.</p>
+<div class = 'heatmap right'>
+% ./trapped -m 5k -l s_sq &mdash;div r fFW
+% Box: [-1, 1] [-1, 1]
++------+------+------+
+|    . | 1225 |    . |
++------+------+------+
+| 1260 |   *  | 1255 |
++------+------+------+
+|    . | 1260 |    . |
++------+------+------+
 </div>
+
+<p>The <strong>Gold General</strong> can move as a <a href="wazir.html"><em>Wazir</em></a>. Hence, it will
+not get stuck, filling the entire board by just following the spiral.</p>
+
+<p>As can be seen from the heatmap to the right, the <strong>Gold General</strong> makes
+about the same number of steps in each of the four orthogonal
+directions.</p>
 
 <h4 id = 'diamond'>Diamond</h4>
 
-<div class = "section">
-<p>On the Diamond Spiral, the <strong>Gold General</strong> escapes using a two step loop,
-moving one square upward per loop iteration. This gives it an escape
-speed of <span class = 'latex-inline'>\(\frac{1}{2}\)</span>. Only two files will be visited, and no
-squares below the origin will.</p>
+<div class = 'heatmap left'>
+% ./trapped -m 1k -l s_d &mdash;div l fFW 
+% Box: [-1, 0] [-1, 1]
++-----+-----+-----+
+| 500 |   . |   . |
++-----+-----+-----+
+|   . |  *  | 500 |
++-----+-----+-----+
 </div>
+
+<p>On the Diamond Spiral, the <strong>Gold General</strong> escapes using a two
+step loop, moving one square upward per loop iteration. This gives
+it an escape velocity of <span class = 'latex-inline'>\(\frac{1}{2}\)</span>. The <strong>Gold General</strong> will
+alternate making a single step to orthogonally right, and a single
+step diagonally forward left.</p>
 
 <h3 id = 'wedge'>Wedge</h3>
 
 <h4 id = 'folded'>Folded</h4>
 
-<div class = "section">
-<p>Since the <strong>Gold General</strong> can move like the <a href="flying_cock.html"><em>Flying Cock</em></a>,
-it does so, filling the board by following the Wedge.</p>
+<div class = 'heatmap right'>
+% ./trapped -m 5k -l w_fo &mdash;div r fFW
+% Box: [-1, 0] [-1, 1]
++------+------+------+
+|   35 |    . |   35 |
++------+------+------+
+| 2480 |   *  | 2450 |
++------+------+------+
 </div>
 
+<p>Since the <strong>Gold General</strong> can move as the
+<a href="flying_cock.html"><em>Flying Cock</em></a>, it will do so, filling the
+entire board visiting all squares in value order.</p>
+
+<p>The <strong>Gold General</strong> will mostly move sideways, and make one step
+diagonally forward when reaching the edge of the board.</p>
+
 <h4 id = 'flat'>Flat</h4>
+
+<div class = 'heatmap left'>
+% ./trapped -m 10k -l w_fl &mdash;div l fFW 
+% Box: [-1, 1] [-1, 1]
++------+------+------+
+|    . |   49 |  100 |
++------+------+------+
+| 5000 |   *  | 4802 |
++------+------+------+
+|    . |   49 |    . |
++------+------+------+
+</div>
 
 <p>The <strong>Gold General</strong> fills the Flat Wedge going from right to left, and
 left to right, making a small sidestep just before reaching the left
 edge. Compare this to the <a href="king.html"><em>King</em></a> and
 <a href="dragon_horse.html"><em>Dragon Horse</em></a>, which do something similar, with
 with a slightly different sidestep.</p>
+<h2 id = 'animation'>Animation</h2>
 
 <div class = 'trapped' data-piece = 'gold_general'></div>
 

@@ -65,24 +65,45 @@ Link: [%%CHESS_V%%](#piece:goldgeneral)
 
 #### Square
 
-Since the **Gold General** can move like the [*Wazir*](wazir.html),
-it does so, filling the board by following the Spiral.
+<!-- @@ Trapped::wazir (piece => "Gold General") -->
 
 #### Diamond
 
-On the Diamond Spiral, the **Gold General** escapes using a two step loop,
-moving one square upward per loop iteration. This gives it an escape
-speed of \(\frac{1}{2}\). Only two files will be visited, and no
-squares below the origin will.
+<div class = 'heatmap left'>
+% ./trapped -m 1k -l s_d --div l fFW 
+% Box: [-1, 0] [-1, 1]
++-----+-----+-----+
+| 500 |   . |   . |
++-----+-----+-----+
+|   . |  *  | 500 |
++-----+-----+-----+
+</div>
+
+On the Diamond Spiral, the **Gold General** escapes using a two
+step loop, moving one square upward per loop iteration. This gives
+it an escape velocity of \(\frac{1}{2}\). The **Gold General** will
+alternate making a single step to orthogonally right, and a single
+step diagonally forward left.
 
 ### Wedge
 
 #### Folded
 
-Since the **Gold General** can move like the [*Flying Cock*](flying_cock.html),
-it does so, filling the board by following the Wedge.
+<!-- @@ Trapped::flying_cock (piece => "Gold General") -->
 
 #### Flat
+
+<div class = 'heatmap left'>
+% ./trapped -m 10k -l w_fl --div l fFW 
+% Box: [-1, 1] [-1, 1]
++------+------+------+
+|    . |   49 |  100 |
++------+------+------+
+| 5000 |   *  | 4802 |
++------+------+------+
+|    . |   49 |    . |
++------+------+------+
+</div>
 
 The **Gold General** fills the Flat Wedge going from right to left, and
 left to right, making a small sidestep just before reaching the left
