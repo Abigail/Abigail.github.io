@@ -6,6 +6,7 @@
 <link rel = 'stylesheet' href =      'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
 <link rel = 'stylesheet' href = '../../Styles/main.css'>
 <link rel = 'stylesheet' href = '../../Styles/Trapped/main.css'>
+<link rel = 'stylesheet' href = '../../Styles/Trapped/main-heatmap.css'>
 <script src = "../../JavaScript/jquery.js"></script>
 <script id  = 'MathJax-script' async src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.js'></script>
 <script id = 'svg-script' src = 'https://cdn.jsdelivr.net/npm/@svgdotjs/svg.js@3.0/dist/svg.min.js'></script>
@@ -15,6 +16,7 @@
 <script src = '../../JavaScript/Trapped/pieces.js'></script>
 <script src = '../../JavaScript/Trapped/boxset.js'></script>
 <script src = '../../JavaScript/Trapped/movement.js'></script>
+<script src = '../../JavaScript/Trapped/heatmap.js'></script>
 <script src = '../../JavaScript/Trapped/pages.js'></script>
 </head>
 
@@ -54,7 +56,7 @@ the <strong>Wazir</strong>.</p>
   </tr>
   <tr class = 'row-2' markdown = '1'>
     <td class = 'cell-2-0 col-0 ' markdown = '1'><strong>General</strong></td>
-    <td class = 'cell-2-1 col-1 ' markdown = '1'><a href="https://en.wikipedia.org/wiki/xiangqi">Xiangqi <span class = 'uni_name'>(&#x8C61;&#x68CB;)</span></a></td>
+    <td class = 'cell-2-1 col-1 ' markdown = '1'><a href="https://en.wikipedia.org/wiki/xiangqi">Xiangqi</a></td>
     <td class = 'cell-2-2 col-2 ' markdown = '1'>This piece is normally limited to a 3 x 3 box, but we ignore this</td>
   </tr>
   <tr class = 'row-3' markdown = '1'>
@@ -70,7 +72,7 @@ the <strong>Wazir</strong>.</p>
   </tr>
   <tr class = 'row-5' markdown = '1'>
     <td class = 'cell-5-0 col-0 ' markdown = '1'><strong>Reclining Dragon</strong></td>
-    <td class = 'cell-5-1 col-1 ' markdown = '1'><a href="https://en.wikipedia.org/wiki/Taikyoku_shogi">Taikyoku Sh&#x14d;gi <span class = 'uni_name'>(&#x5927;&#x5c40;&#x5c06;&#x68cb;)</span></a></td>
+    <td class = 'cell-5-1 col-1 ' markdown = '1'><a href="https://en.wikipedia.org/wiki/Taikyoku_shogi">Taikyoku Sh&#x14d;gi</a></td>
     <td class = 'cell-5-2 col-2 ' markdown = '1'></td>
   </tr>
   <tr class = 'row-6' markdown = '1'>
@@ -89,7 +91,18 @@ the <strong>Wazir</strong>.</p>
 
 <h4 id = 'square'>Square</h4>
 
-<div class = "section">
+<div class = 'heatmap right'>
+% ./trapped -m 5k -l s_sq &mdash;div r $betza
+% Box: [-1, 1] [-1, 1]
++------+------+------+
+|    . | 1225 |    . |
++------+------+------+
+| 1260 |   *  | 1255 |
++------+------+------+
+|    . | 1260 |    . |
++------+------+------+
+</div>
+
 <p>Because the <strong>Wazir</strong> can always make a step in each of the four orthogonal
 directions, it can follow the Spiral, visiting all the squares in order.
 As such, if will fill the entire board in a boring pattern.</p>
@@ -97,31 +110,74 @@ As such, if will fill the entire board in a boring pattern.</p>
 <p>It also means that any piece which can move as the <strong>Wazir</strong> (even when
 it has more moves available, like the Chess <a href="king.html"><em>King</em></a>), will
 follow the Spiral and fill the entire board.</p>
-</div>
+
+<p>The <strong>Wazir</strong> takes single square steps in all four orthogonal directions;
+a roughly equal amount in each direction.</p>
 
 <h4 id = 'diamond'>Diamond</h4>
 
-<div class = "section">
+<div class = 'heatmap left'>
+% ./trapped -m 5k -l s_d &mdash;div l W 
+% Box: [-1, 1] [-1, 1]
++------+------+------+
+|    . | 1260 |    . |
++------+------+------+
+| 1260 |   *  | 1255 |
++------+------+------+
+|    . | 1225 |    . |
++------+------+------+
+</div>
+
 <p>The pattern the <strong>Wazir</strong> moves on the Diamond Spiral it the mirror
 image of the pattern the <strong>Wazir</strong> moves on the Square Spiral. Hence,
 it visits all the squares on the board. However, not all pieces whose
 movements are a superset of the movements of the <strong>Wazir</strong> will 
 follow this pattern on the Diamond Spiral.</p>
-</div>
+
+<p>The <strong>Wazir</strong> takes single square steps in all four orthogonal directions;
+a roughly equal amount in each direction.</p>
 
 <h3 id = 'wedge'>Wedge</h3>
 
 <h4 id = 'folded'>Folded</h4>
 
-<div class = "section">
-<p>On the Folded Wedge, the <strong>Wazir</strong> gets trapped after no more than 6 steps!</p>
+<div class = 'heatmap right'>
+% ./trapped -m 5k -l w_fo &mdash;div r W 
+% Box: [-1, 1] [-1, 1]
++---+---+---+
+| . | 2 | . |
++---+---+---+
+| 1 | * | 2 |
++---+---+---+
+| . | 1 | . |
++---+---+---+
 </div>
 
+<p>On the Folded Wedge, the <strong>Wazir</strong> gets trapped after no more than 6 steps!
+This is the same number of steps the <a href="rook.html"><em>Rook</em></a> takes, and the
+<strong>Wazir</strong> and the <a href="rook.html"><em>Rook</em></a> get trapped on the same square,
+but they follow sligtly different paths.</p>
+
 <h4 id = 'flat'>Flat</h4>
+
+<div class = 'heatmap left'>
+% ./trapped -m 5k -l w_fl &mdash;div l W 
+% Box: [-1, 0] [0, 1]
++------+------+
+| 2500 |    . |
++------+------+
+|   *  | 2500 |
++------+------+
+</div>
 
 <p>On the Flat Wedge, the <strong>Wazir</strong> escapes to infinity, following a zigzag
 pattern on the right edge of the Flat Wedge. This gives it an 
 escape velocity of <span class = 'latex-inline'>\(\frac{\sqrt{2}}{2}\)</span>.</p>
+
+<p>The <strong>Wazir</strong> steps one square orthogonally forward,
+followed by one square orthogonally to the right. Then it repeats the
+pattern.</p>
+<h2 id = 'animation'>Animation</h2>
 
 <div class = 'trapped' data-piece = 'wazir'></div>
 
