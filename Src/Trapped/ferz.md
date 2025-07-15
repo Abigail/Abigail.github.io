@@ -136,6 +136,10 @@ escape velocity of \(\frac{\sqrt{2}}{2}\).
 +------+------+
 </div>
 
+<div class = 'escape-loop right'>
+0 0 -1 1
+</div>
+
 On the Flat Wedge, the **Ferz** sticks the the right hand side
 edge of the board, escaping to infinity, moving one square forward
 right on each move. The escape velocity is \(\sqrt{2}\).
