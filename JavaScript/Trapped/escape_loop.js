@@ -19,8 +19,8 @@ class Escape_Loop {
         if (!element) {
             return
         }
-        let index  = args . index
-        let fig_id = `figure_${index}`
+        this . index = args . index
+        let fig_id   = `figure_${this . index}`
 
         this . layout = $($(element) . prevAll ("h3") [0]) . text ()
         let piece = $($("h1") [0]) . text ()
@@ -73,8 +73,22 @@ class Escape_Loop {
         this . draw_loop (paths [1], 'escape-loop main')
         this . draw_loop (paths [2], 'escape-loop after')
 
+        for (let i = 0; i < paths [1] . length; i ++) {
+            let [c, r] = [paths [1] [i], paths [1] [i + 1]]
+            let class_name = this . dot_class (r, c)
+            $("." + class_name) . removeClass ("unvisited-dot")
+                                .    addClass   ("visited-dot")
+        }
+
         $(figure) . append (`<figcaption>Escape pattern ` +
                             `for the ${piece}</figcaption>`)
+    }
+
+    //
+    // Return a class name given a row and column
+    //
+    dot_class (row, col) {
+        return `rc-${this . index}-${row}-${col}`
     }
 
     //
@@ -134,6 +148,7 @@ class Escape_Loop {
                      . cx       (col)
                      . cy       (row)
                      . addClass ("unvisited-dot")
+                     . addClass (this . dot_class (row, col))
     }
 
 
