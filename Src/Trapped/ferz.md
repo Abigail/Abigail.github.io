@@ -115,6 +115,10 @@ of the four directions, in roughly equal amounts.
 +-----+-----+-----+
 </div>
 
+<div class = 'escape-loop left'>
+0 0 -1 -1 -1 1 1 1 -1 1
+</div>
+
 On the Folded Wedge, the **Ferz** quickly escapes to infinity, using
 a zig-zag pattern on the right hand side of the Wedge. It takes
 four steps to move two squares diagonally upward, giving it an 

@@ -1,0 +1,32 @@
+div.escape-loop.left {
+    float:                        left;
+    margin-right:                  1em;
+    margin-bottom:                 1ex;
+}
+
+div.escape-loop.right {
+    float:                       right;
+    margin-left:                   1em;
+    margin-bottom:                 1ex;
+}
+
+figure.escape-loop {
+    margin:                    0 0 0 0;
+}
+
+figure.escape-loop figcaption {
+    background-color: #222;
+    color: #fff;
+    font: italic smaller sans-serif;
+    padding: 3px;
+    text-align: center;
+}
+
+polyline.escape-loop {
+    stroke-width: .05;
+    stroke: black;
+}
+
+polyline.escape-loop.before, polyline.escape-loop.after {
+    stroke-dasharray: .2 .2;
+}
