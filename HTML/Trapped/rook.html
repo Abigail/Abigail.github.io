@@ -7,6 +7,7 @@
 <link rel = 'stylesheet' href = '../../Styles/main.css'>
 <link rel = 'stylesheet' href = '../../Styles/Trapped/main.css'>
 <link rel = 'stylesheet' href = '../../Styles/Trapped/main-heatmap.css'>
+<link rel = 'stylesheet' href = '../../Styles/Trapped/main-path.css'>
 <script src = "../../JavaScript/jquery.js"></script>
 <script id  = 'MathJax-script' async src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.js'></script>
 <script id = 'svg-script' src = 'https://cdn.jsdelivr.net/npm/@svgdotjs/svg.js@3.0/dist/svg.min.js'></script>
@@ -17,6 +18,7 @@
 <script src = '../../JavaScript/Trapped/boxset.js'></script>
 <script src = '../../JavaScript/Trapped/movement.js'></script>
 <script src = '../../JavaScript/Trapped/heatmap.js'></script>
+<script src = '../../JavaScript/Trapped/path.js'></script>
 <script src = '../../JavaScript/Trapped/pages.js'></script>
 </head>
 
@@ -141,12 +143,13 @@ names.</p>
 +------+------+------+
 </div>
 
-<p>The <strong>Rook</strong> can move as a <a href="wazir.html"><em>Wazir</em></a>. Hence, it will
-not get stuck, filling the entire board by just following the spiral.</p>
+<p>The <strong>Rook</strong> can move as a <a href="wazir.html"><em>Wazir</em></a>.
+This means that <strong>Rook</strong> will follow the Spiral,
+visiting all the squares in order.</p>
 
-<p>As can be seen from the heatmap to the right, the <strong>Rook</strong> makes
-about the same number of steps in each of the four orthogonal
-directions.</p>
+<p>As can be seen from the heatmap to the right, the
+<strong>Rook</strong> makes about the same number of steps in
+each of the four orthogonal directions.</p>
 
 <h4 id = 'diamond'>Diamond</h4>
 
@@ -225,7 +228,7 @@ are visited.</p>
 <h4 id = 'flat'>Flat</h4>
 
 <div class = 'heatmap left'>
-% ./trapped -m 5000 -l w_fl &mdash;div l WW 
+% ./trapped -m 5k -l w_fl &mdash;div l WW
 % Box: [-1, 0] [0, 1]
 +------+------+
 | 2500 |    . |
@@ -234,9 +237,16 @@ are visited.</p>
 +------+------+
 </div>
 
-<p>On the Flat Wedge the <strong>Rook</strong> quickly escapes to infinity by alternating make 
-a step forward, and a step to the right. This gives it an escape
-velocity of <span class = 'latex-inline'>\(\frac{\sqrt{2}}{2}\)</span> .</p>
+<div class = 'path right'> 0 0 -1 0 0 1 </div>
+
+<p>Just like the <a href="wazir.html"><em>Wazir</em></a>, on the Flat Wedge,
+the <strong>Rook</strong> escapes to infinity, following a zigzag
+pattern on the right edge of the Flat Wedge. This gives
+it an escape velocity of <span class = 'latex-inline'>\(\frac{\sqrt{2}}{2}\)</span>.</p>
+
+<p>The <strong>Rook</strong> steps one square orthogonally forward,
+followed by one square orthogonally to the right. Then
+it repeats the pattern.</p>
 <h2 id = 'animation'>Animation</h2>
 
 <div class = 'trapped' data-piece = 'rook'></div>

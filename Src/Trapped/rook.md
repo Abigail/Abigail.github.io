@@ -164,16 +164,4 @@ All but one of its moves is a single orthogonal step.
 
 #### Flat
 
-<div class = 'heatmap left'>
-% ./trapped -m 5000 -l w_fl --div l WW 
-% Box: [-1, 0] [0, 1]
-+------+------+
-| 2500 |    . |
-+------+------+
-|   *  | 2500 |
-+------+------+
-</div>
-
-On the Flat Wedge the **Rook** quickly escapes to infinity by alternating make 
-a step forward, and a step to the right. This gives it an escape
-velocity of \(\frac{\sqrt{2}}{2}\) .
+<!-- @@ Wazir Rook Flat_Wedge -->
