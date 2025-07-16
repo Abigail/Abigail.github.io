@@ -15,19 +15,22 @@ my %piece2betza = (
     "Rook"            =>  "WW",
 );
 
+my %parent2sub = (
+    "Blind Monkey"    =>  \&blind_monkey,
+    "Flying Cock"     =>  \&flying_cock,
+     King             =>  \&king,
+     Wazir            =>  \&wazir,
+);
 
 sub trapped (%args) {
     my $parent = $args {parent};
     my $piece  = $args {piece};
     my $layout = $args {layout};
 
-    local $_ = $parent;
+    my $sub = $parent2sub {$parent} //
+               die "Do not know what to do with parent '$parent'\n";
 
-    /^Wazir$/        ? wazir        (%args)
-  : /^Blind Monkey$/ ? blind_monkey (%args)
-  : /^Flying Cock$/  ? flying_cock  (%args)
-  : /^King$/         ? king         (%args)
-  : die "Do not know what to do with parent '$parent'\n";
+    $sub -> (%args);
 }
 
 
