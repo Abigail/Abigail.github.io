@@ -7,6 +7,7 @@
 <link rel = 'stylesheet' href = '../../Styles/main.css'>
 <link rel = 'stylesheet' href = '../../Styles/Trapped/main.css'>
 <link rel = 'stylesheet' href = '../../Styles/Trapped/main-heatmap.css'>
+<link rel = 'stylesheet' href = '../../Styles/Trapped/main-path.css'>
 <script src = "../../JavaScript/jquery.js"></script>
 <script id  = 'MathJax-script' async src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.js'></script>
 <script id = 'svg-script' src = 'https://cdn.jsdelivr.net/npm/@svgdotjs/svg.js@3.0/dist/svg.min.js'></script>
@@ -17,6 +18,7 @@
 <script src = '../../JavaScript/Trapped/boxset.js'></script>
 <script src = '../../JavaScript/Trapped/movement.js'></script>
 <script src = '../../JavaScript/Trapped/heatmap.js'></script>
+<script src = '../../JavaScript/Trapped/path.js'></script>
 <script src = '../../JavaScript/Trapped/pages.js'></script>
 </head>
 
@@ -143,7 +145,7 @@ steps diagonally backward left, but then it steps just two squares.</p>
 <h4 id = 'diamond'>Diamond</h4>
 
 <div class = 'heatmap left'>
-% ./trapped -m 10k -l s_d &mdash;div l FF 
+% ./trapped -m 10k -l s_d &mdash;div r F
 % Box: [-1, 1] [-1, 1]
 +------+------+------+
 | 2550 |    . | 2500 |
@@ -154,43 +156,44 @@ steps diagonally backward left, but then it steps just two squares.</p>
 +------+------+------+
 </div>
 
-<p>On the Diamond Spiral, the <strong>Bishop</strong> moves in the same way as
-the <a href="ferz.html"><em>Ferz</em></a>, visiting <span class = 'latex-inline'>\(50\%\)</span> of the squares
-on the board.</p>
+<p>On the Diamond Square, the <strong>Bishop</strong> moves like the
+<a href="ferz.html"><em>Ferz</em></a>. It follows a path similar to the
+Square Spiral, and rotated 45&deg; clockwise.</p>
 
-<p>As can be seen by the heatmap on the right, on the Diamond Square,
-the <strong>Bishop</strong> makes a roughly equal amount of single square steps
-in each of the four orthogonal directions.</p>
+<p>As can be seen from the heatmap on the left, the
+<strong>Bishop</strong> makes diagonal steps, one square per move, in all
+of the four directions, in roughly equal amounts.</p>
 
 <h3 id = 'wedge'>Wedge</h3>
 
 <h4 id = 'folded'>Folded</h4>
 
 <div class = 'heatmap right'>
-% ./trapped -m 10k -l w_fo &mdash;div r FF 
+% ./trapped -m 1k -l w_fo &mdash;div r F
 % Box: [-1, 1] [-1, 1]
-+------+------+------+
-| 2500 |    . | 5000 |
-+------+------+------+
-|    . |   *  |    . |
-+------+------+------+
-|    . |    . | 2500 |
-+------+------+------+
++-----+-----+-----+
+| 250 |   . | 500 |
++-----+-----+-----+
+|   . |  *  |   . |
++-----+-----+-----+
+|   . |   . | 250 |
++-----+-----+-----+
 </div>
 
-<p>On the Folded Wedge, the <strong>Bishop</strong> escapes to infinity, using a 
-four step loop to move two squares to the upper right. This gives
-the <strong>Bishop</strong> an escape velocity of <span class = 'latex-inline'>\(\frac{\sqrt{2}}{2}\)</span>.</p>
+<div class = 'path left'>
+0 0 -1 -1 -1 1 1 1 -1 1
+</div>
 
-<p>As seen from the heatmap on the right, on the Folded Wedge, the
-<strong>Bishop</strong> only uses three different moves. For two single square
-moves diagonally forward right, it make a single step forward left,
-and a single step backward right.</p>
+<p>On the Folded Wedge, the <strong>Bishop</strong> moves like the
+<a href="ferz.html"><em>Ferz</em></a>, and quickly escapes to infinity,
+using a zig-zag pattern on the right hand side of the Wedge.
+It takes four steps to move two squares diagonally upward,
+giving it an escape velocity of <span class = 'latex-inline'>\(\frac{\sqrt{2}}{2}\)</span>.</p>
 
 <h4 id = 'flat'>Flat</h4>
 
 <div class = 'heatmap left'>
-% ./trapped -m k -l w_fl &mdash;div l FF 
+% ./trapped -m 1k -l w_fl &mdash;div l F
 % Box: [-1, 0] [0, 1]
 +------+------+
 |    . | 1000 |
@@ -199,9 +202,14 @@ and a single step backward right.</p>
 +------+------+
 </div>
 
-<p>On the Flat Wedge, the <strong>Bishop</strong> escapes as well, keep to the right
-edge of the Wedge, moving one square to the upper right in each step.
-This means an escape velocity of <span class = 'latex-inline'>\(\sqrt{2}\)</span>.</p>
+<div class = 'path right'>
+0 0 -1 1
+</div>
+
+<p>On the Flat Wedge, the <strong>Bishop</strong> moves like the
+<a href="ferz.html"><em>Ferz</em></a>, and sticks to the right hand side
+edge of the board, escaping to infinity, moving one square forward
+right on each move. The escape velocity is <span class = 'latex-inline'>\(\sqrt{2}\)</span>.</p>
 <h2 id = 'animation'>Animation</h2>
 
 <div class = 'trapped' data-piece = 'bishop'></div>

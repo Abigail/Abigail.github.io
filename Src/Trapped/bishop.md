@@ -108,64 +108,15 @@ steps diagonally backward left, but then it steps just two squares.
 
 #### Diamond
 
-<div class = 'heatmap left'>
-% ./trapped -m 10k -l s_d --div l FF 
-% Box: [-1, 1] [-1, 1]
-+------+------+------+
-| 2550 |    . | 2500 |
-+------+------+------+
-|    . |   *  |    . |
-+------+------+------+
-| 2450 |    . | 2500 |
-+------+------+------+
-</div>
-
-On the Diamond Spiral, the **Bishop** moves in the same way as
-the [*Ferz*](ferz.html), visiting \(50\%\) of the squares
-on the board.
-
-As can be seen by the heatmap on the right, on the Diamond Square,
-the **Bishop** makes a roughly equal amount of single square steps
-in each of the four orthogonal directions.
+<!-- @@ Ferz Bishop Diamond_Spiral -->
 
 ### Wedge
 
 #### Folded
 
-<div class = 'heatmap right'>
-% ./trapped -m 10k -l w_fo --div r FF 
-% Box: [-1, 1] [-1, 1]
-+------+------+------+
-| 2500 |    . | 5000 |
-+------+------+------+
-|    . |   *  |    . |
-+------+------+------+
-|    . |    . | 2500 |
-+------+------+------+
-</div>
-
-On the Folded Wedge, the **Bishop** escapes to infinity, using a 
-four step loop to move two squares to the upper right. This gives
-the **Bishop** an escape velocity of \(\frac{\sqrt{2}}{2}\).
-
-As seen from the heatmap on the right, on the Folded Wedge, the
-**Bishop** only uses three different moves. For two single square
-moves diagonally forward right, it make a single step forward left,
-and a single step backward right.
-
+<!-- @@ Ferz Bishop Folded_Wedge -->
 
 #### Flat
 
-<div class = 'heatmap left'>
-% ./trapped -m k -l w_fl --div l FF 
-% Box: [-1, 0] [0, 1]
-+------+------+
-|    . | 1000 |
-+------+------+
-|   *  |    . |
-+------+------+
-</div>
+<!-- @@ Ferz Bishop Flat_Wedge -->
 
-On the Flat Wedge, the **Bishop** escapes as well, keep to the right
-edge of the Wedge, moving one square to the upper right in each step.
-This means an escape velocity of \(\sqrt{2}\).
