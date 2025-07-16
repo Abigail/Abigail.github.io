@@ -153,6 +153,10 @@ On the Folded Wedge, the **Knight** gets trapped quickly, after 50 steps.
 +------+------+------+------+------+
 </div>
 
+<div class = 'path right'>
+-1 0 -1 2 -1 -2 2 -1 -1 2
+</div>
+
 On the Flat Wedge, the **Knight** bounces around for the first 30 steps,
 then, making triangular shaped turns, escapes to infinity. It uses
 a four step cycle to move one square to the upper right, giving it
