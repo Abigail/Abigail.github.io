@@ -22,8 +22,12 @@ class Escape_Loop {
         this . index = args . index
         let fig_id   = `figure_${this . index}`
 
-        this . layout = $($(element) . prevAll ("h3") [0]) . text ()
-        let piece = $($("h1") [0]) . text ()
+        //
+        // Get the piece, layout and sub layout
+        //
+        this . piece     = $($("h1") [0])                     . text ()
+        this . layout    = $($(element) . prevAll ("h3") [0]) . text ()
+        this . sublayout = $($(element) . prevAll ("h4") [0]) . text ()
 
         //
         // Find the size of board. It ought to be a rectangle
@@ -32,7 +36,7 @@ class Escape_Loop {
         $(element) . html ("")
 
         //
-        // Add a figure and a caption
+        // Add a figure
         //
         $(element) . append (`<figure id = '${fig_id}' class = 'escape-loop'>` +
                              `</figure>`)
@@ -61,6 +65,9 @@ class Escape_Loop {
             }
         }
 
+        //
+        // Set the minimum and maximum row and column
+        //
         this . r_min = r_min
         this . r_max = r_max
         this . c_min = c_min
@@ -80,8 +87,10 @@ class Escape_Loop {
                                 .    addClass   ("visited-dot")
         }
 
-        $(figure) . append (`<figcaption>Escape pattern ` +
-                            `for the ${piece}</figcaption>`)
+        let caption = `Escape pattern for the ${this . piece}<br>` +
+                      `on the ${this . sublayout} ${this . layout}`
+
+        $(figure) . append (`<figcaption>${caption}</figcaption>`)
     }
 
     //
