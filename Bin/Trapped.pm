@@ -69,7 +69,7 @@ sub ferz (%args) {
             The **${piece}** makes diagonal steps, one square per move,
             in all of the four directions, in roughly equal amounts.
         --
-        $text =~ s/Spiral the .*?, and/Spiral the **Ferz**/ if $piece eq "Ferz"
+        $text =~ s/Spiral the .*?, and/Spiral the **Ferz**/s if $piece eq "Ferz"
     }
     if ($layout eq "Diamond Spiral") {
         $text = <<~ "--" =~ s/^\h+//gmr;
