@@ -132,7 +132,7 @@ but they follow sligtly different paths.
 +------+------+
 </div>
 
-<div class = 'escape-loop right'>
+<div class = 'path right'>
 0 0 -1 0 0 1
 </div>
 

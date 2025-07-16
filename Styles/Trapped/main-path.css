@@ -1,10 +1,10 @@
-div.escape-loop.left {
+div.path.left {
     float:                        left;
     margin-right:                  1em;
     margin-bottom:                 1ex;
 }
 
-div.escape-loop.right {
+div.path.right {
     float:                       right;
     margin-left:                   1em;
     margin-bottom:                 1ex;

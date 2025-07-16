@@ -71,7 +71,7 @@ my $TYPE_INFO = {
         $INFO_NAV      =>  "Trapped/pages",
         $INFO_UP       =>  "../..",
         $INFO_JS       =>  ["piece_list", "trapped", "pieces", "boxset",
-                            "movement", "heatmap", "escape_loop"],
+                            "movement", "heatmap", "path"],
     },
     $TYPE_SKATING  => {
         $INFO_DIR      =>  $DIR_SKATING,

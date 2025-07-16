@@ -6,7 +6,7 @@ $(window) . on ("load", () => {
         return
     }
 
-    $("div.escape-loop") . each ((i, e) => {
+    $("div.path") . each ((i, e) => {
         new Escape_Loop ({element: e, index: i})
     })
 })

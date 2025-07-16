@@ -115,7 +115,7 @@ of the four directions, in roughly equal amounts.
 +-----+-----+-----+
 </div>
 
-<div class = 'escape-loop left'>
+<div class = 'path left'>
 0 0 -1 -1 -1 1 1 1 -1 1
 </div>
 
@@ -136,7 +136,7 @@ escape velocity of \(\frac{\sqrt{2}}{2}\).
 +------+------+
 </div>
 
-<div class = 'escape-loop right'>
+<div class = 'path right'>
 0 0 -1 1
 </div>
 
