@@ -7,8 +7,10 @@ use warnings;
 no  warnings 'syntax';
 
 my %piece2betza = (
+    "Bishop"          =>  "FF",
     "Dragon Horse"    =>  "FFW",
     "Dragon King"     =>  "FWW",
+    "Ferz"            =>  "F",
     "Gold General"    =>  "fFW",
     "King"            =>  "FW",
     "Queen"           =>  "FFWW",
@@ -17,6 +19,7 @@ my %piece2betza = (
 
 my %parent2sub = (
     "Blind Monkey"    =>  \&blind_monkey,
+     Ferz             =>  \&ferz,
     "Flying Cock"     =>  \&flying_cock,
      King             =>  \&king,
      Wazir            =>  \&wazir,
@@ -30,7 +33,132 @@ sub trapped (%args) {
     my $sub = $parent2sub {$parent} //
                die "Do not know what to do with parent '$parent'\n";
 
-    $sub -> (%args);
+    $sub -> (%args) =~ s/\h+$//grm;
+}
+
+
+#
+# Description of Ferz movements on the various boards
+#
+sub ferz (%args) {
+    my $piece   = $args {piece};
+    my $layout  = $args {layout};
+    my $betza   = $piece2betza {$piece};
+    my $text;
+    if ($layout eq "Square Spiral") {
+        $text = <<~ "--" =~ s/^\h+//gmr;
+            <div class = 'heatmap right'>
+            % ./trapped -m 10k -l s_sq --div r ${betza}
+            % Box: [-1, 1] [-1, 1]
+            +------+------+------+
+            | 2450 |    . | 2500 |
+            +------+------+------+
+            |    . |   *  |    . |
+            +------+------+------+
+            | 2550 |    . | 2500 |
+            +------+------+------+
+            </div>
+              
+            On the Square Spiral the **${piece}** moves like the 
+            [*Ferz*](ferz.html), and will not get trapped.
+            It follows a regular path around the origin, creating spiral
+            in the opposite direction of the Spiral, and rotated 45&deg;.
+            It will visited all the odd valued squares, so \\(50\\%\\)
+            of the squares on the board.
+
+            The **${piece}** makes diagonal steps, one square per move,
+            in all of the four directions, in roughly equal amounts.
+        --
+        $text =~ s/Spiral the .*?, and/Spiral the **Ferz**/ if $piece eq "Ferz"
+    }
+    if ($layout eq "Diamond Spiral") {
+        $text = <<~ "--" =~ s/^\h+//gmr;
+            <div class = 'heatmap left'>
+            % ./trapped -m 10k -l s_d --div r F
+            % Box: [-1, 1] [-1, 1]
+            +------+------+------+
+            | 2550 |    . | 2500 |
+            +------+------+------+
+            |    . |   *  |    . |
+            +------+------+------+
+            | 2450 |    . | 2500 |
+            +------+------+------+
+            </div>
+
+        --
+        if ($piece eq "Ferz") {
+            $text .= <<~ "--" =~ s/^\h+//gmr;
+                On the Diamond Square, the **Ferz** follows the same regular
+                path around the origin as the Square Spiral, except that it
+                rotates the other way around. Hence, the pieces visits
+                \\(50\\%\\) of the squares on the board.
+            --
+        }
+        else {
+            $text .= <<~ "--" =~ s/^\h+//gmr;
+                On the Diamond Square, the **${piece}** moves like the
+                [*Ferz*](ferz.html). It follows a path similar to the
+                Square Spiral, and rotated 45&deg; clockwise.
+            --
+        }
+
+        $text .= <<~ "--" =~ s/^\h+//gmr;
+
+            As can be seen from the heatmap on the left, the
+            **${piece}** makes diagonal steps, one square per move, in all
+            of the four directions, in roughly equal amounts.
+        --
+    }
+    if ($layout eq "Folded Wedge") {
+        $text = <<~ "--" =~ s/^\h+//gmr;
+            <div class = 'heatmap right'>
+            % ./trapped -m 1k -l w_fo --div r F
+            % Box: [-1, 1] [-1, 1]
+            +-----+-----+-----+
+            | 250 |   . | 500 |
+            +-----+-----+-----+
+            |   . |  *  |   . |
+            +-----+-----+-----+
+            |   . |   . | 250 |
+            +-----+-----+-----+
+            </div>
+
+            <div class = 'path left'>
+            0 0 -1 -1 -1 1 1 1 -1 1
+            </div>
+
+            On the Folded Wedge, the **${piece}** moves like the 
+            [*Ferz*](ferz.html), and quickly escapes to infinity,
+            using a zig-zag pattern on the right hand side of the Wedge.
+            It takes four steps to move two squares diagonally upward,
+            giving it an escape velocity of \\(\\frac{\\sqrt{2}}{2}\\).
+        --
+        $text =~ s/moves like the.*?, and//m if $piece eq "Ferz"
+    }
+    if ($layout eq "Flat Wedge") {
+        $text = <<~ "--" =~ s/^\h+//gmr;
+            <div class = 'heatmap left'>
+            % ./trapped -m 1k -l w_fl --div l F
+            % Box: [-1, 0] [0, 1] 
+            +------+------+       
+            |    . | 1000 |       
+            +------+------+       
+            |   *  |    . |       
+            +------+------+
+            </div>
+
+            <div class = 'path right'>
+            0 0 -1 1
+            </div>
+
+            On the Flat Wedge, the **${piece}** moves like the
+            [*Ferz*](ferz.html), and sticks to the right hand side
+            edge of the board, escaping to infinity, moving one square forward
+            right on each move. The escape velocity is \\(\\sqrt{2}\\).
+        --
+        $text =~ s/moves like the.*?, and//m if $piece eq "Ferz"
+    }
+    $text
 }
 
 
