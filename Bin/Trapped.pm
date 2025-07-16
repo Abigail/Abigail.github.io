@@ -32,32 +32,81 @@ sub trapped (%args) {
 
 
 #
-# Description for pieces which move like the Wazir on the Square Spiral.
+# Description for pieces which move like the Wazir 
 #
 sub wazir (%args) {
-    my $piece  = $args {piece};
-    my $layout = $args {layout} // "Square Spiral";
-    my $betza  = $piece2betza {$piece};
-    <<~ "--" =~ s/^\h+//gmr;
-        <div class = 'heatmap right'>
-        % ./trapped -m 5k -l s_sq --div r $betza
-        % Box: [-1, 1] [-1, 1]
-        +------+------+------+
-        |    . | 1225 |    . |
-        +------+------+------+
-        | 1260 |   *  | 1255 |
-        +------+------+------+
-        |    . | 1260 |    . |
-        +------+------+------+
-        </div>
-         
-        The **${piece}** can move as a [*Wazir*](wazir.html). Hence, it will
-        not get stuck, filling the entire board by just following the spiral.
-     
-        As can be seen from the heatmap to the right, the **${piece}** makes
-        about the same number of steps in each of the four orthogonal
-        directions.
-    --
+    my $piece   = $args {piece};
+    my $layout  = $args {layout} // "Square Spiral";
+    my $betza   = $piece2betza {$piece};
+    my $text;
+    if ($layout eq "Square Spiral") {
+        $text = <<~ "--" =~ s/^\h+//gmr;
+            <div class = 'heatmap right'>
+            % ./trapped -m 5k -l s_sq --div r ${betza}
+            % Box: [-1, 1] [-1, 1]
+            +------+------+------+
+            |    . | 1225 |    . |
+            +------+------+------+
+            | 1260 |   *  | 1255 |
+            +------+------+------+
+            |    . | 1260 |    . |
+            +------+------+------+
+            </div>
+
+        --
+        if ($piece eq "Wazir") {
+            $text .= <<~ "--" =~ s/^\h+//gmr;
+                Because the **Wazir** can always make a step in
+                each of the four orthogonal directions, it can
+                follow the Spiral, visiting all the squares in
+                order.
+
+                It also means that any piece which can move as the
+                **Wazir** (even when it has more moves available,
+                like the Chess [*King*](king.html)), will follow
+                the Spiral and fill the entire board.
+            --
+        }
+        else {
+            $text .= <<~ "--" =~ s/^\h+//gmr;
+                The **${piece}** can move as a [*Wazir*](wazir.html).
+                This means that **${piece}** will follow the Spiral,
+                visiting all the squares in order.
+            --
+        }
+        $text .= <<~ "--" =~ s/^\h+//gmr;
+
+	    As can be seen from the heatmap to the right, the
+	    **${piece}** makes about the same number of steps in
+	    each of the four orthogonal directions.
+	--
+    }
+    if ($layout eq "Flat Wedge") {
+	$text  = <<~ "--" =~ s/^\h+//gmr;
+            <div class = 'heatmap left'>
+            % ./trapped -m 5k -l w_fl --div l ${betza}
+            % Box: [-1, 0] [0, 1]
+            +------+------+
+            | 2500 |    . |
+            +------+------+
+            |   *  | 2500 |
+            +------+------+
+            </div>
+            
+            <div class = 'path right'> 0 0 -1 0 0 1 </div>
+            
+            Just like the [*Wazir*](wazir.html), on the Flat Wedge,
+            the **${piece}** escapes to infinity, following a zigzag
+            pattern on the right edge of the Flat Wedge. This gives
+            it an escape velocity of \\(\\frac{\\sqrt{2}}{2}\\).
+            
+            The **${piece}** steps one square orthogonally forward,
+            followed by one square orthogonally to the right. Then
+            it repeats the pattern.
+        --
+        $text =~ s/^Just.*?, on/On/m if $piece eq "Wazir";
+    }
+    $text
 }
 
 
