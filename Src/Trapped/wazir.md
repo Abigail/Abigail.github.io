@@ -132,6 +132,10 @@ but they follow sligtly different paths.
 +------+------+
 </div>
 
+<div class = 'escape-loop right'>
+0 0 -1 0 0 1
+</div>
+
 On the Flat Wedge, the **Wazir** escapes to infinity, following a zigzag
 pattern on the right edge of the Flat Wedge. This gives it an 
 escape velocity of \(\frac{\sqrt{2}}{2}\).
