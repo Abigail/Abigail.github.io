@@ -176,6 +176,10 @@ captures differently than it moves.
 +------+
 </div>
 
+<div class = 'path left'>
+0 0 -1 0
+</div>
+
 On the Square and Diamond Spiral and both the Folded and Flat Wedge,
 the %%PIECE%% escapes to infinity in a straight line forward. Its
 escape velocity is \(1\) on all the boards.
