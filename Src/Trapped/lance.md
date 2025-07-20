@@ -33,13 +33,23 @@ See also the [*Ky&#x014D;to*](kyoto.html), which moves like the
 
 Link: [%%CHESS_V%%](#piece:lance)
 
-### Spiral
+### Spiral and Wedge
 
-On either Spriral the **Lance** escapes in a straight line to
-infinity with an escape velocity of \(1\).
+<div class = 'heatmap right'>
+% ./trapped -m k -l s_sq --div r fWW
+% Box: [-1, 0] [0, 0]
++------+
+| 1000 |
++------+
+|   *  |
++------+
+</div>
 
-### Wedge
+<div class = 'path left'>
+0 0 -1 0
+</div>
 
-On both the Folded and the Flat Wedge, the **Lance** 
-escapes to infinity using the same line as the Spiral, hence
-its escape velocity is \(1\) as well.
+On all layouts, the **Lance** moves like the [*Pawn*](pawn.html):
+moving a single square orthogonally forward on each move. This
+despite the **Lance** having the ability to more an unlimited number
+of squares forward.
