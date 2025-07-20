@@ -6,6 +6,8 @@
 <link rel = 'stylesheet' href =      'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
 <link rel = 'stylesheet' href = '../../Styles/main.css'>
 <link rel = 'stylesheet' href = '../../Styles/Trapped/main.css'>
+<link rel = 'stylesheet' href = '../../Styles/Trapped/main-heatmap.css'>
+<link rel = 'stylesheet' href = '../../Styles/Trapped/main-path.css'>
 <script src = "../../JavaScript/jquery.js"></script>
 <script id  = 'MathJax-script' async src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.js'></script>
 <script id = 'svg-script' src = 'https://cdn.jsdelivr.net/npm/@svgdotjs/svg.js@3.0/dist/svg.min.js'></script>
@@ -15,6 +17,8 @@
 <script src = '../../JavaScript/Trapped/pieces.js'></script>
 <script src = '../../JavaScript/Trapped/boxset.js'></script>
 <script src = '../../JavaScript/Trapped/movement.js'></script>
+<script src = '../../JavaScript/Trapped/heatmap.js'></script>
+<script src = '../../JavaScript/Trapped/path.js'></script>
 <script src = '../../JavaScript/Trapped/pages.js'></script>
 </head>
 
@@ -53,54 +57,124 @@ under different names.</p>
   </tr>
   <tr class = 'row-2' markdown = '1'>
     <td class = 'cell-2-0 col-0 ' markdown = '1'><strong>Silver General</strong></td>
-    <td class = 'cell-2-1 col-1 ' markdown = '1'><a href="https://en.wikipedia.org/wiki/Shogi">Sh&#x14d;gi <span class = 'uni_name'>(&#x5c06;&#x68cb;)</span></a>; <a href="https://en.wikipedia.org/wiki/chu_shogi">Chu&nbsp;Sh&#x014d;gi <span class = 'uni_name'>(&#x4E2D;&#x5C06;&#x68CB;)</span></a>; <a href="https://en.wikipedia.org/wiki/Micro_shogi">Micro&nbsp;Sh&#x14d;gi</a>; <a href="https://en.wikipedia.org/wiki/Taikyoku_shogi">Taikyoku Sh&#x14d;gi <span class = 'uni_name'>(&#x5927;&#x5c40;&#x5c06;&#x68cb;)</span></a>; <a href="https://www.chessvariants.com/rules/typhoon-revised">Typhoon</a></td>
+    <td class = 'cell-2-1 col-1 ' markdown = '1'><a href="https://en.wikipedia.org/wiki/Shogi">Sh&#x14d;gi</a>; <a href="https://en.wikipedia.org/wiki/chu_shogi">Chu&nbsp;Sh&#x014d;gi</a>; <a href="https://en.wikipedia.org/wiki/Micro_shogi">Micro&nbsp;Sh&#x14d;gi</a>; <a href="https://en.wikipedia.org/wiki/Taikyoku_shogi">Taikyoku Sh&#x14d;gi</a>; <a href="https://www.chessvariants.com/rules/typhoon-revised">Typhoon</a></td>
     <td class = 'cell-2-2 col-2 ' markdown = '1'><span class = 'tooltip'>&#x260A;<span class = 'tooltiptext'>Promotes to</span></span> <a href="dragon_horse.html?piece=vulture"><em>Vulture</em></a></td>
   </tr>
   <tr class = 'row-3' markdown = '1'>
     <td class = 'cell-3-0 col-0 ' markdown = '1'><strong>Violent Stag</strong></td>
-    <td class = 'cell-3-1 col-1 ' markdown = '1'><a href="https://en.wikipedia.org/wiki/Taikyoku_shogi">Taikyoku Sh&#x14d;gi <span class = 'uni_name'>(&#x5927;&#x5c40;&#x5c06;&#x68cb;)</span></a>; <a href="https://en.wikipedia.org/wiki/Wa_shogi">Wa&nbsp;Sh&#x14d;gi <span class = 'uni_name'>(&#x548C;&#x5C06;&#x68CB;)</span></a></td>
+    <td class = 'cell-3-1 col-1 ' markdown = '1'><a href="https://en.wikipedia.org/wiki/Taikyoku_shogi">Taikyoku Sh&#x14d;gi</a>; <a href="https://en.wikipedia.org/wiki/Wa_shogi">Wa&nbsp;Sh&#x14d;gi</a></td>
     <td class = 'cell-3-2 col-2 ' markdown = '1'></td>
   </tr>
 </table>
 
 <p>Link: <a href="https://www.chessvariants.com/piececlopedia.dir/silvergeneral.html"><span class = 'chess_v_token'>C&#x2C7D;</span></a></p>
 
-<p>The <a href="humpback.html"><em>Humpback</em></a> mirrors the movements of the %%PIECE%%.</p>
-
 <h3 id = 'spiral'>Spiral</h3>
 
 <h4 id = 'square'>Square</h4>
 
-<div class = "section">
+<div class = 'heatmap right'>
+% ./trapped -m 10k -l s_sq &mdash;div r FfW 
+% Box: [-1, 1] [-1, 1]
++------+------+------+
+| 1104 | 1199 | 2738 |
++------+------+------+
+|    . |   *  |    . |
++------+------+------+
+| 3251 |    . | 1708 |
++------+------+------+
+</div>
+
 <p>The <strong>Silver General</strong> visits all the squares of the Square Spiral, in
 a unique pattern, with a strong bias to the upper right.</p>
-</div>
+
+<p>As can be seen from the heatmap on the right, the <strong>Silver General</strong> will
+make use off all its possible moves, with the majority of the moves on the
+right-forward/left-backward diagonal. It has slightly more forward than
+backward moves, and slightly more rightward than leftward moves.</p>
 
 <h4 id = 'diamond'>Diamond</h4>
 
-<div class = "section">
+<div class = 'heatmap left'>
+% ./trapped -m 10k -l s_d &mdash;div l FfW 
+% Box: [-1, 1] [-1, 1]
++------+------+------+
+| 2485 |   71 | 2474 |
++------+------+------+
+|    . |   *  |    . |
++------+------+------+
+| 2485 |    . | 2485 |
++------+------+------+
+</div>
+
 <p>On the Diamond Spiral, the <strong>Silver General</strong> circles the origin counter
 clockwise in a simple pattern. All squares on the board will
 be visited.</p>
-</div>
+
+<p>It makes each of the four diagonal steps in roughly equal amounts, with
+one forward step for each "layer" of the spiral it makes.</p>
 
 <h3 id = 'wedge'>Wedge</h3>
 
 <h4 id = 'folded'>Folded</h4>
 
-<div class = "section">
-<p>On the Folded Wedge, the <strong>Silver General</strong> follows the same pattern
-as the <a href="ferz.html"><em>Ferz</em></a>, visiting two squares on each row.
+<div class = 'heatmap right'>
+% ./trapped -m 1k -l w_fo &mdash;div r F
+% Box: [-1, 1] [-1, 1]
++-----+-----+-----+
+| 250 |   . | 500 |
++-----+-----+-----+
+|   . |  *  |   . |
++-----+-----+-----+
+|   . |   . | 250 |
++-----+-----+-----+
+</div>
+
+<div class = 'path left'>
+0 0 -1 -1 -1 1 1 1 -1 1
+</div>
+
+<p>On the Folded Wedge, the <strong>Silver General</strong> moves like the
+<a href="ferz.html"><em>Ferz</em></a>, and quickly escapes to infinity,
+using a zig-zag pattern on the right hand side of the Wedge.
+It takes four steps to move two squares diagonally upward,
+giving it an escape velocity of <span class = 'latex-inline'>\(\frac{\sqrt{2}}{2}\)</span>.</p>
+
+<!--
+On the Folded Wedge, the **Silver General** follows the same pattern
+as the [*Ferz*](ferz.html), visiting two squares on each row.
 It escapes to the upper right, using a three step loop to 
 move one square to the upper right. Its escape velocity is
-<span class = 'latex-inline'>\(\frac{\sqrt{2}}{3}\)</span>.</p>
-</div>
+<span class = 'latex-inline'>\\(\frac{\sqrt{2}}{3}\\)</span>.
+-->
 
 <h4 id = 'flat'>Flat</h4>
 
-<p>On the Flat Wedge, the <strong>Silver General</strong> visits the right most
+<div class = 'heatmap left'>
+% ./trapped -m 1k -l w_fl &mdash;div l F
+% Box: [-1, 0] [0, 1]
++------+------+
+|    . | 1000 |
++------+------+
+|   *  |    . |
++------+------+
+</div>
+
+<div class = 'path right'>
+0 0 -1 1
+</div>
+
+<p>On the Flat Wedge, the <strong>Silver General</strong> moves like the
+<a href="ferz.html"><em>Ferz</em></a>, and sticks to the right hand side
+edge of the board, escaping to infinity, moving one square forward
+right on each move. The escape velocity is <span class = 'latex-inline'>\(\sqrt{2}\)</span>.</p>
+
+<!--
+On the Flat Wedge, the **Silver General** visits the right most
 square of each row, and no other squares. This gives it
-an escape velocity of <span class = 'latex-inline'>\(\sqrt{2}\)</span>.</p>
+an escape velocity of <span class = 'latex-inline'>\\(\sqrt{2}\\)</span>.
+-->
+<h2 id = 'animation'>Animation</h2>
 
 <div class = 'trapped' data-piece = 'silver_general'></div>
 
