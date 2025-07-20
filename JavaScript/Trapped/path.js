@@ -30,6 +30,22 @@ class Escape_Loop {
         this . sublayout = $($(element) . prevAll ("h4") [0]) . text ()
 
         //
+        // Handle cases if we don't have sublayouts
+        //
+        if (this . layout == "Wedge") {
+            if (!this . sublayout || (this . sublayout != "Folded" &&
+                                      this . sublayout != "Flat")) {
+                this . sublayout = ""
+            }
+        }
+        if (this . layout == "Spiral") {
+            if (!this . sublayout || (this . sublayout != "Square" &&
+                                      this . sublayout != "Diamond")) {
+                this . sublayout = ""
+            }
+        }
+
+        //
         // Find the size of board. It ought to be a rectangle
         //
         let description = $(element) . text ()
