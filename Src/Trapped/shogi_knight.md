@@ -30,16 +30,70 @@ differently.
 
 #### Square
 
+<div class = 'heatmap right'>
+% ./trapped -m 100 -l s_sq --div r fN 
+% Box: [-2, 0] [0, 1]
++-----+-----+
+|   . | 100 |
++-----+-----+
+|   . |   . |
++-----+-----+
+|  *  |   . |
++-----+-----+
+</div>
+
+<div class = 'path left'>
+0 0 -2 1
+</div>
+
 The **Knight** escapes in a straight, slanted, line to infinity, with
 an escape velocity of \(\sqrt{5}\).
 
+As can be seen from the heatmap on the right, the **Knight** will only
+make its forward right movement.
+
 #### Diamond
+
+<div class = 'heatmap left'>
+% ./trapped -m 100 -l s_d --div l fN 
+% Box: [-2, 0] [-1, 1]
++----+----+----+
+| 50 |  . | 50 |
++----+----+----+
+|  . |  . |  . |
++----+----+----+
+|  . |  * |  . |
++----+----+----+
+</div>
+
+<div class = 'path right'>
+0 0 -2 1 -2 -1
+</div>
 
 The **Knight** escapes straight ahead, bouncing between two files.
 In two steps, it moves four squares ahead, for an escape velocity of \(2\).
 
+As can be seen from the heatmap on the left, it makes an equal amount
+of both its possible movements.
+
 ### Wedge
 
+<div class = 'heatmap right'>
+% ./trapped -m 100 -l w_fo --div r fN 
+% Box: [-2, 0] [0, 1]
++-----+-----+
+|   . | 100 |
++-----+-----+
+|   . |   . |
++-----+-----+
+|  *  |   . |
++-----+-----+
+</div>
+
+<div class = 'path left'>
+0 0 -2 1
+</div>
+
 On both the Folded and the Flat Wedge, the **Knight**
-escapes to infinity using the same line as the Square Spiral.
+escapes to infinity using the same line as on the Square Spiral.
 The escape velocity is \(\sqrt{5}\).
