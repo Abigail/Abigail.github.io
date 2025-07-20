@@ -79,6 +79,10 @@ Link: [%%CHESS_V%%](#piece:goldgeneral)
 +-----+-----+-----+
 </div>
 
+<div class = 'path right'>
+0 0 0 1 -1 -1
+</div>
+
 On the Diamond Spiral, the **Gold General** escapes using a two
 step loop, moving one square upward per loop iteration. This gives
 it an escape velocity of \(\frac{1}{2}\). The **Gold General** will
