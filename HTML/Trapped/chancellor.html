@@ -1,11 +1,13 @@
 <html>
 <head>
-<title>%%PIECE%%</title>
+<title>Chancellor</title>
 <meta charset = "utf-8">
 <link rel  = 'preconnect' href = 'https://fonts.gstatic.com'>
 <link rel = 'stylesheet' href =      'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
 <link rel = 'stylesheet' href = '../../Styles/main.css'>
 <link rel = 'stylesheet' href = '../../Styles/Trapped/main.css'>
+<link rel = 'stylesheet' href = '../../Styles/Trapped/main-heatmap.css'>
+<link rel = 'stylesheet' href = '../../Styles/Trapped/main-path.css'>
 <script src = "../../JavaScript/jquery.js"></script>
 <script id  = 'MathJax-script' async src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.js'></script>
 <script id = 'svg-script' src = 'https://cdn.jsdelivr.net/npm/@svgdotjs/svg.js@3.0/dist/svg.min.js'></script>
@@ -14,91 +16,105 @@
 <script src = '../../JavaScript/Trapped/trapped.js'></script>
 <script src = '../../JavaScript/Trapped/pieces.js'></script>
 <script src = '../../JavaScript/Trapped/boxset.js'></script>
+<script src = '../../JavaScript/Trapped/movement.js'></script>
+<script src = '../../JavaScript/Trapped/heatmap.js'></script>
+<script src = '../../JavaScript/Trapped/path.js'></script>
 <script src = '../../JavaScript/Trapped/pages.js'></script>
 </head>
 
-<body><h1>%%PIECE%%</h1><div class = "byline">
+<body><h1>Chancellor</h1><div class = "byline">
 by Abigail<br>
 <img src = "../../Images/jan_sluiters.jpg">
 </div>
 
 
-<p>The %%PIECE%% either slides an unlimited number of unoccupied
+<div class = "movement">
+. . . . A . . . .
+. . . . * . . . .
+. . . * * * . . .
+. . * . * . * . .
+A * * * S * * * A
+. . * . * . * . .
+. . . * * * . . .
+. . . . * . . . .
+. . . . A . . . .
+</div>
+
+<p>The <strong>Chancellor</strong> either slides an unlimited number of unoccupied
 squares in any of the four orthogonal directions (like a 
 <a href="rook.html"><em>Rook</em></a>), or leaps to a square which is two away in
 one orthogonal direction, and one in the other (like a
 <a href="knight.html"><em>Knight</em></a>).</p>
 
-<p>The %%PIECE%% is a common Fairy Piece, and has a long history.
+<p>The <strong>Chancellor</strong> is a common Fairy Piece, and has a long history.
 It's known under many names, of which <strong>Chancellor</strong>, <strong>Empress</strong>
 and <strong>Marshal(l)</strong> are the most frequently used.</p>
 
-<table class = piece_list>
+<table class = 'piece_info'>
   <tr class = 'row-0' markdown = '1'>
-    <th class = 'cell-0-0 col-0 ' markdown = '1'>Game</td>
-    <th class = 'cell-0-1 col-1 ' markdown = '1' colspan = '2'>Piece</td>
-    <th class = 'cell-0-3 col-3 ' markdown = '1'>Info</td>
+    <th class = 'cell-0-0 col-0 ' markdown = '1'>Name</td>
+    <th class = 'cell-0-1 col-1 ' markdown = '1'>Game(s)</td>
+    <th class = 'cell-0-2 col-2 ' markdown = '1'>Info</td>
   </tr>
   <tr class = 'row-1' markdown = '1'>
-    <th class = 'cell-1-0 col-0 ' markdown = '1'>Carrera's Chess</td>
-    <td class = 'cell-1-1 col-1 ' markdown = '1' colspan = '2'><strong>Champion</strong></td>
-    <td class = 'cell-1-3 col-3 ' markdown = '1'></td>
+    <td class = 'cell-1-0 col-0 ' markdown = '1'><strong>Champion</strong></td>
+    <td class = 'cell-1-1 col-1 ' markdown = '1'>Carrera's Chess</td>
+    <td class = 'cell-1-2 col-2 ' markdown = '1'></td>
   </tr>
   <tr class = 'row-2' markdown = '1'>
-    <th class = 'cell-2-0 col-0 ' markdown = '1'><a href="https://en.wikipedia.org/wiki/Capablanca_Chess">Capablanca Chess</a>; <a href="https://www.chessvariants.com/large.dir/cagliostro.html">Cagliostro's Chess</a>;
-            <a href="https://en.wikipedia.org/wiki/Chancellor_Chess">Chancellor Chess</a></td>
-    <td class = 'cell-2-1 col-1 ' markdown = '1' colspan = '2'><strong>Chancellor</strong></td>
-    <td class = 'cell-2-3 col-3 ' markdown = '1'></td>
+    <td class = 'cell-2-0 col-0 ' markdown = '1'><strong>Chancellor</strong></td>
+    <td class = 'cell-2-1 col-1 ' markdown = '1'><a href="https://en.wikipedia.org/wiki/Capablanca_Chess">Capablanca Chess</a>; <a href="https://www.chessvariants.com/large.dir/cagliostro.html">Cagliostro's Chess</a>;
+  <a href="https://en.wikipedia.org/wiki/Chancellor_Chess">Chancellor Chess</a></td>
+    <td class = 'cell-2-2 col-2 ' markdown = '1'></td>
   </tr>
   <tr class = 'row-3' markdown = '1'>
-    <th class = 'cell-3-0 col-0 ' markdown = '1'><a href="https://web.archive.org/web/20090602051546/http://www.quantumchess.com/">Quantum Chess</a></td>
-    <td class = 'cell-3-1 col-1 ' markdown = '1' colspan = '2'><strong>Crown Prince</strong></td>
-    <td class = 'cell-3-3 col-3 ' markdown = '1'><span class = 'tooltip'>&#x238B;<span class = 'tooltiptext'>This piece has additional capture moves,<br>which we can ignore here</span></span></td>
+    <td class = 'cell-3-0 col-0 ' markdown = '1'><strong>Crown Prince</strong></td>
+    <td class = 'cell-3-1 col-1 ' markdown = '1'><a href="https://web.archive.org/web/20090602051546/http://www.quantumchess.com/">Quantum Chess</a></td>
+    <td class = 'cell-3-2 col-2 ' markdown = '1'><span class = 'tooltip'>&#x238B;<span class = 'tooltiptext'>This piece has additional capture moves,<br>which we can ignore here</span></span></td>
   </tr>
   <tr class = 'row-4' markdown = '1'>
-    <th class = 'cell-4-0 col-0 ' markdown = '1' rowspan = '2'><a href="https://www.chessvariants.com/historic.dir/indiangr1.html">Turkish Great Chess</a></td>
-    <td class = 'cell-4-1 col-1 ' markdown = '1' colspan = '2'><strong>Dabbabah</strong> or</td>
-    <td class = 'cell-4-3 col-3 ' markdown = '1'>Not to be confused with the <a href="dabbaba.html"><em>Dabbaba</em></a></td>
+    <td class = 'cell-4-0 col-0 ' markdown = '1'><strong>Dabbabah</strong> or</td>
+    <td class = 'cell-4-1 col-1 ' markdown = '1' rowspan = '2'><a href="https://www.chessvariants.com/historic.dir/indiangr1.html">Turkish Great Chess</a></td>
+    <td class = 'cell-4-2 col-2 ' markdown = '1'>Not to be confused with the <a href="dabbaba.html"><em>Dabbaba</em></a></td>
   </tr>
   <tr class = 'row-5' markdown = '1'>
-    <td class = 'cell-5-1 col-1 ' markdown = '1' colspan = '2'><strong>War Machine</strong></td>
-    <td class = 'cell-5-3 col-3 ' markdown = '1'>The <a href="war_machine.html">Wazir - Dabbaba compound</a>
-            is also named <em>War Machine</em></td>
+    <td class = 'cell-5-0 col-0 ' markdown = '1'><strong>War Machine</strong></td>
+    <td class = 'cell-5-2 col-2 ' markdown = '1'>The <a href="war_machine.html">Wazir - Dabbaba compound</a> is also named <em>War Machine</em></td>
   </tr>
   <tr class = 'row-6' markdown = '1'>
-    <th class = 'cell-6-0 col-0 ' markdown = '1'>Problemists</td>
-    <td class = 'cell-6-1 col-1 ' markdown = '1' colspan = '2'><strong>Empress</strong></td>
-    <td class = 'cell-6-3 col-3 ' markdown = '1'></td>
+    <td class = 'cell-6-0 col-0 ' markdown = '1'><strong>Empress</strong></td>
+    <td class = 'cell-6-1 col-1 ' markdown = '1'>Problemists</td>
+    <td class = 'cell-6-2 col-2 ' markdown = '1'></td>
   </tr>
   <tr class = 'row-7' markdown = '1'>
-    <th class = 'cell-7-0 col-0 ' markdown = '1'><a href="https://web.archive.org/web/20090602051546/http://www.quantumchess.com/">Quantum Chess</a></td>
-    <td class = 'cell-7-1 col-1 ' markdown = '1' colspan = '2'><strong>Marquis</strong></td>
-    <td class = 'cell-7-3 col-3 ' markdown = '1'></td>
+    <td class = 'cell-7-0 col-0 ' markdown = '1'><strong>Marquis</strong></td>
+    <td class = 'cell-7-1 col-1 ' markdown = '1'><a href="https://web.archive.org/web/20090602051546/http://www.quantumchess.com/">Quantum Chess</a></td>
+    <td class = 'cell-7-2 col-2 ' markdown = '1'></td>
   </tr>
   <tr class = 'row-8' markdown = '1'>
-    <th class = 'cell-8-0 col-0 ' markdown = '1'><a href="https://www.chessvariants.com/rules/overkill-ecumenical-chess">Overkill&nbsp;Ecumenical&nbsp;Chess</a></td>
-    <td class = 'cell-8-1 col-1 ' markdown = '1' colspan = '2'><strong>Marshal</strong></td>
-    <td class = 'cell-8-3 col-3 ' markdown = '1'></td>
+    <td class = 'cell-8-0 col-0 ' markdown = '1'><strong>Marshal</strong></td>
+    <td class = 'cell-8-1 col-1 ' markdown = '1'><a href="https://www.chessvariants.com/rules/overkill-ecumenical-chess">Overkill&nbsp;Ecumenical&nbsp;Chess</a></td>
+    <td class = 'cell-8-2 col-2 ' markdown = '1'></td>
   </tr>
   <tr class = 'row-9' markdown = '1'>
-    <th class = 'cell-9-0 col-0 ' markdown = '1'>The Sultan's Game</td>
-    <td class = 'cell-9-1 col-1 ' markdown = '1' colspan = '2'><strong>Marshal(l)</strong></td>
-    <td class = 'cell-9-3 col-3 ' markdown = '1'></td>
+    <td class = 'cell-9-0 col-0 ' markdown = '1'><strong>Marshal(l)</strong></td>
+    <td class = 'cell-9-1 col-1 ' markdown = '1'>The Sultan's Game</td>
+    <td class = 'cell-9-2 col-2 ' markdown = '1'></td>
   </tr>
   <tr class = 'row-10' markdown = '1'>
-    <th class = 'cell-10-0 col-0 ' markdown = '1'><a href="https://www.chessvariants.com/large.dir/grandcavalier.html">Grand&nbsp;Cavalier&nbsp;Chess</a></td>
-    <td class = 'cell-10-1 col-1 ' markdown = '1' colspan = '2'><strong>Marshall</strong></td>
-    <td class = 'cell-10-3 col-3 ' markdown = '1'></td>
+    <td class = 'cell-10-0 col-0 ' markdown = '1'><strong>Marshall</strong></td>
+    <td class = 'cell-10-1 col-1 ' markdown = '1'><a href="https://www.chessvariants.com/large.dir/grandcavalier.html">Grand&nbsp;Cavalier&nbsp;Chess</a></td>
+    <td class = 'cell-10-2 col-2 ' markdown = '1'></td>
   </tr>
   <tr class = 'row-11' markdown = '1'>
-    <th class = 'cell-11-0 col-0 ' markdown = '1'><a href="https://www.chessvariants.com/large.dir/renaiss.html">Renniassance Chess</a></td>
-    <td class = 'cell-11-1 col-1 ' markdown = '1' colspan = '2'><strong>Nobleman</strong></td>
-    <td class = 'cell-11-3 col-3 ' markdown = '1'></td>
+    <td class = 'cell-11-0 col-0 ' markdown = '1'><strong>Nobleman</strong></td>
+    <td class = 'cell-11-1 col-1 ' markdown = '1'><a href="https://www.chessvariants.com/large.dir/renaiss.html">Renniassance Chess</a></td>
+    <td class = 'cell-11-2 col-2 ' markdown = '1'></td>
   </tr>
   <tr class = 'row-12' markdown = '1'>
-    <th class = 'cell-12-0 col-0 ' markdown = '1'><a href="https://www.chessvariants.com/large.dir/wolf.html">Wolf&nbsp;Chess</a> [<a href="https://en.wikipedia.org/wiki/Wolf_chess"><span class = 'wiki_token'>&#x1F146;</span></a>]</td>
-    <td class = 'cell-12-1 col-1 ' markdown = '1' colspan = '2'><strong>Wolf</strong></td>
-    <td class = 'cell-12-3 col-3 ' markdown = '1'></td>
+    <td class = 'cell-12-0 col-0 ' markdown = '1'><strong>Wolf</strong></td>
+    <td class = 'cell-12-1 col-1 ' markdown = '1'><a href="https://www.chessvariants.com/large.dir/wolf.html">Wolf&nbsp;Chess</a> [<a href="https://en.wikipedia.org/wiki/Wolf_chess"><span class = 'wiki_token'>&#x1F146;</span></a>]</td>
+    <td class = 'cell-12-2 col-2 ' markdown = '1'></td>
   </tr>
 </table>
 
@@ -118,32 +134,102 @@ and <strong>Marshal(l)</strong> are the most frequently used.</p>
 
 <h4 id = 'square'>Square</h4>
 
-<div class = "section">
-<p>One the Square Spiral, the %%PIECE%% can move as the <a href="wazir.html"><em>Wazir</em></a>,
-and hence visits all the squares by following the Spiral.</p>
+<div class = 'heatmap right'>
+% ./trapped -m 5k -l s_sq &mdash;div r NWW
+% Box: [-1, 1] [-1, 1]
++------+------+------+
+|    . | 1225 |    . |
++------+------+------+
+| 1260 |   *  | 1255 |
++------+------+------+
+|    . | 1260 |    . |
++------+------+------+
 </div>
+
+<p>The <strong>Chancellor</strong> can move as a <a href="wazir.html"><em>Wazir</em></a>.
+This means that <strong>Chancellor</strong> will follow the Spiral,
+visiting all the squares in order.</p>
+
+<p>As can be seen from the heatmap to the right, the
+<strong>Chancellor</strong> makes about the same number of steps in
+each of the four orthogonal directions.</p>
 
 <h4 id = 'diamond'>Diamond</h4>
 
-<div class = "section">
-<p>On the Diamond Spiral, the %%PIECE%% doesn't move in a regular way, and
-gets trapped after 1,563 steps.</p>
+<div class = 'heatmap left'>
+% ./trapped -m 100k -l s_d &mdash;div l -z 5 NWW 
+% Box: [-2, 2] [-2, 2]
++-----+-----+-----+-----+-----+
+|   . | 151 |  12 | 207 |   . |
++-----+-----+-----+-----+-----+
+| 186 |   . |  40 |   . | 124 |
++-----+-----+-----+-----+-----+
+|  11 |  45 |  *  |  58 |  11 |
++-----+-----+-----+-----+-----+
+| 111 |   . |  45 |   . | 192 |
++-----+-----+-----+-----+-----+
+|   . | 223 |   9 | 138 |   . |
++-----+-----+-----+-----+-----+
 </div>
+
+<p>On the Diamond Spiral, the <strong>Chancellor</strong> doesn't move in a regular way, and
+gets trapped after 1,563 steps.</p>
+
+<p>As can be seen from the heatmap on the left, on the Diamond Spiral,
+the <strong>Chancellor</strong> will make mostly <a href="knight.html"><em>Knight</em></a> moves,
+and all possible <a href="knight.html"><em>Knight</em></a> moves are made. It also makes
+all eight different one and two square <a href="rook.html"><em>Rook</em></a> moves,
+and does not make a longer <a href="rook.html"><em>Rook</em></a> move.</p>
 
 <h3 id = 'wedge'>Wedge</h3>
 
 <h4 id = 'folded'>Folded</h4>
 
-<div class = "section">
-<p>On the Folded Wedge, the %%PIECE%% fills the complete board, following
-a simple pattern.</p>
+<div class = 'heatmap right'>
+% ./trapped -m 10k -l w_fo &mdash;div r -z 5 NWW 
+% Box: [-1, 1] [-2, 2]
++------+------+------+------+------+
+|   99 |    . | 4802 |    . |   99 |
++------+------+------+------+------+
+|    . |   50 |   *  |   49 |    . |
++------+------+------+------+------+
+| 2401 |    . |   99 |    . | 2401 |
++------+------+------+------+------+
 </div>
+
+<p>On the Folded Wedge, the <strong>Chancellor</strong> fills the complete board, following
+a simple pattern.</p>
+
+<p>Only eight different moves are used. Nearly half the moves move the
+<strong>Chancellor</strong> one square orthogonally forward. Nearly a quarter of
+the moves are a <a href="knight.html"><em>Knight</em></a>'s move two squares to the right
+and one square back, and a similar amount of moves move two squares
+to the left and one square back. </p>
 
 <h4 id = 'flat'>Flat</h4>
 
-<p>On the Flat Wedge, the %%PIECE%% fills the complete board, following
-a similar pattern. The %%PIECE%% is unusual in the fact the travel
+<div class = 'heatmap left'>
+% ./trapped -m 10k -l w_fl &mdash;div l -z 5 NWW 
+% Box: [-1, 1] [-2, 2]
++------+------+------+------+------+
+| 2401 |    . |  149 |    . | 2450 |
++------+------+------+------+------+
+|    . |    . |   *  |   99 |    . |
++------+------+------+------+------+
+| 2451 |    . |   49 |    . | 2401 |
++------+------+------+------+------+
+</div>
+
+<p>On the Flat Wedge, the <strong>Chancellor</strong> fills the complete board, following
+a similar pattern. The <strong>Chancellor</strong> is unusual in the fact the travel
 patterns on both the Folded and Flat Wedge look somewhat similar.</p>
+
+<p>As can be seen from the heatmap on the left, most of the moves of
+the <strong>Chancellor</strong> on the Flat Wedge are <a href="knight.html"><em>Knight</em></a>
+moves &mdash; but only the four most sideways <a href="knight.html"><em>Knight</em></a>
+moves are used. No more than three <a href="rook.html"><em>Rook</em></a> moves are
+used, all of them moving the <strong>Chancellor</strong> just one square.</p>
+<h2 id = 'animation'>Animation</h2>
 
 <div class = 'trapped' data-piece = 'chancellor'></div>
 
