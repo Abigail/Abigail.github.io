@@ -7,6 +7,7 @@ use warnings;
 no  warnings 'syntax';
 
 my %piece2betza = (
+    "Amazon"          =>  "FFNWW",
     "Bishop"          =>  "FF",
     "Chancellor"      =>  "NWW",
     "Dragon Horse"    =>  "FFW",
