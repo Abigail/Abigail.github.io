@@ -7,6 +7,7 @@
 <link rel = 'stylesheet' href = '../../Styles/main.css'>
 <link rel = 'stylesheet' href = '../../Styles/Trapped/main.css'>
 <link rel = 'stylesheet' href = '../../Styles/Trapped/main-heatmap.css'>
+<link rel = 'stylesheet' href = '../../Styles/Trapped/main-path.css'>
 <script src = "../../JavaScript/jquery.js"></script>
 <script id  = 'MathJax-script' async src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.js'></script>
 <script id = 'svg-script' src = 'https://cdn.jsdelivr.net/npm/@svgdotjs/svg.js@3.0/dist/svg.min.js'></script>
@@ -17,6 +18,7 @@
 <script src = '../../JavaScript/Trapped/boxset.js'></script>
 <script src = '../../JavaScript/Trapped/movement.js'></script>
 <script src = '../../JavaScript/Trapped/heatmap.js'></script>
+<script src = '../../JavaScript/Trapped/path.js'></script>
 <script src = '../../JavaScript/Trapped/pages.js'></script>
 </head>
 
@@ -116,17 +118,67 @@ several games:</p>
 
 <h4 id = 'square'>Square</h4>
 
-<!-- Wazir Dragon_King Square_Spiral -->
+<div class = 'heatmap right'>
+% ./trapped -m 5k -l s_sq &mdash;div r FWW
+% Box: [-1, 1] [-1, 1]
++------+------+------+
+|    . | 1225 |    . |
++------+------+------+
+| 1260 |   *  | 1255 |
++------+------+------+
+|    . | 1260 |    . |
++------+------+------+
+</div>
+
+<p>The <strong>Dragon King</strong> can move as a <a href="wazir.html"><em>Wazir</em></a>.
+This means that <strong>Dragon King</strong> will follow the Spiral,
+visiting all the squares in order.</p>
+
+<p>As can be seen from the heatmap to the right, the
+<strong>Dragon King</strong> makes about the same number of steps in
+each of the four orthogonal directions.</p>
 
 <h4 id = 'diamond'>Diamond</h4>
 
-<!-- Blind_Monkey Dragon_King Diamond_Spiral -->
+<div class = 'heatmap left'>
+% ./trapped -m 5k -l s_d &mdash;div l FWW
+% Box: [-1, 1] [-1, 1]
++------+------+------+
+| 1275 |    . | 1225 |
++------+------+------+
+|    . |   *  |   50 |
++------+------+------+
+| 1225 |    . | 1225 |
++------+------+------+
+</div>
+
+<p>The <strong>Dragon King</strong> can move as the <a href="blind_monkey.html"><em>Blind Monkey</em></a>.
+Hence, it will follow the spiral and visit all the squares on the board.</p>
+
+<p>The <strong>Dragon King</strong> will make mostly diagonal moves, roughly the
+same in each of the four diagonal directions, and a single step to
+the right for each "layer" of the spiral.</p>
 
 <h3 id = 'wedge'>Wedge</h3>
 
 <h4 id = 'folded'>Folded</h4>
 
-<!-- Flying_Cock Dragon_King Folded_Wedge -->
+<div class = 'heatmap right'>
+% ./trapped -m 5k -l w_fo &mdash;div r FWW
+% Box: [-1, 0] [-1, 1]
++------+------+------+
+|   35 |    . |   35 |
++------+------+------+
+| 2480 |   *  | 2450 |
++------+------+------+
+</div>
+
+<p>Since the <strong>Dragon King</strong> can move as the
+<a href="flying_cock.html"><em>Flying Cock</em></a>, it will do so, filling the
+entire board visiting all squares in value order.</p>
+
+<p>The <strong>Dragon King</strong> will mostly move sideways, and make one step
+diagonally forward when reaching the edge of the board.</p>
 
 <h4 id = 'flat'>Flat</h4>
 

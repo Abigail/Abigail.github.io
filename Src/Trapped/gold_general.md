@@ -65,7 +65,7 @@ Link: [%%CHESS_V%%](#piece:goldgeneral)
 
 #### Square
 
-<!-- Wazir Gold_General Square_Spiral -->
+<!-- @@ Wazir Gold_General Square_Spiral -->
 
 #### Diamond
 
@@ -89,7 +89,7 @@ step diagonally forward left.
 
 #### Folded
 
-<!-- Flying_Cock Gold_General Folded_Wedge -->
+<!-- @@ Flying_Cock Gold_General Folded_Wedge -->
 
 #### Flat
 

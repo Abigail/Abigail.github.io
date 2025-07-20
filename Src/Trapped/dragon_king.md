@@ -67,17 +67,17 @@ Link: [%%CHESS_V%%](#piece:dragonking)
 
 #### Square
 
-<!-- Wazir Dragon_King Square_Spiral -->
+<!-- @@ Wazir Dragon_King Square_Spiral -->
 
 #### Diamond
 
-<!-- Blind_Monkey Dragon_King Diamond_Spiral -->
+<!-- @@ Blind_Monkey Dragon_King Diamond_Spiral -->
 
 ### Wedge
 
 #### Folded
 
-<!-- Flying_Cock Dragon_King Folded_Wedge -->
+<!-- @@ Flying_Cock Dragon_King Folded_Wedge -->
 
 #### Flat
 
