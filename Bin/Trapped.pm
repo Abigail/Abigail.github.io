@@ -32,6 +32,15 @@ sub trapped (%args) {
     my $piece  = $args {piece};
     my $layout = $args {layout};
 
+    if ($piece =~ m {/}) {
+        my ($p, $b)   = split m {/} => $piece;
+        $args {piece} = $p;
+        $args {betza} = $b;
+    }
+    else {
+        $args {betza} = $piece2betza {$piece};
+    }
+
     my $sub = $parent2sub {$parent} //
                die "Do not know what to do with parent '$parent'\n";
 
@@ -43,9 +52,9 @@ sub trapped (%args) {
 # Description of Ferz movements on the various boards
 #
 sub ferz (%args) {
-    my $piece   = $args {piece};
-    my $layout  = $args {layout};
-    my $betza   = $piece2betza {$piece};
+    my $piece  = $args {piece};
+    my $layout = $args {layout};
+    my $betza  = $args {betza};
     my $text;
     if ($layout eq "Square Spiral") {
         $text = <<~ "--" =~ s/^\h+//gmr;
@@ -168,9 +177,9 @@ sub ferz (%args) {
 # Description for pieces which move like the Wazir 
 #
 sub wazir (%args) {
-    my $piece   = $args {piece};
-    my $layout  = $args {layout} // "Square Spiral";
-    my $betza   = $piece2betza {$piece};
+    my $piece  = $args {piece};
+    my $layout = $args {layout} // "Square Spiral";
+    my $betza  = $args {betza};
     my $text;
     if ($layout eq "Square Spiral") {
         $text = <<~ "--" =~ s/^\h+//gmr;
@@ -249,7 +258,7 @@ sub wazir (%args) {
 sub blind_monkey (%args) {
     my $piece  = $args {piece};
     my $layout = $args {layout} // "Diamond Spiral";
-    my $betza  = $piece2betza {$piece};
+    my $betza  = $args {betza};
     <<~ "--" =~ s/^\h+//gmr;
         <div class = 'heatmap left'>
         % ./trapped -m 5k -l s_d --div l FWW
@@ -279,7 +288,7 @@ sub blind_monkey (%args) {
 sub flying_cock (%args) {
     my $piece  = $args {piece};
     my $layout = $args {layout} // "Folded Wedge";
-    my $betza  = $piece2betza {$piece};
+    my $betza  = $args {betza};
     <<~ "--" =~ s/^\h+//gmr;
         <div class = 'heatmap right'>
         % ./trapped -m 5k -l w_fo --div r ${betza}
@@ -307,7 +316,7 @@ sub flying_cock (%args) {
 sub king (%args) {
     my $piece  = $args {piece};
     my $layout = $args {layout} // "Flat Wedge";
-    my $betza  = $piece2betza {$piece};
+    my $betza  = $args {betza};
     my $text;
     if ($layout eq "Flat Wedge") {
         $text  = <<~ "--" =~ s/^\h+//gmr;
