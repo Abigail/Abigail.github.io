@@ -1026,11 +1026,11 @@ let pieces = {
         results: {
             spiral_square:  "T/14,582", 
             spiral_diamond: "T/149,823",
-            wedge_folded:   "?/1G",
-            wedge_flat:     "T/734,298,797",
+            wedge_folded:   "?/3G",
+            wedge_flat:     "?/3G",   // "T/734,298,797",
         },
         _name: "Dragon",
-        _index_name: "Dragon (Alfil + Camel)",
+        _index_name: "Dragon (Alfil-2 + Camel)",
     },
 
     dragon_horse: {

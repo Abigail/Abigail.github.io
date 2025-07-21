@@ -6,6 +6,8 @@
 <link rel = 'stylesheet' href =      'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
 <link rel = 'stylesheet' href = '../../Styles/main.css'>
 <link rel = 'stylesheet' href = '../../Styles/Trapped/main.css'>
+<link rel = 'stylesheet' href = '../../Styles/Trapped/main-heatmap.css'>
+<link rel = 'stylesheet' href = '../../Styles/Trapped/main-path.css'>
 <script src = "../../JavaScript/jquery.js"></script>
 <script id  = 'MathJax-script' async src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.js'></script>
 <script id = 'svg-script' src = 'https://cdn.jsdelivr.net/npm/@svgdotjs/svg.js@3.0/dist/svg.min.js'></script>
@@ -15,6 +17,8 @@
 <script src = '../../JavaScript/Trapped/pieces.js'></script>
 <script src = '../../JavaScript/Trapped/boxset.js'></script>
 <script src = '../../JavaScript/Trapped/movement.js'></script>
+<script src = '../../JavaScript/Trapped/heatmap.js'></script>
+<script src = '../../JavaScript/Trapped/path.js'></script>
 <script src = '../../JavaScript/Trapped/pages.js'></script>
 </head>
 
@@ -49,16 +53,16 @@ This makes the <strong>Dragon</strong> <span class = 'tooltip underline'>colourb
 
 <p>The <a href="knight.html"><em>Knight</em></a>-<a href="pawn.html"><em>Pawn</em></a> compound is also called a <a href="dragon.html"><em>Dragon</em></a>.</p>
 
-<table class = piece_list>
+<table class = 'piece_info'>
   <tr class = 'row-0' markdown = '1'>
-    <th class = 'cell-0-0 col-0 ' markdown = '1'>Game</td>
-    <th class = 'cell-0-1 col-1 ' markdown = '1' colspan = '2'>Piece</td>
-    <th class = 'cell-0-3 col-3 ' markdown = '1'>Info</td>
+    <th class = 'cell-0-0 col-0 ' markdown = '1'>Name</td>
+    <th class = 'cell-0-1 col-1 ' markdown = '1'>Game(s)</td>
+    <th class = 'cell-0-2 col-2 ' markdown = '1'>Info</td>
   </tr>
   <tr class = 'row-1' markdown = '1'>
-    <th class = 'cell-1-0 col-0 ' markdown = '1'><a href="https://www.chessvariants.com/large.dir/ganymede.html">Ganymede Chess</a></td>
-    <td class = 'cell-1-1 col-1 ' markdown = '1' colspan = '2'><strong>Dragon</strong></td>
-    <td class = 'cell-1-3 col-3 ' markdown = '1'><span class = 'tooltip'>&#x260A;<span class = 'tooltiptext'>Promotes to</span></span> <a href="flying_dragon.html"><em>Flying Dragon</em></a></td>
+    <td class = 'cell-1-0 col-0 ' markdown = '1'><strong>Dragon</strong></td>
+    <td class = 'cell-1-1 col-1 ' markdown = '1'><a href="https://www.chessvariants.com/large.dir/ganymede.html">Ganymede Chess</a></td>
+    <td class = 'cell-1-2 col-2 ' markdown = '1'><span class = 'tooltip'>&#x260A;<span class = 'tooltiptext'>Promotes to</span></span> <a href="flying_dragon.html"><em>Flying Dragon</em></a></td>
   </tr>
 </table>
 
@@ -66,32 +70,138 @@ This makes the <strong>Dragon</strong> <span class = 'tooltip underline'>colourb
 
 <h4 id = 'square'>Square</h4>
 
-<div class = "section">
+<div class = 'heatmap right'>
+% ./trapped -m G -l s_sq &mdash;div r A2C 
+% Box: [-4, 4] [-4, 4]
++------+------+------+------+------+------+------+------+------+
+|   37 |    . |    . |    . |    . |    . |    . |    . |   38 |
++------+------+------+------+------+------+------+------+------+
+|    . |    . |    . | 2235 |    . |  787 |    . |    . |    . |
++------+------+------+------+------+------+------+------+------+
+|    . |    . |  608 |    . |    . |    . |  635 |    . |    . |
++------+------+------+------+------+------+------+------+------+
+|    . |  832 |    . |    . |    . |    . |    . | 2030 |    . |
++------+------+------+------+------+------+------+------+------+
+|    . |    . |    . |    . |   *  |    . |    . |    . |    . |
++------+------+------+------+------+------+------+------+------+
+|    . | 2238 |    . |    . |    . |    . |    . |  932 |    . |
++------+------+------+------+------+------+------+------+------+
+|    . |    . |  534 |    . |    . |    . |  579 |    . |    . |
++------+------+------+------+------+------+------+------+------+
+|    . |    . |    . |  670 |    . | 2342 |    . |    . |    . |
++------+------+------+------+------+------+------+------+------+
+|   38 |    . |    . |    . |    . |    . |    . |    . |   47 |
++------+------+------+------+------+------+------+------+------+
+</div>
+
 <p>The <strong>Dragon</strong> circles around the origin in a clockwise manner, until
 it gets trapped on step 14,582.</p>
-</div>
+
+<p>As can be seen from the heatmap on the right, the <strong>Dragon</strong> uses
+all its possible moves; mostly its <a href="camel.html"><em>Camel</em></a> moves, and the two square
+<a href="alfil.html"><em>Alfil</em></a> moves. The four square <a href="alfil.html"><em>Alfil</em></a> move is relatively rare.</p>
 
 <h4 id = 'diamond'>Diamond</h4>
 
-<div class = "section">
+<div class = 'heatmap left'>
+% ./trapped -m G -l s_d &mdash;div l A2C 
+% Box: [-4, 4] [-4, 4]
++-------+-------+-------+-------+-------+-------+-------+-------+-------+
+|  5274 |     . |     . |     . |     . |     . |     . |     . |  5135 |
++-------+-------+-------+-------+-------+-------+-------+-------+-------+
+|     . |     . |     . |  8088 |     . | 16444 |     . |     . |     . |
++-------+-------+-------+-------+-------+-------+-------+-------+-------+
+|     . |     . |  7855 |     . |     . |     . |  8372 |     . |     . |
++-------+-------+-------+-------+-------+-------+-------+-------+-------+
+|     . | 15902 |     . |     . |     . |     . |     . |  7724 |     . |
++-------+-------+-------+-------+-------+-------+-------+-------+-------+
+|     . |     . |     . |     . |   *   |     . |     . |     . |     . |
++-------+-------+-------+-------+-------+-------+-------+-------+-------+
+|     . |  7947 |     . |     . |     . |     . |     . | 15706 |     . |
++-------+-------+-------+-------+-------+-------+-------+-------+-------+
+|     . |     . |  8650 |     . |     . |     . |  7915 |     . |     . |
++-------+-------+-------+-------+-------+-------+-------+-------+-------+
+|     . |     . |     . | 16290 |     . |  8499 |     . |     . |     . |
++-------+-------+-------+-------+-------+-------+-------+-------+-------+
+|  4763 |     . |     . |     . |     . |     . |     . |     . |  5259 |
++-------+-------+-------+-------+-------+-------+-------+-------+-------+
+</div>
+
 <p>It takes about ten times as long for the <strong>Dragon</strong> to get trapped on
 the Diamond Spiral: after circling the origin in a clockwise manner,
 it does get trapped on step 149,823.</p>
-</div>
+
+<p>As can be seen from the heatmap on the left, the <strong>Dragon</strong> uses all its
+possible 16 moves.</p>
 
 <h3 id = 'wedge'>Wedge</h3>
 
 <h4 id = 'folded'>Folded</h4>
 
-<div class = "section">
-<p>The <strong>Dragon</strong> does not get trapped for its first billion steps.
-But it's not clear whether it remains free forever.</p>
+<div class = 'heatmap right'>
+% ./trapped -m 3G -l w_fo &mdash;div r A2C 
+% Box: [-3, 4] [-4, 4]
++-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+
+|         . |         . |         . |    269031 |         . |    269437 |         . |         . |         . |
++-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+
+|         . |         . |  37738725 |         . |         . |         . |  37744873 |         . |         . |
++-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+
+|         . | 820086643 |         . |         . |         . |         . |         . | 820079760 |         . |
++-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+
+|         . |         . |         . |         . |     *     |         . |         . |         . |         . |
++-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+
+|         . | 419041651 |         . |         . |         . |         . |         . | 419018815 |         . |
++-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+
+|         . |         . | 196257009 |         . |         . |         . | 196277768 |         . |         . |
++-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+
+|         . |         . |         . |  21661581 |         . |  21662071 |         . |         . |         . |
++-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+
+|   4945006 |         . |         . |         . |         . |         . |         . |         . |   4947630 |
++-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+
 </div>
+
+<p>The <strong>Dragon</strong> does not get trapped for its first three billion steps.
+But it's not clear whether it remains free forever.</p>
+
+<p>As can be seen from the heatmap on the right, the <strong>Dragon</strong> uses
+14 of its possible 16 moves. But not in equal amounts. It doesn't
+make any forward <a href="threeleaper.html"><em>Threeleaper</em></a> moves in its
+first three billion moves.</p>
 
 <h4 id = 'flat'>Flat</h4>
 
-<p>It takes a long time for the <strong>Dragon</strong> to get trapped on the
-Flat Wedge, but eventually it does, on step 734,298,797.</p>
+<div class = 'heatmap left'>
+% ./trapped -m 3G -l w_fl &mdash;div l A2C 
+% Box: [-3, 4] [-4, 4]
++------------+------------+------------+------------+------------+------------+------------+------------+------------+
+|          . |          . |          . |          6 |          . |     235819 |          . |          . |          . |
++------------+------------+------------+------------+------------+------------+------------+------------+------------+
+|          . |          . |   12962028 |          . |          . |          . |   64003913 |          . |          . |
++------------+------------+------------+------------+------------+------------+------------+------------+------------+
+|          . |  475541984 |          . |          . |          . |          . |          . | 1126938324 |          . |
++------------+------------+------------+------------+------------+------------+------------+------------+------------+
+|          . |          . |          . |          . |      *     |          . |          . |          . |          . |
++------------+------------+------------+------------+------------+------------+------------+------------+------------+
+|          . |  751747363 |          . |          . |          . |          . |          . |  200605086 |          . |
++------------+------------+------------+------------+------------+------------+------------+------------+------------+
+|          . |          . |  234357485 |          . |          . |          . |   87544291 |          . |          . |
++------------+------------+------------+------------+------------+------------+------------+------------+------------+
+|          . |          . |          . |   21610240 |          . |    1754535 |          . |          . |          . |
++------------+------------+------------+------------+------------+------------+------------+------------+------------+
+|   22551092 |          . |          . |          . |          . |          . |          . |          . |     147834 |
++------------+------------+------------+------------+------------+------------+------------+------------+------------+
+</div>
+
+<p>The <strong>Dragon</strong> does not get trapped for its first three billion steps.
+But it's not clear whether it remains free forever.</p>
+
+<p>As can be seen from the heatmap on the left, the <strong>Dragon</strong> uses 14 of
+its possible 16 moves. But not in equal amounts. Remarkable is the only
+6 <a href="camel.html"><em>Camel</em></a> moves forward-right out of three billion moves. It's not
+until move 81,188,093 before the <strong>Dragon</strong> makes such a move. It doesn't
+make any forward <a href="threeleaper.html"><em>Threeleaper</em></a> moves in its first
+three billion moves.</p>
+<h2 id = 'animation'>Animation</h2>
 
 <div class = 'trapped' data-piece = 'dragon_a2c'></div>
 
