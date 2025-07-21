@@ -6,6 +6,8 @@
 <link rel = 'stylesheet' href =      'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
 <link rel = 'stylesheet' href = '../../Styles/main.css'>
 <link rel = 'stylesheet' href = '../../Styles/Trapped/main.css'>
+<link rel = 'stylesheet' href = '../../Styles/Trapped/main-heatmap.css'>
+<link rel = 'stylesheet' href = '../../Styles/Trapped/main-path.css'>
 <script src = "../../JavaScript/jquery.js"></script>
 <script id  = 'MathJax-script' async src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.js'></script>
 <script id = 'svg-script' src = 'https://cdn.jsdelivr.net/npm/@svgdotjs/svg.js@3.0/dist/svg.min.js'></script>
@@ -15,6 +17,8 @@
 <script src = '../../JavaScript/Trapped/pieces.js'></script>
 <script src = '../../JavaScript/Trapped/boxset.js'></script>
 <script src = '../../JavaScript/Trapped/movement.js'></script>
+<script src = '../../JavaScript/Trapped/heatmap.js'></script>
+<script src = '../../JavaScript/Trapped/path.js'></script>
 <script src = '../../JavaScript/Trapped/pages.js'></script>
 </head>
 
@@ -40,16 +44,16 @@ A * * * S * * * A
 orthogonally (like a <a href="rook.html"><em>Rook</em></a>) or jumps one or three squares
 diagonally (like a <a href="ferz.html"><em>Ferz</em></a> or a <a href="tripper.html"><em>Tripper</em></a>).</p>
 
-<table class = piece_list>
+<table class = 'piece_info'>
   <tr class = 'row-0' markdown = '1'>
-    <th class = 'cell-0-0 col-0 ' markdown = '1'>Game</td>
-    <th class = 'cell-0-1 col-1 ' markdown = '1' colspan = '2'>Piece</td>
-    <th class = 'cell-0-3 col-3 ' markdown = '1'>Info</td>
+    <th class = 'cell-0-0 col-0 ' markdown = '1'>Name</td>
+    <th class = 'cell-0-1 col-1 ' markdown = '1'>Game(s)</td>
+    <th class = 'cell-0-2 col-2 ' markdown = '1'>Info</td>
   </tr>
   <tr class = 'row-1' markdown = '1'>
-    <th class = 'cell-1-0 col-0 ' markdown = '1'><a href="https://www.chessvariants.com/large.dir/ganymede.html">Ganymede Chess</a></td>
-    <td class = 'cell-1-1 col-1 ' markdown = '1' colspan = '2'><strong>Fort</strong></td>
-    <td class = 'cell-1-3 col-3 ' markdown = '1'><span class = 'tooltip'>&#x260B;<span class = 'tooltiptext'>Is promoted</span></span> <a href="rook.html"><em>Rook</em></a></td>
+    <td class = 'cell-1-0 col-0 ' markdown = '1'><strong>Fort</strong></td>
+    <td class = 'cell-1-1 col-1 ' markdown = '1'><a href="https://www.chessvariants.com/large.dir/ganymede.html">Ganymede Chess</a></td>
+    <td class = 'cell-1-2 col-2 ' markdown = '1'><span class = 'tooltip'>&#x260B;<span class = 'tooltiptext'>Is promoted</span></span> <a href="rook.html"><em>Rook</em></a></td>
   </tr>
 </table>
 
@@ -57,31 +61,90 @@ diagonally (like a <a href="ferz.html"><em>Ferz</em></a> or a <a href="tripper.h
 
 <h4 id = 'square'>Square</h4>
 
-<div class = "section">
-<p>The <strong>Fort</strong> can move like the <a href="wazir.html"><em>Wazir</em></a> and fills the board, visiting
-the squares in order.</p>
+<div class = 'heatmap right'>
+% ./trapped -m 5k -l s_sq &mdash;div r FGWW
+% Box: [-1, 1] [-1, 1]
++------+------+------+
+|    . | 1225 |    . |
++------+------+------+
+| 1260 |   *  | 1255 |
++------+------+------+
+|    . | 1260 |    . |
++------+------+------+
 </div>
+
+<p>The <strong>Fort</strong> can move as a <a href="wazir.html"><em>Wazir</em></a>.
+This means that <strong>Fort</strong> will follow the Spiral,
+visiting all the squares in order.</p>
+
+<p>As can be seen from the heatmap to the right, the
+<strong>Fort</strong> makes about the same number of steps in
+each of the four orthogonal directions.</p>
 
 <h4 id = 'diamond'>Diamond</h4>
 
-<div class = "section">
-<p>The <strong>Fort</strong> can move like the <a href="blind_monkey.html"><em>Blind Monkey</em></a> and fills the board, visiting
-the squares in order.</p>
+<div class = 'heatmap left'>
+% ./trapped -m 5k -l s_d &mdash;div l FWW
+% Box: [-1, 1] [-1, 1]
++------+------+------+
+| 1275 |    . | 1225 |
++------+------+------+
+|    . |   *  |   50 |
++------+------+------+
+| 1225 |    . | 1225 |
++------+------+------+
 </div>
+
+<p>The <strong>Fort</strong> can move as the <a href="blind_monkey.html"><em>Blind Monkey</em></a>.
+Hence, it will follow the spiral and visit all the squares on the board.</p>
+
+<p>The <strong>Fort</strong> will make mostly diagonal moves, roughly the
+same in each of the four diagonal directions, and a single step to
+the right for each "layer" of the spiral.</p>
 
 <h3 id = 'wedge'>Wedge</h3>
 
 <h4 id = 'folded'>Folded</h4>
 
-<div class = "section">
-<p>The <strong>Fort</strong> can move like the <a href="flying_cock.html"><em>Flying Cock</em></a> and fills the board, visiting
-the squares in order.</p>
+<div class = 'heatmap right'>
+% ./trapped -m 5k -l w_fo &mdash;div r FGWW
+% Box: [-1, 0] [-1, 1]
++------+------+------+
+|   35 |    . |   35 |
++------+------+------+
+| 2480 |   *  | 2450 |
++------+------+------+
 </div>
+
+<p>Since the <strong>Fort</strong> can move as the
+<a href="flying_cock.html"><em>Flying Cock</em></a>, it will do so, filling the
+entire board visiting all squares in value order.</p>
+
+<p>The <strong>Fort</strong> will mostly move sideways, and make one step
+diagonally forward when reaching the edge of the board.</p>
 
 <h4 id = 'flat'>Flat</h4>
 
+<div class = 'heatmap left'>
+% ./trapped -m 10k -l w_fl &mdash;div l FGWW 
+% Box: [-1, 1] [-1, 5]
++------+------+------+------+------+------+------+
+|    . |    . | 1731 |    . |    . |    . |    . |
++------+------+------+------+------+------+------+
+| 5027 |   *  |   28 |   28 | 1564 |   27 |   27 |
++------+------+------+------+------+------+------+
+| 1568 |    . |    . |    . |    . |    . |    . |
++------+------+------+------+------+------+------+
+</div>
+
 <p>The <strong>Fort</strong> uses a simple pattern with a strong bias to the right
 hand side, to visit all the squares on the board.</p>
+
+<p>The heatmap on the left shows that the <strong>Fort</strong> mostly makes 
+orthogonal sideways moves, at most one square to the left,
+and up to five squares to the right. The <strong>Fort</strong> also makes
+one square diagonal moves: forward-right and backward-left. </p>
+<h2 id = 'animation'>Animation</h2>
 
 <div class = 'trapped' data-piece = 'fort'></div>
 

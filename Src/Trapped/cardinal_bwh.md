@@ -52,7 +52,8 @@ squares orthogonally (like a %%WAZIR%% or [*Threeleaper*](threeleaper.html)).
 </div>
 
 The **Cardinal** uses a simple pattern, visiting all the squares in a 
-row before moving to the next one.
+row before moving to the next one. This is the same pattern as the
+[*Frog*](frog_wfh.html) makes.
 
 As can be seen from the heatmap on the left, most of the moves the
 **Cardinal** makes are one and three square orthogonally sideways
