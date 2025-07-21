@@ -1663,9 +1663,9 @@ let pieces = {
     gnu: {
         betza:    "NC",
         results: {
-            spiral_square:  "?/1G",
+            spiral_square:  "?/3G",
             spiral_diamond: "T/136,022,083",
-            wedge_folded:   "?/1G",
+            wedge_folded:   "?/3G",
             wedge_flat:     "F*/100%",
         },
     },
