@@ -98,6 +98,7 @@ our %MACROS = (
         ALFIL          =>  "[*Alfil*](alfil.html)",
         BISHOP         =>  "[*Bishop*](bishop.html)",
         BM             =>  "[*Blind Monkey*](blind_monkey.html)",
+        CAMEL          =>  "[*Camel*](camel.html)",
         DABBABA        =>  "[*Dabbaba*](dabbaba.html)",
         FC             =>  "[*Flying Cock*](flying_cock.html)",
         FERZ           =>  "[*Ferz*](ferz.html)",
