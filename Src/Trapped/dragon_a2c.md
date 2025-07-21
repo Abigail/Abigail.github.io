@@ -14,14 +14,13 @@
 . . . . . . . . . . .
 </div>
 
-The **Dragon** either makes a single or double [*Alfi*](alfil.html)
+The **Dragon** either makes a single or double %%ALFIL%%
 step (that is it jumps to a square two away diagonally, and if this
 square is unoccupied, it optionally jumps to a square another
 two away in the same direction -- so, like a very limited
 [*Alfilrider*](alfilrider.html)), or it jumps to a square three
 away in one orthogonal direction, and one away in the other
-(like a [*Camel*](camel.html)).
-This makes the **Dragon** %%COLOUR_BOUND%%.
+(like a %%CAMEL%%). This makes the **Dragon** %%COLOUR_BOUND%%.
 
 The %%KNIGHT%%-%%PAWN%% compound is also called a [*Dragon*](dragon.html).
 
