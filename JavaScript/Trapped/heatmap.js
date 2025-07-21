@@ -126,7 +126,7 @@ function make_heatmap (args = {}) {
                 let col_perc = 100 - (100 * value / max_value) / 2
                 let color    = `hsl(0, 100%, ${col_perc}%)`
                 let content  = `${perc}%`
-                if (perc < 1 || value < 100) {
+                if ((perc < 1 || value < 100) && value < 10_000) {
                     content  = value
                 }
 
