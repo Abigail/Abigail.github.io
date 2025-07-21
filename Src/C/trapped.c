@@ -95,6 +95,7 @@ static struct option longopts [] = {
     {"heatmap",      required_argument, NULL, 256},
     {"div",          required_argument, NULL, 257},
     {"heatmap-size", required_argument, NULL, 'z'},
+    {"stop-move",    required_argument, NULL, 258},
     { NULL,          0,                 NULL,   0},
 };
 
@@ -110,6 +111,9 @@ int main (int argc, char ** argv) {
     int    unsigned show_div         = HEATMAP_DIV_NONE;
     short  unsigned heatmap_row_size = HEATMAP_ROW_SIZE;
     short  unsigned heatmap_col_size = HEATMAP_COL_SIZE;
+    short  stop_row                  = 0;
+    short  stop_col                  = 0;
+    bool   stopped                   = false;
 
     /*
      * Parse options, if any
@@ -169,6 +173,14 @@ int main (int argc, char ** argv) {
                 };
                 break;
             };
+            case 258: {   /* --stop-move */
+                char * arg = optarg;
+                if (sscanf (arg, "%hd,%hd", &stop_row, &stop_col) != 2) {
+                    fprintf (stderr, "Cannot parse --stop-move '%s'\n", arg);
+                    exit (1);
+                }
+                break;
+            }
         }
     }
 
@@ -229,6 +241,7 @@ int main (int argc, char ** argv) {
             rowcol_t move_col  = 0;
             value_t  prev_val  = 0;  /* Previous value within this move */
 
+
             /*
              * Slide along this move. A step (or leap) is just a slide
              * with a max of 1. We stop the slide if at least one of the
@@ -246,7 +259,6 @@ int main (int argc, char ** argv) {
             for (int slide  = this . min;
                      slide <= this . max || this . max == 0;
                      slide ++) {
-
                 rowcol_t new_row = row + slide * this . dr;
                 rowcol_t new_col = col + slide * this . dc;
                 value_t value    = to_value (new_row, new_col);
@@ -317,15 +329,25 @@ int main (int argc, char ** argv) {
             if (show_heatmap) {
                 record_move (best_row - row, best_col - col);
             }
-            row      = best_row;
-            col      = best_col;
+
+            if (stop_row && stop_col) {
+                if (stop_row == best_row - row &&
+                    stop_col == best_col - col) {
+                    printf ("\nStopped on move %s (%d, %d)\n",
+                               f (steps), best_row, best_col);
+                    break;
+                }
+            }
+
+            row = best_row;
+            col = best_col;
             set_value (best_value);
             /* printf ("Step %d moves to [%d, %d] (val = %d)\n",
              * steps, row, col, (int) best_value);
              */
         }
         else {
-            printf ("\nTrapped on step %s (%d, %d)\n", f (steps), row, col);
+            printf ("\nTrapped on move %s (%d, %d)\n", f (steps), row, col);
             break;
         }
 
