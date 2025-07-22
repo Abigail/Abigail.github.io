@@ -28,9 +28,12 @@ function index_to_th (index, type, info) {
 
 function pretty_total (total) {
     return total . toString () 
-                 . replace (/000000000$/, "G")
-                 . replace (   /000000$/, "M")
-                 . replace (      /000$/, "k")
+                 . replace (        /000000000$/, "G")
+                 . replace (           /000000$/, "M")
+                 . replace (              /000$/, "k")
+                 . replace (/([0-9])([0-9]{9})$/, "$1,$2")
+                 . replace (/([0-9])([0-9]{6})$/, "$1,$2")
+                 . replace (/([0-9])([0-9]{3})$/, "$1,$2")
 }
 
 function make_heatmap (args = {}) {
