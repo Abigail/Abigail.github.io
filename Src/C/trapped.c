@@ -89,14 +89,15 @@ bool has_value (value_t value) {
 
 
 static struct option longopts [] = {
-    {"layout",       required_argument, NULL, 'l'},
-    {"max-steps",    required_argument, NULL, 'm'},
-    {"debug",        no_argument,       NULL, 'd'},
-    {"heatmap",      required_argument, NULL, 256},
-    {"div",          required_argument, NULL, 257},
-    {"heatmap-size", required_argument, NULL, 'z'},
-    {"stop-move",    required_argument, NULL, 258},
-    { NULL,          0,                 NULL,   0},
+    {"layout",         required_argument, NULL, 'l'},
+    {"max-steps",      required_argument, NULL, 'm'},
+    {"debug",          no_argument,       NULL, 'd'},
+    {"heatmap",        required_argument, NULL, 256},
+    {"div",            required_argument, NULL, 257},
+    {"heatmap-size",   required_argument, NULL, 'z'},
+    {"show-distances", no_argument,       NULL, 'D'},
+    {"stop-move",      required_argument, NULL, 258},
+    { NULL,            0,                 NULL,   0},
 };
 
 
@@ -114,19 +115,24 @@ int main (int argc, char ** argv) {
     short  stop_row                  = 0;
     short  stop_col                  = 0;
     bool   stopped                   = false;
+    bool   show_distances            = false;
 
     /*
      * Parse options, if any
      */
     int ch;
-    while ((ch = getopt_long (argc, argv, "l:m:z:dhHc",
+    while ((ch = getopt_long (argc, argv, "l:m:z:dDhHc",
                               longopts, NULL)) != -1) {
         switch (ch) {
             case 'l': to_value =          layout (optarg); break;
             case 'd': debug = true;                        break;
-            case 'h': show_heatmap |= HEATMAP_ABS;         break;
-            case 'H': show_heatmap |= HEATMAP_PERC;        break;
-            case 'c': show_heatmap |= HEATMAP_COMPACT;     break;
+            case 'D': show_distances = true;
+                      if (!show_heatmap) {
+                           show_heatmap |= HEATMAP_ABS;
+                      };                                   break;
+            case 'h': show_heatmap  |= HEATMAP_ABS;        break;
+            case 'H': show_heatmap  |= HEATMAP_PERC;       break;
+            case 'c': show_heatmap  |= HEATMAP_COMPACT;    break;
             case 'z': heatmap_row_size =
                       heatmap_col_size = (short unsigned) atoi (optarg);
                                                            break;
@@ -366,7 +372,7 @@ int main (int argc, char ** argv) {
     }
 
     if (show_heatmap) {
-        print_heatmap (show_heatmap, show_div, argc, argv);
+        print_heatmap (show_heatmap, show_div, show_distances, argc, argv);
     }
 
     return 1;
