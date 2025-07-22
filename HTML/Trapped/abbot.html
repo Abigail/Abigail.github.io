@@ -6,6 +6,8 @@
 <link rel = 'stylesheet' href =      'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
 <link rel = 'stylesheet' href = '../../Styles/main.css'>
 <link rel = 'stylesheet' href = '../../Styles/Trapped/main.css'>
+<link rel = 'stylesheet' href = '../../Styles/Trapped/main-heatmap.css'>
+<link rel = 'stylesheet' href = '../../Styles/Trapped/main-path.css'>
 <script src = "../../JavaScript/jquery.js"></script>
 <script id  = 'MathJax-script' async src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.js'></script>
 <script id = 'svg-script' src = 'https://cdn.jsdelivr.net/npm/@svgdotjs/svg.js@3.0/dist/svg.min.js'></script>
@@ -15,6 +17,8 @@
 <script src = '../../JavaScript/Trapped/pieces.js'></script>
 <script src = '../../JavaScript/Trapped/boxset.js'></script>
 <script src = '../../JavaScript/Trapped/movement.js'></script>
+<script src = '../../JavaScript/Trapped/heatmap.js'></script>
+<script src = '../../JavaScript/Trapped/path.js'></script>
 <script src = '../../JavaScript/Trapped/pages.js'></script>
 </head>
 
@@ -60,37 +64,131 @@ slides up to four unoccupied squares in a diagonal direction.</p>
   </tr>
 </table>
 
-<h3 id = 'square'>Square</h3>
+<h3 id = 'spiral'>Spiral</h3>
 
 <h4 id = 'square'>Square</h4>
 
-<div class = "section">
+<div class = 'heatmap right'>
+% ./trapped -D -l s_sq &mdash;div r F4N 
+% Box: [-4, 4] [-4, 4]
++-----+-----+-----+-----+-----+-----+-----+-----+-----+
+|   7 |   . |   . |   . |   . |   . |   . |   . |   . |
++-----+-----+-----+-----+-----+-----+-----+-----+-----+
+|   . |   7 |   . |   . |   . |   . |   . |  13 |   . |
++-----+-----+-----+-----+-----+-----+-----+-----+-----+
+|   . |   . |  73 | 993 |   . | 336 |  68 |   . |   . |
++-----+-----+-----+-----+-----+-----+-----+-----+-----+
+|   . |   . | 407 | 196 |   . | 177 | 899 |   . |   . |
++-----+-----+-----+-----+-----+-----+-----+-----+-----+
+|   . |   . |   . |   . |  *  |   . |   . |   . |   . |
++-----+-----+-----+-----+-----+-----+-----+-----+-----+
+|   . |   . | 881 | 164 |   . | 229 | 397 |   . |   . |
++-----+-----+-----+-----+-----+-----+-----+-----+-----+
+|   . |   . |  59 | 369 |   . | 956 |  75 |   . |   . |
++-----+-----+-----+-----+-----+-----+-----+-----+-----+
+|   . |  14 |   . |   . |   . |   . |   . |   7 |   . |
++-----+-----+-----+-----+-----+-----+-----+-----+-----+
+|   6 |   . |   . |   . |   . |   . |   . |   . |   1 |
++-----+-----+-----+-----+-----+-----+-----+-----+-----+
+</div>
+
 <p>On the Spiral Square, the <strong>Abbot</strong> gets trapped after 6,334 steps. This is 
 only slightly sooner than the  <a href="archbishop.html"><em>Archbishop</em></a>, which
 gets trapped after 6,386 steps.</p>
-</div>
+
+<p>As can be seen from the heatmap on the right, the <strong>Abbott</strong> mostly makes
+<a href="knight.html"><em>Knight</em></a> moves. Longer <a href="bishop.html"><em>Bishop</em></a> moves are even less frequent that
+one square <a href="bishop.html"><em>Bishop</em></a> moves.</p>
 
 <h4 id = 'diamond'>Diamond</h4>
 
-<div class = "section">
+<div class = 'heatmap left'>
+% ./trapped -D -l s_d &mdash;div l F4N 
+% Box: [-4, 4] [-4, 4]
++---------+---------+---------+---------+---------+---------+---------+---------+---------+
+|  979432 |       . |       . |       . |       . |       . |       . |       . |  979821 |
++---------+---------+---------+---------+---------+---------+---------+---------+---------+
+|       . |  247666 |       . |       . |       . |       . |       . |  248095 |       . |
++---------+---------+---------+---------+---------+---------+---------+---------+---------+
+|       . |       . |  954896 | 3137804 |       . | 3554125 |  961251 |       . |       . |
++---------+---------+---------+---------+---------+---------+---------+---------+---------+
+|       . |       . | 3548005 | 3293463 |       . | 3294061 | 3137195 |       . |       . |
++---------+---------+---------+---------+---------+---------+---------+---------+---------+
+|       . |       . |       . |       . |    *    |       . |       . |       . |       . |
++---------+---------+---------+---------+---------+---------+---------+---------+---------+
+|       . |       . | 3138629 | 3294281 |       . | 3286270 | 3554521 |       . |       . |
++---------+---------+---------+---------+---------+---------+---------+---------+---------+
+|       . |       . |  960374 | 3560942 |       . | 3133776 |  959268 |       . |       . |
++---------+---------+---------+---------+---------+---------+---------+---------+---------+
+|       . |  248837 |       . |       . |       . |       . |       . |  248018 |       . |
++---------+---------+---------+---------+---------+---------+---------+---------+---------+
+|  978072 |       . |       . |       . |       . |       . |       . |       . |  976558 |
++---------+---------+---------+---------+---------+---------+---------+---------+---------+
+</div>
+
 <p>It takes much longer for the <strong>Abbot</strong> to get trapped on the Diamond Square,
 but eventually it does get trapped &mdash; after 48,675,360 steps.</p>
-</div>
+
+<p>As can be seen from the heatmap on the left, on the Diamond Spiral,
+the <strong>Abbot</strong> mostly makes <a href="knight.html"><em>Knight</em></a> moves, and <a href="bishop.html"><em>Bishop</em></a> moves 
+of one square. But it uses all of its possible moves. It is interesting
+to see it uses the four square <a href="bishop.html"><em>Bishop</em></a> move more often than its
+three square move.</p>
 
 <h3 id = 'wedge'>Wedge</h3>
 
 <h4 id = 'folded'>Folded</h4>
 
-<div class = "section">
-<p>On the Folded Wedge, the <strong>Abbot</strong> fills the entire board, using
-a complicated unique pattern.</p>
+<div class = 'heatmap right'>
+% ./trapped -D -m 10k -l w_fo &mdash;div r F4N 
+% Box: [-2, 1] [-2, 2]
++------+------+------+------+------+
+|    . |   25 |    . |   25 |    . |
++------+------+------+------+------+
+| 1925 |  555 |    . |  554 | 1941 |
++------+------+------+------+------+
+|    . |    . |   *  |    . |    . |
++------+------+------+------+------+
+|  602 | 1886 |    . | 1885 |  602 |
++------+------+------+------+------+
 </div>
 
+<p>On the Folded Wedge, the <strong>Abbot</strong> fills the entire board, using
+a complicated unique pattern.</p>
+
+<p>As can be seen from the heatmap, the <strong>Abbott</strong> uses 6 out of its 8
+possible <a href="knight.html"><em>Knight</em></a> moves, the left and right most far more frequently
+than the forward most. It never makes a <a href="bishop.html"><em>Bishop</em></a> move of more than
+one square.</p>
+
 <h4 id = 'flat'>Flat</h4>
+
+<div class = 'heatmap left'>
+% ./trapped -h -m 10k -l w_fl &mdash;div l F4N 
+% Box: [-2, 3] [-3, 2]
++------+------+------+------+------+------+
+|    . |    . |    . |    . |    5 |    . |
++------+------+------+------+------+------+
+|    . |  186 |  811 |    . | 1303 | 2797 |
++------+------+------+------+------+------+
+|    . |    . |    . |   *  |    . |    . |
++------+------+------+------+------+------+
+|    . | 2547 | 1577 |    . |  297 |  396 |
++------+------+------+------+------+------+
+|    . |   32 |    1 |    . |   13 |    7 |
++------+------+------+------+------+------+
+|   28 |    . |    . |    . |    . |    . |
++------+------+------+------+------+------+
+</div>
 
 <p>On the Flat Wedge, the <strong>Abbot</strong> fills the entire board, using
 a complicated and unique pattern (but different from the Folded Wedge), with a
 strong bias to the right hand side of the board.</p>
+
+<p>From the heatmap on the left, we see that the <strong>Abbott</strong> uses only 7 of it 8
+possible <a href="knight.html"><em>Knight</em></a> moves. And only 7 of its 16 possible <a href="bishop.html"><em>Bishop</em></a> moves.
+It doesn't use a four square move.</p>
+<h2 id = 'animation'>Animation</h2>
 
 <div class = 'trapped' data-piece = 'abbot'></div>
 
