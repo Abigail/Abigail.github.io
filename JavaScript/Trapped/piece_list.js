@@ -2278,7 +2278,7 @@ let pieces = {
         results: {
             spiral_square:  "T/26,637",
             spiral_diamond: "T/44,236",
-            wedge_folded:   "?/1G",
+            wedge_folded:   "?/3G",
             wedge_flat:     "T/21,401,163",
         },
     },
