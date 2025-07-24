@@ -62,8 +62,8 @@ value_t (* layout (char * input)) (rowcol_t, rowcol_t) {
  *
  */
 value_t spiral_square (rowcol_t row, rowcol_t col) {
-    rowcol_t abs_row = abs (row);
-    rowcol_t abs_col = abs (col);
+    rowcol_t abs_row = labs (row);
+    rowcol_t abs_col = labs (col);
     rowcol_t max     = abs_col > abs_row ? abs_col : abs_row;
     value_t  base    = (2 * (value_t) max - 1) *
                        (2 * (value_t) max - 1);
@@ -99,8 +99,8 @@ value_t spiral_square (rowcol_t row, rowcol_t col) {
  */
 
 value_t spiral_diamond (rowcol_t row, rowcol_t col) {
-    rowcol_t abs_row = abs (row);
-    rowcol_t abs_col = abs (col);
+    rowcol_t abs_row = labs (row);
+    rowcol_t abs_col = labs (col);
     value_t  ring    = (value_t) abs_row + abs_col;
     if (ring == 0) {
         return 1;
@@ -140,8 +140,8 @@ value_t spiral_diamond (rowcol_t row, rowcol_t col) {
  *
  */
 value_t wedge_folded (rowcol_t row, rowcol_t col) {
-    rowcol_t abs_row = abs (row);
-    rowcol_t abs_col = abs (col);
+    rowcol_t abs_row = labs (row);
+    rowcol_t abs_col = labs (col);
 
     /*
      * This ought not to happen
@@ -180,8 +180,8 @@ value_t wedge_folded (rowcol_t row, rowcol_t col) {
  *
  */
 value_t wedge_flat (rowcol_t row, rowcol_t col) {
-    rowcol_t abs_row = abs (row);
-    rowcol_t abs_col = abs (col);
+    rowcol_t abs_row = labs (row);
+    rowcol_t abs_col = labs (col);
 
     /*
      * This ought not to happen

@@ -17,16 +17,10 @@
 # define HEATMAP_DIV_LEFT  2
 
 typedef step_t ** heatmap_t;
-typedef step_t *  distance_t;
-
-typedef struct distances_t {
-    step_t * distances;
-    size_t   n;
-} distances_t;
 
 extern void init_heatmap  (short unsigned, short unsigned);
 extern void print_heatmap (int   unsigned,   int unsigned, bool, int, char **);
-extern void record_move   (int,  int);
+extern void record_move   (rowcol_t, rowcol_t);
 
 
 # endif

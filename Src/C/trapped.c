@@ -95,7 +95,7 @@ static struct option longopts [] = {
     {"heatmap",        required_argument, NULL, 256},
     {"div",            required_argument, NULL, 257},
     {"heatmap-size",   required_argument, NULL, 'z'},
-    {"show-distances", no_argument,       NULL, 'D'},
+    {"show-distance",  no_argument,       NULL, 'D'},
     {"stop-move",      required_argument, NULL, 258},
     { NULL,            0,                 NULL,   0},
 };
@@ -115,7 +115,7 @@ int main (int argc, char ** argv) {
     short  stop_row                  = 0;
     short  stop_col                  = 0;
     bool   stopped                   = false;
-    bool   show_distances            = false;
+    bool   show_distance             = false;
 
     /*
      * Parse options, if any
@@ -126,7 +126,7 @@ int main (int argc, char ** argv) {
         switch (ch) {
             case 'l': to_value =          layout (optarg); break;
             case 'd': debug = true;                        break;
-            case 'D': show_distances = true;
+            case 'D': show_distance = true;
                       if (!show_heatmap) {
                            show_heatmap |= HEATMAP_ABS;
                       };                                   break;
@@ -323,9 +323,10 @@ int main (int argc, char ** argv) {
         if (out_of_bounds) {
             printf ("\nRan out of bounds on step %llu\n", steps);
             if (debug) {
-                printf ("Tried to jump to point (%d, %d) value %llu = %lluG\n",
-                         out_of_bounds_row, out_of_bounds_col,
-                         out_of_bounds_value, out_of_bounds_value / SIZE);
+                printf (
+                    "Tried to jump to point (%lu, %lu) value %llu = %lluG\n",
+                     out_of_bounds_row,   out_of_bounds_col,
+                     out_of_bounds_value, out_of_bounds_value / SIZE);
             }
             break;
         }
@@ -339,7 +340,7 @@ int main (int argc, char ** argv) {
             if (stop_row && stop_col) {
                 if (stop_row == best_row - row &&
                     stop_col == best_col - col) {
-                    printf ("\nStopped on move %s (%d, %d)\n",
+                    printf ("\nStopped on move %s (%ld, %ld)\n",
                                f (steps), best_row, best_col);
                     break;
                 }
@@ -348,12 +349,9 @@ int main (int argc, char ** argv) {
             row = best_row;
             col = best_col;
             set_value (best_value);
-            /* printf ("Step %d moves to [%d, %d] (val = %d)\n",
-             * steps, row, col, (int) best_value);
-             */
         }
         else {
-            printf ("\nTrapped on move %s (%d, %d)\n", f (steps), row, col);
+            printf ("\nTrapped on move %s (%ld, %ld)\n", f (steps), row, col);
             break;
         }
 
@@ -372,7 +370,7 @@ int main (int argc, char ** argv) {
     }
 
     if (show_heatmap) {
-        print_heatmap (show_heatmap, show_div, show_distances, argc, argv);
+        print_heatmap (show_heatmap, show_div, show_distance, argc, argv);
     }
 
     return 1;

@@ -4,6 +4,7 @@
 
 typedef long long unsigned step_t;
 typedef long long unsigned value_t;
-typedef int                rowcol_t;
+typedef long               rowcol_t;
+typedef long long unsigned distance_t;
 
 # endif

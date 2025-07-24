@@ -11,18 +11,17 @@
 heatmap_t heatmap                 = (heatmap_t) NULL;
 short unsigned heatmap_rows       = 0;   /* Size of heatmap */
 short unsigned heatmap_cols       = 0;
-short          heatmap_row_offset = 0;   /* Offset to go from external     */
-short          heatmap_col_offset = 0;   /* to internal coordinates        */
-short          min_heatmap_row    = 0;   /* min/max values in the heat map */
-short          max_heatmap_row    = 0;   /* In outside coordinates         */
+short          heatmap_row_offset = 0;   /* Offset to go from external */
+short          heatmap_col_offset = 0;   /* to internal coordinates    */
+short          min_heatmap_row    = 0;   /* min/max values in the heat */
+short          max_heatmap_row    = 0;   /* map in outside coordinates */
 short          min_heatmap_col    = 0;
 short          max_heatmap_col    = 0;
 short unsigned heatmap_max_rows   = 0;
 short unsigned heatmap_max_cols   = 0;
-
-distances_t distance_map;
-
-void print_distances (distances_t, int);
+distance_t     max_distance       = 0;
+rowcol_t       max_dr             = 0;
+rowcol_t       max_dc             = 0;
 
 /*
  * void init_heatmap (unsigned short max_rows, unsigned short max_cols) 
@@ -59,16 +58,6 @@ void init_heatmap (short unsigned max_rows, short unsigned max_cols) {
             heatmap [row] [col] = 0;
         }
     }
-
-    distance_map . n = 1;
-    if ((distance_map . distances =
-        (distance_t) malloc (distance_map . n * sizeof (step_t))) == NULL) {
-        perror ("Malloc failed");
-        exit (1);
-    }
-    for (size_t i = 0; i < distance_map . n; i ++) {
-        distance_map . distances [i] = 0;
-    }
 }
 
 /*
@@ -81,7 +70,7 @@ void init_heatmap (short unsigned max_rows, short unsigned max_cols) {
  */
 void print_heatmap (int unsigned show_heatmap,
                     int unsigned show_div,
-                    bool         show_distances,
+                    bool         show_distance,
                     int argc, char ** argv) {
     printf ("\n");
 
@@ -224,10 +213,11 @@ void print_heatmap (int unsigned show_heatmap,
     }
 
     /*
-     * Print the distances
+     * Print the max distance
      */
-    if (show_distances) {
-        print_distances (distance_map, show_div);
+    if (show_distance) {
+        printf ("Max distance: %llu (%ld, %ld)\n",
+                 max_distance, max_dr, max_dc);
     }
 
     free (line);
@@ -239,92 +229,22 @@ void print_heatmap (int unsigned show_heatmap,
 
 
 /*
- * void print_distances (distances_t distance_map)
- *
- * Print the distances
- *
- */
-void print_distances (distances_t distance_map, int show_div) {
-    printf ("\n");
-    if (show_div) {
-        printf ("<div class = 'distances'>\n");
-    }
-
-    /*
-     * Calculate the size strings
-     */
-    int length = 2;   /* Leading '|' and trailing NUL */
-    for (int i = 0; i < distance_map . n; i ++) {
-        step_t steps = distance_map . distances [i];
-        if (steps) {
-            step_t max   = (step_t) i > steps ? (step_t) i : steps;
-            length      += 4 + (max ? (int) log10 (max) : 0);
-        }
-    }
-
-    char ** table = (char **) NULL;
-    if ((table = malloc (3 * sizeof (char *))) == NULL) {
-        perror ("Malloc failed");
-        exit (1);
-    }
-    for (int i = 0; i < 3; i ++) {
-        if ((table [i] = malloc (length * sizeof (char))) == NULL) {
-            perror ("Malloc failed");
-            exit (1);
-        }
-    }
-
-    /*
-     * Initial character of each string
-     */
-    table [0] [0]                                 = '+';
-    table [1] [0] = table [2] [0]                 = '|';
-    table [0] [1] = table [1] [1] = table [2] [1] =  0;
-
-    int pointer = 1;
-
-    for (int i = 0; i <  distance_map . n; i ++) {
-        step_t steps = distance_map . distances [i];
-        if (!steps) {
-            continue;
-        }
-        step_t max   = (step_t) i > steps ? (step_t) i : steps;
-        int width    = 1 + (max ? (int) log10 (max) : 0);
-        for (int j = 0; j < width + 2; j ++) {
-            table [0] [pointer ++] = '-';
-        }
-        table [0] [pointer ++] = '+';
-        table [0] [pointer]    = 0;
-        sprintf (table [1], "%s %*d |",   table [1], width, i);
-        sprintf (table [2], "%s %*llu |", table [2], width, steps);
-    }
-    printf ("%s\n", table [0]);
-    printf ("%s\n", table [1]);
-    printf ("%s\n", table [0]);
-    printf ("%s\n", table [2]);
-    printf ("%s\n", table [0]);
-
-    if (show_div) {
-        printf ("</div>\n");
-    }
-
-    for (int j = 0; j < 3; j ++) {
-        free (table [j]);
-    }
-    free (table);
-}
-
-/*
- * void record_move (int dr, int dc)
+ * void record_move (rowcol_t dr, rowcol_t dc)
  *
  * Record the "current" jump in the heatmap.
  *
- * Input: int dr:  Number of rows jumped
- *        int dc:  Number of cols jumped
+ * Input: rowcol_t dr:  Number of rows jumped
+ *        rowcol_t dc:  Number of cols jumped
  * 
  */
-void record_move (int dr, int dc) {
-    int dist = dr * dr + dc * dc;
+void record_move (rowcol_t dr, rowcol_t dc) {
+    distance_t dist = ((distance_t) dr) * ((distance_t) dr) +
+                      ((distance_t) dc) * ((distance_t) dc);
+    if (dist > max_distance) {
+        max_distance = dist;
+        max_dr       = dr;
+        max_dc       = dc;
+    }
     /*
      * Make sure the move is inside
      */
@@ -345,19 +265,4 @@ void record_move (int dr, int dc) {
     int col = dc + heatmap_col_offset;
 
     heatmap [row] [col] ++;
-
-    if (dist >= distance_map . n) {
-        int old = distance_map . n;
-        distance_map . n = dist + 1;
-        if ((distance_map . distances = 
-             realloc (distance_map . distances,
-                      distance_map . n * sizeof (step_t))) == NULL) {
-            perror ("Realloc failed");
-            exit (1);
-        }
-        for (int i = old; i <= dist; i ++) {
-            distance_map . distances [i] = 0;
-        }
-    }
-    distance_map . distances [dist] ++;
 }
