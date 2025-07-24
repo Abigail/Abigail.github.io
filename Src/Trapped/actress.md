@@ -28,25 +28,38 @@ the movements of the [*Knight*](knight.html) and [*Camel*](camel.html).)
 
 #### Square
 
-Since the **Actress** can move as the [*Queen*](queen.html), and hence,
-as the [*Wazir*](wazir.html), the **Actress** fills the entire 
-board by just following the Square Spiral.
+<!-- @@ Wazir Actress/CFFNWW Square_Spiral -->
 
 #### Diamond
 
-Since the **Actress** can move as the [*Blind Monkey*](blind_monkey.html),
-the **Actress** fills the entire 
-board by just following the Square Spiral.
+<!-- @@ Blind_Monkey Actress/CFFNWW Diamond_Spiral -->
 
 ### Wedge
 
 #### Folded
 
-Since the **Actress** can move as the [*Queen*](queen.html), and hence,
-as the [*Flying Cock*](flying_cock.html), the %%PIECE%% fills the entire 
-board by just following the Wedge.
+<!-- @@ Flying_Cock Actress/CFFNWW Folded_Wedge -->
 
 #### Flat
 
+<div class = 'heatmap left'>
+% ./trapped -m 10k -l w_fl --div l CFFNWW 
+% Box: [-1, 1] [-3, 3]
++------+------+------+------+------+------+------+
+|    . |    . |    . |    . |   26 |   25 | 1982 |
++------+------+------+------+------+------+------+
+|    . |    . | 4086 |   *  |   25 | 1931 |    . |
++------+------+------+------+------+------+------+
+| 1925 |    . |    . |    . |    . |    . |    . |
++------+------+------+------+------+------+------+
+</div>
+
 On the Flat Wedge, the **Actress** fills the entire board in a not
 very interesting pattern.
+
+The **Actress** makes use of a limited set of moves on the Flat Wedge.
+Only left-backwards %%CAMEL%% moves are made to move the **Actress**
+backward. To move the **Actess** forward, only right-forward
+%%CAMEL%%, %%KNIGHT%% or single-square %%BISHOP%% moves are made.
+Furthermore, the **Actress** moves sideways using one and two square
+%%ROOK%% moves.
