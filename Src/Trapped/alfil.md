@@ -49,17 +49,68 @@ Link: [%%CHESS_V%%](#chess-v:alfil)
 
 #### Square
 
+<div class = 'heatmap right'>
+% ./trapped -m 10k -l s_sq --div r A 
+% Box: [-2, 2] [-2, 2]
++------+------+------+------+------+
+| 2450 |    . |    . |    . | 2500 |
++------+------+------+------+------+
+|    . |    . |    . |    . |    . |
++------+------+------+------+------+
+|    . |    . |   *  |    . |    . |
++------+------+------+------+------+
+|    . |    . |    . |    . |    . |
++------+------+------+------+------+
+| 2550 |    . |    . |    . | 2500 |
++------+------+------+------+------+
+</div>
+
 On the Square Spiral, the **Alfil** moves in a similar fashion as the
 [*Ferz*](ferz.html), except that it's path is blown up by a factor two.
 It will visit all the squares of the board which satisfy the condition
 above. As such, the **Alfil** visits \(12.5\%\) of the board.
 
+The **Alfil** uses each of its four allowed moves roughly equally.
+
 #### Diamond
 
-On the Diamond Spiral, the **Alfil** moves in the same way as on the
-Square Spiral, visiting \(12.5\%\) of the board.
+<div class = 'heatmap left'>
+% ./trapped -m 10k -l s_d --div l A 
+% Box: [-2, 2] [-2, 2]
++------+------+------+------+------+
+| 2550 |    . |    . |    . | 2500 |
++------+------+------+------+------+
+|    . |    . |    . |    . |    . |
++------+------+------+------+------+
+|    . |    . |   *  |    . |    . |
++------+------+------+------+------+
+|    . |    . |    . |    . |    . |
++------+------+------+------+------+
+| 2450 |    . |    . |    . | 2500 |
++------+------+------+------+------+
+</div>
+
+On the Diamond Spiral, the **Alfil** moves in the similar way as on the
+Square Spiral, but it moves in the opposite direction. It visits \(12.5\%\)
+of the board.
 
 ### Wedge
+
+<div class = 'heatmap right'>
+% ./trapped -m 1k -l w_fo --div r A 
+% Box: [-2, 0] [0, 2]
++------+------+------+
+|    . |    . | 1000 |
++------+------+------+
+|    . |    . |    . |
++------+------+------+
+|   *  |    . |    . |
++------+------+------+
+</div>
+
+<div class = 'path left'>
+0 0 -2 2
+</div>
 
 On both the Folded and Flat Wedge, the **Alfil** escapes to infinity
 by visiting the right most square of each second row. This means an

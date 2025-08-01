@@ -6,6 +6,8 @@
 <link rel = 'stylesheet' href =      'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
 <link rel = 'stylesheet' href = '../../Styles/main.css'>
 <link rel = 'stylesheet' href = '../../Styles/Trapped/main.css'>
+<link rel = 'stylesheet' href = '../../Styles/Trapped/main-heatmap.css'>
+<link rel = 'stylesheet' href = '../../Styles/Trapped/main-path.css'>
 <script src = "../../JavaScript/jquery.js"></script>
 <script id  = 'MathJax-script' async src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.js'></script>
 <script id = 'svg-script' src = 'https://cdn.jsdelivr.net/npm/@svgdotjs/svg.js@3.0/dist/svg.min.js'></script>
@@ -15,6 +17,8 @@
 <script src = '../../JavaScript/Trapped/pieces.js'></script>
 <script src = '../../JavaScript/Trapped/boxset.js'></script>
 <script src = '../../JavaScript/Trapped/movement.js'></script>
+<script src = '../../JavaScript/Trapped/heatmap.js'></script>
+<script src = '../../JavaScript/Trapped/path.js'></script>
 <script src = '../../JavaScript/Trapped/pages.js'></script>
 </head>
 
@@ -81,25 +85,73 @@ The proposed Unicode symbol for the <strong>Alfil</strong> looks like an elephan
 
 <h4 id = 'square'>Square</h4>
 
-<div class = "section">
+<div class = 'heatmap right'>
+% ./trapped -m 10k -l s_sq &mdash;div r A 
+% Box: [-2, 2] [-2, 2]
++------+------+------+------+------+
+| 2450 |    . |    . |    . | 2500 |
++------+------+------+------+------+
+|    . |    . |    . |    . |    . |
++------+------+------+------+------+
+|    . |    . |   *  |    . |    . |
++------+------+------+------+------+
+|    . |    . |    . |    . |    . |
++------+------+------+------+------+
+| 2550 |    . |    . |    . | 2500 |
++------+------+------+------+------+
+</div>
+
 <p>On the Square Spiral, the <strong>Alfil</strong> moves in a similar fashion as the
 <a href="ferz.html"><em>Ferz</em></a>, except that it's path is blown up by a factor two.
 It will visit all the squares of the board which satisfy the condition
 above. As such, the <strong>Alfil</strong> visits <span class = 'latex-inline'>\(12.5\%\)</span> of the board.</p>
-</div>
+
+<p>The <strong>Alfil</strong> uses each of its four allowed moves roughly equally.</p>
 
 <h4 id = 'diamond'>Diamond</h4>
 
-<div class = "section">
-<p>On the Diamond Spiral, the <strong>Alfil</strong> moves in the same way as on the
-Square Spiral, visiting <span class = 'latex-inline'>\(12.5\%\)</span> of the board.</p>
+<div class = 'heatmap left'>
+% ./trapped -m 10k -l s_d &mdash;div l A 
+% Box: [-2, 2] [-2, 2]
++------+------+------+------+------+
+| 2550 |    . |    . |    . | 2500 |
++------+------+------+------+------+
+|    . |    . |    . |    . |    . |
++------+------+------+------+------+
+|    . |    . |   *  |    . |    . |
++------+------+------+------+------+
+|    . |    . |    . |    . |    . |
++------+------+------+------+------+
+| 2450 |    . |    . |    . | 2500 |
++------+------+------+------+------+
 </div>
 
+<p>On the Diamond Spiral, the <strong>Alfil</strong> moves in the similar way as on the
+Square Spiral, but it moves in the opposite direction. It visits <span class = 'latex-inline'>\(12.5\%\)</span>
+of the board.</p>
+
 <h3 id = 'wedge'>Wedge</h3>
+
+<div class = 'heatmap right'>
+% ./trapped -m 1k -l w_fo &mdash;div r A 
+% Box: [-2, 0] [0, 2]
++------+------+------+
+|    . |    . | 1000 |
++------+------+------+
+|    . |    . |    . |
++------+------+------+
+|   *  |    . |    . |
++------+------+------+
+</div>
+
+<div class = 'path left'>
+0 0 -2 2
+</div>
 
 <p>On both the Folded and Flat Wedge, the <strong>Alfil</strong> escapes to infinity
 by visiting the right most square of each second row. This means an
 escape velocity of <span class = 'latex-inline'>\(2 \sqrt{2}\)</span>.</p>
+<h2 id = 'animation'>Animation</h2>
 
 <div class = 'trapped' data-piece = 'alfil'></div>
 
