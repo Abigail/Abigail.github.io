@@ -6,6 +6,8 @@
 <link rel = 'stylesheet' href =      'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
 <link rel = 'stylesheet' href = '../../Styles/main.css'>
 <link rel = 'stylesheet' href = '../../Styles/Trapped/main.css'>
+<link rel = 'stylesheet' href = '../../Styles/Trapped/main-heatmap.css'>
+<link rel = 'stylesheet' href = '../../Styles/Trapped/main-path.css'>
 <script src = "../../JavaScript/jquery.js"></script>
 <script id  = 'MathJax-script' async src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.js'></script>
 <script id = 'svg-script' src = 'https://cdn.jsdelivr.net/npm/@svgdotjs/svg.js@3.0/dist/svg.min.js'></script>
@@ -15,6 +17,8 @@
 <script src = '../../JavaScript/Trapped/pieces.js'></script>
 <script src = '../../JavaScript/Trapped/boxset.js'></script>
 <script src = '../../JavaScript/Trapped/movement.js'></script>
+<script src = '../../JavaScript/Trapped/heatmap.js'></script>
+<script src = '../../JavaScript/Trapped/path.js'></script>
 <script src = '../../JavaScript/Trapped/pages.js'></script>
 </head>
 
@@ -79,28 +83,82 @@ reachable by the <strong>Alibaba</strong>) the <strong>Alibaba</strong> moves li
 
 <h4 id = 'square'>Square</h4>
 
-<div class = "section">
+<div class = 'heatmap right'>
+% ./trapped -m 10k -l s_sq &mdash;div r AD 
+% Box: [-2, 2] [-2, 2]
++------+------+------+------+------+
+|    . |    . | 2500 |    . |    . |
++------+------+------+------+------+
+|    . |    . |    . |    . |    . |
++------+------+------+------+------+
+| 2550 |    . |   *  |    . | 2500 |
++------+------+------+------+------+
+|    . |    . |    . |    . |    . |
++------+------+------+------+------+
+|    . |    . | 2450 |    . |    . |
++------+------+------+------+------+
+</div>
+
 <p>On the Spiral, the <strong>Alibaba</strong> follows the Spiral, but then with
 its path blown up by a factor of two. Hence, it visits <span class = 'latex-inline'>\(25\%\)</span>
 of the squares on the board.</p>
-</div>
+
+<p>The <strong>Alibaba</strong> only makes orthogonal, <a href="dabbaba.html"><em>Dabbaba</em></a> moves, roughly the
+same amount in each direction.</p>
 
 <h4 id = 'diamond'>Diamond</h4>
 
-<div class = "section">
+<div class = 'heatmap left'>
+% ./trapped -m 10k -l s_d &mdash;div l AD 
+% Box: [-2, 2] [-2, 2]
++------+------+------+------+------+
+| 2485 |    . |    . |    . | 2474 |
++------+------+------+------+------+
+|    . |    . |    . |    . |    . |
++------+------+------+------+------+
+|    . |    . |   *  |    . |   71 |
++------+------+------+------+------+
+|    . |    . |    . |    . |    . |
++------+------+------+------+------+
+| 2485 |    . |    . |    . | 2485 |
++------+------+------+------+------+
+</div>
+
 <p>On the Diamond, the <strong>Alibaba</strong> follows same path the 
 <a href="blind_monkey.html"><em>Blind Monkey</em></a> does, but then with
 its path blown up by a factor of two. Hence, it visits <span class = 'latex-inline'>\(25\%\)</span>
 of the squares on the board.</p>
-</div>
+
+<p>The <strong>Alibaba</strong> makes mostly <a href="alfil.html"><em>Alfil</em></a> moves on the Diamond Spiral;
+and relative few rightward <a href="dabbaba.html"><em>Dabbaba</em></a> moves.</p>
 
 <h3 id = 'wedge'>Wedge</h3>
+
+<div class = 'heatmap right'>
+% ./trapped -m 10k -l w_fo &mdash;div r AD 
+% Box: [-2, 2] [-2, 2]
++------+------+------+------+------+
+|    . |    . |    . |    . |  149 |
++------+------+------+------+------+
+|    . |    . |    . |    . |    . |
++------+------+------+------+------+
+| 5000 |    . |   *  |    . | 4802 |
++------+------+------+------+------+
+|    . |    . |    . |    . |    . |
++------+------+------+------+------+
+|   49 |    . |    . |    . |    . |
++------+------+------+------+------+
+</div>
 
 <p>The <strong>Alibaba</strong> visits the same squares on both the Flat and Folded
 Wedge, visiting the squares in the same order. It visits every other
 square of ever other rows. Mostly going right to left, and left to
 right, but with a small sidestep before reaching the left end of a row.
 Hence, <span class = 'latex-inline'>\(25\%\)</span> of the squares on the board will be visited.</p>
+
+<p>The <strong>Alibaba</strong> uses half of its possible moves. Mostly sideways 
+<a href="dabbaba.html"><em>Dabbaba</em></a> moves, and relative few <a href="alfil.html"><em>Alfil</em></a> moves on one diagonal.</p>
+<h2 id = 'animation'>Animation</h2>
 
 <div class = 'trapped' data-piece = 'alibaba'></div>
 

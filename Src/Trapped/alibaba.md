@@ -47,18 +47,72 @@ Link: [%%CHESS_V%%](#piece:alibaba)
 
 #### Square
 
+<div class = 'heatmap right'>
+% ./trapped -m 10k -l s_sq --div r AD 
+% Box: [-2, 2] [-2, 2]
++------+------+------+------+------+
+|    . |    . | 2500 |    . |    . |
++------+------+------+------+------+
+|    . |    . |    . |    . |    . |
++------+------+------+------+------+
+| 2550 |    . |   *  |    . | 2500 |
++------+------+------+------+------+
+|    . |    . |    . |    . |    . |
++------+------+------+------+------+
+|    . |    . | 2450 |    . |    . |
++------+------+------+------+------+
+</div>
+
 On the Spiral, the **Alibaba** follows the Spiral, but then with
 its path blown up by a factor of two. Hence, it visits \(25\%\)
 of the squares on the board.
 
+The **Alibaba** only makes orthogonal, %%DABBABA%% moves, roughly the
+same amount in each direction.
+
 #### Diamond
+
+<div class = 'heatmap left'>
+% ./trapped -m 10k -l s_d --div l AD 
+% Box: [-2, 2] [-2, 2]
++------+------+------+------+------+
+| 2485 |    . |    . |    . | 2474 |
++------+------+------+------+------+
+|    . |    . |    . |    . |    . |
++------+------+------+------+------+
+|    . |    . |   *  |    . |   71 |
++------+------+------+------+------+
+|    . |    . |    . |    . |    . |
++------+------+------+------+------+
+| 2485 |    . |    . |    . | 2485 |
++------+------+------+------+------+
+</div>
 
 On the Diamond, the **Alibaba** follows same path the 
 [*Blind Monkey*](blind_monkey.html) does, but then with
 its path blown up by a factor of two. Hence, it visits \(25\%\)
 of the squares on the board.
 
+The **Alibaba** makes mostly %%ALFIL%% moves on the Diamond Spiral;
+and relative few rightward %%DABBABA%% moves.
+
 ### Wedge
+
+<div class = 'heatmap right'>
+% ./trapped -m 10k -l w_fo --div r AD 
+% Box: [-2, 2] [-2, 2]
++------+------+------+------+------+
+|    . |    . |    . |    . |  149 |
++------+------+------+------+------+
+|    . |    . |    . |    . |    . |
++------+------+------+------+------+
+| 5000 |    . |   *  |    . | 4802 |
++------+------+------+------+------+
+|    . |    . |    . |    . |    . |
++------+------+------+------+------+
+|   49 |    . |    . |    . |    . |
++------+------+------+------+------+
+</div>
 
 The **Alibaba** visits the same squares on both the Flat and Folded
 Wedge, visiting the squares in the same order. It visits every other
@@ -66,3 +120,5 @@ square of ever other rows. Mostly going right to left, and left to
 right, but with a small sidestep before reaching the left end of a row.
 Hence, \(25\%\) of the squares on the board will be visited.
 
+The **Alibaba** uses half of its possible moves. Mostly sideways 
+%%DABBABA%% moves, and relative few %%ALFIL%% moves on one diagonal.
