@@ -99,6 +99,7 @@ isakova                 Mariya Isakova                  URS
 jansen                  Dan Jansen                      USA
 jarvinen                Juhani J\u{E4}rvinen            FIN
 jensen                  Bj\u{F8}rg Eva Jensen           NOR
+jilek                   Metodej J\u{ED}lek              CZE
 jin                     Wenjing Jin                     CHN
 jing                    Yu Jing                         CHN
 johannesen              Knut Johannesen                 NOR

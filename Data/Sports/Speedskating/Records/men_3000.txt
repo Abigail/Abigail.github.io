@@ -36,3 +36,4 @@ elm             3:43.76         2000-03-17      calgary
 romme           3:42.75         2000-08-11      calgary
 hedrick         3:39.02         2005-03-10      calgary
 ervik           3:37.28         2005-11-05      calgary
+jilek           3:32.52         2025-10-25      salt_lake_city
