@@ -5,8 +5,8 @@
             twice in the same event; only results achieved in events where
             the final result is determined by the total time after two races
             qualify.
-%% step_size:    0.25
-%% scale_y_min:    74
+%% step_size:     0.25
+%% scale_y_min:  73.75
 may             74.720          2001-03-09      salt_lake_city
                 0:37.43 0:37.29
 wolf            74.420          2007-03-10      salt_lake_city
@@ -15,3 +15,5 @@ wolf            74.420          2007-03-10      salt_lake_city
 #         fastest-speed-skating-2-x-500-metres-(female)
 richardson      74.190          2013-12-28      salt_lake_city
                 0:37.10 0:37.09
+kok             73.970          2025-02-15      thialf
+                0:37.00 0:36.97
