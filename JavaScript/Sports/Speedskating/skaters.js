@@ -410,6 +410,9 @@ class Skaters {
         Athlete . add_athlete ({key:         "linkovesi",
                                 name:        "Leo Linkovesi",
                                 nationality: "FIN"})
+        Athlete . add_athlete ({key:         "loubineaud",
+                                name:        "Timothy Loubineaud",
+                                nationality: "FRA"})
         Athlete . add_athlete ({key:         "lyoshkin",
                                 name:        "Viktor Lyoshkin",
                                 nationality: "URS"})

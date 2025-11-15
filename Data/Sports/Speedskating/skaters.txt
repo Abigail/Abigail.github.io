@@ -146,6 +146,7 @@ lesche                  Vern\u{E9} Lesche               FIN
 lie                     Synn\u{F8}ve Lie                NOR
 liebrechts              Rudie Liebrechts                NED
 linkovesi               Leo Linkovesi                   FIN
+loubineaud              Timothy Loubineaud              FRA
 lyoshkin                Viktor Lyoshkin                 URS
 
 maier                   Fred Anton Maier                NOR
