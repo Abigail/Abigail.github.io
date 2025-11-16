@@ -25,3 +25,5 @@ NOR             3:34.22         2024-01-05      thialf
                 eitrem          kongshaug       pederson
 USA             3:33.66         2024-01-27      salt_lake_city
                 dawson          lehman          cepuran
+USA             3:32.49         2025-11-16      salt_lake_city
+                dawson          lehman          cepuran

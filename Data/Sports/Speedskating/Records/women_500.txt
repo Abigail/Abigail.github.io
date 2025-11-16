@@ -50,3 +50,4 @@ sang-hwa        0:36.80         2013-01-20      calgary
 sang-hwa        0:36.74         2013-11-09      calgary
 sang-hwa        0:36.57         2013-11-15      salt_lake_city
 sang-hwa        0:36.36         2013-11-16      salt_lake_city
+kok             0:36.09         2025-11-16      salt_lake_city

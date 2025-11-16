@@ -191,6 +191,9 @@ class Skaters {
         Athlete . add_athlete ({key:         "gennip",
                                 name:        "Yvonne van Gennip",
                                 nationality: "NED"})
+        Athlete . add_athlete ({key:         "ghiotto",
+                                name:        "Davide Ghiotto",
+                                nationality: "ITA"})
         Athlete . add_athlete ({key:         "grift",
                                 name:        "Henk van der Grift",
                                 nationality: "NED"})
