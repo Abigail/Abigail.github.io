@@ -11,6 +11,7 @@ Late 1990s  & Sysadmin/Release Manager/Database Admin
             & FNX (New York City, NY/Wayne, PA)                    \\
 Early 2000s & Sysadmin/Consulant/Trainer/Linux Specialist
             & Media@vantage/OSP/Torex-Hiscom/BinckBank             \\
-2006-now    & First programming job 
+2006-2025   & First programming job 
             & Booking.com                                          \\
+2025-       & Enjoying life                                        \\
 ====|

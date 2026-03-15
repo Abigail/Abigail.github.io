@@ -2,7 +2,7 @@ let dir = "Talks/Sharding"
 
 let pages = [
     ["title",               "Title"],
- // ["abigail",             "Me"],
+    ["abigail",             "Me"],
  // ["yapc",                "YAPC"],
     ["what-is",             "What is Sharding?"],
     ["warning",             "Warning"],
