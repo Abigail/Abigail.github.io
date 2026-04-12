@@ -99,6 +99,8 @@ let pwc_pages = [
     ["week-149-2", "Largest Square"],
     ["week-150-1", "Fibonacci Words"],
     ["week-150-2", "Square-free Integer"],
+    ["week-368-1", "Make It Bigger"],
+    ["week-368-2", "Small and Big Omega"],
 ]
 
 pwc_pages . forEach (_ => _ [0] = PWC + "/" + _ [0] + ".html")
