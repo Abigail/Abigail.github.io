@@ -1,0 +1,241 @@
+<html>
+<head>
+<title>Perl Weekly Challenge 369: Valid Tag</title>
+<meta charset = "utf-8">
+<link rel  = 'preconnect' href = 'https://fonts.gstatic.com'>
+<link rel = 'stylesheet' href =      'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
+<link rel = 'stylesheet' href = '../../Styles/main.css'>
+<link rel = 'stylesheet' href = '../../Styles/Perl-Weekly-Challenge/main.css'>
+<script src = "../../JavaScript/jquery.js"></script>
+<script id  = 'MathJax-script' async src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.js'></script>
+<script src = '../../JavaScript/navigation.js'></script>
+</head>
+
+<body><h1>Perl Weekly Challenge 369: Valid Tag</h1><div class = "byline">
+by Abigail<br>
+<img src = "../../Images/jan_sluiters.jpg">
+</div>
+
+
+<h2><a href="https://theweeklychallenge.org/blog/perl-weekly-challenge-369/#TASK1">Challenge</a></h2>
+
+<blockquote>
+  <p>You are given a given a string caption for a video.</p>
+  
+  <p>Write a script to generate tag for the given string caption in three steps as mentioned below:</p>
+  
+  <ol>
+  <li>Format as camelCase
+  Starting with a lower-case letter and capitalising the first letter of each subsequent word.
+  Merge all words in the caption into a single string starting with a #.</li>
+  <li>Sanitise the String
+  Strip out all characters that are not English letters (a-z or A-Z).</li>
+  <li>Enforce Length
+  If the resulting string exceeds 100 characters, truncate it so it is
+  exactly 100 characters long.</li>
+  </ol>
+</blockquote>
+
+<h3 id = 'examples'>Examples</h3>
+
+<pre><code>Example 1
+
+Input: $caption = "Cooking with 5 ingredients!"
+Output: "#cookingWithIngredients"
+
+Example 2
+
+Input: $caption = "the-last-of-the-mohicans"
+Output: "#thelastofthemohicans"
+
+Example 3
+
+Input: $caption = "  extra spaces here"
+Output: "#extraSpacesHere"
+
+Example 4
+
+Input: $caption = "iPhone 15 Pro Max Review"
+Output: "#iphoneProMaxReview"
+
+Example 5
+
+Input: $caption = "Ultimate 24-Hour Challenge: Living in a Smart Home controlled entirely by Artificial Intelligence and Voice Commands in the year 2026!"
+Output: "#ultimateHourChallengeLivingInASmartHomeControlledEntirelyByArtificialIntelligenceAndVoiceCommandsIn"
+</code></pre>
+
+<h2 id = 'solution'>Solution</h2>
+
+<div class = "section">
+<p>The examples baffled me initially. In particular, <code>the-last-of-the-mohicans</code>
+doesn't result in any capital letters (so, <code>-</code> isn't seen as a word 
+boundary), yet <code>24-Hour</code> results in the <code>H</code> being capitalize, suggesting
+that <code>-</code> does break words.</p>
+
+<p>In other to make sense of the examples, we don't follow the instructions
+as given, but use a different order:</p>
+
+<ol>
+<li>First remove all the non-letter, non-space characters.</li>
+<li>And only then sort out the capitalization.</li>
+<li>Finally, join everything together, and trim everything together.</li>
+</ol>
+</div>
+
+<h3 id = 'perl'>Perl</h3>
+
+<div class = "section">
+<p>For our Perl solution, we do all the modifications using regular expression.
+And we chain them, using the <code>/r</code> modifier.</p>
+
+<p>We will do the following steps, in order:</p>
+
+<ol>
+<li>Remove all non-space, non-letter characters (<code>s/[^\s\pL]+//gr</code>)</li>
+<li>Remove leading white space (<code>s/^\s+//r</code>)</li>
+<li>Remove trailing white space (<code>s/\s+$//r</code>)</li>
+<li>Lower case the entire string (<code>s/(.*)/\L$1/r</code>)</li>
+<li>Capitalize each letter which follows white space, and delete that
+white space (<code>s/\s+(\pL)/\u$1/gr</code>)</li>
+<li>Add a leading <code>#</code> (<code>s/^/#/r</code>)</li>
+<li>Keep the first 100 characters, and delete the rest (<code>s/.{100}\K.*//r</code>).</li>
+</ol>
+
+<p>This leads to the following program, where <code>$_</code> contains the line
+we're processing:</p>
+
+<pre><code>say s/[^\s\pL]+//gr      =~   # Remove non-letters, but keep the spaces
+    s/^\s+//r            =~   # Remove leading spaces
+    s/\s+$//r            =~   # Remove trailing spaces
+    s/(.*)/\L$1/r        =~   # All lower case
+    s/\s+(\pL)/\u$1/gr   =~   # Capitalize first letter of each word,
+                              # and delete the space proceeding it
+    s/^/#/r              =~   # Add leading '#'
+    s/.{100}\K.*//r           # Remove all characters after the 100th.
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-369/abigail/perl/ch-1.pl">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3 id = 'tcl'>Tcl</h3>
+
+<div class = "section">
+<p>Our solutions in most other languages follow the same steps as our Perl
+solution, but many don't have an equivalent to <code>s/\s+(\pL)/\u$1/gr</code>.
+Tcl does have a <code>totitle</code> function, which is similar to Perl's <code>ucfirst</code>.</p>
+
+<p>This leads to the following program, where <code>$input</code> contains the input:</p>
+
+<pre><code># * Remove non-letters, but keep space
+# * Remove leading white space
+# * Remove trailing white space
+#
+regsub -all          {[^[:alpha:]\s]+} $input {}               input
+regsub               {^\s+}            $input {}               input     
+regsub               {\s+$}            $input {}               input
+
+#
+# Lower case entire string
+#
+set input [string tolower $input]
+
+#
+# * For each sequence of letters (a word), upper case its first letter.
+#   This upper cases the first letter of the string, hence
+# * Lower case the first letter
+# * Remove all white space
+#
+regsub -all -command {[[:alpha:]]+}    $input {string totitle} input
+regsub      -command {^[[:alpha:]]}    $input {string tolower} input
+regsub -all          {\s+}             $input {}               input
+
+#
+# Add leading '#', and print at most 100 characters
+#
+puts [string range "#${input}" 0 99]
+</code></pre>
+
+<p>The <code>-command</code> switch means the substitution part is seen as a piece
+of code, and executed (like the <code>/e</code> modifier in Perl), but it implicitly
+passes in the matched part.</p>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-369/abigail/tcl/ch-1.tcl">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3 id = 'c'>C</h3>
+
+<div class = "section">
+<p>C doesn't come with many functionality to manipulate strings. So, we will
+iterate over the string, skipping over the non-letters, and keeping track
+when we saw space. </p>
+
+<p>Given the input in <code>line</code>, we use the following program:</p>
+
+<pre><code># include &lt;stdlib.h&gt;
+# include &lt;stdio.h&gt;
+# include &lt;stdbool.h&gt;
+# include &lt;ctype.h&gt;
+
+char * ptr     = line;
+bool saw_space = false;
+short chars    = 0;
+
+/*
+ * Skip leading spaces, and non letters
+ */
+while (* ptr &amp;&amp; !isalpha (* ptr)) {ptr ++;}
+
+/*
+ * Print the leading #, and first character
+ */
+printf ("#%c", tolower (* ptr ++));
+chars += 2;
+while (* ptr &amp;&amp; chars &lt; MAX_CHARS) {
+    char ch = * ptr ++;
+    if (isspace (ch)) {
+        /*
+         * If we saw a space, skip it, but remember we did see it
+         */
+        saw_space = true;
+        continue;
+    }
+    if (!isalpha (ch)) {
+        /*
+         * If it's not a letter, skip it. Don't modify the
+         * saw_space status
+         */
+        continue;
+    }
+    /*
+     * We now have a letter. If we saw a space, print its
+     * upper case, else print its lower case.
+     * The saw_space status will be turned off
+     */
+    printf ("%c", saw_space ? toupper (ch) : tolower (ch));
+    saw_space = false;
+    chars ++;
+}
+printf ("\n");
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-369/abigail/c/ch-1.c">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3 id = 'other_languages'>Other Languages</h3>
+
+<p>We also have solutions in <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-369/abigail/awk/ch-1.awk">AWK</a>, <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-369/abigail/bash/ch-1.sh">Bash</a>, <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-369/abigail/go/ch-1.go">Go</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-369/abigail/lua/ch-1.lua">Lua</a>, <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-369/abigail/node/ch-1.js">Node.js</a>, <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-369/abigail/python/ch-1.py">Python</a>, <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-369/abigail/r/ch-1.R">R</a>,
+<a href="#ruby">Ruby</a> and <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-369/abigail/sed/ch-1.sed">sed</a>, all using more or less the same steps
+as our Perl and Tcl solutions.</p>
+
+<hr id = 'last-line'>
+<div class = 'trailer'>
+<p class = 'prev'><a class = "prev" href = "">&#x261C;</a></p>
+<p class = 'issue'>Please leave any comments as a
+  <a href = 'https://github.com/Abigail/Abigail.github.io/issues'
+     title = 'GitHub issue'>GitHub issue</a>.
+<p class = 'next'><a class = "next" href = "">&#x261E;</a></p>
+</div>
+
+</body>
+</html>
