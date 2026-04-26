@@ -1,0 +1,189 @@
+<html>
+<head>
+<title>Perl Weekly Challenge 370: Scramble String</title>
+<meta charset = "utf-8">
+<link rel  = 'preconnect' href = 'https://fonts.gstatic.com'>
+<link rel = 'stylesheet' href =      'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
+<link rel = 'stylesheet' href = '../../Styles/main.css'>
+<link rel = 'stylesheet' href = '../../Styles/Perl-Weekly-Challenge/main.css'>
+<script src = "../../JavaScript/jquery.js"></script>
+<script id  = 'MathJax-script' async src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.js'></script>
+<script src = '../../JavaScript/navigation.js'></script>
+</head>
+
+<body><h1>Perl Weekly Challenge 370: Scramble String</h1><div class = "byline">
+by Abigail<br>
+<img src = "../../Images/jan_sluiters.jpg">
+</div>
+
+
+<h2><a href="https://theweeklychallenge.org/blog/perl-weekly-challenge-370/#TASK2">Challenge</a></h2>
+
+<blockquote>
+  <p>You are given two strings A and B of the same length.</p>
+  
+  <p>Write a script to return true if string B is a scramble of string
+  A otherwise return false.</p>
+  
+  <p>String B is a scramble of string A if A can be transformed into B
+  by a single (recursive) scramble operation.</p>
+  
+  <p>A scramble operation is:</p>
+  
+  <ul>
+  <li>If the string consists of only one character, return the string.</li>
+  <li>Divide the string X into two non-empty parts.</li>
+  <li>Optionally, exchange the order of those parts.</li>
+  <li>Optionally, scramble each of those parts.</li>
+  <li>Concatenate the scrambled parts to return a single string.</li>
+  </ul>
+</blockquote>
+
+<h2 id = 'solution'>Solution</h2>
+
+<div class = "section">
+<p>It is tempting to just create all possible scrambles of an input value,
+and see whether one of them matches the target. But this quickly becomes
+unfeasible with strings containing more than a dozen of so characters.
+A string of 12 (different) characters has 39,916,800 permutation, of 
+which 1,037,718 are valid scrambles (and many scrambles have more than
+one path leading to it).</p>
+
+<p>Instead, we will use the following steps to determine whether we
+can scramble one string into another:</p>
+
+<ul>
+<li>If the strings are equal, the answer is yes.</li>
+<li>If the strings don't have the same length, the answer is no.</li>
+<li>If the strings aren't anagrams of each other, the answer is no.</li>
+<li>Otherwise, we split both string into two non-empty parts of equal length,
+and recursively decide whether the parts can scrample into each other. 
+Note that we can match the parts two ways: as we can swap parts before
+matching.</li>
+</ul>
+</div>
+
+<h3 id = 'perl'>Perl</h3>
+
+<div class = "section">
+<p>We start off with a helper function <code>are_anagrams</code>. It takes two string,
+and returns true iff the strings are anagrams of each other. To determine
+that, we split each string into single character strings, sort them, then
+rejoin them. The two strings are anagrams iff the resulting strings 
+(after the join) are equal:</p>
+
+<pre><code>sub are_anagrams ($str1, $str2) {
+    join ("" =&gt; sort split // =&gt; $str1) eq
+    join ("" =&gt; sort split // =&gt; $str2)
+}
+</code></pre>
+
+<p>It's now easy to write a <code>can_scramble</code> subroutine following the 
+steps outlined above:</p>
+
+<pre><code>sub can_scramble ($input, $target) {
+    return 1 if $input eq $target;                    # Equal?
+    return 0 if length ($input) != length ($target);  # Same length?
+    return 0 unless are_anagrams ($input, $target);   # Anagrams?
+
+    #
+    # Recurse
+    #
+    for (my ($l, $m) = (1, length ($input) - 1); $m &gt;= 1; $l ++, $m --) {
+        return 1 if
+           can_scramble (substr ($input,   0, $l), substr ($target,  0, $l)) &amp;&amp;
+           can_scramble (substr ($input,  $l, $m), substr ($target, $l, $m)) ||
+           can_scramble (substr ($input,  $l, $m), substr ($target,  0, $m)) &amp;&amp;
+           can_scramble (substr ($input,   0, $l), substr ($target, $m, $l));
+    }
+
+    return 0;  # No solution found
+}   
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-370/abigail/perl/ch-2.pl">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3 id = 'go'>Go</h3>
+
+<p>We use the same algorithm in Go as we used in Perl, but Go makes us work
+harder. Go does have strings as a type, but strings are arrays (or slices)
+of bytes. We want to work with characters, called <em>runes</em> in Go. So we
+need to do some conversions.</p>
+
+<p>First, the <code>are_anagrams</code> function:</p>
+
+<pre><code>func are_anagrams (str1 string, str2 string) bool {
+    a_str1 := [] rune (str1)
+    a_str2 := [] rune (str2)
+</code></pre>
+
+<p>What we did here was turning the strings into slices of runes.</p>
+
+<p>We can then sort the arrays &mdash; we have to pass in a sort method,
+and the sorting is done in situ:</p>
+
+<pre><code>slices . SortFunc (a_str1, func (a, b rune) int {
+    if a &lt; b {return -1}
+    if a &gt; b {return  1}
+    return 0
+})
+</code></pre>
+
+<p>The <code>string</code> function turns a slice of runes back into a string, and
+we can compare the strings:</p>
+
+<pre><code>return string (a_str1) == string (a_str2)
+</code></pre>
+
+<p>We need an additional helper function. Go has syntax to take slices out
+of strings, but they operate on bytes, not runes. So make a helper 
+function <code>substr</code> which turns the string into arrays of runes, takes
+slices of those arrays, then turn them back into strings:</p>
+
+<pre><code>func substr (str string, start int, end int) string {
+    runes := [] rune (str)
+    if start &lt; 0 {start += len (runes) + 1}
+    if end   &lt; 0 {end   += len (runes) + 1}
+    return string (runes [start : end])
+}
+</code></pre>
+
+<p>The <code>can_scramble</code> function is then straight forward. Note the method
+<code>utf8 . RuneCountInString</code> which gives the number of runes in a string.</p>
+
+<pre><code>func can_scramble (input string, target string) bool {
+    if input == target {return true}                 // Equal?
+    if utf8 . RuneCountInString (input) != utf8 . RuneCountInString (target) {
+        return false                                 // Same length?
+    }
+    if !are_anagrams (input, target) {return false}  // Anagrams?
+
+    // Recurse
+    for l := 1; l &lt; utf8 . RuneCountInString (input); l ++ {
+        m := utf8 . RuneCountInString (input) - l
+        if can_scramble (substr (input, 0,  l), substr (target, 0,  l)) &amp;&amp;
+           can_scramble (substr (input, l, -1), substr (target, l, -1)) ||
+           can_scramble (substr (input, l, -1), substr (target, 0,  m)) &amp;&amp;
+           can_scramble (substr (input, 0,  l), substr (target, m, -1)) {
+            return true
+        }
+    }
+
+    return false
+}   
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-370/abigail/go/ch-2.go">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+
+<hr id = 'last-line'>
+<div class = 'trailer'>
+<p class = 'prev'><a class = "prev" href = "">&#x261C;</a></p>
+<p class = 'issue'>Please leave any comments as a
+  <a href = 'https://github.com/Abigail/Abigail.github.io/issues'
+     title = 'GitHub issue'>GitHub issue</a>.
+<p class = 'next'><a class = "next" href = "">&#x261E;</a></p>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,280 @@
+<html>
+<head>
+<title>Perl Weekly Challenge 370: Popular Word</title>
+<meta charset = "utf-8">
+<link rel  = 'preconnect' href = 'https://fonts.gstatic.com'>
+<link rel = 'stylesheet' href =      'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
+<link rel = 'stylesheet' href = '../../Styles/main.css'>
+<link rel = 'stylesheet' href = '../../Styles/Perl-Weekly-Challenge/main.css'>
+<script src = "../../JavaScript/jquery.js"></script>
+<script id  = 'MathJax-script' async src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.js'></script>
+<script src = '../../JavaScript/navigation.js'></script>
+</head>
+
+<body><h1>Perl Weekly Challenge 370: Popular Word</h1><div class = "byline">
+by Abigail<br>
+<img src = "../../Images/jan_sluiters.jpg">
+</div>
+
+
+<h2><a href="https://theweeklychallenge.org/blog/perl-weekly-challenge-370/#TASK1">Challenge</a></h2>
+
+<blockquote>
+  <p>You are given a string paragraph and an array of the banned words.</p>
+  
+  <p>Write a script to return the most popular word that is not banned.
+  It is guaranteed there is at least one word that is not banned and
+  the answer is unique. The words in paragraph are case-insensitive
+  and the answer should be in lowercase. The words can not contain
+  punctuation symbols.</p>
+</blockquote>
+
+<h2 id = 'solution'>Solution</h2>
+
+<div class = "section">
+<p>The solution is pretty straightforward:</p>
+
+<ol>
+<li>Put the banned words into a hash.</li>
+<li>Extract the words from the paragraph, and lower case them. If they
+aren't banned, track, in another hash, how often they occur.</li>
+<li>Find the word which occurs most frequently.</li>
+</ol>
+</div>
+
+<h4 id = 'input'>Input</h4>
+
+<div class = "section">
+<p>We will be reading input from standard input; each line a different test.
+Each line contains a <code>//</code>, with the paragraph preceeding it, and the list
+of banned words follows the <code>//</code>.</p>
+</div>
+
+<h3 id = 'perl'>Perl</h3>
+
+<div class = "section">
+<p>We will start off by parsing the input, separating the paragraph and the
+banned words, and putting the latter into a hash (<code>%banned</code>):</p>
+
+<pre><code>my ($paragraph, $banned) = split m!\s*//\s*!;
+my  %banned = map {$_ =&gt; 1} lc ($banned) =~ /\pL+/g;
+</code></pre>
+
+<p>Splitting the list of banned words on white space would have been an option,
+but here we extract them by search for sequences of letters: <code>/\pL+/g</code>.</p>
+
+<p>We then initialize the hash (<code>%ok</code>) which we will use to tally the 
+unbanned words. We add a special entry named <code>$max</code> with value <code>0</code>
+to avoid using an additional variable later on:</p>
+
+<pre><code>my %ok = ((my $max = "") =&gt; 0);
+</code></pre>
+
+<p>We can now extract the words from the paragraph, again using <code>/\pL+/g</code>,
+check whether they are banned, and if not, tally them in the <code>%ok</code> hash.
+This is a one liner:</p>
+
+<pre><code>$ok {$_} ++ for grep {!$banned {$_}} lc ($paragraph) =~ /\pL+/g;
+</code></pre>
+
+<p>Finally, we find the most frequently used word by iterating over the
+<code>%ok</code> hash, and keeping track of the best seen so far:</p>
+
+<pre><code>$ok {$_} &gt; $ok {$max} &amp;&amp; ($max = $_) for (keys %ok);
+</code></pre>
+
+<p>This leaves the answer in <code>$max</code>.</p>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-370/abigail/perl/ch-1.pl">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3 id = 'tcl'>Tcl</h3>
+
+<div class = "section">
+<p>Tcl code looks very different from Perl code, but we still use almost the
+same algorithm. Here, we also start with parsing the input, but we need
+a trick. Tcl does have a split function, but it can only split on single
+characters. So, we first replace the <code>//</code> in the input by a <code>NUL</code> character
+(<code>"\x{00}"</code>), then split on the <code>NUL</code> character:</p>
+
+<pre><code>lassign [split [string map {// \0} $line] \0] paragraph banned_str
+</code></pre>
+
+<p>In Tcl, you don't have a split on white space, you can just iterate over
+a string; so we do that to populate the <code>banned</code> dictionary:</p>
+
+<pre><code>set banned [dict create]
+foreach ban [string tolower $banned_str] {
+    dict set banned $ban 1
+}
+</code></pre>
+
+<p>We now replace all sequences of non-letters in the <code>paragraph</code> by a single
+space, so we're left with just the words separated by white space:</p>
+
+<pre><code>regsub -all {[^[:alpha:]]+} [string tolower $paragraph] { } paragraph
+</code></pre>
+
+<p>We initialize a dictionary, and populate it with a special value (the empty
+string) and a count of <code>0</code>, like with did in the Perl solution:</p>
+
+<pre><code>set ok [dict create {} 0]
+</code></pre>
+
+<p>Counting the unbanned words:</p>
+
+<pre><code>foreach word $paragraph {
+    if {![dict exists $banned $word]} {
+        dict incr ok $word
+    }
+}
+</code></pre>
+
+<p>Finally, find the most frequently occuring word:</p>
+
+<pre><code>set max {}
+dict for {word count} $ok {
+    if {$count &gt; [dict get $ok $max]} {
+        set max $word
+    }
+}
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-370/abigail/tcl/ch-1.tcl">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3 id = 'c'>C</h3>
+
+<p>C doesn't have hashes, nor does it have much support for string
+manipulation &mdash; strings just being <code>NUL</code> terminated arrays of <code>char</code>s.</p>
+
+<p>We first parse the input. We will use two arrays <code>words</code>, and <code>banned</code>,
+consisting of the lower cased words in the paragraph, and the banned
+words. We will use a trick: the current read line is pointed to by 
+the <code>char *</code> pointer <code>line</code>. Instead of copying parts of the string,
+we'll just insert <code>NUL</code> characters after the end of word, and put 
+pointers to the first characters of the words in the <code>words</code> and <code>banned</code>
+arrays.</p>
+
+<p>We first need to allocate memory for the <code>words</code> and <code>banned</code> arrays &mdash;
+initially empty, but we'll expand when necessary:</p>
+
+<pre><code>if ((words  = (char **) malloc (0 * sizeof (char *))) == NULL) {
+    perror ("malloc failed");
+    exit (1);
+}
+if ((banned = (char **) malloc (0 * sizeof (char *))) == NULL) {
+    perror ("malloc failed");
+    exit (1);    
+}
+</code></pre>
+
+<p>We then iterate over the input, and for each character, do the following:
+1. Lower case the character
+2. If the current character is a letter, but the previous one wasn't,
+   this is the start of a word. Put it either in the <code>words</code> or <code>banned</code>
+   arrays, after increasing their size.
+3. If the character is a <code>/</code>, and the character is a <code>/</code> as well,
+   switch from parsing the paragraph to parsing the banned words.
+4. If the character isn't a letter, make it a <code>NUL</code> character. This makes
+   that all the words found are proper C strings.</p>
+
+<pre><code>size_t words_c  = 0;
+size_t banned_c = 0;
+
+bool parse_banned   = false;
+bool prev_is_letter = false;
+for (char * ptr = line; * ptr; ptr ++) {
+    * ptr = tolower (* ptr);
+    if (isalpha (* ptr)) {
+        if (!prev_is_letter) {
+            if (parse_banned) {
+                if ((banned = (char **) realloc (banned,
+                           ++ banned_c * sizeof (char *))) == NULL) {
+                    perror ("Realloc failed");
+                    exit (1);
+                }
+                banned [banned_c - 1] = ptr;
+            }
+            else {
+                if ((words = (char **) realloc (words,
+                           ++ words_c * sizeof (char *))) == NULL) {
+                    perror ("Realloc failed");
+                    exit (1);
+                }
+                words [words_c - 1] = ptr;
+            }
+        }
+        prev_is_letter = true;
+    }
+    else {
+        if (!parse_banned) {
+            if (* ptr == '/' &amp;&amp; * (ptr + 1) == '/') {
+                parse_banned = true;
+            }
+        }
+        * ptr = NUL;
+        prev_is_letter = false;
+    }
+}
+</code></pre>
+
+<p>Next step is to eliminate the banned words from the <code>words</code> array.
+Banned words will be replaced by <code>NULL</code>. We need to iterate over
+the <code>banned</code> array to know whether the word is banned.</p>
+
+<pre><code>for (size_t i = 0; i &lt; words_c; i ++) {
+    for (size_t j = 0; j &lt; banned_c; j ++) {
+        if (!strcmp (words [i], banned [j])) {
+            words [i] = NULL;
+            break;
+        }
+    }
+}
+</code></pre>
+
+<p>Finally, we count how often each word occurs, keeping track of the most
+frequently occuring word, by using a double loop over the <code>words</code> array.</p>
+
+<pre><code>char * max;
+size_t max_count = 0;
+
+for (size_t i = 0; i &lt; words_c; i ++) {
+    size_t count = 0;
+
+    if (words [i] == NULL) {
+        continue;
+    }
+
+    for (size_t j = i; j &lt; words_c; j ++) {
+        if (words [j] != NULL) {
+            if (!strcmp (words [i], words [j])) {
+                count ++;
+            }
+        }
+    }
+
+    if (count &gt; max_count) {
+        max       = words [i];
+        max_count = count;
+    }
+}
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-370/abigail/c/ch-1.c">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+
+<p>We also have solutions in <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-370/abigail/awk/ch-1.awk">AWK</a>, <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-370/abigail/bash/ch-1.sh">Bash</a>, <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-370/abigail/go/ch-1.go">Go</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-370/abigail/lua/ch-1.lua">Lua</a>, <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-370/abigail/node/ch-1.js">Node.js</a>, <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-370/abigail/python/ch-1.py">Python</a>, <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-370/abigail/r/ch-1.R">R</a>, and
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-370/abigail/ruby/ch-1.rb">Ruby</a>.</p>
+
+<hr id = 'last-line'>
+<div class = 'trailer'>
+<p class = 'prev'><a class = "prev" href = "">&#x261C;</a></p>
+<p class = 'issue'>Please leave any comments as a
+  <a href = 'https://github.com/Abigail/Abigail.github.io/issues'
+     title = 'GitHub issue'>GitHub issue</a>.
+<p class = 'next'><a class = "next" href = "">&#x261E;</a></p>
+</div>
+
+</body>
+</html>
