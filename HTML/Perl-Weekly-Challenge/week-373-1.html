@@ -1,0 +1,570 @@
+<html>
+<head>
+<title>Perl Weekly Challenge 373: Equal List</title>
+<meta charset = "utf-8">
+<link rel  = 'preconnect' href = 'https://fonts.gstatic.com'>
+<link rel = 'stylesheet' href =      'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
+<link rel = 'stylesheet' href = '../../Styles/main.css'>
+<link rel = 'stylesheet' href = '../../Styles/Perl-Weekly-Challenge/main.css'>
+<script src = "../../JavaScript/jquery.js"></script>
+<script id  = 'MathJax-script' async src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.js'></script>
+<script src = '../../JavaScript/navigation.js'></script>
+</head>
+
+<body><h1>Perl Weekly Challenge 373: Equal List</h1><div class = "byline">
+by Abigail<br>
+<img src = "../../Images/jan_sluiters.jpg">
+</div>
+
+
+<h2><a href="https://theweeklychallenge.org/blog/perl-weekly-challenge-371/#TASK1">Challenge</a></h2>
+
+<blockquote>
+  <p>You are given two arrays of strings.</p>
+  
+  <p>Write a script to return true if the two given array represent the same strings otherwise false.</p>
+</blockquote>
+
+<h3 id = 'examples'>Examples</h3>
+
+<pre><code>Input:  @arr1 = ("a", "bc")
+        @arr2 = ("ab", "c")
+Output: true
+
+Input:  @arr1 = ("a", "b", "c")
+        @arr2 = ("a", "bc")
+Output: true
+
+Input:  @arr1 = ("a", "bc")
+        @arr2 = ("a", "c", "b")
+Output: false
+
+Input:  @arr1 = ("ab", "c", "")
+        @arr2 = ("", "a", "bc")
+Output: true
+
+Input:  @arr1 = ("p", "e", "r", "l")
+        @arr2 = ("perl")
+Output: true
+</code></pre>
+
+<h2 id = 'input'>Input</h2>
+
+<div class = "section">
+<p>We prefer to take our input not as arrays of strings, but reading from 
+standard input &mdash; where each line corresponds with an excercise. We will
+represent the strings as whitespace separated sequences of letters. A
+dot represents the empty string, and the two arrays are separated by 
+a semi-colon. So, the examples above translate to:</p>
+
+<pre><code>a bc;ab c
+a b c;a bc
+a bc;a c b
+ab c .;. a bc
+p e r l;perl
+</code></pre>
+</div>
+
+<h2 id = 'solution'>Solution</h2>
+
+<div class = "section">
+<p>This is a pretty simple exercise. After reading in a line of input, we</p>
+
+<ul>
+<li>Remove all whitespace (which corresponds to concatenating the
+strings)</li>
+<li>Remove the dots (as empty strings are irrelevant)</li>
+<li>Split the input on the semi-colon</li>
+<li>Compare the resulting string, and output <code>true</code> if equals, and <code>false</code>
+otherwise.</li>
+</ul>
+</div>
+
+<h3 id = 'perl'>Perl</h3>
+
+<div class = "section">
+<p>With a line of input in <code>$line</code>, we start off by removing whitespace
+and dots:</p>
+
+<pre><code>$line =~ s/\s+//g;
+$line =~ s/\.//g;
+</code></pre>
+
+<p>Then we split on the semi-colon:</p>
+
+<pre><code>my @parts = split /;/ =&gt; $line;
+</code></pre>
+
+<p>Finally, comparing the strings and printing the results:</p>
+
+<pre><code>say $parts [0] eq $parts [1] ? "true" : "false";
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-373/abigail/perl/ch-1.pl">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3 id = 'ruby'>Ruby</h3>
+
+<div class = "section">
+<p>Our Ruby solution uses the same steps as our Perl solution. But due to 
+it's OO nature, we can chain the first steps:</p>
+
+<pre><code>parts = line . gsub(/\s+/, "")
+             . gsub(/\./,  "")
+             . split /;/
+</code></pre>
+
+<p>This removes the whitespace from the line of input, the dots, and then
+splits the line on a semi-colon, leaving both parts in the array <code>parts</code>.</p>
+
+<p>Finally, compare the parts and print the results:</p>
+
+<pre><code>puts parts [0] == parts [1] ? "true" : "false"
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-373/abigail/ruby/ch-1.rb">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3 id = 'c'>C</h3>
+
+<div class = "section">
+<p>In C, we have to work much harder. Strings are just arrays of characters,
+terminated by a <code>NUL</code> character (a character with byte value <code>0</code>). We don't
+have any easy array or string modifying functions available.</p>
+
+<p>We will parse the line of input (<code>line</code>, with <code>linelen</code> its length), once,
+copying the non-space, non-dot characters into two strings: one for the
+part before the semi-colon, and one for the part after the semi-colon.</p>
+
+<p>We start off by claiming memory for the two strings &mdash; they cannot exceed
+the length of the input, so we just the lenght of the input string as
+the size of the two new strings. This is more than needed, but it will
+be enough.</p>
+
+<pre><code>char * part0;
+char * part1;
+if ((part0 = (char *) malloc (linelen * sizeof (char))) == NULL) {
+   perror ("Malloc failed");
+   exit (1);
+}
+if ((part1 = (char *) malloc (linelen * sizeof (char))) == NULL) {
+   perror ("Malloc failed");
+   exit (1);
+}
+</code></pre>
+
+<p>Now we iterate over the input, skipping white space and dots, and 
+initially copying to <code>part0</code>; after encountering a semi-colon, we
+copy into <code>part1</code>. </p>
+
+<pre><code># include &lt;ctype.h&gt;
+# define NUL '\0'
+
+char * dest = part0;
+for (char * ptr = line; * ptr; ptr ++) {
+   if (isspace (* ptr) || * ptr == '.') {    /* Skip spaces and dots */
+       continue;
+   }
+   if (* ptr == ';') {                       /* Split on ;           */
+       * dest = NUL;                         /* Terminate part 0     */
+       dest = part1;                         /* Switch to part 1     */
+       continue;
+   }
+   * dest ++ = * ptr;                        /* Copy character       */
+}
+* dest = NUL;                                /* Terminate part 1     */
+</code></pre>
+
+<p>Note that strings in C need to be terminated by a <code>NUL</code> character, so 
+we need to explicitly add a <code>NUL</code> character to the strings.</p>
+
+<p><code>isspace</code> requires the use of the <code>ctype.h</code> header file, hence the <code># include</code>.</p>
+
+<p>Comparing strings is easy, using the <code>strcmp</code> function, which returns the
+same values as Perl's <code>&lt;=&gt;</code> operator. In particular, it returns <code>0</code> is
+the strings are equal:</p>
+
+<pre><code># include &lt;strings.h&gt;
+
+printf ("%s\n", strcmp (part0, part1) == 0 ? "true" : "false");
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-373/abigail/c/ch-1.c">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3 id = 'sed'>Sed</h3>
+
+<div class = "section">
+<p>Sed programs by default iterate over the input, executing the program
+for each line of the input. Regexes and substitutions are always applied
+against the current line of input. By default, at the end of the program,
+the current line will be printed.</p>
+
+<p>First steps are similar to our Perl solution, removing white-space and dots:</p>
+
+<pre><code>s/\s+//g; 
+s/\.//g;
+</code></pre>
+
+<p>But we cannot split a line into two, and compare the two halves. However,
+we can check whether the part of the string before the semi-colon equals
+the part after the semi-colon. If so, we replace the entire line by <code>true</code>:</p>
+
+<pre><code>s/^(.*);\1$/true/
+</code></pre>
+
+<p>This means that if the two parts do not match, the string will still have
+a semi-colon in it &mdash; if so, we replace the entire line with <code>false</code>:</p>
+
+<pre><code>s/^.*;.*$/false/
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-373/abigail/perl/ch-1.pl">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+</div>
+
+<h3 id = 'befunge_93'>Befunge-93</h3>
+
+<p>Befunge-93 is a programming language very different from many others. 
+Traditional programs are one dimensional, going top to bottom,
+with occasional jumps (which include loops and return statements).
+Their <em>program counter</em> (which points to the next instruction) is 
+a single number, incrementing on each instruction &mdash; and jumps are
+implemented by assigning a new number of the program counter.</p>
+
+<p>Befunge-93 programs run on a two dimensional 80x24 grid, which wraps around
+(so, they run on a torus). Programs start in the top left corner, moving
+right-ward. But instructions can make it move left-ward, up-ward or 
+down-ward. Befunge-93 doesn't have variables; it does, however, have a 
+single stack. Beside storing things on the stack, it also allows writing
+to the 80x24 grid itself. One can use this to modify the program, or to
+store data.</p>
+
+<p>All instructions are single characters &mdash; which implies to get any numbers
+above 9 (or below 0) requires making them using arithmetic.</p>
+
+<p>Before showing the program and drilling into the details, an overview
+of the program:</p>
+
+<ul>
+<li>We'll parse a line of input, writing the part before the semi-colon
+into row 20 of the grid, and the part after the semi-colon into row 21.</li>
+<li>We keep track of the size of the written strings using column 0
+of the rows 20 and 21.</li>
+<li>After reading a newline, we compare the strings, outputting <code>true</code> or
+<code>false</code> accordingly.</li>
+</ul>
+
+<p>Our full program (line numbers are only for reference, they're not
+part of the program)</p>
+
+<pre><code>00: &gt; &gt; 1 0 45*0+p 1 0 45*1+p "&gt;" 6 6p  v                     Init
+01: ^   v &lt; &lt; &lt; &lt; &lt; &lt; &lt; &lt; &lt; &lt; &lt; &lt; &lt; &lt; &lt; &lt; p6 6 "v" $  &lt; &lt;     Switch
+02: ^   &gt; ~:1+!#@_ :" "-!#v_ :"."-!#v_ :55+-!#v_ :";"-!#^_v   Parse line
+03: ^   ^ &lt; &lt; &lt; &lt; &lt; &lt; $ &lt; &lt; &lt; &lt; &lt; &lt; &lt;         v           v   Skip spaces and dots
+04: ^ v   &lt; &lt; &lt; &lt; &lt; &lt; $ &lt; &lt; &lt; &lt; &lt; &lt; &lt; &lt; &lt; &lt; &lt; &lt;           v   End of line
+05: ^ v ^ v &lt; &lt; &lt; &lt; &lt; &lt; &lt; &lt; &lt; &lt; &lt; &lt; &lt; &lt; &lt; &lt; &lt; &lt; &lt; &lt; &lt; &lt; &lt; &lt;
+06: ^ v ^   0 45*0+g 45*0+p 0 45*0+g 1+ 0 45*0+p  v           Store chars before ;
+07: ^ v ^ &gt; 0 45*1+g 45*1+p 0 45*1+g 1+ 0 45*1+p  v           Store chars after  ;
+08: ^ v ^ &lt; &lt; &lt; &lt; &lt; &lt; &lt; &lt; &lt; &lt; &lt; &lt; &lt; &lt; &lt; &lt; &lt; &lt; &lt; &lt; &lt;
+09: ^ &gt; &gt; 0 45*0+g 0 45*1+g -#v_ 0 45*0+g &gt; v                 Compare length
+10: ^                         &gt; &gt; &gt; &gt; &gt; &gt; &gt;   v
+11: ^   v &lt; &lt; &lt; &lt; &lt; &lt; &lt; &lt; &lt; &lt; &lt; &lt; &lt; &lt; &lt; &lt; &lt; &lt; v
+12: ^   &gt; 1-: !#v_ ::45*0+g \ 45*1+g - #v_  ^ v               Compare strings
+13: ^           &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; v       v     v
+14: ^ &lt; $ ,+55 ,,,, &lt; &lt;  "true" &lt;       v     v
+15:                 ^ , "false" &lt; &lt; &lt; &lt; &lt; &lt; &lt; &lt;
+</code></pre>
+
+<p>As you have have guessed, the instructions <code>&gt;</code>, <code>v</code>, <code>&lt;</code>, and <code>^</code>, 
+send the program counter right, down, left or up. (Note the text on
+the right &mdash; Befunge-03 doesn't have comments, but Befunge-93 only cares
+what characters there if it encounters an instruction &mdash; so you can put
+free text anywhere where the program isn't going to be executed).</p>
+
+<p>As said before, Befunge-93 only has single character instructions, which
+requires to do arithmetic to get numbers exceeding 9. This is how we
+make the number <code>21</code>: <code>45*1+</code>: </p>
+
+<ul>
+<li><code>4</code>: Push <code>4</code> on the stack</li>
+<li><code>5</code>: Push <code>5</code> on the stack</li>
+<li><code>*</code>: Pop the top two numbers from the stack, multiply them, and push
+   the result back on the stack</li>
+<li><code>1</code>: Push <code>1</code> on the stack</li>
+<li><code>+</code>: Pop the top two numbers from the stack, add them, and push the
+   result back on the stack</li>
+</ul>
+
+<p>(<code>154*+</code> would also have made <code>21</code>). In a similar way, we make <code>20</code> using
+the instructions <code>45*0+</code>. The <code>0+</code> is redundant, as adding <code>0</code> to something
+doesn't change it, but we use it for the symmetry of making <code>21</code>.</p>
+
+<p>Now, look at the first part of line 00, ignoring the arrows:</p>
+
+<pre><code>1 0 45*0+p
+</code></pre>
+
+<p>This puts a <code>1</code> on the stack, then a <code>0</code>, then <code>20</code> (as explained above),
+then we encounter the <code>p</code> instruction. The <code>p</code> instruction pops off three
+things from the stack, in order, a row number, a column number, and a value.
+It then write the value on the grid, with the given row and column number.
+We use row 20 to store the string before the semi-colon, keeping track of
+its length using column 0. Column 0 will contain the index where the next
+character will be written (so, one more than its length). So, we write <code>1</code>
+to grid position (20, 0).</p>
+
+<p>The next part is similar:</p>
+
+<pre><code>1 0 45*1+p
+</code></pre>
+
+<p>This writes <code>1</code> to grid position (21, 0).</p>
+
+<p>The final part of this line is:</p>
+
+<pre><code>"&gt;" 6 6p
+</code></pre>
+
+<p>The <code>"</code> instruction puts the program into <em>string mode</em>. This means that
+for every character it encounters, it places the ASCII value of that
+character on the stack; this continues until the program encounters the
+next <code>"</code>. (It cannot change direction, or execute any other instruction
+while doing so). So, it places (the ASCII value of) a <code>&gt;</code> on the stack,
+a <code>6</code>, another <code>6</code>, and then excutes the <code>p</code> instruction, effectively
+writing a <code>&gt;</code> on column 6, row 6. This make lines 05, 06 and 07 look like:</p>
+
+<pre><code>^ v ^ v &lt; &lt; &lt; &lt; &lt; &lt; &lt; &lt; &lt; &lt; &lt; &lt; &lt; &lt; &lt; &lt; &lt; &lt; &lt; &lt; &lt; &lt; &lt; &lt;
+^ v ^ &gt; 0 45*0+g 45*0+p 0 45*0+g 1+ 0 45*0+p  v
+^ v ^ &gt; 0 45*1+g 45*1+p 0 45*1+g 1+ 0 45*1+p  v
+</code></pre>
+
+<p>We'll come back to this later.</p>
+
+<p>Now we follow the arrows, and we encounter line 02:</p>
+
+<pre><code>~:1+!#@_ :" "-!#v_ :"."-!#v_ :55+-!#v_ :";"-!#^_v
+</code></pre>
+
+<p>This is the loop which parses our input, character by character.</p>
+
+<p>Let's break it down. First part:</p>
+
+<pre><code>~ : 1+ ! #@_
+</code></pre>
+
+<p>The <code>~</code> reads a single character from the input, pushing its ASCII
+value on the stack. If EOF is encountered, the <code>~</code> instruction puts
+<code>-1</code> on the stack. And this is the first thing we check for. Since we
+don't want to lose the value of the read in character, we duplicate 
+it using the <code>:</code> instruction, then we add one to it (<code>1+</code>), and negate
+the value (<code>!</code>). This means that if we just have encounted EOF, we now
+have <code>1</code> at the top of the stack, else we have <code>0</code>. The <code>#</code> instruction
+makes us skip the next one &mdash; since we're moving left to right, we skip
+over the <code>@</code>, and encounter <code>_</code>. <code>_</code> is a conditional statement: it pops
+up a value from the stack, if it's true, it moves the program counter
+left-ward, else right-ward. So, if we encountered EOF, we now get the
+<code>@</code> instruction &mdash; which just terminates the program. Otherwise, we 
+continue:</p>
+
+<pre><code>: " "- ! #v_
+</code></pre>
+
+<p>First, we duplicate the read character again (as the first duplicate has
+been consumed), then we push the ASCII value of a space on the stack,
+and subtract the two value, then negate it. So, if the just read character
+was a space, we now have a true value on the stack, else a false value.
+The sequence <code>#v_</code> is similar as above: if we just read a space, we
+jump over the <code>v</code>, then go back (due to the <code>_</code>), and execute the <code>v</code>
+anyway, else we continue to the right. If we do execute the <code>v</code> (so we
+have read a space), we go back to the beginning of the loop, after
+executing the <code>$</code> instruction, which simply pops up a value from the
+stack, and discard it (the read space is still on top of the stack).
+If it's not a space, we get:</p>
+
+<pre><code>: "."- ! #v_
+</code></pre>
+
+<p>which does the same thing as above: check if the read character was a
+dot, and if so, discard it and restart the loop. Otherwise, we continue
+with the next check:</p>
+
+<pre><code>: 55+- ! #v_
+</code></pre>
+
+<p>This is a check whether we just read a newline &mdash; whose ASCII value
+is <code>10</code>. And we get <code>10</code> by adding <code>5</code> and <code>5</code> together. If we did
+read an newline, we have finished processing an entire line of input,
+and we can compare strings &mdash; which we do starting from line 09 (just
+follow the arrows). We'll explain that process below. If we also
+don't encounter a newline, we're off to the next check:</p>
+
+<pre><code>: ";"- ! #^_ v
+</code></pre>
+
+<p>Here we check against reading a semi-colon. If we do, we go up and execute
+line 01 (going right to left (!)), else we execute line 06 <em>or</em> line 07,
+storing the read character.</p>
+
+<p>First, line 02, to be executed when encountering a semi-colon. Its is
+executed left to right, but if we place the instruction in the way they're
+encountered, we get:</p>
+
+<pre><code>$ "v" 6 6p
+</code></pre>
+
+<p>We pop off a value from the stack (the read in semi-colon), then we write
+<code>v</code> on row 6, column 6, turning lines 05, 06, and 07 from</p>
+
+<pre><code>^ v ^ v &lt; &lt; &lt; &lt; &lt; &lt; &lt; &lt; &lt; &lt; &lt; &lt; &lt; &lt; &lt; &lt; &lt; &lt; &lt; &lt; &lt; &lt; &lt; &lt;
+^ v ^ &gt; 0 45*0+g 45*0+p 0 45*0+g 1+ 0 45*0+p  v
+^ v ^ &gt; 0 45*1+g 45*1+p 0 45*1+g 1+ 0 45*1+p  v
+</code></pre>
+
+<p>into</p>
+
+<pre><code>^ v ^ v &lt; &lt; &lt; &lt; &lt; &lt; &lt; &lt; &lt; &lt; &lt; &lt; &lt; &lt; &lt; &lt; &lt; &lt; &lt; &lt; &lt; &lt; &lt; &lt;
+^ v ^ v 0 45*0+g 45*0+p 0 45*0+g 1+ 0 45*0+p  v
+^ v ^ &gt; 0 45*1+g 45*1+p 0 45*1+g 1+ 0 45*1+p  v
+</code></pre>
+
+<p>a very subtle, but important, difference. We then enter the main loop again.</p>
+
+<p>Now, if we didn't encounter any of the special characters (EOF, space,
+dot, newline, semi-colon), we need to store the read character, by
+executing line 06 (before having encountered a semi-colon) or line 07
+(afterwards). They're very similar, only difference is whether we write
+to row 20 or 21. So, we'll explain just one of the lines:</p>
+
+<p>It's important to realize that when we're about to execute this line,
+the read in character (its ASCII value) is on top of the stack.</p>
+
+<pre><code>0 45*0+ g
+</code></pre>
+
+<p>This pushes <code>0</code> on the stack, followed by <code>20</code>, then we execute the <code>g</code>
+command. The <code>g</code> command pops off a row number, a column number, then
+pushes the value found on that position to the stack. So, it pushes
+the value found on position (20, 0) on the stack, which is the index
+where to write the next character. So, we have the column on top of the
+stack, and the value below it. All we need is to push the row number (20)
+and execute the <code>p</code> instruction:</p>
+
+<pre><code>45*0+ p
+</code></pre>
+
+<p>Next we need to increment the value found in column <code>0</code>. First, we get it:</p>
+
+<pre><code>0 45*0+ g
+</code></pre>
+
+<p>We add <code>1</code> to it:</p>
+
+<pre><code>1+
+</code></pre>
+
+<p>push the column and row number, and write it back:</p>
+
+<pre><code>0 45*0+ p
+</code></pre>
+
+<p>Finally, we go back to the main loop, which you can see by following
+the arrows.</p>
+
+<p>Before explaining the comparison of the strings, let us explain the
+printing of result (<code>true</code> or <code>false</code>), which happens in lines 14
+and 15:</p>
+
+<pre><code>^ &lt; $ ,+55 ,,,, &lt; &lt;  "true" &lt;
+                ^ , "false" &lt;
+</code></pre>
+
+<p>We come here from the right, going to the left. We have seen the <code>"</code>
+instruction before, which puts the ASCII values of the string on the
+stack. So, for line 14, we push <code>101</code> (<code>e</code>), <code>117</code> (<code>u</code>), <code>114</code> (<code>r</code>),
+and <code>116</code> (<code>t</code>) on the stack (in that order), and for line 15, it
+will be <code>101</code> (<code>e</code>), <code>115</code> (<code>s</code>), <code>108</code> (<code>l</code>), <code>97</code> (<code>a</code>), and <code>102</code> (<code>f</code>).
+The comma instruction (<code>,</code>) pops up a single value from the stack and
+prints the character representated by that ASCII value. So, if we have
+pushed <code>false</code>, we print 5 characters; if we have pushed <code>true</code>, we print 4
+characters. Then we push <code>10</code> on the stack (<code>55+</code>) and print it as a 
+character, so we terminate each line of our output with a newline. 
+We then clear the stack, and go all the way back to the beginning of
+the program, getting ready for the next exercise.</p>
+
+<p>So, how do we compare strings? We need to check two things: are the strings
+of the same length, and do all characters match up.</p>
+
+<p>Comparing the lengths is done in the first part of line 09:</p>
+
+<pre><code>0 45*0+ g 0 45*1+ g - #v_
+</code></pre>
+
+<p>We fetch the (next) indices of the strings from the columns 0 of the rows
+20 and 21, and subtract. If they are unequal, their difference will be
+a true value, and we down, and towards line 15 (which will print <code>false</code>).</p>
+
+<p>Otherwise, we fetch the index again, and continue with line 12:</p>
+
+<pre><code>0 45*0+ g &gt; v
+</code></pre>
+
+<p>Line 12 looks like this:</p>
+
+<pre><code>1-: !#v_ ::45*0+g \ 45*1+g - #v_  ^
+</code></pre>
+
+<p>When we enter here for the first time, on top of the stack is the 
+first index <em>past</em> the end of the strings. So, we start of by 
+subtracting <code>1</code> it.</p>
+
+<pre><code>1-
+</code></pre>
+
+<p>Now, if this value equals <code>0</code>, we have compared the entire strings,
+haven't found a mismatch, so the answer is going to be <code>true</code>. We
+duplicate the value, negate it, and send our program to line 15 if
+it's <code>0</code>, else we continue:</p>
+
+<pre><code>: ! #v_
+</code></pre>
+
+<p>We now need to fetch the two characters. Since we need the index
+(which is now on top of the stack) twice more, we first duplicate
+it twice:</p>
+
+<pre><code>::
+</code></pre>
+
+<p>Then we fetch the character from the first string (on row 20):</p>
+
+<pre><code>45*0+ g
+</code></pre>
+
+<p>So, we now have the first character on top of the stack, and the index to
+fetch the second character from below it. The <code>\</code> swaps those values,
+so we do that, and fetch the second character:</p>
+
+<pre><code>\ 45*1+ g
+</code></pre>
+
+<p>We now have the two characters we want to compare on top of the stack.
+We can simply subtract them. If the result is <code>0</code> (false), they're equal,
+else, they're not. If they're not equal, we'll print <code>false</code>, else
+we continue the compare loop:</p>
+
+<pre><code>- #v_ ^
+</code></pre>
+
+<p>And than completes our program.</p>
+
+<hr id = 'last-line'>
+<div class = 'trailer'>
+<p class = 'prev'><a class = "prev" href = "">&#x261C;</a></p>
+<p class = 'issue'>Please leave any comments as a
+  <a href = 'https://github.com/Abigail/Abigail.github.io/issues'
+     title = 'GitHub issue'>GitHub issue</a>.
+<p class = 'next'><a class = "next" href = "">&#x261E;</a></p>
+</div>
+
+</body>
+</html>
