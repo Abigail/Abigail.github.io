@@ -1,0 +1,158 @@
+<html>
+<head>
+<title>Perl Weekly Challenge 373: List Division</title>
+<meta charset = "utf-8">
+<link rel  = 'preconnect' href = 'https://fonts.gstatic.com'>
+<link rel = 'stylesheet' href =      'https://fonts.googleapis.com/css2?family=Lobster+Two&family=Source+Code Pro&family=Pinyon+Script&family=Sorts+Mill Goudy:ital@1&display=swap'>
+<link rel = 'stylesheet' href = '../../Styles/main.css'>
+<link rel = 'stylesheet' href = '../../Styles/Perl-Weekly-Challenge/main.css'>
+<script src = "../../JavaScript/jquery.js"></script>
+<script id  = 'MathJax-script' async src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.js'></script>
+<script src = '../../JavaScript/navigation.js'></script>
+</head>
+
+<body><h1>Perl Weekly Challenge 373: List Division</h1><div class = "byline">
+by Abigail<br>
+<img src = "../../Images/jan_sluiters.jpg">
+</div>
+
+
+<h2><a href="https://theweeklychallenge.org/blog/perl-weekly-challenge-373/#TASK1">Challenge</a></h2>
+
+<blockquote>
+  <p>You are given a list and a non-negative integer.</p>
+  
+  <p>Write a script to divide the given list into given non-negative
+  integer equal parts. Return <code>-1</code> if the integer is more than the size
+  of the list.</p>
+</blockquote>
+
+<h3 id = 'examples'>Examples</h3>
+
+<pre><code>Input:  @list = (1,2,3,4,5), $n = 2
+Output: ((1,2,3), (4,5))
+
+Input:  @list = (1,2,3,4,5,6), $n = 3
+Output: ((1,2), (3,4), (5,6))
+
+Input:  @list = (1,2,3), $n = 2
+Output: ((1,2), (3))
+
+Input:  @list = (1,2,3,4,5,6,7,8,9,10), $n = 5
+Output: ((1,2), (3,4), (5,6), (7,8), (9,10))
+
+Input:  @list = (1,2,3), $n = 4
+Output: -1
+
+Input:  @list = (72,57,89,55,36,84,10,95,99,35), $n = 7;
+Output: ((72,57), (89,55), (36,84), (10), (95), (99), (35))
+</code></pre>
+
+<h2 id = 'input_output'>Input/Output</h2>
+
+<div class = "section">
+<p>We prefer to take our input not as arrays or scalar variables, but
+to read it from standard input &mdash; where each line corresponds with
+an excercise. Our input consists of numbers separated by white space,
+where the first number equals the <code>$n</code> above.</p>
+
+<p>So, the input corresponding to the examples above is as follows:</p>
+
+<pre><code>2 1 2 3 4 5
+3 1 2 3 4 5 6
+2 1 2 3
+5 1 2 3 4 5 6 7 8 9 10
+4 1 2 3
+7 72 57 89 55 36 84 10 95 99 35
+</code></pre>
+
+<p>We output the sets with the elements separated by a space, and each set
+terminated by a semi-colon. So, the output with when given the input
+above will be</p>
+
+<pre><code>1 2 3; 4 5;
+1 2; 3 4; 5 6;
+1 2; 3;
+1 2; 3 4; 5 6; 7 8; 9 10;
+-1;
+72 57; 89 55; 36 84; 10; 95; 99; 35;
+</code></pre>
+</div>
+
+<h2 id = 'solution'>Solution</h2>
+
+<div class = "section">
+<p>To solve this exercise, for each line of input, we do the following
+steps:</p>
+
+<ul>
+<li>Split the input on white space; the first element is the number of
+wanted subsets (the <code>$n</code> from above), the rest the list (<code>@list</code>) 
+to be split.</li>
+<li>Check whether the number of wanted subsets exceeds the number of
+elements in the list &mdash; if so, output <code>-1;</code> and continue with the
+next time.</li>
+<li>Else, determine the amount of elements each subset gets at least
+(which we will call <code>per_set</code> in our solutions), and the number
+of sets which get one more element (<code>overflow</code>).</li>
+<li>For each of the wanted sets:
+<ul>
+<li>Calculate its size (either <code>per_set</code>, or <code>per_set + 1</code>)</li>
+<li>Print the set</li>
+</ul></li>
+</ul>
+</div>
+
+<h3 id = 'perl'>Perl</h3>
+
+<p>With a line of input in <code>$line</code>, we start off by splitting it into
+the number of wanted subsets (<code>$n</code>) and the list of elements (<code>@list</code>):</p>
+
+<pre><code>my ($n, @list) = split /\s+/ =&gt; $line; 
+</code></pre>
+
+<p>Then we check whether we have enough elements in the list &mdash; if not,
+we print <code>-1;</code> and continue:</p>
+
+<pre><code>do {say "-1;"; next} if $n &gt; @list;
+</code></pre>
+
+<p>Next, we calculate the minimum amount of element each set gets, and
+how many sets get one more element:</p>
+
+<pre><code>my $per_set  = int (@list / $n);
+my $overflow = @list - $n * $per_set;
+</code></pre>
+
+<p>Iterate over the number of wanted sets, and calculate how many
+elements it gets:</p>
+
+<pre><code>for my $i (1 .. $n) {
+    my $set_size = $per_set;
+    $set_size ++ if $i &lt;= $overflow;
+</code></pre>
+
+<p>Finally, print the set, and terminate it with a semi-colon:</p>
+
+<pre><code>print join " " =&gt; splice @list, 0, $set_size;
+print "; ";
+</code></pre>
+
+<p>Find the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-373/abigail/perl/ch-2.pl">full program</a> on <a href="https://github.com">GitHub</a>.</p>
+
+<p>We also have solutions in <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-373/abigail/awk/ch-2.awk">AWK</a>, <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-373/abigail/bash/ch-2.sh">Bash</a>, <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-373/abigail/bc/ch-2.bc">bc</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-373/abigail/c/ch-2.c">C</a>, <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-373/abigail/lua/ch-2.lua">Lua</a>, <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-373/abigail/go/ch-2.go">Go</a>, <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-373/abigail/node/ch-2.js">Node.js</a>,
+<a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-373/abigail/python/ch-2.py">Python</a>, <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-373/abigail/r/ch-2.R">R</a>, <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-373/abigail/ruby/ch-2.rb">Ruby</a>, and <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-373/abigail/tcl/ch-2.tcl">Tcl</a>, all
+following the same algorithm as the Perl solution.</p>
+
+<hr id = 'last-line'>
+<div class = 'trailer'>
+<p class = 'prev'><a class = "prev" href = "">&#x261C;</a></p>
+<p class = 'issue'>Please leave any comments as a
+  <a href = 'https://github.com/Abigail/Abigail.github.io/issues'
+     title = 'GitHub issue'>GitHub issue</a>.
+<p class = 'next'><a class = "next" href = "">&#x261E;</a></p>
+</div>
+
+</body>
+</html>
